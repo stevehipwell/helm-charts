@@ -1,0 +1,20 @@
+apiVersion: v1
+name: jira-software
+version: 1.2.0
+appVersion: 8.7.0
+description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
+keywords:
+- jira
+- jira-software
+- atlassian
+- agile
+- project
+- management
+home: https://www.atlassian.com/software/jira
+icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+sources:
+- https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+- https://hub.docker.com/r/atlassian/jira-software
+maintainers:
+- name: stevehipwell
+  email: steve.hipwell@github.com
