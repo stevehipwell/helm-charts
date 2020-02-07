@@ -1,0 +1,84 @@
+apiVersion: v1
+entries:
+  confluence-server:
+  - apiVersion: v1
+    appVersion: 7.3.1
+    created: "2020-02-07T10:14:55.785256724Z"
+    description: Atlassian Confluence Server is where you create, organise and discuss
+      work with your team. Capture the knowledge that's too often lost in email inboxes
+      and shared network drives in Confluence - where it's easy to find, use, and
+      update. Give every team, project, or department its own space to create the
+      things they need, whether it's meeting notes, product requirements, file lists,
+      or project plans, you can get more done in Confluence.
+    digest: 8ca3d1ce802146c777a9b846136547f29dea0017077c2051fc9f66a72f067b28
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-1.2.0/confluence-server-1.2.0.tgz
+    version: 1.2.0
+  jira-software:
+  - apiVersion: v1
+    appVersion: 8.7.0
+    created: "2020-02-07T10:14:55.854546367Z"
+    description: Atlassian Jira Software is built for every member of your software
+      team to plan, track, and release great software.
+    digest: 9ef6b8f9d905126bfb2176263cbf016cc5e8314d72e55c5343156921561708ed
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
+    version: 1.2.0
+  nexus3:
+  - apiVersion: v1
+    appVersion: 3.20.1
+    created: "2020-02-07T10:14:55.953882815Z"
+    description: Sonatype Nexus OSS is an open source repository manager
+    digest: 296da27830f8662f6da1582e3fcd5e63764cb5a0b3ddd64835fbb6b4f1f828b0
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: http://www.sonatype.org/nexus/content/uploads/2015/06/Nexus-Logo.jpg
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.1.0/nexus3-1.1.0.tgz
+    version: 1.1.0
+generated: "2020-02-07T10:14:55.429499178Z"
