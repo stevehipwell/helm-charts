@@ -22,6 +22,9 @@ service:
   #     containerPort: 8883
   #     host: nexus-docker-hosted.local
 
+# caCerts:
+#   secret: my-secret
+
 metrics:
   enabled: false
   serviceMonitor:

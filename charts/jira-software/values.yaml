@@ -12,7 +12,6 @@ service:
 
 # caCerts:
 #   secret: my-secret
-#   key: cacerts
 
 ## These settings are only required if you wish to use an existing postgresql instance
 ##

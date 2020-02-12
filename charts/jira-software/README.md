@@ -54,7 +54,6 @@ The following table lists the configurable parameters of the _Jira Software_ cha
 | `service.type`              | Type of service                                                                                | `ClusterIP`                                             |
 | `service.port`              | Service port                                                                                   | `8080`                                                  |
 | `caCerts.secret`            | Name of the secret containing additional CA certificates                                       | `nil`                                                   |
-| `caCerts.key`               | Key on the secret containing additional CA certificates                                        | `nil`                                                   |
 | `psql.host`                 | External _PostgreSQL_ host to use (if this is set the additional `psql` values need to be set) | `nil`                                                   |
 | `psql.port`                 | External _PostgreSQL_ port                                                                     | `nil`                                                   |
 | `psql.database`             | External _PostgreSQL_ database                                                                 | `nil`                                                   |

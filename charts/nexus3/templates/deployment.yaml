@@ -26,6 +26,23 @@ spec:
         {{- . | toYaml | trim | nindent 8 }}
       {{- end }}
     spec:
+      {{- if .Values.caCerts }}
+      initContainers:
+        - name: ca-certs
+          image: adoptopenjdk/openjdk8:alpine
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["sh"]
+          args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: {{ include "nexus3.pvcname" . }}
+            - mountPath: /nexus-data/secrets/cas
+              name: nexus3-cas
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -66,7 +83,7 @@ spec:
             timeoutSeconds: 10
           volumeMounts:
             - mountPath: /nexus-data
-              name: {{ template "nexus3.fullname" . }}-data
+              name: {{ include "nexus3.pvcname" . }}
             {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
@@ -87,8 +104,12 @@ spec:
             {{- end }}
             {{- end }}
           env:
-            - name: install4jAddVmParams
-              value: "-XX:MaxRAMPercentage={{ .Values.envVars.jvmMaxRAMPercentage }} -XX:MaxDirectMemorySize={{ .Values.envVars.jvmMaxDirectMemorySize }} -Djava.util.prefs.userRoot=/nexus-data/javaprefs"
+            - name: INSTALL4J_ADD_VM_PARAMS
+              {{- if .Values.caCerts }}
+              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              {{- else }}
+              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              {{- end }}
             {{- with .Values.env }}
             {{- . | toYaml | trim | nindent 12 }}
             {{- end }}
@@ -100,11 +121,16 @@ spec:
       {{- end }}
       volumes:
         - name: {{ include "nexus3.pvcname" . }}
-        {{- if .Values.persistence.enabled }}
+          {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "nexus3.pvcname" .) }}
-        {{- else }}
+          {{- else }}
           emptyDir: {}
+          {{- end }}
+        {{- if .Values.caCerts }}
+        - name: nexus3-cas
+          secret:
+            secretName: {{ .Values.caCerts.secret }}
         {{- end }}
         {{- if .Values.config.enabled }}
         - name: {{ template "nexus3.fullname" . }}-conf

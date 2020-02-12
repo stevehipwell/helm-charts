@@ -28,10 +28,11 @@ spec:
       {{- if .Values.caCerts }}
       initContainers:
         - name: ca-certs
-          image: adoptopenjdk/openjdk8:alpine
+          image: adoptopenjdk/openjdk11:alpine
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["sh"]
-          args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /var/atlassian/application-data/confluence/cacerts; keytool -importcert -file /var/atlassian/application-data/confluence/secrets/cas/{{ .Values.caCerts.key }} -alias {{ .Values.caCerts.key }} -keystore /var/atlassian/application-data/confluence/cacerts -storepass changeit -trustcacerts -noprompt;"]
+          args: ["-c", "cp -f \"${JAVA_HOME}/lib/security/cacerts\" /var/atlassian/application-data/confluence/cacerts; for f in /var/atlassian/application-data/confluence/secrets/cas; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/confluence/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+
           volumeMounts:
             - mountPath: /var/atlassian/application-data/confluence
               name: {{ include "confluence-server.pvcname" . }}
@@ -80,7 +81,7 @@ spec:
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts }}
               value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory | quote }}
-            {{ else }}
+            {{- else }}
               value: {{ printf "%s -Dsynchrony.memory.max=%s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
