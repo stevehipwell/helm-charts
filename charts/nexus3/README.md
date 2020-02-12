@@ -14,9 +14,7 @@ This chart bootstraps a [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexu
 
 ## Prerequisites
 
-- Kubernetes 1.12+
-- Helm 2.11+ or Helm 3.0-beta3+
-- PV provisioner support in the underlying infrastructure
+- Kubernetes 1.14+
 
 ## Installing the Chart
 
