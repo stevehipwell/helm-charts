@@ -54,19 +54,19 @@ spec:
             - name: synchrony
               containerPort: 8091
               protocol: TCP
-          livenessProbe:
+          readinessProbe:
             httpGet:
-              path: /
+              path: /status
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 300
             periodSeconds: 30
             failureThreshold: 6
             timeoutSeconds: 10
-          readinessProbe:
+          livenessProbe:
             httpGet:
-              path: /
+              path: /status
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 480
             periodSeconds: 30
             failureThreshold: 6
             timeoutSeconds: 10

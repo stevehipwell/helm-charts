@@ -65,19 +65,19 @@ spec:
               containerPort: {{ .containerPort }}
               protocol: TCP
           {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            failureThreshold: 6
-            timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /service/rest/v1/status
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 300
+            periodSeconds: 30
+            failureThreshold: 6
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /service/rest/v1/status
+              port: http
+            initialDelaySeconds: 480
             periodSeconds: 30
             failureThreshold: 6
             timeoutSeconds: 10
