@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "jira-software.fullname" . }}
@@ -31,7 +31,7 @@ spec:
           image: adoptopenjdk/openjdk8:alpine
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["sh"]
-          args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /var/atlassian/application-data/jira/cacerts; keytool -importcert -file /var/atlassian/application-data/jira/secrets/cas/{{ .Values.caCerts.key }} -alias {{ .Values.caCerts.key }} -keystore /var/atlassian/application-data/jira/cacerts -storepass changeit -trustcacerts -noprompt"]
+          args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /var/atlassian/application-data/jira/cacerts; for f in /var/atlassian/application-data/jira/secrets/cas; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/jira/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
             - mountPath: /var/atlassian/application-data/jira
               name: {{ include "jira-software.pvcname" . }}
@@ -50,19 +50,19 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          livenessProbe:
+          readinessProbe:
             httpGet:
-              path: /
+              path: /status
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 300
             periodSeconds: 30
             failureThreshold: 6
             timeoutSeconds: 10
-          readinessProbe:
+          livenessProbe:
             httpGet:
-              path: /
+              path: /status
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 480
             periodSeconds: 30
             failureThreshold: 6
             timeoutSeconds: 10
@@ -77,7 +77,7 @@ spec:
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts }}
               value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s" .Values.envVars.jvmMemoryOptions | quote }}
-            {{ else }}
+            {{- else }}
               value: {{ .Values.envVars.jvmMemoryOptions | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
