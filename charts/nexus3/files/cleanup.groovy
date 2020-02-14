@@ -13,7 +13,8 @@ if (policyStorage.exists(params.name)) {
   cleanupPolicy.setCriteria(params.criteria);
   policyStorage.update(cleanupPolicy);
 } else {
-  policyStorage.add(new CleanupPolicy(params.name, params.notes, params.format, params.mode, params.criteria));
+  def policy = policyStorage.newCleanupPolicy()
+  policyStorage.add(policy);
 }
 
 return true
