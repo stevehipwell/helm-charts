@@ -192,6 +192,30 @@ entries:
   nexus3:
   - apiVersion: v1
     appVersion: 3.20.1
+    created: "2020-02-14T07:03:00.165836048Z"
+    description: Sonatype Nexus OSS is an open source repository manager
+    digest: b25cb8c28bafc482b406db03c694d6410e2117be830ac36e2860111ad9280878
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: http://www.sonatype.org/nexus/content/uploads/2015/06/Nexus-Logo.jpg
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.2.2/nexus3-1.2.2.tgz
+    version: 1.2.2
+  - apiVersion: v1
+    appVersion: 3.20.1
     created: "2020-02-13T06:45:09.584621105Z"
     description: Sonatype Nexus OSS is an open source repository manager
     digest: 2d1622778b5021dd97ecc5764bf426ecda230e6bf25b7b8fe748f5a5d5ba4c05
