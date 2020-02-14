@@ -5,7 +5,7 @@ def params = new JsonSlurper().parseText(args)
 if (params.enabled) {
   def metricsRole = "nx-metrics"
 
-  if (!security.securitySystem.listRoles().any { it.source == "default" && it.roleId == metricsName }) {
+  if (!security.securitySystem.listRoles().any { it.source == "default" && it.roleId == metricsRole }) {
     security.addRole(metricsRole, metricsRole, "Metrics collection role", [], ["nx-metrics-all"])
   }
 
