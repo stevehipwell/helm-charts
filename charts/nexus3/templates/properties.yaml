@@ -12,5 +12,5 @@ data:
   nexus.properties: |
     {{- range .Values.properties }}
     {{ . }}
-    {{-end }}
+    {{- end }}
 {{- end }}
