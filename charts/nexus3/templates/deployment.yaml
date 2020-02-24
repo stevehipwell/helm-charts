@@ -85,6 +85,12 @@ spec:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             {{- if .Values.config.enabled }}
+            - mountPath: /nexus-data/etc/nexus.properties
+              name: {{ template "nexus3.fullname" . }}-conf
+              subPath: nexus.properties
+              readonly: true
+            {{- end }}
+            {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
               readonly: true
@@ -94,13 +100,11 @@ spec:
               subPath: {{ .Values.config.rootPassword.key }}
               readonly: true
             {{- end }}
-            {{- if .Values.config.ldap }}
-            {{- if .Values.config.ldap.password }}
+            {{- if and .Values.config.ldap .Values.config.ldap.password }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.password.secret }}
               subPath: {{ .Values.config.ldap.password.key }}
               readonly: true
-            {{- end }}
             {{- end }}
             {{- end }}
           env:
@@ -132,6 +136,12 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
         {{- end }}
+        {{- if .Values.properties }}
+        - name: {{ template "nexus3.fullname" . }}-properties
+          configMap:
+            name: {{ template "nexus3.fullname" . }}-properties
+            defaultMode: 0755
+        {{- end }}
         {{- if .Values.config.enabled }}
         - name: {{ template "nexus3.fullname" . }}-conf
           configMap:
@@ -142,12 +152,10 @@ spec:
           secret:
             secretName: {{ .Values.config.rootPassword.secret }}
         {{- end }}
-        {{- if .Values.config.ldap }}
-        {{- if .Values.config.ldap.password }}
+        {{- if and .Values.config.ldap .Values.config.ldap.password }}
         - name: {{ .Values.config.ldap.password.secret }}
           secret:
             secretName: {{ .Values.config.ldap.password.secret }}
-        {{- end }}
         {{- end }}
         {{- end }}
       {{- with .Values.nodeSelector }}
