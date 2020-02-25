@@ -1,0 +1,16 @@
+{{- if .Values.properties -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nexus3.fullname" . }}-properties
+  labels:
+    app.kubernetes.io/name: {{ include "nexus3.name" . }}
+    helm.sh/chart: {{ include "nexus3.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  nexus.properties: |
+    {{- range .Values.properties }}
+    {{ . }}
+    {{- end }}
+{{- end }}
