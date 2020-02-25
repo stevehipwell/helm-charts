@@ -2,6 +2,35 @@ apiVersion: v1
 entries:
   confluence-server:
   - apiVersion: v1
+    appVersion: 7.3.2
+    created: "2020-02-25T08:26:31.70562065Z"
+    description: Atlassian Confluence Server is where you create, organise and discuss
+      work with your team. Capture the knowledge that's too often lost in email inboxes
+      and shared network drives in Confluence - where it's easy to find, use, and
+      update. Give every team, project, or department its own space to create the
+      things they need, whether it's meeting notes, product requirements, file lists,
+      or project plans, you can get more done in Confluence.
+    digest: 59141f0d4cc36a0e9a36bd1e187362667ccfcab4af28d0f2ab412145c5f25026
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-1.4.0/confluence-server-1.4.0.tgz
+    version: 1.4.0
+  - apiVersion: v1
     appVersion: 7.3.1
     created: "2020-02-20T16:03:55.654027949Z"
     description: Atlassian Confluence Server is where you create, organise and discuss
@@ -219,6 +248,30 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - apiVersion: v1
+    appVersion: 3.21.1
+    created: "2020-02-25T08:26:31.794151152Z"
+    description: Sonatype Nexus OSS is an open source repository manager
+    digest: 63aea3a9a4d1229e21bd21f8b2cca619a7c1326bfd6d1328eb8d8c20895bc5a4
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: http://www.sonatype.org/nexus/content/uploads/2015/06/Nexus-Logo.jpg
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.3.1/nexus3-1.3.1.tgz
+    version: 1.3.1
   - apiVersion: v1
     appVersion: 3.21.1
     created: "2020-02-20T16:03:55.798891691Z"
