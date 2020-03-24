@@ -74,7 +74,7 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | `ingress.path`                   | Path for ingress rules                                                                  | `/`               |
 | `ingress.hosts`                  | List of ingress hosts                                                                   | `[]`              |
 | `ingress.tls`                    | List of TLS configurations (`ingress.tls[n].secretName`, `ingress.tls[n].hosts[m])`     | `[]`              |
-| `properties`                     | List of properties to start _Nexus3_ with.                                              | `nil`             |
+| `properties.enabled`             | Support passing _Nexus3_ properties.                                                    | `nil`             |
 | `config.enabled`                 | Automatically configure _Nexus3_                                                        | `false`           |
 
 ## Persistence

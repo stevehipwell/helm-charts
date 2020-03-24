@@ -85,9 +85,9 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
-            {{- if .Values.config.enabled }}
+            {{- if .Values.properties.enabled }}
             - mountPath: /nexus-data/etc/nexus.properties
-              name: {{ template "nexus3.fullname" . }}-conf
+              name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readonly: true
             {{- end }}
@@ -137,7 +137,7 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
         {{- end }}
-        {{- if .Values.properties }}
+        {{- if .Values.properties.enabled }}
         - name: {{ template "nexus3.fullname" . }}-properties
           configMap:
             name: {{ template "nexus3.fullname" . }}-properties
