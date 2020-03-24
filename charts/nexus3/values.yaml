@@ -1,6 +1,6 @@
 image:
   repository: sonatype/nexus3
-  tag: 3.21.1
+  tag: 3.21.2
   pullPolicy: IfNotPresent
 
 nameOverride: ""
