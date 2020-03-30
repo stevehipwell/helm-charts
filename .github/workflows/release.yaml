@@ -17,6 +17,9 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
       # - name: Install Helm
       #   run: |
       #     curl -sSLo get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get
