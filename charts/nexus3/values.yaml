@@ -71,8 +71,9 @@ ingress:
     #     - nexus-docker-hosted.local
 
 properties:
-  enabled: false
-#   - nexus.golang.hosted=true
+  enabled: true
+  values:
+    - nexus.golang.hosted=true
 
 config:
   enabled: false

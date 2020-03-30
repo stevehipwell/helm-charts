@@ -1,4 +1,4 @@
-{{- if .Values.properties -}}
+{{- if .Values.properties.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
   nexus.properties: |
-    {{- range .Values.properties }}
+    {{- range .Values.properties.values }}
     {{ . }}
     {{- end }}
 {{- end }}
