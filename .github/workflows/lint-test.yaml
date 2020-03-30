@@ -12,6 +12,10 @@ jobs:
       - name: Fetch history
         run: git fetch --prune --unshallow
 
+      - name: Add dependency chart repos
+        run: |
+          helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
       - name: Run chart-testing (lint)
         id: lint
         uses: helm/chart-testing-action@v1.0.0-rc.1
