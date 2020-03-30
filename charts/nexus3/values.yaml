@@ -72,7 +72,8 @@ ingress:
 
 properties:
   enabled: false
-#   - nexus.golang.hosted=true
+  # values:
+  #   - nexus.golang.hosted=true
 
 config:
   enabled: false
