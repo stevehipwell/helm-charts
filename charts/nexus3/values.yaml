@@ -29,6 +29,8 @@ metrics:
   enabled: false
   serviceMonitor:
     enabled: false
+    # additionalLabels:
+    #   myLabel: myValue
 
 envVars:
   jvmMaxRAMPercentage: "25.0"
