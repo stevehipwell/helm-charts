@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     {{- if .Values.metrics.serviceMonitor.additionalLabels }}
-{{- .Values.metrics.serviceMonitor.additionalLabels | toYaml | trim | indent 4 }}
+    {{- .Values.metrics.serviceMonitor.additionalLabels | toYaml | trim | nindent 4 }}
     {{- end }}
 spec:
   jobLabel: {{ .Release.Name }}
