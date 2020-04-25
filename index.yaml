@@ -308,6 +308,36 @@ entries:
     version: 1.2.0
   jira-software:
   - apiVersion: v1
+    appVersion: 8.8.1
+    created: "2020-04-25T12:22:19.205914356Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Atlassian Jira Software is built for every member of your software
+      team to plan, track, and release great software.
+    digest: cbcec7e71f6060fd9ad7aa8b5036e5664149398975f26b0bd43604f3b065077a
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-2.0.1/jira-software-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v1
     appVersion: 8.8.0
     created: "2020-03-20T09:35:13.311246005Z"
     description: Atlassian Jira Software is built for every member of your software
