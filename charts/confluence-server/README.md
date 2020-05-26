@@ -45,7 +45,7 @@ The following table lists the configurable parameters of the _Confluence Server_
 | Parameter                    | Description                                                                                        | Default                                                 |
 | ---------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `image.repository`           | Docker repository to use                                                                           | `atlassian/confluence-server`                           |
-| `image.tag`                  | Docker tag to use                                                                                  | `7.4.0`                                                 |
+| `image.tag`                  | Docker tag to use                                                                                  | `7.5.0`                                                 |
 | `image.pullPolicy`           | Docker image pull policy                                                                           | `IfNotPresent`                                          |
 | `nameOverride`               | String to partially override `confluence-server.fullname` template (will prepend the release name) | `nil`                                                   |
 | `fullnameOverride`           | String to fully override `confluence-server.fullname` template                                     | `nil`                                                   |
