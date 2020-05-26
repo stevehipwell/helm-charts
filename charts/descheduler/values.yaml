@@ -20,22 +20,22 @@ cmdOptions:
 
 deschedulerPolicy:
   strategies:
-    "RemoveDuplicates":
-        enabled: true
-    "RemovePodsViolatingInterPodAntiAffinity":
-        enabled: true
-    "LowNodeUtilization":
-        enabled: true
-        params:
-          nodeResourceUtilizationThresholds:
-            thresholds:
-              "cpu" : 20
-              "memory": 20
-              "pods": 20
-            targetThresholds:
-              "cpu" : 50
-              "memory": 50
-              "pods": 50
+    RemoveDuplicates:
+      enabled: true
+    RemovePodsViolatingInterPodAntiAffinity:
+      enabled: true
+    LowNodeUtilization:
+      enabled: true
+      params:
+        nodeResourceUtilizationThresholds:
+          thresholds:
+            cpu : 20
+            memory: 20
+            pods: 20
+          targetThresholds:
+            cpu : 50
+            memory: 50
+            pods: 50
 
 rbac:
   # Specifies whether RBAC resources should be created
