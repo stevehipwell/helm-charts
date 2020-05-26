@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- with .Values.persistence.annotations }}
   annotations:
-    {{ . | toYaml | trim | nindent 4 }}
+    {{- . | toYaml | trim | nindent 4 }}
   {{- end }}
 spec:
   accessModes:
