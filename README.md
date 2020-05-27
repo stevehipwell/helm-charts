@@ -11,8 +11,8 @@ These charts are provided as-is with no warranties.
 
 Once Helm is set up properly, add the repo as follows:
 
-```console
-$ helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+```shell
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 ```
 
 You can then run `helm search stevehipwell` to see the charts.
