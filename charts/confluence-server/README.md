@@ -4,8 +4,9 @@ Atlassian [Confluence Server](https://www.atlassian.com/software/jira) is where 
 
 ## TL;DR:
 
-```console
-$ helm install --name my-release stable/confluence-server
+```shell
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm install --name my-release stable/confluence-server
 ```
 
 ## Introduction
@@ -20,8 +21,8 @@ This chart bootstraps a [atlassian/confluence-server](https://hub.docker.com/r/a
 
 To install the chart with the release name `my-release`:
 
-```console
-$ helm install --name my-release stable/confluence-server
+```shell
+helm install --name my-release stevehipwell/confluence-server
 ```
 
 The command deploys _Confluence Server_ on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
@@ -32,8 +33,8 @@ The command deploys _Confluence Server_ on the Kubernetes cluster in the default
 
 To uninstall/delete the `my-release` deployment:
 
-```console
-$ helm delete my-release
+```shell
+helm delete my-release
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
