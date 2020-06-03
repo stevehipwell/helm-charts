@@ -6,7 +6,7 @@
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-$ helm install stevehipwell/descheduler --name my-release
+$ helm install --name my-release stevehipwell/descheduler
 ```
 
 ## Introduction
