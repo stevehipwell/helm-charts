@@ -37,6 +37,8 @@ deschedulerPolicy:
             memory: 50
             pods: 50
 
+priorityClassName: system-cluster-critical
+
 rbac:
   # Specifies whether RBAC resources should be created
   create: true
