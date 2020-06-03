@@ -3,6 +3,40 @@ entries:
   confluence-server:
   - apiVersion: v1
     appVersion: 7.5.0
+    created: "2020-06-03T12:56:10.564087043Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Atlassian Confluence Server is where you create, organise and discuss
+      work with your team. Capture the knowledge that's too often lost in email inboxes
+      and shared network drives in Confluence - where it's easy to find, use, and
+      update. Give every team, project, or department its own space to create the
+      things they need, whether it's meeting notes, product requirements, file lists,
+      or project plans, you can get more done in Confluence.
+    digest: 7c4a2568f9432ef88d0660388f0295458ee7b0f0eb51bfcd299ed428b93e84fc
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-2.2.3/confluence-server-2.2.3.tgz
+    version: 2.2.3
+  - apiVersion: v1
+    appVersion: 7.5.0
     created: "2020-06-03T08:05:40.327006462Z"
     dependencies:
     - condition: postgresql.enabled
@@ -411,6 +445,26 @@ entries:
   descheduler:
   - apiVersion: v1
     appVersion: 0.9.0
+    created: "2020-06-03T12:56:10.65364021Z"
+    description: A Helm chart for the Kubernetes Descheduler.
+    digest: 98717fcb4442fd500f1493e8770f21d8a77c883cdc8a5d7d5f29d1d6010aec28
+    home: https://github.com/kubernetes-sigs/descheduler
+    icon: https://kubernetes.io/images/favicon.png
+    keywords:
+    - kubernetes
+    - descheduler
+    - kube-scheduler
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: descheduler
+    sources:
+    - https://github.com/kubernetes-sigs/descheduler
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.3/descheduler-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 0.9.0
     created: "2020-06-03T07:34:01.923680672Z"
     description: A Helm chart for the Kubernetes Descheduler.
     digest: bb2fd8d4e0b5f790838d23691381c45570ada808bb1aa5b416f3cb246d94502b
@@ -470,6 +524,36 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - apiVersion: v1
+    appVersion: 8.9.0
+    created: "2020-06-03T12:56:10.728281548Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Atlassian Jira Software is built for every member of your software
+      team to plan, track, and release great software.
+    digest: 9b477e49cf02cdc227ef2329d9c637a527ec1f3a3e4ec6c55888b29106e73821
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-2.1.2/jira-software-2.1.2.tgz
+    version: 2.1.2
   - apiVersion: v1
     appVersion: 8.9.0
     created: "2020-06-03T08:05:40.418475892Z"
@@ -711,6 +795,30 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - apiVersion: v1
+    appVersion: 3.23.0
+    created: "2020-06-03T12:56:10.818559911Z"
+    description: Sonatype Nexus OSS is an open source repository manager
+    digest: 13f390c4ab96351335581d24ca093539c6d11792729068abecdfe4cb7240010c
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: http://www.sonatype.org/nexus/content/uploads/2015/06/Nexus-Logo.jpg
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-2.3.1/nexus3-2.3.1.tgz
+    version: 2.3.1
   - apiVersion: v1
     appVersion: 3.23.0
     created: "2020-05-06T12:23:25.428084194Z"
