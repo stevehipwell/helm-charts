@@ -63,6 +63,7 @@ The following table lists the configurable parameters of the _Confluence Server_
 | `envVars.jvmMaxMemory`       | JVM maximum memory                                                                                 | `768M`                                                  |
 | `envVars.jvmMemoryOptions`   | JVM memory options                                                                                 | `-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m` |
 | `envVars.synchronyMaxMemory` | Synchrony maximum memory                                                                           | `0m`                                                    |
+| `envVars.opts`               | Additional options, this can be used to set _CATALINA_OPTS_                                        | `""`                                                    |
 | `env`                        | List of environmental variable to apply to the deployment                                          | `nil`                                                   |
 | `persistence.enabled`        | Create a volume (PVC) for storage                                                                  | `false`                                                 |
 | `persistence.existingClaim`  | An existing PVC to use instead of creating a new one                                               | `nil`                                                   |

@@ -79,9 +79,9 @@ spec:
               value: {{ .Values.envVars.jvmMaxMemory | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory .Values.envVars.opts | trim | quote }}
             {{- else }}
-              value: {{ printf "%s -Dsynchrony.memory.max=%s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory | quote }}
+              value: {{ printf "%s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory .Values.envVars.opts | trim | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME

@@ -76,9 +76,9 @@ spec:
               value: {{ .Values.envVars.jvmMaxMemory | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s" .Values.envVars.jvmMemoryOptions | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.opts | trim | quote }}
             {{- else }}
-              value: {{ .Values.envVars.jvmMemoryOptions | quote }}
+              value: {{ printf "%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.opts | trim | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME
