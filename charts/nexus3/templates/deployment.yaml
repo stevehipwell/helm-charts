@@ -33,7 +33,7 @@ spec:
           image: adoptopenjdk/openjdk8:alpine
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["sh"]
-          args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          args: ["-c", "mkdir -p /nexus-data/keystores; cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
