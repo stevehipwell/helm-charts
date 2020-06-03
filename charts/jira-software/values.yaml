@@ -28,6 +28,7 @@ envVars:
   jvmMinMemory: 384M
   jvmMaxMemory: 768M
   jvmMemoryOptions: "-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m"
+  opts: ""
 
 # env:
 #   - name: VARIABLE

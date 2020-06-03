@@ -61,6 +61,7 @@ The following table lists the configurable parameters of the _Jira Software_ cha
 | `envVars.jvmMinMemory`      | JVM minimum memory                                                                             | `384M`                                                  |
 | `envVars.jvmMaxMemory`      | JVM maximum memory                                                                             | `768M`                                                  |
 | `envVars.jvmMemoryOptions`  | JVM memory options                                                                             | `-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m` |
+| `envVars.opts`              | Additional options                                                                             | `""`                                                    |
 | `env`                       | List of environmental variable to apply to the deployment                                      | `nil`                                                   |
 | `persistence.enabled`       | Create a volume (PVC) for storage                                                              | `false`                                                 |
 | `persistence.existingClaim` | An existing PVC to use instead of creating a new one                                           | `nil`                                                   |
