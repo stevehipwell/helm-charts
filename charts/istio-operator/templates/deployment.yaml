@@ -6,6 +6,7 @@ metadata:
     {{- include "istio-operator.labels" . | nindent 4 }}
 spec:
   replicas: 1
+  minReadySeconds: 30
   selector:
     matchLabels:
       {{- include "istio-operator.selectorLabels" . | nindent 6 }}
