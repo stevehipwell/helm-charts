@@ -12,7 +12,7 @@ keywords:
 home: https://istio.io/
 icon: https://istio.io/favicons/android-192x192.png
 sources:
-- https://github.com/istio/istio/operator
+- https://github.com/istio/istio
 maintainers:
 - name: stevehipwell
   email: steve.hipwell@github.com

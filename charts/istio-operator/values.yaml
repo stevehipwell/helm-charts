@@ -13,6 +13,11 @@ fullnameOverride: ""
 
 istioNamespace: istio-system
 
+spec:
+  profile: default
+  # components:
+  # values:
+
 serviceMonitor:
   enabled: false
   # interval:
