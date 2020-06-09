@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "commvault-media-agent.fullname" . }}
+  labels:
+    {{- include "commvault-media-agent.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "commvault-media-agent.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "commvault-media-agent.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "commvault-media-agent.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "-csclientname"
+            - {{ .Values.settings.csClientName | quote }}
+            - "-cshost"
+            - {{ .Values.settings.csHost | quote }}
+            - "-mountpath"
+            - "/opt/libraryPath"
+            - "-commcelluser"
+            - "$(COMMCELL_USER)"
+            - "-commcellpassword"
+            - "$(COMMCELL_PASSWORD)"
+            - "-cvdport"
+            - {{ .Values.settings.cdvPort | quote }}
+            - "-clienthost"
+            - {{ .Values.settings.clientHost | quote }}
+            - "-clientname"
+            - {{ .Values.settings.clientName | quote }}
+          env:
+            - name: COMMCELL_USER
+              value: {{.Values.settings.commcellUser | quote }}
+            - name: COMMCELL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.settings.commcellPassword.secret }}
+                  key: {{ .Values.settings.commcellPassword.key }}
+          volumeMounts:
+            - mountPath: /etc/CommVaultRegistry
+              name: data
+              subPath: CommVaultRegistry
+            - mountPath: /opt/libraryPath
+              name: data
+              subPath: libraryPath
+            - mountPath: /opt/commvault/MediaAgent/IndexCache
+              name: data
+              subPath: IndexCache
+            - mountPath: /opt/commvault/iDataAgent/jobResults
+              name: data
+              subPath: jobResults
+            - mountPath: /opt/commvault/Base/certificates
+              name: data
+              subPath: certificates
+          ports:
+            - name: http
+              containerPort: {{ .Values.settings.cdvPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "commvault-media-agent.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

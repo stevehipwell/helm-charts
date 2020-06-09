@@ -1,0 +1,18 @@
+apiVersion: v1
+name: commvault-media-agent
+version: 1.0.0
+appVersion: 11.12.0
+description: A Helm chart for the Commvault MediaAgent.
+keywords:
+- kubernetes
+- commvault
+- media
+- agent
+- backup
+home: https://www.commvault.com/
+icon: https://www.cmsdistribution.com/wp-content/uploads/2015/03/CMV_Logo_Primary_2c_RGB_OnWhitePearlAmber-1.png
+sources:
+- https://hub.docker.com/r/commvaultrepo/mediaagent
+maintainers:
+- name: stevehipwell
+  email: steve.hipwell@github.com
