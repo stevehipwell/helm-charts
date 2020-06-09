@@ -1,0 +1,11 @@
+{{- if.Values.controlPlane.install -}}
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: {{ .Values.istioNamespace }}
+  name: istio-operator
+  labels:
+    {{- include "istio-operator.labels" . | nindent 4 }}
+spec:
+  {{- toJson .Values.controlPlane.spec  | nindent 2 }}
+{{- end -}}
