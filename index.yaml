@@ -557,6 +557,29 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
+  istio-operator:
+  - apiVersion: v1
+    appVersion: 1.6.1
+    created: "2020-06-09T08:09:41.230335797Z"
+    description: A Helm chart for the Istio Operator.
+    digest: a0f3fcc8e6b126c0cceed30fef6f3253d7729c10fdee036fca73a161c2e86f09
+    home: https://istio.io/
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
+    version: 1.0.0
   jira-software:
   - apiVersion: v1
     appVersion: 8.9.0
