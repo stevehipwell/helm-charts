@@ -46,7 +46,7 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | Parameter                                 | Description                                                                             | Default           |
 | ----------------------------------------- | --------------------------------------------------------------------------------------- | ----------------- |
 | `image.repository`                        | Docker repository to use                                                                | `sonatype/nexus3` |
-| `image.tag`                               | Docker tag to use                                                                       | `3.23.0`          |
+| `image.tag`                               | Docker tag to use                                                                       | `3.24.0`          |
 | `image.pullPolicy`                        | Docker image pull policy                                                                | `IfNotPresent`    |
 | `nameOverride`                            | String to partially override `nexus3.fullname` template (will prepend the release name) | `nil`             |
 | `fullnameOverride`                        | String to fully override `nexus3.fullname` template                                     | `nil`             |
