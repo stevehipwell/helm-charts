@@ -44,10 +44,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 8600
-
 ingress:
   enabled: false
   annotations: {}
