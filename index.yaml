@@ -2,6 +2,40 @@ apiVersion: v1
 entries:
   confluence-server:
   - apiVersion: v1
+    appVersion: 7.5.2
+    created: "2020-06-22T15:41:42.453239446Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Atlassian Confluence Server is where you create, organise and discuss
+      work with your team. Capture the knowledge that's too often lost in email inboxes
+      and shared network drives in Confluence - where it's easy to find, use, and
+      update. Give every team, project, or department its own space to create the
+      things they need, whether it's meeting notes, product requirements, file lists,
+      or project plans, you can get more done in Confluence.
+    digest: 415f14eba69107ca94fc67a84fbdcb959812ea56905d32a2173e1c85c96dadbe
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-2.2.5/confluence-server-2.2.5.tgz
+    version: 2.2.5
+  - apiVersion: v1
     appVersion: 7.5.1
     created: "2020-06-05T10:19:08.134229031Z"
     dependencies:
@@ -559,6 +593,28 @@ entries:
     version: 1.0.0
   istio-operator:
   - apiVersion: v1
+    appVersion: 1.6.3
+    created: "2020-06-22T15:41:42.560160621Z"
+    description: A Helm chart for the Istio Operator.
+    digest: 3d7b93ba9910e4238d7e988df078f4f19a89172cf0abbc66f7517d7217adb35c
+    home: https://istio.io/
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.1/istio-operator-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
     appVersion: 1.6.1
     created: "2020-06-09T08:09:41.230335797Z"
     description: A Helm chart for the Istio Operator.
@@ -581,6 +637,36 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - apiVersion: v1
+    appVersion: 8.9.1
+    created: "2020-06-22T15:41:42.677938214Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Atlassian Jira Software is built for every member of your software
+      team to plan, track, and release great software.
+    digest: dc98a157b92eac68a57a8d730f288a1b9b198867d76b333227e890196ff01eaa
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-2.1.3/jira-software-2.1.3.tgz
+    version: 2.1.3
   - apiVersion: v1
     appVersion: 8.9.0
     created: "2020-06-03T12:56:10.728281548Z"
