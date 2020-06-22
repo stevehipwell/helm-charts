@@ -4,7 +4,7 @@
 
 image:
   repository: docker.io/istio/operator
-  tag: 1.6.1
+  tag: 1.6.3
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
