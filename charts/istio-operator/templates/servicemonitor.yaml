@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "nexus3.fullname" . }}
+  name: {{ include "istio-operator.fullname" . }}
   labels:
     {{- include "istio-operator.labels" . | nindent 4 }}
     {{- with .Values.serviceMonitor.additionalLabels }}
