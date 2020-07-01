@@ -52,7 +52,7 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | `fullnameOverride`                        | String to fully override `nexus3.fullname` template                                     | `nil`             |
 | `securityContext.fsGroup`                 | File system group ownership                                                             | `200`             |
 | `service.type`                            | Type of service                                                                         | `ClusterIP`       |
-| `service.port`                            | Service port                                                                            | `8881`            |
+| `service.port`                            | Service port                                                                            | `8081`            |
 | `service.additionalPorts`                 | Additional ports exposed by the service and used by repository connectors               | `nil`             |
 | `caCerts.secret`                          | Name of the secret containing additional CA certificates                                | `nil`             |
 | `metrics.enabled`                         | Metrics enabled for anonymous access                                                    | `false`           |
