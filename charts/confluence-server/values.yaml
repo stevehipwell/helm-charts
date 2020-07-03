@@ -13,8 +13,6 @@ service:
   type: ClusterIP
   port: 8090
 
-# confluenceSecurityContext :
-
 # caCerts:
 #   secret: my-secret
 

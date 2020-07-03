@@ -53,7 +53,6 @@ The following table lists the configurable parameters of the _Confluence Server_
 | `securityContext`            | The pod security context (all containers in the pod )                                              | `fsGroup: 2002`                                         |
 | `service.type`               | Type of service                                                                                    | `ClusterIP`                                             |
 | `service.port`               | Service port                                                                                       | `8080`                                                  |
-| `confluenceSecurityContext`  | The security context for the Confluence container, will override the pod security context          | `nil`                                                   |
 | `caCerts.secret`             | Name of the secret containing additional CA certificates                                           | `nil`                                                   |
 | `psql.host`                  | External _PostgreSQL_ host to use (if this is set the additional `psql` values need to be set)     | `nil`                                                   |
 | `psql.port`                  | External _PostgreSQL_ port                                                                         | `nil`                                                   |
