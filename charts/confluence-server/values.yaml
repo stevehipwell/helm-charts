@@ -1,6 +1,6 @@
 image:
   repository: atlassian/confluence-server
-  tag: 7.5.2
+  tag: 7.6.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""

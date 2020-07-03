@@ -46,11 +46,11 @@ The following table lists the configurable parameters of the _Confluence Server_
 | Parameter                    | Description                                                                                        | Default                                                 |
 | ---------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `image.repository`           | Docker repository to use                                                                           | `atlassian/confluence-server`                           |
-| `image.tag`                  | Docker tag to use                                                                                  | `7.5.2`                                                 |
+| `image.tag`                  | Docker tag to use                                                                                  | `7.6.0`                                                 |
 | `image.pullPolicy`           | Docker image pull policy                                                                           | `IfNotPresent`                                          |
 | `nameOverride`               | String to partially override `confluence-server.fullname` template (will prepend the release name) | `nil`                                                   |
 | `fullnameOverride`           | String to fully override `confluence-server.fullname` template                                     | `nil`                                                   |
-| `securityContext`            | Security context for the _Confluence Server_ container                                             | `fsGroup: 2002`                                         |
+| `securityContext`            | The pod security context (all containers in the pod )                                              | `fsGroup: 2002`                                         |
 | `service.type`               | Type of service                                                                                    | `ClusterIP`                                             |
 | `service.port`               | Service port                                                                                       | `8080`                                                  |
 | `caCerts.secret`             | Name of the secret containing additional CA certificates                                           | `nil`                                                   |
