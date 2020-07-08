@@ -89,24 +89,24 @@ spec:
             - mountPath: /nexus-data/etc/nexus.properties
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
-              readonly: true
+              readOnly: true
             {{- end }}
             {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
-              readonly: true
+              readOnly: true
             {{- if .Values.config.rootPassword }}
             - mountPath: /opt/sonatype/nexus/secret/root.password
               name: {{ .Values.config.rootPassword.secret }}
               subPath: {{ .Values.config.rootPassword.key }}
-              readonly: true
+              readOnly: true
             {{- end }}
             {{- if .Values.config.ldap }}
             {{- if .Values.config.ldap.password }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.password.secret }}
               subPath: {{ .Values.config.ldap.password.key }}
-              readonly: true
+              readOnly: true
             {{- end }}
             {{- end }}
             {{- end }}
