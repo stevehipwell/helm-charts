@@ -101,11 +101,13 @@ spec:
               subPath: {{ .Values.config.rootPassword.key }}
               readonly: true
             {{- end }}
-            {{- if and .Values.config.ldap .Values.config.ldap.password }}
+            {{- if .Values.config.ldap }}
+            {{- if .Values.config.ldap.password }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.password.secret }}
               subPath: {{ .Values.config.ldap.password.key }}
               readonly: true
+            {{- end }}
             {{- end }}
             {{- end }}
           env:
