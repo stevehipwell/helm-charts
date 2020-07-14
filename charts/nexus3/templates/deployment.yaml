@@ -27,8 +27,20 @@ spec:
         {{- . | toYaml | trim | nindent 8 }}
       {{- end }}
     spec:
-      {{- if .Values.caCerts }}
       initContainers:
+        - name: volume-mount
+          image: busybox
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["sh"]
+          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: {{ include "nexus3.pvcname" . }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
+        {{- if .Values.caCerts }}
         - name: ca-certs
           image: adoptopenjdk/openjdk8:alpine
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -43,7 +55,7 @@ spec:
           env:
             {{- . | toYaml | trim | nindent 12 }}
           {{- end }}
-      {{- end }}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -85,27 +97,25 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
-            {{- if .Values.properties.enabled }}
             - mountPath: /nexus-data/etc/nexus.properties
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
-              readonly: true
-            {{- end }}
+              readOnly: true
             {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
-              readonly: true
+              readOnly: true
             {{- if .Values.config.rootPassword }}
             - mountPath: /opt/sonatype/nexus/secret/root.password
               name: {{ .Values.config.rootPassword.secret }}
               subPath: {{ .Values.config.rootPassword.key }}
-              readonly: true
+              readOnly: true
             {{- end }}
             {{- if and .Values.config.ldap .Values.config.ldap.password }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.password.secret }}
               subPath: {{ .Values.config.ldap.password.key }}
-              readonly: true
+              readOnly: true
             {{- end }}
             {{- end }}
           env:
@@ -137,12 +147,10 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
         {{- end }}
-        {{- if .Values.properties.enabled }}
         - name: {{ template "nexus3.fullname" . }}-properties
           configMap:
             name: {{ template "nexus3.fullname" . }}-properties
             defaultMode: 0755
-        {{- end }}
         {{- if .Values.config.enabled }}
         - name: {{ template "nexus3.fullname" . }}-conf
           configMap:

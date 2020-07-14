@@ -73,96 +73,94 @@ ingress:
     #     - nexus-docker-hosted.local
 
 properties:
-  enabled: false
-  # values:
-  #   - nexus.golang.hosted=true
+  - nexus.scripts.allowCreation=true
+  - nexus.golang.hosted=true
 
 config:
-  enabled: false
+  enabled: true
   # rootPassword:
   #   secret: root-secret-name
   #   key: password
-  # anonymous:
-  #   enabled: true
-  # realms:
-  #   - name: LdapRealm
-  #     enabled: true
-  #   - name: DockerToken
-  #     enabled: true
-  #   - name: NpmToken
-  #     enabled: true
-  #   - name: NuGetApiKey
-  #     enabled: true
-  #   - name: rutauth-realm
-  #     enabled: true
-  # ldap:
-  #   enabled: true
-  #   name: "example-ldap"
-  #   host: "example.com"
-  #   protocol: ldap
-  #   port: 389
-  #   auth: simple
-  #   username: "service-account"
-  #   password:
-  #     secret: ldap-credentials
-  #     key: password
-  #   searchBase: ""
-  #   useTrustStore: false
-  #   userBaseDn: ""
-  #   userSubtree: false
-  #   userObjectClass: ""
-  #   userFilter: ""
-  #   userIdAttribute: ""
-  #   userRealNameAttribute: ""
-  #   emailAddressAttribute: ""
-  #   mapGroupsAsRoles: true
-  #   # Roles can either be dynamic
-  #   mapGroupsAsRolesType: "dynamic"
-  #   userMemberOfAttribute: ""
-  #   # Or static
-  #   # mapGroupsAsRolesType: "static"
-  #   # groupBaseDn: ""
-  #   # groupSubtree: ""
-  #   # groupObjectClass: ""
-  #   # groupIdAttribute: ""
-  #   # groupMemberAttribute: ""
-  #   # groupMemberFormat: ""
-  #   adminGroup: ""
-  # cleanup:
-  #   - name: ExampleCleanup
-  #     notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
-  #     format: ALL_FORMATS
-  #     mode: delete
-  #     criteria:
-  #       lastBlobUpdated: "1209600"
-  #       lastDownloaded: "2419200"
-  # repos:
-  #   - name: test-repo
-  #     type: raw-hosted
-  #     online: true
-  #     attributes:
-  #       storage:
-  #         blobStoreName: default
-  #         strictContentTypeValidation: false
-  #         writePolicy: ALLOW
-  #       cleanup:
-  #         policyName: ExampleCleanup
-  # tasks:
-  #   - name: "Cleanup service"
-  #     typeId: repository.cleanup
-  #     crontab: "0 0 0 * * ?"
-  #   - name: "Docker cleanup uploads"
-  #     typeId: repository.docker.upload-purge
-  #     crontab: "0 0 0 * * ?"
-  #     attributes:
-  #       age: "24"
-  #   - name: "Docker cleanup artifacts"
-  #     typeId: repository.docker.gc
-  #     crontab: "0 0 1 * * ?"
-  #     attributes:
-  #       repositoryName: "*"
-  #   - name: "Cleanup blob store"
-  #     typeId: blobstore.compact
-  #     crontab: "0 0 2 * * ?"
-  #     attributes:
-  #       blobstoreName: "default"
+  anonymous:
+    enabled: false
+  realms:
+    enabled: false
+    values: []
+    #   - NexusAuthenticatingRealm
+    #   - NexusAuthorizingRealm
+    #   - LdapRealm
+    #   - DockerToken
+    #   - NpmToken
+    #   - NuGetApiKey
+    #   - rutauth-realm
+  ldap:
+    enabled: false
+    # name: "example-ldap"
+    # host: "example.com"
+    # protocol: ldap
+    # port: 389
+    # auth: simple
+    # username: "service-account"
+    # password:
+    #   secret: ldap-credentials
+    #   key: password
+    # searchBase: ""
+    # useTrustStore: false
+    # userBaseDn: ""
+    # userSubtree: false
+    # userObjectClass: ""
+    # userFilter: ""
+    # userIdAttribute: ""
+    # userRealNameAttribute: ""
+    # emailAddressAttribute: ""
+    # mapGroupsAsRoles: true
+    # # Roles can either be dynamic
+    # mapGroupsAsRolesType: "dynamic"
+    # userMemberOfAttribute: ""
+    # # Or static
+    # # mapGroupsAsRolesType: "static"
+    # # groupBaseDn: ""
+    # # groupSubtree: ""
+    # # groupObjectClass: ""
+    # # groupIdAttribute: ""
+    # # groupMemberAttribute: ""
+    # # groupMemberFormat: ""
+    # adminGroup: ""
+  cleanup:
+    - name: ExampleCleanup
+      notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
+      format: ALL_FORMATS
+      mode: delete
+      criteria:
+        lastBlobUpdated: "1209600"
+        lastDownloaded: "2419200"
+  repos:
+    - name: test-repo
+      type: raw-hosted
+      online: true
+      attributes:
+        storage:
+          blobStoreName: default
+          strictContentTypeValidation: false
+          writePolicy: ALLOW
+        cleanup:
+          policyName: ExampleCleanup
+  tasks:
+    - name: "Cleanup service"
+      typeId: repository.cleanup
+      crontab: "0 0 0 * * ?"
+    - name: "Docker cleanup uploads"
+      typeId: repository.docker.upload-purge
+      crontab: "0 0 0 * * ?"
+      attributes:
+        age: "24"
+    - name: "Docker cleanup artifacts"
+      typeId: repository.docker.gc
+      crontab: "0 0 1 * * ?"
+      attributes:
+        repositoryName: "*"
+    - name: "Cleanup blob store"
+      typeId: blobstore.compact
+      crontab: "0 0 2 * * ?"
+      attributes:
+        blobstoreName: "default"

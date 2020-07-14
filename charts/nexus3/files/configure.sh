@@ -7,7 +7,7 @@ base_dir="/opt/sonatype/nexus"
 
 if [ -f "${base_dir}/secret/root.password" ]
 then
-  root_password=$(cat "${base_dir}/secret/root.password")
+  root_password="$(cat "${base_dir}/secret/root.password")"
 fi
 
 if [ -z "${root_password}" ]
@@ -15,9 +15,6 @@ then
   echo "No root password was provided."
   exit 0
 fi
-
-# echo "installing config dependancies..."
-# yum install -y jq && yum clean all
 
 while /bin/true
 do
@@ -30,14 +27,14 @@ do
 
   if [ -f "/nexus-data/admin.password" ]
   then
-    admin_password=$(cat /nexus-data/admin.password)
+    default_password="$(cat /nexus-data/admin.password)"
   fi
 
-  if [ -n "${admin_password}" ] && [ -n "${root_password}" ]
+  if [ -n "${default_password}" ] && [ -n "${root_password}" ]
   then
     echo "Updating root password."
 
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: text/plain' -u "${root_user}:${admin_password}" -d "${root_password}" "${nexus_host}/service/rest/beta/security/users/${root_user}/change-password")
+    status_code=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: text/plain' -u "${root_user}:${default_password}" -d "${root_password}" "${nexus_host}/service/rest/beta/security/users/${root_user}/change-password")
     if [ "${status_code}" -ne 204 ]
     then
       echo "Could not update the root user's password" >&2
@@ -46,6 +43,32 @@ do
 
     echo "The root user's password was updated sucessfully."
     rm -f /nexus-data/admin.password
+  fi
+
+  json_file="${base_dir}/conf/anonymous.json"
+  if [ -f "${json_file}" ]
+  then
+    status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/anonymous")"
+    if [ "${status_code}" -ne 200 ]
+    then
+      echo "Could not set anonymous." >&2
+      exit 1
+    fi
+
+    echo "Anonymous access configured."
+  fi
+
+  json_file="${base_dir}/conf/realms.json"
+  if [ -f "${json_file}" ]
+  then
+    status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/realms/active")"
+    if [ "${status_code}" -ne 204 ]
+    then
+      echo "Could not set realms." >&2
+      exit 1
+    fi
+
+    echo "Realms configured."
   fi
 
   for script_file in ${base_dir}/conf/*.groovy
@@ -68,34 +91,6 @@ do
     then
       echo "Could not update script ${name}." >&2
       exit 1
-    fi
-  done
-
-  json_file="${base_dir}/conf/anonymous.json"
-  if [ -f "${json_file}" ]
-  then
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/anonymous/run")
-    if [ "${status_code}" -ne 200 ]
-    then
-      echo "Could not set anonymous." >&2
-      exit 1
-    fi
-
-    echo "Anonymous access configured."
-  fi
-
-  for json_file in ${base_dir}/conf/*-realm.json
-  do
-    if [ -f "${json_file}" ]
-    then
-      status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/realm/run")
-      if [ "${status_code}" -ne 200 ]
-      then
-        echo "Could not set realm." >&2
-        exit 1
-      fi
-
-      echo "Realm configured."
     fi
   done
 
