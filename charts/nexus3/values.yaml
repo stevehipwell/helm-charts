@@ -79,12 +79,12 @@ properties:
 
 config:
   enabled: false
-  # rootPassword:
-  #   secret: root-secret-name
-  #   key: password
-  # anonymous:
-  #   enabled: true
-  # realms:
+  rootPassword:
+    secret: nexus-secrets
+    key: rootPassword
+  anonymous:
+    enabled: false
+  realms:
   #   - name: LdapRealm
   #     enabled: true
   #   - name: DockerToken
@@ -95,39 +95,39 @@ config:
   #     enabled: true
   #   - name: rutauth-realm
   #     enabled: true
-  # ldap:
-  #   enabled: true
-  #   name: "example-ldap"
-  #   host: "example.com"
-  #   protocol: ldap
-  #   port: 389
-  #   auth: simple
-  #   username: "service-account"
-  #   password:
-  #     secret: ldap-credentials
-  #     key: password
-  #   searchBase: ""
-  #   useTrustStore: false
-  #   userBaseDn: ""
-  #   userSubtree: false
-  #   userObjectClass: ""
-  #   userFilter: ""
-  #   userIdAttribute: ""
-  #   userRealNameAttribute: ""
-  #   emailAddressAttribute: ""
-  #   mapGroupsAsRoles: true
-  #   # Roles can either be dynamic
-  #   mapGroupsAsRolesType: "dynamic"
-  #   userMemberOfAttribute: ""
-  #   # Or static
-  #   # mapGroupsAsRolesType: "static"
-  #   # groupBaseDn: ""
-  #   # groupSubtree: ""
-  #   # groupObjectClass: ""
-  #   # groupIdAttribute: ""
-  #   # groupMemberAttribute: ""
-  #   # groupMemberFormat: ""
-  #   adminGroup: ""
+  ldap:
+    enabled: false
+    name: "example-ldap"
+    host: "example.com"
+    protocol: ldap
+    port: 389
+    auth: simple
+    username: "service-account"
+    password:
+      secret: nexus-secrets
+      key: ldapPassword
+    searchBase: ""
+    useTrustStore: false
+    userBaseDn: ""
+    userSubtree: false
+    userObjectClass: ""
+    userFilter: ""
+    userIdAttribute: ""
+    userRealNameAttribute: ""
+    emailAddressAttribute: ""
+    mapGroupsAsRoles: true
+    # Roles can either be dynamic
+    mapGroupsAsRolesType: "dynamic"
+    userMemberOfAttribute: ""
+    # Or static
+    # mapGroupsAsRolesType: "static"
+    # groupBaseDn: ""
+    # groupSubtree: ""
+    # groupObjectClass: ""
+    # groupIdAttribute: ""
+    # groupMemberAttribute: ""
+    # groupMemberFormat: ""
+    adminGroup: ""
   # cleanup:
   #   - name: ExampleCleanup
   #     notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
