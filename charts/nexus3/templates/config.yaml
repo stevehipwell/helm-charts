@@ -18,9 +18,11 @@ data:
   anonymous.json: |
     {{- . | toJson | trim | nindent 4 }}
   {{- end }}
-  {{- range $index, $realm := .Values.config.realms }}
-  {{ $index | add 1000 | toString | substr 1 -1 }}-realm.json: |
-    {{- $realm | toJson | trim | nindent 4 }}
+  {{- with .Values.config.realms }}
+  {{- if .enabled }}
+  realms.json: |
+    {{- .values | toJson | trim | nindent 4 }}
+  {{- end }}
   {{- end }}
   {{- with .Values.config.ldap }}
   ldap.json: |

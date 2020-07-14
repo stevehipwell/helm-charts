@@ -13,5 +13,3 @@ if (params.enabled) {
 } else {
   security.setUserRoles("anonymous", ["nx-anonymous"])
 }
-
-
