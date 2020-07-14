@@ -27,8 +27,22 @@ spec:
         {{- . | toYaml | trim | nindent 8 }}
       {{- end }}
     spec:
-      {{- if .Values.caCerts }}
       initContainers:
+        - name: volume-mount
+          image: busybox
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["sh"]
+          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: {{ include "nexus3.pvcname" . }}
+            - mountPath: /nexus-data/secrets/cas
+              name: nexus3-cas
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
+        {{- if .Values.caCerts }}
         - name: ca-certs
           image: adoptopenjdk/openjdk8:alpine
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -43,7 +57,7 @@ spec:
           env:
             {{- . | toYaml | trim | nindent 12 }}
           {{- end }}
-      {{- end }}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

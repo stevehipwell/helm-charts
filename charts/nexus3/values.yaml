@@ -7,8 +7,6 @@ nameOverride: ""
 fullnameOverride: ""
 
 securityContext:
-  runAsUser: 200
-  runAsGroup: 200
   fsGroup: 200
 
 service:
