@@ -36,8 +36,6 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
-            - mountPath: /nexus-data/secrets/cas
-              name: nexus3-cas
           {{- with .Values.env }}
           env:
             {{- . | toYaml | trim | nindent 12 }}
