@@ -82,17 +82,17 @@ config:
   #   secret: root-secret-name
   #   key: password
   anonymous:
-    enabled: true
+    enabled: false
   realms:
-    enabled: true
-    values:
-      - NexusAuthenticatingRealm
-      - NexusAuthorizingRealm
-      - LdapRealm
-      - DockerToken
-      - NpmToken
-      - NuGetApiKey
-      - rutauth-realm
+    enabled: false
+    values: []
+    #   - NexusAuthenticatingRealm
+    #   - NexusAuthorizingRealm
+    #   - LdapRealm
+    #   - DockerToken
+    #   - NpmToken
+    #   - NuGetApiKey
+    #   - rutauth-realm
   ldap:
     enabled: false
     # name: "example-ldap"
