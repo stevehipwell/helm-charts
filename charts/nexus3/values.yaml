@@ -87,7 +87,7 @@ config:
   anonymous:
     enabled: true
   realms:
-    enabled : true
+    enabled: true
     values:
       - NexusAuthenticatingRealm
       - NexusAuthorizingRealm
