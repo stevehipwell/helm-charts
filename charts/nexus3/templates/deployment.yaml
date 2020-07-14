@@ -88,6 +88,7 @@ spec:
             - mountPath: /nexus-data/etc/nexus.properties
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
+              readOnly: true
             {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
