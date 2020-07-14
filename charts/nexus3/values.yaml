@@ -73,12 +73,9 @@ ingress:
     #     - nexus-docker-hosted.local
 
 properties:
-  enabled: true
-  values:
-    - nexus.scripts.allowCreation=true
-    - nexus.golang.hosted=true
+  - nexus.scripts.allowCreation=true
+  - nexus.golang.hosted=true
 
-# To use the config nexus.scripts.allowCreation=true must be set above
 config:
   enabled: true
   # rootPassword:
