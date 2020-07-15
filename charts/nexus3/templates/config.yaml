@@ -25,10 +25,12 @@ data:
   {{- end }}
   {{- end }}
   {{- with .Values.config.ldap }}
+  {{- if .enabled }}
   ldap.json: |
     {{- with omit . "password" }}
     {{-  set . "password" "PASSWORD" | toJson | trim | nindent 4 }}
     {{- end }}
+  {{- end }}
   {{- end }}
   {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
