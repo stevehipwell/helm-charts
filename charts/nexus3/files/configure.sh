@@ -92,6 +92,8 @@ do
       echo "Could not update script ${name}." >&2
       exit 1
     fi
+
+    echo "Script ${script_file} updated."
   done
 
   json_file="${base_dir}/conf/ldap.json"
