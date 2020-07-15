@@ -126,41 +126,41 @@ config:
     # # groupMemberAttribute: ""
     # # groupMemberFormat: ""
     # adminGroup: ""
-  cleanup:
-    - name: ExampleCleanup
-      notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
-      format: ALL_FORMATS
-      mode: delete
-      criteria:
-        lastBlobUpdated: "1209600"
-        lastDownloaded: "2419200"
-  repos:
-    - name: test-repo
-      type: raw-hosted
-      online: true
-      attributes:
-        storage:
-          blobStoreName: default
-          strictContentTypeValidation: false
-          writePolicy: ALLOW
-        cleanup:
-          policyName: ExampleCleanup
-  tasks:
-    - name: "Cleanup service"
-      typeId: repository.cleanup
-      crontab: "0 0 0 * * ?"
-    - name: "Docker cleanup uploads"
-      typeId: repository.docker.upload-purge
-      crontab: "0 0 0 * * ?"
-      attributes:
-        age: "24"
-    - name: "Docker cleanup artifacts"
-      typeId: repository.docker.gc
-      crontab: "0 0 1 * * ?"
-      attributes:
-        repositoryName: "*"
-    - name: "Cleanup blob store"
-      typeId: blobstore.compact
-      crontab: "0 0 2 * * ?"
-      attributes:
-        blobstoreName: "default"
+  cleanup: []
+    # - name: ExampleCleanup
+    #   notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
+    #   format: ALL_FORMATS
+    #   mode: delete
+    #   criteria:
+    #     lastBlobUpdated: "1209600"
+    #     lastDownloaded: "2419200"
+  repos: []
+    # - name: test-repo
+    #   type: raw-hosted
+    #   online: true
+    #   attributes:
+    #     storage:
+    #       blobStoreName: default
+    #       strictContentTypeValidation: false
+    #       writePolicy: ALLOW
+    #     cleanup:
+    #       policyName: ExampleCleanup
+  tasks: []
+    # - name: "Cleanup service"
+    #   typeId: repository.cleanup
+    #   crontab: "0 0 0 * * ?"
+    # - name: "Docker cleanup uploads"
+    #   typeId: repository.docker.upload-purge
+    #   crontab: "0 0 0 * * ?"
+    #   attributes:
+    #     age: "24"
+    # - name: "Docker cleanup artifacts"
+    #   typeId: repository.docker.gc
+    #   crontab: "0 0 1 * * ?"
+    #   attributes:
+    #     repositoryName: "*"
+    # - name: "Cleanup blob store"
+    #   typeId: blobstore.compact
+    #   crontab: "0 0 2 * * ?"
+    #   attributes:
+    #     blobstoreName: "default"
