@@ -28,18 +28,6 @@ spec:
       {{- end }}
     spec:
       initContainers:
-        - name: volume-mount
-          image: busybox
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.env }}
-          env:
-            {{- . | toYaml | trim | nindent 12 }}
-          {{- end }}
-          command: ["sh"]
-          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
-          volumeMounts:
-            - mountPath: /nexus-data
-              name: {{ include "nexus3.pvcname" . }}
         {{- if .Values.caCerts }}
         - name: ca-certs
           image: adoptopenjdk:8-jdk-hotspot
@@ -56,10 +44,32 @@ spec:
             - mountPath: /nexus-data/secrets/cas
               name: nexus3-cas
         {{- end }}
+        - name: volume-mount
+          image: busybox
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
+          command: ["sh"]
+          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          volumeMounts:
+            - mountPath: /nexus-data
+              name: {{ include "nexus3.pvcname" . }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: INSTALL4J_ADD_VM_PARAMS
+              {{- if .Values.caCerts }}
+              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              {{- else }}
+              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              {{- end }}
+            {{- with .Values.env }}
+            {{- . | toYaml | trim | nindent 12 }}
+            {{- end }}
           command:
             - "sh"
             - "-c"
@@ -117,16 +127,6 @@ spec:
               subPath: {{ .Values.config.ldap.password.key }}
               readOnly: true
             {{- end }}
-            {{- end }}
-          env:
-            - name: INSTALL4J_ADD_VM_PARAMS
-              {{- if .Values.caCerts }}
-              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
-              {{- else }}
-              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
-              {{- end }}
-            {{- with .Values.env }}
-            {{- . | toYaml | trim | nindent 12 }}
             {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
