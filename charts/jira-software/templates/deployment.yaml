@@ -28,8 +28,12 @@ spec:
       {{- if .Values.caCerts }}
       initContainers:
         - name: ca-certs
-          image: adoptopenjdk/openjdk8:alpine
+          image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
           command: ["sh"]
           args: ["-c", "cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /var/atlassian/application-data/jira/cacerts; for f in /var/atlassian/application-data/jira/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/jira/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
@@ -37,10 +41,6 @@ spec:
               name: {{ include "jira-software.pvcname" . }}
             - mountPath: /var/atlassian/application-data/jira/secrets/cas
               name: jira-cas
-          {{- with .Values.env }}
-          env:
-            {{- . | toYaml | trim | nindent 12 }}
-          {{- end }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}

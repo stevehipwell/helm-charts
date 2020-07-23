@@ -34,6 +34,10 @@ spec:
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | trim | nindent 12 }}
+          {{- end }}
           command: ["sh"]
           args: ["-c", "cp -f \"${JAVA_HOME}/lib/security/cacerts\" /var/atlassian/application-data/confluence/cacerts; for f in /var/atlassian/application-data/confluence/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/confluence/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
@@ -41,10 +45,6 @@ spec:
               name: {{ include "confluence-server.pvcname" . }}
             - mountPath: /var/atlassian/application-data/confluence/secrets/cas
               name: confluence-cas
-          {{- with .Values.env }}
-          env:
-            {{- . | toYaml | trim | nindent 12 }}
-          {{- end }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
