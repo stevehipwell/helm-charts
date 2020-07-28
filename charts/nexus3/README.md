@@ -43,50 +43,58 @@ The command removes all the Kubernetes components associated with the chart and 
 
 The following table lists the configurable parameters of the _Nexus3_ chart and their default values.
 
-| Parameter                                 | Description                                                                                                 | Default           |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------- |
-| `image.repository`                        | Docker repository to use                                                                                    | `sonatype/nexus3` |
-| `image.tag`                               | Docker tag to use                                                                                           | `3.25.0`          |
-| `image.pullPolicy`                        | Docker image pull policy                                                                                    | `IfNotPresent`    |
-| `nameOverride`                            | String to partially override `nexus3.fullname` template (will prepend the release name)                     | `nil`             |
-| `fullnameOverride`                        | String to fully override `nexus3.fullname` template                                                         | `nil`             |
-| `securityContext.fsGroup`                 | File system group ownership                                                                                 | `200`             |
-| `service.type`                            | Type of service                                                                                             | `ClusterIP`       |
-| `service.port`                            | Service port                                                                                                | `8881`            |
-| `service.additionalPorts`                 | Additional ports exposed by the service and used by repository connectors                                   | `nil`             |
-| `caCerts.secret`                          | Name of the secret containing additional CA certificates                                                    | `nil`             |
-| `metrics.enabled`                         | Metrics enabled for anonymous access                                                                        | `false`           |
-| `metrics.serviceMonitor.enabled`          | Prometheus service monitor created                                                                          | `false`           |
-| `metrics.serviceMonitor.additionalLabels` | Additional labels to be set on the ServiceMonitor                                                           | `{}`              |
-| `envVars.jvmMaxRAMPercentage`             | JVM max RAM percentage                                                                                      | `25.0`            |
-| `envVars.jvmMaxDirectMemorySize`          | JVM direct memory size                                                                                      | `2G`              |
-| `env`                                     | List of environmental variable to apply to the deployment                                                   | `nil`             |
-| `persistence.enabled`                     | Create a volume (PVC) for storage                                                                           | `false`           |
-| `persistence.existingClaim`               | An existing PVC to use instead of creating a new one                                                        | `nil`             |
-| `persistence.accessMode`                  | The PVC access mode                                                                                         | `ReadWriteOnce`   |
-| `persistence.storageClass`                | The PVC storage class (use `-` for default)                                                                 | `standard`        |
-| `persistence.size`                        | The size of the PVC to create                                                                               | `8Gi`             |
-| `podAnnotations`                          | Pod Annotations                                                                                             | `{}`              |
-| `resources`                               | Resource requests and limits                                                                                | `{}`              |
-| `nodeSelector`                            | Node labels for pod assignment                                                                              | `{}`              |
-| `tolerations`                             | List of node taints to tolerate                                                                             | `[]`              |
-| `affinity`                                | Map of node/pod affinities                                                                                  | `{}`              |
-| `ingress.enabled`                         | Create an ingress                                                                                           | `false`           |
-| `ingress.annotations`                     | Annotations to enhance ingress configuration                                                                | `{}`              |
-| `ingress.path`                            | Path for ingress rules                                                                                      | `/`               |
-| `ingress.hosts`                           | List of ingress hosts                                                                                       | `[]`              |
-| `ingress.tls`                             | List of TLS configurations (`ingress.tls[n].secretName`, `ingress.tls[n].hosts[m])`                         | `[]`              |
-| `properties`                              | Additional _Nexus3_ properties.                                                                             | `nil`             |
-| `config.enabled`                          | Automatically configure _Nexus3_.                                                                           | `false`           |
-| `config.rootPassword.secret`              | The secret to use to update the root password (must also have `config.rootPassword.key` set).               | `nil`             |
-| `config.rootPassword.key`                 | The key on the secret to use to update the root password (must also have `config.rootPassword.secret` set). | `nil`             |
-| `config.anonymous.enabled`                | If _Nexus3_ should allow anonymous access.                                                                  | `false`           |
-| `config.realms.enabled`                   | If the _Nexus3_ realms should be configured.                                                                | `false`           |
-| `config.realms.values`                    | The _Nexus3_ realm ids to enable, in priority order.                                                        | `[]`              |
-| `config.ldap.enabled`                     | If the _Nexus3_ LDAP should be configured.                                                                  | `false`           |
-| `config.cleanup`                          | _Nexus3_ cleanup policies to be configured.                                                                 | `[]`              |
-| `config.repos`                            | _Nexus3_ repos to be configured.                                                                            | `[]`              |
-| `config.tasks`                            | _Nexus3_ tasks to be configured.                                                                            | `[]`              |
+| Parameter                                 | Description                                                                                                                      | Default                              |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `image.repository`                        | Image repository.                                                                                                                | `sonatype/nexus3`                    |
+| `image.tag`                               | Image tag.                                                                                                                       | `3.25.0`                             |
+| `image.pullPolicy`                        | Image pull policy.                                                                                                               | `IfNotPresent`                       |
+| `image.pullSecrets`                       | Image pull secrets.                                                                                                              | `[]`                                 |
+| `nameOverride`                            | Override the name of the chart.                                                                                                  | `nil`                                |
+| `fullnameOverride`                        | Override the fullname of the chart.                                                                                              | `nil`                                |
+| `serviceAccount.create`                   | If `true`, create a new service account.                                                                                         | `true`                               |
+| `serviceAccount.annotations`              | Annotations to add to the service account.                                                                                       | `{}`                                 |
+| `serviceAccount.name`                     | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the _fullname_ template. | `nil`                                |
+| `podAnnotations`                          | Annotations to add to the primary container.                                                                                     | `{}`                                 |
+| `securityContext`                         | Security context for the pod.                                                                                                    | `{}`                                 |
+| `podSecurityContext`                      | Security context for the primary container.                                                                                      | `{ fsGroup: 200 }`                   |
+| `service.type`                            | Service type.                                                                                                                    | `ClusterIP`                          |
+| `service.annotations`                     | Annotations to add to the service.                                                                                               | `{}`                                 |
+| `service.port`                            | Service port.                                                                                                                    | `8881`                               |
+| `service.additionalPorts`                 | Additional ports exposed by the service and used by repository connectors.                                                       | `nil`                                |
+| `metrics.enabled`                         | If `true`, metrics will be enabled (with anonymous access).                                                                      | `false`                              |
+| `metrics.serviceMonitor.enabled`          | If `true`, create a Prometheus service monitor.                                                                                  | `false`                              |
+| `metrics.serviceMonitor.additionalLabels` | Additional labels to be set on the Prometheus ServiceMonitor.                                                                    | `{}`                                 |
+| `metrics.serviceMonitor.interval`         | Prometheus scrape frequency.                                                                                                     | `nil`                                |
+| `ingress.enabled`                         | If `true`, create an ingress object.                                                                                             | `false`                              |
+| `ingress.annotations`                     | Ingress annotations.                                                                                                             | `{}`                                 |
+| `ingress.path`                            | Ingress path.                                                                                                                    | `/`                                  |
+| `ingress.hosts`                           | Ingress hosts.                                                                                                                   | `[]`                                 |
+| `ingress.tls`                             | Ingress TLS configuration                                                                                                        | `[]`                                 |
+| `persistence.enabled`                     | If `true`, create a PVC.                                                                                                         | `false`                              |
+| `persistence.annotations`                 | Annotations to add to the PVC.                                                                                                   | `{}`                                 |
+| `persistence.existingClaim`               | Use an existing PVC to persist data.                                                                                             | `nil`                                |
+| `persistence.accessMode`                  | Persistence access mode.                                                                                                         | `ReadWriteOnce`                      |
+| `persistence.storageClass`                | PVC storage class (use `-` for default).                                                                                         | `standard`                           |
+| `persistence.size`                        | Size of PVC to create.                                                                                                           | `8Gi`                                |
+| `resources`                               | Resource requests and limits for the primary container.                                                                          | `{}`                                 |
+| `nodeSelector`                            | Node labels for pod assignment.                                                                                                  | `{}`                                 |
+| `tolerations`                             | Toleration labels for pod assignment.                                                                                            | `[]`                                 |
+| `affinity`                                | Affinity settings for pod assignment.                                                                                            | `{}`                                 |
+| `caCerts.secret`                          | Name of secret containing additional CA certificates.                                                                            | `nil`                                |
+| `envVars.jvmMaxRAMPercentage`             | JVM max RAM percentage.                                                                                                          | `25.0`                               |
+| `envVars.jvmMaxDirectMemorySize`          | JVM direct memory size.                                                                                                          | `2G`                                 |
+| `env`                                     | Environment variables for all containers in the pod.                                                                             | `nil`                                |
+| `properties`                              | Additional _Nexus_ properties.                                                                                                   | `[nexus.scripts.allowCreation=true]` |
+| `config.enabled`                          | If `true`, automatically configure _Nexus_.                                                                                      | `false`                              |
+| `config.rootPassword.secret`              | Secret to update the root password with (must also have `config.rootPassword.key` set).                                          | `nil`                                |
+| `config.rootPassword.key`                 | Key on the secret set in `config.rootPassword.secret`.                                                                           | `nil`                                |
+| `config.anonymous.enabled`                | If `true`, allow anonymous access.                                                                                               | `false`                              |
+| `config.realms.enabled`                   | If `true`, realms should be configured.                                                                                          | `false`                              |
+| `config.realms.values`                    | Realm ids to enable, in priority order.                                                                                          | `[]`                                 |
+| `config.ldap.enabled`                     | If `true`, configure LDAP.                                                                                                       | `false`                              |
+| `config.cleanup`                          | Cleanup policies to be configured.                                                                                               | `[]`                                 |
+| `config.repos`                            | Repos to be configured.                                                                                                          | `[]`                                 |
+| `config.tasks`                            | Tasks to be configured.                                                                                                          | `[]`                                 |
 
 ## Persistence
 

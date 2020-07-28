@@ -3,10 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "nexus3.fullname" . }}-properties
   labels:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    helm.sh/chart: {{ include "nexus3.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "nexus3.labels" . | nindent 4 }}
 data:
   nexus.properties: |
     {{- range .Values.properties }}

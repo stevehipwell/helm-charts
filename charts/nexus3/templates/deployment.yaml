@@ -3,30 +3,32 @@ kind: Deployment
 metadata:
   name: {{ include "nexus3.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    helm.sh/chart: {{ include "nexus3.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "nexus3.labels" . | nindent 4 }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "nexus3.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "nexus3.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "nexus3.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "nexus3.selectorLabels" . | nindent 8 }}
       annotations:
-        checksum/properties: {{ include (print $.Template.BasePath "/properties.yaml") . | sha256sum }}
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- . | toYaml | trim | nindent 8 }}
       {{- end }}
+        checksum/properties: {{ include (print $.Template.BasePath "/properties.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
     spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "nexus3.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         {{- if .Values.caCerts }}
         - name: ca-certs
@@ -58,6 +60,8 @@ spec:
               name: {{ include "nexus3.pvcname" . }}
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
@@ -130,10 +134,6 @@ spec:
             {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
-      {{- with .Values.securityContext }}
-      securityContext:
-        {{- . | toYaml | trim | nindent 8 }}
-      {{- end }}
       volumes:
         - name: {{ include "nexus3.pvcname" . }}
           {{- if .Values.persistence.enabled }}
