@@ -1,61 +1,55 @@
 image:
   repository: sonatype/nexus3
-  tag: 3.25.0
+  tag: 3.25.1
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
 nameOverride: ""
 fullnameOverride: ""
 
-securityContext:
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
   fsGroup: 200
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 service:
   type: ClusterIP
-  port: 8881
+  annotations: {}
+  port: 8081
   # additionalPorts:
-  #   - port: 8882
+  #   - port: 8082
   #     name: docker-group
-  #     containerPort: 8882
+  #     containerPort: 8082
   #     host: nexus-docker.local
-  #   - port: 8883
+  #   - port: 8083
   #     name: docker-hosted
-  #     containerPort: 8883
+  #     containerPort: 8083
   #     host: nexus-docker-hosted.local
-
-# caCerts:
-#   secret: my-secret
 
 metrics:
   enabled: false
   serviceMonitor:
     enabled: false
-    # additionalLabels:
+    additionalLabels: {}
     #   myLabel: myValue
-
-envVars:
-  jvmMaxRAMPercentage: "25.0"
-  jvmMaxDirectMemorySize: "2G"
-
-# env:
-#   - name: VARIABLE
-#     value: my-value
-
-persistence:
-  enabled: false
-  # existingClaim: existing-pvc
-  accessMode: ReadWriteOnce
-  storageClass: standard
-  size: 8Gi
-
-# podAnnotations: {}
-
-resources: {}
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+    interval: 1m
 
 ingress:
   enabled: false
@@ -72,9 +66,48 @@ ingress:
     #     - nexus-docker.local
     #     - nexus-docker-hosted.local
 
+persistence:
+  enabled: false
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 8Gi
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+caCerts:
+  enabled: false
+  secret:
+
+envVars:
+  jvmMinHeapSize: 1024m
+  jvmMaxHeapSize: 1024m
+  jvmMaxDirectMemorySize: 2048m
+
+env: []
+  # - name: VARIABLE
+  #   value: my-value
+
 properties:
   - nexus.scripts.allowCreation=true
-  - nexus.golang.hosted=true
+  # - nexus.golang.hosted=true
 
 config:
   enabled: true
@@ -95,45 +128,56 @@ config:
     #   - rutauth-realm
   ldap:
     enabled: false
-    # name: "example-ldap"
-    # host: "example.com"
-    # protocol: ldap
-    # port: 389
-    # auth: simple
-    # username: "service-account"
-    # password:
-    #   secret: ldap-credentials
-    #   key: password
-    # searchBase: ""
-    # useTrustStore: false
-    # userBaseDn: ""
-    # userSubtree: false
-    # userObjectClass: ""
-    # userFilter: ""
-    # userIdAttribute: ""
-    # userRealNameAttribute: ""
-    # emailAddressAttribute: ""
-    # mapGroupsAsRoles: true
-    # # Roles can either be dynamic
-    # mapGroupsAsRolesType: "dynamic"
-    # userMemberOfAttribute: ""
-    # # Or static
-    # # mapGroupsAsRolesType: "static"
-    # # groupBaseDn: ""
-    # # groupSubtree: ""
-    # # groupObjectClass: ""
-    # # groupIdAttribute: ""
-    # # groupMemberAttribute: ""
-    # # groupMemberFormat: ""
-    # adminGroup: ""
+    name:
+    protocol: ldaps
+    useTrustStore: true
+    connectionTimeoutSeconds: 30
+    connectionRetryDelaySeconds: 300
+    maxIncidentsCount: 3
+    host:
+    port: 636
+    authScheme: simple
+    authUsername:
+    authPassword:
+      secret:
+      key:
+    authRealm:
+    searchBase:
+    userBaseDn:
+    userSubtree: false
+    userObjectClass: user
+    userLdapFilter:
+    userIdAttribute: sAMAccountName
+    userRealNameAttribute: cn
+    userEmailAddressAttribute: email
+    userPasswordAttribute:
+    ldapGroupsAsRoles: false
+    groupType: dynamic
+    userMemberOfAttribute: memberOf
+    groupBaseDn:
+    groupSubtree: false
+    groupObjectClass:
+    groupIdAttribute:
+    groupMemberAttribute:
+    groupMemberFormat:
+  roles: []
+    # - id: nexus-administrators
+    #   source: default
+    #   name: nexus-administrators
+    #   description: LDAP Administrator Role
+    #   privileges: []
+    #   roles:
+    #     - nx-admin
   cleanup: []
     # - name: ExampleCleanup
     #   notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
     #   format: ALL_FORMATS
     #   mode: delete
     #   criteria:
+    #     isPrerelease:
     #     lastBlobUpdated: "1209600"
     #     lastDownloaded: "2419200"
+    #     regex:
   repos: []
     # - name: test-repo
     #   type: raw-hosted

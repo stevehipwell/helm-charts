@@ -1,15 +1,16 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nexus3.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    helm.sh/chart: {{ include "nexus3.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "nexus3.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- . | toYaml | trim | nindent 4 }}

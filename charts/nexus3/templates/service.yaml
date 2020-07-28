@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: {{ include "nexus3.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    helm.sh/chart: {{ include "nexus3.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "nexus3.labels" . | nindent 4 }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{ . | toYaml | trim | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -21,5 +22,4 @@ spec:
       name: {{ .name }}
   {{- end }}
   selector:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "nexus3.selectorLabels" . | nindent 4 }}
