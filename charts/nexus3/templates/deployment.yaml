@@ -30,7 +30,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        {{- if .Values.caCerts }}
+        {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:8-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -66,7 +66,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
-              {{- if .Values.caCerts }}
+              {{- if .Values.caCerts.enabled }}
               value: {{ printf "-Xms%s -Xmx%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmMaxDirectMemorySize | quote }}
               {{- else }}
               value: {{ printf "-Xms%s -Xmx%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmMaxDirectMemorySize | quote }}
@@ -142,7 +142,7 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if .Values.caCerts }}
+        {{- if .Values.caCerts.enabled }}
         - name: nexus3-cas
           secret:
             secretName: {{ .Values.caCerts.secret }}

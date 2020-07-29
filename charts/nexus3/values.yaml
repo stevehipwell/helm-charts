@@ -92,17 +92,18 @@ tolerations: []
 
 affinity: {}
 
-# caCerts:
-#   secret: my-secret
+caCerts:
+  enabled: false
+  secret:
 
 envVars:
   jvmMinHeapSize: 1024m
   jvmMaxHeapSize: 1024m
   jvmMaxDirectMemorySize: 2048m
 
-# env:
-#   - name: VARIABLE
-#     value: my-value
+env: []
+  # - name: VARIABLE
+  #   value: my-value
 
 properties:
   - nexus.scripts.allowCreation=true
