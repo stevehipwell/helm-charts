@@ -47,9 +47,9 @@ metrics:
   enabled: false
   serviceMonitor:
     enabled: false
-    # additionalLabels:
+    additionalLabels: {}
     #   myLabel: myValue
-    # interval: 30s
+    interval: 1m
 
 ingress:
   enabled: false
