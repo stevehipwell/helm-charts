@@ -61,7 +61,7 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | `service.annotations`                     | Annotations to add to the service.                                                                                               | `{}`                                 |
 | `service.port`                            | Service port.                                                                                                                    | `8881`                               |
 | `service.additionalPorts`                 | Additional ports exposed by the service and used by repository connectors.                                                       | `nil`                                |
-| `metrics.enabled`                         | If `true`, metrics will be enabled (with anonymous access).                                                                      | `false`                              |
+| `metrics.enabled`                         | If `true`, metrics will be enabled (with anonymous access configured).                                                           | `false`                              |
 | `metrics.serviceMonitor.enabled`          | If `true`, create a Prometheus service monitor.                                                                                  | `false`                              |
 | `metrics.serviceMonitor.additionalLabels` | Additional labels to be set on the Prometheus ServiceMonitor.                                                                    | `{}`                                 |
 | `metrics.serviceMonitor.interval`         | Prometheus scrape frequency.                                                                                                     | `nil`                                |
@@ -81,8 +81,9 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | `tolerations`                             | Toleration labels for pod assignment.                                                                                            | `[]`                                 |
 | `affinity`                                | Affinity settings for pod assignment.                                                                                            | `{}`                                 |
 | `caCerts.secret`                          | Name of secret containing additional CA certificates.                                                                            | `nil`                                |
-| `envVars.jvmMaxRAMPercentage`             | JVM max RAM percentage.                                                                                                          | `25.0`                               |
-| `envVars.jvmMaxDirectMemorySize`          | JVM direct memory size.                                                                                                          | `2G`                                 |
+| `envVars.jvmMinHeapSize`                  | JVM min heap size (should match `jvmMaxHeapSize`).                                                                               | `1024m`                              |
+| `envVars.jvmMaxHeapSize`                  | JVM max heap size (should match `jvmMinHeapSize`).                                                                               | `1024m`                              |
+| `envVars.jvmMaxDirectMemorySize`          | JVM direct memory size.                                                                                                          | `2048m`                              |
 | `env`                                     | Environment variables for all containers in the pod.                                                                             | `nil`                                |
 | `properties`                              | Additional _Nexus_ properties.                                                                                                   | `[nexus.scripts.allowCreation=true]` |
 | `config.enabled`                          | If `true`, automatically configure _Nexus_.                                                                                      | `false`                              |
@@ -90,15 +91,39 @@ The following table lists the configurable parameters of the _Nexus3_ chart and 
 | `config.rootPassword.key`                 | Key on the secret set in `config.rootPassword.secret`.                                                                           | `nil`                                |
 | `config.anonymous.enabled`                | If `true`, allow anonymous access.                                                                                               | `false`                              |
 | `config.realms.enabled`                   | If `true`, realms should be configured.                                                                                          | `false`                              |
-| `config.realms.values`                    | Realm ids to enable, in priority order.                                                                                          | `[]`                                 |
+| `config.realms.values`                    | Realm ids to enable, in priority order (see `values.yaml` for available realms).                                                 | `[]`                                 |
 | `config.ldap.enabled`                     | If `true`, configure LDAP.                                                                                                       | `false`                              |
-| `config.cleanup`                          | Cleanup policies to be configured.                                                                                               | `[]`                                 |
-| `config.repos`                            | Repos to be configured.                                                                                                          | `[]`                                 |
-| `config.tasks`                            | Tasks to be configured.                                                                                                          | `[]`                                 |
-
-## Persistence
-
-The [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/) image stores the _Nexus3_ data and configurations at the `/nexus-data` path in the container.
-
-Persistent Volume Claims are used to keep the data across deployments. This is known to work in GCE, AWS, and minikube.
-See the [Configuration](#configuration) section to configure the PVC or to disable persistence.
+| `config.ldap.name`                        | Unique name for the LDAP configuration.                                                                                          | `nil`                                |
+| `config.ldap.protocol`                    | LDAP protocol, either `ldaps` or `ldap`.                                                                                         | `ldaps`                              |
+| `config.ldap.useTrustStore`               | Use _Nexus_ trust store for certificate validation.                                                                              | `true`                               |
+| `config.ldap.connectionTimeoutSeconds`    | LDAP connection timeout.                                                                                                         | `30`                                 |
+| `config.ldap.connectionRetryDelaySeconds` | LDAP connection retry delay.                                                                                                     | `300`                                |
+| `config.ldap.maxIncidentsCount`           | LDAP connection max incidents.                                                                                                   | `3`                                  |
+| `config.ldap.host`                        | LDAP host.                                                                                                                       | `nil`                                |
+| `config.ldap.port`                        | LDAP port.                                                                                                                       | `636`                                |
+| `config.ldap.authScheme`                  | LDAP authentication schema.                                                                                                      | `simple`                             |
+| `config.ldap.authUsername`                | Username or DN (Distinguished Name) of an LDAP user, used to connect to the LDAP server.                                         | `nil`                                |
+| `config.ldap.authPassword.secret`         | Secret containing the password to connect to the LDAP server.                                                                    | `nil`                                |
+| `config.ldap.authPassword.key`            | The key on the secret containing the password to connect to the LDAP server.                                                     | `nil`                                |
+| `config.ldap.authRealm`                   | LDAP authentication realm.                                                                                                       | `nil`                                |
+| `config.ldap.searchBase`                  | LDAP search base.                                                                                                                | `nil`                                |
+| `config.ldap.userBaseDn`                  | LDAP user base, relative to the search base.                                                                                     | `nil`                                |
+| `config.ldap.userSubtree`                 | If `true`, LDAP users in trees below the user base are valid.                                                                    | `false`                              |
+| `config.ldap.userObjectClass`             | LDAP object class for users.                                                                                                     | `user`                               |
+| `config.ldap.userLdapFilter`              | LDAP user filter.                                                                                                                | `nil`                                |
+| `config.ldap.userIdAttribute`             | LDAP user id attribute.                                                                                                          | `sAMAccountName`                     |
+| `config.ldap.userRealNameAttribute`       | LDAP user real name attribute.                                                                                                   | `cn`                                 |
+| `config.ldap.userEmailAddressAttribute`   | LDAP user email address attribute.                                                                                               | `email`                              |
+| `config.ldap.userPasswordAttribute`       | LDAP user password attribute.                                                                                                    | `nil`                                |
+| `config.ldap.ldapGroupsAsRoles`           | If `true`, LDAP user groups will be treated as a _Nexus_ role.                                                                   | `false`                              |
+| `config.ldap.groupType`                   | LDAP group type, either `dynamic` or `static`.                                                                                   | `dynamic`                            |
+| `config.ldap.userMemberOfAttribute`       | LDAP user member of attribute, required if `groupType` is `dynamic`.                                                             | `memberOf`                           |
+| `config.ldap.groupBaseDn`                 | LDAP group base, required if `groupType` is `static`.                                                                            | `nil`                                |
+| `config.ldap.groupSubtree`                | If `true`, LDAP groups in trees below the group base are valid (only used if `groupType` is `static`).                           | `false`                              |
+| `config.ldap.groupObjectClass`            | LDAP group object class, required if `groupType` is `static`.                                                                    | `nil`                                |
+| `config.ldap.groupIdAttribute`            | LDAP group id attribute, required if `groupType` is `static`.                                                                    | `nil`                                |
+| `config.ldap.groupMemberAttribute`        | LDAP group member attribute, required if `groupType` is `static`.                                                                | `nil`                                |
+| `config.ldap.groupMemberFormat`           | LDAP group member format, required if `groupType` is `static`.                                                                   | `nil`                                |
+| `config.cleanup`                          | Cleanup policies to be configured (see `values.yaml` for structure).                                                             | `[]`                                 |
+| `config.repos`                            | Repos to be configured (see `values.yaml` for structure).                                                                        | `[]`                                 |
+| `config.tasks`                            | Tasks to be configured (see `values.yaml` for structure).                                                                        | `[]`                                 |

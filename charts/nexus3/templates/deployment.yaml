@@ -67,9 +67,9 @@ spec:
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
               {{- if .Values.caCerts }}
-              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              value: {{ printf "-Xms%s -Xmx%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmMaxDirectMemorySize | quote }}
               {{- else }}
-              value: {{ printf "-XX:MaxRAMPercentage=%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMaxRAMPercentage .Values.envVars.jvmMaxDirectMemorySize | quote }}
+              value: {{ printf "-Xms%s -Xmx%s -XX:MaxDirectMemorySize=%s -Djava.util.prefs.userRoot=/nexus-data/javaprefs" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmMaxDirectMemorySize | quote }}
               {{- end }}
             {{- with .Values.env }}
             {{- . | toYaml | trim | nindent 12 }}
@@ -80,7 +80,7 @@ spec:
           args:
             - echo "Starting Nexus...";
               {{- if .Values.config.enabled }}
-              /opt/sonatype/nexus/conf/configure.sh;
+              bash /opt/sonatype/nexus/conf/configure.sh;
               {{- end }}
               /opt/sonatype/start-nexus-repository-manager.sh;
           ports:
