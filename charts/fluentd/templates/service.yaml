@@ -13,5 +13,11 @@ spec:
       port: {{ .port }}
       targetPort: {{ .name }}
     {{- end }}
+    {{- if .Values.metrics.enabled }}
+      - name: metrics
+      protocol: TCP
+      port: {{- .Values.metrics.port }}
+      targetPort: metrics
+    {{- end }}
   selector:
     {{- include "fluentd.selectorLabels" . | nindent 4 }}

@@ -21,4 +21,4 @@ data:
     <source>
       @type prometheus_output_monitor
     </source>
-{{- end }}
+  {{- end }}
