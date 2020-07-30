@@ -13,9 +13,9 @@ def existingRepository = repositoryManager.get(params.name)
 Configuration configuration
 if (existingRepository == null) {
   configuration = repositoryManager.newConfiguration()
-  configuration.repositoryName = params.name,
-  configuration.recipeName = params.type,
-  configuration.online = params.online,
+  configuration.repositoryName = params.name
+  configuration.recipeName = params.type
+  configuration.online = params.online
   configuration.attributes = params.attributes
 } else {
   configuration = existingRepository.getConfiguration()
