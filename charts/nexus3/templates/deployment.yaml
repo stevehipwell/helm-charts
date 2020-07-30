@@ -125,10 +125,10 @@ spec:
               subPath: {{ .Values.config.rootPassword.key }}
               readOnly: true
             {{- end }}
-            {{- if and .Values.config.ldap .Values.config.ldap.password }}
+            {{- if and .Values.config.ldap .Values.config.ldap.authPassword }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
-              name: {{ .Values.config.ldap.password.secret }}
-              subPath: {{ .Values.config.ldap.password.key }}
+              name: {{ .Values.config.ldap.authPassword.secret }}
+              subPath: {{ .Values.config.ldap.authPassword.key }}
               readOnly: true
             {{- end }}
             {{- end }}
@@ -161,10 +161,10 @@ spec:
           secret:
             secretName: {{ .Values.config.rootPassword.secret }}
         {{- end }}
-        {{- if and .Values.config.ldap .Values.config.ldap.password }}
-        - name: {{ .Values.config.ldap.password.secret }}
+        {{- if and .Values.config.ldap .Values.config.ldap.authPassword }}
+        - name: {{ .Values.config.ldap.authPassword.secret }}
           secret:
-            secretName: {{ .Values.config.ldap.password.secret }}
+            secretName: {{ .Values.config.ldap.authPassword.secret }}
         {{- end }}
         {{- end }}
       {{- with .Values.nodeSelector }}
