@@ -1,0 +1,132 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "fluentd.fullname" . }}
+  labels:
+    {{- include "fluentd.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "fluentd.fullname" . }}
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "fluentd.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "fluentd.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "fluentd.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if and (.Values.plugins.enabled) (gt (len .Values.plugins.list) 0) }}
+          command: ["/bin/sh", "-c", "/etc/fluent/install-plugins.sh"]
+          {{- end }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 9880
+            - name: monitor
+              protocol: TCP
+              containerPort: 24220
+            - name: forward
+              protocol: TCP
+              containerPort: 24224
+            {{- if .Values.metrics.enabled }}
+            - name: metrics
+              protocol: TCP
+              containerPort: {{- .Values.metrics.port }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          volumeMounts:
+            - name: config
+              mountPath: /etc/fluent/config.d
+            {{- if and (.Values.plugins.enabled) (gt (len .Values.plugins.list) 0) }}
+            - name: plugins
+              mountPath: /etc/fluent/install-plugins.sh
+              subPath: install-plugins.sh
+            {{- end }}
+            - name: buffer
+              mountPath: "/var/log/fluentd-buffers"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.persistence.enabled }}
+      volumeClaimTemplates:
+        - metadata:
+            name: buffer
+          spec:
+            accessModes:
+              - {{ .Values.persistence.accessMode | quote }}
+            {{- with .Values.persistence.storageClass }}
+            {{- if (eq "-" .) }}
+            storageClassName: ""
+            {{- else }}
+            storageClassName: {{ . | quote }}
+            {{- end }}
+            {{- end }}
+            resources:
+              requests:
+                storage: {{ .Values.persistence.size | quote }}
+      {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "fluentd.fullname" . }}
+            defaultMode: 0777
+        {{- if and (.Values.plugins.enabled) (gt (len .Values.plugins.list) 0) }}
+        - name: plugins
+          configMap:
+            name: {{ template "fluentd.fullname" . }}-plugins
+            defaultMode: 0777
+        {{- end }}
+        {{- if not .Values.persistence.enabled }}
+        - name: buffer
+          emptyDir: {}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
