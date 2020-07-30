@@ -761,6 +761,28 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
+  fluentd:
+  - apiVersion: v1
+    appVersion: 1.11.1
+    created: "2020-07-30T19:06:13.5724034Z"
+    description: Fluentd Helm chart for Kubernetes.
+    digest: 4b0267785f5166d4a0a41f26c4309b84928a38ab5efa625d770826d6716b9cb1
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: fluentd
+    sources:
+    - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+    - https://quay.io/repository/fluentd_elasticsearch/fluentd
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.0/fluentd-1.0.0.tgz
+    version: 1.0.0
   istio-operator:
   - apiVersion: v1
     appVersion: 1.6.6
