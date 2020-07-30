@@ -15,6 +15,7 @@ if (cleanupPolicyStorage.exists(params.name)) {
   cleanupPolicyStorage.update(existingPolicy);
 } else {
   def newPolicy = cleanupPolicyStorage.newCleanupPolicy()
+  newPolicy.setName(params.name)
   newPolicy.setNotes(params.notes);
   newPolicy.setFormat(params.format);
   newPolicy.setMode(params.mode);
