@@ -118,11 +118,6 @@ config:
     </system>
 
   general: |-
-    <label @FLUENT_LOG>
-      <match **>
-        @type null
-      </match>
-    </label>
     <source>
       @type http
       port 9880
