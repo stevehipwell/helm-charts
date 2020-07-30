@@ -55,7 +55,7 @@ spec:
             {{- if .Values.metrics.enabled }}
             - name: metrics
               protocol: TCP
-              containerPort: {{- .Values.metrics.port }}
+              containerPort: {{ .Values.metrics.port }}
             {{- end }}
           livenessProbe:
             httpGet:
@@ -85,24 +85,6 @@ spec:
               mountPath: "/var/log/fluentd-buffers"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- if .Values.persistence.enabled }}
-      volumeClaimTemplates:
-        - metadata:
-            name: buffer
-          spec:
-            accessModes:
-              - {{ .Values.persistence.accessMode | quote }}
-            {{- with .Values.persistence.storageClass }}
-            {{- if (eq "-" .) }}
-            storageClassName: ""
-            {{- else }}
-            storageClassName: {{ . | quote }}
-            {{- end }}
-            {{- end }}
-            resources:
-              requests:
-                storage: {{ .Values.persistence.size | quote }}
-      {{- end }}
       volumes:
         - name: config
           configMap:
@@ -130,3 +112,21 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: buffer
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode | quote }}
+        {{- with .Values.persistence.storageClass }}
+        {{- if (eq "-" .) }}
+        storageClassName: ""
+        {{- else }}
+        storageClassName: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+  {{- end }}

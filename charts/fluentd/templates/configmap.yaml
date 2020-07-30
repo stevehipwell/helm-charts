@@ -13,7 +13,7 @@ data:
   metrics.conf: |
     <source>
       @type prometheus
-      port {{ .Values.metrics.service.port }}
+      port {{ .Values.metrics.port }}
     </source>
     <source>
       @type prometheus_monitor
