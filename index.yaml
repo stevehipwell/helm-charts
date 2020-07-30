@@ -764,6 +764,27 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: 1.11.1
+    created: "2020-07-30T19:34:15.433510058Z"
+    description: Fluentd Helm chart for Kubernetes.
+    digest: 9f1d89aed4d1768a326360abecd5e2bfb49b692cc262c28c28565e2ec9912136
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@github.com
+      name: stevehipwell
+    name: fluentd
+    sources:
+    - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+    - https://quay.io/repository/fluentd_elasticsearch/fluentd
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.4/fluentd-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: 1.11.1
     created: "2020-07-30T19:31:39.221361865Z"
     description: Fluentd Helm chart for Kubernetes.
     digest: 2112cb967c3440fac3a91eb28ee90ab486e8879480cd7040bf6565c350118bbb
