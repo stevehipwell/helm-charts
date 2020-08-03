@@ -19,13 +19,16 @@ if (existingRepository == null) {
   configuration.attributes = params.attributes
 } else {
   configuration = existingRepository.getConfiguration()
-
-  if (configuration.getRecipeName() != params.type) {
-    throw new Exception("Tried to change recipe for repo ${params.name} to ${params.type}")
+  if (params.containsKey("type")) {
+    if (configuration.getRecipeName() != params.type) {
+      throw new Exception("Tried to change recipe for repo ${params.name} to ${params.type}")
+    }
   }
 
   configuration.setOnline(params.online)
-  configuration.setAttributes(params.attributes)
+  if (params.containsKey("attributes")) {
+    configuration.setAttributes(params.attributes)
+  }
 }
 
 if (existingRepository == null) {
