@@ -109,9 +109,6 @@ spec:
             failureThreshold: 10
             timeoutSeconds: 1
           volumeMounts:
-            {{- with .Values.extraVolumeMounts }}
-              {{ tpl . $ | nindent 12 }}
-            {{- end }}
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /nexus-data/etc/nexus.properties
@@ -135,12 +132,12 @@ spec:
               readOnly: true
             {{- end }}
             {{- end }}
+          {{- with .Values.extraVolumeMounts }}
+            {{ tpl . $ | nindent 12 }}
+          {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:
-        {{- with .Values.extraVolumes }}
-          {{ tpl . $ | nindent 8 }}
-        {{- end }}
         - name: {{ include "nexus3.pvcname" . }}
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
@@ -173,6 +170,9 @@ spec:
             secretName: {{ .Values.config.ldap.authPassword.secret }}
         {{- end }}
         {{- end }}
+      {{- with .Values.extraVolumes }}
+        {{ tpl . $ | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | trim | nindent 8 }}
