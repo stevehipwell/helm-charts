@@ -109,8 +109,8 @@ spec:
             failureThreshold: 10
             timeoutSeconds: 1
           volumeMounts:
-            {{- if .Values.persistence.mounts }}
-            {{ tpl (toYaml .Values.persistence.mounts | indent 12) . }}
+            {{- with .Values.extraVolumeMounts }}
+              {{ tpl . $ | nindent 12 }}
             {{- end }}
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
@@ -138,8 +138,8 @@ spec:
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:
-        {{- if .Values.persistence.volumes }}
-        {{ tpl (toYaml .Values.persistence.volumes | indent 8) . }}
+        {{- with .Values.extraVolumes }}
+          {{ tpl . $ | nindent 8 }}
         {{- end }}
         - name: {{ include "nexus3.pvcname" . }}
           {{- if .Values.persistence.enabled }}
