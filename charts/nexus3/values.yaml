@@ -188,7 +188,8 @@ config:
     #       strictContentTypeValidation: false
     #       writePolicy: ALLOW
     #     cleanup:
-    #       policyName: ExampleCleanup
+    #       policyName:
+    #         - ExampleCleanup
   tasks: []
     # - name: "Cleanup service"
     #   typeId: repository.cleanup
