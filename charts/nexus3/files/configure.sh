@@ -119,6 +119,36 @@ do
     echo "LDAP configured."
   fi
 
+  for json_file in "${base_dir}"/conf/*-blobstore.json
+  do
+    if [ -f "${json_file}" ]
+    then
+      name="$(grep -Pio '(?<="name":")[^"]+' "${json_file}")"
+      type="$(grep -Pio '(?<="type":")[^"]+' "${json_file}")"
+      echo "Updating blobstore '${name}'..."
+
+      status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")
+      if [ "${status_code}" -eq 200 ]
+      then
+        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
+        if [ "${status_code}" -ne 204 ]
+        then
+          echo "Could not configure blobstore." >&2
+          exit 1
+        fi
+      else
+        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
+        if [ "${status_code}" -ne 200 ]
+        then
+          echo "Could not configure blobstore." >&2
+          exit 1
+        fi
+      fi
+
+      echo "Blobstore configured."
+    fi
+  done
+
   for json_file in "${base_dir}"/conf/*-role.json
   do
     if [ -f "${json_file}" ]
@@ -133,7 +163,7 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles/${id}")"
         if [ "${status_code}" -ne 204 ]
         then
-          echo "Could configure role." >&2
+          echo "Could not configure role." >&2
           exit 1
         fi
       else
@@ -157,7 +187,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/users/anonymous")"
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could configure anonymous user." >&2
+      echo "Could not configure anonymous user." >&2
       exit 1
     fi
 

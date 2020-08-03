@@ -160,6 +160,13 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
+  blobstores: []
+    # - name: ExampleFileBlobstore
+    #   type: file
+    #   path: /nexus-data/blobs/foo
+    #   softQuota:
+    #     type: spaceRemainingQuota
+    #     limit: 500
   roles: []
     # - id: nexus-administrators
     #   source: default
