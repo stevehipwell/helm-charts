@@ -33,7 +33,7 @@ data:
   {{- end }}
   {{- range $index, $blobstore := .Values.config.blobstores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
-    {{- $role | toJson | trim | nindent 4 }}
+    {{- $blobstore | toJson | trim | nindent 4 }}
   {{- end }}
   {{- range $index, $role := .Values.config.roles }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
