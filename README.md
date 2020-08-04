@@ -13,9 +13,10 @@ Once Helm is set up properly, add the repo as follows:
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm repo update
 ```
 
-You can then run `helm search stevehipwell` to see the charts.
+You can then run `helm search repo stevehipwell` to see the charts.
 
 ## License
 
