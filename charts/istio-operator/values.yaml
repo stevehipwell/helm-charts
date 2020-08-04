@@ -61,7 +61,7 @@ istioNamespace: istio-system
 
 controlPlane:
   install: false
-    spec:
+    spec: {}
   #   profile: default
   #   meshConfig:
   #   components:

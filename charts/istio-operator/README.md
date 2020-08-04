@@ -44,4 +44,4 @@ The following table lists the configurable parameters of the _Istio Operator_ ch
 | `affinity`                        | Affinity settings for pod assignment.                                                                                            | `{}`                       |
 | `istioNamespace`                  | Namespace to install _Istio_ into.                                                                                               | `istio-system`             |
 | `controlPlane.install`            | If `true`, install _Istio_.                                                                                                      | `false`                    |
-| `controlPlane.spec`               | The _Istio_ install specification.                                                                                               | `nil`                      |
+| `controlPlane.spec`               | The _Istio_ install specification.                                                                                               | `{}`                       |
