@@ -115,58 +115,64 @@ spec:
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
-            {{- if .Values.config.enabled }}
+          {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
               readOnly: true
-            {{- if .Values.config.rootPassword }}
+          {{- if .Values.config.rootPassword }}
             - mountPath: /opt/sonatype/nexus/secret/root.password
               name: {{ .Values.config.rootPassword.secret }}
               subPath: {{ .Values.config.rootPassword.key }}
               readOnly: true
-            {{- end }}
-            {{- if .Values.config.ldap.enabled }}
+          {{- end }}
+          {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.authPassword.secret }}
               subPath: {{ .Values.config.ldap.authPassword.key }}
               readOnly: true
-            {{- end }}
-            {{- end }}
+          {{- end }}
+          {{- end }}
+          {{- with .Values.extraVolumeMounts }}
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:
         - name: {{ include "nexus3.pvcname" . }}
-          {{- if .Values.persistence.enabled }}
+        {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "nexus3.pvcname" .) }}
-          {{- else }}
+        {{- else }}
           emptyDir: {}
-          {{- end }}
-        {{- if .Values.caCerts.enabled }}
+        {{- end }}
+      {{- if .Values.caCerts.enabled }}
         - name: nexus3-cas
           secret:
             secretName: {{ .Values.caCerts.secret }}
-        {{- end }}
+      {{- end }}
         - name: {{ template "nexus3.fullname" . }}-properties
           configMap:
             name: {{ template "nexus3.fullname" . }}-properties
             defaultMode: 0755
-        {{- if .Values.config.enabled }}
+      {{- if .Values.config.enabled }}
         - name: {{ template "nexus3.fullname" . }}-conf
           configMap:
             name: {{ template "nexus3.fullname" . }}-conf
             defaultMode: 0755
-        {{- if .Values.config.rootPassword }}
+      {{- if .Values.config.rootPassword }}
         - name: {{ .Values.config.rootPassword.secret }}
           secret:
             secretName: {{ .Values.config.rootPassword.secret }}
-        {{- end }}
-        {{- if and .Values.config.ldap.enabled }}
+      {{- end }}
+      {{- if and .Values.config.ldap.enabled }}
         - name: {{ .Values.config.ldap.authPassword.secret }}
           secret:
             secretName: {{ .Values.config.ldap.authPassword.secret }}
-        {{- end }}
-        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.extraVolumes }}
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | trim | nindent 8 }}

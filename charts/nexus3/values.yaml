@@ -74,6 +74,10 @@ persistence:
   storageClass: standard
   size: 8Gi
 
+extraVolumes: []
+
+extraVolumeMounts: []
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -160,6 +164,13 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
+  blobStores: []
+    # - name: ExampleFileBlobStore
+    #   type: file
+    #   path: /nexus-data/blobs/foo
+    #   softQuota:
+    #     type: spaceRemainingQuota
+    #     limit: 500
   roles: []
     # - id: nexus-administrators
     #   source: default
@@ -208,4 +219,4 @@ config:
     #   typeId: blobstore.compact
     #   crontab: "0 0 2 * * ?"
     #   attributes:
-    #     blobstoreName: "default"
+    #     blobStoreName: "default"
