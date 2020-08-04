@@ -23,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - n/a
 
+## v1.0.8 - 2020-08-04
+
+### Added
+
+- README
+
 ## 1.0.7 - 2020-08-03
 
 ### Changed
