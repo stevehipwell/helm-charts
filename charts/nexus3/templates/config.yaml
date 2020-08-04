@@ -31,9 +31,9 @@ data:
   anonymous-user.json: |
     {"userId":"anonymous","firstName":"Anonymous","lastName":"User","emailAddress":"anonymous@example.org","source":"default","status":"active","roles":["nx-anonymous", "nx-metrics"],"externalRoles":[]}
   {{- end }}
-  {{- range $index, $blobstore := .Values.config.blobstores }}
+  {{- range $index, $blobStore := .Values.config.blobStores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
-    {{- $blobstore | toJson | trim | nindent 4 }}
+    {{- $blobStore | toJson | trim | nindent 4 }}
   {{- end }}
   {{- range $index, $role := .Values.config.roles }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |

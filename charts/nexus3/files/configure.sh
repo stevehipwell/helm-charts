@@ -125,7 +125,7 @@ do
     then
       name="$(grep -Pio '(?<="name":")[^"]+' "${json_file}")"
       type="$(grep -Pio '(?<="type":")[^"]+' "${json_file}")"
-      echo "Updating blobstore '${name}'..."
+      echo "Updating blob store '${name}'..."
 
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")
       if [ "${status_code}" -eq 200 ]
@@ -133,19 +133,19 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
         if [ "${status_code}" -ne 204 ]
         then
-          echo "Could not configure blobstore." >&2
+          echo "Could not configure blob store." >&2
           exit 1
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
         if [ "${status_code}" -ne 200 ]
         then
-          echo "Could not configure blobstore." >&2
+          echo "Could not configure blob store." >&2
           exit 1
         fi
       fi
 
-      echo "Blobstore configured."
+      echo "Blob store configured."
     fi
   done
 

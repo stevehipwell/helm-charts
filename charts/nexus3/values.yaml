@@ -164,8 +164,8 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  blobstores: []
-    # - name: ExampleFileBlobstore
+  blobStores: []
+    # - name: ExampleFileBlobStore
     #   type: file
     #   path: /nexus-data/blobs/foo
     #   softQuota:
@@ -219,4 +219,4 @@ config:
     #   typeId: blobstore.compact
     #   crontab: "0 0 2 * * ?"
     #   attributes:
-    #     blobstoreName: "default"
+    #     blobStoreName: "default"
