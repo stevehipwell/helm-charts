@@ -132,6 +132,9 @@ spec:
               readOnly: true
             {{- end }}
             {{- end }}
+          {{- with .Values.extraVolumeMounts }}
+            {{ tpl . $ | nindent 12 }}
+          {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:
@@ -167,6 +170,9 @@ spec:
             secretName: {{ .Values.config.ldap.authPassword.secret }}
         {{- end }}
         {{- end }}
+      {{- with .Values.extraVolumes }}
+        {{ tpl . $ | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- . | toYaml | trim | nindent 8 }}
