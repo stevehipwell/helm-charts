@@ -6,27 +6,10 @@ image:
   repository: docker.io/istio/operator
   tag: 1.6.7
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-istioNamespace: istio-system
-
-controlPlane:
-  install: false
-  # spec:
-  #   profile: default
-  #   meshConfig:
-  #   components:
-  #   additionalComponents:
-  #   values:
-
-serviceMonitor:
-  enabled: false
-  # interval:
-  # additionalLabels:
-  #   myLabel: myValue
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -54,6 +37,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  #   myLabel: myValue
+  interval: 1m
+
 resources:
   # requests:
   #   cpu: 100m
@@ -67,3 +56,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+istioNamespace: istio-system
+
+controlPlane:
+  install: false
+  spec: {}
+  #   profile: default
+  #   meshConfig:
+  #   components:
+  #   additionalComponents:
+  #   values:
