@@ -1,47 +1,24 @@
-# Nexus3
+# Nexus 3
 
-Sonatype [Nexus3](https://www.sonatype.com/nexus-repository-oss) is a free open source repository manager. It supports a wide range of package formats and it's used by hundreds of tech companies.
-
-## TL;DR:
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm install stevehipwell/nexus3 --name my-release
-```
-
-## Introduction
-
-This chart bootstraps a [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
-
-## Prerequisites
-
-- Kubernetes 1.14+
+[Sonatype Nexus 3](https://www.sonatype.com/nexus-repository-oss) is The free artefact repository with universal format support.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm install --name my-release stable/nexus3
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 ```
 
-The command deploys _Nexus3_ on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
-
-> **Tip**: List all releases using `helm list`
-
-## Uninstalling the Chart
-
-To uninstall/delete the `my-release` deployment:
+After you've installed the repo you can install the chart.
 
 ```shell
-helm delete my-release
+helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/nexus3
 ```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 
-The following table lists the configurable parameters of the _Nexus3_ chart and their default values.
+The following table lists the configurable parameters of the _Nexus 3_ chart and their default values.
 
 | Parameter                                 | Description                                                                                                 | Default           |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------- |

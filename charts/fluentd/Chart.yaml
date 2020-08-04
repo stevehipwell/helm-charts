@@ -1,8 +1,8 @@
 apiVersion: v1
 name: fluentd
-version: 1.0.6
+version: 1.0.7
 appVersion: 1.11.1
-description: Fluentd Helm chart for Kubernetes.
+description: Helm chart for Fluentd running as an aggregation stateful set.
 keywords:
 - fluent
 - fluentd
@@ -13,5 +13,5 @@ sources:
 - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
 - https://quay.io/repository/fluentd_elasticsearch/fluentd
 maintainers:
-- name: stevehipwell
-  email: steve.hipwell@github.com
+- name: Steve Hipwell
+  email: steve.hipwell@gmail.com

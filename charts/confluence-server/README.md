@@ -1,43 +1,20 @@
 # Confluence Server
 
-Atlassian [Confluence Server](https://www.atlassian.com/software/jira) is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
-
-## TL;DR:
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm install --name my-release stable/confluence-server
-```
-
-## Introduction
-
-This chart bootstraps a [atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server/) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
-
-## Prerequisites
-
-- Kubernetes 1.14+
+[Atlassian Confluence Server](https://www.atlassian.com/software/confluence) is your remote-friendly team workspace where knowledge and collaboration meet.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm install --name my-release stevehipwell/confluence-server
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 ```
 
-The command deploys _Confluence Server_ on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
-
-> **Tip**: List all releases using `helm list`
-
-## Uninstalling the Chart
-
-To uninstall/delete the `my-release` deployment:
+After you've installed the repo you can install the chart.
 
 ```shell
-helm delete my-release
+helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/confluence-server
 ```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 

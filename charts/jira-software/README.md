@@ -1,43 +1,20 @@
 # Jira Software
 
-Atlassian [Jira Software](https://www.atlassian.com/software/jira) is built for every member of your software team to plan, track, and release great software.
-
-## TL;DR:
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm install --name my-release stevehipwell/jira-software
-```
-
-## Introduction
-
-This chart bootstraps a [atlassian/jira-software](https://hub.docker.com/r/atlassian/jira-software/) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
-
-## Prerequisites
-
-- Kubernetes 1.14+
+[Atlassian Jira Software](https://www.atlassian.com/software/jira) built for every member of your software team to plan, track, and release great software.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm install --name my-release stable/jira-software
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 ```
 
-The command deploys _Jira Software_ on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
-
-> **Tip**: List all releases using `helm list`
-
-## Uninstalling the Chart
-
-To uninstall/delete the `my-release` deployment:
+After you've installed the repo you can install the chart.
 
 ```shell
-helm delete my-release
+helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/jira-software
 ```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 

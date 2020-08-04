@@ -1,43 +1,20 @@
-# Descheduler for Kubernetes
+# [DEPRECATED] Descheduler for Kubernetes
 
-[Descheduler](https://github.com/kubernetes-sigs/descheduler/) for Kubernetes is used to manage pod scheduling.
-
-## TL;DR:
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-$ helm install --name my-release stevehipwell/descheduler
-```
-
-## Introduction
-
-This chart bootstraps a [desheduler](https://github.com/kubernetes-sigs/descheduler/) cron job on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
-
-## Prerequisites
-
-- Kubernetes 1.14+
+[Descheduler](https://github.com/kubernetes-sigs/descheduler/) is used to rebalance clusters by evicting pods that can potentially be scheduled on better nodes. In the current implementation, _Descheduler_ does not schedule replacement of evicted pods but relies on the default scheduler for that.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
 
 ```shell
-helm install --name my-release stevehipwell/descheduler
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 ```
 
-The command deploys _descheduler_ on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
-
-> **Tip**: List all releases using `helm list`
-
-## Uninstalling the Chart
-
-To uninstall/delete the `my-release` deployment:
+After you've installed the repo you can install the chart.
 
 ```shell
-helm delete my-release
+helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/descheduler
 ```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 
