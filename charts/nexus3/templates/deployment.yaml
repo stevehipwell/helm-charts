@@ -133,7 +133,7 @@ spec:
           {{- end }}
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
-            {{ tpl . $ | nindent 12 }}
+            {{ toYaml . | nindent 12 }}
           {{- end }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
@@ -171,7 +171,7 @@ spec:
       {{- end }}
       {{- end }}
       {{- with .Values.extraVolumes }}
-        {{ tpl . $ | nindent 8 }}
+        {{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
