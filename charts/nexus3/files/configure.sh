@@ -138,7 +138,7 @@ do
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}")"
-        if [ "${status_code}" -ne 200 ]
+        if [ "${status_code}" -ne 204 ]
         then
           echo "Could not configure blob store." >&2
           exit 1
