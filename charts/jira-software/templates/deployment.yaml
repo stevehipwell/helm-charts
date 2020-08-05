@@ -27,7 +27,7 @@ spec:
       serviceAccountName: {{ include "jira-software.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-    {{- if .Values.caCerts }}
+    {{- if .Values.caCerts.enabled }}
       initContainers:
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
@@ -56,7 +56,7 @@ spec:
             - name: JVM_MAXIMUM_MEMORY
               value: {{ .Values.envVars.jvmMaxHeapSize | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
-            {{- if .Values.caCerts }}
+            {{- if .Values.caCerts.enabled }}
               value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | trim | quote }}
             {{- else }}
               value: {{ printf "%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | trim | quote }}
@@ -140,7 +140,7 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if .Values.caCerts }}
+        {{- if .Values.caCerts.enabled }}
         - name: jira-cas
           secret:
             secretName: {{ .Values.caCerts.secret }}
