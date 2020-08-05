@@ -1,55 +1,42 @@
+# Default values for nexus3.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
 image:
   repository: atlassian/jira-software
   tag: 8.11.0
   pullPolicy: IfNotPresent
+  pullSecrets: []
 
 nameOverride: ""
 fullnameOverride: ""
 
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 service:
   type: ClusterIP
+  annotations: {}
   port: 8080
-
-# caCerts:
-#   secret: my-secret
-
-## These settings are only required if you wish to use an existing postgresql instance
-##
-# psql:
-  # host: postgresdb.local
-  # port: 5432
-  # database: jira
-  # username: jira
-  # password:
-      # secret: jira-postgres
-      # key: password
-
-envVars:
-  jvmMinMemory: 384M
-  jvmMaxMemory: 768M
-  jvmMemoryOptions: "-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m"
-  opts: ""
-
-# env:
-#   - name: VARIABLE
-#     value: my-value
-
-persistence:
-  enabled: false
-  # existingClaim: existing-pvc
-  accessMode: ReadWriteOnce
-  storageClass: standard
-  size: 8Gi
-
-# podAnnotations: {}
-
-resources: {}
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
 
 ingress:
   enabled: false
@@ -64,8 +51,59 @@ ingress:
     #   hosts:
     #     - jira.local
 
+persistence:
+  enabled: false
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 8Gi
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+caCerts:
+  enabled: false
+  secret:
+
+envVars:
+  jvmMinHeapSize: 384M
+  jvmMaxHeapSize: 768M
+  jvmAdditionalMemoryOptions: "-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m"
+  jvmAdditionalOptions: ""
+
+env: []
+  # - name: VARIABLE
+  #   value: my-value
+
+## These settings are only required if you wish to use an existing postgresql instance
+##
+psql:
+  # host: postgresdb.local
+  # port: 5432
+  # database: jira
+  # username: jira
+  # password:
+  #   secret: jira-postgres
+  #   key: password
+
 ## Configuration values for the postgresql dependency
-## ref: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
+## ref: https://hub.helm.sh/charts/bitnami/postgresql/4.2.2
 ##
 postgresql:
   enabled: false
