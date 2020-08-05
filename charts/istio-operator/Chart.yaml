@@ -1,6 +1,6 @@
 apiVersion: v1
 name: istio-operator
-version: 1.0.9
+version: 1.0.10
 appVersion: 1.6.7
 description: Helm chart for the Istio Operator.
 keywords:
@@ -14,5 +14,5 @@ icon: https://istio.io/favicons/android-192x192.png
 sources:
 - https://github.com/istio/istio
 maintainers:
-- name: Steve Hipwell
+- name: stevehipwell
   email: steve.hipwell@gmail.com
