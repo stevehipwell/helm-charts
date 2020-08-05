@@ -3,29 +3,31 @@ kind: Deployment
 metadata:
   name: {{ include "jira-software.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "jira-software.name" . }}
-    helm.sh/chart: {{ include "jira-software.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "jira-software.labels" . | nindent 4 }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "jira-software.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "jira-software.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "jira-software.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-      {{- with .Values.podAnnotations }}
+      {{- include "jira-software.selectorLabels" . | nindent 8 }}
+    {{- with .Values.podAnnotations }}
       annotations:
         {{- . | toYaml | trim | nindent 8 }}
-      {{- end }}
+    {{- end }}
     spec:
-      {{- if .Values.caCerts }}
+    {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "jira-software.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+    {{- if .Values.caCerts }}
       initContainers:
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
@@ -41,44 +43,23 @@ spec:
               name: {{ include "jira-software.pvcname" . }}
             - mountPath: /var/atlassian/application-data/jira/secrets/cas
               name: jira-cas
-      {{- end }}
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
-          readinessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
-          volumeMounts:
-            - mountPath: /var/atlassian/application-data/jira
-              name: {{ include "jira-software.pvcname" . }}
           env:
             - name: JVM_MINIMUM_MEMORY
-              value: {{ .Values.envVars.jvmMinMemory | quote }}
+              value: {{ .Values.envVars.jvmMinHeapSize | quote }}
             - name: JVM_MAXIMUM_MEMORY
-              value: {{ .Values.envVars.jvmMaxMemory | quote }}
+              value: {{ .Values.envVars.jvmMaxHeapSize | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.opts | trim | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/jira/cacerts %s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | trim | quote }}
             {{- else }}
-              value: {{ printf "%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.opts | trim | quote }}
+              value: {{ printf "%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | trim | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME
@@ -126,6 +107,29 @@ spec:
             {{- with .Values.env }}
             {{- . | toYaml | trim | nindent 12 }}
             {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: /var/atlassian/application-data/jira
+              name: {{ include "jira-software.pvcname" . }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:

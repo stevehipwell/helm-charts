@@ -4,10 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "jira-software.pvcname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "jira-software.name" . }}
-    helm.sh/chart: {{ include "jira-software.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "jira-software.labels" . | nindent 4 }}
   {{- with .Values.persistence.annotations }}
   annotations:
     {{ . | toYaml | trim | nindent 4 }}
