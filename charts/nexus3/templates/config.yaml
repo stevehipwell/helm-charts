@@ -5,10 +5,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "nexus3.fullname" . }}-conf
   labels:
-    app.kubernetes.io/name: {{ include "nexus3.name" . }}
-    helm.sh/chart: {{ include "nexus3.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "nexus3.labels" . | nindent 4 }}
 data:
   {{- range $path, $bytes := .Files.Glob "files/*" }}
   {{ $path | base }}: |
@@ -18,19 +15,29 @@ data:
   anonymous.json: |
     {{- . | toJson | trim | nindent 4 }}
   {{- end }}
-  {{- with .Values.config.realms }}
-  {{- if .enabled }}
+  {{- if .Values.config.realms.enabled }}
   realms.json: |
-    {{- .values | toJson | trim | nindent 4 }}
+    {{- .Values.config.realms.values | toJson | trim | nindent 4 }}
   {{- end }}
-  {{- end }}
-  {{- with .Values.config.ldap }}
-  {{- if .enabled }}
+  {{- if .Values.config.ldap.enabled }}
   ldap.json: |
-    {{- with omit . "password" }}
-    {{-  set . "password" "PASSWORD" | toJson | trim | nindent 4 }}
+    {{- with omit .Values.config.ldap "enabled" "authPassword" }}
+    {{-  set . "authPassword" "PASSWORD" | toJson | trim | nindent 4 }}
     {{- end }}
   {{- end }}
+  {{- if .Values.metrics.enabled }}
+  metrics-role.json: |
+    {"id":"nx-metrics","source":"default","name":"nx-metrics","description":"metrics Role","privileges":["nx-metrics-all"],"roles":[]}
+  anonymous-user.json: |
+    {"userId":"anonymous","firstName":"Anonymous","lastName":"User","emailAddress":"anonymous@example.org","source":"default","status":"active","roles":["nx-anonymous", "nx-metrics"],"externalRoles":[]}
+  {{- end }}
+  {{- range $index, $blobStore := .Values.config.blobStores }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
+    {{- $blobStore | toJson | trim | nindent 4 }}
+  {{- end }}
+  {{- range $index, $role := .Values.config.roles }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
+    {{- $role | toJson | trim | nindent 4 }}
   {{- end }}
   {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
@@ -43,9 +50,5 @@ data:
   {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |
     {{- $task | toJson | trim | nindent 4 }}
-  {{- end }}
-  {{- with .Values.metrics }}
-  metrics.json: |
-    {{- . | toJson | trim | nindent 4 }}
   {{- end }}
 {{- end }}
