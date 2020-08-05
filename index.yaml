@@ -3,6 +3,35 @@ entries:
   confluence-server:
   - apiVersion: v1
     appVersion: 7.6.2
+    created: "2020-08-05T09:58:50.878036351Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 760e062cb7f4583029b0a2e2337656337a767d1829e6c478bc0666d49f83667b
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-2.4.5/confluence-server-2.4.5.tgz
+    version: 2.4.5
+  - apiVersion: v1
+    appVersion: 7.6.2
     created: "2020-08-04T16:22:28.95553913Z"
     dependencies:
     - condition: postgresql.enabled
@@ -712,6 +741,26 @@ entries:
   descheduler:
   - apiVersion: v1
     appVersion: 0.9.0
+    created: "2020-08-05T09:58:50.985727857Z"
+    description: DEPRECATED - Helm chart for the Kubernetes Descheduler.
+    digest: 0a5805ccb5046fad7c97ed3228ca6b88431c44ccc8df27751028e9c83e47bae8
+    home: https://github.com/kubernetes-sigs/descheduler
+    icon: https://kubernetes.io/images/favicon.png
+    keywords:
+    - kubernetes
+    - descheduler
+    - kube-scheduler
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: descheduler
+    sources:
+    - https://github.com/kubernetes-sigs/descheduler
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.5/descheduler-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v1
+    appVersion: 0.9.0
     created: "2020-08-04T16:22:29.057297032Z"
     description: DEPRECATED - Helm chart for the Kubernetes Descheduler.
     digest: 39f351a97eecc482458d4cb2504907fe8500ed9ef67016d584babcc1a7185f9d
@@ -811,6 +860,27 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
   fluentd:
+  - apiVersion: v1
+    appVersion: 1.11.1
+    created: "2020-08-05T09:58:51.08334309Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: d59d60e696ba812847d3e0be33890ed26f0051f71928eb35f8dda54f87c181e7
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd
+    sources:
+    - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+    - https://quay.io/repository/fluentd_elasticsearch/fluentd
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.8/fluentd-1.0.8.tgz
+    version: 1.0.8
   - apiVersion: v1
     appVersion: 1.11.1
     created: "2020-08-04T16:22:29.205205191Z"
@@ -980,6 +1050,28 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.0/fluentd-1.0.0.tgz
     version: 1.0.0
   istio-operator:
+  - apiVersion: v1
+    appVersion: 1.6.7
+    created: "2020-08-05T09:58:51.169241244Z"
+    description: Helm chart for the Istio Operator.
+    digest: 7c4330b072c459559e287ca313f449361efea9a7d50c5e3cddbe5e484abe0f87
+    home: https://istio.io/
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.10/istio-operator-1.0.10.tgz
+    version: 1.0.10
   - apiVersion: v1
     appVersion: 1.6.7
     created: "2020-08-04T16:22:29.313069288Z"
@@ -1179,6 +1271,35 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - apiVersion: v1
+    appVersion: 8.11.0
+    created: "2020-08-05T09:58:51.333526667Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.2.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: 2edfce99a8008ac160527a4a66ade1561c7b0200eeea66b77d9179be777cd090
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-2.4.4/jira-software-2.4.4.tgz
+    version: 2.4.4
   - apiVersion: v1
     appVersion: 8.11.0
     created: "2020-08-04T16:22:29.405525599Z"
@@ -1659,6 +1780,30 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - apiVersion: v1
+    appVersion: 3.25.0
+    created: "2020-08-05T09:58:51.430581503Z"
+    description: Helm chart for Sonatype Nexus OSS.
+    digest: 1f42b43b33bc0ceaba65f804c604afa1e564460bad55908edf2def3be30a853d
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: http://www.sonatype.org/nexus/content/uploads/2015/06/Nexus-Logo.jpg
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-2.5.7/nexus3-2.5.7.tgz
+    version: 2.5.7
   - apiVersion: v1
     appVersion: 3.25.0
     created: "2020-08-04T16:22:29.505401204Z"
