@@ -4,10 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "confluence-server.pvcname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "confluence-server.name" . }}
-    helm.sh/chart: {{ include "confluence-server.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "confluence-server.labels" . | nindent 4 }}
   {{- with .Values.persistence.annotations }}
   annotations:
     {{- . | toYaml | trim | nindent 4 }}
