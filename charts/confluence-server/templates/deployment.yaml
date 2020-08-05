@@ -57,9 +57,9 @@ spec:
               value: {{ .Values.envVars.jvmMaxHeapSize | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
             {{- else }}
-              value: {{ printf "%s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
+              value: {{ printf "%s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME
