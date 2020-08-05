@@ -3,33 +3,31 @@ kind: Deployment
 metadata:
   name: {{ include "confluence-server.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "confluence-server.name" . }}
-    helm.sh/chart: {{ include "confluence-server.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "confluence-server.labels" . | nindent 4 }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "confluence-server.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "confluence-server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "confluence-server.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "confluence-server.selectorLabels" . | nindent 8 }}
       {{- with .Values.podAnnotations }}
       annotations:
         {{- . | toYaml | trim | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.securityContext }}
-      securityContext:
-        {{- . | toYaml | trim | nindent 8 }}
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.caCerts }}
+      serviceAccountName: {{ include "confluence-server.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.caCerts.enabled }}
       initContainers:
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
@@ -48,44 +46,20 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 8090
-              protocol: TCP
-            - name: synchrony
-              containerPort: 8091
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
-          readinessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
-          volumeMounts:
-            - mountPath: /var/atlassian/application-data/confluence
-              name: {{ include "confluence-server.pvcname" . }}
           env:
             - name: JVM_MINIMUM_MEMORY
-              value: {{ .Values.envVars.jvmMinMemory | quote }}
+              value: {{ .Values.envVars.jvmMinHeapSize | quote }}
             - name: JVM_MAXIMUM_MEMORY
-              value: {{ .Values.envVars.jvmMaxMemory | quote }}
+              value: {{ .Values.envVars.jvmMaxHeapSize | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
-            {{- if .Values.caCerts }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory .Values.envVars.opts | trim | quote }}
+            {{- if .Values.caCerts.enabled }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
             {{- else }}
-              value: {{ printf "%s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmMemoryOptions .Values.envVars.synchronyMaxMemory .Values.envVars.opts | trim | quote }}
+              value: {{ printf "%s -Dsynchrony.memory.max=%s %s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME
@@ -129,6 +103,32 @@ spec:
             {{- with .Values.env }}
             {{- . | toYaml | trim | nindent 12 }}
             {{- end }}
+          ports:
+            - name: http
+              containerPort: 8090
+              protocol: TCP
+            - name: synchrony
+              containerPort: 8091
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: /var/atlassian/application-data/confluence
+              name: {{ include "confluence-server.pvcname" . }}
           resources:
             {{- .Values.resources | toYaml | trim | nindent 12 }}
       volumes:
@@ -139,7 +139,7 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if .Values.caCerts }}
+        {{- if .Values.caCerts.enabled }}
         - name: confluence-cas
           secret:
             secretName: {{ .Values.caCerts.secret }}
