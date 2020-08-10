@@ -1102,6 +1102,28 @@ entries:
   istio-operator:
   - apiVersion: v1
     appVersion: 1.6.7
+    created: "2020-08-10T14:54:54.988580084Z"
+    description: Helm chart for the Istio Operator.
+    digest: abc5fa88bb95fe3c06c7debe2fb767cf0905b0b7ce0dc2bddab22fe7c7d3baf3
+    home: https://istio.io/
+    icon: https://istio.io/latest/img/istio-whitelogo-bluebackground-framed.svg
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.11/istio-operator-1.0.11.tgz
+    version: 1.0.11
+  - apiVersion: v1
+    appVersion: 1.6.7
     created: "2020-08-05T09:58:51.169241244Z"
     description: Helm chart for the Istio Operator.
     digest: 7c4330b072c459559e287ca313f449361efea9a7d50c5e3cddbe5e484abe0f87
