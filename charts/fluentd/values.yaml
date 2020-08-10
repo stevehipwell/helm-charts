@@ -33,6 +33,8 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+priorityClassName: ""
+
 service:
   type: ClusterIP
   annotations: {}
