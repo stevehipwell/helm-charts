@@ -23,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - n/a
 
+## v1.0.9 - 2020-08-10
+
+### Added
+
+- New `priorityClassName` values
+
 ## v1.0.6 - 2020-08-04
 
 ### Added
