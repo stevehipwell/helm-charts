@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
-## v3.1.0 - 2020-08-11
+## v3.1.1 - 2020-08-11
 
 ### Added
 
@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Replaced `envVars.jvmMaxDirectMemorySize` with `envVars.jvmAdditionalMemoryOptions`
 
-## v3.0.0 - 2020-08-11
+## v3.1.0 - 2020-08-11
 
 ### Changed
 
