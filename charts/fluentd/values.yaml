@@ -49,6 +49,7 @@ service:
 metrics:
   enabled: false
   port: 24231
+  path: /metrics
   serviceMonitor:
     enabled: false
     additionalLabels: {}
