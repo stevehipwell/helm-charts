@@ -891,6 +891,27 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: 1.11.1
+    created: "2020-08-11T15:08:23.128906858Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 9cd1072ab5c727d3c92848ba389746ef9bdbcb295a1aba55dbecc7d385dbb39f
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd
+    sources:
+    - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+    - https://quay.io/repository/fluentd_elasticsearch/fluentd
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.10/fluentd-1.0.10.tgz
+    version: 1.0.10
+  - apiVersion: v1
+    appVersion: 1.11.1
     created: "2020-08-10T08:45:05.868141746Z"
     description: Helm chart for Fluentd running as an aggregation stateful set.
     digest: 0064abdf38f18c4fa171c60aabac8f23c1ee54a76429820964a9d474adae102b
