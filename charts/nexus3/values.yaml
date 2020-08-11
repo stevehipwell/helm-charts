@@ -103,7 +103,8 @@ caCerts:
 envVars:
   jvmMinHeapSize: 1024m
   jvmMaxHeapSize: 1024m
-  jvmMaxDirectMemorySize: 2048m
+  jvmAdditionalMemoryOptions: "-XX:MaxDirectMemorySize=2048m"
+  jvmAdditionalOptions: ""
 
 env: []
   # - name: VARIABLE
