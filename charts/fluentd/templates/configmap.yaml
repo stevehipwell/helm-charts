@@ -17,8 +17,14 @@ data:
     </source>
     <source>
       @type prometheus_monitor
+      <labels>
+        host ${hostname}
+      </labels>
     </source>
     <source>
       @type prometheus_output_monitor
+      <labels>
+        host ${hostname}
+      </labels>
     </source>
   {{- end }}
