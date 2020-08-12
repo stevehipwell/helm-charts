@@ -5,23 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED]
+<!-- ## [UNRELEASED]
 
 ### Added
 
-- Initial release
-
 ### Changed
-
-- n/a
 
 ### Deprecated
 
-- n/a
+### Removed -->
 
-### Removed
+## 1.0.12 - 2020-08-12
 
-- n/a
+### Changed
+
+- Upgraded _Istio_ version to _v1.6.8_
 
 ## v1.0.8 - 2020-08-04
 
@@ -33,4 +31,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgraded Istio version to _v1.6.7_
+- Upgraded _Istio_ version to _v1.6.7_
