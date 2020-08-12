@@ -15,7 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
-## v1.0.10 - 2020-08-1
+## v1.0.11 - 2020-08-12
+
+### Changed
+
+- Updated Prometheus config
+
+## v1.0.10 - 2020-08-11
 
 ### Changed
 
