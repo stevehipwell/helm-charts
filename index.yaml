@@ -1408,6 +1408,35 @@ entries:
     version: 1.0.0
   jira-software:
   - apiVersion: v1
+    appVersion: 8.11.1
+    created: "2020-08-19T16:13:23.725114349Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: 4da5459c3f923a07d6998e5f3ba5f54a2b36a83df159382795cfd5296fac3e92
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+    - https://hub.docker.com/r/atlassian/jira-software
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-3.0.1/jira-software-3.0.1.tgz
+    version: 3.0.1
+  - apiVersion: v1
     appVersion: 8.11.0
     created: "2020-08-05T12:32:20.074897706Z"
     dependencies:
