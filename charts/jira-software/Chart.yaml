@@ -1,20 +1,20 @@
 apiVersion: v1
 name: jira-software
-version: 3.0.1
-appVersion: 8.11.1
+version: 3.1.0
+appVersion: 8.12.0
 description: Helm chart for Atlassian Jira Software.
 keywords:
-- jira
-- jira-software
-- atlassian
-- agile
-- project
-- management
+  - jira
+  - jira-software
+  - atlassian
+  - agile
+  - project
+  - management
 home: https://www.atlassian.com/software/jira
 icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
 sources:
-- https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
-- https://hub.docker.com/r/atlassian/jira-software
+  - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+  - https://hub.docker.com/r/atlassian/jira-software
 maintainers:
-- name: stevehipwell
-  email: steve.hipwell@gmail.com
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
