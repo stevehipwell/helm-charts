@@ -4,7 +4,7 @@
 
 image:
   repository: docker.io/istio/operator
-  tag: 1.6.8
+  tag: 1.7.0
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -27,15 +27,17 @@ rbac:
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  privileged: false
+  readOnlyRootFilesystem: true
+  runAsGroup: 1337
+  runAsUser: 1337
+  runAsNonRoot: true
 
 serviceMonitor:
   enabled: false
@@ -56,6 +58,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+waitForResourcesTimeout: 300s
 
 istioNamespace: istio-system
 

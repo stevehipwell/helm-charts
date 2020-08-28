@@ -36,15 +36,19 @@ spec:
             - server
           env:
             - name: WATCH_NAMESPACE
-              value: {{.Values.istioNamespace}}
+              value: {{ .Values.istioNamespace | quote }}
             - name: LEADER_ELECTION_NAMESPACE
-              value: {{ .Release.Namespace }}
+              value: {{ .Release.Namespace | quote }}
             - name: POD_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
-              value: {{ include "istio-operator.fullname" . }}
+              value: {{ include "istio-operator.fullname" . | quote }}
+            - name: WAIT_FOR_RESOURCES_TIMEOUT
+              value: {{ .Values.waitForResourcesTimeout | quote }}
+            - name: REVISION
+              value: ""
           ports:
             - name: http-metrics
               containerPort: 8383
