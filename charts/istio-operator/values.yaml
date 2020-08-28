@@ -26,7 +26,9 @@ rbac:
 
 podAnnotations: {}
 
-podSecurityContext:
+podSecurityContext: {}
+
+securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop:
@@ -36,15 +38,6 @@ podSecurityContext:
   runAsGroup: 1337
   runAsUser: 1337
   runAsNonRoot: true
-
-securityContext:
-  {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 serviceMonitor:
   enabled: false
