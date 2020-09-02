@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## 1.1.1 - 2020-09-02
+
+### Changed
+
+- Fix metrics path from `/` to `/metrics`
+
 ## 1.1.0 - 2020-08-28
 
 ### Changed
