@@ -18,7 +18,7 @@ spec:
       {{- include "istio-operator.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: http-metrics
-      path: /
+      path: /metrics
       {{- with .Values.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}
