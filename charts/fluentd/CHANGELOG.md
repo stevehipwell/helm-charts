@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v1.0.12 - 2020-09-02
+
+### Changed
+
+- Fixed `priorityClassName` unable to be set bug
+
 ## v1.0.11 - 2020-08-12
 
 ### Changed
