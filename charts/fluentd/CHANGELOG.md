@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v1.1.0 - 2020-09-17
+
+### Added
+
+- Pod annotations based on the plugins and configuration so making a change will force the creation of a new pod
+
 ## v1.0.13 - 2020-09-02
 
 ### Changed
