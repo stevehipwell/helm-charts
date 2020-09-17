@@ -14,10 +14,12 @@ spec:
       {{- include "fluentd.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
+        checksum/plugins: {{ include (print $.Template.BasePath "/configmap-plugins.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "fluentd.selectorLabels" . | nindent 8 }}
     spec:
