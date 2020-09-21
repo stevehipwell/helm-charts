@@ -19,6 +19,7 @@ if (existingTask && !existingTask.remove()) {
 def taskConfiguration = taskScheduler.createTaskConfigurationInstance(params.typeId)
 taskConfiguration.setName(params.name)
 params.attributes.each { key, value -> taskConfiguration.setString(key, value) }
+params.boolAttributes.each { key, value -> taskConfiguration.setBoolean(key, Boolean.valueOf(value)) }
 
 def schedule = taskScheduler.scheduleFactory.cron(new Date(), params.crontab)
 
