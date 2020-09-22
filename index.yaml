@@ -2,6 +2,35 @@ apiVersion: v1
 entries:
   confluence-server:
   - apiVersion: v1
+    appVersion: 7.7.4
+    created: "2020-09-22T07:59:29.375676942Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 389c531b63e61279be9b718af56f2cfbc5120dafce921f2ce5b06b72270f57f1
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-3.1.2/confluence-server-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v1
     appVersion: 7.7.3
     created: "2020-09-01T12:58:04.335314046Z"
     dependencies:
