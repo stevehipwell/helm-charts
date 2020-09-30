@@ -23,7 +23,7 @@ The following table lists the configurable parameters of the _Istio Operator_ ch
 | Parameter                         | Description                                                                                                                      | Default                    |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | `image.repository`                | Image repository.                                                                                                                | `docker.io/istio/operator` |
-| `image.tag`                       | Image tag.                                                                                                                       | `1.7.2`                    |
+| `image.tag`                       | Image tag.                                                                                                                       | `1.7.3`                    |
 | `image.pullPolicy`                | Image pull policy.                                                                                                               | `IfNotPresent`             |
 | `image.pullSecrets`               | Image pull secrets.                                                                                                              | `[]`                       |
 | `nameOverride`                    | Override the `name` of the chart.                                                                                                | `nil`                      |
