@@ -31,7 +31,7 @@ do
     default_password="$(cat /nexus-data/admin.password)"
   fi
 
-  if [ -n "${default_password}" ] && [ -n "${root_password}" ]
+  if [ -n "${default_password:-}" ] && [ -n "${root_password}" ]
   then
     echo "Updating root password..."
 
