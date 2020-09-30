@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## 1.1.4 - 2020-09-30
+
+### Changed
+
+- Upgraded _Istio_ version to _v1.7.3_
+
 ## 1.1.3 - 2020-09-21
 
 ### Changed
