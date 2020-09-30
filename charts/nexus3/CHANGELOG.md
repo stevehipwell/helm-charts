@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v3.2.2- 2020-09-30
+
+### Changed
+
+- Fixed configure script when on non-first runs
+
 ## v3.2.1 - 2020-09-21
 
 ### Changed
