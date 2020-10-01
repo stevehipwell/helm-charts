@@ -116,6 +116,9 @@ env:
   # - name: VARIABLE
   #   value: my-value
 
+logback:
+  maxHistory: 30
+
 properties:
   - nexus.scripts.allowCreation=true
   # - nexus.golang.hosted=true
