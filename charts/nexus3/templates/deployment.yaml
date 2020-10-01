@@ -111,6 +111,9 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
+            - mountPath: /opt/sonatype/nexus/etc/logback
+              name: {{ template "nexus3.fullname" . }}-logback
+              readOnly: true
             - mountPath: /nexus-data/etc/nexus.properties
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
@@ -150,6 +153,10 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
       {{- end }}
+        - name: {{ template "nexus3.fullname" . }}-logback
+          configMap:
+            name: {{ template "nexus3.fullname" . }}-logback
+            defaultMode: 0755
         - name: {{ template "nexus3.fullname" . }}-properties
           configMap:
             name: {{ template "nexus3.fullname" . }}-properties
