@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v3.3.0 - 2020-10-02
+
+### Changed
+
+- Upgraded image to _v3.28.0_
+
 ## v3.2.2- 2020-10-01
 
 ### Changed
