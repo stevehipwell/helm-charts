@@ -1,7 +1,7 @@
 apiVersion: v1
 name: nexus3
-version: 3.2.3
-appVersion: 3.27.0
+version: 3.3.0
+appVersion: 3.28.0
 description: Helm chart for Sonatype Nexus 3 OSS.
 keywords:
   - artifacts

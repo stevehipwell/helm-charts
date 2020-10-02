@@ -1,6 +1,6 @@
 image:
   repository: sonatype/nexus3
-  tag: 3.27.0
+  tag: 3.28.0
   pullPolicy: IfNotPresent
   pullSecrets: []
 
