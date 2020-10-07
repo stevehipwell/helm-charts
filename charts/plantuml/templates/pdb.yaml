@@ -1,0 +1,11 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "plantuml.fullname" . }}
+  labels:
+    {{- include "plantuml.labels" . | nindent 4 }}
+spec:
+  maxUnavailable: {{ .Values.maxUnavailable }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "plantuml.name" . }}
