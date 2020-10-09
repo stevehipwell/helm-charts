@@ -68,7 +68,7 @@ spec:
               port: http
           {{- if .Values.caCerts.enabled }}
           volumeMounts:
-            - mountPath: /opt/java/openjdk/lib/security/cacerts
+            - mountPath: /usr/local/openjdk-11/lib/security/cacerts
               name: ca-certs-keystore
               subPath: cacerts
           {{- end }}

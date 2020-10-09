@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v1.1.0 - 2020-10-09
+## v1.1.2 - 2020-10-09
+
+### Changed
+
+- Fixed cacerts path
+
+## v1.1.1 - 2020-10-09
 
 ### Changed
 
