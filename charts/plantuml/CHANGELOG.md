@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.1.0 - 2020-10-08
+
+### Added
+
+- CA certificate support
+
+### Changed
+
+- Empty default ingress hosts
+- No memory in default HPA
+
 ## v1.0.0 - 2020-10-07
 
 ### Added

@@ -27,6 +27,23 @@ spec:
       serviceAccountName: {{ include "plantuml.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.caCerts.enabled }}
+      initContainers:
+        - name: ca-certs
+          image: adoptopenjdk:11-jdk-hotspot
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- . | toYaml | nindent 12 }}
+          {{- end }}
+          command: ["sh"]
+          args: ["-c", "cp -f /opt/java/openjdk/lib/security/cacerts /var/cacerts/keystore/cacerts; for f in /var/cacerts/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/cacerts/keystore/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          volumeMounts:
+            - mountPath: /var/cacerts/cas
+              name: ca-certs-secret
+            - mountPath: /var/cacerts/keystore
+              name: ca-certs-keystore
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -49,8 +66,22 @@ spec:
             httpGet:
               path: /png
               port: http
+          {{- if .Values.caCerts.enabled }}
+          volumeMounts:
+            - mountPath: /opt/java/openjdk/lib/security/cacerts
+              name: ca-certs-keystore
+              subPath: cacerts
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.caCerts.enabled }}
+      volumes:
+        - name: ca-certs-secret
+          secret:
+            secretName: {{ .Values.caCerts.secret }}
+        - name: ca-certs-keystore
+          emptyDir: {}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

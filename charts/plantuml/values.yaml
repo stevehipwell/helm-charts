@@ -34,9 +34,10 @@ service:
 ingress:
   enabled: false
   annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths: []
+  hosts: []
+    # - host: chart-example.local
+    #   paths:
+    #     - "/"
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -57,13 +58,17 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+caCerts:
+  enabled: false
+  secret:
 
 env:
   # - name: VARIABLE

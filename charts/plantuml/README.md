@@ -52,4 +52,6 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `nodeSelector`                    | Node labels for pod assignment.                                                                                                  | `{}`                       |
 | `tolerations`                     | Toleration labels for pod assignment.                                                                                            | `[]`                       |
 | `affinity`                        | Affinity settings for pod assignment.                                                                                            | `{}`                       |
+| `caCerts.enabled`                         | If `true`, add provided CA certificates to the JVM cacerts key store.                                                            | `false`                              |
+| `caCerts.secret`                          | Secret containing the additional CA certificates.                                                                                | `nil`                                |
 | `env`                                     | Environment variables for all containers in the pod.                                                                             | `nil`                                |
