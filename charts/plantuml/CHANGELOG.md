@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.2.0 - 2020-10-13
+
+### Changed
+
+- Upgraded _PlantUML_ image to _v1.2020.19_
+- Use `.Chart.AppVersion` for default tag value
+
 ## v1.1.2 - 2020-10-09
 
 ### Changed
