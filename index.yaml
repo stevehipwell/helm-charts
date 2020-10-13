@@ -3301,6 +3301,27 @@ entries:
     version: 1.1.0
   plantuml:
   - apiVersion: v1
+    appVersion: 1.2020.19
+    created: "2020-10-13T07:40:36.238314142Z"
+    description: Helm chart for PlantUML.
+    digest: b3f05af0c734c65b858ad006ceb94b5bef55fd6ad6cd657eaa60e8090da02784
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-1.2.0/plantuml-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v1
     appVersion: 1.2020.18
     created: "2020-10-09T13:04:20.075527406Z"
     description: Helm chart for PlantUML.
