@@ -1,6 +1,7 @@
 image:
   repository: sonatype/nexus3
-  tag: 3.28.0
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -34,7 +35,7 @@ service:
   type: ClusterIP
   annotations: {}
   port: 8081
-  # additionalPorts:
+  additionalPorts: []
   #   - port: 8082
   #     name: docker-group
   #     containerPort: 8082

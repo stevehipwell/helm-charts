@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v3.3.1 - 2020-10-20
+
+### Changed
+
+- Upgraded image to _v3.28.1_
+- Use `.Chart.AppVersion` for default tag value
+
 ## v3.3.0 - 2020-10-02
 
 ### Changed
