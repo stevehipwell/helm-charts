@@ -23,8 +23,8 @@ The following table lists the configurable parameters of the _Istio Operator_ ch
 | Parameter                         | Description                                                                                                                      | Default                    |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | `image.repository`                | Image repository.                                                                                                                | `docker.io/istio/operator` |
-| `image.tag`                       | Image tag.                                                                                                                       | `1.7.3`                    |
-| `image.pullPolicy`                | Image pull policy.                                                                                                               | `IfNotPresent`             |
+| `image.tag`                       | Image tag.                                                                                                                       | `.Chart.AppVersion`        |
+| `image.pullPolPcy`                | Image pull policy.                                                                                                               | `IfNotPresent`             |
 | `image.pullSecrets`               | Image pull secrets.                                                                                                              | `[]`                       |
 | `nameOverride`                    | Override the `name` of the chart.                                                                                                | `nil`                      |
 | `fullnameOverride`                | Override the `fullname` of the chart.                                                                                            | `nil`                      |
