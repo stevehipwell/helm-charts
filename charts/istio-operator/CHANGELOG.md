@@ -6,14 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!-- ## [UNRELEASED]
-
 ### Added
+### Changed
+### Deprecated
+### Removed -->
+
+## 1.1.5 - 2020-11-02
 
 ### Changed
 
-### Deprecated
-
-### Removed -->
+- Upgraded _Istio_ version to _v1.7.4_
+- Use `.Chart.AppVersion` for default tag value
 
 ## 1.1.4 - 2020-09-30
 

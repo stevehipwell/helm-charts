@@ -4,7 +4,8 @@
 
 image:
   repository: docker.io/istio/operator
-  tag: 1.7.3
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
 
