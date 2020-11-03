@@ -4,7 +4,8 @@
 
 image:
   repository: atlassian/jira-software
-  tag: 8.13.0
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
 
