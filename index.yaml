@@ -2,6 +2,35 @@ apiVersion: v1
 entries:
   confluence-server:
   - apiVersion: v1
+    appVersion: 7.9.0
+    created: "2020-11-10T10:32:58.893694738Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: e4913482a02a891d1f048dbb94f9e1d237730d3f309d2cbbf4e3cf7643f4e49e
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-3.3.0/confluence-server-3.3.0.tgz
+    version: 3.3.0
+  - apiVersion: v1
     appVersion: 7.8.3
     created: "2020-11-03T08:35:13.294385208Z"
     dependencies:
@@ -270,12 +299,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 22837d2976c025e80f561c59e5a36c29e79bfa7ec4a0cf425660cf3c010bd6b1
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -304,12 +328,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 9dcc5d5dfb503a8b96eaea2cfd87a06898afaf923d2622386ee9f119587d90d7
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -338,12 +357,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: ba02bfa3f75726193700298b838232ed602ee4ff826cff848f91e1a5eefd85af
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -372,12 +386,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: df9767084d60fed82739b8050756644ef70a4bd8c288dd276c454d1dffeaedcf
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -406,12 +415,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: dcbea452f2c2f45db583a138e6cd6ead5af397c139d31b70002c9378b1581b38
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -440,12 +444,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 415f14eba69107ca94fc67a84fbdcb959812ea56905d32a2173e1c85c96dadbe
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -474,12 +473,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 7e22f500ba760f6dc780ebb0194505ca1dcd57f829c69de2b57d667e3fd55078
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -508,12 +502,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 7c4a2568f9432ef88d0660388f0295458ee7b0f0eb51bfcd299ed428b93e84fc
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -542,12 +531,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 6ba9c88faad4362541c0d63c8bf16560701ee8c680389c01ba913b200ecd313a
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -576,12 +560,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 67cbd5d51e343a4ca575361d147ec45fd2b0e293f6816237d6b92ebebf5a0f23
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -610,12 +589,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 6911fcaa725d005e6b7c81c752d920c98bf13cc4eb673007afc23f08fea8eb8a
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -644,12 +618,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: f3267d153e1da28fee504dc6c16828171d872ecae2dafa698d22393f88fb98d0
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -678,12 +647,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: ffb2cb49c3046a8ec53c7257d9f5150b20dc6b94a938aea074a9c0d8c6418676
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -712,12 +676,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 12240ce81ad0ef065bbe0fc5bd8a99aaf54b0392eb8ef0800a877948d51ef3b3
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -741,12 +700,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.3
     created: "2020-03-20T09:35:13.237705689Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 792c4c0b231c0cb86461fc7b0a9afd7e0f194e05ef003b9ac74a0f848e354b9e
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -770,12 +724,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.3
     created: "2020-03-16T19:28:42.599705873Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 27e0c3aa9de76fd1004169f03cd8aec0b4afeb8c340409b2486504157f11004c
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -799,12 +748,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.2
     created: "2020-02-25T08:26:31.70562065Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 59141f0d4cc36a0e9a36bd1e187362667ccfcab4af28d0f2ab412145c5f25026
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -828,12 +772,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.1
     created: "2020-02-20T16:03:55.654027949Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 15484e959dc33bd82ad9d05525e650049d2efcc22d5f745cf6361f242ba7f1f5
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -857,12 +796,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.1
     created: "2020-02-13T06:45:09.418570039Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 029df99a9d4a6b57e30f8130f01ecfcf639b0e4f168e2b973ae72632f2da7500
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -886,12 +820,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.1
     created: "2020-02-12T13:53:39.088783862Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: b4d557695ce33454198cd72cd2b73c00b8a3b7af19eb1a1b2f481d94fade1303
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -915,12 +844,7 @@ entries:
   - apiVersion: v1
     appVersion: 7.3.1
     created: "2020-02-07T10:14:55.785256724Z"
-    description: Atlassian Confluence Server is where you create, organise and discuss
-      work with your team. Capture the knowledge that's too often lost in email inboxes
-      and shared network drives in Confluence - where it's easy to find, use, and
-      update. Give every team, project, or department its own space to create the
-      things they need, whether it's meeting notes, product requirements, file lists,
-      or project plans, you can get more done in Confluence.
+    description: Atlassian Confluence Server is where you create, organise and discuss work with your team. Capture the knowledge that's too often lost in email inboxes and shared network drives in Confluence - where it's easy to find, use, and update. Give every team, project, or department its own space to create the things they need, whether it's meeting notes, product requirements, file lists, or project plans, you can get more done in Confluence.
     digest: 8ca3d1ce802146c777a9b846136547f29dea0017077c2051fc9f66a72f067b28
     home: https://www.atlassian.com/software/confluence
     icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -2053,8 +1977,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 5f81a6795012e88cc44b592fe31180538c6c9fb29b9377bfa619cf660d8ff071
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2083,8 +2006,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: f31402eceecafd1ef33309a104bab1a3af72c177ae63f98cc77f2c01bfc23569
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2113,8 +2035,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: adc4cd9f2f6d84c0450fefbf3db523ee05c7fb3500a255076026a1718d4a5114
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2143,8 +2064,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 90a15fc929ddcee5369de4c3c5c0485af497fa29b399ca352602d78e548cccf1
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2173,8 +2093,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: d9edc8c1dc8bdb172e483a23b3a7366e88b39f9cbaaeec7ea7df338221a147eb
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2203,8 +2122,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: dc98a157b92eac68a57a8d730f288a1b9b198867d76b333227e890196ff01eaa
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2233,8 +2151,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 9b477e49cf02cdc227ef2329d9c637a527ec1f3a3e4ec6c55888b29106e73821
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2263,8 +2180,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 202badc012b691416ce67114e5be2942cf16bd0d56e8a100ae478f309b76d5da
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2293,8 +2209,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 2fd1f1f9f84528a10408b84bda4a84fad8d80a763cadbc1f8db775ae90442f82
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2323,8 +2238,7 @@ entries:
       name: postgresql
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 4.2.2
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: cbcec7e71f6060fd9ad7aa8b5036e5664149398975f26b0bd43604f3b065077a
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2348,8 +2262,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.8.0
     created: "2020-03-20T09:35:13.311246005Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 7b45804fde10298efb492367dc41a66d1e2e80aa7da11c78a7852b6af5139f4f
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2373,8 +2286,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.8.0
     created: "2020-03-19T17:05:30.326389606Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 5e5a0b34daf701509f896f511d75529c3e7dfaec9476c6a6aed6a132fafec2b7
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2398,8 +2310,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.7.1
     created: "2020-02-13T06:45:09.505348117Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 23e9c0d21ee56fbe2cc8191675e982412ae8c2998f15e2835e27783edce90089
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2423,8 +2334,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.7.1
     created: "2020-02-12T13:53:39.171502473Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 8ec826e0f5d1d1bf676246fdd6d8d803d8daae1eba885c93b3416d2593d08ad2
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2448,8 +2358,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.7.1
     created: "2020-02-10T17:47:40.287953341Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 3e33e299d63c88bbc57ee795b76a19255a8c2708bc716a6b0faec3cd7c0354c9
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
@@ -2473,8 +2382,7 @@ entries:
   - apiVersion: v1
     appVersion: 8.7.0
     created: "2020-02-07T10:14:55.854546367Z"
-    description: Atlassian Jira Software is built for every member of your software
-      team to plan, track, and release great software.
+    description: Atlassian Jira Software is built for every member of your software team to plan, track, and release great software.
     digest: 9ef6b8f9d905126bfb2176263cbf016cc5e8314d72e55c5343156921561708ed
     home: https://www.atlassian.com/software/jira
     icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
