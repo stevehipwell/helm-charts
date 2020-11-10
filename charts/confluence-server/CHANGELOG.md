@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.3.0 - 2020-11-10
+
+## Changed
+
+- Upgraded to new minor version _v7.9_ ([release notes](https://confluence.atlassian.com/doc/confluence-7-9-release-notes-1026537698.html))
+- Upgraded image to _v7.9.0_
+
 ## v3.2.2 - 2020-11-03
 
 ### Changed
