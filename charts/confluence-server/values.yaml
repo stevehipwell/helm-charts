@@ -4,7 +4,7 @@
 
 image:
   repository: atlassian/confluence-server
-  # Overrides the image tag whose default is jetty-v{{ .Chart.AppVersion }}
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
