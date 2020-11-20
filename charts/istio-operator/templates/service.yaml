@@ -12,3 +12,4 @@ spec:
     - name: http-metrics
       port: 8383
       targetPort: http-metrics
+      protocol: TCP
