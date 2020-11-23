@@ -1,7 +1,7 @@
 apiVersion: v1
 name: jira-software
-version: 3.2.1
-appVersion: 8.13.1
+version: 3.3.0
+appVersion: 8.14.0
 description: Helm chart for Atlassian Jira Software.
 keywords:
   - jira
