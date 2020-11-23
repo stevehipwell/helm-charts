@@ -13,7 +13,7 @@ keywords:
 home: https://www.atlassian.com/software/jira
 icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
 sources:
-  - https://bitbucket.org/atlassian-docker/docker-atlassian-jira-software
+  - https://bitbucket.org/atlassian-docker/docker-atlassian-jira
   - https://hub.docker.com/r/atlassian/jira-software
 maintainers:
   - name: stevehipwell
