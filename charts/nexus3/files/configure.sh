@@ -242,6 +242,14 @@ do
     then
       echo "Configuring repo..."
 
+      repo_name="$(jq -r '.name' "${json_file}")"
+      repo_password_file="${base_dir}/secret/repo-credentials/${repo_name}"
+      if [ -f "${repo_password_file}" ]
+      then
+        repo_password="$(cat "${repo_password_file}")"
+        sed -i "s/PASSWORD/${repo_password}/g" "${json_file}"
+      fi
+
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/repo/run")
       if [ "${status_code}" -ne 200 ]
       then

@@ -22,8 +22,7 @@ podAnnotations: {}
 podSecurityContext:
   fsGroup: 200
 
-securityContext:
-  {}
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -55,13 +54,11 @@ metrics:
 
 ingress:
   enabled: false
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts:
-    []
+  hosts: []
     # - nexus.local
   tls:
     []
@@ -112,8 +109,7 @@ envVars:
   jvmAdditionalMemoryOptions: "-XX:MaxDirectMemorySize=2048m"
   jvmAdditionalOptions: ""
 
-env:
-  []
+env: []
   # - name: VARIABLE
   #   value: my-value
 
@@ -175,16 +171,14 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  blobStores:
-    []
+  blobStores: []
     # - name: ExampleFileBlobStore
     #   type: file
     #   path: /nexus-data/blobs/foo
     #   softQuota:
     #     type: spaceRemainingQuota
     #     limit: 500
-  roles:
-    []
+  roles: []
     # - id: nexus-administrators
     #   source: default
     #   name: nexus-administrators
@@ -192,8 +186,7 @@ config:
     #   privileges: []
     #   roles:
     #     - nx-admin
-  cleanup:
-    []
+  cleanup: []
     # - name: ExampleCleanup
     #   notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
     #   format: ALL_FORMATS
@@ -203,8 +196,10 @@ config:
     #     lastBlobUpdated: "1209600"
     #     lastDownloaded: "2419200"
     #     regex:
-  repos:
-    []
+  repoCredentials:
+    enabled: false
+    secret:
+  repos: []
     # - name: test-repo
     #   type: raw-hosted
     #   online: true
@@ -216,8 +211,7 @@ config:
     #     cleanup:
     #       policyName:
     #         - ExampleCleanup
-  tasks:
-    []
+  tasks: []
     # - name: "Cleanup service"
     #   typeId: repository.cleanup
     #   crontab: "0 0 0 * * ?"
