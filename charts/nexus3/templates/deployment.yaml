@@ -134,6 +134,11 @@ spec:
               subPath: {{ .Values.config.ldap.authPassword.key }}
               readOnly: true
           {{- end }}
+          {{- if .Values.config.repoCredentials.enabled }}
+            - mountPath: /opt/sonatype/nexus/secret/repo-credentials
+              name: {{ .Values.config.repoCredentials.secret }}
+              readOnly: true
+          {{- end }}
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
             {{ toYaml . | nindent 12 }}
