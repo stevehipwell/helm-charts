@@ -11,7 +11,4 @@ home: https://github.com/kubernetes-sigs/descheduler
 icon: https://kubernetes.io/images/favicon.png
 sources:
   - https://github.com/kubernetes-sigs/descheduler
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
 deprecated: true
