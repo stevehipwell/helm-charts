@@ -181,6 +181,11 @@ spec:
           secret:
             secretName: {{ .Values.config.ldap.authPassword.secret }}
       {{- end }}
+      {{- if .Values.config.repoCredentials.enabled }}
+        - name: {{ .Values.config.repoCredentials.secret }}
+          secret:
+            secretName: {{ .Values.config.repoCredentials.secret }}
+      {{- end }}
       {{- end }}
       {{- with .Values.extraVolumes }}
         {{ toYaml . | nindent 8 }}
