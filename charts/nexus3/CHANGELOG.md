@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v3.3.3 - 2020-11-28
+
+### Changed
+
+- Fixed bug in repo credential support
+
 ## v3.3.2 - 2020-11-23
 
 ### Added
