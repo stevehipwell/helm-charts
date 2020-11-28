@@ -2526,6 +2526,30 @@ entries:
   nexus3:
   - apiVersion: v1
     appVersion: 3.28.1
+    created: "2020-11-28T18:26:41.764679393Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 56aecf7e3e21b814ce56bd19fe7532cdf42df5dca88118e29b562446b14766f5
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-3.3.3/nexus3-3.3.3.tgz
+    version: 3.3.3
+  - apiVersion: v1
+    appVersion: 3.28.1
     created: "2020-11-23T17:57:04.546172271Z"
     description: Helm chart for Sonatype Nexus 3 OSS.
     digest: e6301501c573a19421dc17c4c4b485dfe747fcb0aa1e9a4fdd135f0e5f0b0973
