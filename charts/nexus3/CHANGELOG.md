@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed -->
 
+## v3.3.4 - 2020-11-30
+
+### Changed
+
+- Updated config script to not require jq
+
 ## v3.3.3 - 2020-11-28
 
 ### Changed
