@@ -89,14 +89,14 @@ do
       sed -i "s/PASSWORD/${ldap_password}/g" "${json_file}"
     fi
 
-    name="$(grep -Pio '(?<="name":")[^"]+' "${json_file}")"
+    name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
 
     status_code=$(curl -s -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/security/ldap/${name// /%20}")
     if [ "${status_code}" -eq 200 ]
     then
       echo "Updating LDAP configuration for '${name}'..."
 
-      id="$(grep -Pio '(?<="id"\s:\s")[^"]+' "${out_file}")"
+      id="$(grep -Pio '(?<="id"\s:)\s*\"[^"]+\"' "${json_file}" | xargs)"
       sed -i "s/{\"/{\"id\":\"${id}\",\"/g" "${json_file}"
 
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap/${name// /%20}")"
@@ -123,8 +123,8 @@ do
   do
     if [ -f "${json_file}" ]
     then
-      name="$(grep -Pio '(?<="name":")[^"]+' "${json_file}")"
-      type="$(grep -Pio '(?<="type":")[^"]+' "${json_file}")"
+      name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      type="$(grep -Pio '(?<="type":)\s*\"[^"]+\"' "${json_file}" | xargs)"
       echo "Updating blob store '${name}'..."
 
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")
@@ -153,8 +153,8 @@ do
   do
     if [ -f "${json_file}" ]
     then
-      id="$(grep -Pio '(?<="id":")[^"]+' "${json_file}")"
-      source="$(grep -Pio '(?<="source":")[^"]+' "${json_file}")"
+      id="$(grep -Pio '(?<="id":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      source="$(grep -Pio '(?<="source":)\s*\"[^"]+\"' "${json_file}" | xargs)"
       echo "Updating role '${id}'..."
 
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/beta/security/roles/${id}?source=${source}")
@@ -242,7 +242,7 @@ do
     then
       echo "Configuring repo..."
 
-      repo_name="$(jq -r '.name' "${json_file}")"
+      repo_name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
       repo_password_file="${base_dir}/secret/repo-credentials/${repo_name}"
       if [ -f "${repo_password_file}" ]
       then
