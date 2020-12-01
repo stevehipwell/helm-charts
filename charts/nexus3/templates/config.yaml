@@ -35,10 +35,6 @@ data:
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
     {{- $blobStore | toJson | trim | nindent 4 }}
   {{- end }}
-  {{- range $index, $role := .Values.config.roles }}
-  {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
-    {{- $role | toJson | trim | nindent 4 }}
-  {{- end }}
   {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
     {{- $cleanup | toJson | trim | nindent 4 }}
@@ -46,6 +42,10 @@ data:
   {{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
     {{- $repo | toJson | trim | nindent 4 }}
+  {{- end }}
+  {{- range $index, $role := .Values.config.roles }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
+    {{- $role | toJson | trim | nindent 4 }}
   {{- end }}
   {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |
