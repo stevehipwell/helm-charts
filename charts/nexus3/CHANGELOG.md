@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.3.6 - 2020-12-02
+
+### Changed
+
+- Re-ordered configure.sh so that roles are configured after repos
+- Removed background execution from configure.sh
+- Replaced container command and args with a lifecycle postStart hook
+
 ## v3.3.5 - 2020-12-01
 
 ### Changed
