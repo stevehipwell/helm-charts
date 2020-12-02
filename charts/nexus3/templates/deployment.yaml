@@ -74,15 +74,15 @@ spec:
             {{- with .Values.env }}
             {{- . | toYaml | trim | nindent 12 }}
             {{- end }}
-          command:
-            - "sh"
-            - "-c"
-          args:
-            - echo "Starting Nexus...";
-              {{- if .Values.config.enabled }}
-              bash /opt/sonatype/nexus/conf/configure.sh;
-              {{- end }}
-              /opt/sonatype/start-nexus-repository-manager.sh;
+          {{- if .Values.config.enabled }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - "${SONATYPE_DIR}/nexus/conf/configure.sh"
+          {{- end }}
           ports:
             - name: http
               containerPort: 8081

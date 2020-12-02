@@ -11,7 +11,7 @@ then
   root_password="$(cat "${base_dir}/secret/root.password")"
 fi
 
-if [ -z "${root_password}" ]
+if [ -z "${root_password:-}" ]
 then
   echo "No root password was provided."
   exit 0
@@ -149,49 +149,19 @@ do
     fi
   done
 
-  for json_file in "${base_dir}"/conf/*-role.json
-  do
-    if [ -f "${json_file}" ]
-    then
-      id="$(grep -Pio '(?<="id":)\s*\"[^"]+\"' "${json_file}" | xargs)"
-      source="$(grep -Pio '(?<="source":)\s*\"[^"]+\"' "${json_file}" | xargs)"
-      echo "Updating role '${id}'..."
-
-      status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/beta/security/roles/${id}?source=${source}")
-      if [ "${status_code}" -eq 200 ]
-      then
-        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles/${id}")"
-        if [ "${status_code}" -ne 204 ]
-        then
-          echo "Could not configure role." >&2
-          exit 1
-        fi
-      else
-        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles")"
-        if [ "${status_code}" -ne 200 ]
-        then
-          echo "Could not configure role." >&2
-          exit 1
-        fi
-      fi
-
-      echo "Role configured."
-    fi
-  done
-
   json_file="${base_dir}/conf/anonymous-user.json"
   if [ -f "${json_file}" ]
   then
-    echo "Configuring metrics..."
+    echo "Configuring anonymous user for metrics..."
 
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/users/anonymous")"
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could not configure anonymous user." >&2
+      echo "Could not configure anonymous user for metrics." >&2
       exit 1
     fi
 
-    echo "Metrics configured."
+    echo "Anonymous user for metrics configured."
   fi
 
   for script_file in "${base_dir}"/conf/*.groovy
@@ -261,6 +231,36 @@ do
     fi
   done
 
+  for json_file in "${base_dir}"/conf/*-role.json
+  do
+    if [ -f "${json_file}" ]
+    then
+      id="$(grep -Pio '(?<="id":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      source="$(grep -Pio '(?<="source":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      echo "Updating role '${id}'..."
+
+      status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/beta/security/roles/${id}?source=${source}")
+      if [ "${status_code}" -eq 200 ]
+      then
+        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles/${id}")"
+        if [ "${status_code}" -ne 204 ]
+        then
+          echo "Could not configure role." >&2
+          exit 1
+        fi
+      else
+        status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles")"
+        if [ "${status_code}" -ne 200 ]
+        then
+          echo "Could not configure role." >&2
+          exit 1
+        fi
+      fi
+
+      echo "Role configured."
+    fi
+  done
+
   for json_file in "${base_dir}"/conf/*-task.json
   do
     if [ -f "${json_file}" ]
@@ -278,4 +278,4 @@ do
 
   echo "Configuration run successfully!"
   exit 0
-done &
+done
