@@ -149,21 +149,6 @@ do
     fi
   done
 
-  json_file="${base_dir}/conf/anonymous-user.json"
-  if [ -f "${json_file}" ]
-  then
-    echo "Configuring anonymous user for metrics..."
-
-    status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/users/anonymous")"
-    if [ "${status_code}" -ne 204 ]
-    then
-      echo "Could not configure anonymous user for metrics." >&2
-      exit 1
-    fi
-
-    echo "Anonymous user for metrics configured."
-  fi
-
   for script_file in "${base_dir}"/conf/*.groovy
   do
     echo "Updating script ${script_file}."
@@ -275,6 +260,21 @@ do
       echo "Task configured."
     fi
   done
+
+  json_file="${base_dir}/conf/anonymous-user.json"
+  if [ -f "${json_file}" ]
+  then
+    echo "Configuring anonymous user for metrics..."
+
+    status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/users/anonymous")"
+    if [ "${status_code}" -ne 204 ]
+    then
+      echo "Could not configure anonymous user for metrics." >&2
+      exit 1
+    fi
+
+    echo "Anonymous user for metrics configured."
+  fi
 
   echo "Configuration run successfully!"
   exit 0
