@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.4.1 - 2020-12-14
+
+### Changed
+
+- Re-ordered configure.sh so that metrics are configured after roles
+
 ## v3.4.0 - 2020-12-07
 
 ### Changed
