@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "sonarqube.configName" . }}
+  labels:
+    {{- include "sonarqube.labels" . | nindent 4 }}
+data:
+  sonar.properties: |
+    sonar.es.bootstrap.checks.disable=true
+  {{- range $key, $val := .Values.sonarProperties }}
+    {{ $key }}={{ $val }}
+  {{- end }}
