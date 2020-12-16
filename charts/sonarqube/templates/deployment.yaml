@@ -37,7 +37,7 @@ spec:
           {{- end }}
           command: ["/opt/scripts/chown-volume-mounts.sh"]
           volumeMounts:
-            - mountPath: /opt/scripts
+            - mountPath: /opt/scripts/chown-volume-mounts.sh
               name: commands
               subPath: chown-volume-mounts.sh
             - mountPath: /opt/sonarqube
@@ -52,7 +52,7 @@ spec:
           {{- end }}
           command: ["/opt/scripts/update-ca-certs.sh"]
           volumeMounts:
-            - mountPath: /opt/scripts
+            - mountPath: /opt/scripts/update-ca-certs.sh
               name: commands
               subPath: update-ca-certs.sh
             - mountPath: /opt/sonarqube/certs
@@ -71,7 +71,7 @@ spec:
           {{- end }}
           command: ["/opt/scripts/download-plugins.sh"]
           volumeMounts:
-            - mountPath: /opt/scripts
+            - mountPath: /opt/scripts/download-plugins.sh
               name: commands
               subPath: download-plugins.sh
             - mountPath: /opt/sonarqube/extensions
@@ -88,7 +88,7 @@ spec:
           {{- end }}
           command: ["/opt/scripts/concat-properties.sh"]
           volumeMounts:
-            - mountPath: /opt/scripts
+            - mountPath: /opt/scripts/concat-properties.sh
               name: commands
               subPath: concat-properties.sh
             - mountPath: /opt/props/sonar.properties
