@@ -13,10 +13,12 @@ spec:
       {{- include "sonarqube.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        checksum/commands: {{ include (print $.Template.BasePath "/commands.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
       labels:
         {{- include "sonarqube.selectorLabels" . | nindent 8 }}
     spec:
