@@ -35,13 +35,13 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["chown-volume-mounts.sh"]
+          command: ["/opt/scripts/chown-volume-mounts.sh"]
           volumeMounts:
-            - mountPath: /opt/sonarqube
-              name: sonarqube
             - mountPath: /opt/scripts
               name: commands
               subPath: chown-volume-mounts.sh
+            - mountPath: /opt/sonarqube
+              name: sonarqube
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
@@ -50,16 +50,16 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["update-ca-certs.sh"]
+          command: ["/opt/scripts/update-ca-certs.sh"]
           volumeMounts:
+            - mountPath: /opt/scripts
+              name: commands
+              subPath: update-ca-certs.sh
             - mountPath: /opt/sonarqube/certs
               name: sonarqube
               subPath: certs
             - mountPath: /opt/secrets/ca-certs
               name: ca-certs
-            - mountPath: /opt/scripts
-              name: commands
-              subPath: update-ca-certs.sh
       {{- end }}
       {{- if .Values.installPlugins.enabled }}
         - name: download-plugins
@@ -71,12 +71,12 @@ spec:
           {{- end }}
           command: ["/opt/scripts/download-plugins.sh"]
           volumeMounts:
-            - mountPath: /opt/sonarqube/extensions
-              name: sonarqube
-              subPath: extensions
             - mountPath: /opt/scripts
               name: commands
               subPath: download-plugins.sh
+            - mountPath: /opt/sonarqube/extensions
+              name: sonarqube
+              subPath: extensions
       {{- end }}
       {{- if .Values.sonarSecretProperties.enabled }}
         - name: concat-properties
@@ -86,9 +86,11 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
-          args: ["-c", "awk 1 /opt/props/sonar.properties /opt/props/sonar-secret.properties > /opt/result/sonar.properties"]
+          command: ["/opt/scripts/concat-properties.sh"]
           volumeMounts:
+            - mountPath: /opt/scripts
+              name: commands
+              subPath: concat-properties.sh
             - mountPath: /opt/props/sonar.properties
               name: config
               subPath: sonar.properties
@@ -151,6 +153,11 @@ spec:
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
+          {{- if .Values.installPlugins.enabled }}
+            - mountPath: /opt/scripts/install-plugins.sh
+              name: commands
+              subPath: install-plugins.sh
+          {{- end }}
           {{- if .Values.sonarSecretProperties.enabled }}
             - mountPath: /opt/sonarqube/conf
               name: config-concat
@@ -175,11 +182,6 @@ spec:
               subPath: temp
             - mountPath: /tmp
               name: tmp-dir
-          {{- if .Values.installPlugins.enabled }}
-            - mountPath: /opt/scripts/install-plugins.sh
-              name: commands
-              subPath: install-plugins.sh
-          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:

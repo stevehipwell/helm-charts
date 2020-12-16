@@ -23,6 +23,12 @@ data:
       keytool -importcert -file "${f}" -alias "$(basename "${f}")" -keystore /opt/sonarqube/certs/cacerts -storepass changeit -trustcacerts -noprompt
     done
 
+  concat-properties.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    awk 1 /opt/props/sonar.properties /opt/props/sonar-secret.properties > /opt/result/sonar.properties
+
   download-plugins.sh: |
     #!/usr/bin/env sh
     set -eu
