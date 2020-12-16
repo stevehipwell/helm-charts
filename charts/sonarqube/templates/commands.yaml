@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "sonarqube.commandsName" . }}
+  labels:
+    {{- include "sonarqube.labels" . | nindent 4 }}
+data:
+  chown-volume-mounts.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    mkdir -p /opt/sonarqube/data /opt/sonarqube/extensions/plugins /opt/sonarqube/extensions/cache /opt/sonarqube/certs /opt/sonarqube/logs /opt/sonarqube/temp
+    chown {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} -R /opt/sonarqube
+
+  update-ca-certs.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    cp -f "${JAVA_HOME}/lib/security/cacerts" /opt/sonarqube/certs/cacerts
+
+    for f in /opt/secrets/ca-certs/*
+    do
+      keytool -importcert -file "${f}" -alias "$(basename "${f}")" -keystore /opt/sonarqube/certs/cacerts -storepass changeit -trustcacerts -noprompt
+    done
+
+  concat-properties.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    awk 1 /opt/props/sonar.properties /opt/props/sonar-secret.properties > /opt/result/sonar.properties
+
+  download-plugins.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    rm -f /opt/sonarqube/extensions/plugins/cache/*
+
+    {{- range $index, $val := .Values.installPlugins.plugins }}
+    wget --no-check-certificate -O /opt/sonarqube/extensions/cache/{{ $val.name }}.jar {{ $val.url }}
+    {{- end }}
+
+  install-plugins.sh: |
+    #!/usr/bin/env sh
+    set -eu
+
+    {{- range $index, $val := .Values.installPlugins.plugins }}
+    cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/extensions/plugins/{{ $val.name }}.jar
+
+    {{- if $val.copyToLib }}
+    cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/lib/common/{{ $val.name }}.jar
+    {{- end }}
+    {{- end }}
+
+    /opt/sonarqube/bin/run.sh

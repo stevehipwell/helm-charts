@@ -1,0 +1,230 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "sonarqube.fullname" . }}
+  labels:
+    {{- include "sonarqube.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "sonarqube.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+        checksum/commands: {{ include (print $.Template.BasePath "/commands.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+      labels:
+        {{- include "sonarqube.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "sonarqube.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: chmod-volume-mounts
+          image: alpine:3
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/opt/scripts/chown-volume-mounts.sh"]
+          volumeMounts:
+            - mountPath: /opt/scripts/chown-volume-mounts.sh
+              name: commands
+              subPath: chown-volume-mounts.sh
+            - mountPath: /opt/sonarqube
+              name: sonarqube
+      {{- if .Values.caCerts.enabled }}
+        - name: ca-certs
+          image: adoptopenjdk:11-jdk-hotspot
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/opt/scripts/update-ca-certs.sh"]
+          volumeMounts:
+            - mountPath: /opt/scripts/update-ca-certs.sh
+              name: commands
+              subPath: update-ca-certs.sh
+            - mountPath: /opt/sonarqube/certs
+              name: sonarqube
+              subPath: certs
+            - mountPath: /opt/secrets/ca-certs
+              name: ca-certs
+      {{- end }}
+      {{- if .Values.installPlugins.enabled }}
+        - name: download-plugins
+          image: alpine:3
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/opt/scripts/download-plugins.sh"]
+          volumeMounts:
+            - mountPath: /opt/scripts/download-plugins.sh
+              name: commands
+              subPath: download-plugins.sh
+            - mountPath: /opt/sonarqube/extensions
+              name: sonarqube
+              subPath: extensions
+      {{- end }}
+      {{- if .Values.sonarSecretProperties.enabled }}
+        - name: concat-properties
+          image: alpine:3
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/opt/scripts/concat-properties.sh"]
+          volumeMounts:
+            - mountPath: /opt/scripts/concat-properties.sh
+              name: commands
+              subPath: concat-properties.sh
+            - mountPath: /opt/props/sonar.properties
+              name: config
+              subPath: sonar.properties
+            - mountPath: /opt/props/sonar-secret.properties
+              name: config-secret
+              subPath: {{ .Values.sonarSecretProperties.key }}
+            - mountPath: /opt/result
+              name: config-concat
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default (printf "%s-community" .Chart.AppVersion)) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: SONAR_WEB_JVM_OPTS
+              {{- if .Values.caCerts.enabled }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/opt/sonarqube/certs/cacerts %s" .Values.envVars.jvmOptions | trim | quote }}
+              {{- else }}
+              value: {{ .Values.envVars.jvmOptions | trim | quote }}
+              {{- end }}
+            - name: SONAR_WEB_JAVAADDITIONALOPTS
+              value: {{ .Values.envVars.jvmAdditionalOptions | trim | quote }}
+            {{- if .Values.postgresql.enabled }}
+            - name: SONAR_JDBC_URL
+              value: {{ printf "jdbc:postgresql://%s:%s/%s" (include "sonarqube.postgresql.fullname" .) (.Values.postgresql.service.port | default "5432") .Values.postgresql.postgresqlDatabase | quote }}
+            - name: SONAR_JDBC_USERNAME
+              value: {{.Values.postgresql.postgresqlUsername | quote }}
+            - name: SONAR_JDBC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  {{- if .Values.postgresql.existingSecret }}
+                  name:  {{ .Values.postgresql.existingSecret }}
+                  {{- else }}
+                  name:  {{ include "jira-software.postgresql.fullname" . }}
+                  {{- end }}
+                  key: postgresql-password
+            {{- else if .Values.psql }}
+            - name: SONAR_JDBC_URL
+              value: {{ printf "jdbc:postgresql://%s:%s/%s" .Values.psql.host (.Values.psql.port | default "5432") .Values.psql.database | quote }}
+            - name: SONAR_JDBC_USERNAME
+              value: {{ .Values.psql.username | quote }}
+            - name: SONAR_JDBC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.psql.password.secret }}
+                  key: {{ .Values.psql.password.key }}
+            {{- end }}
+            {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- if .Values.installPlugins.enabled }}
+          command: ["/opt/scripts/install-plugins.sh"]
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          volumeMounts:
+          {{- if .Values.installPlugins.enabled }}
+            - mountPath: /opt/scripts/install-plugins.sh
+              name: commands
+              subPath: install-plugins.sh
+          {{- end }}
+            - mountPath: /opt/sonarqube/conf
+          {{- if .Values.sonarSecretProperties.enabled }}
+              name: config-concat
+          {{- else }}
+              name: config
+          {{- end }}
+            - mountPath: /opt/sonarqube/data
+              name: sonarqube
+              subPath: data
+            - mountPath: /opt/sonarqube/extensions
+              name: sonarqube
+              subPath: extensions
+            - mountPath: /opt/sonarqube/certs
+              name: sonarqube
+              subPath: certs
+            - mountPath: /opt/sonarqube/logs
+              name: sonarqube
+              subPath: logs
+            - mountPath: /opt/sonarqube/temp
+              name: sonarqube
+              subPath: temp
+            - mountPath: /tmp
+              name: tmp-dir
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: sonarqube
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "sonarqube.pvcName" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: commands
+          configMap:
+            name: {{ include "sonarqube.commandsName" . }}
+            defaultMode: 0755
+        {{- if .Values.caCerts.enabled }}
+        - name: ca-certs
+          secret:
+            secretName: {{ .Values.caCerts.secret }}
+        {{- end }}
+        - name: config
+          configMap:
+            name: {{ include "sonarqube.configName" . }}
+        {{- if .Values.sonarSecretProperties.enabled }}
+        - name: config-secret
+          secret:
+            secretName: {{ .Values.sonarSecretProperties.secret }}
+        - name : config-concat
+          emptyDir: {}
+        {{- end }}
+        - name : tmp-dir
+          emptyDir: {}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

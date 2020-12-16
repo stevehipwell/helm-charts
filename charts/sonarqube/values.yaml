@@ -1,0 +1,140 @@
+# Default values for sonarqube.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: sonarqube
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}-community
+  tag: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  runAsUser: 1000
+
+livenessProbe:
+  httpGet:
+    path: /api/system/status
+    port: http
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
+readinessProbe:
+  httpGet:
+    path: /api/system/status
+    port: http
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
+service:
+  type: ClusterIP
+  annotations: {}
+  port: 9000
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+persistence:
+  enabled: false
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 8Gi
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+caCerts:
+  enabled: false
+  secret:
+
+envVars:
+  jvmOptions: ""
+  jvmAdditionalOptions: ""
+
+env: []
+  # - name: VARIABLE
+  #   value: my-value
+
+sonarProperties: {}
+
+sonarSecretProperties:
+  enabled: false
+  secret:
+  key:
+
+installPlugins:
+  enabled: false
+  plugins: []
+    # - name: my-plugin
+    #   url: https://binaries.sonarsource.com/Distribution/my-plugin/my-plugin-1.0.0.jar
+    #   copyToLib: false
+
+## These settings are only required if you wish to use an existing postgresql instance
+##
+psql:
+  # host: postgresdb.local
+  # port: 5432
+  # database: sonarqube
+  # username: sonarqube
+  # password:
+  #   secret: sonarqube-postgres
+  #   key: password
+
+## Configuration values for the postgresql dependency
+## ref: https://artifacthub.io/packages/helm/bitnami/postgresql/10.2.0
+##
+postgresql:
+  enabled: false
