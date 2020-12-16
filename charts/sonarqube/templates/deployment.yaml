@@ -96,7 +96,7 @@ spec:
               subPath: sonar.properties
             - mountPath: /opt/props/sonar-secret.properties
               name: config-secret
-              subPath: .Values.sonarSecretProperties.key
+              subPath: {{ .Values.sonarSecretProperties.key }}
             - mountPath: /opt/result
               name: config-concat
       {{- end }}
@@ -158,11 +158,10 @@ spec:
               name: commands
               subPath: install-plugins.sh
           {{- end }}
-          {{- if .Values.sonarSecretProperties.enabled }}
             - mountPath: /opt/sonarqube/conf
+          {{- if .Values.sonarSecretProperties.enabled }}
               name: config-concat
           {{- else }}
-            - mountPath: /opt/sonarqube/conf
               name: config
           {{- end }}
             - mountPath: /opt/sonarqube/data
@@ -205,11 +204,11 @@ spec:
           configMap:
             name: {{ include "sonarqube.configName" . }}
         {{- if .Values.sonarSecretProperties.enabled }}
-          - name: config-secret
-            secret:
-              secretName: .Values.sonarSecretProperties.secret
-          - name : config-concat
-            emptyDir: {}
+        - name: config-secret
+          secret:
+            secretName: {{ .Values.sonarSecretProperties.secret }}
+        - name : config-concat
+          emptyDir: {}
         {{- end }}
         - name : tmp-dir
           emptyDir: {}

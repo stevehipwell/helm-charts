@@ -36,7 +36,7 @@ data:
     rm -f /opt/sonarqube/extensions/plugins/cache/*
 
     {{- range $index, $val := .Values.installPlugins.plugins }}
-    wget --no-check-certificate -O /opt/sonarqube/extensions/plugins/cache/{{ $val.name }} {{ $val.url }}
+    wget --no-check-certificate -O /opt/sonarqube/extensions/cache/{{ $val.name }}.jar {{ $val.url }}
     {{- end }}
 
   install-plugins.sh: |
@@ -44,10 +44,10 @@ data:
     set -eu
 
     {{- range $index, $val := .Values.installPlugins.plugins }}
-    cp -f /opt/sonarqube/extensions/plugins/cache/{{ $val.name }} /opt/sonarqube/extensions/plugins/{{ $val.name }}
+    cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/extensions/plugins/{{ $val.name }}.jar
 
     {{- if $val.copyToLib }}
-    cp -f /opt/sonarqube/extensions/plugins/cache/{{ $val.name }} /opt/sonarqube/lib/common/{{ $val.name }}
+    cp -f /opt/sonarqube/extensions/plugins/cache/{{ $val.name }}.jar /opt/sonarqube/lib/common/{{ $val.name }}.jar
     {{- end }}
     {{- end }}
 
