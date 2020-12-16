@@ -10,7 +10,7 @@ data:
     set -eu
 
     mkdir -p /opt/sonarqube/data /opt/sonarqube/extensions/plugins /opt/sonarqube/extensions/cache /opt/sonarqube/certs /opt/sonarqube/logs /opt/sonarqube/temp
-    chown 999:999 -R /opt/sonarqube
+    chown {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} -R /opt/sonarqube
 
   update-ca-certs.sh: |
     #!/usr/bin/env sh

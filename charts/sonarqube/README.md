@@ -32,8 +32,8 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `serviceAccount.annotations`    | Annotations to add to the service account.                                                                                       | `{}`                                |
 | `serviceAccount.name`           | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the _fullname_ template. | `nil`                               |
 | `podAnnotations`                | Annotations to add to the primary container.                                                                                     | `{}`                                |
-| `podSecurityContext`            | Security context for the pod.                                                                                                    | `{ fsGroup: 999 }`                  |
-| `securityContext`               | Security context for the primary container.                                                                                      | `{}`                                |
+| `podSecurityContext`            | Security context for the pod.                                                                                                    | `{ fsGroup: 1000 }`                 |
+| `securityContext`               | Security context for the primary container.                                                                                      | `{ runAsUser: 1000 }`               |
 | `livenessProbe`                 | The liveness probe.                                                                                                              | See _values.yaml_                   |
 | `readinessProbe`                | The readiness probe.                                                                                                             | See _values.yaml_                   |
 | `service.type`                  | Service type.                                                                                                                    | `ClusterIP`                         |
@@ -53,9 +53,10 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `nodeSelector`                  | Node labels for pod assignment.                                                                                                  | `{}`                                |
 | `tolerations`                   | Toleration labels for pod assignment.                                                                                            | `[]`                                |
 | `affinity`                      | Affinity settings for pod assignment.                                                                                            | `{}`                                |
-| `caCerts.enabled`               | If `true`, add provided CA certificates to the JVM cacerts key store.                                                            | `false`                             |
+| `caCerts.enabled`               | If `true`, add provided CA certificates to the JVM _cacerts_ key store.                                                          | `false`                             |
 | `caCerts.secret`                | Secret containing the additional CA certificates.                                                                                | `nil`                               |
-| `envVars.jvmOptions`            | Arguments to pass to the container via _SONARQUBE_WEB_JVM_OPTS_.                                                                 | `""`                                |
+| `envVars.jvmOptions`            | JVM options to pass to the container via _SONAR_WEB_JVM_OPTS_.                                                                   | `""`                                |
+| `envVars.jvmAdditionalOptions`  | JVM options to pass to the container via _SONAR_WEB_JAVAADDITIONALOPTS_.                                                         | `""`                                |
 | `env`                           | Environment variables for all containers in the pod.                                                                             | `[]`                                |
 | `sonarProperties`               | A map of _SonarQube_ properties.                                                                                                 | `{}`                                |
 | `sonarSecretProperties.enabled` | If there is a secret to provide properties to _SonarQube_.                                                                       | `false`                             |

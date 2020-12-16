@@ -24,19 +24,19 @@ serviceAccount:
 podAnnotations: {}
 
 podSecurityContext:
-  fsGroup: 999
+  fsGroup: 1000
 
-securityContext: {}
+securityContext:
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+  runAsUser: 1000
 
 livenessProbe:
   httpGet:
-    path: /sessions/new
+    path: /api/system/status
     port: http
   initialDelaySeconds: 60
   periodSeconds: 30
@@ -45,7 +45,7 @@ livenessProbe:
 
 readinessProbe:
   httpGet:
-    path: /sessions/new
+    path: /api/system/status
     port: http
   initialDelaySeconds: 60
   periodSeconds: 30
@@ -102,6 +102,7 @@ caCerts:
 
 envVars:
   jvmOptions: ""
+  jvmAdditionalOptions: ""
 
 env: []
   # - name: VARIABLE
