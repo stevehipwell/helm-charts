@@ -128,7 +128,7 @@ spec:
                   {{- if .Values.postgresql.existingSecret }}
                   name:  {{ .Values.postgresql.existingSecret }}
                   {{- else }}
-                  name:  {{ include "jira-software.postgresql.fullname" . }}
+                  name:  {{ include "sonarqube.postgresql.fullname" . }}
                   {{- end }}
                   key: postgresql-password
             {{- else if .Values.psql }}
