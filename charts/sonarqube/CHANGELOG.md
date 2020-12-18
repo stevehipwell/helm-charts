@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v1.0.0 - UNRELEASED
+## v1.0.1 - 2020-12-18
+
+### Changed
+
+- Fixed issues when `postgres.enabled: true`
+
+## v1.0.0 - 2020-12-16
 
 ### Added
 
