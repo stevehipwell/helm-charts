@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.4.2 - 2021-01-04
+
+### Changed
+
+- Upgraded image to _v3.29.1_
+
 ## v3.4.1 - 2020-12-14
 
 ### Changed
