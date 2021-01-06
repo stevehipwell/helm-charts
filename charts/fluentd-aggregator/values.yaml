@@ -1,0 +1,164 @@
+# Default values for fluentd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: ghcr.io/stevehipwell/fluentd-aggregator
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+priorityClassName: ""
+
+service:
+  type: ClusterIP
+  annotations: {}
+  ports:
+    - name: monitor
+      protocol: TCP
+      port: 24220
+    - name: forward
+      protocol: TCP
+      port: 24224
+
+metrics:
+  enabled: false
+  port: 24231
+  path: /metrics
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+    #   myLabel: myValue
+    interval: 1m
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts: []
+    # - host: chart-example.local
+    #   paths: []
+  tls: []
+    # - secretName: chart-example-tls
+    #   hosts:
+    #     - chart-example.local
+
+persistence:
+  enabled: false
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 8Gi
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+replicaCount: 1
+terminationGracePeriodSeconds: 30
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env: []
+  # - name: VARIABLE
+  #   value: my-value
+
+debug: false
+
+config:
+  general: |-
+    <system>
+      root_dir /fluentd/buffers/
+    </system>
+    <source>
+      @type http
+      port 9880
+      bind 0.0.0.0
+    </source>
+    <source>
+      @type monitor_agent
+      bind 0.0.0.0
+      port 24220
+      tag fluentd.monitor.metrics
+    </source>
+
+  metrics: |-
+    <source>
+      @type prometheus
+      port {{ .Values.metrics.port }}
+    </source>
+    <source>
+      @type prometheus_monitor
+      <labels>
+        host ${hostname}
+      </labels>
+    </source>
+    <source>
+      @type prometheus_output_monitor
+      <labels>
+        host ${hostname}
+      </labels>
+    </source>
+
+  forward: |-
+    <source>
+      @type forward
+      @id input
+      @label @mainstream
+      port 24224
+      bind 0.0.0.0
+    </source>
+
+  debug: |-
+    <filter **>
+      @type stdout
+    </filter>
+
+  filter: |-
+
+  output: |-
+    <label @mainstream>
+      <match **>
+        @type null
+      </match>
+    </label>
