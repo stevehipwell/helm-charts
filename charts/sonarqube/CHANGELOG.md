@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.1.0 - 2021-01-06
+
+## Added
+
+- New `priorityClassName` value
+
 ## v1.0.1 - 2020-12-18
 
 ### Changed

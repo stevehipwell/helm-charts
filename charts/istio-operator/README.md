@@ -32,9 +32,10 @@ The following table lists the configurable parameters of the _Istio Operator_ ch
 | `serviceAccount.annotations`      | Annotations to add to the service account.                                                                                       | `{}`                       |
 | `serviceAccount.name`             | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the _fullname_ template. | `nil`                      |
 | `rbac.create`                     | If `true`, create a `clusterrole` and a `clusterolebinding`.                                                                     | `true`                     |
-| `podAnnotations`                  | Annotations to add to the primary container.                                                                                     | `{}`                       |
-| `securityContext`                 | Security context for the pod.                                                                                                    | `{}`                       |
-| `podSecurityContext`              | Security context for the primary container.                                                                                      | `{}`                       |
+| `podAnnotations`                  | Annotations to add to the pod.                                                                                                   | `{}`                       |
+| `podSecurityContext`              | Security context for the pod.                                                                                                    | `{}`                       |
+| `securityContext`                 | Security context for the _istio-operator_ container.                                                                             | `{}`                       |
+| `priorityClassName`               | Priority class name to use.                                                                                                      | `""`                       |
 | `serviceMonitor.enabled`          | If `true`, create a Prometheus service monitor.                                                                                  | `false`                    |
 | `serviceMonitor.additionalLabels` | Additional labels to be set on the Prometheus ServiceMonitor.                                                                    | `{}`                       |
 | `serviceMonitor.interval`         | Prometheus scrape frequency.                                                                                                     | `1m`                       |

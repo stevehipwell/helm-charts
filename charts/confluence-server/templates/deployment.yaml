@@ -27,6 +27,9 @@ spec:
       serviceAccountName: {{ include "confluence-server.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       {{- if .Values.caCerts.enabled }}
       initContainers:
         - name: ca-certs

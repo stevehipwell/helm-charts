@@ -1,8 +1,9 @@
-apiVersion: v1
+apiVersion: v2
 name: confluence-server
-version: 3.4.0
-appVersion: 7.10.0
 description: Helm chart for Atlassian Confluence Server.
+type: application
+version: 4.0.0
+appVersion: 7.10.0
 keywords:
   - confluence
   - confluence-server

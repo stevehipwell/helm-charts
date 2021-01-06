@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.0.0 - 2021-01-06
+
+> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+
+## Added
+
+- New `priorityClassName` value
+
+## Changed
+
+- Upgraded chart API version to `v2`
+
 ## v3.3.0 - 2020-11-19
 
 ### Changed

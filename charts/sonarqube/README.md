@@ -31,9 +31,10 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `serviceAccount.create`         | If `true`, create a new service account.                                                                                         | `true`                              |
 | `serviceAccount.annotations`    | Annotations to add to the service account.                                                                                       | `{}`                                |
 | `serviceAccount.name`           | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the _fullname_ template. | `nil`                               |
-| `podAnnotations`                | Annotations to add to the primary container.                                                                                     | `{}`                                |
+| `podAnnotations`                | Annotations to add to the pod.                                                                                                   | `{}`                                |
 | `podSecurityContext`            | Security context for the pod.                                                                                                    | `{ fsGroup: 1000 }`                 |
 | `securityContext`               | Security context for the primary container.                                                                                      | `{ runAsUser: 1000 }`               |
+| `priorityClassName`             | Priority class name to use.                                                                                                      | `""`                                |
 | `livenessProbe`                 | The liveness probe.                                                                                                              | See _values.yaml_                   |
 | `readinessProbe`                | The readiness probe.                                                                                                             | See _values.yaml_                   |
 | `service.type`                  | Service type.                                                                                                                    | `ClusterIP`                         |

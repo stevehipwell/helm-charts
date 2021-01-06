@@ -25,6 +25,9 @@ spec:
       serviceAccountName: {{ include "istio-operator.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

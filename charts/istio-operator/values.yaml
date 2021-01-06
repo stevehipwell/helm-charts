@@ -40,6 +40,8 @@ securityContext:
   runAsUser: 1337
   runAsNonRoot: true
 
+priorityClassName: ""
+
 serviceMonitor:
   enabled: false
   additionalLabels: {}
