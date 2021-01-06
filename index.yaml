@@ -1,6 +1,36 @@
 apiVersion: v1
 entries:
   confluence-server:
+  - apiVersion: v2
+    appVersion: 7.10.0
+    created: "2021-01-06T16:43:47.027901586Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 4f3414484444b8361c21c6c5458317d96d240c9aca9bbd5ab4d441a1ec5d53db
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.0.0/confluence-server-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: 7.10.0
     created: "2020-12-16T11:28:30.309361976Z"
@@ -1092,6 +1122,28 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
   fluentd:
+  - apiVersion: v2
+    appVersion: 1.11.1
+    created: "2021-01-06T16:43:47.13794931Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 628464896f8c1da43330e28145ade37669d8da7765248f9c10a24983c176760f
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd
+    sources:
+    - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
+    - https://quay.io/repository/fluentd_elasticsearch/fluentd
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-2.0.0/fluentd-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.11.1
     created: "2020-09-17T08:20:22.386938821Z"
@@ -1387,6 +1439,29 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.0/fluentd-1.0.0.tgz
     version: 1.0.0
   istio-operator:
+  - apiVersion: v2
+    appVersion: 1.8.1
+    created: "2021-01-06T16:43:47.260925631Z"
+    description: Helm chart for the Istio Operator.
+    digest: fa68b52a78476a12c502d349ee2309b19368b99d4c6557ea717e7f0fb11cf04d
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.0.0/istio-operator-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.8.1
     created: "2020-12-08T22:41:12.589950769Z"
@@ -1850,6 +1925,36 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - apiVersion: v2
+    appVersion: 8.14.0
+    created: "2021-01-06T16:43:47.371555359Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: b07618a40a2178007d59dde929c9598111c81a68967056b4fff69ab7f3c8ad46
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.0.0/jira-software-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: 8.14.0
     created: "2020-11-23T17:03:38.155572157Z"
@@ -2604,6 +2709,31 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - apiVersion: v2
+    appVersion: 3.29.0
+    created: "2021-01-06T16:43:47.471077204Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 2b411e8868da2d0374668da9367ea72b8fb71caf806a037a76b7f30b2d335634
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.0.0/nexus3-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: 3.29.1
     created: "2021-01-04T20:31:20.601864466Z"
@@ -3733,6 +3863,28 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.1.0/nexus3-1.1.0.tgz
     version: 1.1.0
   plantuml:
+  - apiVersion: v2
+    appVersion: 1.2020.26
+    created: "2021-01-06T16:43:47.590351397Z"
+    description: Helm chart for PlantUML.
+    digest: ef450b0c5875608cc199aa29a1ce35bdb7e153970af93d5070ab274e54845a39
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.0.0/plantuml-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.2020.26
     created: "2021-01-04T08:19:35.627922667Z"
@@ -3902,6 +4054,37 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-1.0.0/plantuml-1.0.0.tgz
     version: 1.0.0
   sonarqube:
+  - apiVersion: v2
+    appVersion: 8.6.0
+    created: "2021-01-06T16:43:47.746833469Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.2.0
+    description: A Helm chart for deploying SonarQube.
+    digest: 57a160725534798ba906650f3186bf25fcd33478a614e2e5068b68ebb4bf28da
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube
+    - https://github.com/SonarSource/docker-sonarqube
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.1.0/sonarqube-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v2
     appVersion: 8.6.0
     created: "2020-12-18T15:01:21.190726315Z"
