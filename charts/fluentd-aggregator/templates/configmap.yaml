@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fluentd-aggregator.fullname" . }}
+  labels:
+    {{- include "fluentd-aggregator.labels" . | nindent 4 }}
+data:
+  {{- range $key, $value := .Values.config }}
+  {{ $key }}.conf: |-
+    {{ $value | nindent 4 }}
+  {{- end }}
+  fluent.conf: |-
+    @include /fluentd/etc/general.conf
+{{- if .Values.metrics.enabled }}
+    @include /fluentd/etc/metrics.conf
+{{- end }}
+    @include /fluentd/etc/forward.conf
+{{- if .Values.debug }}
+    @include /fluentd/etc/debug.conf
+{{- end }}
+    @include /fluentd/etc/filter.conf
+    @include /fluentd/etc/output.conf
