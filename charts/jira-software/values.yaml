@@ -23,12 +23,12 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext:
-  {}
+podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext:
-  {}
+priorityClassName: ""
+
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -43,16 +43,13 @@ service:
 
 ingress:
   enabled: false
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts:
-    []
+  hosts: []
     # - jira.local
-  tls:
-    []
+  tls: []
     # - secretName: jira-local-tls
     #   hosts:
     #     - jira.local
@@ -65,8 +62,7 @@ persistence:
   storageClass: standard
   size: 8Gi
 
-resources:
-  {}
+resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -94,8 +90,7 @@ envVars:
   jvmAdditionalMemoryOptions: "-XX:MaxMetaspaceSize=512m -XX:MaxDirectMemorySize=10m"
   jvmAdditionalOptions: ""
 
-env:
-  []
+env: []
   # - name: VARIABLE
   #   value: my-value
 

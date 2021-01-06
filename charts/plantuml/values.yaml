@@ -27,6 +27,8 @@ securityContext: {}
 
 podSecurityContext: {}
 
+priorityClassName: ""
+
 service:
   type: ClusterIP
   annotations: {}

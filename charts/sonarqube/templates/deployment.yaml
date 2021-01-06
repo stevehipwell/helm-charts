@@ -29,6 +29,9 @@ spec:
       serviceAccountName: {{ include "sonarqube.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       initContainers:
         - name: chmod-volume-mounts
           image: alpine:3

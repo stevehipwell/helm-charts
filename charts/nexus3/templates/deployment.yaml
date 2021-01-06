@@ -29,6 +29,9 @@ spec:
       serviceAccountName: {{ include "nexus3.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       initContainers:
         {{- if .Values.caCerts.enabled }}
         - name: ca-certs
