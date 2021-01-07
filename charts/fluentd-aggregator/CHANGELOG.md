@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.0.1 - 2021-01-07
+
+### Changed
+
+- Use `fsGroup: 2000`
+
 ## v1.0.0 - 2021-01-06
 
 ### Added
