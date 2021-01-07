@@ -1441,6 +1441,28 @@ entries:
   fluentd-aggregator:
   - apiVersion: v2
     appVersion: 1.11.0
+    created: "2021-01-07T08:57:13.244286189Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 7d2580e8be60ecb4b50b01943f39d9f29c1ac918e4a3b8266d0effc954f1248b
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.0.1/fluentd-aggregator-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.11.0
     created: "2021-01-06T17:07:58.716188225Z"
     description: Helm chart for Fluentd running as an aggregation stateful set.
     digest: 05aa8abfc36a1b309111b41a98ed47bfab672a53057ec8ab3e0ea707bf0cd502
