@@ -1,6 +1,39 @@
 apiVersion: v1
 entries:
   confluence-server:
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgraded `confluence-server` image to _v7.10.1_
+    apiVersion: v2
+    appVersion: 7.10.1
+    created: "2021-01-07T15:15:49.869923388Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: f44ad23dbbdd76141be31df2ebedbe8fa41e53af193377c9d5534dd5c69b97d2
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.0.1/confluence-server-4.0.1.tgz
+    version: 4.0.1
   - apiVersion: v2
     appVersion: 7.10.0
     created: "2021-01-06T16:43:47.027901586Z"
