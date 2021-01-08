@@ -2787,6 +2787,34 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgraded nexus3 image to v3.29.2
+    apiVersion: v2
+    appVersion: 3.29.2
+    created: "2021-01-08T08:22:57.766071724Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: d3f29421c6248d5cf605713a6623d32b91e767cc45b720ec789c3a0d9ab16d7b
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.0.1/nexus3-4.0.1.tgz
+    version: 4.0.1
   - apiVersion: v2
     appVersion: 3.29.0
     created: "2021-01-06T16:43:47.471077204Z"
