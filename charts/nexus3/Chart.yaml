@@ -2,8 +2,10 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.0.0
-appVersion: 3.29.0
+version: 4.0.1
+appVersion: 3.29.2
+home: https://www.sonatype.com/nexus-repository-oss
+icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 keywords:
   - artifacts
   - dependency
@@ -11,11 +13,12 @@ keywords:
   - sonatype
   - nexus
   - repository
-home: https://www.sonatype.com/nexus-repository-oss
-icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 sources:
   - https://github.com/sonatype/docker-nexus3
   - https://hub.docker.com/r/sonatype/nexus3
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - Upgraded nexus3 image to v3.29.2
