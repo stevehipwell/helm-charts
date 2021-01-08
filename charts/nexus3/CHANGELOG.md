@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.0.1 - 2021-01-08
+
+### Changed
+
+- Upgraded `nexus3` image to _v3.29.2_
+
 ## v4.0.0 - 2021-01-06
 
 > **IMPORTANT** - This release is only compatible with _Helm_ v3.
