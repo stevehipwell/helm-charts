@@ -3969,6 +3969,31 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.1.0/nexus3-1.1.0.tgz
     version: 1.1.0
   plantuml:
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgraded PlantUML image to v1.2021.0
+    apiVersion: v2
+    appVersion: 1.2021.0
+    created: "2021-01-11T08:46:43.522465605Z"
+    description: Helm chart for PlantUML.
+    digest: cfea8a4f92f7c82d6a73f033de29603fc612f913c217f6b1928cd9e8f9eff5dc
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.1.0/plantuml-2.1.0.tgz
+    version: 2.1.0
   - apiVersion: v2
     appVersion: 1.2020.26
     created: "2021-01-06T16:43:47.590351397Z"
