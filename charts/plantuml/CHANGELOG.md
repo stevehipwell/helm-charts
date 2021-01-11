@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.1.0 - 2021-01-11
+
+### Changed
+
+- Upgraded _PlantUML_ image to _v1.2021.0_
+
 ## v2.0.0 - 2021-01-06
 
 > **IMPORTANT** - This release is only compatible with _Helm_ v3.
