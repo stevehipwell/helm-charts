@@ -3,6 +3,39 @@ entries:
   confluence-server:
   - annotations:
       artifacthub.io/changes: |
+        - Added dynamic probe configuration
+    apiVersion: v2
+    appVersion: 7.10.1
+    created: "2021-01-15T17:11:55.408217567Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: ffab912d36408a687f163587df340b89b2779b96e9834899ec169e89df136b53
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.0.2/confluence-server-4.0.2.tgz
+    version: 4.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded `confluence-server` image to _v7.10.1_
     apiVersion: v2
     appVersion: 7.10.1
@@ -1472,6 +1505,31 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-1.0.0/fluentd-1.0.0.tgz
     version: 1.0.0
   fluentd-aggregator:
+  - annotations:
+      artifacthub.io/changes: |
+        - Added dynamic probe configuration
+    apiVersion: v2
+    appVersion: 1.11.0
+    created: "2021-01-15T17:11:55.553697353Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: ad1009b1d74bf563d6f6f2cccc5fad4fefd1e6d024018ef773e61cb63c44a7d4
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.0.2/fluentd-aggregator-1.0.2.tgz
+    version: 1.0.2
   - apiVersion: v2
     appVersion: 1.11.0
     created: "2021-01-07T08:57:13.244286189Z"
@@ -2029,6 +2087,39 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - annotations:
+      artifacthub.io/changes: |
+        - Added dynamic probe configuration
+    apiVersion: v2
+    appVersion: 8.14.1
+    created: "2021-01-15T17:11:55.690434779Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: 1caa3fff88bc6b9151613d7fe533cf1c23d130b2f264a7fcf51d4e49b613f5bf
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.0.2/jira-software-4.0.2.tgz
+    version: 4.0.2
   - annotations:
       artifacthub.io/changes: |
         - Upgraded Jira image to v8.14.1
@@ -2846,6 +2937,35 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   nexus3:
+  - annotations:
+      artifacthub.io/changes: |
+        - Added dynamic probe configuration
+        - Fixed typo in LDAP configuration
+    apiVersion: v2
+    appVersion: 3.29.2
+    created: "2021-01-15T17:11:55.80818087Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: e007ff0de14d1ae6411a49c12d3eef494f512d78aa3f0219a26677ab51b423c6
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.0.2/nexus3-4.0.2.tgz
+    version: 4.0.2
   - annotations:
       artifacthub.io/changes: |
         - Upgraded nexus3 image to v3.29.2
@@ -4028,6 +4148,31 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.1.0/nexus3-1.1.0.tgz
     version: 1.1.0
   plantuml:
+  - annotations:
+      artifacthub.io/changes: |
+        - Added dynamic probe configuration
+    apiVersion: v2
+    appVersion: 1.2021.0
+    created: "2021-01-15T17:11:55.933990571Z"
+    description: Helm chart for PlantUML.
+    digest: 1b510b5482b5469585d6df40537fe00af55cce9bc565dd07099e8dfeaed32060
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.1.1/plantuml-2.1.1.tgz
+    version: 2.1.1
   - annotations:
       artifacthub.io/changes: |
         - Upgraded PlantUML image to v1.2021.0
