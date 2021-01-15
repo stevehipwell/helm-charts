@@ -115,21 +115,9 @@ spec:
               containerPort: 8080
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
             - mountPath: /var/atlassian/application-data/jira
               name: {{ include "jira-software.pvcname" . }}

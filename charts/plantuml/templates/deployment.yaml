@@ -62,13 +62,9 @@ spec:
               containerPort: 8080
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /png
-              port: http
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /png
-              port: http
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           {{- if .Values.caCerts.enabled }}
           volumeMounts:
             - mountPath: /usr/local/openjdk-11/lib/security/cacerts

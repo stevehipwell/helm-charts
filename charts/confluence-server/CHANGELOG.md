@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.0.2 - 2021-01-15
+
+### Added
+
+- Dynamic probe configuration
+
 ## v4.0.1 - 2021-01-07
 
 ## Changed

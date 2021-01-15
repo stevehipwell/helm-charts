@@ -95,22 +95,10 @@ spec:
               containerPort: {{ .containerPort }}
               protocol: TCP
           {{- end }}
-          readinessProbe:
-            httpGet:
-              path: /service/rest/v1/status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
           livenessProbe:
-            httpGet:
-              path: /service/rest/v1/status
-              port: http
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            failureThreshold: 10
-            timeoutSeconds: 1
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}

@@ -36,6 +36,24 @@ securityContext: {}
 
 priorityClassName: ""
 
+livenessProbe:
+  httpGet:
+    path: /status
+    port: http
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
+readinessProbe:
+  httpGet:
+    path: /status
+    port: http
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
 service:
   type: ClusterIP
   annotations: {}

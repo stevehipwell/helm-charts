@@ -96,7 +96,7 @@ do
     then
       echo "Updating LDAP configuration for '${name}'..."
 
-      id="$(grep -Pio '(?<="id"\s:)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      id="$(grep -Pio '(?<="id"\s:)\s*\"[^"]+\"' "${out_file}" | xargs)"
       sed -i "s/{\"/{\"id\":\"${id}\",\"/g" "${json_file}"
 
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap/${name// /%20}")"
@@ -116,6 +116,7 @@ do
       fi
     fi
 
+    rm -f "${json_file}"
     echo "LDAP configured."
   fi
 
@@ -197,6 +198,10 @@ do
     then
       echo "Configuring repo..."
 
+      temp_file="/tmp/repo.json"
+      cp -f "${json_file}" "${temp_file}"
+      json_file="${temp_file}"
+
       repo_name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
       repo_password_file="${base_dir}/secret/repo-credentials/${repo_name}"
       if [ -f "${repo_password_file}" ]
@@ -212,6 +217,7 @@ do
         exit 1
       fi
 
+      rm -f "${json_file}"
       echo "Repo configured."
     fi
   done

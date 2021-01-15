@@ -2,7 +2,7 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 4.0.1
+version: 4.0.2
 appVersion: 7.10.1
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -21,4 +21,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Upgraded `confluence-server` image to _v7.10.1_
+    - Added dynamic probe configuration

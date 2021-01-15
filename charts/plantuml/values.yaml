@@ -29,6 +29,16 @@ podSecurityContext: {}
 
 priorityClassName: ""
 
+livenessProbe:
+  httpGet:
+    path: /png
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /png
+    port: http
+
 service:
   type: ClusterIP
   annotations: {}

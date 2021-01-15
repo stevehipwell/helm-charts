@@ -2,7 +2,7 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.0.1
+version: 4.0.2
 appVersion: 3.29.2
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
@@ -21,4 +21,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Upgraded nexus3 image to v3.29.2
+    - Added dynamic probe configuration
+    - Fixed typo in LDAP configuration
