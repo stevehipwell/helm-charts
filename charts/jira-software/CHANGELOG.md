@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.0.1 - 2021-01-15
+
+### Changed
+
+- Upgraded _Jira_ image to _v8.14.1_
+
 ## v4.0.0 - 2021-01-06
 
 > **IMPORTANT** - This release is only compatible with _Helm_ v3.
