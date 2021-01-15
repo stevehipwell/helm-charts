@@ -1517,6 +1517,32 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.0.0/fluentd-aggregator-1.0.0.tgz
     version: 1.0.0
   istio-operator:
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgraded Istio version to v1.8.2
+    apiVersion: v2
+    appVersion: 1.8.2
+    created: "2021-01-15T10:21:44.901211917Z"
+    description: Helm chart for the Istio Operator.
+    digest: 7727cfcd9932bdcaa0abfc195d529cf6ca6da816952de64cd965309a311ab184
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.0.1/istio-operator-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 1.8.1
     created: "2021-01-06T16:43:47.260925631Z"
