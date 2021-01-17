@@ -4389,6 +4389,40 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-1.0.0/plantuml-1.0.0.tgz
     version: 1.0.0
   sonarqube:
+  - annotations:
+      artifacthub.io/changes: |
+        - Fixed PostgreSQL port number formatting error
+    apiVersion: v2
+    appVersion: 8.6.0
+    created: "2021-01-17T11:49:20.754328806Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.2.0
+    description: A Helm chart for deploying SonarQube.
+    digest: ff5e3c65cc839ba1f7f695e1308b8c78013b35f10c4d3e113c433efec4a6cbf4
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube
+    - https://github.com/SonarSource/docker-sonarqube
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.1.1/sonarqube-1.1.1.tgz
+    version: 1.1.1
   - apiVersion: v2
     appVersion: 8.6.0
     created: "2021-01-06T16:43:47.746833469Z"
