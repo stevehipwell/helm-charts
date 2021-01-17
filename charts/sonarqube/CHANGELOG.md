@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.1.1 - 2021-01-17
+
+## Changed
+
+- Fixed _PostgreSQL_ port number formatting error
+
 ## v1.1.0 - 2021-01-06
 
 ## Added

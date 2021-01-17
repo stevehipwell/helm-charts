@@ -122,7 +122,7 @@ spec:
               value: {{ .Values.envVars.jvmAdditionalOptions | trim | quote }}
             {{- if .Values.postgresql.enabled }}
             - name: SONAR_JDBC_URL
-              value: {{ printf "jdbc:postgresql://%s:%s/%s" (include "sonarqube.postgresql.fullname" .) (.Values.postgresql.service.port | default "5432") .Values.postgresql.postgresqlDatabase | quote }}
+              value: {{ printf "jdbc:postgresql://%s:%d/%s" (include "sonarqube.postgresql.fullname" .) (.Values.postgresql.service.port | default "5432") .Values.postgresql.postgresqlDatabase | quote }}
             - name: SONAR_JDBC_USERNAME
               value: {{.Values.postgresql.postgresqlUsername | quote }}
             - name: SONAR_JDBC_PASSWORD
@@ -136,7 +136,7 @@ spec:
                   key: postgresql-password
             {{- else if .Values.psql }}
             - name: SONAR_JDBC_URL
-              value: {{ printf "jdbc:postgresql://%s:%s/%s" .Values.psql.host (.Values.psql.port | default "5432") .Values.psql.database | quote }}
+              value: {{ printf "jdbc:postgresql://%s:%d/%s" .Values.psql.host (.Values.psql.port | default "5432") .Values.psql.database | quote }}
             - name: SONAR_JDBC_USERNAME
               value: {{ .Values.psql.username | quote }}
             - name: SONAR_JDBC_PASSWORD
