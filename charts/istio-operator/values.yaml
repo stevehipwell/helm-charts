@@ -48,6 +48,9 @@ serviceMonitor:
   #   myLabel: myValue
   interval: 1m
 
+dashboards:
+  enabled: false
+
 resources:
   # requests:
   #   cpu: 100m

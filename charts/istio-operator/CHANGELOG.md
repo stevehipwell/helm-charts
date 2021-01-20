@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.0.2 - 2021-01-19
+
+## Changed
+
+- Add _Grafana_ dashboards to be installed by the sidecar via `dashboards.enabled: true`.
+
 ## v2.0.1 - 2021-01-15
 
 ## Changed

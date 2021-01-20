@@ -1,0 +1,16 @@
+
+{{- if .Values.dashboards.enabled -}}
+{{- range $path, $_ :=  .Files.Glob "dashboards/*-dashboard.json" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-{{ trimSuffix "-dashboard.json" (base $path) }}
+  labels:
+    {{- include "istio-operator.labels" $ | nindent 4 }}
+    grafana_dashboard: "1"
+data:
+  {{ base $path }}: |
+    {{- $.Files.Get $path | nindent 4 }}
+---
+{{- end }}
+{{- end -}}
