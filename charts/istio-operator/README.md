@@ -39,6 +39,7 @@ The following table lists the configurable parameters of the _Istio Operator_ ch
 | `serviceMonitor.enabled`          | If `true`, create a Prometheus service monitor.                                                                                  | `false`                    |
 | `serviceMonitor.additionalLabels` | Additional labels to be set on the Prometheus ServiceMonitor.                                                                    | `{}`                       |
 | `serviceMonitor.interval`         | Prometheus scrape frequency.                                                                                                     | `1m`                       |
+| `dashboards.enabled`         | If _Grafana_ dashboards should be installed for the sidecar to pick up and apply.                                                                                                     | `false`                       |
 | `resources`                       | Resource requests and limits for the primary container.                                                                          | `nil`                      |
 | `nodeSelector`                    | Node labels for pod assignment.                                                                                                  | `{}`                       |
 | `tolerations`                     | Toleration labels for pod assignment.                                                                                            | `[]`                       |
