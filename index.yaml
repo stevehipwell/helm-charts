@@ -3,6 +3,39 @@ entries:
   confluence-server:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Confluence Server image to v7.10.2
+    apiVersion: v2
+    appVersion: 7.10.2
+    created: "2021-01-20T18:16:57.399463665Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: ec157170640fbe727af1b30b390d998653e156f6a70e27fd33c99f422e65af60
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.0.3/confluence-server-4.0.3.tgz
+    version: 4.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - Added dynamic probe configuration
     apiVersion: v2
     appVersion: 7.10.1
