@@ -1635,6 +1635,32 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - Update Grafana dashboards to dynamically set datasource
+    apiVersion: v2
+    appVersion: 1.8.2
+    created: "2021-01-22T11:27:36.356913095Z"
+    description: Helm chart for the Istio Operator.
+    digest: d45b8fef70904b2633df81c1ce85a780bff581b68f33fbc4053b0d824c6b8f2d
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.0.3/istio-operator-2.0.3.tgz
+    version: 2.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - Add Grafana dashboards to be installed by the sidecar
     apiVersion: v2
     appVersion: 1.8.2
