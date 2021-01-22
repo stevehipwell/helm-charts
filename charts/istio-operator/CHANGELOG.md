@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.0.3 - 2021-01-22
+
+## Changed
+
+- Update _Grafana_ dashboards to dynamically set datasource.
+
 ## v2.0.2 - 2021-01-19
 
 ## Changed
