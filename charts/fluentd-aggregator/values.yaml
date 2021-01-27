@@ -38,7 +38,7 @@ priorityClassName: ""
 
 livenessProbe:
   httpGet:
-    path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+    path: /fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http
   initialDelaySeconds: 15
   periodSeconds: 30
@@ -47,7 +47,7 @@ livenessProbe:
 
 readinessProbe:
   httpGet:
-    path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+    path: /fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http
   initialDelaySeconds: 15
   periodSeconds: 30
@@ -139,6 +139,12 @@ config:
       port 24220
       tag fluentd.monitor.metrics
     </source>
+    <match fluent.**>
+      @type null
+    </match>
+    <match fluentd.**>
+      @type stdout
+    </match>
 
   metrics: |-
     <source>
@@ -148,13 +154,13 @@ config:
     <source>
       @type prometheus_monitor
       <labels>
-        host ${hostname}
+        host #{hostname}
       </labels>
     </source>
     <source>
       @type prometheus_output_monitor
       <labels>
-        host ${hostname}
+        host #{hostname}
       </labels>
     </source>
 
