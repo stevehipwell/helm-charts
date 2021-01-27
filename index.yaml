@@ -1540,6 +1540,31 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - Updated default config
+    apiVersion: v2
+    appVersion: 1.11.0
+    created: "2021-01-27T09:16:24.275909905Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 2ff875dfdb9f4b2eb97bcf7d03ccf4c2f3e28c10bc530d5f4175e01531cd3901
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.0.4/fluentd-aggregator-1.0.4.tgz
+    version: 1.0.4
+  - annotations:
+      artifacthub.io/changes: |
         - Fix metrics port in conf
     apiVersion: v2
     appVersion: 1.11.0
