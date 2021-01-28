@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluentd
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.0.0
+version: 2.0.1
 appVersion: 1.11.1
 keywords:
   - fluent
@@ -13,6 +13,4 @@ icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/F
 sources:
   - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
   - https://quay.io/repository/fluentd_elasticsearch/fluentd
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
+deprecated: true
