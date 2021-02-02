@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 4.0.2
-appVersion: 8.14.1
+version: 4.1.0
+appVersion: 8.15.0
 keywords:
   - jira
   - jira-software
@@ -21,4 +21,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Added dynamic probe configuration
+    - Upgraded Jir_ image to v8.15.0
