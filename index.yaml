@@ -2244,6 +2244,39 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Jir_ image to v8.15.0
+    apiVersion: v2
+    appVersion: 8.15.0
+    created: "2021-02-02T10:11:03.312485243Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: de14d7ec63c37dea472ef02ca0a1110175dcd5d24fbecb387e6fcd43ea747beb
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.1.0/jira-software-4.1.0.tgz
+    version: 4.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Added dynamic probe configuration
     apiVersion: v2
     appVersion: 8.14.1
