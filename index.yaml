@@ -4338,6 +4338,31 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded PlantUML image to v1.2021.1
+    apiVersion: v2
+    appVersion: 1.2021.1
+    created: "2021-02-02T12:46:16.531041282Z"
+    description: Helm chart for PlantUML.
+    digest: 121e6dba2d9862b0eab12ffc4da8760d6a839349fa786c521e4d95e38a9cfc73
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.2.0/plantuml-2.2.0.tgz
+    version: 2.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - Added dynamic probe configuration
     apiVersion: v2
     appVersion: 1.2021.0
