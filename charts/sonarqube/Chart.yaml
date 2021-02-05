@@ -2,7 +2,7 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 1.1.4
+version: 1.1.5
 appVersion: 8.6.1
 keywords:
   - sonarqube
@@ -27,4 +27,4 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Upgraded SonarQube to v8.6.1
+    - Fix JVM options
