@@ -4662,6 +4662,40 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - Fixed ingress typo
+    apiVersion: v2
+    appVersion: 8.6.0
+    created: "2021-02-05T09:33:29.021371135Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.2.0
+    description: A Helm chart for deploying SonarQube.
+    digest: 61b92b0716421ea53393ac1896ca7ccccbe024f446f942d69bb3a4290deaf7a3
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube
+    - https://github.com/SonarSource/docker-sonarqube
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.1.2/sonarqube-1.1.2.tgz
+    version: 1.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - Fixed PostgreSQL port number formatting error
     apiVersion: v2
     appVersion: 8.6.0
