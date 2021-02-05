@@ -124,8 +124,13 @@ do
   do
     if [ -f "${json_file}" ]
     then
-      name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
       type="$(grep -Pio '(?<="type":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      if [ "${type}" = "s3" ]
+      then
+        name="$(grep -Pio '(?<="name":)(\s*\"[^"]+\")(?=,"type":\"s3\")' "${json_file}" | xargs)"
+      else
+        name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      fi
       echo "Updating blob store '${name}'..."
 
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")
