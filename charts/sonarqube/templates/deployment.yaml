@@ -112,7 +112,7 @@ spec:
           image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default (printf "%s-community" .Chart.AppVersion)) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: SONAR_WEB_JVM_OPTS
+            - name: SONAR_WEB_JAVAOPTS
               {{- if .Values.caCerts.enabled }}
               value: {{ printf "-Djavax.net.ssl.trustStore=/opt/sonarqube/certs/cacerts %s" .Values.envVars.jvmOptions | trim | quote }}
               {{- else }}

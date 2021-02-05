@@ -56,7 +56,7 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `affinity`                      | Affinity settings for pod assignment.                                                                                            | `{}`                                |
 | `caCerts.enabled`               | If `true`, add provided CA certificates to the JVM _cacerts_ key store.                                                          | `false`                             |
 | `caCerts.secret`                | Secret containing the additional CA certificates.                                                                                | `nil`                               |
-| `envVars.jvmOptions`            | JVM options to pass to the container via _SONAR_WEB_JVM_OPTS_.                                                                   | `""`                                |
+| `envVars.jvmOptions`            | JVM options to pass to the container via _SONAR_WEB_JAVAOPTS_.                                                                   | `""`                                |
 | `envVars.jvmAdditionalOptions`  | JVM options to pass to the container via _SONAR_WEB_JAVAADDITIONALOPTS_.                                                         | `""`                                |
 | `env`                           | Environment variables for all containers in the pod.                                                                             | `[]`                                |
 | `sonarProperties`               | A map of _SonarQube_ properties.                                                                                                 | `{}`                                |
