@@ -2,7 +2,7 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML.
 type: application
-version: 2.2.0
+version: 2.2.1
 appVersion: 1.2021.1
 home: https://plantuml.com/
 icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
@@ -18,4 +18,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Upgraded PlantUML image to v1.2021.1
+    - Fix PDB creation logic

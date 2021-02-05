@@ -1,3 +1,4 @@
+{{- if gt (int .Values.maxUnavailable) 0 }}
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
@@ -9,3 +10,4 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "plantuml.name" . }}
+{{- end }}
