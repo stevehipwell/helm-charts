@@ -136,7 +136,7 @@ spec:
                   key: postgresql-password
             {{- else if .Values.psql }}
             - name: SONAR_JDBC_URL
-              value: {{ printf "jdbc:postgresql://%s:%d/%s" .Values.psql.host (.Values.psql.port | default "5432") .Values.psql.database | quote }}
+              value: {{ printf "jdbc:postgresql://%s:%d/%s" .Values.psql.host (int (.Values.psql.port | default 5432)) .Values.psql.database | quote }}
             - name: SONAR_JDBC_USERNAME
               value: {{ .Values.psql.username | quote }}
             - name: SONAR_JDBC_PASSWORD
