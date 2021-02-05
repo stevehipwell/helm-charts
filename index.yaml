@@ -4371,6 +4371,31 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Fix PDB creation logic
+    apiVersion: v2
+    appVersion: 1.2021.1
+    created: "2021-02-05T08:49:49.452044759Z"
+    description: Helm chart for PlantUML.
+    digest: 0537d820c9ce4f7145a57ffc9782206b3630c05a4270d514ba88dc1929b56564
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.2.1/plantuml-2.2.1.tgz
+    version: 2.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded PlantUML image to v1.2021.1
     apiVersion: v2
     appVersion: 1.2021.1
