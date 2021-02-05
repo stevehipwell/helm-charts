@@ -3160,6 +3160,34 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - Fixed regex when S3 blobstore is used
+    apiVersion: v2
+    appVersion: 3.29.2
+    created: "2021-02-05T18:36:35.299101013Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 2ef6f2fa3cadc750a8bd14249797d48f2e2fa765c365a3b7b9e08482cb506ef4
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.0.3/nexus3-4.0.3.tgz
+    version: 4.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - Added dynamic probe configuration
         - Fixed typo in LDAP configuration
     apiVersion: v2
