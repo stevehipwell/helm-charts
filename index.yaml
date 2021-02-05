@@ -4662,6 +4662,40 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - Fix JVM options
+    apiVersion: v2
+    appVersion: 8.6.1
+    created: "2021-02-05T10:45:08.511774837Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.2.0
+    description: A Helm chart for deploying SonarQube.
+    digest: 3802fe38415feb4e1e17d750ca9d1dc0671f537b0dbc007f31d35dd519d5377e
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube
+    - https://github.com/SonarSource/docker-sonarqube
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.1.5/sonarqube-1.1.5.tgz
+    version: 1.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded SonarQube to v8.6.1
     apiVersion: v2
     appVersion: 8.6.1
