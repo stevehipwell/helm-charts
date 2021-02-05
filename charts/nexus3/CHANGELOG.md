@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.0.3 - 2021-02-05
+
+### Changed
+
+- Fixed regex when S3 blobstore is used
+
 ## v4.0.2 - 2021-01-15
 
 ### Added
