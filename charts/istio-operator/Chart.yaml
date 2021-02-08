@@ -2,7 +2,7 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.0.3
+version: 2.0.4
 appVersion: 1.8.2
 keywords:
   - kubernetes
@@ -19,4 +19,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Update Grafana dashboards to dynamically set datasource
+    - Add podLabels parameter

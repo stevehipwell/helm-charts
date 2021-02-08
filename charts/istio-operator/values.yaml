@@ -27,6 +27,8 @@ rbac:
 
 podAnnotations: {}
 
+podLabels: {}
+
 podSecurityContext: {}
 
 securityContext:

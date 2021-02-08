@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.0.4 - 2021-02-08
+
+## Changed
+
+- Add `podLabels` parameter
+
 ## v2.0.3 - 2021-01-22
 
 ## Changed
