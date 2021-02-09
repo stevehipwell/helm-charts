@@ -1715,6 +1715,32 @@ entries:
       artifacthub.io/changes: |
         - Add podLabels parameter
     apiVersion: v2
+    appVersion: 1.8.3
+    created: "2021-02-09T08:39:23.268079832Z"
+    description: Helm chart for the Istio Operator.
+    digest: 1311dc91adbf2ad1e849a73512d4f864f06279a6e0bacdfadf5fff38807f2aa7
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.0.5/istio-operator-2.0.5.tgz
+    version: 2.0.5
+  - annotations:
+      artifacthub.io/changes: |
+        - Add podLabels parameter
+    apiVersion: v2
     appVersion: 1.8.2
     created: "2021-02-09T08:32:53.453469988Z"
     description: Helm chart for the Istio Operator.
