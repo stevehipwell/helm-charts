@@ -1713,6 +1713,32 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - Lease istio-operator permission update
+    apiVersion: v2
+    appVersion: 1.9.0
+    created: "2021-02-11T13:21:44.186536102Z"
+    description: Helm chart for the Istio Operator.
+    digest: 950fa0b72ee36459cbb269a523be7056c039c0298c67ff7d5cda7870b8c6758e
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.1.1/istio-operator-2.1.1.tgz
+    version: 2.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded Istio version to v1.9.0
     apiVersion: v2
     appVersion: 1.9.0
