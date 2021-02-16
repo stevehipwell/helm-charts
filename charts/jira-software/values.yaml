@@ -103,8 +103,8 @@ caCerts:
   secret:
 
 envVars:
-  jvmMinHeapSize: 512M
-  jvmMaxHeapSize: 512M
+  jvmMinHeapSize: 768M
+  jvmMaxHeapSize: 768M
   jvmAdditionalMemoryOptions: "-XX:+UseG1GC"
   jvmAdditionalOptions: ""
 
