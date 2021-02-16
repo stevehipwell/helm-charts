@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.0.5 - 2021-02-16
+
+### Changed
+
+- Fix host label for metrics
+
 ## v1.0.4 - 2021-01-27
 
 ### Changed

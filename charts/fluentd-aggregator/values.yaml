@@ -154,13 +154,13 @@ config:
     <source>
       @type prometheus_monitor
       <labels>
-        host #{hostname}
+        host ${hostname}
       </labels>
     </source>
     <source>
       @type prometheus_output_monitor
       <labels>
-        host #{hostname}
+        host ${hostname}
       </labels>
     </source>
 
