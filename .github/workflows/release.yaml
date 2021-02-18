@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "charts/**"
 
 jobs:
   release:
@@ -22,14 +24,14 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.4.0
+          version: v3.5.2
 
       - name: Set up Helm repos
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami/
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.1.0
+        uses: helm/chart-releaser-action@v1.2.0
         with:
           config: ct.yaml
         env:
