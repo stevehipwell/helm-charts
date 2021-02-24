@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.2.0 - 2021-02-16
+
+## Changed
+
+- Upgraded _SonarQube_ to `v8.7.0`
+
 ## v1.1.5 - 2021-02-05
 
 ## Changed
@@ -21,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
-- Upgraded SonarQube to v8.6.1
+- Upgraded _SonarQube_ to `v8.6.1`
 
 ## v1.1.3 - 2021-02-05
 
@@ -57,4 +63,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of [SonarQube](https://www.sonarqube.org/) _v8.6.0_
+- Initial release of [SonarQube](https://www.sonarqube.org/) `v8.6.0`
