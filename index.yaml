@@ -5032,6 +5032,40 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - Fixed rendering of SONAR_JDBC_URL for postgresql sub chart
+    apiVersion: v2
+    appVersion: 8.7.0
+    created: "2021-03-04T09:35:53.63063627Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.2.0
+    description: A Helm chart for deploying SonarQube.
+    digest: 2ff69f7116ab7bbad33824ee36aa71cadd504d0a488106a2cda02a6f79bfdc7e
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube
+    - https://github.com/SonarSource/docker-sonarqube
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.2.1/sonarqube-1.2.1.tgz
+    version: 1.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgrade Sonarqube to v8.7.0
     apiVersion: v2
     appVersion: 8.7.0
@@ -5327,4 +5361,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-24T19:08:12.645878751Z"
+generated: "2021-03-04T09:35:53.632052271Z"
