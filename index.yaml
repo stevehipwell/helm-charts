@@ -3535,6 +3535,34 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Nexus3 image to v3.30.0
+    apiVersion: v2
+    appVersion: 3.30.0
+    created: "2021-03-05T11:45:09.074085256Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 1ca2571333f78c2ff4ba885adfe6fd962621c326ae2dd103237ae99aef0a9db4
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.1.0/nexus3-4.1.0.tgz
+    version: 4.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Fixed regex when S3 blobstore is used
     apiVersion: v2
     appVersion: 3.29.2
@@ -5394,4 +5422,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-05T11:31:47.206537921Z"
+generated: "2021-03-05T11:45:09.075380767Z"
