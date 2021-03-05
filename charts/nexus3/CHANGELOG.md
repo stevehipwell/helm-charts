@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.1.0 - 2021-03-05
+
+### Changed
+
+- Upgraded `Nexus3` image to _v3.30.0_
+
 ## v4.0.3 - 2021-02-05
 
 ### Changed
