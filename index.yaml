@@ -3,6 +3,39 @@ entries:
   confluence-server:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Confluence Server image to v7.11.1
+    apiVersion: v2
+    appVersion: 7.11.1
+    created: "2021-03-05T11:31:47.198764649Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 4.2.2
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 27ad9346ebd8e63a241355232cef8c716c46644fd45826cf44bfb7ece357e480
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.1.2/confluence-server-4.1.2.tgz
+    version: 4.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - Update default JVM config
     apiVersion: v2
     appVersion: 7.11.0
@@ -5361,4 +5394,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-04T09:35:53.632052271Z"
+generated: "2021-03-05T11:31:47.206537921Z"
