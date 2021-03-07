@@ -4802,6 +4802,31 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded PlantUML image to v1.2021.2
+    apiVersion: v2
+    appVersion: 1.2021.2
+    created: "2021-03-07T18:06:04.265824643Z"
+    description: Helm chart for PlantUML.
+    digest: fbaa0615be75bacffc37c75a41143601e43d1a6aacf6536482c377b52ab91380
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.3.0/plantuml-2.3.0.tgz
+    version: 2.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - Fix PDB creation logic
     apiVersion: v2
     appVersion: 1.2021.1
@@ -5422,4 +5447,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-05T11:45:09.075380767Z"
+generated: "2021-03-07T18:06:04.267465054Z"
