@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.3.0 - 2021-03-07
+
+### Changed
+
+- Upgraded _PlantUML_ image to _v1.2021.2_
+
 ## v2.2.1 - 2021-02-05
 
 ### Changed
