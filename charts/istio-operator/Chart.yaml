@@ -19,4 +19,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Lease istio-operator permission update
+    - Upgraded Istio version to v1.9.1
