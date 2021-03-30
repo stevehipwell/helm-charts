@@ -139,12 +139,11 @@ config:
       port 24220
       tag fluentd.monitor.metrics
     </source>
-    <match fluent.**>
-      @type null
-    </match>
-    <match fluentd.**>
-      @type stdout
-    </match>
+    <label @FLUENT_LOG>
+      <match fluent.*>
+        @type stdout
+      </match>
+    </label>
 
   metrics: |-
     <source>
