@@ -38,7 +38,7 @@ priorityClassName: ""
 
 livenessProbe:
   httpGet:
-    path: /fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
+    path: /fluent.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http
   initialDelaySeconds: 15
   periodSeconds: 30
@@ -47,7 +47,7 @@ livenessProbe:
 
 readinessProbe:
   httpGet:
-    path: /fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
+    path: /fluent.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http
   initialDelaySeconds: 15
   periodSeconds: 30
@@ -140,7 +140,7 @@ config:
       tag fluentd.monitor.metrics
     </source>
     <label @FLUENT_LOG>
-      <match fluent.*>
+      <match **>
         @type stdout
       </match>
     </label>
