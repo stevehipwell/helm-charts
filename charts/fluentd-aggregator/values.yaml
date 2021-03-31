@@ -139,6 +139,10 @@ config:
       port 24220
       tag fluentd.monitor.metrics
     </source>
+    <match fluent.healthcheck>
+      @type relabel
+      @label @FLUENT_LOG
+    </match>
     <label @FLUENT_LOG>
       <match **>
         @type stdout
