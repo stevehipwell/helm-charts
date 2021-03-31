@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.1.3 - 2021-03-31
+
+### Changed
+
+- Update default config
+
+## v1.1.2 - 2021-03-31
+
+### Changed
+
+- Update default config
+
 ## v1.1.1 - 2021-03-31
 
 ### Changed
