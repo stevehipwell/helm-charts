@@ -135,9 +135,10 @@ config:
     </source>
     <source>
       @type monitor_agent
+      @label @FLUENT_LOG
       bind 0.0.0.0
       port 24220
-      tag fluentd.monitor.metrics
+      tag fluent.monitor
     </source>
     <match fluent.healthcheck>
       @type relabel
