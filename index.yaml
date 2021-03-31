@@ -1800,6 +1800,31 @@ entries:
         - Update default config
     apiVersion: v2
     appVersion: 1.11.5
+    created: "2021-03-31T15:12:01.235939046Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 54305e606406869c19bf6dbe91f061f75962ec5e0a6670e40f951fd17036cb57
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.1.3/fluentd-aggregator-1.1.3.tgz
+    version: 1.1.3
+  - annotations:
+      artifacthub.io/changes: |
+        - Update default config
+    apiVersion: v2
+    appVersion: 1.11.5
     created: "2021-03-31T14:36:18.363812088Z"
     description: Helm chart for Fluentd running as an aggregation stateful set.
     digest: 2906d59abcb89aa4214e013ca6d8bb1ca80e9bb2c8970e4da4c99944112c876b
@@ -5699,4 +5724,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-31T14:36:18.365416602Z"
+generated: "2021-03-31T15:12:01.237841355Z"
