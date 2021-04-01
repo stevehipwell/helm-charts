@@ -70,6 +70,10 @@ spec:
         - name: download-plugins
           image: alpine:3
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.image.lts }}
+          securityContext:
+            runAsUser: 0
+          {{ end -}}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -121,11 +125,11 @@ spec:
             - name: SONAR_WEB_JAVAADDITIONALOPTS
               value: {{ .Values.envVars.jvmAdditionalOptions | trim | quote }}
             {{- if .Values.postgresql.enabled }}
-            - name: SONAR_JDBC_URL
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_URL{{ else }}SONAR_JDBC_URL{{ end }}
               value: {{ printf "jdbc:postgresql://%s:%d/%s" (include "sonarqube.postgresql.fullname" .) (int .Values.postgresql.service.port | default 5432) .Values.postgresql.postgresqlDatabase | quote }}
-            - name: SONAR_JDBC_USERNAME
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_USERNAME{{ else }}SONAR_JDBC_USERNAME{{ end }}
               value: {{.Values.postgresql.postgresqlUsername | quote }}
-            - name: SONAR_JDBC_PASSWORD
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_PASSWORD{{ else }}SONAR_JDBC_PASSWORD{{ end }}
               valueFrom:
                 secretKeyRef:
                   {{- if .Values.postgresql.existingSecret }}
@@ -135,11 +139,11 @@ spec:
                   {{- end }}
                   key: postgresql-password
             {{- else if .Values.psql }}
-            - name: SONAR_JDBC_URL
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_URL{{ else }}SONAR_JDBC_URL{{ end }}
               value: {{ printf "jdbc:postgresql://%s:%d/%s" .Values.psql.host (int (.Values.psql.port | default 5432)) .Values.psql.database | quote }}
-            - name: SONAR_JDBC_USERNAME
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_USERNAME{{ else }}SONAR_JDBC_USERNAME{{ end }}
               value: {{ .Values.psql.username | quote }}
-            - name: SONAR_JDBC_PASSWORD
+            - name: {{ if .Values.image.lts }}SONARQUBE_JDBC_PASSWORD{{ else }}SONAR_JDBC_PASSWORD{{ end }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.psql.password.secret }}
