@@ -15,6 +15,9 @@ spec:
     metadata:
       labels:
         {{- include "nexus3.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- . | toYaml | trim | nindent 8 }}
+      {{- end }}
       annotations:
       {{- with .Values.podAnnotations }}
         {{- . | toYaml | trim | nindent 8 }}
