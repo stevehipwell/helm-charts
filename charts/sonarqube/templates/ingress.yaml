@@ -31,10 +31,15 @@ spec:
       http:
         paths:
           {{- range .paths }}
-          - path: {{ . }}
+          - path: {{ .path }}
             backend:
+              {{- if .backend }}
+              serviceName: {{ .backend.serviceName | default $fullName }}
+              servicePort: {{ .backend.servicePort | default "http" }}
+              {{ else }}
               serviceName: {{ $fullName }}
               servicePort: http
+              {{ end -}}
           {{- end }}
     {{- end }}
   {{- end }}
