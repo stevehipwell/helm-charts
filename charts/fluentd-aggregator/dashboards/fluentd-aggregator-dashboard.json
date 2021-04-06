@@ -12,11 +12,9 @@
       }
     ]
   },
-  "description": "fluentd 1.x deployed in kubernetes and scraped by prometheus",
+  "description": "FluentD Aggregator dashboard.",
   "editable": true,
-  "gnetId": 13042,
   "graphTooltip": 1,
-  "iteration": 1617720402325,
   "links": [],
   "panels": [
     {
