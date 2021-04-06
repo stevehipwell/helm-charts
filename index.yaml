@@ -1797,6 +1797,31 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - Support podLabels configuration value
+    apiVersion: v2
+    appVersion: 1.11.5
+    created: "2021-04-06T10:07:12.915932008Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 5f5440961088dc5cc1304b0b6071bb79db5d0a1be9872485048d905dcd99e445
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.2.1/fluentd-aggregator-1.2.1.tgz
+    version: 1.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - Added Grafana dashboard
         - Added Prometheus input metrics
         - Hide metrics and health check logs
@@ -5805,4 +5830,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-06T09:50:46.852308702Z"
+generated: "2021-04-06T10:07:12.917234551Z"
