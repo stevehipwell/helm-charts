@@ -19,6 +19,9 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "fluentd-aggregator.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- . | toYaml | trim | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.image.pullSecrets }}
       imagePullSecrets:

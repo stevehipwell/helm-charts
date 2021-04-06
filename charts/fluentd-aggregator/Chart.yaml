@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 1.2.0
+version: 1.2.1
 appVersion: 1.11.5
 keywords:
   - fluent
@@ -18,6 +18,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Added Grafana dashboard
-    - Added Prometheus input metrics
-    - Hide metrics and health check logs
+    - Support podLabels configuration value
