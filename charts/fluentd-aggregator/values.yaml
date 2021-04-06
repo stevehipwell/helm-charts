@@ -75,6 +75,9 @@ metrics:
     #   myLabel: myValue
     interval: 1m
 
+dashboards:
+  enabled: false
+
 ingress:
   enabled: false
   annotations: {}
@@ -135,18 +138,28 @@ config:
     </source>
     <source>
       @type monitor_agent
-      @label @FLUENT_LOG
+      @label @FLUENT_MONITOR
       bind 0.0.0.0
       port 24220
       tag fluent.monitor
     </source>
     <match fluent.healthcheck>
       @type relabel
-      @label @FLUENT_LOG
+      @label @FLUENT_HEALTHCHECK
     </match>
     <label @FLUENT_LOG>
       <match **>
         @type stdout
+      </match>
+    </label>
+    <label @FLUENT_MONITOR>
+      <match **>
+        @type null
+      </match>
+    </label>
+    <label @FLUENT_HEALTHCHECK>
+      <match **>
+        @type null
       </match>
     </label>
 
@@ -167,6 +180,18 @@ config:
         host ${hostname}
       </labels>
     </source>
+    <filter **>
+      @type prometheus
+      <metric>
+        name fluentd_input_status_num_records_total
+        type counter
+        desc The total number of incoming records
+        <labels>
+          host ${hostname}
+          tag ${tag}
+        </labels>
+      </metric>
+    </filter>
 
   forward: |-
     <source>

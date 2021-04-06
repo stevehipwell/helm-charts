@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.2.0 - 2021-04-06
+
+### Added
+
+- _Grafana_ dashboard
+- _Prometheus_ input metrics
+
+### Changed
+
+- Hide metrics and health check logs
+
 ## v1.1.3 - 2021-03-31
 
 ### Changed
