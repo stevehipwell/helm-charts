@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.0.0 - 2021-04-06
+
+### Changed
+
+- Upgraded to _Fluentd_ `v1.12.2`
+- Removed `@mainstream` label from default input
+
 ## v1.2.1 - 2021-04-06
 
 ### Added
