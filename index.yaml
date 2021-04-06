@@ -5048,6 +5048,32 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded PlantUML image to v1.2021.4
+        - Support podLabels configuration value
+    apiVersion: v2
+    appVersion: 1.2021.4
+    created: "2021-04-06T09:45:00.696536109Z"
+    description: Helm chart for PlantUML.
+    digest: f86e3cd0164d9784025ee85f23d6b1e3156024d54da18d44c461209fef7f085c
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.5.0/plantuml-2.5.0.tgz
+    version: 2.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded PlantUML image to v1.2021.3
     apiVersion: v2
     appVersion: 1.2021.3
@@ -5752,4 +5778,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-01T15:44:27.264249572Z"
+generated: "2021-04-06T09:45:00.697775909Z"
