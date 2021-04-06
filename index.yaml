@@ -1797,6 +1797,33 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - Added Grafana dashboard
+        - Added Prometheus input metrics
+        - Hide metrics and health check logs
+    apiVersion: v2
+    appVersion: 1.11.5
+    created: "2021-04-06T09:50:46.85048363Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 9bc78367d1be0510c8098f17a8634a342a667746fec65b0d726c8ccca27763de
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-1.2.0/fluentd-aggregator-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - Update default config
     apiVersion: v2
     appVersion: 1.11.5
@@ -5778,4 +5805,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-06T09:45:00.697775909Z"
+generated: "2021-04-06T09:50:46.852308702Z"
