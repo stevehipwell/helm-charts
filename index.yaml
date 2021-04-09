@@ -3828,6 +3828,32 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
+  metrics-server:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release
+    apiVersion: v2
+    appVersion: 0.4.2
+    created: "2021-04-09T10:11:36.435341029Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: 4338221c15c000a61cb693f7732d622cc4c2f029f8e75de217b4ecb21bbbd6cd
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.0.0/metrics-server-3.0.0.tgz
+    version: 3.0.0
   nexus3:
   - annotations:
       artifacthub.io/changes: |
@@ -5856,4 +5882,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-06T15:40:31.928110921Z"
+generated: "2021-04-09T10:11:36.437865068Z"
