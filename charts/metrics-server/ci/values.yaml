@@ -1,2 +1,2 @@
  args:
-    - --kubelet-insecure-tls
+    - --kubelet-insecure-tls=true
