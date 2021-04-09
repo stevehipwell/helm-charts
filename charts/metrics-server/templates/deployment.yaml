@@ -6,6 +6,9 @@ metadata:
     {{- include "metrics-server.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicas }}
+  strategy:
+    rollingUpdate:
+      maxUnavailable: {{ if gt (int .Values.replicas) 1 }}1{{ else }}0{{ end }}
   selector:
     matchLabels:
       {{- include "metrics-server.selectorLabels" . | nindent 6 }}

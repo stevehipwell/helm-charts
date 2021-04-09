@@ -51,7 +51,7 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 10001
 
-priorityClassName: "system-cluster-critical"
+priorityClassName: system-cluster-critical
 
 hostNetwork:
   # Specifies if metrics-server should be started in hostNetwork mode.
@@ -67,17 +67,21 @@ args: []
 
 livenessProbe:
   httpGet:
-    path: /healthz
+    path: /livez
     port: https
     scheme: HTTPS
   initialDelaySeconds: 20
+  periodSeconds: 10
+  failureThreshold: 3
 
 readinessProbe:
   httpGet:
-    path: /healthz
+    path: /readyz
     port: https
     scheme: HTTPS
   initialDelaySeconds: 20
+  periodSeconds: 10
+  failureThreshold: 3
 
 service:
   type: ClusterIP
