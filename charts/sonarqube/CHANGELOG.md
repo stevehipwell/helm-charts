@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.3.0 - 2021-04-12
+
+## Changed
+
+- Upgraded _SonarQube_ image to `v8.8.0`
+- Upgraded _PostgreSQL_ chart to `10.3.17`
+
 ## v1.2.2 - 2021-03-12
 
 ## Changed
@@ -21,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
-- Fixed rendering of `SONAR_JDBC_URL for _PostgreSQL_ sub chart
+- Fixed rendering of `SONAR*JDBC_URL for \_PostgreSQL* sub chart
 
 ## v1.2.0 - 2021-02-16
 
