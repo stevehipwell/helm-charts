@@ -11,11 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.2.0 - 2021-04-14
+
+## Changed
+
+- Upgraded _Confluence Server_ image to `v7.12.0`
+- Upgraded _PostgreSQL_ chart to `v10.3.17` (_PostgreSQL_ `v11.11.0`)
+
 ## v4.1.3 - 2021-03-25
 
 ## Changed
 
-- Upgraded `Confluence Server` image to _v7.11.2_
+- Upgraded _Confluence Server_ image to `v7.11.2`
 
 ## v4.1.2 - 2021-03-05
 
