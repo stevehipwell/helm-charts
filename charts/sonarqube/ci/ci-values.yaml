@@ -1,0 +1,6 @@
+installPlugins:
+  enabled: true
+  plugins:
+    - name: sonarqube-community-branch-plugin
+      url: https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.7.0/sonarqube-community-branch-plugin-1.7.0.jar
+      copyToLib: true
