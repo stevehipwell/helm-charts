@@ -2155,6 +2155,33 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Istio version to v1.9.3
+    apiVersion: v2
+    appVersion: 1.9.3
+    created: "2021-04-16T07:19:41.527989977Z"
+    description: Helm chart for the Istio Operator.
+    digest: 09b31ee73938a746c18813263611e6d13f89c5271cb4a96489e3f022ba4a6099
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.1.5/istio-operator-2.1.5.tgz
+    version: 2.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded Istio version to v1.9.2
     apiVersion: v2
     appVersion: 1.9.2
@@ -5953,4 +5980,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-14T11:11:03.801177052Z"
+generated: "2021-04-16T07:19:41.52939548Z"
