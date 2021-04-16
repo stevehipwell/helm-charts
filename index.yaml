@@ -2928,6 +2928,41 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - Default to JDK 11 image
+        - Upgraded PostgreSQL chart to v10.3.17 (PostgreSQL v11.11.0)
+    apiVersion: v2
+    appVersion: 8.16.0
+    created: "2021-04-16T09:26:52.612908511Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Jira Software.
+    digest: 980e1f7c9eb0f2abf148b7a3d2e0e215de613c05546276adad261800068f6850
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.3.0/jira-software-4.3.0.tgz
+    version: 4.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded Jira image to v8.16.0
     apiVersion: v2
     appVersion: 8.16.0
@@ -6015,4 +6050,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-16T07:27:44.483036217Z"
+generated: "2021-04-16T09:26:52.614717209Z"
