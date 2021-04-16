@@ -5581,6 +5581,41 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - Add custom values for chart CI
+    apiVersion: v2
+    appVersion: 8.8.0
+    created: "2021-04-16T07:27:44.481718526Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: A Helm chart for deploying SonarQube.
+    digest: a612e35bf3a022dc89638a468f3d5b252798a48cc0cd5f7dfb4a30574d72c430
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.3.1/sonarqube-1.3.1.tgz
+    version: 1.3.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded SonarQube image to v8.8.0
         - Upgraded PostgreSQL chart to 10.3.17
     apiVersion: v2
@@ -5980,4 +6015,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-16T07:19:41.52939548Z"
+generated: "2021-04-16T07:27:44.483036217Z"
