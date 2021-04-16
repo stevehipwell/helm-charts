@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.2.1 - 2021-04-16
+
+## Changed
+
+- Use absolute reference to JDK 11 image
+
 ## v4.2.0 - 2021-04-14
 
 ## Changed
