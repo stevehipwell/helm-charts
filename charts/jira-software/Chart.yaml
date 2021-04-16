@@ -16,9 +16,16 @@ icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b
 sources:
   - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
   - https://hub.docker.com/r/atlassian/jira-software/
+  - https://github.com/stevehipwell/helm-charts/
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
+dependencies:
+  - name: postgresql
+    version: ~10.3.17
+    repository: https://charts.bitnami.com/bitnami/
+    condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Upgraded Jira image to v8.16.0
+    - Default to JDK 11 image
+    - Upgraded PostgreSQL chart to v10.3.17 (PostgreSQL v11.11.0)

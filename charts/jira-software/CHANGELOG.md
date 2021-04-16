@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.3.0 - 2021-04-16
+
+## Changed
+
+- Default to JDK 11 image
+- Upgraded _PostgreSQL_ chart to `v10.3.17` (_PostgreSQL_ `v11.11.0`)
+
 ## v4.2.0 - 2021-03-24
 
 ### Changed
