@@ -3996,6 +3996,32 @@ entries:
   metrics-server:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Metrics Server version to v0.4.3
+    apiVersion: v2
+    appVersion: 0.4.3
+    created: "2021-04-21T10:49:43.183452072Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: 6b689f70edfc6ef5b2db331d5daa478389a85c01f68bd1698503c16338ddfe27
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.1.0/metrics-server-3.1.0.tgz
+    version: 3.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Initial release
     apiVersion: v2
     appVersion: 0.4.2
@@ -6118,4 +6144,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-20T09:48:14.730592893Z"
+generated: "2021-04-21T10:49:43.185185985Z"
