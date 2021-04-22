@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.1.0 - 2021-04-22
+
+### Changed
+
+- Added separate route config via `config.route`
+
 ## v2.0.0 - 2021-04-06
 
 ### Changed

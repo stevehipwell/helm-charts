@@ -165,6 +165,19 @@ config:
       </match>
     </label>
 
+  forward: |-
+    <source>
+      @type forward
+      @id input
+      port 24224
+      bind 0.0.0.0
+    </source>
+
+  debug: |-
+    <filter **>
+      @type stdout
+    </filter>
+
   metrics: |-
     <source>
       @type prometheus
@@ -194,21 +207,41 @@ config:
         </labels>
       </metric>
     </filter>
+    <label @PROMETHEUS>
+      <match **>
+        @type prometheus
+        <metric>
+          name fluentd_output_status_num_records_total
+          type counter
+          desc The total number of outgoing records
+          <labels>
+            tag ${tag}
+            hostname ${hostname}
+          </labels>
+        </metric>
+      </match>
+    </label>
 
-  forward: |-
-    <source>
-      @type forward
-      @id input
-      port 24224
-      bind 0.0.0.0
-    </source>
-
-  debug: |-
-    <filter **>
-      @type stdout
-    </filter>
+  no-metrics: |-
+    <label @PROMETHEUS>
+      <match **>
+        @type null
+      </match>
+    </label>
 
   filter: |-
+
+  route: |-
+    <match **>
+      @type route
+      <route **>
+        copy
+        @label @PROMETHEUS
+      </route>
+      <route **>
+        copy
+      </route>
+    </match>
 
   output: |-
     <match **>
