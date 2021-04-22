@@ -1866,6 +1866,32 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - Added separate route config via `config.route`
+    apiVersion: v2
+    appVersion: 1.12.2
+    created: "2021-04-22T10:25:13.47841068Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: e866e588e37d00cad6bfedd0fad93f140820309987c97b7cd1304dbbd056d877
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-2.1.0/fluentd-aggregator-2.1.0.tgz
+    version: 2.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded to Fluentd v1.12.2
         - Removed @mainstream label from default input
     apiVersion: v2
@@ -6144,4 +6170,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-21T10:49:43.185185985Z"
+generated: "2021-04-22T10:25:13.481255186Z"
