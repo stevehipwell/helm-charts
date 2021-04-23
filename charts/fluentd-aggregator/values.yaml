@@ -240,10 +240,13 @@ config:
       </route>
       <route **>
         copy
+        @label @DEFAULT
       </route>
     </match>
 
   output: |-
-    <match **>
-      @type null
-    </match>
+    <label @DEFAULT>
+      <match **>
+        @type null
+      </match>
+    </label>

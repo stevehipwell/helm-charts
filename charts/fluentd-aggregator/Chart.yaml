@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.1.0
+version: 2.1.1
 appVersion: 1.12.2
 keywords:
   - fluent
@@ -19,4 +19,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Added separate route config via `config.route`
+    - Fixed default routing implementation
