@@ -4074,6 +4074,35 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded Nexus3 image to v3.30.1
+    apiVersion: v2
+    appVersion: 3.30.1
+    created: "2021-04-23T07:14:53.851727126Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: c1e73c2a0aca08fcf0f5abe70c8db6263a7e0c8070159b50ed3e304067871c95
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.2.1/nexus3-4.2.1.tgz
+    version: 4.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - Support podLabels configuration for Azure AD Identity
     apiVersion: v2
     appVersion: 3.30.0
@@ -6170,4 +6199,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-22T10:25:13.481255186Z"
+generated: "2021-04-23T07:14:53.853045444Z"
