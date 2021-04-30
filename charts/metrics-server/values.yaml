@@ -43,16 +43,15 @@ podLabels: {}
 podSecurityContext: {}
 
 securityContext:
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop:
-      - all
-    add:
-      - NET_ADMIN
   readOnlyRootFilesystem: true
-  runAsGroup: 10001
   runAsNonRoot: true
-  runAsUser: 10001
+  runAsUser: 1000
+  allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #     - all
+  #   add:
+  #     - NET_ADMIN
 
 priorityClassName: system-cluster-critical
 
