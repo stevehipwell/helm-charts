@@ -45,7 +45,10 @@ podSecurityContext: {}
 securityContext:
   allowPrivilegeEscalation: false
   capabilities:
-    drop: ["all"]
+    drop:
+      - all
+    add:
+      - NET_ADMIN
   readOnlyRootFilesystem: true
   runAsGroup: 10001
   runAsNonRoot: true
