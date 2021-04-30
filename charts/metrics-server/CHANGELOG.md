@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.2.0 - 2021-04-30
+
+### Changed
+
+- Upgraded _Metrics Server_ version to `v0.4.4`
+
 ## v3.1.0 - 2021-04-21
 
 ### Changed
