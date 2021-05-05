@@ -1526,6 +1526,33 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
+  external-dns:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release
+    apiVersion: v2
+    appVersion: 0.8.0
+    created: "2021-05-05T10:47:08.543150147Z"
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 1a7b28e267d061186524e8af754aedfa071ee1addcf6602433bfe966306e50e2
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/img/external-dns.png
+    keywords:
+    - kubernetes
+    - external-dns
+    - dns
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/external-dns-1.0.0/external-dns-1.0.0.tgz
+    version: 1.0.0
   fluentd:
   - apiVersion: v2
     appVersion: 1.11.1
@@ -6330,4 +6357,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-05T07:31:48.702278604Z"
+generated: "2021-05-05T10:47:08.545050963Z"
