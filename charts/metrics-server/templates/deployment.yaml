@@ -21,7 +21,7 @@ spec:
       labels:
         {{- include "metrics-server.selectorLabels" . | nindent 8 }}
         {{- with .Values.podLabels }}
-        {{- toYaml .Values.podLabels | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -53,14 +53,12 @@ spec:
             {{- end }}
           ports:
           - name: https
-            containerPort: 4443
             protocol: TCP
+            containerPort: 4443
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
-          resources:
-            {{- toYaml .Values.resources | trim | nindent 12 }}
           volumeMounts:
           - name: tmp
             mountPath: /tmp
