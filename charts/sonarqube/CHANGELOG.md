@@ -11,12 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v1.4.0 - 2021-05-05
+
+## Changed
+
+- Upgraded _SonarQube_ image to `v8.9.0`
+
+## v1.3.1 - 2021-04-16
+
+## Changed
+
+- Add custom values for chart CI
+
 ## v1.3.0 - 2021-04-12
 
 ## Changed
 
 - Upgraded _SonarQube_ image to `v8.8.0`
-- Upgraded _PostgreSQL_ chart to `10.3.17`
+- Upgraded _PostgreSQL_ chart to `v10.3.17` (_PostgreSQL_ `v11.11.0`)
 
 ## v1.2.2 - 2021-03-12
 
