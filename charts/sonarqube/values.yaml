@@ -122,7 +122,6 @@ installPlugins:
   plugins: []
     # - name: my-plugin
     #   url: https://binaries.sonarsource.com/Distribution/my-plugin/my-plugin-1.0.0.jar
-    #   copyToLib: false
 
 ## These settings are only required if you wish to use an existing postgresql instance
 ##

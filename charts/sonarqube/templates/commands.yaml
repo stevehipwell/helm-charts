@@ -45,10 +45,6 @@ data:
 
     {{- range $index, $val := .Values.installPlugins.plugins }}
     cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/extensions/plugins/{{ $val.name }}.jar
-
-    {{- if $val.copyToLib }}
-    cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/lib/common/{{ $val.name }}.jar
-    {{- end }}
     {{- end }}
 
     /opt/sonarqube/bin/run.sh
