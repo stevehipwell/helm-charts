@@ -94,6 +94,10 @@ service:
   #  kubernetes.io/cluster-service: "true"
   #  kubernetes.io/name: "Metrics-server"
 
+extraVolumes: []
+
+extraVolumeMounts: []
+
 resources: {}
 
 nodeSelector: {}
