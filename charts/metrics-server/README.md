@@ -4,7 +4,7 @@
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `metrics-server` repo to [Helm](https://helm.sh/).
+Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
@@ -48,6 +48,8 @@ The following table lists the configurable parameters of the _Metrics Server_ ch
 | `service.port`                       | Service port.                                                                                                                                                                                                                                                    | `443`                                      |
 | `service.annotations`                | Annotations to add to the service.                                                                                                                                                                                                                               | `{}`                                       |
 | `service.labels`                     | Labels to add to the service.                                                                                                                                                                                                                                    | `{}`                                       |
+| `extraVolumes`                       | Additional volumes.                                                                                                                                                                                                                                              | `[]`                                       |
+| `extraVolumeMounts`                  | Additional mounts.                                                                                                                                                                                                                                               | `[]`                                       |
 | `resources`                          | Resource requests and limits.                                                                                                                                                                                                                                    | `{}`                                       |
 | `nodeSelector`                       | Node labels for pod assignment.                                                                                                                                                                                                                                  | `{}`                                       |
 | `tolerations`                        | Toleration labels for pod assignment.                                                                                                                                                                                                                            | `[]`                                       |

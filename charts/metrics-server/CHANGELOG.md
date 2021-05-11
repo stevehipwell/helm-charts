@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.2.2 - 2021-05-11
+
+### Changed
+
+- Support additional volumes via `extraVolumes` & `extraVolumeMounts`
+
 ## v3.2.1 - 2021-05-05
 
 ### Changed

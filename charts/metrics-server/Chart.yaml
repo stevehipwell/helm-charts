@@ -2,7 +2,7 @@ apiVersion: v2
 name: metrics-server
 description: Metrics Server is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 type: application
-version: 3.2.1
+version: 3.2.2
 appVersion: 0.4.4
 keywords:
   - kubernetes
@@ -18,4 +18,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Fix minor config issues
+    - Support extraVolumes & extraVolumeMounts
