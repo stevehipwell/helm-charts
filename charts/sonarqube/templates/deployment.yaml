@@ -114,12 +114,16 @@ spec:
           env:
             - name: SONAR_WEB_JAVAOPTS
               {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/opt/sonarqube/certs/cacerts %s" .Values.envVars.jvmOptions | trim | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/opt/sonarqube/certs/cacerts %s" .Values.envVars.javaOptionsWeb | trim | quote }}
               {{- else }}
-              value: {{ .Values.envVars.jvmOptions | trim | quote }}
+              value: {{ .Values.envVars.javaOptionsWeb | trim | quote }}
               {{- end }}
             - name: SONAR_WEB_JAVAADDITIONALOPTS
-              value: {{ .Values.envVars.jvmAdditionalOptions | trim | quote }}
+              value: {{ .Values.envVars.javaAdditionalOptionsWeb | trim | quote }}
+            - name: SONAR_CE_JAVAOPTS
+              value: {{ .Values.envVars.javaOptionsCE | trim | quote }}
+            - name: SONAR_CE_JAVAADDITIONALOPTS
+              value: {{ .Values.envVars.javaAdditionalOptionsCE | trim | quote }}
             {{- if .Values.postgresql.enabled }}
             - name: SONAR_JDBC_URL
               value: {{ printf "jdbc:postgresql://%s:%d/%s" (include "sonarqube.postgresql.fullname" .) (int .Values.postgresql.service.port | default 5432) .Values.postgresql.postgresqlDatabase | quote }}

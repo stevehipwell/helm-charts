@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.0.0
+
+## Added
+
+- Support for CE environment variables via `javaOptionsCE` & `javaAdditionalOptionsCE`
+
+## Changed
+
+- Renamed `envVars.jvmOptions` to `envVars.javaOptionsWeb`
+- Renamed `envVars.jvmAdditionalOptions` to `envVars.javaAdditionalOptionsWeb`
+
 ## v1.4.0 - 2021-05-05
 
 ## Changed
