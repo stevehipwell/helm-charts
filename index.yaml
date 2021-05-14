@@ -6003,6 +6003,44 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - Upgraded SonarQube image to v8.9.0
+        - Support for CE environment variables via javaOptionsCE & javaAdditionalOptionsCE
+        - Renamed envVars.jvmOptions to envVars.javaOptionsWeb
+        - Renamed envVars.jvmAdditionalOptions to envVars.javaAdditionalOptionsWeb
+    apiVersion: v2
+    appVersion: 8.9.0
+    created: "2021-05-14T08:13:47.290424163Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: A Helm chart for deploying SonarQube.
+    digest: 84e5e4682cd8dd91be47973a98e994337cdad62b2d30b77286712d9091d2ebcb
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-2.0.0/sonarqube-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Upgraded SonarQube image to v8.9.0
     apiVersion: v2
     appVersion: 8.9.0
     created: "2021-05-07T05:52:52.075029135Z"
@@ -6471,4 +6509,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-12T07:41:22.270184364Z"
+generated: "2021-05-14T08:13:47.291693478Z"
