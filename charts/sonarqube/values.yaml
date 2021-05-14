@@ -103,8 +103,10 @@ caCerts:
   secret:
 
 envVars:
-  jvmOptions: ""
-  jvmAdditionalOptions: ""
+  javaOptionsWeb: ""
+  javaAdditionalOptionsWeb: ""
+  javaOptionsCE: ""
+  javaAdditionalOptionsCE: ""
 
 env: []
   # - name: VARIABLE
