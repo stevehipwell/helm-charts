@@ -5609,6 +5609,32 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Upgraded PlantUML image to v1.2021.6
+    apiVersion: v2
+    appVersion: 1.2021.6
+    created: "2021-05-17T07:03:21.029145839Z"
+    description: Helm chart for PlantUML.
+    digest: 873e4a87c65b3603ba2d698bf69f9d825f5bbe6b5952c5da86c4fa59e00a6e19
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.7.0/plantuml-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded PlantUML image to v1.2021.5
     apiVersion: v2
     appVersion: 1.2021.5
@@ -6509,4 +6535,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-14T08:13:47.291693478Z"
+generated: "2021-05-17T07:03:21.031683978Z"
