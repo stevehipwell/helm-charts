@@ -1927,6 +1927,32 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - Update Fluentd Docker image to v1.12.4 (Fluentd v1.12.3)
+    apiVersion: v2
+    appVersion: 1.12.4
+    created: "2021-05-19T13:49:55.410295838Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: a64007aeee170433e0ab38e00c9393da60c41c97ba96049eefa93563357c26d0
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-2.2.0/fluentd-aggregator-2.2.0.tgz
+    version: 2.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - Update Fluentd Docker image to v1.12.3 (Fluentd v1.12.2)
     apiVersion: v2
     appVersion: 1.12.3
@@ -6630,4 +6656,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-19T13:32:26.259897555Z"
+generated: "2021-05-19T13:49:55.411567248Z"
