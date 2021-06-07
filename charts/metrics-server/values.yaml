@@ -65,14 +65,15 @@ hostNetwork:
 
 replicas: 1
 
-args: []
+args:
+  - --metric-resolution=15s
 
 livenessProbe:
   httpGet:
     path: /livez
     port: https
     scheme: HTTPS
-  initialDelaySeconds: 20
+  initialDelaySeconds: 0
   periodSeconds: 10
   failureThreshold: 3
 

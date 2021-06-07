@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.3.0 - 2021-06-07
+
+### Changed
+
+- Upgraded _Metrics Server_ version to [v0.5.0](https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.5.0)
+- Switch container port to `443`
+- Set default value for `args` to include `--metric-resolution=15s`
+- Revert liveness check initial delay to `0s`
+
 ## v3.2.2 - 2021-05-11
 
 ### Changed
