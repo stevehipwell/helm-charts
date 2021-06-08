@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.3.1 - 2021-06-08
+
+### Changed
+
+- Fix container port and make configurable
+
 ## v3.3.0 - 2021-06-07
 
 ### Changed
