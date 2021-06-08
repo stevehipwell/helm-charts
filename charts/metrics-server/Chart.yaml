@@ -2,7 +2,7 @@ apiVersion: v2
 name: metrics-server
 description: Metrics Server is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 type: application
-version: 3.3.0
+version: 3.3.1
 appVersion: 0.5.0
 keywords:
   - kubernetes
@@ -18,7 +18,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Upgraded Metrics Server version to v0.5.0
-    - Switch container port to 443
-    - Set default value for args to include --metric-resolution=15s
-    - Revert liveness check initial delay to 0s
+    - Fix container port and make configurable

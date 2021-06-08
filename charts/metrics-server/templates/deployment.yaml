@@ -45,7 +45,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - --cert-dir=/tmp
-            - --secure-port=443
+            - {{ printf "--secure-port=%d" .Values.containerPort }}
             - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
             - --kubelet-use-node-status-port
             {{- range .Values.args }}
@@ -54,7 +54,7 @@ spec:
           ports:
           - name: https
             protocol: TCP
-            containerPort: 443
+            containerPort: {{ .Values.containerPort }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
