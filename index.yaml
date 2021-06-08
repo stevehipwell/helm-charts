@@ -4310,6 +4310,32 @@ entries:
   metrics-server:
   - annotations:
       artifacthub.io/changes: |
+        - Fix container port and make configurable
+    apiVersion: v2
+    appVersion: 0.5.0
+    created: "2021-06-08T16:35:49.904352499Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: 30c109dbfc7ca783cbec1402217515ea1d767127a1cd99764cf46f3aac1d2094
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.3.1/metrics-server-3.3.1.tgz
+    version: 3.3.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded Metrics Server version to v0.5.0
         - Switch container port to 443
         - Set default value for args to include --metric-resolution=15s
@@ -6745,4 +6771,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-08T07:00:40.993218773Z"
+generated: "2021-06-08T16:35:49.905743919Z"
