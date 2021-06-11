@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 2.0.0
-appVersion: 8.9.0
+version: 2.0.1
+appVersion: 8.9.1
 keywords:
   - sonarqube
   - sast
@@ -28,7 +28,4 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Upgraded SonarQube image to v8.9.0
-    - Support for CE environment variables via javaOptionsCE & javaAdditionalOptionsCE
-    - Renamed envVars.jvmOptions to envVars.javaOptionsWeb
-    - Renamed envVars.jvmAdditionalOptions to envVars.javaAdditionalOptionsWeb
+    - Upgraded SonarQube image to v8.9.1
