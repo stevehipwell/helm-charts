@@ -20,7 +20,7 @@ spec:
       labels:
         {{- include "fluentd-aggregator.selectorLabels" . | nindent 8 }}
       {{- with .Values.podLabels }}
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
       {{- with .Values.image.pullSecrets }}
@@ -42,23 +42,19 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
-            {{- . | toYaml | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
-            - name: http
-              protocol: TCP
-              containerPort: 9880
-            - name: monitor
-              protocol: TCP
-              containerPort: 24220
-            - name: forward
-              protocol: TCP
-              containerPort: 24224
-            {{- if .Values.metrics.enabled }}
+          {{- range $key, $val := .Values.service.ports }}
+            - name: {{ $key }}
+              protocol: {{ $val.protocol }}
+              containerPort: {{ $val.port }}
+          {{- end }}
+          {{- if .Values.metrics.enabled }}
             - name: metrics
               protocol: TCP
               containerPort: {{ .Values.metrics.port }}
-            {{- end }}
+          {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -75,10 +71,10 @@ spec:
           configMap:
             name: {{ template "fluentd-aggregator.fullname" . }}
             defaultMode: 0777
-        {{- if not .Values.persistence.enabled }}
+      {{- if not .Values.persistence.enabled }}
         - name: buffer
           emptyDir: {}
-        {{- end }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
