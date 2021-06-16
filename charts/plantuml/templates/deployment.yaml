@@ -20,7 +20,7 @@ spec:
       labels:
         {{- include "plantuml.selectorLabels" . | nindent 8 }}
       {{- with .Values.podLabels }}
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
       {{- with .Values.image.pullSecrets }}
@@ -40,7 +40,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
-            {{- . | toYaml | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           command: ["sh"]
           args: ["-c", "cp -f /opt/java/openjdk/lib/security/cacerts /var/cacerts/keystore/cacerts; for f in /var/cacerts/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/cacerts/keystore/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
@@ -58,7 +58,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
-            {{- . | toYaml | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http

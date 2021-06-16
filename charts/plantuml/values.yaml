@@ -49,22 +49,24 @@ service:
 ingress:
   enabled: false
   annotations: {}
+  ingressClassName: ""
   hosts: []
-    # - host: chart-example.local
-    #   paths:
-    #     - "/"
+  #   - plantuml.local
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  #    - hosts:
+  #        - plantuml.local
+  #      secretName: plantuml-tls
 
-resources:
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
+#   limits:
+#     cpu: 100m
+#     memory: 128Mi
 
 replicaCount: 1
 maxUnavailable: 0
@@ -86,5 +88,5 @@ caCerts:
   secret:
 
 env:
-  # - name: VARIABLE
-  #   value: my-value
+#   - name: VARIABLE
+#     value: my-value
