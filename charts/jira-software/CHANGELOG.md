@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.4.1 - 2021-06-16
+
+## Changed
+
+- Upgraded _Jira_ image to `v8.17.1`
+
 ## v4.4.0 - 2021-05-19
 
 ## Changed
