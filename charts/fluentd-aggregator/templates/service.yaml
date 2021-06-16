@@ -6,18 +6,18 @@ metadata:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  selector:
+    {{- include "fluentd-aggregator.selectorLabels" . | nindent 4 }}
   ports:
-    {{- range .Values.service.ports }}
-    - name: {{ .name }}
-      protocol: {{ .protocol }}
-      port: {{ .port }}
-      targetPort: {{ .name }}
-    {{- end }}
-    {{- if .Values.metrics.enabled }}
+  {{- range $key, $val := .Values.service.ports }}
+    - name: {{ $key }}
+      protocol: {{ $val.protocol }}
+      port: {{ $val.port }}
+      targetPort: {{ $key }}
+  {{- end }}
+  {{- if .Values.metrics.enabled }}
     - name: metrics
       protocol: TCP
       port: {{ .Values.metrics.port }}
       targetPort: metrics
-    {{- end }}
-  selector:
-    {{- include "fluentd-aggregator.selectorLabels" . | nindent 4 }}
+  {{- end }}

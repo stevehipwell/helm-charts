@@ -29,12 +29,12 @@ podSecurityContext:
   fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+#   capabilities:
+#     drop:
+#       - ALL
+#   readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+#   runAsUser: 1000
 
 priorityClassName: ""
 
@@ -60,10 +60,13 @@ service:
   type: ClusterIP
   annotations: {}
   ports:
-    - name: monitor
+    http:
+      protocol: TCP
+      port: 9880
+    monitor:
       protocol: TCP
       port: 24220
-    - name: forward
+    forward:
       protocol: TCP
       port: 24224
 
@@ -83,15 +86,14 @@ dashboards:
 ingress:
   enabled: false
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  ingressClassName: ""
   hosts: []
-    # - host: chart-example.local
-    #   paths: []
+  #   - host: chart-example.local
+  #     paths: []
   tls: []
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
+  #   - hosts:
+  #       - chart-example.local
+  #     secretName: chart-example-tls
 
 persistence:
   enabled: false
@@ -102,16 +104,16 @@ persistence:
   size: 8Gi
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#   limits:
+#     cpu: 100m
+#     memory: 128Mi
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
 
 replicaCount: 1
 terminationGracePeriodSeconds: 30
@@ -123,8 +125,8 @@ tolerations: []
 affinity: {}
 
 env: []
-  # - name: VARIABLE
-  #   value: my-value
+#   - name: VARIABLE
+#     value: my-value
 
 debug: false
 
