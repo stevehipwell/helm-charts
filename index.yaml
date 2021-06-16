@@ -5908,6 +5908,33 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - Support K8s v1.18 ingress changes
+        - Remove customisable ingress paths
+    apiVersion: v2
+    appVersion: 1.2021.7
+    created: "2021-06-16T13:44:23.650971502Z"
+    description: Helm chart for PlantUML.
+    digest: decce30b00026129404b4f4e9a31e5b41d22b1901e88861e54787068e50d003d
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-2.8.1/plantuml-2.8.1.tgz
+    version: 2.8.1
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded PlantUML image to v1.2021.7
     apiVersion: v2
     appVersion: 1.2021.7
@@ -6895,4 +6922,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-16T13:24:39.291671057Z"
+generated: "2021-06-16T13:44:23.652623881Z"
