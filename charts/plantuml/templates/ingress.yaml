@@ -14,7 +14,6 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-
 {{- if and $apiIsStable .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
 {{- end }}
