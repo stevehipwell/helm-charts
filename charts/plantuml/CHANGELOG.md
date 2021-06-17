@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v2.8.1 - 2021-06-16
+## v3.0.0 - 2021-06-17
 
 ### Changed
 
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Customisable ingress paths
+- Customisable ingress paths per-host as using anything except `/` would break the PlantUML service
 
 ## v2.8.0 - 2021-05-25
 
