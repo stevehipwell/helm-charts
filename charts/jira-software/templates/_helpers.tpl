@@ -74,5 +74,5 @@ Create a default fully qualified app name for the postgres requirement.
 */}}
 {{- define "jira-software.postgresql.fullname" -}}
 {{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.fullname" $postgresContext }}
+{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
