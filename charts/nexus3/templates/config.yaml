@@ -13,16 +13,16 @@ data:
   {{- end }}
   {{- with .Values.config.anonymous }}
   anonymous.json: |
-    {{- . | toJson | trim | nindent 4 }}
+    {{- toJson . | nindent 4 }}
   {{- end }}
   {{- if .Values.config.realms.enabled }}
   realms.json: |
-    {{- .Values.config.realms.values | toJson | trim | nindent 4 }}
+    {{- .Values.config.realms.values | toJson | nindent 4 }}
   {{- end }}
   {{- if .Values.config.ldap.enabled }}
   ldap.json: |
     {{- with omit .Values.config.ldap "enabled" "authPassword" }}
-    {{-  set . "authPassword" "PASSWORD" | toJson | trim | nindent 4 }}
+    {{-  set . "authPassword" "PASSWORD" | toJson | nindent 4 }}
     {{- end }}
   {{- end }}
   {{- if .Values.metrics.enabled }}
@@ -33,22 +33,22 @@ data:
   {{- end }}
   {{- range $index, $blobStore := .Values.config.blobStores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
-    {{- $blobStore | toJson | trim | nindent 4 }}
+    {{- $blobStore | toJson | nindent 4 }}
   {{- end }}
   {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
-    {{- $cleanup | toJson | trim | nindent 4 }}
+    {{- $cleanup | toJson | nindent 4 }}
   {{- end }}
   {{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
-    {{- $repo | toJson | trim | nindent 4 }}
+    {{- $repo | toJson | nindent 4 }}
   {{- end }}
   {{- range $index, $role := .Values.config.roles }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
-    {{- $role | toJson | trim | nindent 4 }}
+    {{- $role | toJson | nindent 4 }}
   {{- end }}
   {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |
-    {{- $task | toJson | trim | nindent 4 }}
+    {{- $task | toJson | nindent 4 }}
   {{- end }}
 {{- end }}

@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.3.0 - 2021-06-21
+
+### Changed
+
+- Upgraded `Nexus3` image to `v3.31.0`
+- Support K8s v1.18 ingress changes
+
+### Removed
+
+- Customisable ingress path (not actually supported)
+
 ## v4.2.1 - 2021-04-23
 
 ### Changed
