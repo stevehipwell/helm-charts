@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.2.1
-appVersion: 3.30.1
+version: 4.3.0
+appVersion: 3.31.0
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 keywords:
@@ -22,4 +22,6 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Upgraded Nexus3 image to v3.30.1
+    - Upgraded Nexus3 image to v3.31.0
+    - Support K8s v1.18 ingress changes
+    - Removed customisable ingress path (not actually supported)
