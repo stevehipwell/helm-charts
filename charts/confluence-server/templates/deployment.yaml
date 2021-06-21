@@ -17,7 +17,7 @@ spec:
       {{- include "confluence-server.selectorLabels" . | nindent 8 }}
       {{- with .Values.podAnnotations }}
       annotations:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
       {{- with .Values.image.pullSecrets }}
@@ -28,7 +28,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.priorityClassName }}
-      priorityClassName: {{ . | quote }}
+      priorityClassName: {{ quote . }}
       {{- end }}
       {{- if .Values.caCerts.enabled }}
       initContainers:
@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
-            {{- . | toYaml | trim | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           command: ["sh"]
           args: ["-c", "cp -f \"${JAVA_HOME}/lib/security/cacerts\" /var/atlassian/application-data/confluence/cacerts; for f in /var/atlassian/application-data/confluence/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/confluence/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
@@ -104,7 +104,7 @@ spec:
               value: "postgresql"
             {{- end }}
             {{- with .Values.env }}
-            {{- . | toYaml | trim | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
             - name: http
@@ -121,7 +121,7 @@ spec:
             - mountPath: /var/atlassian/application-data/confluence
               name: {{ include "confluence-server.pvcname" . }}
           resources:
-            {{- .Values.resources | toYaml | trim | nindent 12 }}
+            {{- .Values.resources | toYaml | nindent 12 }}
       volumes:
         - name: {{ include "confluence-server.pvcname" . }}
           {{- if .Values.persistence.enabled }}
@@ -137,13 +137,13 @@ spec:
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
