@@ -6500,6 +6500,42 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - Support K8s v1.18 ingress changes
+        - Customisable ingress paths (unsupported)
+    apiVersion: v2
+    appVersion: 8.9.1
+    created: "2021-06-21T10:43:38.255616656Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: A Helm chart for deploying SonarQube.
+    digest: 780b1a46d6674881ba3d46deef6db5ea2d284874c20f5092c9b5fc8fbd95fd87
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-3.0.0/sonarqube-3.0.0.tgz
+    version: 3.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded SonarQube image to v8.9.1
     apiVersion: v2
     appVersion: 8.9.1
@@ -7042,4 +7078,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-21T09:56:34.601186063Z"
+generated: "2021-06-21T10:43:38.257674008Z"
