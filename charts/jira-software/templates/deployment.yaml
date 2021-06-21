@@ -17,7 +17,7 @@ spec:
       {{- include "jira-software.selectorLabels" . | nindent 8 }}
     {{- with .Values.podAnnotations }}
       annotations:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
     {{- end }}
     spec:
     {{- with .Values.image.pullSecrets }}
@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
-            {{- . | toYaml | trim | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           command: ["sh"]
           args: ["-c", "cp -f \"${JAVA_HOME}/lib/security/cacerts\" /var/atlassian/application-data/jira/cacerts; for f in /var/atlassian/application-data/jira/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/atlassian/application-data/jira/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
@@ -108,7 +108,7 @@ spec:
               value: "postgres72"
             {{- end }}
             {{- with .Values.env }}
-            {{- . | toYaml | trim | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
             - name: http
@@ -138,13 +138,13 @@ spec:
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-        {{- . | toYaml | trim | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
