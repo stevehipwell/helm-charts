@@ -2,7 +2,7 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 2.0.1
+version: 3.0.0
 appVersion: 8.9.1
 keywords:
   - sonarqube
@@ -28,4 +28,5 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Upgraded SonarQube image to v8.9.1
+    - Support K8s v1.18 ingress changes
+    - Customisable ingress paths (unsupported)

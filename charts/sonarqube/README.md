@@ -42,8 +42,9 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `service.port`                     | Service port.                                                                                                                    | `9000`                              |
 | `ingress.enabled`                  | If `true`, create an ingress object.                                                                                             | `false`                             |
 | `ingress.annotations`              | Ingress annotations.                                                                                                             | `{}`                                |
-| `ingress.hosts`                    | Ingress hosts.                                                                                                                   | See _values.yaml_                   |
-| `ingress.tls`                      | Ingress TLS configuration                                                                                                        | See _values.yaml_                   |
+| `ingress.ingressClassName`         | Ingress class to use.                                                                                                            | `""`                                |
+| `ingress.hosts`                    | Ingress hosts.                                                                                                                   | `[]`                                |
+| `ingress.tls`                      | Ingress TLS configuration                                                                                                        | `[]`                                |
 | `persistence.enabled`              | If `true`, create a PVC.                                                                                                         | `false`                             |
 | `persistence.annotations`          | Annotations to add to the PVC.                                                                                                   | `{}`                                |
 | `persistence.existingClaim`        | Use an existing PVC to persist data.                                                                                             | `nil`                               |

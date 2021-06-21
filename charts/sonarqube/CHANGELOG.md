@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.0.0 - 2021-06-21
+
+### Changed
+
+- Support K8s v1.18 ingress changes
+
+### Removed
+
+- Customisable ingress paths (unsupported)
+
 ## v2.0.1 - 2021-06-11
 
 ## Changed
