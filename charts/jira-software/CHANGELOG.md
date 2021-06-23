@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.4.3 - 2021-06-23
+
+### Changed
+
+- Fix ingress template
+
 ## v4.4.2 - 2021-06-21
 
 ### Changed
