@@ -3323,6 +3323,40 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - Fix ingress template
+    apiVersion: v2
+    appVersion: 8.17.1
+    created: "2021-06-23T16:15:04.467926597Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Jira Software.
+    digest: 36bac9004af04a6216e6c6440738e2ef64149f0436ab8465d54386f3fb743381
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.4.3/jira-software-4.4.3.tgz
+    version: 4.4.3
+  - annotations:
+      artifacthub.io/changes: |
         - Support K8s v1.18 ingress changes
         - Fixed PostgreSQL support
         - Removed customisable ingress path (not actually supported)
@@ -7107,4 +7141,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-23T12:51:59.304867542Z"
+generated: "2021-06-23T16:15:04.469439515Z"
