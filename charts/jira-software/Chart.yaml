@@ -2,7 +2,7 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 4.4.2
+version: 4.4.3
 appVersion: 8.17.1
 keywords:
   - jira
@@ -27,6 +27,4 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Support K8s v1.18 ingress changes
-    - Fixed PostgreSQL support
-    - Removed customisable ingress path (not actually supported)
+    - Fix ingress template
