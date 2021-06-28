@@ -3376,6 +3376,40 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - Modify liveness probe to use TCP socket
+    apiVersion: v2
+    appVersion: 8.17.1
+    created: "2021-06-28T13:35:04.064551849Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Jira Software.
+    digest: 67d1a8389511a450900f0d375e1817444cf3a271cd2662a7edc652d6b9072d65
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.4.4/jira-software-4.4.4.tgz
+    version: 4.4.4
+  - annotations:
+      artifacthub.io/changes: |
         - Fix ingress template
     apiVersion: v2
     appVersion: 8.17.1
@@ -7194,4 +7228,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-25T09:11:34.439647353Z"
+generated: "2021-06-28T13:35:04.066903298Z"
