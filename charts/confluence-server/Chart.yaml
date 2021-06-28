@@ -2,7 +2,7 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 4.2.4
+version: 4.2.5
 appVersion: 7.12.2
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
@@ -27,6 +27,4 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Support K8s v1.18 ingress changes
-    - Fixed PostgreSQL support
-    - Removed customisable ingress path (not actually supported)
+    - Modify liveness probe to use TCP socket
