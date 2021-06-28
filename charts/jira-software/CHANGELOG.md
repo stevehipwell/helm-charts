@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.4.4 - 2021-06-28
+
+### Changed
+
+- Modify liveness probe to use TCP socket
+
 ## v4.4.3 - 2021-06-23
 
 ### Changed
