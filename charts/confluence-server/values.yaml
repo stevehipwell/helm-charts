@@ -37,8 +37,7 @@ securityContext: {}
 priorityClassName: ""
 
 livenessProbe:
-  httpGet:
-    path: /status
+  tcpSocket:
     port: http
   initialDelaySeconds: 60
   periodSeconds: 30
