@@ -117,6 +117,12 @@ resources: {}
 replicaCount: 1
 terminationGracePeriodSeconds: 30
 
+podDisruptionBudget:
+  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  enabled: false
+  minAvailable:
+  maxUnavailable:
+
 nodeSelector: {}
 
 tolerations: []

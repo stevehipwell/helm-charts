@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Update _Fluentd Aggregator_ Docker image to `v1.13.1` (_Fluentd_ `v1.13.1`)
+- Add _PodDisruptionBudget_ support
+
+## v2.4.0 - 2021-06-24
+
+### Changed
+
 - Update _Fluentd Aggregator_ Docker image to `v1.13.0` (_Fluentd_ `v1.13.0`)
 
 ## v2.3.1 - 2021-06-17
