@@ -6,6 +6,40 @@ entries:
         - Bump version
     apiVersion: v2
     appVersion: 7.12.2
+    created: "2021-07-02T11:57:32.814456112Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Confluence Server.
+    digest: ef1a7154fb9f4e1ba4fca00cf19f32eb46abae598162b9eb168c0406cef67c7e
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.2.7/confluence-server-4.2.7.tgz
+    version: 4.2.7
+  - annotations:
+      artifacthub.io/changes: |
+        - Bump version
+    apiVersion: v2
+    appVersion: 7.12.2
     created: "2021-07-02T07:47:24.47607992Z"
     dependencies:
     - condition: postgresql.enabled
@@ -1629,6 +1663,32 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/descheduler-1.0.0/descheduler-1.0.0.tgz
     version: 1.0.0
   external-dns:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial release
+    apiVersion: v2
+    appVersion: 0.8.0
+    created: "2021-07-02T11:57:32.919296086Z"
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 3f304349a2d819245f5a13689e72114fc2ceb4af10e1703ac3d2d0d5ce94c87c
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/img/external-dns.png
+    keywords:
+    - kubernetes
+    - external-dns
+    - dns
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/external-dns-1.0.1/external-dns-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - Initial release
@@ -3435,6 +3495,40 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-1.0.0/istio-operator-1.0.0.tgz
     version: 1.0.0
   jira-software:
+  - annotations:
+      artifacthub.io/changes: |
+        Update Jira image to v8.18.0
+    apiVersion: v2
+    appVersion: 8.18.0
+    created: "2021-07-02T11:57:33.037873348Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Jira Software.
+    digest: 50039b9812d886e0fdba02a7bc8c5a6e53cc0917d4d4e93ef0ef17eac11d85c4
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.5.0/jira-software-4.5.0.tgz
+    version: 4.5.0
   - annotations:
       artifacthub.io/changes: |
         - Modify liveness probe to use TCP socket
@@ -7289,4 +7383,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-02T07:47:24.477301014Z"
+generated: "2021-07-02T11:57:33.039814061Z"
