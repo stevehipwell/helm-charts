@@ -3553,37 +3553,6 @@ entries:
       urls:
         - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.5.1/jira-software-4.5.1.tgz
       version: 4.5.1
-    - apiVersion: v2
-      appVersion: 8.18.0
-      created: "2021-07-02T11:57:33.037873348Z"
-      dependencies:
-        - condition: postgresql.enabled
-          name: postgresql
-          repository: https://charts.bitnami.com/bitnami/
-          version: ~10.3.17
-      description: Helm chart for Atlassian Jira Software.
-      digest: 50039b9812d886e0fdba02a7bc8c5a6e53cc0917d4d4e93ef0ef17eac11d85c4
-      home: https://www.atlassian.com/software/jira
-      icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
-      keywords:
-        - jira
-        - jira-software
-        - atlassian
-        - agile
-        - project
-        - management
-      maintainers:
-        - email: steve.hipwell@gmail.com
-          name: stevehipwell
-      name: jira-software
-      sources:
-        - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
-        - https://hub.docker.com/r/atlassian/jira-software/
-        - https://github.com/stevehipwell/helm-charts/
-      type: application
-      urls:
-        - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.5.0/jira-software-4.5.0.tgz
-      version: 4.5.0
     - annotations:
         artifacthub.io/changes: |
           - Modify liveness probe to use TCP socket
