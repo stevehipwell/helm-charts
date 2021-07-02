@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 4.4.4
-appVersion: 8.17.1
+version: 4.5.0
+appVersion: 8.18.0
 keywords:
   - jira
   - jira-software
@@ -27,4 +27,4 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - Modify liveness probe to use TCP socket
+     Update Jira image to v8.18.0
