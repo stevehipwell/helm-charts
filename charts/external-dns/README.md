@@ -24,7 +24,7 @@ The following table lists the configurable parameters of the _ExternalDNS_ chart
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | `image.repository`                | Image repository.                                                                                                                | `k8s.gcr.io/external-dns/external-dns` |
 | `image.tag`                       | Image tag.                                                                                                                       | `v{{ .Chart.AppVersion }}`             |
-| `image.pullPolPcy`                | Image pull policy.                                                                                                               | `IfNotPresent`                         |
+| `image.pullPolicy`                | Image pull policy.                                                                                                               | `IfNotPresent`                         |
 | `imagePullSecrets`                | Image pull secrets.                                                                                                              | `[]`                                   |
 | `nameOverride`                    | Override the `name` of the chart.                                                                                                | `nil`                                  |
 | `fullnameOverride`                | Override the `fullname` of the chart.                                                                                            | `nil`                                  |
@@ -36,7 +36,7 @@ The following table lists the configurable parameters of the _ExternalDNS_ chart
 | `podLabels`                       | Labels to add to the pod.                                                                                                        | `{}`                                   |
 | `podSecurityContext`              | Security context for the pod.                                                                                                    | `{fsGroup: 2000}`                      |
 | `securityContext`                 | Security context for the _fluentd_ container.                                                                                    | `{}`                                   |
-| `priorityClassName` P             | Priority class name to use.                                                                                                      | `""`                                   |
+| `priorityClassName`               | Priority class name to use.                                                                                                      | `""`                                   |
 | `serviceMonitor.enabled`          | If `true`, create a Prometheus service monitor.                                                                                  | `false`                                |
 | `serviceMonitor.additionalLabels` | Additional labels to be set on the Prometheus ServiceMonitor.                                                                    | `{}`                                   |
 | `serviceMonitor.interval`         | Prometheus scrape frequency.                                                                                                     | `1m`                                   |
