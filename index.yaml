@@ -4958,6 +4958,36 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Upgraded Nexus3 image to v3.32.0
+    apiVersion: v2
+    appVersion: 3.32.0
+    created: "2021-07-09T08:04:49.693342572Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: c228b3ac1ae888900be4c89894ca34a235b1817dc82903b123f4f037dd1c5c69
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.4.0/nexus3-4.4.0.tgz
+    version: 4.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - Upgraded Nexus3 image to v3.31.1
     apiVersion: v2
     appVersion: 3.31.1
@@ -7419,4 +7449,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-08T07:49:03.77908092Z"
+generated: "2021-07-09T08:04:49.69505962Z"
