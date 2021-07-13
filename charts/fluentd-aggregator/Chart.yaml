@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.5.0
-appVersion: 1.13.1
+version: 2.5.1
+appVersion: 1.13.2
 keywords:
   - fluent
   - fluentd
@@ -19,5 +19,4 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - Update Fluentd Aggregator Docker image to v1.13.1 (Fluentd v1.13.1)
-    - Add PodDisruptionBudget support
+    - Update Fluentd Aggregator Docker image to v1.13.2 (Fluentd v1.13.2)
