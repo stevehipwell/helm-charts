@@ -122,8 +122,10 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
+          {{- if .Values.installPlugins.enabled }}
             - mountPath: /opt/sonatype/nexus/deploy
               name: deploy
+          {{- end }}
             - mountPath: /opt/sonatype/nexus/etc/logback
               name: {{ template "nexus3.fullname" . }}-logback
               readOnly: true
@@ -166,8 +168,10 @@ spec:
         {{- else }}
           emptyDir: {}
         {{- end }}
+      {{- if .Values.installPlugins.enabled }}
         - name: deploy
           emptyDir: {}
+      {{- end }}
         - name: commands
           configMap:
             name: {{ include "nexus3.commandsName" . }}
