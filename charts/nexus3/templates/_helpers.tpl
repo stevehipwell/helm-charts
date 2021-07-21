@@ -63,6 +63,13 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+Create commands name.
+*/}}
+{{- define "nexus3.commandsName" -}}
+{{- template "nexus3.fullname" . -}}-commands
+{{- end -}}
+
+{{/*
 Create pvc name.
 */}}
 {{- define "nexus3.pvcname" -}}

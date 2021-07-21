@@ -36,6 +36,20 @@ spec:
       priorityClassName: {{ . | quote }}
       {{- end }}
       initContainers:
+        - name: chmod-volume-mounts
+          image: alpine:3
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/opt/scripts/chown-volume-mounts.sh"]
+          volumeMounts:
+            - mountPath: /opt/scripts/chown-volume-mounts.sh
+              name: commands
+              subPath: chown-volume-mounts.sh
+            - mountPath: /nexus-data
+              name: {{ include "nexus3.pvcname" . }}
         {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:8-jdk-hotspot
@@ -44,26 +58,29 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
-          args: ["-c", "mkdir -p /nexus-data/keystores; cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          command: ["/opt/scripts/update-ca-certs.sh"]
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /nexus-data/secrets/cas
               name: nexus3-cas
         {{- end }}
-        - name: volume-mount
-          image: busybox
+        {{- if .Values.installPlugins.enabled }}
+        - name: download-plugins
+          image: alpine:3
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
-          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          command: ["/opt/scripts/download-plugins.sh"]
           volumeMounts:
-            - mountPath: /nexus-data
-              name: {{ include "nexus3.pvcname" . }}
+            - mountPath: /opt/scripts/download-plugins.sh
+              name: commands
+              subPath: download-plugins.sh
+            - mountPath: /opt/sonatype/nexus/deploy
+              name: deploy
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -105,6 +122,8 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
+            - mountPath: /opt/sonatype/nexus/deploy
+              name: deploy
             - mountPath: /opt/sonatype/nexus/etc/logback
               name: {{ template "nexus3.fullname" . }}-logback
               readOnly: true
@@ -147,6 +166,12 @@ spec:
         {{- else }}
           emptyDir: {}
         {{- end }}
+        - name: deploy
+          emptyDir: {}
+        - name: commands
+          configMap:
+            name: {{ include "nexus3.commandsName" . }}
+            defaultMode: 0755
       {{- if .Values.caCerts.enabled }}
         - name: nexus3-cas
           secret:

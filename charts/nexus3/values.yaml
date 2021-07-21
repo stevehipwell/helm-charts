@@ -138,6 +138,12 @@ properties:
   - nexus.scripts.allowCreation=true
   # - nexus.golang.hosted=true
 
+installPlugins:
+  enabled: false
+  plugins: []
+  #   - name: nexus-repository-composer-bundle
+  #     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.18/nexus-repository-composer-0.0.18-bundle.kar
+
 config:
   enabled: true
   # rootPassword:
