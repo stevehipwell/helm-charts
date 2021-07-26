@@ -10,7 +10,7 @@ data:
     set -eu
 
     mkdir -p /nexus-data/etc
-    chown -R 200:200 /nexus-data
+    chown {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} -R /nexus-data
 
   update-ca-certs.sh: |
     #!/usr/bin/env sh
