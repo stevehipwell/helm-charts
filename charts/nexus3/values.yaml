@@ -25,12 +25,12 @@ podSecurityContext:
   fsGroup: 200
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  runAsUser: 200
+#   capabilities:
+#     drop:
+#       - ALL
+#   readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+#   runAsUser: 1000
 
 priorityClassName: ""
 
