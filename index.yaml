@@ -7596,6 +7596,37 @@ entries:
   tigera-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Use default custom resource name.
+    apiVersion: v2
+    appVersion: 1.20.0
+    created: "2021-08-03T17:00:56.635718757Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 2906aac883df9f2a9404dadd274928554a56b153e4b25e0a7a0dcc8b838a251d
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.2/tigera-operator-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: New env & envFrom values to set the environment.
         - kind: added
@@ -7660,4 +7691,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-03T16:09:43.485355397Z"
+generated: "2021-08-03T17:00:56.63732797Z"
