@@ -1,0 +1,27 @@
+apiVersion: v2
+name: tigera-operator
+description: Helm chart for the Tigera Operator for Calico.
+type: application
+version: 1.0.0
+appVersion: 1.20.0
+keywords:
+  - kubernetes
+  - calico
+  - tigera
+  - operator
+  - network
+  - policy
+  - plugin
+home: https://www.tigera.io/
+icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+sources:
+  - https://github.com/tigera/operator
+  - https://github.com/projectcalico/calico
+  - https://github.com/stevehipwell/helm-charts/
+maintainers:
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial release based on v1.20.0

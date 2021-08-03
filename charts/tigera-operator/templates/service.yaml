@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tigera-operator.fullname" . }}
+  labels:
+    {{- include "tigera-operator.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    {{- include "tigera-operator.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http-metrics
+      port: 8484
+      targetPort: http-metrics
+      protocol: TCP
