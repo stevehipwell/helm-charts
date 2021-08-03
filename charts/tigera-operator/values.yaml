@@ -57,7 +57,16 @@ tolerations: []
 
 affinity: {}
 
-tigeraWatchNamespace: istio-system
+tigeraWatchNamespace: ""
+
+env: []
+#   - name: VARIABLE
+#     value: my-value
+
+envFrom: []
+#   - configMapRef:
+#       name: kubernetes-services-endpoint
+#       optional: true
 
 installation:
   enabled: false
