@@ -2,7 +2,9 @@
 apiVersion: operator.tigera.io/v1
 kind: Installation
 metadata:
-  name: default
+  name: {{ printf "%s-default" (include "tigera-operator.fullname" .) }}
+  labels:
+    {{- include "tigera-operator.labels" . | nindent 4 }}
 spec:
   {{-  toYaml .Values.installation.spec | nindent 2 }}
 {{- end -}}

@@ -11,8 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## 1.0.0 UNRELEASED
+## 1.0.1 2021-08-03
 
 ### Added
 
-- Initial release based on [v1.20.0](https://github.com/tigera/operator/releases/tag/v1.20.0)
+- New `env` & `envFrom` values to set the environment.
+- Correct metadata to installation resource.
+
+### Changed
+
+- Fix watch namespace to watch all namespaces by default.
+
+## 1.0.0 2021-08-03
+
+### Added
+
+- Initial release based on [v1.20.0](https://github.com/tigera/operator/releases/tag/v1.20.0).

@@ -54,10 +54,13 @@ spec:
               value: "8484"
             - name: WATCH_NAMESPACE
               value: {{ .Values.tigeraWatchNamespace | quote }}
+          {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.envFrom }}
           envFrom:
-            - configMapRef:
-                name: kubernetes-services-endpoint
-                optional: true
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           command:
             - operator
           ports:
