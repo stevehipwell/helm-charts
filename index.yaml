@@ -7568,6 +7568,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: New env & envFrom values to set the environment.
+        - kind: added
+          description: Correct metadata to installation resource.
+        - kind: changed
+          description: Fix watch namespace to watch all namespaces by default.
+    apiVersion: v2
+    appVersion: 1.20.0
+    created: "2021-08-03T14:02:37.694481521Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: bf89da522035416d5b7c77e382335c5842e83c4bbff00b86304adf25d51e1875
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.1/tigera-operator-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Initial release based on v1.20.0
     apiVersion: v2
     appVersion: 1.20.0
@@ -7596,4 +7631,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-03T10:26:00.259591066Z"
+generated: "2021-08-03T14:02:37.696963366Z"
