@@ -67,6 +67,18 @@ hostNetwork:
 
 replicas: 1
 
+updateStrategy: {}
+#   type: RollingUpdate
+#   rollingUpdate:
+#     maxSurge: 0
+#     maxUnavailable: 1
+
+podDisruptionBudget:
+  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  enabled: false
+  minAvailable:
+  maxUnavailable:
+
 args:
   - --metric-resolution=15s
 
@@ -108,9 +120,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-podDisruptionBudget:
-  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
-  enabled: false
-  minAvailable:
-  maxUnavailable:

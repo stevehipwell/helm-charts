@@ -14,5 +14,5 @@ spec:
   {{- end  }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "metrics-server.name" . }}
+      {{- include "metrics-server.selectorLabels" . | nindent 6 }}
 {{- end -}}

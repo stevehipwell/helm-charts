@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.3.2 - 2021-08-03
+
+### Added
+
+- Custom `updateStrategy` to set deployment `strategy`.
+
+### Changed
+
+- Use both name and instance in PDB selector.
+
 ## v3.3.1 - 2021-06-08
 
 ### Changed
