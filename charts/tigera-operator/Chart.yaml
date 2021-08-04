@@ -2,7 +2,7 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 1.0.2
+version: 1.0.3
 appVersion: 1.20.0
 keywords:
   - kubernetes
@@ -23,5 +23,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Use default custom resource name.
+    - kind: removed
+      description: Removed tigeraWatchNamespace value as it would be ignored.

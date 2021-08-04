@@ -53,7 +53,7 @@ spec:
             - name: METRICS_PORT
               value: "8484"
             - name: WATCH_NAMESPACE
-              value: {{ .Values.tigeraWatchNamespace | quote }}
+              value: ""
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
