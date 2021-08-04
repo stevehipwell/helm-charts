@@ -43,6 +43,5 @@ The following table lists the configurable parameters of the _Tigera Operator_ c
 | `nodeSelector`                    | Node labels for pod assignment.                                                                                                                   | `{}`                      |
 | `tolerations`                     | Toleration labels for pod assignment.                                                                                                             | `[]`                      |
 | `affinity`                        | Affinity settings for pod assignment.                                                                                                             | `{}`                      |
-| `tigeraWatchNamespace`            | Namespace to watch for installation resources, if empty all namespaces will be watched.                                                           | `""`                      |
 | `installation.enabled`            | If `true`, install _Calico_ control plane according to the `installation.spec`.                                                                   | `false`                   |
 | `installation.spec`               | The [Tigera Operator Spec](https://docs.projectcalico.org/reference/installation/api#operator.tigera.io/v1.Installation) to deploy _Calico_ with. | `{}`                      |

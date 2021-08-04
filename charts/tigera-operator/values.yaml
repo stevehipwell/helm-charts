@@ -57,8 +57,6 @@ tolerations: []
 
 affinity: {}
 
-tigeraWatchNamespace: ""
-
 env: []
 #   - name: VARIABLE
 #     value: my-value
