@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 1.0.4 2021-08-05
+
+### Changed
+
+- Fixed operator namespace support.
+
 ## 1.0.3 2021-08-04
 
 ### Removed
