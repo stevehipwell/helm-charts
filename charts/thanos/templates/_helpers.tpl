@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "metrics-server.name" -}}
+{{- define "thanos.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "metrics-server.fullname" -}}
+{{- define "thanos.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "metrics-server.chart" -}}
+{{- define "thanos.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "metrics-server.labels" -}}
-helm.sh/chart: {{ include "metrics-server.chart" . }}
-{{ include "metrics-server.selectorLabels" . }}
+{{- define "thanos.labels" -}}
+helm.sh/chart: {{ include "thanos.chart" . }}
+{{ include "thanos.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,25 +45,14 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "metrics-server.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "metrics-server.name" . }}
+{{- define "thanos.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "thanos.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+The Thanos image to use
 */}}
-{{- define "metrics-server.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "metrics-server.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
-
-{{/*
-The image to use
-*/}}
-{{- define "metrics-server.image" -}}
+{{- define "thanos.image" -}}
 {{- printf "%s:%s" .Values.image.repository (default (printf "v%s" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}

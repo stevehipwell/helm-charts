@@ -1,0 +1,351 @@
+# Default values for thanos.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: quay.io/thanos/thanos
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  #   myLabel: myValue
+  interval: 1m
+
+objectStorageConfig:
+  name:
+  key:
+
+logLevel: info
+logFormat: logfmt
+
+compact:
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  podAnnotations: {}
+
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds: 120
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+  persistence:
+    enabled: false
+    # existingClaim: existing-pvc
+    annotations: {}
+    accessMode: ReadWriteOnce
+    storageClass: standard
+    size: 8Gi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  config:
+    retentionResolutionRaw: 28d
+    retentionResolution5m: 28d
+    retentionResolution1h: 10y
+    consistencyDelay: 30m
+    deleteDelay: 48h
+
+query:
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  replicas: 1
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podAnnotations: {}
+
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds: 120
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  config:
+
+queryFrontend:
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  replicas: 1
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podAnnotations: {}
+
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds: 120
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  config:
+
+storeGateway:
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  replicas: 1
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podAnnotations: {}
+
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds: 120
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 8
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+
+  persistence:
+    enabled: false
+    # existingClaim: existing-pvc
+    annotations: {}
+    accessMode: ReadWriteOnce
+    storageClass: standard
+    size: 8Gi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  config: {}

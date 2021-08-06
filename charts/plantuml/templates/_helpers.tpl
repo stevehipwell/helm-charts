@@ -61,14 +61,9 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-{{/* Fix KubeVersion with bad pre-release. */}}
-{{- define "plantuml.kubeVersion" -}}
-  {{- default .Capabilities.KubeVersion.Version (regexFind "v[0-9]+\\.[0-9]+\\.[0-9]+" .Capabilities.KubeVersion.Version) -}}
-{{- end -}}
-
 {{/* Get Ingress API Version */}}
 {{- define "plantuml.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19.x" (include "plantuml.kubeVersion" .)) -}}
+  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "networking.k8s.io/v1" -}}
   {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
     {{- print "networking.k8s.io/v1beta1" -}}
@@ -85,5 +80,5 @@ Create the name of the service account to use
 {{/* Check Ingress supports pathType */}}
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "plantuml.ingress.supportsPathType" -}}
-  {{- or (eq (include "plantuml.ingress.isStable" .) "true") (and (eq (include "plantuml.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "plantuml.kubeVersion" .))) -}}
+  {{- or (eq (include "plantuml.ingress.isStable" .) "true") (and (eq (include "plantuml.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}

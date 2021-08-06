@@ -90,14 +90,9 @@ Create a default fully qualified app name for the postgres requirement.
 {{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
 
-{{/* Fix KubeVersion with bad pre-release. */}}
-{{- define "sonarqube.kubeVersion" -}}
-  {{- default .Capabilities.KubeVersion.Version (regexFind "v[0-9]+\\.[0-9]+\\.[0-9]+" .Capabilities.KubeVersion.Version) -}}
-{{- end -}}
-
 {{/* Get Ingress API Version */}}
 {{- define "sonarqube.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19.x" (include "sonarqube.kubeVersion" .)) -}}
+  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "networking.k8s.io/v1" -}}
   {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
     {{- print "networking.k8s.io/v1beta1" -}}
@@ -114,5 +109,5 @@ Create a default fully qualified app name for the postgres requirement.
 {{/* Check Ingress supports pathType */}}
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "sonarqube.ingress.supportsPathType" -}}
-  {{- or (eq (include "sonarqube.ingress.isStable" .) "true") (and (eq (include "sonarqube.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "sonarqube.kubeVersion" .))) -}}
+  {{- or (eq (include "sonarqube.ingress.isStable" .) "true") (and (eq (include "sonarqube.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}

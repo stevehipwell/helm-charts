@@ -1,1 +1,7 @@
-Istio Operator installed
+***********************************************************************
+* Istio Operator                                                      *
+***********************************************************************
+  Chart version: {{ .Chart.Version }}
+  App version:   {{ .Chart.AppVersion }}
+  Image tag:     {{ include "istio-operator.image" . }}
+***********************************************************************
