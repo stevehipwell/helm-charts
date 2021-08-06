@@ -43,6 +43,8 @@ data:
     #!/usr/bin/env sh
     set -eu
 
+    rm -f /opt/sonarqube/extensions/plugins/*
+
     {{- range $index, $val := .Values.installPlugins.plugins }}
     cp -f /opt/sonarqube/extensions/cache/{{ $val.name }}.jar /opt/sonarqube/extensions/plugins/{{ $val.name }}.jar
     {{- end }}
