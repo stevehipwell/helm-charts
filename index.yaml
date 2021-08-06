@@ -7080,6 +7080,42 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Cleanup pluigns that are no longer configured
+    apiVersion: v2
+    appVersion: 8.9.1
+    created: "2021-08-06T08:56:16.164501191Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: A Helm chart for deploying SonarQube.
+    digest: 4d9968eed3b2507eb37e365fbe994b24ba5475aba55e5ed2fee4a57455f0ec42
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-3.0.1/sonarqube-3.0.1.tgz
+    version: 3.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - Support K8s v1.18 ingress changes
         - Customisable ingress paths (unsupported)
     apiVersion: v2
@@ -7818,4 +7854,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-05T07:39:20.423682175Z"
+generated: "2021-08-06T08:56:16.166026903Z"
