@@ -25,9 +25,9 @@ rbac:
   # Specifies whether RBAC resources should be created
   create: true
 
-podAnnotations: {}
-
 podLabels: {}
+
+podAnnotations: {}
 
 podSecurityContext:
   fsGroup: 65534
@@ -41,10 +41,11 @@ securityContext:
 
 priorityClassName: ""
 
+terminationGracePeriodSeconds:
+
 serviceMonitor:
   enabled: false
   additionalLabels: {}
-  #   myLabel: myValue
   interval: 1m
   scrapeTimeout: 10s
 
