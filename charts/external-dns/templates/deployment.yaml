@@ -33,14 +33,21 @@ spec:
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
+      {{- with .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: external-dns
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           image: {{ include "external-dns.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           args:
             - --log-level={{ .Values.logLevel }}
             - --log-format={{ .Values.logFormat }}
@@ -66,10 +73,6 @@ spec:
             - --provider={{ .Values.provider }}
           {{- range .Values.extraArgs }}
             - {{ . }}
-          {{- end }}
-          {{- with .Values.env }}
-          env:
-            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http

@@ -2,7 +2,7 @@ apiVersion: v2
 name: external-dns
 description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses with DNS providers.
 type: application
-version: 1.1.0
+version: 1.1.1
 appVersion: 0.9.0
 keywords:
   - kubernetes
@@ -19,4 +19,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Update External DNS image version to v0.9.0.
+      description: Improve documentation.
