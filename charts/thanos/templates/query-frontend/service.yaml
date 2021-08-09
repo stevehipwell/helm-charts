@@ -1,0 +1,17 @@
+{{- if .Values.queryFrontend.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "thanos.queryFrontendFullname" . }}
+  labels:
+    {{- include "thanos.queryFrontendLabels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 10902
+      targetPort: http
+  selector:
+    {{- include "thanos.queryFrontendSelectorLabels" . | nindent 4 }}
+{{- end -}}
