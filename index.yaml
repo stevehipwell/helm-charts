@@ -1736,6 +1736,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Improve documentation.
+    apiVersion: v2
+    appVersion: 0.9.0
+    created: "2021-08-09T13:57:01.086726646Z"
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 8ff65568eb0f88ffbc0b7b96cde1ad23a1aa7572068212aaf63db7a63e53b108
+    home: https://github.com/kubernetes-sigs/external-dns/
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/img/external-dns.png
+    keywords:
+    - kubernetes
+    - external-dns
+    - dns
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/external-dns-1.1.1/external-dns-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Update External DNS image version to v0.9.0.
     apiVersion: v2
     appVersion: 0.9.0
@@ -7912,4 +7939,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-09T13:34:15.491596699Z"
+generated: "2021-08-09T13:57:01.089908452Z"
