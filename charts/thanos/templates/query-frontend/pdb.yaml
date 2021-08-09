@@ -1,0 +1,18 @@
+{{- if and .Values.queryFrontend.enabled .Values.queryFrontend.podDisruptionBudget.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "thanos.queryFrontendFullname" . }}
+  labels:
+    {{- include "thanos.queryFrontendLabels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "thanos.queryFrontendSelectorLabels" . | nindent 6 }}
+{{- if .Values.queryFrontend.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.queryFrontend.podDisruptionBudget.minAvailable }}
+{{- end  }}
+{{- if .Values.queryFrontend.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.queryFrontend.podDisruptionBudget.maxUnavailable }}
+{{- end  }}
+{{- end -}}

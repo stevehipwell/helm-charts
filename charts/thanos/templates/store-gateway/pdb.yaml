@@ -1,0 +1,18 @@
+{{- if .Values.storeGateway.podDisruptionBudget.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "thanos.storeGatewayFullname" . }}
+  labels:
+    {{- include "thanos.storeGatewayLabels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "thanos.storeGatewaySelectorLabels" . | nindent 6 }}
+{{- if .Values.storeGateway.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.storeGateway.podDisruptionBudget.minAvailable }}
+{{- end  }}
+{{- if .Values.storeGateway.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.storeGateway.podDisruptionBudget.maxUnavailable }}
+{{- end  }}
+{{- end -}}

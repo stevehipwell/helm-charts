@@ -1,0 +1,95 @@
+{{- if .Values.queryFrontend.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "thanos.queryFrontendFullname" . }}
+  labels:
+    {{- include "thanos.queryFrontendLabels" . | nindent 4 }}
+spec:
+  {{- if not .Values.queryFrontend.autoscaling.enabled }}
+  replicas: {{ .Values.queryFrontend.replicas }}
+  {{- end }}
+  {{- with .Values.queryFrontend.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "thanos.queryFrontendSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "thanos.queryFrontendSelectorLabels" . | nindent 8 }}
+      {{- with .Values.queryFrontend.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.queryFrontend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "thanos.queryFrontendServiceAccountName" . }}
+      {{- with .Values.queryFrontend.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.queryFrontend.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.queryFrontend.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: thanos-query-frontend
+          {{- with .Values.queryFrontend.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "thanos.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: HOST_IP_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          {{- with .Values.queryFrontend.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args:
+            - query-frontend
+            - --log.level={{ .Values.logLevel }}
+            - --log.format={{ .Values.logFormat }}
+            - --http-address=0.0.0.0:10902
+            - {{ printf "--query-frontend.downstream-url=http://%s:10902" (include "thanos.queryFullname" .) }}
+          {{- with .Values.queryFrontend.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 10902
+          livenessProbe:
+            {{- toYaml .Values.queryFrontend.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.queryFrontend.readinessProbe | nindent 12 }}
+          {{- with .Values.queryFrontend.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.queryFrontend.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.queryFrontend.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.queryFrontend.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end -}}
