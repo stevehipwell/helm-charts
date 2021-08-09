@@ -7721,6 +7721,37 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-1.0.0/sonarqube-1.0.0.tgz
     version: 1.0.0
+  thanos:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial chart release.
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-09T13:34:15.488167884Z"
+    description: Helm chart for Thanos components.
+    digest: 3499d405fde3b4fae32f9dcfcbdbf25ff55b5f0df4623ff061185186cc6fea21
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.1.0/thanos-0.1.0.tgz
+    version: 0.1.0
   tigera-operator:
   - annotations:
       artifacthub.io/changes: |
@@ -7881,4 +7912,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-09T08:48:42.869626245Z"
+generated: "2021-08-09T13:34:15.491596699Z"
