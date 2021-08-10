@@ -20,7 +20,7 @@ spec:
       - key: prometheus.io/service-monitor
         operator: NotIn
         values:
-          - false
+          - "false"
   endpoints:
     - port: http
       path: /metrics
