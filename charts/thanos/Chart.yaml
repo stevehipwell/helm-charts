@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 0.1.0
+version: 0.2.0
 appVersion: 0.22.0
 keywords:
   - kubernetes
@@ -22,5 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Initial chart release.
+    - kind: changed
+      description: Change query config values.
