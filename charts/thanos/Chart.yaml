@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 0.2.0
+version: 0.3.0
 appVersion: 0.22.0
 keywords:
   - kubernetes
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Change query config values.
+      description: Fix compact.
