@@ -96,8 +96,6 @@ compact:
 
   affinity: {}
 
-  config: {}
-
 query:
   serviceAccount:
     create: true
@@ -136,6 +134,10 @@ query:
 
   extraEnv: []
 
+  replicaLabels: []
+  sidecarService: ""
+  rulerServcie: ""
+
   extraArgs: []
 
   livenessProbe:
@@ -167,11 +169,6 @@ query:
   tolerations: []
 
   affinity: {}
-
-  config:
-    replicaLabels: []
-    sidecarService: ""
-    rulerServcie: ""
 
 queryFrontend:
   enabled: false
@@ -245,8 +242,6 @@ queryFrontend:
 
   affinity: {}
 
-  config: {}
-
 storeGateway:
   serviceAccount:
     create: true
@@ -317,5 +312,3 @@ storeGateway:
   tolerations: []
 
   affinity: {}
-
-  config: {}
