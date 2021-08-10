@@ -7752,6 +7752,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix service monitors.
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-10T17:13:04.794095128Z"
+    description: Helm chart for Thanos components.
+    digest: 3838e5db00d820f31a408babd0d0a74760c4faa9cc9d4d72158836e1047eda0d
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.4.0/thanos-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Fix compact.
     apiVersion: v2
     appVersion: 0.22.0
@@ -7999,4 +8029,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-10T16:46:26.937391399Z"
+generated: "2021-08-10T17:13:04.798346029Z"
