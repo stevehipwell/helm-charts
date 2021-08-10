@@ -7752,6 +7752,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix compact.
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-10T16:46:26.935904466Z"
+    description: Helm chart for Thanos components.
+    digest: 60ec5eea95f467519788c1d2faa0161fddb6e6b0abea41365377f0bd93a402bc
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.3.0/thanos-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Change query config values.
     apiVersion: v2
     appVersion: 0.22.0
@@ -7969,4 +7999,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-10T07:53:44.203121806Z"
+generated: "2021-08-10T16:46:26.937391399Z"
