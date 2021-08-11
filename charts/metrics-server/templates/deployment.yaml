@@ -15,23 +15,25 @@ spec:
       {{- include "metrics-server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      labels:
+        {{- include "metrics-server.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      labels:
-        {{- include "metrics-server.selectorLabels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "metrics-server.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
@@ -39,10 +41,12 @@ spec:
       hostNetwork: true
       {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: metrics-server
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default (printf "v%s" .Chart.AppVersion)) }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "metrics-server.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - --cert-dir=/tmp
@@ -64,15 +68,17 @@ spec:
             - name: tmp
               mountPath: /tmp
           {{- with .Values.extraVolumeMounts }}
-            {{ toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: tmp
           emptyDir: {}
       {{- with .Values.extraVolumes }}
-        {{ toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
