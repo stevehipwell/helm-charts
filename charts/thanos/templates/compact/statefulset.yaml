@@ -121,7 +121,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.compactLabels" . | nindent 10 }}
+          {{- include "thanos.compactSelectorLabels" . | nindent 10 }}
         {{- with .Values.compact.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

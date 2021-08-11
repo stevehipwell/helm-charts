@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "thanos.storeGatewayLabels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "thanos.storeGatewayFullname" . }}
+  serviceName: {{ printf "%s-headless" (include "thanos.storeGatewayFullname" .) }}
   replicas: {{ .Values.storeGateway.replicas }}
   {{- with .Values.storeGateway.updateStrategy }}
   updateStrategy:
@@ -123,7 +123,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.storeGatewayLabels" . | nindent 10 }}
+          {{- include "thanos.storeGatewaySelectorLabels" . | nindent 10 }}
         {{- with .Values.storeGateway.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}
