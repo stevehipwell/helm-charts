@@ -36,9 +36,8 @@ apiService:
   # work with this release.
   create: true
 
-podAnnotations: {}
-
 podLabels: {}
+podAnnotations: {}
 
 podSecurityContext: {}
 
@@ -109,11 +108,11 @@ service:
   #  kubernetes.io/cluster-service: "true"
   #  kubernetes.io/name: "Metrics-server"
 
-extraVolumes: []
+resources: {}
 
 extraVolumeMounts: []
 
-resources: {}
+extraVolumes: []
 
 nodeSelector: {}
 
