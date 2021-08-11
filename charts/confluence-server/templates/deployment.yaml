@@ -14,7 +14,10 @@ spec:
   template:
     metadata:
       labels:
-      {{- include "confluence-server.selectorLabels" . | nindent 8 }}
+        {{- include "confluence-server.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
@@ -25,13 +28,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "confluence-server.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ quote . }}
       {{- end }}
-      {{- if .Values.caCerts.enabled }}
+      {{- if or .Values.caCerts.enabled .Values.extraInitContainers }}
       initContainers:
+      {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -47,11 +53,17 @@ spec:
             - mountPath: /var/atlassian/application-data/confluence/secrets/cas
               name: confluence-cas
       {{- end }}
+      {{- with .Values.extraInitContainers }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}
+      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: confluence
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default (printf "%s-jdk11" .Chart.AppVersion)) }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "confluence-server.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: JVM_MINIMUM_MEMORY
@@ -120,8 +132,13 @@ spec:
           volumeMounts:
             - mountPath: /var/atlassian/application-data/confluence
               name: {{ include "confluence-server.pvcname" . }}
+          {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- .Values.resources | toYaml | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: {{ include "confluence-server.pvcname" . }}
           {{- if .Values.persistence.enabled }}
@@ -130,11 +147,14 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if .Values.caCerts.enabled }}
+      {{- if .Values.caCerts.enabled }}
         - name: confluence-cas
           secret:
             secretName: {{ .Values.caCerts.secret }}
-        {{- end }}
+      {{- end }}
+      {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
