@@ -62,20 +62,19 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
+{{/*
+The image to use
+*/}}
+{{- define "confluence-server.image" -}}
+{{- printf "%s:%s" .Values.image.repository (default (printf "%s-jdk11" .Chart.AppVersion) .Values.image.tag) }}
+{{- end }}
+
 
 {{/*
 Create pvc name.
 */}}
 {{- define "confluence-server.pvcname" -}}
 {{- template "confluence-server.fullname" . -}}-data
-{{- end -}}
-
-{{/*
-Create a default fully qualified app name for the postgres requirement.
-*/}}
-{{- define "confluence-server.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
 
 {{/* Get Ingress API Version */}}
@@ -98,4 +97,12 @@ Create a default fully qualified app name for the postgres requirement.
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "confluence-server.ingress.supportsPathType" -}}
   {{- or (eq (include "confluence-server.ingress.isStable" .) "true") (and (eq (include "confluence-server.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name for the postgres requirement.
+*/}}
+{{- define "confluence-server.postgresql.fullname" -}}
+{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
