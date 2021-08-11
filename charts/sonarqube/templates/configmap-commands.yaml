@@ -5,16 +5,11 @@ metadata:
   labels:
     {{- include "sonarqube.labels" . | nindent 4 }}
 data:
-  chown-volume-mounts.sh: |
-    #!/usr/bin/env sh
-    set -eu
-
-    mkdir -p /opt/sonarqube/data /opt/sonarqube/extensions/plugins /opt/sonarqube/extensions/cache /opt/sonarqube/certs /opt/sonarqube/logs /opt/sonarqube/temp
-    chown {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} -R /opt/sonarqube
-
   update-ca-certs.sh: |
     #!/usr/bin/env sh
     set -eu
+
+    mkdir -p /opt/sonarqube/certs
 
     cp -f "${JAVA_HOME}/lib/security/cacerts" /opt/sonarqube/certs/cacerts
 
@@ -33,7 +28,8 @@ data:
     #!/usr/bin/env sh
     set -eu
 
-    rm -f /opt/sonarqube/extensions/plugins/cache/*
+    mkdir -p /opt/sonarqube/extensions/cache
+    rm -f /opt/sonarqube/extensions/cache/*
 
     {{- range $index, $val := .Values.installPlugins.plugins }}
     wget --no-check-certificate -O /opt/sonarqube/extensions/cache/{{ $val.name }}.jar {{ $val.url }}
@@ -43,6 +39,7 @@ data:
     #!/usr/bin/env sh
     set -eu
 
+    mkdir -p /opt/sonarqube/extensions/plugins
     rm -f /opt/sonarqube/extensions/plugins/*
 
     {{- range $index, $val := .Values.installPlugins.plugins }}

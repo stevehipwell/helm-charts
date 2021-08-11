@@ -2,7 +2,7 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 3.0.1
+version: 3.1.0
 appVersion: 8.9.1
 keywords:
   - sonarqube
@@ -28,5 +28,11 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Cleanup pluigns that are no longer configured
+    - kind: added
+      description: Pod labels via podlabels.
+    - kind: added
+      description: Extra volumes via extraVolumes and mounts for the sonarqube container via extraVolumeMounts.
+    - kind: added
+      description: Extra init containers via extraInitContainers, which can be templated.
+      - kind: removed
+      description: Init container _chmod-volume-mounts_ container as `fsGroup` should solve this issue.

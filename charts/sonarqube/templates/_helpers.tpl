@@ -62,6 +62,13 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+The image to use
+*/}}
+{{- define "sonarqube.image" -}}
+{{- printf "%s:%s" .Values.image.repository (default (printf "%s-community" .Chart.AppVersion) .Values.image.tag) }}
+{{- end }}
+
+{{/*
 Create commands name.
 */}}
 {{- define "sonarqube.commandsName" -}}
@@ -80,14 +87,6 @@ Create pvc name.
 */}}
 {{- define "sonarqube.pvcName" -}}
 {{- template "sonarqube.fullname" . -}}-data
-{{- end -}}
-
-{{/*
-Create a default fully qualified app name for the postgres requirement.
-*/}}
-{{- define "sonarqube.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
 
 {{/* Get Ingress API Version */}}
@@ -110,4 +109,12 @@ Create a default fully qualified app name for the postgres requirement.
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "sonarqube.ingress.supportsPathType" -}}
   {{- or (eq (include "sonarqube.ingress.isStable" .) "true") (and (eq (include "sonarqube.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name for the postgres requirement.
+*/}}
+{{- define "sonarqube.postgresql.fullname" -}}
+{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}
