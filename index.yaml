@@ -7752,6 +7752,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix volume claim labels.
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-11T11:49:26.857088247Z"
+    description: Helm chart for Thanos components.
+    digest: d534915324afeccd34ce85c85cdb3587823a37b5402bc3acab854635135da499
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.6.0/thanos-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Fix query arguments.
     apiVersion: v2
     appVersion: 0.22.0
@@ -8059,4 +8089,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T11:01:38.460068608Z"
+generated: "2021-08-11T11:49:26.860100371Z"
