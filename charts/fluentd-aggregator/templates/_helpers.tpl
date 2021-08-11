@@ -61,14 +61,16 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-{{/* Fix KubeVersion with bad pre-release. */}}
-{{- define "fluentd-aggregator.kubeVersion" -}}
-  {{- default .Capabilities.KubeVersion.Version (regexFind "v[0-9]+\\.[0-9]+\\.[0-9]+" .Capabilities.KubeVersion.Version) -}}
-{{- end -}}
+{{/*
+The image to use
+*/}}
+{{- define "fluentd-aggregator.image" -}}
+{{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
+{{- end }}
 
 {{/* Get Ingress API Version */}}
 {{- define "fluentd-aggregator.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19.x" (include "fluentd-aggregator.kubeVersion" .)) -}}
+  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "networking.k8s.io/v1" -}}
   {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
     {{- print "networking.k8s.io/v1beta1" -}}
@@ -85,5 +87,5 @@ Create the name of the service account to use
 {{/* Check Ingress supports pathType */}}
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "fluentd-aggregator.ingress.supportsPathType" -}}
-  {{- or (eq (include "fluentd-aggregator.ingress.isStable" .) "true") (and (eq (include "fluentd-aggregator.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "fluentd-aggregator.kubeVersion" .))) -}}
+  {{- or (eq (include "fluentd-aggregator.ingress.isStable" .) "true") (and (eq (include "fluentd-aggregator.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
