@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.6.0 - 2021-08-11
+
+### Added
+
+- Pod labels via `podlabels`.
+- Extra volumes via `extraVolumes` and mounts for the _jira_ container via `extraVolumeMounts`.
+- Extra init containers via `extraInitContainers`, which can be templated.
+
 ## v4.5.2 - 2021-07-23
 
 ## Changed

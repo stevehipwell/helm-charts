@@ -63,28 +63,22 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+The image to use
+*/}}
+{{- define "jira-software.image" -}}
+{{- printf "%s:%s" .Values.image.repository (default (printf "%s-jdk11" .Chart.AppVersion) .Values.image.tag) }}
+{{- end }}
+
+{{/*
 Create pvc name.
 */}}
 {{- define "jira-software.pvcname" -}}
 {{- template "jira-software.fullname" . -}}-data
 {{- end -}}
 
-{{/*
-Create a default fully qualified app name for the postgres requirement.
-*/}}
-{{- define "jira-software.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
-{{- end -}}
-
-{{/* Fix KubeVersion with bad pre-release. */}}
-{{- define "jira-software.kubeVersion" -}}
-  {{- default .Capabilities.KubeVersion.Version (regexFind "v[0-9]+\\.[0-9]+\\.[0-9]+" .Capabilities.KubeVersion.Version) -}}
-{{- end -}}
-
 {{/* Get Ingress API Version */}}
 {{- define "jira-software.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19.x" (include "jira-software.kubeVersion" .)) -}}
+  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "networking.k8s.io/v1" -}}
   {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
     {{- print "networking.k8s.io/v1beta1" -}}
@@ -101,5 +95,13 @@ Create a default fully qualified app name for the postgres requirement.
 {{/* Check Ingress supports pathType */}}
 {{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
 {{- define "jira-software.ingress.supportsPathType" -}}
-  {{- or (eq (include "jira-software.ingress.isStable" .) "true") (and (eq (include "jira-software.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18.x" (include "jira-software.kubeVersion" .))) -}}
+  {{- or (eq (include "jira-software.ingress.isStable" .) "true") (and (eq (include "jira-software.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name for the postgres requirement.
+*/}}
+{{- define "jira-software.postgresql.fullname" -}}
+{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
+{{ template "postgresql.primary.fullname" $postgresContext }}
 {{- end -}}

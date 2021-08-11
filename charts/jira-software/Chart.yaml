@@ -2,7 +2,7 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 4.5.2
+version: 4.6.0
 appVersion: 8.18.1
 keywords:
   - jira
@@ -27,5 +27,9 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Update Jira Software image to v8.18.1
+    - kind: added
+      description: Pod labels via podlabels.
+    - kind: added
+      description: Extra volumes via extraVolumes and mounts for the jira container via extraVolumeMounts.
+    - kind: added
+      description: Extra init containers via extraInitContainers, which can be templated.
