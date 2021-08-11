@@ -17,20 +17,15 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
-
 podLabels: {}
+podAnnotations: {}
 
 podSecurityContext:
   fsGroup: 200
 
-securityContext: {}
-#   capabilities:
-#     drop:
-#       - ALL
-#   readOnlyRootFilesystem: true
-#   runAsNonRoot: true
-#   runAsUser: 1000
+securityContext:
+  runAsGroup: 200
+  runAsUser: 200
 
 priorityClassName: ""
 
@@ -95,8 +90,6 @@ persistence:
   storageClass: standard
   size: 8Gi
 
-extraVolumes: []
-
 extraVolumeMounts: []
 
 resources: {}
@@ -110,6 +103,10 @@ resources: {}
 #   requests:
 #     cpu: 100m
 #     memory: 128Mi
+
+extraInitContainers: []
+
+extraVolumes: []
 
 nodeSelector: {}
 

@@ -19,24 +19,27 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       annotations:
+        checksum/logback: {{ include (print $.Template.BasePath "/configmap-logback.yaml") . | sha256sum }}
+        checksum/properties: {{ include (print $.Template.BasePath "/configmap-properties.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-        checksum/properties: {{ include (print $.Template.BasePath "/properties.yaml") . | sha256sum }}
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
     spec:
       {{- with .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "nexus3.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
       initContainers:
-        {{- if .Values.caCerts.enabled }}
+      {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:8-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -44,31 +47,36 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
+          command: ["/bin/sh"]
           args: ["-c", "mkdir -p /nexus-data/keystores; cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /nexus-data/secrets/cas
               name: nexus3-cas
-        {{- end }}
+      {{- end }}
+      {{- with .Values.extraInitContainers }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
+      {{- end }}
         - name: volume-mount
-          image: busybox
+          image: alpine:3
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
+          command: ["/bin/sh"]
           args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: nexus3
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "nexus3.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
@@ -81,6 +89,8 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- if .Values.config.enabled }}
+          command: ["/bin/sh"]
+          args: ["-c", "mkdir -p /nexus-data/etc; ${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
           lifecycle:
             postStart:
               exec:
@@ -135,10 +145,12 @@ spec:
           {{- end }}
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
-            {{ toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- .Values.resources | toYaml | trim | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: {{ include "nexus3.pvcname" . }}
         {{- if .Values.persistence.enabled }}
@@ -182,7 +194,7 @@ spec:
       {{- end }}
       {{- end }}
       {{- with .Values.extraVolumes }}
-        {{ toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

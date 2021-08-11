@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.6.0 - 2021-08-11
+
+### Added
+
+- Extra init containers via `extraInitContainers`, which can be templated.
+
 ## v4.5.0 - 2021-08-05
 
 ### Changed
