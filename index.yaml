@@ -5350,6 +5350,40 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Pod labels via podlabels.
+        - kind: added
+          description: Extra volumes via extraVolumes and mounts for the nexus3 container via extraVolumeMounts.
+        - kind: added
+          description: Extra init containers via extraInitContainers, which can be templated.
+    apiVersion: v2
+    appVersion: 3.33.0
+    created: "2021-08-11T19:26:29.188559364Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: a2fbeed1ff148db539a55670ec4518e473bc54cf7709b3009b726f04e28ce1fa
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.6.0/nexus3-4.6.0.tgz
+    version: 4.6.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgraded Nexus3 image to v3.33.0
     apiVersion: v2
@@ -8321,4 +8355,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T18:44:20.304822036Z"
+generated: "2021-08-11T19:26:29.195799771Z"
