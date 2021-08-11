@@ -7293,6 +7293,48 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Pod labels via podlabels.
+        - kind: added
+          description: Extra volumes via extraVolumes and mounts for the sonarqube container via extraVolumeMounts.
+        - kind: added
+          description: Extra init containers via extraInitContainers, which can be templated.
+          - kind: removed
+          description: Init container _chmod-volume-mounts_ container as `fsGroup` should solve this issue.
+    apiVersion: v2
+    appVersion: 8.9.1
+    created: "2021-08-11T18:44:20.303288617Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: A Helm chart for deploying SonarQube.
+    digest: 240319136f26146449df6db37baf801fb66be52636c82733d95ac127632b4f52
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-3.1.0/sonarqube-3.1.0.tgz
+    version: 3.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Cleanup pluigns that are no longer configured
     apiVersion: v2
@@ -8279,4 +8321,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T15:34:54.064939325Z"
+generated: "2021-08-11T18:44:20.304822036Z"
