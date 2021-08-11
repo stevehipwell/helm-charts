@@ -5071,6 +5071,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Improve documentation.
+    apiVersion: v2
+    appVersion: 0.5.0
+    created: "2021-08-11T15:04:36.621901107Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: f3b8dc8adebc826151c2b87c07090877501e63eac0e346de00910bd5da419257
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.3.3/metrics-server-3.3.3.tgz
+    version: 3.3.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Use both name and instance in PDB selector.
         - kind: added
           description: Custom updateStrategy to set deployment strategy.
@@ -8213,4 +8240,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T14:45:46.115418071Z"
+generated: "2021-08-11T15:04:36.623877467Z"
