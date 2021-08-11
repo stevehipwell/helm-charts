@@ -63,6 +63,13 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+The image to use
+*/}}
+{{- define "nexus3.image" -}}
+{{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
+{{- end }}
+
+{{/*
 Create pvc name.
 */}}
 {{- define "nexus3.pvcname" -}}
