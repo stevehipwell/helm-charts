@@ -84,7 +84,7 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           {{- with .Values.extraVolumeMounts }}
           volumeMounts:
-            {{ toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:
@@ -92,7 +92,7 @@ spec:
           {{- end }}
       {{- with .Values.extraVolumes }}
       volumes:
-        {{ toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
