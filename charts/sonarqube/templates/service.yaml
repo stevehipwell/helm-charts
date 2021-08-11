@@ -4,7 +4,7 @@ metadata:
   name: {{ include "sonarqube.fullname" . }}
   {{- with .Values.service.annotations }}
   annotations:
-    {{ toYaml . | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
   labels:
     {{- include "sonarqube.labels" . | nindent 4 }}

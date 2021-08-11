@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.1.0 - 2021-08-11
+
+### Added
+
+- Pod labels via `podlabels`.
+- Extra volumes via `extraVolumes` and mounts for the _sonarqube_ container via `extraVolumeMounts`.
+- Extra init containers via `extraInitContainers`, which can be templated.
+
+### Removed
+
+- Init container _chmod-volume-mounts_ container as `fsGroup` should solve this issue.
+
 ## v3.0.1 - 2021-08-06
 
 ### Changed
