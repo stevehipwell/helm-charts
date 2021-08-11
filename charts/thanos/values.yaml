@@ -1,0 +1,314 @@
+# Default values for thanos.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: quay.io/thanos/thanos
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  interval: 1m
+
+objstoreConfig:
+  create: true
+  name: ""
+  key: "config"
+  value: |-
+    type: FILESYSTEM
+    config:
+      directory: /var/thanos/store/s3
+
+logLevel: info
+logFormat: logfmt
+
+compact:
+  enabled: false
+
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
+  updateStrategy: {}
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+
+  persistence:
+    enabled: false
+    existingClaim: ""
+    annotations: {}
+    accessMode: ReadWriteOnce
+    storageClass: standard
+    size: 8Gi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+query:
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 60
+    targetMemoryUtilizationPercentage: 60
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  replicaLabels: []
+  sidecarService: ""
+  rulerServcie: ""
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+queryFrontend:
+  enabled: false
+
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 60
+    targetMemoryUtilizationPercentage: 60
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 4
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+storeGateway:
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 8
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10902
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+
+  persistence:
+    enabled: false
+    existingClaim: ""
+    annotations: {}
+    accessMode: ReadWriteOnce
+    storageClass: standard
+    size: 8Gi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}

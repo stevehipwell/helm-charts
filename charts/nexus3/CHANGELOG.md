@@ -11,11 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.5.0 - 2021-08-05
+
+### Changed
+
+- Updated `Nexus3` image to [v3.33.0](https://help.sonatype.com/repomanager3/release-notes#ReleaseNotes-NexusRepositoryManager3.33.0)
+
 ## v4.4.0 - 2021-07-09
 
 ### Changed
 
-- Updated `Nexus3` image to `v3.32.0`
+- Updated `Nexus3` image to [v3.32.0](https://help.sonatype.com/repomanager3/release-notes#ReleaseNotes-NexusRepositoryManager3.32.0)
 
 ## v4.3.1 - 2021-06-23
 

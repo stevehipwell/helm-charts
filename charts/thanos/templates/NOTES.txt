@@ -1,7 +1,7 @@
 ***********************************************************************
-* External DNS                                                        *
+* Thanos                                                              *
 ***********************************************************************
   Chart version: {{ .Chart.Version }}
   App version:   {{ .Chart.AppVersion }}
-  Image tag:     {{ include "external-dns.image" . }}
+  Image tag:     {{ include "thanos.image" . }}
 ***********************************************************************

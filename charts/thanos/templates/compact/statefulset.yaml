@@ -1,0 +1,143 @@
+{{- if .Values.compact.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "thanos.compactFullname" . }}
+  labels:
+    {{- include "thanos.compactLabels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "thanos.compactFullname" . }}
+  replicas: 1
+  {{- with .Values.compact.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "thanos.compactSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "thanos.compactSelectorLabels" . | nindent 8 }}
+      {{- with .Values.compact.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if or .Values.objstoreConfig.create (gt (len .Values.compact.podAnnotations) 0) }}
+      annotations:
+      {{- if .Values.objstoreConfig.create }}
+        checksum/config: {{ .Values.objstoreConfig.value | sha256sum }}
+      {{- end }}
+      {{- with .Values.compact.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "thanos.compactServiceAccountName" . }}
+      {{- with .Values.compact.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.compact.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.compact.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: thanos-compact
+          {{- with .Values.compact.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "thanos.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: HOST_IP_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          {{- with .Values.compact.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args:
+            - compact
+            - --wait
+            - --log.level={{ .Values.logLevel }}
+            - --log.format={{ .Values.logFormat }}
+            - --http-address=0.0.0.0:10902
+            - --data-dir=/var/thanos/compact
+            - --objstore.config-file=/etc/thanos/objstore.yaml
+          {{- with .Values.compact.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 10902
+          livenessProbe:
+            {{- toYaml .Values.compact.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.compact.readinessProbe | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/thanos
+              name: objstore-config
+              readOnly: true
+            - mountPath: /var/thanos/compact
+              name: data
+              readOnly: false
+          {{- with .Values.compact.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: objstore-config
+          secret:
+            secretName: {{ include "thanos.objstoreConfigSecretName" . }}
+            items:
+            - key: {{ .Values.objstoreConfig.key }}
+              path: objstore.yaml
+      {{- if not .Values.compact.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+      {{- end }}
+      {{- with .Values.compact.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.compact.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.compact.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.compact.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          {{- include "thanos.compactSelectorLabels" . | nindent 10 }}
+        {{- with .Values.compact.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+      {{- with .Values.compact.persistence.storageClass }}
+      {{- if (eq "-" .) }}
+        storageClassName: ""
+      {{- else }}
+        storageClassName: {{ . }}
+      {{- end }}
+      {{- end }}
+        accessModes:
+          - {{ .Values.compact.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.compact.persistence.size }}
+  {{- end }}
+{{- end -}}

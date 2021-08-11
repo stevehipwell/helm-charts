@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "tigera-operator.name" -}}
+{{- define "thanos.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "tigera-operator.fullname" -}}
+{{- define "thanos.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "tigera-operator.chart" -}}
+{{- define "thanos.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "tigera-operator.labels" -}}
-helm.sh/chart: {{ include "tigera-operator.chart" . }}
-{{ include "tigera-operator.selectorLabels" . }}
+{{- define "thanos.labels" -}}
+helm.sh/chart: {{ include "thanos.chart" . }}
+{{ include "thanos.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,25 +45,25 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "tigera-operator.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "tigera-operator.name" . }}
+{{- define "thanos.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "thanos.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+Objstore secret name
 */}}
-{{- define "tigera-operator.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "tigera-operator.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
+{{- define "thanos.objstoreConfigSecretName" -}}
+{{- if .Values.objstoreConfig.create -}}
+{{- default (printf "%s-objstore-config" (include "thanos.fullname" .)) .Values.objstoreConfig.name }}
+{{- else -}}
+{{- .Values.objstoreConfig.name }}
+{{- end -}}
+{{- end -}}
 
 {{/*
-The image to use
+The Thanos image to use
 */}}
-{{- define "tigera-operator.image" -}}
+{{- define "thanos.image" -}}
 {{- printf "%s:%s" .Values.image.repository (default (printf "v%s" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}

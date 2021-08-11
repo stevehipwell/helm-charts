@@ -1,0 +1,26 @@
+apiVersion: v2
+name: thanos
+description: Helm chart for Thanos components.
+type: application
+version: 0.6.0
+appVersion: 0.22.0
+keywords:
+  - kubernetes
+  - thanos
+  - prometheus
+  - monitoring
+  - alerting
+  - metrics
+home: https://thanos.io/
+icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+sources:
+  - https://github.com/thanos-io/thanos
+  - https://github.com/thanos-io/kube-thanos
+  - https://github.com/stevehipwell/helm-charts/
+maintainers:
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Fix volume claim labels.

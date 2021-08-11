@@ -28,8 +28,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "tigera-operator.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
@@ -37,9 +39,11 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: tigera-operator
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default (printf "v%s" .Chart.AppVersion)) }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "tigera-operator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POD_NAME
@@ -48,6 +52,8 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: {{ include "tigera-operator.fullname" . | quote }}
+            - name: OPERATOR_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
             - name: TIGERA_OPERATOR_INIT_IMAGE_VERSION
               value: {{ (.Values.image.tag | default (printf "v%s" .Chart.AppVersion)) | quote }}
             - name: METRICS_PORT
@@ -71,8 +77,10 @@ spec:
             - name: var-lib-calico
               readOnly: true
               mountPath: /var/lib/calico
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       volumes:
         - name: var-lib-calico
           hostPath:
