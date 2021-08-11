@@ -21,17 +21,14 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+podLabels: {}
 podAnnotations: {}
 
 podSecurityContext:
   fsGroup: 1000
 
 securityContext:
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+  runAsGroup: 1000
   runAsUser: 1000
 
 priorityClassName: ""
@@ -78,6 +75,8 @@ persistence:
   storageClass: standard
   size: 8Gi
 
+extraVolumeMounts: []
+
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
@@ -89,6 +88,10 @@ resources: {}
 #   limits:
 #     cpu: 100m
 #     memory: 128Mi
+
+extraInitContainers: []
+
+extraVolumes: []
 
 nodeSelector: {}
 
