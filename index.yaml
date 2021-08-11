@@ -7300,7 +7300,7 @@ entries:
         - kind: added
           description: Extra init containers via extraInitContainers, which can be templated.
           - kind: removed
-          description: Init container _chmod-volume-mounts_ container as `fsGroup` should solve this issue.
+          description: Init container chmod-volume-mounts container as fsGroup should solve this issue.
     apiVersion: v2
     appVersion: 8.9.1
     created: "2021-08-11T18:44:20.303288617Z"
