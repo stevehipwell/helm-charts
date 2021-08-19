@@ -91,6 +91,8 @@ resources: {}
 
 extraInitContainers: []
 
+extraContainers: []
+
 extraVolumes: []
 
 nodeSelector: {}

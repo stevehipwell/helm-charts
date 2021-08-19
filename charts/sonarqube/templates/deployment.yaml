@@ -102,6 +102,9 @@ spec:
       {{- end }}
       {{- end }}
       containers:
+        {{- if .Values.extraContainers }}
+        {{- toYaml .Values.extraContainers | nindent 8 }}
+        {{- end }}
         - name: sonarqube
           {{- with .Values.securityContext }}
           securityContext:
