@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.6.0
-appVersion: 3.33.0
+version: 4.6.1
+appVersion: 3.33.1
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 keywords:
@@ -23,8 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Pod labels via podlabels.
-    - kind: added
-      description: Extra volumes via extraVolumes and mounts for the nexus3 container via extraVolumeMounts.
-    - kind: added
-      description: Extra init containers via extraInitContainers, which can be templated.
+      description: Updated Nexus3 image to v3.33.1.
