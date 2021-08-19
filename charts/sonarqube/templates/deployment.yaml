@@ -197,6 +197,9 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+        {{- if .Values.extraContainers }}
+        {{- toYaml .Values.extraContainers | nindent 8 }}
+        {{- end }}
       volumes:
         - name: sonarqube
           {{- if .Values.persistence.enabled }}

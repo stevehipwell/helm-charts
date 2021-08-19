@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.2.0 - 2021-08-19
+
+### Added
+- Extra sidecar containers via `extraContainers`
+
 ## v3.1.0 - 2021-08-11
 
 ### Added
