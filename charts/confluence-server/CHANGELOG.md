@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v4.4.0 - 2021-08-23
+
+## Changed
+
+- Update _Confluence Server_ image to [v7.13.0](ttps://confluence.atlassian.com/doc/confluence-7-13-release-notes-1044114085.html).
+
+### Removed
+
+- Defective templating for `extraInitContainers`.
+
 ## v4.3.0 - 2021-08-11
 
 ### Added
