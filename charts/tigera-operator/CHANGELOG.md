@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 1.1.0 2021-08-124
+
+### Changed
+
+- Updated `tigera-operator` image to [v1.21.0](https://github.com/tigera/operator/releases/tag/v1.21.0).
+- Enable customisation of deployment `hostNetwork` & `dnsPolicy` for users who aren't using Calico as the CNI.
+
 ## 1.0.5 2021-08-11
 
 ### Changed
