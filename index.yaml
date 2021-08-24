@@ -8152,6 +8152,42 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Rule component."
+        - kind: added
+          description: "Value query.additionalStores to enable custom Thanos stores to be configured for the query service."
+        - kind: changed
+          description: "Fixed compact service statefulset service name."
+        - kind: removed
+          description: "Values query.sidecarService & query.rulerServcie, use query.additionalStores instead."
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-24T14:30:21.38887822Z"
+    description: Helm chart for Thanos components.
+    digest: cab54a8ca7c223d15ebf40d09b78f15b0853b464eb540e53a0e587fe641b6e18
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.7.0/thanos-0.7.0.tgz
+    version: 0.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Fix volume claim labels.
     apiVersion: v2
@@ -8554,4 +8590,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-24T09:57:34.590124239Z"
+generated: "2021-08-24T14:30:21.390616042Z"
