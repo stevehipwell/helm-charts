@@ -36,6 +36,9 @@ securityContext: {}
 
 priorityClassName: ""
 
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+
 serviceMonitor:
   enabled: false
   additionalLabels: {}
