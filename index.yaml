@@ -3859,6 +3859,41 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Update Jira Software image to v8.18.2.
+    apiVersion: v2
+    appVersion: 8.18.2
+    created: "2021-08-24T08:38:04.154443386Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.3.17
+    description: Helm chart for Atlassian Jira Software.
+    digest: 130b0e91d445a04a734d392de5187d78acdcf6bbf3205d83ca14fb1b00c28e36
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.6.1/jira-software-4.6.1.tgz
+    version: 4.6.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Pod labels via podlabels.
         - kind: added
@@ -8486,4 +8521,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-23T07:33:38.800978667Z"
+generated: "2021-08-24T08:38:04.156281823Z"
