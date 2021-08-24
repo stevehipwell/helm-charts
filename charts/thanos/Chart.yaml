@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 0.6.0
+version: 0.7.0
 appVersion: 0.22.0
 keywords:
   - kubernetes
@@ -22,5 +22,11 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Rule component."
+    - kind: added
+      description: "Value query.additionalStores to enable custom Thanos stores to be configured for the query service."
     - kind: changed
-      description: Fix volume claim labels.
+      description: "Fixed compact service statefulset service name."
+    - kind: removed
+      description: "Values query.sidecarService & query.rulerServcie, use query.additionalStores instead."

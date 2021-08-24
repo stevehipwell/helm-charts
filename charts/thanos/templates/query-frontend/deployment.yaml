@@ -64,7 +64,7 @@ spec:
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
             - --http-address=0.0.0.0:10902
-            - {{ printf "--query-frontend.downstream-url=http://%s:10902" (include "thanos.queryFullname" .) }}
+            - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.cluster.local:10902" (include "thanos.queryFullname" .) .Release.Namespace }}
           {{- with .Values.queryFrontend.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

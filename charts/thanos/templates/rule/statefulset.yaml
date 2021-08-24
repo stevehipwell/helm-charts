@@ -1,0 +1,188 @@
+{{- if .Values.rule.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "thanos.ruleFullname" . }}
+  labels:
+    {{- include "thanos.ruleLabels" . | nindent 4 }}
+spec:
+  serviceName: {{ printf "%s-headless" (include "thanos.ruleFullname" .) }}
+  replicas: {{ .Values.rule.replicas }}
+  {{- with .Values.rule.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "thanos.ruleSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "thanos.ruleSelectorLabels" . | nindent 8 }}
+      {{- with .Values.rule.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if or .Values.objstoreConfig.create (gt (len .Values.rule.podAnnotations) 0) }}
+      annotations:
+      {{- if .Values.objstoreConfig.create }}
+        checksum/config: {{ .Values.objstoreConfig.value | sha256sum }}
+      {{- end }}
+      {{- with .Values.rule.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "thanos.ruleServiceAccountName" . }}
+      {{- with .Values.rule.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.rule.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.rule.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: thanos-rule
+          {{- with .Values.rule.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "thanos.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: HOST_IP_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          {{- with .Values.rule.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args:
+            - rule
+            - --log.level={{ .Values.logLevel }}
+            - --log.format={{ .Values.logFormat }}
+            - --grpc-address=0.0.0.0:10901
+            - --http-address=0.0.0.0:10902
+            - --data-dir=/var/thanos/rule
+            - --objstore.config-file=/etc/thanos/objstore.yaml
+            - --label=rule_replica="$(NAME)"
+            - --alert.label-drop=rule_replica
+            - --tsdb.retention={{ .Values.rule.retention }}
+            - --tsdb.block-duration={{ .Values.rule.blockDuration }}
+            - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.cluster.local" (include "thanos.queryFullname" .) .Release.Namespace }}
+            - --rule-file=/etc/thanos/rules/*.yaml
+            - --eval-interval={{ .Values.rule.evalInterval }}
+            - --alertmanagers.config-file=/etc/thanos/alertmanagers-config.yaml
+          {{- with .Values.rule.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: grpc
+              protocol: TCP
+              containerPort: 10901
+            - name: http
+              protocol: TCP
+              containerPort: 10902
+          livenessProbe:
+            {{- toYaml .Values.rule.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.rule.readinessProbe | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/thanos
+              name: objstore-config
+              readOnly: true
+            - mountPath: /etc/thanos
+              name: alertmanagers-config
+              readOnly: true
+            - mountPath: /etc/thanos/rules
+              name: rules
+              readOnly: true
+            - mountPath: /var/thanos/rule
+              name: data
+              readOnly: false
+          {{- with .Values.rule.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- if .Values.rule.configReloader.enabled }}
+        - name: config-reloader
+          image: jimmidyson/configmap-reload:v0.5.0
+          args:
+            - -webhook-url=http://localhost:10902/-/reload
+            - -volume-dir=/etc/thanos/rules
+          volumeMounts:
+            - mountPath: /etc/thanos/rules
+              name: rules
+              readOnly: true
+          {{- with .Values.rule.configReloader.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- end }}
+      volumes:
+        - name: objstore-config
+          secret:
+            secretName: {{ include "thanos.objstoreConfigSecretName" . }}
+            items:
+            - key: {{ .Values.objstoreConfig.key }}
+              path: objstore.yaml
+        - name: alertmanagers-config
+          secret:
+            secretName: {{ include "thanos.ruleAlertmanagersConfigSecretName" . }}
+            items:
+            - key: {{ .Values.rule.alertmanagersConfig.key }}
+              path: alertmanagers-config.yaml
+        - name: rules
+          configmap:
+            name: {{ include "thanos.ruleRulesConfigmapName" . }}
+      {{- if not .Values.rule.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+      {{- end }}
+      {{- with .Values.rule.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.rule.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.rule.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  {{- if .Values.rule.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          {{- include "thanos.ruleSelectorLabels" . | nindent 10 }}
+        {{- with .Values.rule.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+      {{- with .Values.rule.persistence.storageClass }}
+      {{- if (eq "-" .) }}
+        storageClassName: ""
+      {{- else }}
+        storageClassName: {{ . }}
+      {{- end }}
+      {{- end }}
+        accessModes:
+          - {{ .Values.rule.persistence.accessMode }}
+        resources:
+          requests:
+            storage: {{ .Values.rule.persistence.size }}
+  {{- end }}
+{{- end -}}
