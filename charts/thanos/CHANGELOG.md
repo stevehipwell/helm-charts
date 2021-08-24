@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 0.7.0 2021-08-24
+
+### Added
+
+- [Rule](https://thanos.io/v0.22/components/rule.md/) component.
+- Value `query.additionalStores` to enable custom Thanos stores to be configured for the query service.
+
+### Changed
+
+- Fixed compact service statefulset service name.
+
+### Removed
+
+- Values `query.sidecarService` & `query.rulerServcie`, use `query.additionalStores` instead.
+
 ## 0.6.0 2021-08-11
 
 ### Changed

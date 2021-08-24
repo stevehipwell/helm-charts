@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "thanos.compactLabels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "thanos.compactFullname" . }}
+  serviceName: {{ printf "%s-headless" (include "thanos.compactFullname" .) }}
   replicas: 1
   {{- with .Values.compact.updateStrategy }}
   updateStrategy:
@@ -56,6 +56,10 @@ spec:
           image: {{ include "thanos.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: HOST_IP_ADDRESS
               valueFrom:
                 fieldRef:

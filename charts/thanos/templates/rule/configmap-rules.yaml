@@ -1,0 +1,10 @@
+{{- if and .Values.rule.enabled .Values.rule.rules.create -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "thanos.ruleRulesConfigmapName" . }}
+  labels:
+    {{- include "thanos.ruleLabels" . | nindent 4 }}
+data:
+  {{- .Values.rule.rules.value | nindent 2 }}
+{{- end -}}

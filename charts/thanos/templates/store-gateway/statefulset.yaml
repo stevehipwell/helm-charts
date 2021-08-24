@@ -55,6 +55,10 @@ spec:
           image: {{ include "thanos.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: HOST_IP_ADDRESS
               valueFrom:
                 fieldRef:

@@ -1,0 +1,18 @@
+{{- if and .Values.rule.enabled .Values.rule.podDisruptionBudget.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "thanos.ruleFullname" . }}
+  labels:
+    {{- include "thanos.ruleLabels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "thanos.ruleSelectorLabels" . | nindent 6 }}
+{{- if .Values.rule.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.rule.podDisruptionBudget.minAvailable }}
+{{- end  }}
+{{- if .Values.rule.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.rule.podDisruptionBudget.maxUnavailable }}
+{{- end  }}
+{{- end -}}
