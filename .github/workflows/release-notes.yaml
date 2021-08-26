@@ -2,7 +2,8 @@ name: Update Release Notes
 
 on:
   release:
-    types: [published]
+    types:
+      - created
 
 jobs:
   main:
