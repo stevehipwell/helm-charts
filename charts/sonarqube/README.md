@@ -54,8 +54,8 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `persistence.size`                 | Size of PVC to create.                                                                                                          | `8Gi`                               |
 | `extraVolumeMounts`                | Additional volume mounts for the _sonarqube_ container.                                                                         | `[]`                                |
 | `resources`                        | Resource requests and limits for the _sonarqube_ container.                                                                     | `{}`                                |
-| `extraInitContainers`              | Additional init containers for the pod, these can be templated.                                                                 | `[]`                                |
-| `extraContainers`              | Additional containers for the pod                                                                | `[]`                                |
+| `extraInitContainers`              | Additional init containers for the pod.                                                                                         | `[]`                                |
+| `extraContainers`                  | Additional containers for the pod.                                                                                              | `[]`                                |
 | `extraVolumes`                     | Additional volumes for the pod.                                                                                                 | `[]`                                |
 | `nodeSelector`                     | Node labels for pod assignment.                                                                                                 | `{}`                                |
 | `tolerations`                      | Tolerations for pod assignment.                                                                                                 | `[]`                                |
