@@ -2,7 +2,7 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.6.1
+version: 4.6.2
 appVersion: 3.33.1
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
@@ -22,5 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Updated Nexus3 image to v3.33.1.
+    - kind: removed
+      description: "Defective templating for extraInitContainers."
