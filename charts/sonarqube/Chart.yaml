@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 3.2.0
-appVersion: 8.9.1
+version: 3.2.1
+appVersion: 8.9.2
 keywords:
   - sonarqube
   - sast

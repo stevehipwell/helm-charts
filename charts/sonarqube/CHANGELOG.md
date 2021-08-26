@@ -11,9 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.2.1 - 2021-08-26
+
+### Changed
+
+- Updated _SonarQube_ image to [v8.9.2](https://www.sonarqube.org/sonarqube-8-9-lts/)
+
+### Removed
+
+- Defective templating for `extraInitContainers`.
+
 ## v3.2.0 - 2021-08-19
 
 ### Added
+
 - Extra sidecar containers via `extraContainers`
 
 ## v3.1.0 - 2021-08-11
