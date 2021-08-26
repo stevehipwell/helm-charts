@@ -54,7 +54,7 @@ spec:
               name: jira-cas
       {{- end }}
       {{- with .Values.extraInitContainers }}
-        {{- tpl (toYaml .) $ | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
     {{- end }}
       containers:
