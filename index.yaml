@@ -5513,6 +5513,36 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: removed
+          description: "Defective templating for extraInitContainers."
+    apiVersion: v2
+    appVersion: 3.33.1
+    created: "2021-08-26T09:02:21.290019272Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: e3ef8f0eb98f8b187ab291dd8940116d1fe4544707f85c0423326ca3cb910e6d
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.6.2/nexus3-4.6.2.tgz
+    version: 4.6.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Updated Nexus3 image to v3.33.1.
     apiVersion: v2
@@ -8725,4 +8755,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-26T08:34:11.976723743Z"
+generated: "2021-08-26T09:02:21.291944093Z"
