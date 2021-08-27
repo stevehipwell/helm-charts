@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [4.7.0] - 2021-08-27
+
+## Changed
+
+- Update _Jira Software_ image to [v8.19.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-19-x-release-notes-1082526044.html).
+- Update embedded _PostgreSQL_ chart to [v10.9.4](https://artifacthub.io/packages/helm/bitnami/postgresql/10.9.4) (PostgreSQL v11.13.0).
+
 ## [4.6.2] - 2021-08-26
 
 ### Removed
