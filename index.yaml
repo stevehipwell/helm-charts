@@ -7751,7 +7751,7 @@ entries:
           description: Extra volumes via extraVolumes and mounts for the sonarqube container via extraVolumeMounts.
         - kind: added
           description: Extra init containers via extraInitContainers, which can be templated.
-          - kind: removed
+        - kind: removed
           description: Init container chmod-volume-mounts container as fsGroup should solve this issue.
     apiVersion: v2
     appVersion: 8.9.1
