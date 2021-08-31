@@ -8432,6 +8432,38 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Ingress support to the Query, Query Frontend & Rule components."
+        - kind: changed
+          description: "Use the policy/v1 API for PodDisruptionBudget if the K8s version supports it."
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-08-31T15:57:22.171327767Z"
+    description: Helm chart for Thanos components.
+    digest: 006e6dedd16b82e481d43b797861185a9f5bdc494494a69312d6fe6a4a99883d
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.8.0/thanos-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Rule component."
         - kind: added
           description: "Value query.additionalStores to enable custom Thanos stores to be configured for the query service."
@@ -8869,4 +8901,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-31T14:48:21.658616424Z"
+generated: "2021-08-31T15:57:22.175553919Z"
