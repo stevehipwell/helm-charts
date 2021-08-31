@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 0.8.0 2021-08-31
+
+### Added
+
+- Ingress support to the Query, Query Frontend & Rule components.
+
+### Changed
+
+- Use the `policy/v1` API for `PodDisruptionBudget` if the K8s version supports it.
+
 ## 0.7.0 2021-08-24
 
 ### Added

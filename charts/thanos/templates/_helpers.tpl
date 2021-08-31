@@ -67,3 +67,32 @@ The Thanos image to use
 {{- define "thanos.image" -}}
 {{- printf "%s:%s" .Values.image.repository (default (printf "v%s" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}
+
+{{/* Get Ingress API Version */}}
+{{- define "thanos.ingress.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "networking.k8s.io/v1" -}}
+  {{- else -}}
+    {{- print "extensions/v1beta1" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Check Ingress stability */}}
+{{- define "thanos.ingress.isStable" -}}
+  {{- eq (include "thanos.ingress.apiVersion" .) "networking.k8s.io/v1" -}}
+{{- end -}}
+
+{{/* Check Ingress supports pathType */}}
+{{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
+{{- define "thanos.ingress.supportsPathType" -}}
+  {{- or (eq (include "thanos.ingress.isStable" .) "true") (and (eq (include "thanos.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{- end -}}
+
+{{/* Get PodDisruptionBudget API Version */}}
+{{- define "thanos.pdb.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "policy/v1" -}}
+  {{- else -}}
+    {{- print "policy/v1beta1" -}}
+  {{- end -}}
+{{- end -}}

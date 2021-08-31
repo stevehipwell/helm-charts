@@ -1,0 +1,49 @@
+{{- if .Values.rule.ingress.enabled -}}
+{{- $apiIsStable := eq (include "thanos.ingress.isStable" .) "true" -}}
+{{- $ingressSupportsPathType := eq (include "thanos.ingress.supportsPathType" .) "true" -}}
+{{- $serviceName := include "thanos.fullname" . -}}
+apiVersion: {{ include "thanos.ingress.apiVersion" . }}
+kind: Ingress
+metadata:
+  name: {{ $serviceName }}
+  labels:
+    {{- include "thanos.labels" . | nindent 4 }}
+  {{- with .Values.rule.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+{{- if and $apiIsStable .Values.rule.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.rule.ingress.ingressClassName }}
+{{- end }}
+  rules:
+  {{- range .Values.rule.ingress.hosts }}
+    - host: {{ quote . }}
+      http:
+        paths:
+          - path: {{ $.Values.rule.ingress.path }}
+            {{- if $ingressSupportsPathType }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+            {{- if $apiIsStable }}
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: 10902
+            {{- else }}
+              serviceName: {{ $serviceName }}
+              servicePort: http
+            {{- end }}
+  {{- end }}
+{{- if .Values.rule.ingress.tls }}
+  tls:
+  {{- range .Values.rule.ingress.tls }}
+    - hosts:
+    {{- range .hosts }}
+        - {{ quote . }}
+    {{- end }}
+      secretName: {{ .secretName }}
+  {{- end }}
+{{- end }}
+{{- end }}
