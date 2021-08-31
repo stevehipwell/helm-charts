@@ -3887,6 +3887,43 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Update Jira Software image to v8.19.0."
+        - kind: changed
+          description: "Update embedded PostgreSQL chart to v10.9.4 (PostgreSQL v11.13.0)."
+    apiVersion: v2
+    appVersion: 8.19.0
+    created: "2021-08-31T08:49:47.497415698Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.9.4
+    description: Helm chart for Atlassian Jira Software.
+    digest: c2e02f7224f4cfa5ad8733906dcd4fb05d04bec8becffb83737d28a7c2426317
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.7.0/jira-software-4.7.0.tgz
+    version: 4.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: removed
           description: "Defective templating for extraInitContainers."
     apiVersion: v2
@@ -8755,4 +8792,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-26T09:02:21.291944093Z"
+generated: "2021-08-31T08:49:47.499313244Z"
