@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v3.4.0 - 2021-08-31
+
+### Changed
+
+- Use the `policy/v1` API for `PodDisruptionBudget` if the K8s version supports it.
+
 ## v3.3.3 - 2021-08-11
 
 ### Changed
