@@ -161,6 +161,18 @@ query:
     successThreshold: 1
     failureThreshold: 20
 
+  ingress:
+    enabled: false
+    annotations: {}
+    ingressClassName: ""
+    path: /
+    hosts: []
+    #   - chart-example.local
+    tls: []
+    #   - hosts:
+    #       - chart-example.local
+    #     secretName: chart-example-tls
+
   resources: {}
 
   nodeSelector: {}
@@ -233,6 +245,18 @@ queryFrontend:
     successThreshold: 1
     failureThreshold: 20
 
+  ingress:
+    enabled: false
+    annotations: {}
+    ingressClassName: ""
+    path: /
+    hosts: []
+    #   - chart-example.local
+    tls: []
+    #   - hosts:
+    #       - chart-example.local
+    #     secretName: chart-example-tls
+
   resources: {}
 
   nodeSelector: {}
@@ -301,6 +325,18 @@ rule:
     timeoutSeconds: 1
     successThreshold: 1
     failureThreshold: 20
+
+  ingress:
+    enabled: false
+    annotations: {}
+    ingressClassName: ""
+    path: /
+    hosts: []
+    #   - chart-example.local
+    tls: []
+    #   - hosts:
+    #       - chart-example.local
+    #     secretName: chart-example-tls
 
   resources: {}
 

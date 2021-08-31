@@ -1,5 +1,5 @@
 {{- if and .Values.rule.enabled .Values.rule.podDisruptionBudget.enabled -}}
-apiVersion: policy/v1beta1
+apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "thanos.ruleFullname" . }}
