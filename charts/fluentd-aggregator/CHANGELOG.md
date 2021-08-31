@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v2.6.0 - 2021-08-31
+
+### Changed
+
+- Update _Fluentd Aggregator_ Docker image to [v1.14.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v1.14.0) (_Fluentd_ `v1.14.0`).
+- Use the `policy/v1` API for `PodDisruptionBudget` if the K8s version supports it.
+
 ## v2.5.3 - 2021-08-11
 
 ### Changed

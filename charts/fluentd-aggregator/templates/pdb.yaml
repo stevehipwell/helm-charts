@@ -1,5 +1,5 @@
 {{- if .Values.podDisruptionBudget.enabled -}}
-apiVersion: policy/v1beta1
+apiVersion: {{ include "fluentd-aggregator.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "fluentd-aggregator.fullname" . }}
