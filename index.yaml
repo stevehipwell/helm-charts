@@ -5360,6 +5360,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Use the policy/v1 API for PodDisruptionBudget if the K8s version supports it."
+    apiVersion: v2
+    appVersion: 0.5.0
+    created: "2021-08-31T14:48:21.656843779Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: a1973843415280018993ca9a58cb53fb756cd3cd3157cf4c8d49318e6fd1f88f
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.4.0/metrics-server-3.4.0.tgz
+    version: 3.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Improve documentation.
     apiVersion: v2
     appVersion: 0.5.0
@@ -8842,4 +8869,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-31T12:11:33.299953757Z"
+generated: "2021-08-31T14:48:21.658616424Z"
