@@ -89,3 +89,12 @@ The image to use
 {{- define "fluentd-aggregator.ingress.supportsPathType" -}}
   {{- or (eq (include "fluentd-aggregator.ingress.isStable" .) "true") (and (eq (include "fluentd-aggregator.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
+
+{{/* Get PodDisruptionBudget API Version */}}
+{{- define "fluentd-aggregator.pdb.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "policy/v1" -}}
+  {{- else -}}
+    {{- print "policy/v1beta1" -}}
+  {{- end -}}
+{{- end -}}
