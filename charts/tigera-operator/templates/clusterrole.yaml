@@ -31,11 +31,11 @@ rules:
       - nodes
     verbs:
       # Need to update node labels when migrating nodes.
-      - 'get'
-      - 'patch'
-      - 'list'
+      - get
+      - patch
+      - list
       # We need this for Typha autoscaling
-      - 'watch'
+      - watch
   - apiGroups:
       - rbac.authorization.k8s.io
     resources:
@@ -87,9 +87,9 @@ rules:
       - delete
       - watch
   - apiGroups:
-    - networking.k8s.io
+      - networking.k8s.io
     resources:
-    - networkpolicies
+      - networkpolicies
     verbs:
       - create
       - update
@@ -98,20 +98,19 @@ rules:
       - list
       - watch
   - apiGroups:
-    - crd.projectcalico.org
+      - crd.projectcalico.org
     resources:
-    - felixconfigurations
+      - '*'
     verbs:
-    - patch
+      - get
+      - list
+      - watch
   - apiGroups:
-    - crd.projectcalico.org
+      - crd.projectcalico.org
     resources:
-    - ippools
-    - kubecontrollersconfigurations
+      - felixconfigurations
     verbs:
-    - get
-    - list
-    - watch
+      - patch
   - apiGroups:
       - scheduling.k8s.io
     resources:

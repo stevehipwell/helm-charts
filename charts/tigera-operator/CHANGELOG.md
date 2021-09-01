@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 1.1.2 2021-09-01
+
+### Changed
+
+- Fix cluster role.
+
 ## 1.1.1 2021-09-01
 
 ### Changed
