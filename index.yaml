@@ -8681,6 +8681,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update tigera-operator image to v1.21.1."
+    apiVersion: v2
+    appVersion: 1.21.1
+    created: "2021-09-01T07:58:00.263057409Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 3c49a30b60a3dadd504569ce6700d39e2194869ce69036490b22c278211bf3a6
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.1.1/tigera-operator-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated tigera-operator image to v1.21.0."
         - kind: changed
           description: "Enable customisation of deployment hostNetwork & dnsPolicy for users who aren't using Calico as the CNI."
@@ -8901,4 +8932,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-31T15:57:22.175553919Z"
+generated: "2021-09-01T07:58:00.265232437Z"
