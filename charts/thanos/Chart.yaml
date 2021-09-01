@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 0.8.0
+version: 0.9.0
 appVersion: 0.22.0
 keywords:
   - kubernetes
@@ -22,7 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Ingress support to the Query, Query Frontend & Rule components."
     - kind: changed
-      description: "Use the policy/v1 API for PodDisruptionBudget if the K8s version supports it."
+      description: "Fix ingress."
