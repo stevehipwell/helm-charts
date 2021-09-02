@@ -8740,6 +8740,39 @@ entries:
   tigera-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Locking secret tigera-operator-lock in the kube-system namespace to stop the chart being deployed more than once."
+        - kind: added
+          description: "Support for the installation.spec to be provided as a templatable string as an alternative to structured configuration."
+    apiVersion: v2
+    appVersion: 1.21.1
+    created: "2021-09-02T09:23:15.26193879Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 322b02545028d0020f0a0ed02cb9224e1019d60cf835d73a427d0382ecedb451
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.2.0/tigera-operator-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Fix cluster role."
     apiVersion: v2
@@ -9023,4 +9056,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-01T12:01:15.463290085Z"
+generated: "2021-09-02T09:23:15.264876524Z"
