@@ -2,7 +2,7 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 1.1.2
+version: 1.2.0
 appVersion: 1.21.1
 keywords:
   - kubernetes
@@ -23,5 +23,7 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Fix cluster role."
+    - kind: added
+      description: "Locking secret tigera-operator-lock in the kube-system namespace to stop the chart being deployed more than once."
+    - kind: added
+      description: "Support for the installation.spec to be provided as a templatable string as an alternative to structured configuration."
