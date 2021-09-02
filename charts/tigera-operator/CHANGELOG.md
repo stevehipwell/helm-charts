@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 1.2.0 2021-09-02
+
+### Added
+
+- Locking secret `tigera-operator-lock` in the `kube-system` namespace to stop the chart being deployed more than once.
+- Support for the `installation.spec` to be provided as a templatable string as an alternative to structured configuration.
+
 ## 1.1.2 2021-09-01
 
 ### Changed
