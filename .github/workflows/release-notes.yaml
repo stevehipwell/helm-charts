@@ -33,7 +33,7 @@ jobs:
         uses: mindsers/changelog-reader-action@v2
         with:
           path: ./charts/${{steps.chart_name.outputs.result}}/CHANGELOG.md
-          version: ${{steps.chart_version.outputs.result}}
+          version: "v${{steps.chart_version.outputs.result}}"
 
       - name: Update release
         uses: ncipollo/release-action@v1
