@@ -68,3 +68,10 @@ The image to use
 {{- define "clamav.image" -}}
 {{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
 {{- end }}
+
+{{/*
+Create pvc name.
+*/}}
+{{- define "clamav.pvcname" -}}
+{{- template "clamav.fullname" . -}}-data
+{{- end -}}

@@ -71,6 +71,14 @@ ingress:
   #       - chart-example.local
   #     secretName: chart-example-tls
 
+persistence:
+  enabled: false
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 1Gi
+
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
@@ -82,6 +90,12 @@ resources: {}
 #   requests:
 #     cpu: 100m
 #     memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
 
 env:
 #   - name: VARIABLE
