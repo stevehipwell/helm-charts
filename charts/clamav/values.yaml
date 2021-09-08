@@ -87,17 +87,17 @@ env:
 #   - name: VARIABLE
 #     value: my-value
 
-clamdConfig: |
-  LogTime yes
-  PidFile /run/lock/clamd.pid
-  LocalSocket /run/clamav/clamd.sock
-  TCPSocket 3310
-  TCPAddr 0.0.0.0
-  User clamav
-
-freshclamConfig: |
-  PidFile /run/lock/freshclam.pid
-  DatabaseOwner clamav
-  DatabaseMirror database.clamav.net
-  ScriptedUpdates yes
-  NotifyClamd /etc/clamav/clamd.conf
+config:
+  clamd: |
+    LogTime yes
+    PidFile /run/lock/clamd.pid
+    LocalSocket /run/clamav/clamd.sock
+    TCPSocket 3310
+    TCPAddr 0.0.0.0
+    User clamav
+  freshclam: |
+    PidFile /run/lock/freshclam.pid
+    DatabaseOwner clamav
+    DatabaseMirror database.clamav.net
+    ScriptedUpdates yes
+    NotifyClamd /etc/clamav/clamd.conf
