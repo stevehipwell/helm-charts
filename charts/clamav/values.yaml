@@ -1,0 +1,106 @@
+# Default values for fluentd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: clamav/clamav
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podLabels: {}
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 2000
+
+securityContext: {}
+#   capabilities:
+#     drop:
+#       - ALL
+#   readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+#   runAsUser: 1000
+
+priorityClassName: ""
+
+livenessProbe:
+  exec:
+    command:
+      - clamdcheck.sh
+  initialDelaySeconds: 15
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
+readinessProbe:
+  exec:
+    command:
+      - clamdcheck.sh
+  initialDelaySeconds: 15
+  periodSeconds: 30
+  failureThreshold: 10
+  timeoutSeconds: 1
+
+service:
+  type: ClusterIP
+  annotations: {}
+  port: 3310
+
+ingress:
+  enabled: false
+  annotations: {}
+  ingressClassName: ""
+  hosts: []
+  #   - chart-example.local
+  tls: []
+  #   - hosts:
+  #       - chart-example.local
+  #     secretName: chart-example-tls
+
+
+
+resources: {}
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#   limits:
+#     cpu: 100m
+#     memory: 128Mi
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
+
+env:
+#   - name: VARIABLE
+#     value: my-value
+
+
+clamdConfig: |
+  LogTime yes
+  PidFile /run/lock/clamd.pid
+  LocalSocket /run/clamav/clamd.sock
+  TCPSocket 3310
+  TCPAddr 0.0.0.0
+  User clamav
+
+freshclamConfig: |
+  PidFile /run/lock/freshclam.pid
+  DatabaseOwner clamav
+  DatabaseMirror database.clamav.net
+  ScriptedUpdates yes
+  NotifyClamd /etc/clamav/clamd.conf
