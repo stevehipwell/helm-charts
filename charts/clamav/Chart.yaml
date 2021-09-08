@@ -2,7 +2,7 @@ apiVersion: v2
 name: clamav
 description: Helm chart for ClamAV.
 type: application
-version: 0.0.1
+version: 0.1.0
 appVersion: 0.104.0
 keywords:
   - clamav

@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -36,19 +36,33 @@ spec:
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ quote . }}
       {{- end }}
+      {{- if .Values.freshclam.enabled }}
       initContainers:
-        - name: freshclamd
+        - name: freshclam-init
+          {{- with .Values.freshclam.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: {{ include "clamav.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
-          args: ["-c", "freshclam", "--foreground", "--stdout"]
+          command: ["/sbin/tini", "--"]
+          args: ["freshclam", "--foreground", "--stdout"]
           volumeMounts:
+            - name: config
+              mountPath: /etc/clamav/freshclam.conf
+              subPath: freshclam.conf
+              readOnly: true
             - mountPath: /var/lib/clamav
               name: {{ include "clamav.pvcname" . }}
+          {{- with .Values.freshclam.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- end }}
       containers:
         - name: clamav
           {{- with .Values.securityContext }}
@@ -61,6 +75,8 @@ spec:
             {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
+          command: ["/sbin/tini", "--"]
+          args: ["clamd", "--foreground"]
           ports:
             - name: clamavd
               containerPort: 3310
@@ -71,18 +87,57 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
             - name: config
-              mountPath: /etc/clamav
+              mountPath: /etc/clamav/clamd.conf
+              subPath: clamd.conf
+              readOnly: true
+            - name: commands
+              mountPath: /usr/local/bin/clamdcheck.sh
+              subPath: clamdcheck.sh
+              readOnly: true
+            {{- if .Values.freshclam.enabled }}
             - mountPath: /var/lib/clamav
               name: {{ include "clamav.pvcname" . }}
+            {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+        {{- if .Values.freshclam.enabled }}
+        - name: freshclam
+          {{- with .Values.freshclam.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "clamav.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          command: ["/sbin/tini", "--"]
+          args: ["freshclam", "--foreground", "--stdout", "--daemon"]
+          volumeMounts:
+            - name: config
+              mountPath: /etc/clamav/freshclam.conf
+              subPath: freshclam.conf
+              readOnly: true
+            - mountPath: /var/lib/clamav
+              name: {{ include "clamav.pvcname" . }}
+          {{- with .Values.freshclam.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        {{- end }}
       volumes:
         - name: config
           configMap:
-            name: {{ template "clamav.fullname" . }}
+            name: {{ template "clamav.configname" . }}
+            defaultMode: 0755
+        - name: commands
+          configMap:
+            name: {{ template "clamav.commandsname" . }}
             defaultMode: 0777
+        {{- if .Values.freshclam.enabled }}
         - name: {{ include "clamav.pvcname" . }}
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
@@ -90,6 +145,7 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

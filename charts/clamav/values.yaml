@@ -4,7 +4,7 @@
 
 image:
   repository: clamav/clamav
-  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
+  # Overrides the image tag whose default is {{ .Chart.AppVersion }} or {{ .Chart.AppVersion }}_base depending on freshclam being enabled
   tag: ""
   pullPolicy: IfNotPresent
   pullSecrets: []
@@ -25,7 +25,10 @@ podLabels: {}
 podAnnotations: {}
 
 podSecurityContext:
-  fsGroup: 2000
+  fsGroup: 101
+  runAsNonRoot: true
+  runAsUser: 100
+  runAsGroup: 101
 
 securityContext: {}
 #   capabilities:
@@ -101,17 +104,20 @@ env:
 #   - name: VARIABLE
 #     value: my-value
 
-config:
-  clamd: |
-    LogTime yes
-    PidFile /run/lock/clamd.pid
-    LocalSocket /run/clamav/clamd.sock
-    TCPSocket 3310
-    TCPAddr 0.0.0.0
-    User clamav
-  freshclam: |
-    PidFile /run/lock/freshclam.pid
+config: |-
+  LogTime yes
+  Foreground true
+  TCPSocket 3310
+  TCPAddr 0.0.0.0
+  User clamav
+  SelfCheck 600
+
+freshclam:
+  enabled: true
+  securityContext: {}
+  resources: {}
+  config: |-
+    Foreground true
     DatabaseOwner clamav
     DatabaseMirror database.clamav.net
     ScriptedUpdates yes
-    NotifyClamd /etc/clamav/clamd.conf

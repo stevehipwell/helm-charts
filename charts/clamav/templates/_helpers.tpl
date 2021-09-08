@@ -66,7 +66,11 @@ Create the name of the service account to use
 The image to use
 */}}
 {{- define "clamav.image" -}}
+{{- if .Values.freshclam.enabled }}
+{{- printf "%s:%s_base" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
+{{- else }}
 {{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
+{{- end }}
 {{- end }}
 
 {{/*
@@ -74,4 +78,18 @@ Create pvc name.
 */}}
 {{- define "clamav.pvcname" -}}
 {{- template "clamav.fullname" . -}}-data
+{{- end -}}
+
+{{/*
+Create commands name.
+*/}}
+{{- define "clamav.commandsname" -}}
+{{- template "clamav.fullname" . -}}-commands
+{{- end -}}
+
+{{/*
+Create config name.
+*/}}
+{{- define "clamav.configname" -}}
+{{- template "clamav.fullname" . -}}-config
 {{- end -}}
