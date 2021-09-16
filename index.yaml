@@ -3966,6 +3966,43 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Jira Software image to v8.19.1."
+        - kind: changed
+          description: "Update embedded PostgreSQL chart to v10.9.6 (PostgreSQL v11.13.0)."
+    apiVersion: v2
+    appVersion: 8.19.1
+    created: "2021-09-16T15:28:30.034536851Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.9.6
+    description: Helm chart for Atlassian Jira Software.
+    digest: a030ae51c6a40e91178bab774dc2e98f9412388e790bfb8cc93b354d7accb7e9
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-4.7.1/jira-software-4.7.1.tgz
+    version: 4.7.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Jira Software image to v8.19.0."
         - kind: changed
           description: "Update embedded PostgreSQL chart to v10.9.4 (PostgreSQL v11.13.0)."
@@ -9115,4 +9152,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-03T07:22:21.020215102Z"
+generated: "2021-09-16T15:28:30.036530753Z"
