@@ -7260,6 +7260,33 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated PlantUML image to v1.2021.10."
+    apiVersion: v2
+    appVersion: 1.2021.10
+    created: "2021-09-17T15:06:51.063072042Z"
+    description: Helm chart for PlantUML.
+    digest: b8cb37b41baff25dc2ac8f0351faae1822372392413344ca7a2ac094080dfecb
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.1.0/plantuml-3.1.0.tgz
+    version: 3.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - Support K8s v1.18 ingress changes
         - Remove customisable ingress paths per-host as using anything except / would break the PlantUML service
     apiVersion: v2
@@ -9242,4 +9269,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-17T11:47:36.149004166Z"
+generated: "2021-09-17T15:06:51.071434305Z"
