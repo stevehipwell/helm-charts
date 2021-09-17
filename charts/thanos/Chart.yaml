@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 0.10.1
+version: 0.10.2
 appVersion: 0.22.0
 keywords:
   - kubernetes
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Fix rule rules configmap support."
+      description: "Fix volume mounts."

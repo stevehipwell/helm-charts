@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 0.10.2 2021-09-17
+
+### Changed
+
+- Fix volume mounts.
+
 ## 0.10.1 2021-09-17
 
 ### Changed

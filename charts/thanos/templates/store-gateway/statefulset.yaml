@@ -89,8 +89,9 @@ spec:
           readinessProbe:
             {{- toYaml .Values.storeGateway.readinessProbe | nindent 12 }}
           volumeMounts:
-            - mountPath: /etc/thanos
+            - mountPath: /etc/thanos/objstore.yaml
               name: objstore-config
+              subPath: {{ .Values.objstoreConfig.key }}
               readOnly: true
             - mountPath: /var/thanos/store
               name: data
@@ -103,9 +104,6 @@ spec:
         - name: objstore-config
           secret:
             secretName: {{ include "thanos.objstoreConfigSecretName" . }}
-            items:
-            - key: {{ .Values.objstoreConfig.key }}
-              path: objstore.yaml
       {{- if not .Values.storeGateway.persistence.enabled }}
         - name: data
           emptyDir: {}
