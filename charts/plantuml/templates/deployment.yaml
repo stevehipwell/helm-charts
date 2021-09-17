@@ -28,8 +28,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "plantuml.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
@@ -42,7 +44,7 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["sh"]
+          command: ["/bin/sh"]
           args: ["-c", "cp -f /opt/java/openjdk/lib/security/cacerts /var/cacerts/keystore/cacerts; for f in /var/cacerts/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/cacerts/keystore/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
             - mountPath: /var/cacerts/cas
@@ -51,10 +53,12 @@ spec:
               name: ca-certs-keystore
       {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: plantuml
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "jetty-v%s" .Chart.AppVersion) }}"
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "plantuml.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
@@ -74,8 +78,10 @@ spec:
               name: ca-certs-keystore
               subPath: cacerts
           {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- if .Values.caCerts.enabled }}
       volumes:
         - name: ca-certs-secret
