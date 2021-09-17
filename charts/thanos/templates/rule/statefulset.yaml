@@ -146,7 +146,7 @@ spec:
             - key: {{ .Values.rule.alertmanagersConfig.key }}
               path: alertmanagers-config.yaml
         - name: rules
-          configmap:
+          configMap:
             name: {{ include "thanos.ruleRulesConfigmapName" . }}
       {{- if not .Values.rule.persistence.enabled }}
         - name: data
