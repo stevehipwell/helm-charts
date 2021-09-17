@@ -8526,6 +8526,36 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Query ingress support to rule."
+    apiVersion: v2
+    appVersion: 0.22.0
+    created: "2021-09-17T09:55:45.237294869Z"
+    description: Helm chart for Thanos components.
+    digest: 85d9138c6806b190b8ac9ad186c7792bf2172467cf5c0ac0a8584720cd4c6aa5
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-0.10.0/thanos-0.10.0.tgz
+    version: 0.10.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Fix ingress."
     apiVersion: v2
@@ -9152,4 +9182,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-16T15:28:30.036530753Z"
+generated: "2021-09-17T09:55:45.247150939Z"
