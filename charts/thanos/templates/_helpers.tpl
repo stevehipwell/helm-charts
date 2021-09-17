@@ -96,3 +96,27 @@ The Thanos image to use
     {{- print "policy/v1beta1" -}}
   {{- end -}}
 {{- end -}}
+
+{{/* Check if we have query ingress */}}
+{{- define "thanos.queryIngress.enabled" -}}
+  {{- or (and .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled) .Values.query.ingress.enabled -}}
+{{- end -}}
+
+{{/* Get the query ingress url */}}
+{{- define "thanos.queryIngress.url" -}}
+  {{- if and .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled -}}
+    {{- if .Values.queryFrontend.ingress.tls -}}
+      {{- printf "https://%s%s" (first (first .Values.queryFrontend.ingress.tls).hosts) .Values.queryFrontend.ingress.path -}}
+    {{- else -}}
+      {{- printf "http://%s%s" (first .Values.queryFrontend.ingress.hosts) .Values.queryFrontend.ingress.path -}}
+    {{- end -}}
+  {{- else if .Values.query.ingress.enabled -}}
+    {{- if .Values.query.ingress.tls -}}
+      {{- printf "https://%s%s" (first (first .Values.query.ingress.tls).hosts) .Values.query.ingress.path -}}
+    {{- else -}}
+      {{- printf "http://%s%s" (first .Values.query.ingress.hosts) .Values.query.ingress.path -}}
+    {{- end -}}
+  {{- else -}}
+    {{- print "" -}}
+  {{- end -}}
+{{- end -}}

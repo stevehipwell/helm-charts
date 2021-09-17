@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## 0.10.0 2021-09-17
+
+### Added
+
+- Query ingress support to rule.
+
 ## 0.9.0 2021-09-01
 
 ### Changed

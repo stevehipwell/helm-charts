@@ -83,6 +83,9 @@ spec:
             - --rule-file=/etc/thanos/rules/*.yaml
             - --eval-interval={{ .Values.rule.evalInterval }}
             - --alertmanagers.config-file=/etc/thanos/alertmanagers-config.yaml
+          {{- if eq (include "thanos.queryIngress.enabled" .) "true" }}
+            - {{ printf "--alert.query-url=%s" (include "thanos.queryIngress.url" .) }}
+          {{- end }}
           {{- with .Values.rule.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
