@@ -2304,7 +2304,7 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
-          description: "Update Fluentd Aggregator Docker image to v1.14.1 (Fluentd v1.14.1).
+          description: "Update Fluentd Aggregator Docker image to v1.14.1 (Fluentd v1.14.1)."
     apiVersion: v2
     appVersion: 1.14.1
     created: "2021-10-04T10:46:44.540941215Z"
