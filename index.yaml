@@ -2304,6 +2304,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Fluentd Aggregator Docker image to v1.14.1 (Fluentd v1.14.1).
+    apiVersion: v2
+    appVersion: 1.14.1
+    created: "2021-10-04T10:46:44.540941215Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 39b5aa161b57fe082dc0771f49e15e77fbd1d6cfa8525dc68425f791109b07f4
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-2.6.1/fluentd-aggregator-2.6.1.tgz
+    version: 2.6.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Fluentd Aggregator Docker image to v1.14.0 (Fluentd v1.14.0)."
         - kind: changed
           description: "Use the policy/v1 API for PodDisruptionBudget if the K8s version supports it."
@@ -9424,4 +9451,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-04T10:12:46.275480319Z"
+generated: "2021-10-04T10:46:44.543382043Z"
