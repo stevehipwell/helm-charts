@@ -89,15 +89,13 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- if .Values.config.enabled }}
-          command: ["/bin/sh"]
-          args: ["-c", "mkdir -p /nexus-data/etc; ${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
           lifecycle:
             postStart:
               exec:
                 command:
-                  - "sh"
+                  - "/bin/sh"
                   - "-c"
-                  - "${SONATYPE_DIR}/nexus/conf/configure.sh"
+                  - "${SONATYPE_DIR}/nexus/conf/configure.sh > /proc/1/fd/1 2>/proc/1/fd/2"
           {{- end }}
           ports:
             - name: http
