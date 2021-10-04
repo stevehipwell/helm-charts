@@ -6,6 +6,8 @@ root_user="admin"
 base_dir="/opt/sonatype/nexus"
 out_file="/tmp/out.json"
 
+echo "Configuring Nexus3..."
+
 if [ -f "${base_dir}/secret/root.password" ]
 then
   root_password="$(cat "${base_dir}/secret/root.password")"
@@ -13,8 +15,8 @@ fi
 
 if [ -z "${root_password:-}" ]
 then
-  echo "No root password was provided."
-  exit 0
+  >&2 echo "No root password was provided."
+  exit 1
 fi
 
 while /bin/true
@@ -38,7 +40,7 @@ do
     status_code=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: text/plain' -u "${root_user}:${default_password}" -d "${root_password}" "${nexus_host}/service/rest/beta/security/users/${root_user}/change-password")
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could not update the root password." >&2
+      >&2 echo "Could not update the root password."
       exit 1
     fi
 
@@ -54,7 +56,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/anonymous")"
     if [ "${status_code}" -ne 200 ]
     then
-      echo "Could not configure anonymous access." >&2
+      >&2 echo "Could not configure anonymous access."
       exit 1
     fi
 
@@ -69,7 +71,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/realms/active")"
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could not configure realms." >&2
+      >&2 echo "Could not configure realms."
       exit 1
     fi
 
@@ -102,7 +104,7 @@ do
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap/${name// /%20}")"
       if [ "${status_code}" -ne 204 ]
       then
-        echo "Could not configure LDAP." >&2
+        >&2 echo "Could not configure LDAP."
         exit 1
       fi
     else
@@ -111,7 +113,7 @@ do
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap")"
       if [ "${status_code}" -ne 201 ]
       then
-        echo "Could not configure LDAP." >&2
+        >&2 echo "Could not configure LDAP."
         exit 1
       fi
     fi
@@ -139,14 +141,14 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
         if [ "${status_code}" -ne 204 ]
         then
-          echo "Could not configure blob store." >&2
+          >&2 echo "Could not configure blob store."
           exit 1
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}")"
         if [ "${status_code}" -ne 204 ] && [ "${status_code}" -ne 201 ]
         then
-          echo "Could not configure blob store." >&2
+          >&2 echo "Could not configure blob store."
           exit 1
         fi
       fi
@@ -173,7 +175,7 @@ do
 
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could not update script ${name}." >&2
+      >&2 echo "Could not update script ${name}."
       exit 1
     fi
 
@@ -189,7 +191,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/cleanup/run")
       if [ "${status_code}" -ne 200 ]
       then
-        echo "Could not set cleanup policy." >&2
+        >&2 echo "Could not set cleanup policy."
         exit 1
       fi
 
@@ -218,7 +220,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/repo/run")
       if [ "${status_code}" -ne 200 ]
       then
-        echo "Could not set repo." >&2
+        >&2 echo "Could not set repo."
         exit 1
       fi
 
@@ -241,14 +243,14 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles/${id}")"
         if [ "${status_code}" -ne 204 ]
         then
-          echo "Could not configure role." >&2
+          >&2 echo "Could not configure role."
           exit 1
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/roles")"
         if [ "${status_code}" -ne 200 ]
         then
-          echo "Could not configure role." >&2
+          >&2 echo "Could not configure role."
           exit 1
         fi
       fi
@@ -264,7 +266,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/task/run")
       if [ "${status_code}" -ne 200 ]
       then
-        echo "Could not set task." >&2
+        >&2 echo "Could not set task."
         exit 1
       fi
 
@@ -280,13 +282,13 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/beta/security/users/anonymous")"
     if [ "${status_code}" -ne 204 ]
     then
-      echo "Could not configure anonymous user for metrics." >&2
+      >&2 echo "Could not configure anonymous user for metrics."
       exit 1
     fi
 
     echo "Anonymous user for metrics configured."
   fi
 
-  echo "Configuration run successfully!"
+  echo "Nexus3 configured successfully!"
   exit 0
 done
