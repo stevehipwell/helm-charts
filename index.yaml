@@ -7410,6 +7410,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated PlantUML image to v1.2021.12."
+    apiVersion: v2
+    appVersion: 1.2021.12
+    created: "2021-10-06T07:40:58.452298462Z"
+    description: Helm chart for PlantUML.
+    digest: b419cbbbce310201c3b795f7d279bcab98832def3342a53373473adcdc954b07
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.2.0/plantuml-3.2.0.tgz
+    version: 3.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated PlantUML image to v1.2021.10."
     apiVersion: v2
     appVersion: 1.2021.10
@@ -8703,6 +8730,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Thanos image to v0.23.1."
+    apiVersion: v2
+    appVersion: 0.23.1
+    created: "2021-10-06T07:40:58.563368913Z"
+    description: Helm chart for Thanos components.
+    digest: f6773e98c262662b2d0f0c2c0d5a1e5744c017b68444abe9f79fd81d1fbbfaae
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.0.1/thanos-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Thanos image to v0.23.0."
     apiVersion: v2
     appVersion: 0.23.0
@@ -9543,4 +9600,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-04T11:16:52.665800788Z"
+generated: "2021-10-06T07:40:58.565921862Z"
