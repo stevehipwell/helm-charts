@@ -2,7 +2,7 @@ apiVersion: v2
 name: metrics-server
 description: Metrics Server is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 type: application
-version: 3.4.0
+version: 3.4.1
 appVersion: 0.5.0
 keywords:
   - kubernetes
@@ -13,10 +13,4 @@ icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
 sources:
   - https://github.com/kubernetes-sigs/metrics-server/
   - https://github.com/stevehipwell/helm-charts/
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Use the policy/v1 API for PodDisruptionBudget if the K8s version supports it."
+deprecated: true
