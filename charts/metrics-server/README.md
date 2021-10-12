@@ -2,6 +2,8 @@
 
 [Metrics Server](https://github.com/kubernetes-sigs/metrics-server/) is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
 
+> **IMPORTANT** - This chart has been deprecated in favour of the [Official Metrics Server chart](https://artifacthub.io/packages/helm/metrics-server/metrics-server), which can up adopted an an in-place upgrade.
+
 ## Installing the Chart
 
 Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).

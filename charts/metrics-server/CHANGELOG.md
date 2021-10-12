@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v3.4.0 - 2021-08-31
+## [v3.4.1] - 2021-10-12
+
+### Deprecated
+
+- Chart has been deprecated in favour of the [Official Metrics Server chart](https://artifacthub.io/packages/helm/metrics-server/metrics-server).
+
+## [v3.4.0] - 2021-08-31
 
 ### Changed
 
