@@ -26,7 +26,7 @@ Create the name of the service account to use
 */}}
 {{- define "thanos.ruleServiceAccountName" -}}
 {{- if .Values.rule.serviceAccount.create -}}
-{{- default (printf "%s-store-gateway" (include "thanos.fullname" .)) .Values.rule.serviceAccount.name }}
+{{- default (printf "%s-rule" (include "thanos.fullname" .)) .Values.rule.serviceAccount.name }}
 {{- else -}}
 {{- default "default" .Values.rule.serviceAccount.name }}
 {{- end -}}

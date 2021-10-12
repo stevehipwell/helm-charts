@@ -11,43 +11,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## 1.0.1 2021-10-05
+## [v1.0.2] - 2021-10-12
+
+### Changed
+
+- Fix _Rule_ component service account.
+
+## [v1.0.1] - 2021-10-05
 
 ### Changed
 
 - Update _Thanos_ image to [v0.23.1](https://github.com/thanos-io/thanos/releases/tag/v0.23.1).
 
-## 1.0.0 2021-10-04
+## [v1.0.0] - 2021-10-04
 
 ### Changed
 
 - Update _Thanos_ image to [v0.23.0](https://github.com/thanos-io/thanos/releases/tag/v0.23.0).
 
-## 0.10.2 2021-09-17
+## [v0.10.2] - 2021-09-17
 
 ### Changed
 
 - Fix volume mounts.
 
-## 0.10.1 2021-09-17
+## [v0.10.1] - 2021-09-17
 
 ### Changed
 
 - Fix rule rules configmap support.
 
-## 0.10.0 2021-09-17
+## [v0.10.0] - 2021-09-17
 
 ### Added
 
 - Query ingress support to rule.
 
-## 0.9.0 2021-09-01
+## [v0.9.0] - 2021-09-01
 
 ### Changed
 
 - Fix ingress.
 
-## 0.8.0 2021-08-31
+## [v0.8.0] - 2021-08-31
 
 ### Added
 
@@ -57,7 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use the `policy/v1` API for `PodDisruptionBudget` if the K8s version supports it.
 
-## 0.7.0 2021-08-24
+## [v0.7.0] - 2021-08-24
 
 ### Added
 
@@ -72,37 +78,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Values `query.sidecarService` & `query.rulerServcie`, use `query.additionalStores` instead.
 
-## 0.6.0 2021-08-11
+## [v0.6.0] - 2021-08-11
 
 ### Changed
 
 - Fix volume claim labels.
 
-## 0.5.0 2021-08-11
+## [v0.5.0] - 2021-08-11
 
 ### Changed
 
 - Fix query arguments.
 
-## 0.4.0 2021-08-10
+## [v0.4.0] - 2021-08-10
 
 ### Changed
 
 - Fix service monitors.
 
-## 0.3.0 2021-08-10
+## [v0.3.0] - 2021-08-10
 
 ### Changed
 
 - Fix compact.
 
-## 0.2.0 2021-08-10
+## [v0.2.0] - 2021-08-10
 
 ### Changed
 
 - Change query config values.
 
-## 0.1.0 2021-08-09
+## [v0.1.0] - 2021-08-09
 
 ### Added
 
