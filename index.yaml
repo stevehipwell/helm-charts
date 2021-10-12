@@ -5576,6 +5576,27 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
   metrics-server:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2021-10-12T16:24:42.369346309Z"
+    deprecated: true
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: e8c41960f758544a4a05eecaec0fd4a10bf6acd2810d779d2348bb0e76eefe12
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/metrics-server-3.4.1/metrics-server-3.4.1.tgz
+    version: 3.4.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -9698,4 +9719,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-12T11:44:08.135353956Z"
+generated: "2021-10-12T16:24:42.372927726Z"
