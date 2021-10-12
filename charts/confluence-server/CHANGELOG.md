@@ -11,9 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.5.0] - 2021-10-12
+
+### Changed
+
+- Update _Confluence Server_ image to [v7.14.0](https://confluence.atlassian.com/doc/confluence-7-14-release-notes-1063176411.html).
+- Update embedded _PostgreSQL_ chart to [v10.12.3](https://artifacthub.io/packages/helm/bitnami/postgresql/10.12.3) (PostgreSQL v11.13.0).
+
 ## v4.4.1 - 2021-10-04
 
-## Changed
+### Changed
 
 - Update _Confluence Server_ image to [v7.13.1](https://confluence.atlassian.com/doc/confluence-7-13-release-notes-1044114085.html).
 

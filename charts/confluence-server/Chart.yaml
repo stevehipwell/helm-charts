@@ -2,8 +2,8 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 4.4.1
-appVersion: 7.13.1
+version: 4.5.0
+appVersion: 7.14.0
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
 keywords:
@@ -22,10 +22,12 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: ~10.3.17
+    version: ~10.12.3
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update Confluence Server image to v7.13.1."
+      description: "Update Confluence Server image to v7.14.0."
+    - kind: changed
+      description: "Update embedded PostgreSQL chart to v10.12.3 (PostgreSQL v11.13.0)."
