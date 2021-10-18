@@ -25,6 +25,11 @@ jobs:
             exit 1
           fi
 
+      - name: Check chart annotations
+        uses: mikefarah/yq@master
+        with:
+          cmd: find ./charts/. -type f -iname "Chart.yaml" -exec yq eval '.annotations[."artifacthub.io/changes"]' {} \; | yq eval
+
       - name: Set up Helm
         uses: azure/setup-helm@v1
         with:
