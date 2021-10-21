@@ -1,4 +1,4 @@
-{{- if and .Values.queryFrontend.enabled .Values.queryFrontend.autoscaling.enabled -}}
+{{- if and (and .Values.queryFrontend.enabled .Values.queryFrontend.autoscaling.enabled) (or .Values.queryFrontend.autoscaling.targetCPUUtilizationPercentage .Values.queryFrontend.autoscaling.targetMemoryUtilizationPercentage) -}}
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
