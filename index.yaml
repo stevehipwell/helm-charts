@@ -8846,6 +8846,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Fix HorizontalPodAutoscaler defaults."
+    apiVersion: v2
+    appVersion: 0.23.1
+    created: "2021-10-21T14:14:49.115740092Z"
+    description: Helm chart for Thanos components.
+    digest: 1871820e63a341ffa60a1dc89f455a5877149b1ef9299fd3875bc02e63f3335b
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.0.3/thanos-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Fix Rule component service account."
     apiVersion: v2
     appVersion: 0.23.1
@@ -9870,4 +9900,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-20T07:37:16.882667409Z"
+generated: "2021-10-21T14:14:49.11848001Z"
