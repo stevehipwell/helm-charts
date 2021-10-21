@@ -110,8 +110,8 @@ query:
     enabled: false
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: 60
-    targetMemoryUtilizationPercentage: 60
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage:
 
   podDisruptionBudget:
     enabled: false
@@ -197,8 +197,8 @@ queryFrontend:
     enabled: false
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: 60
-    targetMemoryUtilizationPercentage: 60
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage:
 
   podDisruptionBudget:
     enabled: false

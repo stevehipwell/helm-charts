@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v1.0.3] - 2021-10-21
+
+### Changed
+
+- Fix _HorizontalPodAutoscaler_ defaults.
+
 ## [v1.0.2] - 2021-10-12
 
 ### Changed
