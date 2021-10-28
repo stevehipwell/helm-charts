@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.6.2
-appVersion: 1.14.1
+version: 2.6.3
+appVersion: 1.14.2
 keywords:
   - fluent
   - fluentd
@@ -20,4 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Bump version."
+      description: "Update Fluentd Aggregator Docker image to v1.14.2 (Fluentd v1.14.1) to support OpenSearch."
