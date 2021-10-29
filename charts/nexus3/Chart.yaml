@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.8.0
-appVersion: 3.35.0
+version: 4.9.0
+appVersion: 3.36.0
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 keywords:
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update Nexus3 image to v3.35.0."
+      description: "Update Nexus3 image to v3.36.0."
