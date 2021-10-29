@@ -2376,6 +2376,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Fluentd Aggregator Docker image to v1.14.3 (Fluentd v1.14.3)."
+    apiVersion: v2
+    appVersion: 1.14.3
+    created: "2021-10-29T09:56:13.000246077Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: f5f43aab572a850ca1655b7b2288ae59b77b512abbdd8b84e6130772626c10d2
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-2.6.4/fluentd-aggregator-2.6.4.tgz
+    version: 2.6.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Fluentd Aggregator Docker image to v1.14.2 (Fluentd v1.14.1) to support OpenSearch."
     apiVersion: v2
     appVersion: 1.14.2
@@ -9964,4 +9991,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-28T16:07:27.403257364Z"
+generated: "2021-10-29T09:56:13.003353986Z"
