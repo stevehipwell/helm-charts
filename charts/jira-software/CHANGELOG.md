@@ -11,9 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.8.0] - 2021-11-01
+
+### Changed
+
+- Update _Jira Software_ image to [v8.20.1](https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html).
+
 ## [v4.8.0] - 2021-10-21
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.20.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html).
 - Update embedded _PostgreSQL_ chart to [v10.12.6](https://artifacthub.io/packages/helm/bitnami/postgresql/10.12.6) (PostgreSQL v11.13.0).
@@ -27,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.7.0] - 2021-08-27
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.19.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-19-x-release-notes-1082526044.html).
 - Update embedded _PostgreSQL_ chart to [v10.9.4](https://artifacthub.io/packages/helm/bitnami/postgresql/10.9.4) (PostgreSQL v11.13.0).
@@ -40,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.6.1 - 2021-08-19
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.18.2](https://confluence.atlassian.com/jirasoftware/jira-software-8-18-x-release-notes-1064094444.html).
 
@@ -54,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.5.2 - 2021-07-23
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.18.1](https://confluence.atlassian.com/jirasoftware/jira-software-8-18-x-release-notes-1064094444.html)
 
@@ -62,13 +68,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > **NOTE** - Republished chart.
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.18.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-18-x-release-notes-1064094444.html)
 
 ## v4.5.0 - 2021-07-02
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.18.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-18-x-release-notes-1064094444.html)
 
@@ -97,25 +103,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.4.1 - 2021-06-16
 
-## Changed
+### Changed
 
 - Upgraded _Jira_ image to `v8.17.1`
 
 ## v4.4.0 - 2021-05-19
 
-## Changed
+### Changed
 
 - Upgraded _Jira_ image to `v8.17.0`
 
 ## v4.3.1 - 2021-04-20
 
-## Changed
+### Changed
 
 - Upgraded _Jira_ image to _v8.16.1_
 
 ## v4.3.0 - 2021-04-16
 
-## Changed
+### Changed
 
 - Default to JDK 11 image
 - Upgraded _PostgreSQL_ chart to `v10.3.17` (_PostgreSQL_ `v11.11.0`)
@@ -128,7 +134,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.1.1 - 2021-02-16
 
-## Changed
+### Changed
 
 - Update default JVM config
 
@@ -158,7 +164,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - New `priorityClassName` value
 
-## Changed
+### Changed
 
 - Upgraded chart API version to `v2`
 
