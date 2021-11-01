@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.5.1] - 2021-11-01
+
+### Changed
+
+- Update _Confluence Server_ image to [v7.14.1](https://confluence.atlassian.com/doc/confluence-7-14-release-notes-1063176411.html).
+
 ## [v4.5.0] - 2021-10-12
 
 ### Changed
