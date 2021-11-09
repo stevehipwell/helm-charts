@@ -44,6 +44,7 @@ jobs:
           files: charts/*/Chart.yaml
 
       - name: Get chart versions
+        id: changed_chart_versions
         shell: bash
         run: |
           set -euo pipefail
@@ -60,10 +61,11 @@ jobs:
           done
 
           version_matrix="${version_matrix%,*}]"
+          echo "${version_matrix}"
           echo "::set-output name=version_matrix::${version_matrix}"
 
     outputs:
-      version_matrix: ${{ steps.changed_charts.outputs.any_changed }}
+      version_matrix: ${{ steps.changed_chart_versions.outputs.version_matrix }}
 
   changelog:
     needs: release
