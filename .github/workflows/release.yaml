@@ -41,7 +41,7 @@ jobs:
         id: changed_charts
         uses: tj-actions/changed-files@v11.6
         with:
-          files: charts/*/Chart.yaml
+          files: charts/[^/]+/Chart\.yaml$
 
       - name: Get chart versions
         id: changed_chart_versions
