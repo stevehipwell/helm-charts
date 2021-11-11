@@ -12,14 +12,14 @@ data:
   fluent.conf: |-
     @include /fluentd/etc/general.conf
     @include /fluentd/etc/forward.conf
-{{- if .Values.debug }}
-    @include /fluentd/etc/debug.conf
-{{- end }}
 {{- if .Values.metrics.enabled }}
     @include /fluentd/etc/metrics.conf
 {{- else }}
     @include /fluentd/etc/no-metrics.conf
 {{- end }}
     @include /fluentd/etc/filter.conf
+{{- if .Values.debug }}
+    @include /fluentd/etc/debug.conf
+{{- end }}
     @include /fluentd/etc/route.conf
     @include /fluentd/etc/output.conf
