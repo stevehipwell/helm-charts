@@ -78,7 +78,7 @@ jobs:
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          path: ./charts/${{matrix.chart}}/CHANGELOG.md
+          path: charts/${{matrix.chart}}/CHANGELOG.md
           version: "v${{matrix.version}}"
 
       - name: Update release
