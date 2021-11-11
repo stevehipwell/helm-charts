@@ -179,11 +179,6 @@ config:
       bind 0.0.0.0
     </source>
 
-  debug: |-
-    <filter **>
-      @type stdout
-    </filter>
-
   metrics: |-
     <source>
       @type prometheus
@@ -236,6 +231,11 @@ config:
     </label>
 
   filter: |-
+
+  debug: |-
+    <filter **>
+      @type stdout
+    </filter>
 
   route: |-
     <match **>
