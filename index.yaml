@@ -9553,6 +9553,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update ClusterRole."
+    apiVersion: v2
+    appVersion: 1.23.1
+    created: "2021-11-12T10:01:57.159981445Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: b997181d1196c765f9bc9034c0a5580828e041dbf7d73e75475439daf643022f
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.4.2/tigera-operator-1.4.2.tgz
+    version: 1.4.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Tigera Operator image to v1.23.1."
     apiVersion: v2
     appVersion: 1.23.1
@@ -10180,4 +10211,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-11-11T10:59:47.534755638Z"
+generated: "2021-11-12T10:01:57.164020352Z"
