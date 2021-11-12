@@ -28,6 +28,28 @@ rules:
   - apiGroups:
       - ""
     resources:
+      - resourcequotas
+    verbs:
+      - list
+      - get
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - resourcequotas
+    verbs:
+      - create
+      - get
+      - list
+      - update
+      - delete
+      - watch
+    resourceNames:
+      - calico-critical-pods
+      - tigera-critical-pods
+  - apiGroups:
+      - ""
+    resources:
       - nodes
     verbs:
       # Need to update node labels when migrating nodes.
@@ -100,17 +122,22 @@ rules:
   - apiGroups:
       - crd.projectcalico.org
     resources:
-      - '*'
+      - felixconfigurations
     verbs:
-      - get
+      - create
+      - patch
       - list
+      - get
       - watch
   - apiGroups:
       - crd.projectcalico.org
     resources:
-      - felixconfigurations
+      - ippools
+      - kubecontrollersconfigurations
     verbs:
-      - patch
+      - get
+      - list
+      - watch
   - apiGroups:
       - scheduling.k8s.io
     resources:
@@ -122,13 +149,6 @@ rules:
       - update
       - delete
       - watch
-  - apiGroups:
-      - monitoring.coreos.com
-    resources:
-      - servicemonitors
-    verbs:
-      - get
-      - create
   - apiGroups:
       - policy
     resources:
