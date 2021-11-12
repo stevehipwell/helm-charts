@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.3.5] - 2021-11-12
+
+### Added
+
+- Added `pods/portfoward` permissions to the Istio Operator's `ClusterRole`
+
 ## [v2.3.4] - 2021-10-18
 
 ### Changed
