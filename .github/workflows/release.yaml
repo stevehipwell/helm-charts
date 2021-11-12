@@ -74,6 +74,9 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.release.outputs.version_matrix) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Get changelog entry
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
