@@ -3187,6 +3187,34 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added pods/portfoward permissions to the Istio Operator's ClusterRole"
+    apiVersion: v2
+    appVersion: 1.11.4
+    created: "2021-11-14T14:38:09.427617965Z"
+    description: Helm chart for the Istio Operator.
+    digest: b36391a5ea5f107cae47651bf4ba3d20d2397328eac87f78631ba20583abc859
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.3.5/istio-operator-2.3.5.tgz
+    version: 2.3.5
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Update Istio version to v1.11.4."
     apiVersion: v2
@@ -10211,4 +10239,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-11-12T10:01:57.164020352Z"
+generated: "2021-11-14T14:38:09.431718392Z"
