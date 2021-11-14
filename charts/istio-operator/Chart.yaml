@@ -2,7 +2,7 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.3.4
+version: 2.3.5
 appVersion: 1.11.4
 keywords:
   - kubernetes
@@ -20,5 +20,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Update Istio version to v1.11.4."
+    - kind: added
+      description: "Added pods/portfoward permissions to the Istio Operator's ClusterRole"
