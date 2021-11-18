@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## [v4.8.0] - 2021-11-01
+## [v4.8.2] - 2021-11-18
+
+### Changed
+
+- Update _Jira Software_ image to [v8.20.2](https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html).
+
+## [v4.8.1] - 2021-11-01
 
 ### Changed
 
