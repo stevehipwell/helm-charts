@@ -11,11 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.4.0] - 2021-11-19
+
+### Changed
+
+- Updated the _Istio Operator_ image version to `v1.12.0`.
+- Updated dashboards (_Istio_ repo commit `48d133cd19deef1723ef9a0fdabf5e9b6cf3181c`).
+
 ## [v2.3.5] - 2021-11-12
 
-### Added
+### Changed
 
-- Added `pods/portfoward` permissions to the Istio Operator's `ClusterRole`
+- Fixed missing `pods/portfoward` permissions from the ClusterRole.
 
 ## [v2.3.4] - 2021-10-18
 
@@ -41,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated _Istio_ version to `v1.11.1`.
 
-## v2.3.0 - 2021-08-17
+## [v2.3.0] - 2021-08-17
 
 ### Changed
 
