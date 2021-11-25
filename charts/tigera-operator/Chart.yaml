@@ -2,8 +2,8 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 1.4.3
-appVersion: 1.23.2
+version: 1.5.0
+appVersion: 1.24.0
 keywords:
   - kubernetes
   - calico
@@ -23,7 +23,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Support for adding custom rules to the ClusterRole via rbac.customRules"
     - kind: changed
-      description: "Update Tigera Operator image to v1.23.2."
+      description: "Update Tigera Operator image to v1.24.0."
