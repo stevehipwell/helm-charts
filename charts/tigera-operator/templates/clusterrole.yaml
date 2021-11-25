@@ -208,4 +208,8 @@ rules:
       - certificatesigningrequests
     verbs:
       - list
+{{- with .Values.rbac.customRules }}
+  # Custom rules
+  {{- toYaml . | nindent 2 }}
+{{- end }}
 {{- end -}}
