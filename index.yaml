@@ -9816,6 +9816,37 @@ entries:
   tigera-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Update Tigera Operator image to v1.24.0."
+    apiVersion: v2
+    appVersion: 1.24.0
+    created: "2021-11-25T12:43:45.679416582Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 496859fe0f7350f0f668118e7a1b8f476e087484527787686fbe6dff13368ff7
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.5.0/tigera-operator-1.5.0.tgz
+    version: 1.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Support for adding custom rules to the ClusterRole via rbac.customRules"
         - kind: changed
@@ -10508,4 +10539,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-11-25T10:43:41.400199035Z"
+generated: "2021-11-25T12:43:45.681769081Z"
