@@ -26,6 +26,7 @@ serviceAccount:
 rbac:
   # Specifies whether RBAC resources should be created
   create: true
+  customRules:
 
 podLabels: {}
 podAnnotations: {}
