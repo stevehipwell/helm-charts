@@ -5,11 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
 <!-- ## [UNRELEASED]
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [v4.10.0] - 2021-11-29
+
+### Changed
+
+- Update `Nexus3` image to [v3.37.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2021-release-notes/nexus-repository-3.37.0-release-notes).
 
 ## [v4.9.0] - 2021-10-29
 
