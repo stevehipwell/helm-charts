@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.6.5
-appVersion: 1.14.3
+version: 2.6.6
+appVersion: 1.14.4
 keywords:
   - fluent
   - fluentd
@@ -20,4 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Move debug config after filters config so filters can be debugged."
+      description: "Update Fluentd Aggregator Docker image to v1.14.4 (Fluentd v1.14.3)."
