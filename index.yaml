@@ -7964,6 +7964,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated PlantUML image to v1.2021.16."
+    apiVersion: v2
+    appVersion: 1.2021.16
+    created: "2021-12-11T13:28:50.272743774Z"
+    description: Helm chart for PlantUML.
+    digest: 9a86764f2997380484d0a2bb5417bd285445ff57ca1d3b4e6e818fabf9354734
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.5.0/plantuml-3.5.0.tgz
+    version: 3.5.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated PlantUML image to v1.2021.15."
     apiVersion: v2
     appVersion: 1.2021.15
@@ -10690,4 +10717,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-11T13:24:33.239628949Z"
+generated: "2021-12-11T13:28:50.274657385Z"
