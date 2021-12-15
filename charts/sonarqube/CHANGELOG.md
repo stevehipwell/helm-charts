@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.2.2] - 2021-12-15
+
+### Changed
+
+- Update _SonarQube_ image to [v9.2.2](https://www.sonarqube.org/sonarqube-9-2/) (GH release not available).
+
 ## [v4.2.1] - 2021-11-29
 
 ### Changed
