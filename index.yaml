@@ -9613,6 +9613,36 @@ entries:
           description: "Use Query Frontend service for Rule if it's enabled."
     apiVersion: v2
     appVersion: 0.23.1
+    created: "2021-12-17T19:06:54.782439265Z"
+    description: Helm chart for Thanos components.
+    digest: 2eca606deeb8b63322e4b760096274acf3eead6fee2b71cb2e5b4d6ca9fb30dc
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.1.1/thanos-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Use Query Frontend service for Rule if it's enabled."
+    apiVersion: v2
+    appVersion: 0.23.1
     created: "2021-12-17T12:36:13.049294876Z"
     description: Helm chart for Thanos components.
     digest: a6de22e23091aec1967e6aaa2d1e724bd842259aef86c535bc341912615dedc6
@@ -10882,4 +10912,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-17T12:36:13.052168549Z"
+generated: "2021-12-17T19:06:54.787236024Z"
