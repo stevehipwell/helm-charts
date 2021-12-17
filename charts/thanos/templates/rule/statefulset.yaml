@@ -79,7 +79,11 @@ spec:
             - --alert.label-drop=rule_replica
             - --tsdb.retention={{ .Values.rule.retention }}
             - --tsdb.block-duration={{ .Values.rule.blockDuration }}
+          {{- if .Values.queryFrontend.enabled }}
+            - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.cluster.local" (include "thanos.queryFrontendFullname" .) .Release.Namespace }}
+          {{- else }}
             - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.cluster.local" (include "thanos.queryFullname" .) .Release.Namespace }}
+          {{- end }}
             - --rule-file=/etc/thanos/rules/*.yaml
             - --eval-interval={{ .Values.rule.evalInterval }}
             - --alertmanagers.config-file=/etc/thanos/alertmanagers-config.yaml
