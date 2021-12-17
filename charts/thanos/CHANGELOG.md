@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v1.1.0] - 2021-12-17
+
+### Changed
+
+- Use _Query Frontend_ service for _Rule_ if it's enabled.
+
 ## [v1.0.3] - 2021-10-21
 
 ### Changed
