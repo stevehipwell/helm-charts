@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.1.1
-appVersion: 0.23.1
+version: 1.1.2
+appVersion: 0.23.2
 keywords:
   - kubernetes
   - thanos
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Use Query Frontend service for Rule if it's enabled."
+      description: "Update Thanos image to v0.23.2."
