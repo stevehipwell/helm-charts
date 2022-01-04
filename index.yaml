@@ -6337,6 +6337,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Nexus3 image to v3.37.3."
+    apiVersion: v2
+    appVersion: 3.37.3
+    created: "2022-01-04T09:34:52.458790725Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 2fce0a8580614bd026c099e12878a8e41fe7cbc662ec0662cd55e92c012e85c8
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.10.2/nexus3-4.10.2.tgz
+    version: 4.10.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Nexus3 image to v3.37.1."
     apiVersion: v2
     appVersion: 3.37.1
@@ -11035,4 +11065,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-27T13:16:41.916474587Z"
+generated: "2022-01-04T09:34:52.46111954Z"
