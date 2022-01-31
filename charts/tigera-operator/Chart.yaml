@@ -2,8 +2,8 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 2.0.1
-appVersion: 1.23.5
+version: 2.1.0
+appVersion: 1.25.0
 keywords:
   - kubernetes
   - calico
@@ -23,5 +23,11 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Add support for kubectl to manage Calico APIs with apiServer.enabled."
     - kind: changed
-      description: "Update Tigera Operator image to v1.23.5."
+      description: "Update Tigera Operator image to v1.25.0."
+    - kind: changed
+      description: "Update Calico version to v3.22.0."
+    - kind: removed
+      description: "Removed the unused PodSecurityPolicy RBAC rules."

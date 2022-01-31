@@ -13,6 +13,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.1.0] - 2022-01-31
+
+### Added
+
+- Add support for [kubectl to manage Calico APIs](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) with `apiServer.enabled`.
+
+### Changed
+
+- Update _Tigera Operator_ image to [v1.25.0](https://github.com/tigera/operator/releases/tag/v1.25.0).
+- Update _Calico_ version (implicitly via the _Tigera Operator_) to [v3.22.0](https://projectcalico.docs.tigera.io/archive/v3.22/release-notes/).
+
+### Removed
+
+- Removed the unused `PodSecurityPolicy` RBAC rules.
+
 ## [v2.0.1] - 2022-01-19
 
 ### Changed

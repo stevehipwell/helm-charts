@@ -66,3 +66,7 @@ envFrom: []
 installation:
   enabled: false
   spec: {}
+
+apiServer:
+  enabled: false
+  spec: {}
