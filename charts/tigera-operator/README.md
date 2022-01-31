@@ -49,3 +49,5 @@ The following table lists the configurable parameters of the _Tigera Operator_ c
 | `affinity`                        | Affinity for pod assignment.                                                                                                                      | `{}`                      |
 | `installation.enabled`            | If `true`, install _Calico_ control plane according to the `installation.spec`.                                                                   | `false`                   |
 | `installation.spec`               | The [Tigera Operator Spec](https://docs.projectcalico.org/reference/installation/api#operator.tigera.io/v1.Installation) to deploy _Calico_ with. | `{}`                      |
+| `apiServer.enabled`            | If `true`, install an `APIServer` plane according to the `apiServer.spec`.                                                                   | `false`                   |
+| `apiServer.spec`               | The [APIServer Spec](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) to enable kubectl to manage _Calico_ APIs. | `{}`                      |
