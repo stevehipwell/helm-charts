@@ -67,7 +67,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          printf '${{ steps.changelog_reader.outputs.changes }}' > ./_release-notes.md
+          printf '${{ steps.changelog_reader.outputs.changes }}' > charts/${{matrix.chart}}/_release-notes.md
 
   release:
     needs: changelog
@@ -98,4 +98,4 @@ jobs:
           config: ct.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          RELEASE_NOTES_FILE: ./_release-notes.md
+          RELEASE_NOTES_FILE: _release-notes.md
