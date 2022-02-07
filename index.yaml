@@ -10591,6 +10591,37 @@ entries:
   tigera-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Fixed RBAC by re-adding the PodSecurityPolicy rule removed in v2.1.0."
+    apiVersion: v2
+    appVersion: 1.25.0
+    created: "2022-02-07T09:25:49.970688814Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 4c4a80b636b1a828c005b4a29d2d794550955d92ceb23e44bb352ff3dea405ae
+    home: https://www.tigera.io/
+    icon: https://tigera.io/wp-content/uploads/2021/05/cropped-tigera-icon-1.png
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.1.1/tigera-operator-2.1.1.tgz
+    version: 2.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Add support for kubectl to manage Calico APIs with apiServer.enabled."
         - kind: changed
@@ -11444,4 +11475,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-31T09:56:00.612994623Z"
+generated: "2022-02-07T09:25:49.973581937Z"
