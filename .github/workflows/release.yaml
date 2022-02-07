@@ -8,34 +8,13 @@ on:
       - charts/*/Chart.yaml
 
 jobs:
-  release:
+  prep:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Set up Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: 3.*
-
-      - name: Set up Helm repos
-        run: |
-          helm repo add bitnami https://charts.bitnami.com/bitnami/
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
-        with:
-          config: ct.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Get changed charts
         id: changed_charts
@@ -68,11 +47,11 @@ jobs:
       version_matrix: ${{ steps.changed_chart_versions.outputs.version_matrix }}
 
   changelog:
-    needs: release
+    needs: prep
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include: ${{ fromJson(needs.release.outputs.version_matrix) }}
+        include: ${{ fromJson(needs.prep.outputs.version_matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -84,10 +63,39 @@ jobs:
           path: charts/${{matrix.chart}}/CHANGELOG.md
           version: "v${{matrix.version}}"
 
-      - name: Update release
-        uses: ncipollo/release-action@v1
+      - name: Create release notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '${{ steps.changelog_reader.outputs.changes }}' > ./_release-notes.md
+
+  release:
+    needs: changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          allowUpdates: true
-          body: ${{ steps.changelog_reader.outputs.changes }}
-          tag: ${{matrix.tag}}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: 3.*
+
+      - name: Set up Helm repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami/
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.3.0
+        with:
+          config: ct.yaml
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          RELEASE_NOTES_FILE: ./_release-notes.md

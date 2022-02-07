@@ -181,6 +181,26 @@ rules:
       - update
       - delete
       - watch
+  # Add the appropriate pod security policy permissions
+  - apiGroups:
+      - policy
+    resources:
+      - podsecuritypolicies
+    resourceNames:
+      - tigera-operator
+    verbs:
+      - use
+  - apiGroups:
+      - policy
+    resources:
+      - podsecuritypolicies
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - delete
   # Add the permissions to monitor the status of certificatesigningrequests when certificate management is enabled.
   - apiGroups:
       - certificates.k8s.io
