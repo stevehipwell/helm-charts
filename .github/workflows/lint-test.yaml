@@ -30,6 +30,13 @@ jobs:
         with:
           cmd: find ./charts/. -type f -iname "Chart.yaml" -exec yq eval '.annotations[."artifacthub.io/changes"]' {} \; | yq eval
 
+      - name: Run Artifact Hub lint
+        run: |
+          curl -o ah_linux_amd64.tar.gz https://github.com/artifacthub/hub/releases/download/v1.5.0/ah_1.5.0_linux_amd64.tar.gz
+          tar -xzvf ah_linux_amd64.tar.gz ah
+          ./ah lint --kind helm || exit 1
+          rm -f ./ah ./ah_linux_amd64.tar.gz
+
       - name: Set up Helm
         uses: azure/setup-helm@v1
         with:
