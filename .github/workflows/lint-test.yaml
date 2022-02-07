@@ -17,7 +17,9 @@ jobs:
           fetch-depth: 0
 
       - name: Check documentation
+        shell: bash
         run: |
+          set -euo pipefail
           docker run --rm --volume "$(pwd):/helm-docs" -u "$(id -u)" jnorwood/helm-docs:latest
           if ! git diff --exit-code
           then
@@ -25,13 +27,10 @@ jobs:
             exit 1
           fi
 
-      - name: Check chart annotations
-        uses: mikefarah/yq@master
-        with:
-          cmd: find ./charts/. -type f -iname "Chart.yaml" -exec yq eval '.annotations[."artifacthub.io/changes"]' {} \; | yq eval
-
       - name: Run Artifact Hub lint
+        shell: bash
         run: |
+          set -euo pipefail
           curl -o ah_linux_amd64.tar.gz https://github.com/artifacthub/hub/releases/download/v1.5.0/ah_1.5.0_linux_amd64.tar.gz
           tar -xzvf ah_linux_amd64.tar.gz ah
           ./ah lint --kind helm || exit 1
@@ -52,7 +51,9 @@ jobs:
 
       - name: Run chart-testing (list-changed)
         id: list-changed
+        shell: bash
         run: |
+          set -euo pipefail
           changed=$(ct list-changed --config ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
