@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include: ${{ fromJson(needs.prep.outputs.version_matrix) }}
+        include: fromJson(needs.prep.outputs.version_matrix)
     steps:
       - name: Checkout
         uses: actions/checkout@v2

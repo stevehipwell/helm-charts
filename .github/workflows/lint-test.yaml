@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl -o ah_linux_amd64.tar.gz https://github.com/artifacthub/hub/releases/download/v1.5.0/ah_1.5.0_linux_amd64.tar.gz
+          curl -Lo ah_linux_amd64.tar.gz https://github.com/artifacthub/hub/releases/download/v1.6.0/ah_1.6.0_linux_amd64.tar.gz
           tar -xzvf ah_linux_amd64.tar.gz ah
           ./ah lint --kind helm || exit 1
           rm -f ./ah ./ah_linux_amd64.tar.gz
