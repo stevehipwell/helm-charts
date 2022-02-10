@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.6.9] - 2022-02-10
+
+### Added
+
+- Added `arm64` support as the `stevehipwell/fluentd-aggregator` image is now multi-arch.
+
+### Changed
+
+- Update _Fluentd Aggregator_ Docker image to [v1.14.8](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v1.14.8) (_Fluentd_ [v1.14.5](https://github.com/fluent/fluentd/releases/tag/v1.14.5)).
+
 ## [v2.6.8] - 2022-01-21
 
 ### Changed
