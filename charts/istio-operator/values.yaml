@@ -67,6 +67,7 @@ istioNamespace: istio-system
 controlPlane:
   install: false
   spec: {}
+  #   hub: docker.io/istio
   #   profile: default
   #   meshConfig:
   #   components:
