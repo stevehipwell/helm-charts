@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.5.0] - 2022-02-14
+
+### Added
+
+- Added templating support to `controlPlane.spec` when passed in as a string.
+
+### Changed
+
+- Updated the _Istio Operator_ image version to [v1.13.0](https://github.com/istio/istio/releases/tag/1.13.0).
+- Switch to use `toYaml` instead of `toJson` in `IstioOperator` CR.
+
+### Deprecated
+
+- Deprecated `image.pullSecrets` in favour of the idiomatic `imagePullSecrets`.
+
 ## [v2.4.3] - 2022-02-11
 
 ### Changed

@@ -7,5 +7,11 @@ metadata:
   labels:
     {{- include "istio-operator.labels" . | nindent 4 }}
 spec:
-  {{- toJson .Values.controlPlane.spec  | nindent 2 }}
+{{- with .Values.controlPlane.spec }}
+{{- if kindIs "string" . }}
+  {{- tpl . $ | nindent 2 }}
+{{- else }}
+  {{-  toYaml . | nindent 2 }}
+{{- end -}}
+{{- end -}}
 {{- end -}}
