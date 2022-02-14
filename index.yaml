@@ -3437,6 +3437,40 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added templating support to controlPlane.spec when passed in as a string."
+        - kind: changed
+          description: "Updated the Istio Operator image version to v1.13.0."
+        - kind: changed
+          description: "Switch to use toYaml instead of toJson in IstioOperator CR."
+        - kind: deprecated
+          description: "Deprecated image.pullSecrets in favour of the idiomatic imagePullSecrets."
+    apiVersion: v2
+    appVersion: 1.13.0
+    created: "2022-02-14T10:38:40.310709982Z"
+    description: Helm chart for the Istio Operator.
+    digest: 98c530ce13551c12c8034e2dc8a2a48c114dffa1fd5cd028597666c5a1054f24
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.5.0/istio-operator-2.5.0.tgz
+    version: 2.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Istio Operator image version to v1.12.3."
     apiVersion: v2
@@ -11532,4 +11566,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-11T14:59:01.111003869Z"
+generated: "2022-02-14T10:38:40.31338285Z"
