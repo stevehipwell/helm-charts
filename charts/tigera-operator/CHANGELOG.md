@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.1.2] - 2022-02-17
+
+### Changed
+
+- Update _Tigera Operator_ image to [v1.25.1](https://github.com/tigera/operator/releases/tag/v1.25.1).
+
 ## [v2.1.1] - 2022-02-07
 
 ### Changed
