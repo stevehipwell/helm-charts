@@ -98,4 +98,4 @@ jobs:
           config: ct.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          RELEASE_NOTES_FILE: _release-notes.md
+          CR_RELEASE_NOTES_FILE: _release-notes.md
