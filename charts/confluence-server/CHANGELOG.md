@@ -1,15 +1,23 @@
-# Confluence Server Changelog
+# Confluence Server Helm Chart Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<!-- ## [UNRELEASED]
+---
+
+<!-- ## [vX.Y.Z] - UNRELEASED
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [v4.7.1] - 2022-02-17
+
+### Changed
+
+- Update _Confluence Server_ image to [v7.16.1](https://confluence.atlassian.com/doc/confluence-7-16-release-notes-1087527591.html).
 
 ## [v4.7.0] - 2022-01-31
 
