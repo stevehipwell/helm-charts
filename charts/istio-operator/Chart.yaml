@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.5.0
-appVersion: 1.13.0
+version: 2.5.1
+appVersion: 1.13.1
 keywords:
   - kubernetes
   - istio
@@ -20,11 +20,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added templating support to controlPlane.spec when passed in as a string."
     - kind: changed
-      description: "Updated the Istio Operator image version to v1.13.0."
-    - kind: changed
-      description: "Switch to use toYaml instead of toJson in IstioOperator CR."
-    - kind: deprecated
-      description: "Deprecated image.pullSecrets in favour of the idiomatic imagePullSecrets."
+      description: "Updated the Istio Operator image version to v1.13.1."
