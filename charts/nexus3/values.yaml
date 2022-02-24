@@ -66,8 +66,8 @@ metrics:
   serviceMonitor:
     enabled: false
     additionalLabels: {}
-    #   myLabel: myValue
-    interval: 1m
+    endpointConfig: {}
+    interval:
 
 ingress:
   enabled: false
@@ -142,6 +142,9 @@ config:
   #   key: password
   anonymous:
     enabled: false
+    roles:
+      - nx-anonymous
+      - nx-metrics
   realms:
     enabled: false
     values: []
@@ -152,6 +155,24 @@ config:
     #   - NpmToken
     #   - NuGetApiKey
     #   - rutauth-realm
+  roles: []
+  #   - id: nexus-administrators
+  #     source: default
+  #     name: nexus-administrators
+  #     description: LDAP Administrator Role
+  #     privileges: []
+  #     roles:
+  #       - nx-admin
+  users: []
+  #   - userId: test
+  #     firstName: Test
+  #     lastName: User
+  #     emailAddress: test@example.org
+  #     source: default
+  #     status: active
+  #     roles:
+  #       - nx-anonymous
+  #     externalRoles: []
   ldap:
     enabled: false
     name:
@@ -218,14 +239,6 @@ config:
   #       cleanup:
   #         policyName:
   #           - ExampleCleanup
-  roles: []
-  #   - id: nexus-administrators
-  #     source: default
-  #     name: nexus-administrators
-  #     description: LDAP Administrator Role
-  #     privileges: []
-  #     roles:
-  #       - nx-admin
   tasks: []
   #   - name: "Cleanup service"
   #     typeId: repository.cleanup
