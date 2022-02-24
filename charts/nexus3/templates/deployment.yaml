@@ -26,7 +26,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.image.pullSecrets }}
+      {{- with default .Values.image.pullSecrets .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -42,7 +42,6 @@ spec:
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:8-jdk-hotspot
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -55,12 +54,29 @@ spec:
             - mountPath: /nexus-data/secrets/cas
               name: nexus3-cas
       {{- end }}
+      {{- if .Values.plugins }}
+        - name: download-plugins
+          image: alpine:3
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+          {{- range .Values.plugins }}
+              wget -O /deploy/{{ .name }}.kar {{ .url }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /deploy
+              name: nexus-deploy
+      {{- end }}
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
         - name: volume-mount
           image: alpine:3
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -93,7 +109,7 @@ spec:
             postStart:
               exec:
                 command:
-                  - "/bin/sh"
+                  - "/bin/bash"
                   - "-c"
                   - "${SONATYPE_DIR}/nexus/conf/configure.sh > /proc/1/fd/1 2>/proc/1/fd/2"
           {{- end }}
@@ -120,16 +136,18 @@ spec:
               name: {{ template "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
+          {{- if .Values.plugins }}
+            - mountPath: /opt/sonatype/nexus/deploy
+              name: nexus-deploy
+          {{- end }}
           {{- if .Values.config.enabled }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
               readOnly: true
-          {{- if .Values.config.rootPassword }}
             - mountPath: /opt/sonatype/nexus/secret/root.password
               name: {{ .Values.config.rootPassword.secret }}
               subPath: {{ .Values.config.rootPassword.key }}
               readOnly: true
-          {{- end }}
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
               name: {{ .Values.config.ldap.authPassword.secret }}
@@ -170,6 +188,10 @@ spec:
           configMap:
             name: {{ template "nexus3.fullname" . }}-properties
             defaultMode: 0755
+      {{- if .Values.plugins }}
+        - name: nexus-deploy
+          emptyDir: {}
+      {{- end }}
       {{- if .Values.config.enabled }}
         - name: {{ template "nexus3.fullname" . }}-conf
           configMap:
