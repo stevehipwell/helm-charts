@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.2.0
-appVersion: 0.24.0
+version: 1.3.0
+appVersion: 0.25.0
 keywords:
   - kubernetes
   - thanos
@@ -22,5 +22,11 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
     - kind: changed
-      description: "Update Thanos image to v0.24.0."
+      description: "Update Thanos image to v0.25.0."
+    - kind: deprecated
+      description: "Deprecated metrics.serviceMonitor.interval in favour of metrics.serviceMonitor.endpointConfig.interval."
+    - kind: removed
+      description: "Removed chart default for metrics.serviceMonitor.interval, the interval should be the Prometheus default if not overridden."

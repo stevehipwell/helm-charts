@@ -16,7 +16,8 @@ fullnameOverride: ""
 serviceMonitor:
   enabled: false
   additionalLabels: {}
-  interval: 1m
+  endpointConfig: {}
+  interval:
 
 objstoreConfig:
   create: true
