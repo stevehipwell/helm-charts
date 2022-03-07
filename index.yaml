@@ -6749,6 +6749,60 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
+        - kind: added
+          description: "Added config.anonymous.roles to allow the anonymous user's roles to be configured."
+        - kind: added
+          description: "Added config.users to enable users to be configured, new users will get a random password."
+        - kind: added
+          description: "Added imagePullSecrets to replace image.pullSecrets."
+        - kind: added
+          description: "EXPERIMENTAL support for installing Nexus3 plugins via the plugins value."
+        - kind: changed
+          description: "Update Nexus3 image to v3.38.0."
+        - kind: changed
+          description: "Configure script now explicitly uses /bin/bash."
+        - kind: changed
+          description: "All beta APIs use in the configuration have been updated to v1."
+        - kind: changed
+          description: "Make it clearer that the rootPassword config is required if config is enabled."
+        - kind: deprecated
+          description: "Deprecated metrics.serviceMonitor.interval in favour of metrics.serviceMonitor.endpointConfig.interval."
+        - kind: deprecated
+          description: "Deprecated image.pullSecrets in favour of the idiomatic imagePullSecrets."
+        - kind: removed
+          description: "Removed chart default for metrics.serviceMonitor.interval, the interval should be the Prometheus default if not overridden."
+        - kind: removed
+          description: "Removed using the image pull policy for init containers."
+    apiVersion: v2
+    appVersion: 3.38.0
+    created: "2022-03-07T11:38:16.019097994Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 94658177929c9571d2cceea87e7970aad38f9187baf6a543292bd97ef79194b3
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.11.0/nexus3-4.11.0.tgz
+    version: 4.11.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Update Nexus3 image to v3.37.3."
     apiVersion: v2
@@ -11763,4 +11817,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-06T10:40:12.612383457Z"
+generated: "2022-03-07T11:38:16.022349999Z"
