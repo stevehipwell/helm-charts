@@ -24,7 +24,11 @@ spec:
   endpoints:
     - port: http
       path: /metrics
+    {{- if .Values.serviceMonitor.endpointConfig }}
+      {{- toYaml .Values.serviceMonitor.endpointConfig | nindent 6 }}
+    {{- else }}
     {{- with .Values.serviceMonitor.interval }}
       interval: {{ . }}
+    {{- end }}
     {{- end }}
 {{- end -}}

@@ -1,15 +1,35 @@
-# Thanos Changelog
+# Thanos Helm Chart Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<!-- ## [UNRELEASED]
+---
+
+<!-- ## [vX.Y.Z] - UNRELEASED
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [v1.3.0] - 2022-03-07
+
+### Added
+
+- Added `serviceMonitor.endpointConfig` to allow customisation of the `ServiceMonitor` endpoint.
+
+### Changed
+
+- Update _Thanos_ image to [v0.25.0](https://github.com/thanos-io/thanos/releases/tag/v0.25.0).
+
+### Deprecated
+
+- Deprecated `serviceMonitor.interval` in favour of `serviceMonitor.endpointConfig.interval`.
+
+### Removed
+
+- Removed chart default for `serviceMonitor.interval`, the interval should be the _Prometheus_ default if not overridden.
 
 ## [v1.2.0] - 2022-01-04
 
