@@ -10262,6 +10262,42 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
+        - kind: changed
+          description: "Update Thanos image to v0.25.0."
+        - kind: deprecated
+          description: "Deprecated metrics.serviceMonitor.interval in favour of metrics.serviceMonitor.endpointConfig.interval."
+        - kind: removed
+          description: "Removed chart default for metrics.serviceMonitor.interval, the interval should be the Prometheus default if not overridden."
+    apiVersion: v2
+    appVersion: 0.25.0
+    created: "2022-03-07T15:26:18.169024362Z"
+    description: Helm chart for Thanos components.
+    digest: e3d71681d282b1f07885033b719d7e131b4d60552f9ddc4d822f2ed3b7197ee0
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.3.0/thanos-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Update Thanos image to v0.24.0."
     apiVersion: v2
@@ -11817,4 +11853,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-07T11:38:16.022349999Z"
+generated: "2022-03-07T15:26:18.172009952Z"
