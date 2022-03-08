@@ -1,4 +1,4 @@
-# Tigera Operator Changelog
+# Tigera Operator Helm Chart Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
+<!-- ## [vX.Y.Z] - UNRELEASED
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [v2.1.4] - 2022-03-08
+
+### Changed
+
+- Update _Tigera Operator_ image to [v1.25.3](https://github.com/tigera/operator/releases/tag/v1.25.3).
 
 ## [v2.1.3] - 2022-03-06
 
