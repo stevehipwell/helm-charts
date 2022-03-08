@@ -8554,6 +8554,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated PlantUML image to v1.2022.2."
+    apiVersion: v2
+    appVersion: 1.2022.2
+    created: "2022-03-08T09:19:06.568916846Z"
+    description: Helm chart for PlantUML.
+    digest: 5f52d6069c9efb3e1fc90654ffc7443b52042c208b39c8fd958ce85104772b8a
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.8.0/plantuml-3.8.0.tgz
+    version: 3.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated PlantUML image to v1.2022.0."
     apiVersion: v2
     appVersion: 1.2022.0
@@ -9239,6 +9266,42 @@ entries:
     - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-1.0.0/plantuml-1.0.0.tgz
     version: 1.0.0
   sonarqube:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Minor docs change."
+    apiVersion: v2
+    appVersion: 9.3.0
+    created: "2022-03-08T09:19:06.702114808Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.13.8
+    description: A Helm chart for deploying SonarQube.
+    digest: 7b583e9dceb0fa54ce280ad90a99768c47ab6328fc18070c7548002b349c1594
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-4.3.1/sonarqube-4.3.1.tgz
+    version: 4.3.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -10908,6 +10971,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Tigera Operator image to v1.25.3."
+    apiVersion: v2
+    appVersion: 1.25.3
+    created: "2022-03-08T09:19:06.819626997Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: d52aece3d3064404869c18dd07564cadf3df7c3a42d6b173bed5238e87a52b7b
+    home: https://www.tigera.io/
+    icon: https://avatars.githubusercontent.com/u/48935664?s=300
+    keywords:
+    - kubernetes
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.1.4/tigera-operator-2.1.4.tgz
+    version: 2.1.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Tigera Operator image to v1.25.2."
     apiVersion: v2
     appVersion: 1.25.2
@@ -11853,4 +11947,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-07T15:26:18.172009952Z"
+generated: "2022-03-08T09:19:06.823284977Z"
