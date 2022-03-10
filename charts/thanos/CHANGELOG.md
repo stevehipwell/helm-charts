@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v1.3.1] - 2022-03-10
+
+### Changed
+
+- Update _Thanos_ image to [v0.25.1](https://github.com/thanos-io/thanos/releases/tag/v0.25.1).
+
 ## [v1.3.0] - 2022-03-07
 
 ### Added
