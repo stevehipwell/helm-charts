@@ -1,15 +1,23 @@
-# Istio Operator Changelog
+# Istio Operator Helm Chart Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<!-- ## [UNRELEASED]
+---
+
+<!-- ## [vX.Y.Z] - UNRELEASED
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [v2.5.2] - 2022-03-10
+
+### Changed
+
+- Updated the _Istio Operator_ image version to [v1.13.2](https://github.com/istio/istio/releases/tag/1.13.2).
 
 ## [v2.5.1] - 2022-02-23
 
