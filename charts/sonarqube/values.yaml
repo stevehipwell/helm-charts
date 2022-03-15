@@ -61,6 +61,7 @@ ingress:
   annotations: {}
   ingressClassName: ""
   hosts: []
+  path: /
   #   - sonarqube.local
   tls: []
   #    - hosts:

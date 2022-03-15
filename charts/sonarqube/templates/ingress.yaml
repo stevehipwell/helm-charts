@@ -3,6 +3,7 @@
 {{- $ingressSupportsPathType := eq (include "sonarqube.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "sonarqube.fullname" . -}}
 {{- $servicePort := .Values.service.port -}}
+{{- $path := .Values.ingress.path -}}
 apiVersion: {{ include "sonarqube.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -22,7 +23,7 @@ spec:
     - host: {{ quote . }}
       http:
         paths:
-          - path: /
+          - path: {{ $path }}
             {{- if $ingressSupportsPathType }}
             pathType: Prefix
             {{- end }}
