@@ -8581,6 +8581,33 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added the ability to pass in extra arguments to the PlantUML process via the args value."
+    apiVersion: v2
+    appVersion: 1.2022.2
+    created: "2022-03-16T08:58:52.381101798Z"
+    description: Helm chart for PlantUML.
+    digest: 6815ed58b98d937a69493b09bbd1f42d5fa052e1ce875dc09fa20e772bfc50a3
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.9.0/plantuml-3.9.0.tgz
+    version: 3.9.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated PlantUML image to v1.2022.2."
     apiVersion: v2
@@ -12005,4 +12032,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-10T16:17:27.102768218Z"
+generated: "2022-03-16T08:58:52.383667417Z"
