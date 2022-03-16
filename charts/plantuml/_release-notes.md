@@ -1,3 +1,3 @@
-### Changed
+### Added
 
-- Updated _PlantUML_ image to [v1.2022.2](https://plantuml.com/changes).
+- Added the ability to pass in extra arguments to the PlantUML process via the `args` value.

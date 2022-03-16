@@ -88,6 +88,9 @@ caCerts:
   enabled: false
   secret:
 
-env:
+env: []
 #   - name: VARIABLE
 #     value: my-value
+
+args: []
+#   - --module=http-forwarded
