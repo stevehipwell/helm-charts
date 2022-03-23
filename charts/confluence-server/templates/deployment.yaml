@@ -72,9 +72,9 @@ spec:
               value: {{ .Values.envVars.jvmMaxHeapSize | quote }}
             - name: JVM_SUPPORT_RECOMMENDED_ARGS
             {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
+              value: {{ printf "-Djavax.net.ssl.trustStore=/var/atlassian/application-data/confluence/cacerts %s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | quote }}
             {{- else }}
-              value: {{ printf "%s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | trim | quote }}
+              value: {{ printf "%s %s -Dsynchrony.memory.max=%s" .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions .Values.envVars.synchronyMaxMemory | quote }}
             {{- end }}
             {{- if .Values.ingress.enabled }}
             - name: ATL_PROXY_NAME
@@ -88,23 +88,19 @@ spec:
             {{- end }}
             {{- if .Values.postgresql.enabled }}
             - name: ATL_JDBC_URL
-              value: "jdbc:postgresql://{{ include "confluence-server.postgresql.fullname" . }}:{{ .Values.postgresql.service.port | default "5432" }}/{{ .Values.postgresql.postgresqlDatabase }}"
+              value: {{ printf "jdbc:postgresql://%s:%s/%s" (include "confluence-server.postgresql.serviceName" .) (include "confluence-server.postgresql.servicePort" .) (include "confluence-server.postgresql.database" .) | quote }}
             - name: ATL_JDBC_USER
-              value: {{.Values.postgresql.postgresqlUsername | quote }}
+              value: {{ include "confluence-server.postgresql.username" . | quote }}
             - name: ATL_JDBC_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{- if .Values.postgresql.existingSecret }}
-                  name:  {{ .Values.postgresql.existingSecret }}
-                  {{- else }}
-                  name:  {{ include "confluence-server.postgresql.fullname" . }}
-                  {{- end }}
-                  key: postgresql-password
+                  name: {{ include "confluence-server.postgresql.passwordSecretName" . }}
+                  key: {{ if eq (include "confluence-server.postgresql.username" .) "postgres" }}postgresql-password{{ else }}password{{ end }}
             - name: ATL_DB_TYPE
               value: "postgresql"
             {{- else if .Values.psql }}
             - name: ATL_JDBC_URL
-              value: "jdbc:postgresql://{{ .Values.psql.host }}:{{ .Values.psql.port | default "5432" }}/{{ .Values.psql.database }}"
+              value: {{ printf "jdbc:postgresql://%s:%s/%s" .Values.psql.host (default "5432" .Values.psql.port) .Values.psql.database | quote }}
             - name: ATL_JDBC_USER
               value: {{ .Values.psql.username | quote }}
             - name: ATL_JDBC_PASSWORD
