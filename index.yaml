@@ -10453,6 +10453,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Thanos image to v0.25.2."
+    apiVersion: v2
+    appVersion: 0.25.2
+    created: "2022-03-24T14:59:42.429415405Z"
+    description: Helm chart for Thanos components.
+    digest: fbc33cda804afcb13d250eff6cd27514c49030f8cdc4fe94dceebf4904947f9d
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.3.2/thanos-1.3.2.tgz
+    version: 1.3.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Thanos image to v0.25.1."
     apiVersion: v2
     appVersion: 0.25.1
@@ -12104,4 +12134,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-23T15:23:41.993072114Z"
+generated: "2022-03-24T14:59:42.432591945Z"
