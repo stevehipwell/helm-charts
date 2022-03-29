@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.11.1] - 2022-03-29
+
+### Changed
+
+- Update _Nexus3_ image to [v3.38.1](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.38.0---3.38.1-release-notes#NexusRepository3.38.03.38.1ReleaseNotes-3381).
+- Fix users configuration.
+
 ## [v4.11.0] - 2022-03-07
 
 ### Added
@@ -25,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Update `Nexus3` image to [v3.38.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.38.0-release-notes).
+- Update _Nexus3_ image to [v3.38.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.38.0-release-notes).
 - Configure script now explicitly uses `/bin/bash`.
 - All `beta` APIs use in the configuration have been updated to `v1`.
 - Make it clearer that the `rootPassword` config is required if config is enabled.

@@ -128,7 +128,7 @@ do
         fi
       else
         password="$(echo "${RANDOM}" | md5sum | head -c 20)"
-        sed "s/\"userId\"/\"password\":\"${password}\",\"userId\"/" /tmp/anon-user.json > "${tmp_file}"
+        sed "s/\"userId\"/\"password\":\"${password}\",\"userId\"/" "${json_file}" > "${tmp_file}"
         json_file="${tmp_file}"
 
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/users")"
