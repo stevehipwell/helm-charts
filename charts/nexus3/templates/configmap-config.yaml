@@ -28,7 +28,7 @@ data:
     {"userId":"anonymous","firstName":"Anonymous","lastName":"User","emailAddress":"anonymous@example.org","source":"default","status":"active","roles":{{ .Values.config.anonymous.roles | toJson }},"externalRoles":[]}
   {{- end }}
   {{- range .Values.config.users }}
-  {{ .id }}-user.json: |
+  {{ .userId }}-user.json: |
     {{- . | toJson | nindent 4 }}
   {{- end }}
   {{- if .Values.config.ldap.enabled }}
