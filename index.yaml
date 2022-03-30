@@ -6884,6 +6884,38 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Update Nexus3 image to v3.38.1."
+        - kind: changed
+          description: "Fix users configuration."
+    apiVersion: v2
+    appVersion: 3.38.1
+    created: "2022-03-30T09:44:47.554312987Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 15985d0e9ba3b65d00c9aeddd4dd923092f19b93ae192caa5ed89ed300c65b0c
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.11.1/nexus3-4.11.1.tgz
+    version: 4.11.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
         - kind: added
@@ -12169,4 +12201,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-29T08:23:25.902543817Z"
+generated: "2022-03-30T09:44:47.558209458Z"
