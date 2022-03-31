@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v3.10.0] - 2022-03-31
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+
+### Changed
+
+- Updated _PlantUML_ image to [v1.2022.3](https://plantuml.com/changes).
+
 ## [v3.9.0] - 2022-03-16
 
 ### Added
