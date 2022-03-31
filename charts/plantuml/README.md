@@ -28,6 +28,7 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `image.pullSecrets`                             | Image pull secrets.                                                                         | `[]`                             |
 | `nameOverride`                                  | Override the `name` of the chart.                                                           | `nil`                            |
 | `fullnameOverride`                              | Override the `fullname` of the chart.                                                       | `nil`                            |
+| `commonLabels`                                  | Labels to add to all chart resources.                                                       | `{}`                             |
 | `serviceAccount.create`                         | If `true`, create a new _ServiceAccount_.                                                   | `true`                           |
 | `serviceAccount.annotations`                    | Annotations to add to the _ServiceAccount_.                                                 | `{}`                             |
 | `serviceAccount.name`                           | _ServiceAccount_ name to use, if not set a name is generated using the `fullname` template. | `nil`                            |
