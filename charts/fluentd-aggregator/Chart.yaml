@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.6.9
-appVersion: 1.14.8
+version: 2.7.0
+appVersion: 1.14.9
 keywords:
   - fluent
   - fluentd
@@ -20,6 +20,14 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: "Added `arm64` support as the `stevehipwell/fluentd-aggregator` image is now multi-arch."
+      description: "Added commonLabels to allow the addition of labels to all resources."
+    - kind: added
+      description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
+    - kind: added
+      description: "Added extraVolumes and extraVolumeMounts."
     - kind: changed
-      description: "Update Fluentd Aggregator image to v1.14.8 (Fluentd v1.14.5)."
+      description: "Update Fluentd Aggregator image to v1.14.9 (Fluentd v1.14.6)."
+    - kind: deprecated
+      description: "Deprecated metrics.serviceMonitor.interval in favour of metrics.serviceMonitor.endpointConfig.interval."
+    - kind: removed
+      description: "Removed chart default for metrics.serviceMonitor.interval, the interval should be the Prometheus default if not overridden."

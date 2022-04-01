@@ -1,15 +1,37 @@
-# Fluentd Aggregator Changelog
+# Fluentd Aggregator Helm Chart Changelog
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<!-- ## [UNRELEASED]
+---
+
+<!-- ## [vX.Y.Z] - UNRELEASED
 ### Added
 ### Changed
 ### Deprecated
 ### Removed -->
+
+## [vX.Y.Z] - UNRELEASED
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+- Added `metrics.serviceMonitor.endpointConfig` to allow customisation of the `ServiceMonitor` endpoint.
+- Added `extraVolumes` and `extraVolumeMounts`.
+
+### Changed
+
+- Update _Fluentd Aggregator_ Docker image to [v1.14.9](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v1.14.9) (_Fluentd_ [v1.14.6](https://github.com/fluent/fluentd/releases/tag/v1.14.6)).
+
+### Deprecated
+
+- Deprecated `metrics.serviceMonitor.interval` in favour of `metrics.serviceMonitor.endpointConfig.interval`.
+
+### Removed
+
+- Removed chart default for `metrics.serviceMonitor.interval`, the interval should be the _Prometheus_ default if not overridden.
 
 ## [v2.6.9] - 2022-02-10
 
