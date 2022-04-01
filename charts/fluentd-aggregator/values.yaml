@@ -12,6 +12,8 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+commonLabels: {}
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -76,8 +78,8 @@ metrics:
   serviceMonitor:
     enabled: false
     additionalLabels: {}
-    #   myLabel: myValue
-    interval: 1m
+    endpointConfig: {}
+    interval:
 
 dashboards:
   enabled: false
@@ -101,6 +103,8 @@ persistence:
   storageClass: standard
   size: 8Gi
 
+extraVolumeMounts: []
+
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
@@ -121,6 +125,8 @@ podDisruptionBudget:
   enabled: false
   minAvailable:
   maxUnavailable:
+
+extraVolumes: []
 
 nodeSelector: {}
 
