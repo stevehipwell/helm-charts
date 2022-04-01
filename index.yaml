@@ -2693,6 +2693,43 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added commonLabels to allow the addition of labels to all resources."
+        - kind: added
+          description: "Added metrics.serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
+        - kind: added
+          description: "Added extraVolumes and extraVolumeMounts."
+        - kind: changed
+          description: "Update Fluentd Aggregator image to v1.14.9 (Fluentd v1.14.6)."
+        - kind: deprecated
+          description: "Deprecated metrics.serviceMonitor.interval in favour of metrics.serviceMonitor.endpointConfig.interval."
+        - kind: removed
+          description: "Removed chart default for metrics.serviceMonitor.interval, the interval should be the Prometheus default if not overridden."
+    apiVersion: v2
+    appVersion: 1.14.9
+    created: "2022-04-01T09:51:23.545974523Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 21afce0eb54e48b23e146f8898b237cafbb232358a05b5597b1b0e814284b79b
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-2.7.0/fluentd-aggregator-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added `arm64` support as the `stevehipwell/fluentd-aggregator` image is now multi-arch."
         - kind: changed
           description: "Update Fluentd Aggregator image to v1.14.8 (Fluentd v1.14.5)."
@@ -12230,4 +12267,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-31T15:51:52.94244479Z"
+generated: "2022-04-01T09:51:23.548673737Z"
