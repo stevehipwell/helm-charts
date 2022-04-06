@@ -1,3 +1,3 @@
 ### Changed
 
-- Minor docs change.
+- Fixed bad formatting when using embedded _PostgreSQL_ chart.
