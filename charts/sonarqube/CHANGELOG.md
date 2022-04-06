@@ -13,7 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## [v4.4.0] - UNRELEASED
+## [v4.4.1] - 2022-04-06
+
+### Changed
+
+- Fixed bad formatting when using embedded _PostgreSQL_ chart.
+
+## [v4.4.0] - 2022-04-06
 
 ### Added
 

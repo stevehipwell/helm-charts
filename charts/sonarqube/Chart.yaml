@@ -2,7 +2,7 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.4.0
+version: 4.4.1
 appVersion: 9.4.0
 keywords:
   - sonarqube
@@ -29,6 +29,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update SonarQube image to v9.4.0."
-    - kind: changed
-      description: "Update embedded PostgreSQL chart to v10.16.2 (PostgreSQL v11.14.0)."
+      description: "Fixed bad formatting when using embedded PostgreSQL chart."

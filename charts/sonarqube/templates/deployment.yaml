@@ -129,7 +129,8 @@ spec:
               value: {{ include "sonarqube.postgresql.username" . | quote }}
             - name: SONAR_JDBC_PASSWORD
               valueFrom:
-                secretKeyRef:name: {{ include "sonarqube.postgresql.passwordSecretName" . }}
+                secretKeyRef:
+                  name: {{ include "sonarqube.postgresql.passwordSecretName" . }}
                   key: {{ if eq (include "sonarqube.postgresql.username" .) "postgres" }}postgresql-password{{ else }}password{{ end }}
             {{- else if .Values.psql }}
             - name: SONAR_JDBC_URL
