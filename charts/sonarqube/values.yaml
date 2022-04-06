@@ -12,6 +12,8 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+commonLabels: {}
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -140,7 +142,11 @@ psql:
   #   key: password
 
 ## Configuration values for the postgresql dependency
-## ref: https://artifacthub.io/packages/helm/bitnami/postgresql/10.2.0
+## ref: https://artifacthub.io/packages/helm/bitnami/postgresql/
 ##
 postgresql:
   enabled: false
+  auth:
+    database: sonarqube
+    username: sonarqube
+    # existingSecret: sonarqube-postgres

@@ -13,6 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.4.0] - UNRELEASED
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+
+### Changed
+
+- Update _SonarQube_ image to [v9.4.0](https://www.sonarqube.org/sonarqube-9-4/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/9.4.0.54424)).
+- Update embedded _PostgreSQL_ chart to [v10.16.2](https://artifacthub.io/packages/helm/bitnami/postgresql/10.16.2) (PostgreSQL v11.14.0).
+
 ## [v4.3.1] - 2022-03-08
 
 ### Changed
