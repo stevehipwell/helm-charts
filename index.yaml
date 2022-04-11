@@ -8795,6 +8795,35 @@ entries:
         - kind: added
           description: "Added commonLabels to allow the addition of labels to all resources."
         - kind: changed
+          description: "Updated PlantUML image to v1.2022.4."
+    apiVersion: v2
+    appVersion: 1.2022.4
+    created: "2022-04-11T08:54:17.020052129Z"
+    description: Helm chart for PlantUML.
+    digest: c5ffede0c4f5b6fdb1696701d440757e3ac8819662a15d42cc84cea566cd3194
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.11.0/plantuml-3.11.0.tgz
+    version: 3.11.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Added commonLabels to allow the addition of labels to all resources."
+        - kind: changed
           description: "Updated PlantUML image to v1.2022.3."
     apiVersion: v2
     appVersion: 1.2022.3
@@ -12376,4 +12405,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-07T14:34:12.065031095Z"
+generated: "2022-04-11T08:54:17.02298666Z"
