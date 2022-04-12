@@ -9593,6 +9593,42 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Fixed PostgreSQL env variables."
+    apiVersion: v2
+    appVersion: 9.4.0
+    created: "2022-04-12T09:51:36.088063278Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.16.2
+    description: A Helm chart for deploying SonarQube.
+    digest: 8a2df7f988ee4aa34d29e146085a424eac916fa170aaf4cb781977e921ca31b4
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-4.4.2/sonarqube-4.4.2.tgz
+    version: 4.4.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Fixed bad formatting when using embedded PostgreSQL chart."
     apiVersion: v2
     appVersion: 9.4.0
@@ -12436,4 +12472,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-11T09:30:40.315296153Z"
+generated: "2022-04-12T09:51:36.090999296Z"
