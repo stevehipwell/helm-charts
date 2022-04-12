@@ -129,7 +129,7 @@ Lookup postgresql chart service port.
 {{- define "sonarqube.postgresql.servicePort" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ include "postgresql.service.port" $context }}
+{{ include "postgresql.servicePort" $context }}
 {{- end -}}
 
 {{/*
