@@ -1,3 +1,3 @@
-### Changed
+## Changed
 
-- Fixed bad formatting when using embedded _PostgreSQL_ chart.
+- Fixed _PostgreSQL_ env variables.

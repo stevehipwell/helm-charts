@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.4.2] - 2022-04-12
+
+### Changed
+
+- Fixed _PostgreSQL_ env variables.
+
 ## [v4.4.1] - 2022-04-06
 
 ### Changed
