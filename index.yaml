@@ -3652,6 +3652,34 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the Istio Operator image version to v1.13.3."
+    apiVersion: v2
+    appVersion: 1.13.3
+    created: "2022-04-19T16:42:10.519342237Z"
+    description: Helm chart for the Istio Operator.
+    digest: 685eac3948247a49902ce08c327af94647afdc67720c2b489cac75d008f4d289
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.5.3/istio-operator-2.5.3.tgz
+    version: 2.5.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Istio Operator image version to v1.13.2."
     apiVersion: v2
     appVersion: 1.13.2
@@ -12534,4 +12562,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-19T09:43:55.008337236Z"
+generated: "2022-04-19T16:42:10.522828571Z"
