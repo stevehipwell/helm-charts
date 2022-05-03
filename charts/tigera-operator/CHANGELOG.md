@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.1.8] - 2022-05-03
+
+### Changed
+
+- Update _Tigera Operator_ image to [v1.25.8](https://github.com/tigera/operator/releases/tag/v1.25.8) (_Calico_ [v3.22.2](https://github.com/projectcalico/calico/releases/tag/v3.22.2)).
+
 ## [v2.1.7] - 2022-04-19
 
 ### Changed
