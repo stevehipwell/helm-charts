@@ -13,7 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## [vX.Y.Z] - UNRELEASED
+## [v2.7.1] - 2022-05-03
+
+### Changed
+
+- Update _Fluentd Aggregator_ Docker image to [v1.14.10](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v1.14.10) (_Fluentd_ [v1.14.6](https://github.com/fluent/fluentd/releases/tag/v1.14.6)).
+
+## [v2.7.0] - 2022-04-01
 
 ### Added
 
@@ -231,7 +237,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Fix metrics port in conf
+- Fix metrics port in config
 
 ## [v1.0.2] - 2021-01-15
 
