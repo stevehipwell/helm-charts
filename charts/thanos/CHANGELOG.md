@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v1.4.0] - 2022-05-09
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+
+### Changed
+
+- Update _Thanos_ image to [v0.26.0](https://github.com/thanos-io/thanos/releases/tag/v0.26.0).
+
 ## [v1.3.2] - 2022-03-24
 
 ### Changed
