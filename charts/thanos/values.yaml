@@ -13,6 +13,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+commonLabels: {}
+
 serviceMonitor:
   enabled: false
   additionalLabels: {}
