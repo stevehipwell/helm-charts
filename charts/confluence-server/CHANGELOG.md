@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.8.3] - 2022-05-20
+
+### Changed
+
+- Fix port formatting issue for `psql` jdbc url ([#457](https://github.com/stevehipwell/helm-charts/issues/457)).
+
 ## [v4.8.2] - 2022-05-12
 
 ### Changed

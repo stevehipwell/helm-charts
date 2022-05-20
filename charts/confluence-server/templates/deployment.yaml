@@ -100,7 +100,7 @@ spec:
               value: "postgresql"
             {{- else if .Values.psql }}
             - name: ATL_JDBC_URL
-              value: {{ printf "jdbc:postgresql://%s:%s/%s" .Values.psql.host (default "5432" .Values.psql.port) .Values.psql.database | quote }}
+              value: {{ printf "jdbc:postgresql://%s:%v/%s" .Values.psql.host (default "5432" .Values.psql.port) .Values.psql.database | quote }}
             - name: ATL_JDBC_USER
               value: {{ .Values.psql.username | quote }}
             - name: ATL_JDBC_PASSWORD

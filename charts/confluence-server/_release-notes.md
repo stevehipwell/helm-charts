@@ -1,3 +1,3 @@
 ### Changed
 
-- Update _Confluence Server_ image to [v7.17.2](https://confluence.atlassian.com/doc/confluence-7-17-release-notes-1108683391.html).
+- Fix port formatting issue for `psql` jdbc url ([#457](https://github.com/stevehipwell/helm-charts/issues/457)).

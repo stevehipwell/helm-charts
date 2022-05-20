@@ -49,6 +49,9 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.2.0
 
+      - name: Set up helm unittest
+        run: helm plugin install https://github.com/quintush/helm-unittest
+
       - name: Run chart-testing (list-changed)
         id: list-changed
         shell: bash
@@ -61,6 +64,9 @@ jobs:
 
       - name: Run chart-testing (lint)
         run: ct lint --config ct.yaml
+
+      - name: Run helm unittest
+        run: ct list-changed --config ./ct.yaml | xargs -L 1 helm unittest  --helm3 --strict
 
       - name: Create Kind cluster
         uses: helm/kind-action@v1.2.0

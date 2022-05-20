@@ -1,0 +1,79 @@
+suite: test deployment
+templates:
+  - ./deployment.yaml
+tests:
+
+  - it: should set ATL_JDBC_URL if psql and port is an int
+    set:
+      psql.host: postgres
+      psql.port: 5431
+      psql.database: confluence
+      psql.username: confluence
+      psql.password.secret: confluence
+      psql.password.key: password
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Deployment
+      - isAPIVersion:
+          of: apps/v1
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: ATL_JDBC_URL
+            value: jdbc:postgresql://postgres:5431/confluence
+  - it: should set ATL_JDBC_URL if psql and port is a string
+    set:
+      psql.host: postgres
+      psql.port: "5431"
+      psql.database: confluence
+      psql.username: confluence
+      psql.password.secret: confluence
+      psql.password.key: password
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Deployment
+      - isAPIVersion:
+          of: apps/v1
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: ATL_JDBC_URL
+            value: jdbc:postgresql://postgres:5431/confluence
+  - it: should set ATL_JDBC_URL if psql and port is not set
+    set:
+      psql.host: postgres
+      psql.database: confluence
+      psql.username: confluence
+      psql.password.secret: confluence
+      psql.password.key: password
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Deployment
+      - isAPIVersion:
+          of: apps/v1
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: ATL_JDBC_URL
+            value: jdbc:postgresql://postgres:5432/confluence
+  - it: should set ATL_JDBC_URL if postgres enabled
+    set:
+      postgresql.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Deployment
+      - isAPIVersion:
+          of: apps/v1
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: ATL_JDBC_URL
+            value: jdbc:postgresql://RELEASE-NAME-postgresql:5432/confluence
