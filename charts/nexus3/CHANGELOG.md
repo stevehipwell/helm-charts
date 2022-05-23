@@ -13,6 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.12.0] - 2022-05-23
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+
+### Changed
+
+- Update _Nexus3_ image to [v3.39.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.39.0-release-notes).
+
 ## [v4.11.1] - 2022-03-29
 
 ### Changed
