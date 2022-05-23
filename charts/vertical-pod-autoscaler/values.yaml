@@ -1,0 +1,247 @@
+# Default values for vertical-pod-autoscaler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+imagePullSecrets: []
+
+nameOverride:
+fullnameOverride:
+
+commonLabels: {}
+
+rbac:
+  create: true
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+  endpointConfig: {}
+
+logLevel: 4
+
+admissionController:
+  image:
+    repository: registry.k8s.io/autoscaling/vpa-admission-controller
+    # Overrides the image tag whose default is the chart appVersion.
+    tag:
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    create: true
+    labels: {}
+    annotations: {}
+    name:
+
+  service:
+    annotations: {}
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName:
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  readinessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  resources: {}
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  topologySpreadConstraints: {}
+
+  webhook:
+    name: vpa-webhook-config
+
+  certManager:
+    enabled: false
+    issuerKind: Issuer
+    issuerName:
+
+recommender:
+  image:
+    repository: registry.k8s.io/autoscaling/vpa-recommender
+    # Overrides the image tag whose default is the chart appVersion.
+    tag:
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    create: true
+    labels: {}
+    annotations: {}
+    name:
+
+  service:
+    annotations: {}
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName:
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  readinessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  resources: {}
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  topologySpreadConstraints: {}
+
+updater:
+  image:
+    repository: registry.k8s.io/autoscaling/vpa-updater
+    # Overrides the image tag whose default is the chart appVersion.
+    tag:
+    pullPolicy: IfNotPresent
+
+  serviceAccount:
+    create: true
+    labels: {}
+    annotations: {}
+    name:
+
+  service:
+    annotations: {}
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName:
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  readinessProbe:
+    httpGet:
+      path: /health-check
+      port: http-metrics
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 10
+
+  resources: {}
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+  topologySpreadConstraints: {}

@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.recommender.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.recommender.replicas }}
+  {{- with .Values.recommender.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 8 }}
+      {{- with .Values.recommender.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.recommender.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "vertical-pod-autoscaler.recommender.serviceAccountName" . }}
+      {{- with .Values.recommender.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.recommender.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.recommender.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: recommender
+          {{- with .Values.recommender.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "vertical-pod-autoscaler.recommender.image" . }}
+          imagePullPolicy: {{ .Values.recommender.image.pullPolicy }}
+          {{- if .Values.recommender.extraEnv }}
+          env:
+          {{- with .Values.recommender.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          args:
+            - {{ printf "--v=%s" (toString .Values.logLevel) }}
+            - --address=:8942
+          {{- with .Values.recommender.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http-metrics
+              protocol: TCP
+              containerPort: 8942
+          livenessProbe:
+            {{- toYaml .Values.recommender.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.recommender.readinessProbe | nindent 12 }}
+          {{- with .Values.recommender.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.recommender.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.recommender.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.recommender.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.recommender.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

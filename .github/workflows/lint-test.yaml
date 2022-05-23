@@ -86,6 +86,8 @@ jobs:
       - name: Create Kind cluster
         if: fromJSON(steps.changes.outputs.changed)
         uses: helm/kind-action@9e8295d178de23cbfbd8fa16cf844eec1d773a07 # v1.4.0
+        with:
+          node_image: kindest/node:v1.24.6
 
       - name: Run chart-testing install
         if: fromJSON(steps.changes.outputs.changed)

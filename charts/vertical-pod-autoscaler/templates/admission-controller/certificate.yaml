@@ -1,0 +1,30 @@
+{{- if .Values.admissionController.certManager.enabled -}}
+{{- if not .Values.admissionController.certManager.issuerName }}
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "vertical-pod-autoscaler.admissionController.webhookCertIssuerName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+spec:
+  selfSigned: {}
+---
+{{- end }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+spec:
+  dnsNames:
+    - {{ printf "%s.%s" (include "vertical-pod-autoscaler.admissionController.fullname" .) .Release.Namespace }}
+    - {{ printf "%s.%s.svc" (include "vertical-pod-autoscaler.admissionController.fullname" .) .Release.Namespace }}
+    - {{ printf "%s.%s.svc.cluster.local" (include "vertical-pod-autoscaler.admissionController.fullname" .) .Release.Namespace }}
+  issuerRef:
+    kind: {{ include "vertical-pod-autoscaler.admissionController.webhookCertIssuerKind" . }}
+    name: {{ include "vertical-pod-autoscaler.admissionController.webhookCertIssuerName" . }}
+  secretName: {{ include "vertical-pod-autoscaler.admissionController.webhookCertSecret" . }}
+{{- end -}}
