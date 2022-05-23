@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.admissionController.replicas }}
+  {{- with .Values.admissionController.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 8 }}
+      {{- with .Values.admissionController.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.admissionController.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "vertical-pod-autoscaler.admissionController.serviceAccountName" . }}
+      {{- with .Values.admissionController.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.admissionController.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.admissionController.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: admission-controller
+          {{- with .Values.admissionController.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "vertical-pod-autoscaler.admissionController.image" . }}
+          imagePullPolicy: {{ .Values.admissionController.image.pullPolicy }}
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          {{- with .Values.admissionController.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args:
+            - {{ printf "--v=%s" (toString .Values.logLevel) }}
+            - --port=8000
+            - --address=:8944
+            - --register-webhook=false
+            - --client-ca-file=/etc/tls-certs/ca.crt
+            - --tls-cert-file=/etc/tls-certs/tls.crt
+            - --tls-private-key=/etc/tls-certs/tls.key
+          {{- with .Values.admissionController.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 8000
+            - name: http-metrics
+              protocol: TCP
+              containerPort: 8944
+          livenessProbe:
+            {{- toYaml .Values.admissionController.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.admissionController.readinessProbe | nindent 12 }}
+          volumeMounts:
+            - name: tls-certs
+              mountPath: /etc/tls-certs
+              readOnly: true
+          {{- with .Values.admissionController.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: tls-certs
+          secret:
+            secretName: {{ include "vertical-pod-autoscaler.admissionController.webhookCertIssuerName" . }}
+      {{- with .Values.admissionController.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.admissionController.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.admissionController.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.admissionController.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
