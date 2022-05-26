@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 4.10.2
-appVersion: 8.22.2
+version: 4.10.3
+appVersion: 8.22.3
 keywords:
   - jira
   - jira-software
@@ -28,4 +28,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update Jira Software image to v8.22.2."
+      description: "Update Jira Software image to v8.22.3."
