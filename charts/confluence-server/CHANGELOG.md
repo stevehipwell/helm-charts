@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.8.3] - 2022-05-27
+
+### Changed
+
+- Update _Confluence Server_ image to [v7.17.3](https://confluence.atlassian.com/doc/confluence-7-17-release-notes-1108683391.html).
+- Fixed BYO PostgreSQL connection string type bug.
+
 ## [v4.8.2] - 2022-05-12
 
 ### Changed
