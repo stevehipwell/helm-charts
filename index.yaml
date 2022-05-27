@@ -7144,6 +7144,36 @@ entries:
   nexus3:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Fix blob store type lookup when S3 soft quota is specified."
+    apiVersion: v2
+    appVersion: 3.39.0
+    created: "2022-05-27T08:11:47.26779403Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: b09f2741b2f7f172e2bdd0bed0865f035c9e2450e1d13db686ee6b60c70f8696
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.12.1/nexus3-4.12.1.tgz
+    version: 4.12.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description : "Added commonLabels to allow the addition of labels to all resources."
         - kind: changed
@@ -12912,4 +12942,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-26T15:58:21.641336333Z"
+generated: "2022-05-27T08:11:47.270154341Z"
