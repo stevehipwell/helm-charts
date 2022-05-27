@@ -4,6 +4,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Update Confluence Server image to v7.17.3."
+    apiVersion: v2
+    appVersion: 7.17.3
+    created: "2022-05-27T12:51:31.57484898Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~11.1.9
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 8484f63c5cf32b206c1013113fc963c21b0f0731e1a63bd20d068bc2f1469bc3
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.8.3/confluence-server-4.8.3.tgz
+    version: 4.8.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Confluence Server image to v7.17.2."
     apiVersion: v2
     appVersion: 7.17.2
@@ -12942,4 +12977,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-27T08:11:47.270154341Z"
+generated: "2022-05-27T12:51:31.577308061Z"
