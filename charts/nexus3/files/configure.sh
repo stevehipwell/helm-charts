@@ -206,7 +206,7 @@ do
   do
     if [[ -f "${json_file}" ]]
     then
-      type="$(grep -Pio '(?<="type":)\s*\"[^"]+\"' "${json_file}" | xargs)"
+      type="$(grep -Pio '(?<="type":)\s*\"[^"]+\"' "${json_file}" | head -1 | xargs)"
       if [[ "${type}" = "s3" ]]
       then
         name="$(grep -Pio '(?<="name":)(\s*\"[^"]+\")(?=,"type":\"s3\")' "${json_file}" | xargs)"
