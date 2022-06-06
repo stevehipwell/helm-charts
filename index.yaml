@@ -3787,6 +3787,42 @@ entries:
   istio-operator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added commonLabels to allow the addition of labels to all resources."
+        - kind: added
+          description: "Added serviceMonitor.endpointConfig to allow customisation of the ServiceMonitor endpoint."
+        - kind: changed
+          description: "Updated the Istio Operator image version to v1.14.0."
+        - kind: deprecated
+          description: "Deprecated serviceMonitor.interval in favour of serviceMonitor.endpointConfig.interval."
+        - kind: removed
+          description: "Removed chart default for serviceMonitor.interval, the interval should be the Prometheus default if not overridden."
+    apiVersion: v2
+    appVersion: 1.14.0
+    created: "2022-06-06T09:51:06.769535597Z"
+    description: Helm chart for the Istio Operator.
+    digest: ce7ab70c8395a5635fe2cdf3bc1aad6f23fcd57f7ef6e7335f13d868b33255f8
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.6.0/istio-operator-2.6.0.tgz
+    version: 2.6.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Istio Operator image version to v1.13.4."
     apiVersion: v2
@@ -13016,4 +13052,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-06-06T08:43:21.743923561Z"
+generated: "2022-06-06T09:51:06.771966257Z"
