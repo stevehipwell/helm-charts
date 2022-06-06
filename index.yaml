@@ -3,6 +3,45 @@ entries:
   confluence-server:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added commonLabels to allow the addition of labels to all resources."
+        - kind: changed
+          description: "Update Confluence Server image to v7.18.1."
+        - kind: changed
+          description: "Update embedded PostgreSQL chart to v11.6.3 (PostgreSQL v14.3.0)."
+    apiVersion: v2
+    appVersion: 7.18.1
+    created: "2022-06-06T08:43:21.741422764Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~11.6.3
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 5f883612cefe9dd4cc6e583405ef67f75f0017903bd9275fe66ae7f8fed36491
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.9.0/confluence-server-4.9.0.tgz
+    version: 4.9.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Update Confluence Server image to v7.17.3."
     apiVersion: v2
@@ -12977,4 +13016,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-27T12:51:31.577308061Z"
+generated: "2022-06-06T08:43:21.743923561Z"
