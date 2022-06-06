@@ -13,6 +13,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v2.6.0] - 2022-06-06
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+- Added `serviceMonitor.endpointConfig` to allow customisation of the `ServiceMonitor` endpoint.
+
+### Changed
+
+- Updated the _Istio Operator_ image version to [v1.14.0](https://github.com/istio/istio/releases/tag/1.14.0).
+
+### Deprecated
+
+- Deprecated `serviceMonitor.interval` in favour of `serviceMonitor.endpointConfig.interval`.
+
+### Removed
+
+- Removed chart default for `serviceMonitor.interval`, the interval should be the _Prometheus_ default if not overridden.
+
 ## [v2.5.4] - 2022-05-23
 
 ### Changed
