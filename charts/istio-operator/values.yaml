@@ -14,6 +14,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+commonLabels: {}
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -48,8 +50,8 @@ priorityClassName: ""
 serviceMonitor:
   enabled: false
   additionalLabels: {}
-  #   myLabel: myValue
-  interval: 1m
+  endpointConfig: {}
+  interval:
 
 dashboards:
   enabled: false
