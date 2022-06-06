@@ -88,25 +88,21 @@ spec:
             {{- end }}
             {{- if .Values.postgresql.enabled }}
             - name: ATL_JDBC_URL
-              value: "jdbc:postgresql://{{ include "jira-software.postgresql.fullname" . }}:{{ .Values.postgresql.service.port | default "5432" }}/{{ .Values.postgresql.postgresqlDatabase }}"
+              value: {{ printf "jdbc:postgresql://%s:%s/%s" (include "jira-software.postgresql.serviceName" .) (include "jira-software.postgresql.servicePort" .) (include "jira-software.postgresql.database" .) | quote }}
             - name: ATL_JDBC_USER
-              value: {{.Values.postgresql.postgresqlUsername | quote }}
+              value: {{ include "jira-software.postgresql.username" . | quote }}
             - name: ATL_JDBC_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  {{- if .Values.postgresql.existingSecret }}
-                  name:  {{ .Values.postgresql.existingSecret }}
-                  {{- else }}
-                  name:  {{ include "jira-software.postgresql.fullname" . }}
-                  {{- end }}
-                  key: postgresql-password
+                  name: {{ include "jira-software.postgresql.passwordSecretName" . }}
+                  key: {{ if eq (include "jira-software.postgresql.username" .) "postgres" }}postgresql-password{{ else }}password{{ end }}
             - name: ATL_DB_DRIVER
               value: "org.postgresql.Driver"
             - name: ATL_DB_TYPE
               value: "postgres72"
             {{- else if .Values.psql }}
             - name: ATL_JDBC_URL
-              value: "jdbc:postgresql://{{ .Values.psql.host }}:{{ .Values.psql.port | default "5432" }}/{{ .Values.psql.database }}"
+              value: {{ printf "jdbc:postgresql://%s:%v/%s" .Values.psql.host (default "5432" .Values.psql.port) .Values.psql.database | quote }}
             - name: ATL_JDBC_USER
               value: {{ .Values.psql.username | quote }}
             - name: ATL_JDBC_PASSWORD

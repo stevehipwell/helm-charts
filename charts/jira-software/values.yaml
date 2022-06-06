@@ -12,6 +12,8 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+commonLabels: {}
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -128,7 +130,11 @@ psql:
   #   key: password
 
 ## Configuration values for the postgresql dependency
-## ref: https://hub.helm.sh/charts/bitnami/postgresql/4.2.2
+## ref: https://artifacthub.io/packages/helm/bitnami/postgresql/
 ##
 postgresql:
   enabled: false
+  auth:
+    database: jira
+    username: jira
+    # existingSecret: jira-postgres

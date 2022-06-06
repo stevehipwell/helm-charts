@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.11.0] - UNRELEASED
+
+### Added
+
+- Added `commonLabels` to allow the addition of labels to all resources.
+
+### Changed
+
+- Update _Jira Software_ image to [v8.23.0](https://confluence.atlassian.com/jirasoftware/jira-software-8-23-x-release-notes-1115656979.html).
+
 ## [v4.10.3] - 2022-05-26
 
 ### Changed
