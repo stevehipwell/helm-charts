@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.12.2] - 2022-06-06
+
+### Changed
+
+- Allow opting out of the `chown` init container by setting `chownDataDir` to `false`.
+
 ## [v4.12.1] - 2022-05-24
 
 ### Changed

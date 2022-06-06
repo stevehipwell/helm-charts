@@ -38,6 +38,7 @@ spec:
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
+      {{- if or .Values.caCerts.enabled .Values.plugins .Values.extraInitContainers .Values.chownDataDir }}
       initContainers:
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs
@@ -75,6 +76,7 @@ spec:
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.chownDataDir }}
         - name: volume-mount
           image: alpine:3
           {{- with .Values.env }}
@@ -86,6 +88,8 @@ spec:
           volumeMounts:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
+      {{- end }}
+      {{- end }}
       containers:
         - name: nexus3
           {{- with .Values.securityContext }}
