@@ -108,6 +108,8 @@ resources: {}
 #     cpu: 100m
 #     memory: 128Mi
 
+chownDataDir: true
+
 extraInitContainers: []
 
 extraVolumes: []

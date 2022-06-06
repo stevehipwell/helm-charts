@@ -1,3 +1,3 @@
 ### Changed
 
-- Fix blob store type lookup when S3 soft quota is specified.
+- Allow opting out of the `chown` init container by setting `chownDataDir` to `false`.
