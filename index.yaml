@@ -10037,6 +10037,46 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added serviceAccount.automountToken to default token binding to false."
+        - kind: changed
+          description: "Update SonarQube image to v9.5.0."
+        - kind: changed
+          description: "Set resource namespaces to {{ .Release.Namespace }} in the templates instead of waiting until apply time inference."
+    apiVersion: v2
+    appVersion: 9.5.0
+    created: "2022-06-13T08:02:59.863616797Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.16.2
+    description: A Helm chart for deploying SonarQube.
+    digest: a58ead41b41df3fa695abec98d251304cc99be965f69d456699b960721b542ee
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-4.5.0/sonarqube-4.5.0.tgz
+    version: 4.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Fixed PostgreSQL env variables."
     apiVersion: v2
@@ -13172,4 +13212,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-06-10T11:23:15.143064205Z"
+generated: "2022-06-13T08:02:59.865957712Z"
