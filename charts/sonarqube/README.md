@@ -32,6 +32,7 @@ The following table lists the configurable parameters of the _SonarQube_ chart a
 | `serviceAccount.create`            | If `true`, create a new service account.                                                                                        | `true`                              |
 | `serviceAccount.annotations`       | Annotations to add to the service account.                                                                                      | `{}`                                |
 | `serviceAccount.name`              | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the full name template. | `nil`                               |
+| `serviceAccount.automountToken`    | If `true`, mount the ServiceAccount token.                                                                                      | `false`                             |
 | `podLabels`                        | Annotations to add to the pod.                                                                                                  | `{}`                                |
 | `podAnnotations`                   | Annotations to add to the pod.                                                                                                  | `{}`                                |
 | `podSecurityContext`               | Security context for the pod.                                                                                                   | `{ fsGroup: 1000 }`                 |
