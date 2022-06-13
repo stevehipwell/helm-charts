@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.4.2
-appVersion: 9.4.0
+version: 4.5.0
+appVersion: 9.5.0
 keywords:
   - sonarqube
   - sast
@@ -28,5 +28,9 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added serviceAccount.automountToken to default token binding to false."
     - kind: changed
-      description: "Fixed PostgreSQL env variables."
+      description: "Update SonarQube image to v9.5.0."
+    - kind: changed
+      description: "Set resource namespaces to {{ .Release.Namespace }} in the templates instead of waiting until apply time inference."

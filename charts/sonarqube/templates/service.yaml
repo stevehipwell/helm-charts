@@ -2,12 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "sonarqube.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "sonarqube.labels" . | nindent 4 }}
   {{- with .Values.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  labels:
-    {{- include "sonarqube.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
