@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+<!-- BUMP -->
+
 ## [v2.2.4] - 2022-06-20
 
 ### Changed
