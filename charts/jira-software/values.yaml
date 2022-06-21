@@ -7,10 +7,13 @@ image:
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
-  pullSecrets: []
+
+imagePullSecrets: []
 
 nameOverride: ""
 fullnameOverride: ""
+
+commonLabels: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -20,12 +23,15 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+  automountToken: false
+
+deployment: false
 
 podLabels: {}
 podAnnotations: {}
 
-podSecurityContext: {}
-#   fsGroup: 2000
+podSecurityContext:
+  fsGroup: 2001
 
 priorityClassName: ""
 
@@ -56,6 +62,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
+  clusterIP:
   annotations: {}
   port: 8080
 
@@ -90,6 +97,8 @@ resources: {}
 #     cpu: 100m
 #     memory: 128Mi
 
+terminationGracePeriodSeconds: 30
+
 nodeSelector: {}
 
 tolerations: []
@@ -101,10 +110,13 @@ caCerts:
   secret:
 
 envVars:
-  jvmMinHeapSize: 768M
+  jvmMinHeapSize: 384M
   jvmMaxHeapSize: 768M
+  jvmReservedCodeCacheSize: 512M
   jvmAdditionalMemoryOptions: "-XX:+UseG1GC"
   jvmAdditionalOptions: ""
+  forceCfgUpdate: false
+  setPermissions: true
 
 env: []
 #   - name: VARIABLE
@@ -128,7 +140,11 @@ psql:
   #   key: password
 
 ## Configuration values for the postgresql dependency
-## ref: https://hub.helm.sh/charts/bitnami/postgresql/4.2.2
+## ref: https://artifacthub.io/packages/helm/bitnami/postgresql/
 ##
 postgresql:
   enabled: false
+  auth:
+    database: jira
+    username: jira
+    # existingSecret: jira-postgres

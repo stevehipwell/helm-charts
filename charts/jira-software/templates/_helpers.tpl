@@ -41,6 +41,9 @@ helm.sh/chart: {{ include "jira-software.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.commonLabels }}
+{{ toYaml . }}
+{{- end }}
 {{- end }}
 
 {{/*
@@ -99,9 +102,46 @@ Create pvc name.
 {{- end -}}
 
 {{/*
-Create a default fully qualified app name for the postgres requirement.
+Lookup postgresql chart service name.
 */}}
-{{- define "jira-software.postgresql.fullname" -}}
-{{- $postgresContext := dict "Values" .Values.postgresql "Release" .Release "Chart" (dict "Name" "postgresql") -}}
-{{ template "postgresql.primary.fullname" $postgresContext }}
+{{- define "jira-software.postgresql.serviceName" -}}
+{{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
+{{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
+{{ include "postgresql.primary.fullname" $context }}
+{{- end -}}
+
+{{/*
+Lookup postgresql chart service port.
+*/}}
+{{- define "jira-software.postgresql.servicePort" -}}
+{{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
+{{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
+{{ include "postgresql.servicePort" $context }}
+{{- end -}}
+
+{{/*
+Lookup postgresql chart database.
+*/}}
+{{- define "jira-software.postgresql.database" -}}
+{{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
+{{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
+{{ include "postgresql.database" $context }}
+{{- end -}}
+
+{{/*
+Lookup postgresql chart username.
+*/}}
+{{- define "jira-software.postgresql.username" -}}
+{{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
+{{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
+{{ default "postgres" (include "postgresql.username" $context) }}
+{{- end -}}
+
+{{/*
+Lookup postgresql chart password secret name.
+*/}}
+{{- define "jira-software.postgresql.passwordSecretName" -}}
+{{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
+{{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
+{{ include "postgresql.secretName" $context }}
 {{- end -}}

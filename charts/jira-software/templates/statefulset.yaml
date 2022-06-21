@@ -1,34 +1,33 @@
-{{- if .Values.deployment -}}
+{{- if not .Values.deployment -}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "jira-software.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "jira-software.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "jira-software.fullname" . }}
   replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       {{- include "jira-software.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-      {{- include "jira-software.selectorLabels" . | nindent 8 }}
-    {{- with .Values.podLabels }}
-      {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.podAnnotations }}
+        {{- include "jira-software.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       serviceAccountName: {{ include "jira-software.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
@@ -146,13 +145,10 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
+      {{- if not .Values.persistence.enabled }}
         - name: {{ include "jira-software.pvcname" . }}
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default (include "jira-software.pvcname" .) }}
-          {{- else }}
           emptyDir: {}
-          {{- end }}
+      {{- end }}
       {{- if .Values.caCerts.enabled }}
         - name: jira-cas
           secret:
@@ -173,4 +169,28 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "jira-software.pvcname" . }}
+        labels:
+          {{- include "jira-software.labels" . | nindent 10 }}
+        {{- with .Values.persistence.annotations }}
+        annotations:
+          {{- . | toYaml | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode | quote }}
+        {{- with .Values.persistence.storageClass }}
+        {{- if (eq "-" .) }}
+        storageClassName: ""
+        {{- else }}
+        storageClassName: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+  {{- end }}
 {{- end }}

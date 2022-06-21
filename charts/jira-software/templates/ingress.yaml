@@ -7,6 +7,7 @@ apiVersion: {{ include "jira-software.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "jira-software.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
