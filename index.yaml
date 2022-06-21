@@ -5215,6 +5215,67 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added new default behaviour to use a StatefulSet instead of a Deployment, the legacy behaviour can be enabled by setting deployment to true."
+        - kind: added
+          description: "Added imagePullSecrets to replace image.pullSecrets."
+        - kind: added
+          description: "Added commonLabels to allow the addition of labels to all resources."
+        - kind: added
+          description: "Added terminationGracePeriodSeconds."
+        - kind: added
+          description: "Added service.clusterIP to enable making the Service headless."
+        - kind: added
+          description: "Added serviceAccount.automountToken to default token binding to false."
+        - kind: added
+          description: "Added explicit namespace declaration in templates."
+        - kind: added
+          description: "Added support for setting JVM_RESERVED_CODE_CACHE_SIZE` via envVars.jvmReservedCodeCacheSize."
+        - kind: added
+          description: "Added support for setting ATL_FORCE_CFG_UPDATE via envVars.forceCfgUpdate."
+        - kind: added
+          description: "Added support for setting SET_PERMISSIONS via envVars.setPermissions."
+        - kind: changed
+          description: "Update Jira Software image to v9.0.0."
+        - kind: changed
+          description: "Default to setting pod fsGroup to 2001."
+        - kind: changed
+          description: "Changed default JVM min heap size to the default value of 384M."
+        - kind: removed
+          description: "Removed image.pullSecrets in favour of imagePullSecrets."
+    apiVersion: v2
+    appVersion: 9.0.0
+    created: "2022-06-21T10:01:44.756439756Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 10.16.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: 2b5d9444c9963b680d9b0c70c448876004592dbfe8609ca68532d971b4f9056f
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.0.0/jira-software-5.0.0.tgz
+    version: 5.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Update Jira Software image to v8.22.3."
     apiVersion: v2
@@ -13244,4 +13305,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-06-20T12:40:13.988651135Z"
+generated: "2022-06-21T10:01:44.759482276Z"
