@@ -2,8 +2,8 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 4.9.0
-appVersion: 7.18.1
+version: 4.9.1
+appVersion: 7.18.2
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
 keywords:
@@ -27,9 +27,5 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added commonLabels to allow the addition of labels to all resources."
     - kind: changed
-      description: "Update Confluence Server image to v7.18.1."
-    - kind: changed
-      description: "Update embedded PostgreSQL chart to v11.6.3 (PostgreSQL v14.3.0)."
+      description: "Update Confluence Server image to v7.18.2."
