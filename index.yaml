@@ -9271,6 +9271,41 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added explicit namespace declaration in templates."
+        - kind: added
+          description: "Added `imagePullSecrets` to replace the deprecated `image.pullSecrets`."
+        - kind: added
+          description: "Added `serviceAccount.automountToken` to default token binding to `false`."
+        - kind: changed
+          description: "Updated PlantUML image to v1.2022.6."
+        - kind: deprecated
+          description: "Deprecated image.pullSecrets in favour of imagePullSecrets."
+    apiVersion: v2
+    appVersion: 1.2022.6
+    created: "2022-06-22T09:14:20.470535575Z"
+    description: Helm chart for PlantUML.
+    digest: fca756e5e8b0c6b568516a06298bb7cbf8dfd1317fe951b2ec0d3c94d5b69868
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.13.0/plantuml-3.13.0.tgz
+    version: 3.13.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated PlantUML image to v1.2022.5."
     apiVersion: v2
@@ -13305,4 +13340,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-06-21T10:01:44.759482276Z"
+generated: "2022-06-22T09:14:20.473963196Z"
