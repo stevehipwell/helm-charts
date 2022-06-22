@@ -25,15 +25,17 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `image.repository`                              | Image repository.                                                                           | `plantuml/plantuml-server`       |
 | `image.tag`                                     | Image tag.                                                                                  | `jetty-v{{ .Chart.AppVersion }}` |
 | `image.pullPolicy`                              | Image pull policy.                                                                          | `IfNotPresent`                   |
-| `image.pullSecrets`                             | Image pull secrets.                                                                         | `[]`                             |
+| `image.pullSecrets`                             | **DEPRECATED** Image pull secrets, use `imagePullSecrets`.                                  | `[]`                             |
+| `imagePullSecrets`                              | Image pull secrets, will override `image.pullSecrets`.                                      | `[]`                             |
 | `nameOverride`                                  | Override the `name` of the chart.                                                           | `nil`                            |
 | `fullnameOverride`                              | Override the `fullname` of the chart.                                                       | `nil`                            |
 | `commonLabels`                                  | Labels to add to all chart resources.                                                       | `{}`                             |
 | `serviceAccount.create`                         | If `true`, create a new _ServiceAccount_.                                                   | `true`                           |
 | `serviceAccount.annotations`                    | Annotations to add to the _ServiceAccount_.                                                 | `{}`                             |
 | `serviceAccount.name`                           | _ServiceAccount_ name to use, if not set a name is generated using the `fullname` template. | `nil`                            |
-| `podAnnotations`                                | Annotations to add to the pod.                                                              | `{}`                             |
+| `serviceAccount.automountToken`                 | If `true`, mount the ServiceAccount token.                                                  | `false`                          |
 | `podLabels`                                     | Labels to add to the _Pod_.                                                                 | `{}`                             |
+| `podAnnotations`                                | Annotations to add to the pod.                                                              | `{}`                             |
 | `podSecurityContext`                            | Security context for the _Pod_.                                                             | `{}`                             |
 | `securityContext`                               | Security context for the _plantuml_ container.                                              | `{}`                             |
 | `priorityClassName`                             | Priority class name to use.                                                                 | `""`                             |

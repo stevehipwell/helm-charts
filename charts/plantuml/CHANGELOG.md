@@ -13,6 +13,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v3.13.0] - 2022-6-22
+
+### Added
+
+- Added explicit namespace declaration in templates.
+- Added `imagePullSecrets` to replace the deprecated `image.pullSecrets`.
+- Added `serviceAccount.automountToken` to default token binding to `false`.
+
+### Changed
+
+- Updated _PlantUML_ image to [v1.2022.6](https://plantuml.com/changes).
+
+### Deprecated
+
+- Deprecated `image.pullSecrets` in favour of `imagePullSecrets`.
+
 ## [v3.12.0] - 2022-5-26
 
 ### Changed

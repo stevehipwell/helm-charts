@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "plantuml.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "plantuml.labels" . | nindent 4 }}
 spec:
@@ -23,7 +24,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.image.pullSecrets }}
+      {{- with default .Values.image.pullSecrets .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
