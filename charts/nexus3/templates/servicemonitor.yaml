@@ -3,11 +3,12 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "nexus3.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
-    {{- if .Values.metrics.serviceMonitor.additionalLabels }}
-    {{- .Values.metrics.serviceMonitor.additionalLabels | toYaml | trim | nindent 4 }}
-    {{- end }}
+  {{- with .Values.metrics.serviceMonitor.additionalLabels }}
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
 spec:
   jobLabel: {{ .Release.Name }}
   namespaceSelector:
