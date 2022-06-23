@@ -20,6 +20,9 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+  automountToken: false
+
+deployment: true
 
 podLabels: {}
 podAnnotations: {}
@@ -53,6 +56,7 @@ readinessProbe:
 
 service:
   type: ClusterIP
+  clusterIP:
   annotations: {}
   port: 8081
   additionalPorts: []
@@ -113,6 +117,8 @@ chownDataDir: true
 extraInitContainers: []
 
 extraVolumes: []
+
+terminationGracePeriodSeconds: 30
 
 nodeSelector: {}
 

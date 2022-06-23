@@ -7,6 +7,7 @@ apiVersion: {{ include "nexus3.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
