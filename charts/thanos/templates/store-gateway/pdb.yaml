@@ -3,6 +3,7 @@ apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "thanos.storeGatewayFullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.storeGatewayLabels" . | nindent 4 }}
 spec:

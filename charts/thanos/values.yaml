@@ -40,6 +40,7 @@ compact:
     create: true
     annotations: {}
     name: ""
+    automountToken: false
 
   updateStrategy: {}
 
@@ -104,6 +105,7 @@ query:
     create: true
     annotations: {}
     name: ""
+    automountToken: false
 
   replicas: 1
 
@@ -191,6 +193,7 @@ queryFrontend:
     create: true
     annotations: {}
     name: ""
+    automountToken: false
 
   replicas: 1
 
@@ -275,6 +278,7 @@ rule:
     create: true
     annotations: {}
     name: ""
+    automountToken: false
 
   replicas: 1
 
@@ -378,6 +382,7 @@ storeGateway:
     create: true
     annotations: {}
     name: ""
+    automountToken: false
 
   replicas: 1
 
