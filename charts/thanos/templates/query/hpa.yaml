@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "thanos.queryFullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.queryLabels" . | nindent 4 }}
 spec:

@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ include "thanos.ruleFullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.ruleLabels" . | nindent 4 }}
 spec:

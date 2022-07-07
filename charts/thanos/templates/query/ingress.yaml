@@ -6,6 +6,7 @@ apiVersion: {{ include "thanos.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.labels" . | nindent 4 }}
   {{- with .Values.query.ingress.annotations }}
