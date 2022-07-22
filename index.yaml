@@ -5285,6 +5285,43 @@ entries:
   jira-software:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Update Jira Software image to v9.1.0."
+        - kind: changed
+          description: "Update embedded PostgreSQL chart to v11.6.18 (PostgreSQL v14.4.0)."
+    apiVersion: v2
+    appVersion: 9.1.0
+    created: "2022-07-22T08:32:48.485330407Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.6.18
+    description: Helm chart for Atlassian Jira Software.
+    digest: b8e049f12bbede81d7c30da3dc156a54cc2b2fdbbef4ba477d29643774f5ce66
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.1.0/jira-software-5.1.0.tgz
+    version: 5.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added new default behaviour to use a StatefulSet instead of a Deployment, the legacy behaviour can be enabled by setting deployment to true."
         - kind: added
@@ -13642,4 +13679,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-07-20T08:26:04.612981244Z"
+generated: "2022-07-22T08:32:48.48884793Z"
