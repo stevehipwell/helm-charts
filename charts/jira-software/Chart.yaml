@@ -2,7 +2,7 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.1.0
+version: 5.1.1
 appVersion: 9.1.0
 keywords:
   - jira
@@ -28,6 +28,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update Jira Software image to v9.1.0."
-    - kind: changed
-      description: "Update embedded PostgreSQL chart to v11.6.18 (PostgreSQL v14.4.0)."
+      description: "Fixed missing documentation for deployment value."

@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Deprecated
 ### Removed -->
+## [v5.1.1] - 2022-07-22
+
+### Changed
+
+- Fixed missing documentation for `deployment` value.
 
 ## [v5.1.0] - 2022-07-22
 
@@ -19,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update embedded _PostgreSQL_ chart to [v11.6.18](https://artifacthub.io/packages/helm/bitnami/postgresql/11.6.18) (PostgreSQL v14.4.0).
 
 ## [v5.0.0] - 2022-06-21
+
+> **BREAKING CHANGE:**
+> If you're upgrading to this version you need to set `deployment` to `true` otherwise you might loose your data.
 
 ### Added
 
