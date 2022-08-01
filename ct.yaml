@@ -1,3 +1,4 @@
+target-branch: main
 chart-repos:
   - stable=https://charts.helm.sh/stable/
   - bitnami=https://charts.bitnami.com/bitnami/
