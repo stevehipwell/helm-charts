@@ -13,6 +13,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.10.0] - 2022-08-02
+
+### Added
+
+- Added support for running _Confluence Server_ as a `StatefulSet` by setting `deployment` to `false`.
+- Added `service.clusterIP` to enable making the `Service` headless.
+- Added explicit namespace declaration in templates.
+- Added `imagePullSecrets` to replace `image.pullSecrets`.
+- Added `terminationGracePeriodSeconds`.
+- Added `serviceAccount.automountToken` to default token binding to `false`.
+
+### Changed
+
+- Updated _Confluence Server_ image to [v7.19.0](https://confluence.atlassian.com/doc/confluence-7-19-release-notes-1141976784.html).
+- Updated embedded _PostgreSQL_ chart to [v11.6.21](https://artifacthub.io/packages/helm/bitnami/postgresql/11.6.21) (PostgreSQL v14.4.0).
+
 ## [v4.9.2] - 2022-07-12
 
 ### Changed

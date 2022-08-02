@@ -1,15 +1,14 @@
-{{- if .Values.deployment -}}
+{{- if not .Values.deployment -}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "confluence-server.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "confluence-server.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "confluence-server.fullname" . }}
   replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       {{- include "confluence-server.selectorLabels" . | nindent 6 }}
@@ -35,10 +34,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.priorityClassName }}
-      priorityClassName: {{ quote . }}
+      priorityClassName: {{ . | quote }}
       {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-      {{- if or .Values.caCerts.enabled .Values.extraInitContainers }}
+    {{- if or .Values.caCerts.enabled .Values.extraInitContainers }}
       initContainers:
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs
@@ -139,13 +138,10 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
+      {{- if not .Values.persistence.enabled }}
         - name: {{ include "confluence-server.pvcname" . }}
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default (include "confluence-server.pvcname" .) }}
-          {{- else }}
           emptyDir: {}
-          {{- end }}
+      {{- end }}
       {{- if .Values.caCerts.enabled }}
         - name: confluence-cas
           secret:
@@ -166,4 +162,28 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "confluence-server.pvcname" . }}
+        labels:
+          {{- include "confluence-server.labels" . | nindent 10 }}
+        {{- with .Values.persistence.annotations }}
+        annotations:
+          {{- . | toYaml | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .Values.persistence.accessMode | quote }}
+        {{- with .Values.persistence.storageClass }}
+        {{- if (eq "-" .) }}
+        storageClassName: ""
+        {{- else }}
+        storageClassName: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+  {{- end }}
 {{- end }}
