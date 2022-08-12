@@ -1,8 +1,8 @@
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+{{- if and .Values.deployment .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "sonarqube.pvcName" . }}
+  name: {{ include "sonarqube.pvcname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "sonarqube.labels" . | nindent 4 }}

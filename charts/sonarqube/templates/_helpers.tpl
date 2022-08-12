@@ -88,7 +88,7 @@ Create config name.
 {{/*
 Create pvc name.
 */}}
-{{- define "sonarqube.pvcName" -}}
+{{- define "sonarqube.pvcname" -}}
 {{- template "sonarqube.fullname" . -}}-data
 {{- end -}}
 

@@ -13,7 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## [v4.5.0] - 2022-0613
+## [v4.6.0] - 2022-08-12
+
+### Added
+
+- Added support for running _SonarQube_ as a `StatefulSet` by setting `deployment` to `false`.
+- Added `service.clusterIP` to enable making the `Service` headless.
+- Added `imagePullSecrets` to replace `image.pullSecrets`.
+- Added `terminationGracePeriodSeconds` support.
+
+### Changed
+
+- Updated _SonarQube_ image to [v9.6.0](https://www.sonarqube.org/sonarqube-9-6/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/9.6.0.59041)).
+
+## [v4.5.0] - 2022-06-13
 
 ### Added
 

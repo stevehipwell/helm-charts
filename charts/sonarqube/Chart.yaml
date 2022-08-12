@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.5.0
-appVersion: 9.5.0
+version: 4.6.0
+appVersion: 9.6.0
 keywords:
   - sonarqube
   - sast
@@ -29,8 +29,12 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: "Added serviceAccount.automountToken to default token binding to false."
+      description: "Added support for running SonarQube as a StatefulSet by setting deployment to false."
+    - kind: added
+      description: "Added service.clusterIP to enable making the Service headless."
+    - kind: added
+      description: "Added imagePullSecrets to replace image.pullSecrets."
+    - kind: added
+      description: "Added terminationGracePeriodSeconds support."
     - kind: changed
-      description: "Update SonarQube image to v9.5.0."
-    - kind: changed
-      description: "Set resource namespaces to {{ .Release.Namespace }} in the templates instead of waiting until apply time inference."
+      description: "Updated SonarQube image to v9.6.0."
