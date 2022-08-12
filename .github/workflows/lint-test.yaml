@@ -38,18 +38,18 @@ jobs:
           ./ah lint --kind helm || exit 1
           rm -f ./ah ./ah_linux_amd64.tar.gz
 
-      - name: Set up Helm
+      - name: Set-up Helm
         uses: azure/setup-helm@b5b231a831f96336bbfeccc1329990f0005c5bb1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set-up Python
+        uses: actions/setup-python@b55428b1882923874294fa556849718a1d7f2ca5
         with:
           python-version: "3.x"
 
-      - name: Set up chart-testing
+      - name: Set-up chart-testing
         uses: helm/chart-testing-action@09ed88797198755e5031f25be13da255e7e33aad
 
       - name: Run chart-testing (list-changed)
