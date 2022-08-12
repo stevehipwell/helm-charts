@@ -9,6 +9,8 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -24,6 +26,8 @@ serviceAccount:
   name: ""
   automountToken: false
 
+deployment: true
+
 podLabels: {}
 podAnnotations: {}
 
@@ -35,6 +39,8 @@ securityContext:
   runAsUser: 1000
 
 priorityClassName: ""
+
+terminationGracePeriodSeconds:
 
 livenessProbe:
   httpGet:
@@ -56,6 +62,7 @@ readinessProbe:
 
 service:
   type: ClusterIP
+  clusterIP:
   annotations: {}
   port: 9000
 
