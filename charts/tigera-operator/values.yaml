@@ -50,7 +50,8 @@ serviceMonitor:
 
 resources: {}
 
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: linux
 
 tolerations: []
 
