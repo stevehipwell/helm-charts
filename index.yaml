@@ -10511,6 +10511,50 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added support for running SonarQube as a StatefulSet by setting deployment to false."
+        - kind: added
+          description: "Added service.clusterIP to enable making the Service headless."
+        - kind: added
+          description: "Added imagePullSecrets to replace image.pullSecrets."
+        - kind: added
+          description: "Added terminationGracePeriodSeconds support."
+        - kind: changed
+          description: "Updated SonarQube image to v9.6.0."
+    apiVersion: v2
+    appVersion: 9.6.0
+    created: "2022-08-22T17:11:57.587608397Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.16.2
+    description: A Helm chart for deploying SonarQube.
+    digest: 015d4d1828c179f325e756d399790356130553157e72ac78638c263bd9ce70e9
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-4.6.0/sonarqube-4.6.0.tgz
+    version: 4.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added serviceAccount.automountToken to default token binding to false."
         - kind: changed
           description: "Update SonarQube image to v9.5.0."
@@ -13879,4 +13923,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-08-22T17:04:53.705984939Z"
+generated: "2022-08-22T17:11:57.591716823Z"
