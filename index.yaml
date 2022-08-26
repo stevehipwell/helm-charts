@@ -3,6 +3,41 @@ entries:
   confluence-server:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated Confluence Server image to v7.19.1."
+    apiVersion: v2
+    appVersion: 7.19.1
+    created: "2022-08-26T16:22:32.716075453Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.6.21
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 796e0c903a0db8136130f6f05077c137ccb89c5540b15510ee7f87345ab45d75
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-4.10.1/confluence-server-4.10.1.tgz
+    version: 4.10.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for running Confluence Server as a StatefulSet by setting deployment to false."
         - kind: added
@@ -14017,4 +14052,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-08-26T16:17:06.140374454Z"
+generated: "2022-08-26T16:22:32.720089133Z"
