@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.1.1
-appVersion: 9.1.0
+version: 5.1.2
+appVersion: 9.1.1
 keywords:
   - jira
   - jira-software
@@ -28,4 +28,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Fixed missing documentation for deployment value."
+      description: "Updated Jira Software image to v9.1.1."
