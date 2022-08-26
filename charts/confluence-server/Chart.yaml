@@ -2,8 +2,8 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 4.10.0
-appVersion: 7.19.0
+version: 4.10.1
+appVersion: 7.19.1
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
 keywords:
@@ -27,19 +27,5 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for running Confluence Server as a StatefulSet by setting deployment to false."
-    - kind: added
-      description: "Added service.clusterIP to enable making the Service headless."
-    - kind: added
-      description: "Added explicit namespace declaration in templates."
-    - kind: added
-      description: "Added imagePullSecrets to replace image.pullSecrets."
-    - kind: added
-      description: "Added terminationGracePeriodSeconds."
-    - kind: added
-      description: "Added serviceAccount.automountToken to default token binding to false."
     - kind: changed
-      description: "Updated Confluence Server image to v7.19.0."
-    - kind: changed
-      description: "Updated embedded PostgreSQL chart to v11.6.21 (PostgreSQL v14.4.0)."
+      description: "Updated Confluence Server image to v7.19.1."
