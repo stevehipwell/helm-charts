@@ -10607,6 +10607,42 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated SonarQube image to v9.6.1."
+    apiVersion: v2
+    appVersion: 9.6.1
+    created: "2022-08-31T16:32:56.556146041Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~10.16.2
+    description: A Helm chart for deploying SonarQube.
+    digest: 94dc0ec883e6aecc0396fbbdca5ddb2d7bef167fc12f4cabaa1b604663484b44
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-4.6.1/sonarqube-4.6.1.tgz
+    version: 4.6.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for running SonarQube as a StatefulSet by setting deployment to false."
         - kind: added
@@ -14084,4 +14120,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-08-31T16:16:43.978289579Z"
+generated: "2022-08-31T16:32:56.559498105Z"
