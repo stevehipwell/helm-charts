@@ -174,7 +174,7 @@ spec:
     - metadata:
         name: {{ include "jira-software.pvcname" . }}
         labels:
-          {{- include "jira-software.labels" . | nindent 10 }}
+          {{- include "jira-software.selectorLabels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}
         annotations:
           {{- . | toYaml | nindent 10 }}

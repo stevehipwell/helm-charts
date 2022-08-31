@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.1.2
-appVersion: 9.1.1
+version: 5.2.0
+appVersion: 9.2.0
 keywords:
   - jira
   - jira-software
@@ -22,10 +22,12 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: 11.6.18
+    version: 11.8.1
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated Jira Software image to v9.1.1."
+      description: "Updated Jira Software image to v9.2.0."
+    - kind: changed
+      description: "Updated embedded PostgreSQL chart to v11.8.1 (PostgreSQL v14.5.0)."
