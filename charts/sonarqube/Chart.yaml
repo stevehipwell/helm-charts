@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.6.0
-appVersion: 9.6.0
+version: 4.6.1
+appVersion: 9.6.1
 keywords:
   - sonarqube
   - sast
@@ -28,13 +28,5 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for running SonarQube as a StatefulSet by setting deployment to false."
-    - kind: added
-      description: "Added service.clusterIP to enable making the Service headless."
-    - kind: added
-      description: "Added imagePullSecrets to replace image.pullSecrets."
-    - kind: added
-      description: "Added terminationGracePeriodSeconds support."
     - kind: changed
-      description: "Updated SonarQube image to v9.6.0."
+      description: "Updated SonarQube image to v9.6.1."
