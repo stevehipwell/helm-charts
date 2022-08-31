@@ -170,7 +170,6 @@ rules:
       - watch
       - create
       - update
-  # Needed for operator lock
   - apiGroups:
       - coordination.k8s.io
     resources:
@@ -182,6 +181,17 @@ rules:
       - update
       - delete
       - watch
+  - apiGroups:
+      - storage.k8s.io
+    resources:
+      - csidrivers
+    verbs:
+      - list
+      - watch
+      - update
+      - get
+      - create
+      - delete
   # Add the appropriate pod security policy permissions
   - apiGroups:
       - policy
@@ -209,17 +219,6 @@ rules:
     verbs:
       - list
       - watch
-  - apiGroups:
-      - storage.k8s.io
-    resources:
-      - csidrivers
-    verbs:
-      - list
-      - watch
-      - update
-      - get
-      - create
-      - delete
 {{- with .Values.rbac.customRules }}
   # Custom rules
   {{- toYaml . | nindent 2 }}
