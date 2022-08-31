@@ -4698,6 +4698,12 @@ spec:
                         type: string
                     type: object
                   type: array
+                kubeletVolumePluginPath:
+                  description:
+                    'KubeletVolumePluginPath optionally specifies enablement
+                    of Calico CSI plugin. If not specified, CSI will be enabled by default.
+                    If set to "None", CSI will be disabled. Default: /var/lib/kubelet'
+                  type: string
                 kubernetesProvider:
                   description:
                     KubernetesProvider specifies a particular provider of
@@ -11481,6 +11487,12 @@ spec:
                             type: string
                         type: object
                       type: array
+                    kubeletVolumePluginPath:
+                      description:
+                        'KubeletVolumePluginPath optionally specifies enablement
+                        of Calico CSI plugin. If not specified, CSI will be enabled by default.
+                        If set to "None", CSI will be disabled. Default: /var/lib/kubelet'
+                      type: string
                     kubernetesProvider:
                       description:
                         KubernetesProvider specifies a particular provider
