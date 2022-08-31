@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.5.0
-appVersion: 0.27.0
+version: 1.6.0
+appVersion: 0.28.0
 keywords:
   - kubernetes
   - thanos
@@ -22,9 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added serviceAccount.automountToken to all components to default token binding to false."
-    - kind: added
-      description: "Added explicit namespace declaration in templates."
     - kind: changed
-      description: "Update Thanos image to v0.27.0."
+      description: "Update Thanos image to v0.28.0."
