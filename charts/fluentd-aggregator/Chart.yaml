@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 2.7.1
-appVersion: 1.14.10
+version: 3.0.0
+appVersion: 2.0.0
 keywords:
   - fluent
   - fluentd
@@ -20,4 +20,32 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Update Fluentd Aggregator image to v1.14.10 (Fluentd v1.14.6)."
+      description: "Updated Fluentd Aggregator image to v2.0.0 (Fluentd v1.15.2)."
+    - kind: added
+      description: "Added explicit namespace declaration in templates."
+    - kind: added
+      description: "Added imagePullSecrets value."
+    - kind: added
+      description: "Added serviceAccount.automountToken to default token binding to false."
+    - kind: added
+      description: "Added service.clusterIP to enable making the Service headless."
+    - kind: added
+      description: "Added serviceMonitor value to replace metrics.serviceMonitor."
+    - kind: added
+      description: "Added topologySpreadConstraints value."
+    - kind: added
+      description: "Added persistence.legacy value to support migrating from v2 chart versions."
+    - kind: added
+      description: "Added configuration value to support a strongly typed configuration pattern."
+    - kind: changed
+      description: "Changed PersistentVolume mount point to /fluentd/state; use this path for buffers."
+    - kind: removed
+      description: "Removed image.pullSecrets as they've been replaced by imagePullSecrets."
+    - kind: removed
+      description: "Removed service.ports value as the ports are now part of the configuration value."
+    - kind: removed
+      description: "Removed metrics value, see serviceMonitor and configuration.metrics."
+    - kind: removed
+      description: "Removed debug value as it's been replaced by configuration.debug."
+    - kind: removed
+      description: "Removed config value as configuration is now handled via the more strongly typed `onfiguration value."

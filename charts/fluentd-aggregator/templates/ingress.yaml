@@ -2,11 +2,12 @@
 {{- $apiIsStable := eq (include "fluentd-aggregator.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "fluentd-aggregator.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "fluentd-aggregator.fullname" . -}}
-{{- $servicePort := .Values.service.ports.http.port -}}
+{{- $servicePort := .Values.configuration.forward.port -}}
 apiVersion: {{ include "fluentd-aggregator.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ $serviceName }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -34,7 +35,7 @@ spec:
                   number: {{ $servicePort }}
             {{- else }}
               serviceName: {{ $serviceName }}
-              servicePort: http
+              servicePort: http-forward
             {{- end }}
   {{- end }}
   {{- if .Values.ingress.tls }}

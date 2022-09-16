@@ -1,13 +1,14 @@
-{{- if.Values.metrics.serviceMonitor.enabled -}}
+{{- if.Values.serviceMonitor.enabled -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "fluentd-aggregator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
-    {{- with .Values.metrics.serviceMonitor.additionalLabels }}
+  {{- with .Values.serviceMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
 spec:
   jobLabel: {{ .Release.Name }}
   namespaceSelector:
@@ -18,12 +19,8 @@ spec:
       {{- include "fluentd-aggregator.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: metrics
-      path: {{ .Values.metrics.path }}
-    {{- if .Values.metrics.serviceMonitor.endpointConfig }}
-      {{- toYaml .Values.metrics.serviceMonitor.endpointConfig | nindent 6 }}
-    {{- else }}
-    {{- with .Values.metrics.serviceMonitor.interval }}
-      interval: {{ . }}
-    {{- end }}
+      path: {{ .Values.configuration.metrics.path }}
+    {{- with .Values.serviceMonitor.endpointConfig }}
+      {{- toYaml . | nindent 6 }}
     {{- end }}
 {{- end -}}

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ include "fluentd-aggregator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
@@ -23,7 +24,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.image.pullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -44,20 +45,23 @@ spec:
           {{- end }}
           image: {{ include "fluentd-aggregator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.env }}
           env:
+            - name: FLUENTD_CONF
+              value: fluentd.conf
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
-          {{- range $key, $val := .Values.service.ports }}
-            - name: {{ $key }}
-              protocol: {{ $val.protocol }}
-              containerPort: {{ $val.port }}
-          {{- end }}
-          {{- if .Values.metrics.enabled }}
-            - name: metrics
+            - name: http-probe
               protocol: TCP
-              containerPort: {{ .Values.metrics.port }}
+              containerPort: {{ .Values.configuration.probe.port }}
+            - name: http-forward
+              protocol: TCP
+              containerPort: {{ .Values.configuration.forward.port }}
+          {{- if .Values.configuration.metrics.enabled }}
+            - name: http-metrics
+              protocol: TCP
+              containerPort: {{ .Values.configuration.metrics.port }}
           {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
@@ -66,8 +70,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /fluentd/etc
-            - name: buffer
-              mountPath: "/fluentd/buffers"
+            - name: {{ if and .Values.persistence.enabled .Values.persistence.legacy }}buffer{{ else }}state{{ end }}
+              mountPath: "/fluentd/state"
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -78,10 +82,10 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: {{ template "fluentd-aggregator.fullname" . }}
+            name: {{ include "fluentd-aggregator.fullname" . }}
             defaultMode: 0777
       {{- if not .Values.persistence.enabled }}
-        - name: buffer
+        - name: state
           emptyDir: {}
       {{- end }}
       {{- with .Values.extraVolumes }}
@@ -91,18 +95,30 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
+      {{- with .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
-        name: buffer
+        name: {{ if and .Values.persistence.enabled .Values.persistence.legacy }}buffer{{ else }}state{{ end }}
+      {{- if not .Values.persistence.legacy }}
+        labels:
+          {{- include "fluentd-aggregator.selectorLabels" . | nindent 10 }}
+      {{- end }}
+      {{- with .Values.persistence.annotations }}
+        annotations:
+          {{- . | toYaml | nindent 10 }}
+      {{- end }}
       spec:
         accessModes:
           - {{ .Values.persistence.accessMode | quote }}

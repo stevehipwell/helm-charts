@@ -7,7 +7,8 @@ image:
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
-  pullSecrets: []
+
+imagePullSecrets: []
 
 nameOverride: ""
 fullnameOverride: ""
@@ -22,6 +23,7 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+  automountToken: false
 
 podLabels: {}
 podAnnotations: {}
@@ -41,8 +43,8 @@ priorityClassName: ""
 
 livenessProbe:
   httpGet:
-    path: /fluent.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
-    port: http
+    path: /fluent.live?json=%7B%22ping%22%3A+%22pong%22%7D
+    port: http-probe
   initialDelaySeconds: 15
   periodSeconds: 30
   failureThreshold: 10
@@ -50,8 +52,8 @@ livenessProbe:
 
 readinessProbe:
   httpGet:
-    path: /fluent.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
-    port: http
+    path: /fluent.ready?json=%7B%22ping%22%3A+%22pong%22%7D
+    port: http-probe
   initialDelaySeconds: 15
   periodSeconds: 30
   failureThreshold: 10
@@ -59,27 +61,13 @@ readinessProbe:
 
 service:
   type: ClusterIP
+  clusterIP:
   annotations: {}
-  ports:
-    http:
-      protocol: TCP
-      port: 9880
-    monitor:
-      protocol: TCP
-      port: 24220
-    forward:
-      protocol: TCP
-      port: 24224
 
-metrics:
+serviceMonitor:
   enabled: false
-  port: 24231
-  path: /metrics
-  serviceMonitor:
-    enabled: false
-    additionalLabels: {}
-    endpointConfig: {}
-    interval:
+  additionalLabels: {}
+  endpointConfig: {}
 
 dashboards:
   enabled: false
@@ -97,6 +85,7 @@ ingress:
 
 persistence:
   enabled: false
+  legacy: false
   annotations: {}
   # existingClaim: existing-pvc
   accessMode: ReadWriteOnce
@@ -134,131 +123,37 @@ tolerations: []
 
 affinity: {}
 
+topologySpreadConstraints: {}
+
 env: []
 #   - name: VARIABLE
 #     value: my-value
 
-debug: false
+configuration:
+  system:
+    rootDir: /fluentd/state
+    additionalConfig: {}
 
-config:
-  general: |-
-    <system>
-      root_dir /fluentd/buffers/
-    </system>
-    <source>
-      @type http
-      port 9880
-      bind 0.0.0.0
-    </source>
-    <source>
-      @type monitor_agent
-      @label @FLUENT_MONITOR
-      bind 0.0.0.0
-      port 24220
-      tag fluent.monitor
-    </source>
-    <match fluent.healthcheck>
-      @type relabel
-      @label @FLUENT_HEALTHCHECK
-    </match>
-    <label @FLUENT_LOG>
-      <match **>
-        @type stdout
-      </match>
-    </label>
-    <label @FLUENT_MONITOR>
-      <match **>
-        @type null
-      </match>
-    </label>
-    <label @FLUENT_HEALTHCHECK>
-      <match **>
-        @type null
-      </match>
-    </label>
+  probe:
+    port: 9880
 
-  forward: |-
-    <source>
-      @type forward
-      @id input
-      port 24224
-      bind 0.0.0.0
-    </source>
+  metrics:
+    enabled: true
+    port: 24231
+    path: /metrics
 
-  metrics: |-
-    <source>
-      @type prometheus
-      port 24231
-    </source>
-    <source>
-      @type prometheus_monitor
-      <labels>
-        host ${hostname}
-      </labels>
-    </source>
-    <source>
-      @type prometheus_output_monitor
-      <labels>
-        host ${hostname}
-      </labels>
-    </source>
-    <filter **>
-      @type prometheus
-      <metric>
-        name fluentd_input_status_num_records_total
-        type counter
-        desc The total number of incoming records
-        <labels>
-          host ${hostname}
-          tag ${tag}
-        </labels>
-      </metric>
-    </filter>
-    <label @PROMETHEUS>
-      <match **>
-        @type prometheus
-        <metric>
-          name fluentd_output_status_num_records_total
-          type counter
-          desc The total number of outgoing records
-          <labels>
-            tag ${tag}
-            hostname ${hostname}
-          </labels>
-        </metric>
-      </match>
-    </label>
+  forward:
+    port: 24224
 
-  no-metrics: |-
-    <label @PROMETHEUS>
-      <match **>
-        @type null
-      </match>
-    </label>
+  filters: |-
 
-  filter: |-
+  routes:
+    - match: "**"
+      label: "@DEFAULT"
+      copy: false
+      config: |-
+        <match **>
+          @type stdout
+        </match>
 
-  debug: |-
-    <filter **>
-      @type stdout
-    </filter>
-
-  route: |-
-    <match **>
-      @type route
-      <route **>
-        copy
-        @label @PROMETHEUS
-      </route>
-      <route **>
-        copy
-        @label @DEFAULT
-      </route>
-    </match>
-
-  output: |-
-    <label @DEFAULT>
-      <match **>
-        @type null
-      </match>
-    </label>
+  debug: false

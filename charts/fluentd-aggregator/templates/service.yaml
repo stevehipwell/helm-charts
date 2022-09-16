@@ -2,22 +2,28 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "fluentd-aggregator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
+  {{- if and (eq .Values.service.type "ClusterIP") .Values.service.clusterIP }}
+  clusterIP: {{ .Values.service.clusterIP }}
+  {{- end }}
+  ports:
+    - name: http-probe
+      port: {{ .Values.configuration.probe.port }}
+      protocol: TCP
+      targetPort: http-probe
+    - name: http-forward
+      port: {{ .Values.configuration.forward.port }}
+      protocol: TCP
+      targetPort: http-forward
+  {{- if .Values.configuration.metrics.enabled }}
+    - name: http-metrics
+      port: {{ .Values.configuration.metrics.port }}
+      protocol: TCP
+      targetPort: http-metrics
+  {{- end }}
   selector:
     {{- include "fluentd-aggregator.selectorLabels" . | nindent 4 }}
-  ports:
-  {{- range $key, $val := .Values.service.ports }}
-    - name: {{ $key }}
-      protocol: {{ $val.protocol }}
-      port: {{ $val.port }}
-      targetPort: {{ $key }}
-  {{- end }}
-  {{- if .Values.metrics.enabled }}
-    - name: metrics
-      protocol: TCP
-      port: {{ .Values.metrics.port }}
-      targetPort: metrics
-  {{- end }}

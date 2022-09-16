@@ -2,24 +2,144 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "fluentd-aggregator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 data:
-  {{- range $key, $value := .Values.config }}
-  {{ $key }}.conf: |-
-    {{- $value | nindent 4 }}
+  fluentd.conf: |-
+    <system>
+      workers 1
+      root_dir {{ .Values.configuration.system.rootDir }}
+{{- range $k, $v := .Values.configuration.system.additionalConfig }}
+      {{ printf "%s %s" $k $v }}
+{{- end }}
+    </system>
+
+    <source>
+      @type http
+      @label @FLUENT_PROBE
+      port {{ .Values.configuration.probe.port }}
+      bind 0.0.0.0
+    </source>
+
+{{- if .Values.configuration.metrics.enabled }}
+
+    <source>
+      @type prometheus
+      @label @FLUENT_PROMETHEUS
+      port {{ .Values.configuration.metrics.port }}
+      bind 0.0.0.0
+      metrics_path {{ .Values.configuration.metrics.path }}
+    </source>
+
+    <source>
+      @type prometheus_monitor
+      <labels>
+        host ${hostname}
+      </labels>
+    </source>
+
+    <source>
+      @type prometheus_output_monitor
+      <labels>
+        host ${hostname}
+      </labels>
+    </source>
+
+{{- end }}
+
+    <source>
+      @type forward
+      @id input
+      @label @INPUT
+      port {{ .Values.configuration.forward.port }}
+      bind 0.0.0.0
+    </source>
+
+{{- if .Values.configuration.metrics.enabled }}
+
+    <filter **>
+      @type prometheus
+      <metric>
+        name fluentd_input_status_num_records_total
+        desc The total number of incoming records before the global filters are applied.
+        type counter
+        <labels>
+          host ${hostname}
+          tag ${tag}
+        </labels>
+      </metric>
+    </filter>
+
+{{- end }}
+
+{{- with .Values.configuration.filters }}
+    {{ . | nindent 4 }}
+{{- end }}
+
+{{- if .Values.configuration.debug }}
+
+    <filter **>
+      @type stdout
+    </filter>
+
+{{- end }}
+
+{{- if .Values.configuration.metrics.enabled }}
+
+    <filter **>
+      @type prometheus
+      <metric>
+        name fluentd_output_status_num_records_total
+        desc The total number of outgoing records after the global filters are applied.
+        type counter
+        <labels>
+          host ${hostname}
+          tag ${tag}
+        </labels>
+      </metric>
+    </filter>
+
+{{- end }}
+
+    <label @INPUT>
+      <match **>
+        @type route
+  {{- range .Values.configuration.routes }}
+        <route {{ .match }}>
+          @label {{ .label }}
+          {{- if .copy }}copy{{- end }}
+        </route>
   {{- end }}
-  fluent.conf: |-
-    @include /fluentd/etc/general.conf
-    @include /fluentd/etc/forward.conf
-{{- if .Values.metrics.enabled }}
-    @include /fluentd/etc/metrics.conf
-{{- else }}
-    @include /fluentd/etc/no-metrics.conf
+      </match>
+    </label>
+
+    <label @FLUENT_LOG>
+      <match **>
+        @type stdout
+      </match>
+    </label>
+
+    <label @FLUENT_PROBE>
+      <match **>
+        @type null
+      </match>
+    </label>
+
+{{- if .Values.configuration.metrics.enabled }}
+
+    <label @FLUENT_PROMETHEUS>
+      <match **>
+        @type null
+      </match>
+    </label>
+
 {{- end }}
-    @include /fluentd/etc/filter.conf
-{{- if .Values.debug }}
-    @include /fluentd/etc/debug.conf
+
+{{- range .Values.configuration.routes }}
+
+    <label {{ .label }}>
+      {{- .config | nindent 6 }}
+    </label>
+
 {{- end }}
-    @include /fluentd/etc/route.conf
-    @include /fluentd/etc/output.conf
