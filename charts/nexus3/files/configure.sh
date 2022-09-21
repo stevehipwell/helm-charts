@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-nexus_host="http://localhost:8081"
+nexus_host="http://localhost:8081/${NEXUS_CONTEXT}"
 root_user="admin"
 base_dir="/opt/sonatype/nexus"
 out_file="/tmp/out.json"

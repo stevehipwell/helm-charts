@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## [v4.14.2] - 2022-09-21
+
+### Changed
+
+- Set ingress path as templated value
+
 ## [v4.14.1] - 2022-08-22
 
 ### Changed

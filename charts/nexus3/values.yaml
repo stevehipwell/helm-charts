@@ -81,6 +81,7 @@ ingress:
   enabled: false
   annotations: {}
   ingressClassName: ""
+  path: /  # Note if you change path, you must prefix livenessProbe.httpGet.path & readinessProbe.httpGet.path with this string
   hosts: []
   #   - nexus.local
   tls: []

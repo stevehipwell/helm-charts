@@ -108,6 +108,10 @@ spec:
               {{- else }}
               value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- end }}
+              {{- if not (eq .Values.ingress.path "/") }}
+            - name: NEXUS_CONTEXT
+              value: {{ .Values.ingress.path | replace "/" "" }}
+              {{- end -}}
             {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
