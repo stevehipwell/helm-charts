@@ -8,10 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!-- ## [vX.Y.Z] - UNRELEASED
-### Added
-### Changed
-### Deprecated
-### Removed -->
+### Highlights
+### All Changes
+- Added
+- Updated
+- Changed
+- Fixed
+- Deprecated
+- Removed -->
+
+## [v4.15.0] - 2022-10-03
+
+### All Changes
+
+- Updated _Nexus3_ image to [v3.42.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.42.0-release-notes).
+- Fixed missing volumes when using the `StatefulSet` mode.
 
 ## [v4.14.1] - 2022-08-22
 

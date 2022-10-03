@@ -183,6 +183,39 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
       {{- end }}
+        - name: {{ template "nexus3.fullname" . }}-logback
+          configMap:
+            name: {{ template "nexus3.fullname" . }}-logback
+            defaultMode: 0755
+        - name: {{ template "nexus3.fullname" . }}-properties
+          configMap:
+            name: {{ template "nexus3.fullname" . }}-properties
+            defaultMode: 0755
+      {{- if .Values.plugins }}
+        - name: nexus-deploy
+          emptyDir: {}
+      {{- end }}
+      {{- if .Values.config.enabled }}
+        - name: {{ template "nexus3.fullname" . }}-conf
+          configMap:
+            name: {{ template "nexus3.fullname" . }}-conf
+            defaultMode: 0755
+      {{- if .Values.config.rootPassword }}
+        - name: {{ .Values.config.rootPassword.secret }}
+          secret:
+            secretName: {{ .Values.config.rootPassword.secret }}
+      {{- end }}
+      {{- if and .Values.config.ldap.enabled }}
+        - name: {{ .Values.config.ldap.authPassword.secret }}
+          secret:
+            secretName: {{ .Values.config.ldap.authPassword.secret }}
+      {{- end }}
+      {{- if .Values.config.repoCredentials.enabled }}
+        - name: {{ .Values.config.repoCredentials.secret }}
+          secret:
+            secretName: {{ .Values.config.repoCredentials.secret }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
