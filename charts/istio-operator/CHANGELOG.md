@@ -8,10 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!-- ## [vX.Y.Z] - UNRELEASED
-### Added
-### Changed
-### Deprecated
-### Removed -->
+### Highlights
+### All Changes
+- Added
+- Updated
+- Changed
+- Fixed
+- Deprecated
+- Removed -->
+
+## [v2.7.1] - 2022-10-03
+
+### All Changes
+
+- Updated the _Istio Operator_ image version to [v1.15.1](https://github.com/istio/istio/releases/tag/1.15.1).
 
 ## [v2.7.0] - 2022-08-01
 
