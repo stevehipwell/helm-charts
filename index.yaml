@@ -3063,6 +3063,61 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated Fluentd Aggregator image to v2.0.0 (Fluentd v1.15.2)."
+        - kind: added
+          description: "Added explicit namespace declaration in templates."
+        - kind: added
+          description: "Added imagePullSecrets value."
+        - kind: added
+          description: "Added serviceAccount.automountToken to default token binding to false."
+        - kind: added
+          description: "Added service.clusterIP to enable making the Service headless."
+        - kind: added
+          description: "Added serviceMonitor value to replace metrics.serviceMonitor."
+        - kind: added
+          description: "Added topologySpreadConstraints value."
+        - kind: added
+          description: "Added persistence.legacy value to support migrating from v2 chart versions."
+        - kind: added
+          description: "Added configuration value to support a strongly typed configuration pattern."
+        - kind: changed
+          description: "Changed PersistentVolume mount point to /fluentd/state; use this path for buffers."
+        - kind: removed
+          description: "Removed image.pullSecrets as they've been replaced by imagePullSecrets."
+        - kind: removed
+          description: "Removed service.ports value as the ports are now part of the configuration value."
+        - kind: removed
+          description: "Removed metrics value, see serviceMonitor and configuration.metrics."
+        - kind: removed
+          description: "Removed debug value as it's been replaced by configuration.debug."
+        - kind: removed
+          description: "Removed config value as configuration is now handled via the more strongly typed `onfiguration value."
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-10-06T13:57:35.975509884Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: dad79e3c9c2983f3d48d6d3681defa8b1c583348625a7d30824899a395ee7bf3
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.0.0/fluentd-aggregator-3.0.0.tgz
+    version: 3.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Update Fluentd Aggregator image to v1.14.10 (Fluentd v1.14.6)."
     apiVersion: v2
     appVersion: 1.14.10
@@ -14384,4 +14439,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-10-06T13:48:54.390732152Z"
+generated: "2022-10-06T13:57:35.976838996Z"
