@@ -3062,6 +3062,33 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for setting an IPv6 bid address."
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-10-12T15:52:48.058084338Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 5b2958f8f4d593cda557162d9daaf57a1d67103fdc5540c8dd5da63fbc2ebee8
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.0.1/fluentd-aggregator-3.0.1.tgz
+    version: 3.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated Fluentd Aggregator image to v2.0.0 (Fluentd v1.15.2)."
         - kind: added
@@ -14497,4 +14524,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-10-12T09:08:10.613099715Z"
+generated: "2022-10-12T15:52:48.059074143Z"
