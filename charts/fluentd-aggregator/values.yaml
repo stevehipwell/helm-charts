@@ -130,6 +130,8 @@ env: []
 #     value: my-value
 
 configuration:
+  bindAddress: 0.0.0.0
+
   system:
     rootDir: /fluentd/state
     additionalConfig: {}
