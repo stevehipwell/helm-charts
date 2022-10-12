@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.0.1] - 2022-10-12
+
+### All Changes
+
+- Added support for setting an IPv6 bid address.
+
 ## [v3.0.0] - 2022-10-06
 
 ### Highlights

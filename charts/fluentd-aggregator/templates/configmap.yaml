@@ -19,7 +19,7 @@ data:
       @type http
       @label @FLUENT_PROBE
       port {{ .Values.configuration.probe.port }}
-      bind 0.0.0.0
+      bind {{ .Values.configuration.bindAddress }}
     </source>
 
 {{- if .Values.configuration.metrics.enabled }}
@@ -28,7 +28,7 @@ data:
       @type prometheus
       @label @FLUENT_PROMETHEUS
       port {{ .Values.configuration.metrics.port }}
-      bind 0.0.0.0
+      bind {{ .Values.configuration.bindAddress }}
       metrics_path {{ .Values.configuration.metrics.path }}
     </source>
 
@@ -53,7 +53,7 @@ data:
       @id input
       @label @INPUT
       port {{ .Values.configuration.forward.port }}
-      bind 0.0.0.0
+      bind {{ .Values.configuration.bindAddress }}
     </source>
 
 {{- if .Values.configuration.metrics.enabled }}
