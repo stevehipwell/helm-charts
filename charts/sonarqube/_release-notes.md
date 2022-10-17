@@ -1,3 +1,3 @@
-### Changed
+### All Changes
 
-- Updated _SonarQube_ image to [v9.6.1](https://www.sonarqube.org/sonarqube-9-6/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/9.6.1.59531)).
+- Updated the _SonarQube_ image to [v9.7.0](https://www.sonarqube.org/sonarqube-9-7/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/9.7.0.61563)).

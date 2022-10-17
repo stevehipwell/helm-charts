@@ -8,10 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!-- ## [vX.Y.Z] - UNRELEASED
-### Added
-### Changed
-### Deprecated
-### Removed -->
+### Highlights
+### All Changes
+- Added
+- Updated
+- Changed
+- Fixed
+- Deprecated
+- Removed -->
+
+## [v4.7.0] - 2022-10-17
+
+### All Changes
+
+- Updated the _SonarQube_ image to [v9.7.0](https://www.sonarqube.org/sonarqube-9-7/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/9.7.0.61563)).
 
 ## [v4.6.1] - 2022-08-31
 
