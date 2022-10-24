@@ -3063,6 +3063,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added a new serviceAccount.labels value to add labels to the ServiceAccount."
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-10-24T20:55:15.326172358Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 4c27d806049af924522a1a040c071b245428bede5a9989ca1b19e7166a1cdddb
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.0.2/fluentd-aggregator-3.0.2.tgz
+    version: 3.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added support for setting an IPv6 bid address."
     apiVersion: v2
     appVersion: 2.0.0
@@ -14594,4 +14621,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-10-24T20:47:05.381880968Z"
+generated: "2022-10-24T20:55:15.327768118Z"
