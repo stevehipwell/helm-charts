@@ -112,6 +112,12 @@ spec:
                     node appears to use the IP of the ingress node; this requires a
                     permissive L2 network.  [Default: Tunnel]'
                   type: string
+                bpfHostConntrackBypass:
+                  description:
+                    "BPFHostConntrackBypass Controls whether to bypass Linux
+                    conntrack in BPF mode for workloads and services. [Default: true
+                    - bypass Linux conntrack]"
+                  type: boolean
                 bpfKubeProxyEndpointSlicesEnabled:
                   description:
                     BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls
@@ -720,8 +726,8 @@ spec:
                 vxlanEnabled:
                   description:
                     "VXLANEnabled overrides whether Felix should create the
-                    VXLAN tunnel device for VXLAN networking. Optional as Felix determines
-                    this based on the existing IP pools. [Default: nil (unset)]"
+                    VXLAN tunnel device for IPv4 VXLAN networking. Optional as Felix
+                    determines this based on the existing IP pools. [Default: nil (unset)]"
                   type: boolean
                 vxlanMTU:
                   description:

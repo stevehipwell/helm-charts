@@ -8,10 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!-- ## [vX.Y.Z] - UNRELEASED
-### Added
-### Changed
-### Deprecated
-### Removed -->
+### Highlights
+### All Changes
+- Added
+- Updated
+- Changed
+- Fixed
+- Deprecated
+- Removed -->
+
+## [v2.3.2] - 2022-10-24
+
+### All Changes
+
+- Updated the _Tigera Operator_ image to [v1.28.3](https://github.com/tigera/operator/releases/tag/v1.28.3) (_Calico_ [v3.24.3](https://github.com/projectcalico/calico/releases/tag/v3.24.3)).
+- Added a new `serviceAccount.labels` value to add labels to the `ServiceAccount`.
 
 ## [v2.3.1] - 2022-08-31
 
