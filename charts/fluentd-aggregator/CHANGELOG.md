@@ -17,11 +17,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.0.2] - 2022-10-12
+
+### All Changes
+
+- Added a new `serviceAccount.labels` value to add labels to the `ServiceAccount`.
+
 ## [v3.0.1] - 2022-10-12
 
 ### All Changes
 
-- Added support for setting an IPv6 bid address.
+- Added support for setting an IPv6 bind address.
 
 ## [v3.0.0] - 2022-10-06
 

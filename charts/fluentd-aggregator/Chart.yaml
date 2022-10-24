@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.0.1
+version: 3.0.2
 appVersion: 2.0.0
 keywords:
   - fluent
@@ -20,4 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: "Added support for setting an IPv6 bid address."
+      description: "Added a new serviceAccount.labels value to add labels to the ServiceAccount."
