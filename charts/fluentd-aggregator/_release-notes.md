@@ -1,3 +1,3 @@
 ### All Changes
 
-- Added support for setting an IPv6 bid address.
+- Added a new `serviceAccount.labels` value to add labels to the `ServiceAccount`.
