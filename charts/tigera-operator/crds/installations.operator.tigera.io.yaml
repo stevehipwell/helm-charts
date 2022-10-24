@@ -4652,6 +4652,15 @@ spec:
                         type: string
                     type: object
                   type: array
+                fipsMode:
+                  description:
+                    "FIPSMode uses images and features only that are using
+                    FIPS 140-2 validated cryptographic modules and standards. Default:
+                    Disabled"
+                  enum:
+                    - Enabled
+                    - Disabled
+                  type: string
                 flexVolumePath:
                   description:
                     FlexVolumePath optionally specifies a custom path for
@@ -4700,9 +4709,9 @@ spec:
                   type: array
                 kubeletVolumePluginPath:
                   description:
-                    'KubeletVolumePluginPath optionally specifies enablement
+                    "KubeletVolumePluginPath optionally specifies enablement
                     of Calico CSI plugin. If not specified, CSI will be enabled by default.
-                    If set to "None", CSI will be disabled. Default: /var/lib/kubelet'
+                    If set to 'None', CSI will be disabled. Default: /var/lib/kubelet"
                   type: string
                 kubernetesProvider:
                   description:
@@ -11441,6 +11450,15 @@ spec:
                             type: string
                         type: object
                       type: array
+                    fipsMode:
+                      description:
+                        "FIPSMode uses images and features only that are
+                        using FIPS 140-2 validated cryptographic modules and standards.
+                        Default: Disabled"
+                      enum:
+                        - Enabled
+                        - Disabled
+                      type: string
                     flexVolumePath:
                       description:
                         FlexVolumePath optionally specifies a custom path
@@ -11489,9 +11507,10 @@ spec:
                       type: array
                     kubeletVolumePluginPath:
                       description:
-                        'KubeletVolumePluginPath optionally specifies enablement
-                        of Calico CSI plugin. If not specified, CSI will be enabled by default.
-                        If set to "None", CSI will be disabled. Default: /var/lib/kubelet'
+                        "KubeletVolumePluginPath optionally specifies enablement
+                        of Calico CSI plugin. If not specified, CSI will be enabled
+                        by default. If set to 'None', CSI will be disabled. Default:
+                        /var/lib/kubelet"
                       type: string
                     kubernetesProvider:
                       description:
