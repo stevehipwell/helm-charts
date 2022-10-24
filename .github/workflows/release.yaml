@@ -29,7 +29,8 @@ jobs:
         uses: azure/setup-helm@b5b231a831f96336bbfeccc1329990f0005c5bb1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
+          # version: latest
+          version: v3.10.1
 
       - name: Set-up Helm repos
         run: |
