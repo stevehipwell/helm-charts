@@ -5691,6 +5691,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the Jira Software image to v9.3.1."
+    apiVersion: v2
+    appVersion: 9.3.1
+    created: "2022-10-25T10:18:55.028058155Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.6
+    description: Helm chart for Atlassian Jira Software.
+    digest: 16ddba6b97b3b79a596bc5170ad7d28c74ff03c0705e1e56a02b1b5ed78e6911
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.3.1/jira-software-5.3.1.tgz
+    version: 5.3.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Jira Software image to v9.3.0."
         - kind: changed
           description: "Updated the embedded PostgreSQL chart to v11.9.6 (PostgreSQL v14.5.0)."
@@ -14651,4 +14686,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-10-24T20:59:33.793730626Z"
+generated: "2022-10-25T10:18:55.02904737Z"
