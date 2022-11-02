@@ -3098,6 +3098,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated Fluentd Aggregator OCI image to v2.2.0 (Fluentd v1.15.3)."
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2022-11-02T11:00:19.272212883Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 10646e5fa554ec3ee9c9ff10888b704ad7d8b54d5bb2078aba4a1ec7a5fa2fc8
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.2.0/fluentd-aggregator-3.2.0.tgz
+    version: 3.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated Fluentd Aggregator OCI image to v2.1.0 (Fluentd v1.15.2)."
     apiVersion: v2
     appVersion: 2.1.0
@@ -14812,4 +14839,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-02T10:53:09.957339136Z"
+generated: "2022-11-02T11:00:19.273638785Z"
