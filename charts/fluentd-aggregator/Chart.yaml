@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.0.2
-appVersion: 2.0.0
+version: 3.1.0
+appVersion: 2.1.0
 keywords:
   - fluent
   - fluentd
@@ -19,5 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added a new serviceAccount.labels value to add labels to the ServiceAccount."
+    - kind: changed
+      description: "Updated Fluentd Aggregator OCI image to v2.1.0 (Fluentd v1.15.2)."
