@@ -12489,6 +12489,36 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the Thanos image to v0.29.0."
+    apiVersion: v2
+    appVersion: 0.29.0
+    created: "2022-11-03T17:35:10.631486488Z"
+    description: Helm chart for Thanos components.
+    digest: 16ff65b847e8dbc3069652061d9c0cb1ce23bbd9ac22535c836c4c362f10d5de
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.7.0/thanos-1.7.0.tgz
+    version: 1.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added new compact.serviceAccount.labels, query.serviceAccount.labels, queryFrontend.serviceAccount.labels, rule.serviceAccount.labels & storeGateway.serviceAccount.labels values to add labels to the ServiceAccount resources."
     apiVersion: v2
@@ -14871,4 +14901,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-03T17:24:15.668753501Z"
+generated: "2022-11-03T17:35:10.632702904Z"
