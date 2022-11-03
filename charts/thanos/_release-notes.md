@@ -1,3 +1,3 @@
 ### All Changes
 
-- Added new `compact.serviceAccount.labels`, `query.serviceAccount.labels`, `queryFrontend.serviceAccount.labels`, `rule.serviceAccount.labels` & `storeGateway.serviceAccount.labels` values to add labels to the `ServiceAccount` resources.
+- Updated the _Thanos_ image to [v0.29.0](https://github.com/thanos-io/thanos/releases/tag/v0.29.0).
