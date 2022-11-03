@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.6.2
-appVersion: 0.28.1
+version: 1.7.0
+appVersion: 0.29.0
 keywords:
   - kubernetes
   - thanos
@@ -22,5 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added new compact.serviceAccount.labels, query.serviceAccount.labels, queryFrontend.serviceAccount.labels, rule.serviceAccount.labels & storeGateway.serviceAccount.labels values to add labels to the ServiceAccount resources."
+    - kind: changed
+      description: "Updated the Thanos image to v0.29.0."
