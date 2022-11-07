@@ -8,18 +8,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!-- ## [vX.Y.Z] - UNRELEASED
-### Added
-### Changed
-### Deprecated
-### Removed -->
+### Highlights
+### All Changes
+- Added
+- Updated
+- Changed
+- Fixed
+- Deprecated
+- Removed -->
 
-## [v3.14.0] - 2022-8-26
+## [v3.15.0] - 2022-11-07
+
+### All Changes
+
+- Updated the _PlantUML_ image to [v1.2022.12](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2022.12)).
+
+## [v3.14.0] - 2022-08-26
 
 ### Changed
 
 - Updated _PlantUML_ image to [v1.2022.7](https://plantuml.com/changes).
 
-## [v3.13.0] - 2022-6-22
+## [v3.13.0] - 2022-06-22
 
 ### Added
 
@@ -35,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Deprecated `image.pullSecrets` in favour of `imagePullSecrets`.
 
-## [v3.12.0] - 2022-5-26
+## [v3.12.0] - 2022-05-26
 
 ### Changed
 
