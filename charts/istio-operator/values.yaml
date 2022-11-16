@@ -44,6 +44,7 @@ securityContext:
   runAsGroup: 1337
   runAsUser: 1337
   runAsNonRoot: true
+  seccompProfile:
 
 priorityClassName: ""
 
