@@ -4304,7 +4304,7 @@ entries:
             description: "Updated the Istio Operator image version to v1.16.0."
       apiVersion: v2
       appVersion: 1.16.0
-      created: "2022-11-16T15:30:58.646704455Z"
+      created: "2022-11-21T17:06:58.646704455Z"
       description: Helm chart for the Istio Operator.
       digest: ebe70805ef413d24d18cf51e3a94da643b3d941fabdf7925a20d0fd700e3aaf4
       home: https://istio.io/
@@ -15198,4 +15198,4 @@ entries:
       urls:
         - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
       version: 1.0.0
-generated: "2022-11-21T16:54:59.852405925Z"
+generated: "2022-11-21T17:06:58.646704455Z"
