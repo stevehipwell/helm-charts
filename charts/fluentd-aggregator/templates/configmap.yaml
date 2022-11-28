@@ -108,7 +108,9 @@ data:
   {{- range .Values.configuration.routes }}
         <route {{ .match }}>
           @label {{ .label }}
-          {{- if .copy }}copy{{- end }}
+          {{- if .copy }}
+          copy
+          {{- end }}
         </route>
   {{- end }}
       </match>
