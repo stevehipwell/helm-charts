@@ -18,7 +18,7 @@ spec:
     matchLabels:
       {{- include "fluentd-aggregator.selectorLabels" . | nindent 6 }}
   endpoints:
-    - port: metrics
+    - port: http-metrics
       path: {{ .Values.configuration.metrics.path }}
     {{- with .Values.serviceMonitor.endpointConfig }}
       {{- toYaml . | nindent 6 }}

@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.4.2] - 2022-11-28
+
+### All Changes
+
+- Fixed internal labelling pattern to work correctly.
+- Fixed `ServiceMonitor` port.
+- Moved debug filter to above global filters.
+
 ## [v3.4.1] - 2022-11-28
 
 ### All Changes

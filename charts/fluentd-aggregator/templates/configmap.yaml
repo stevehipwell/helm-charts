@@ -56,63 +56,52 @@ data:
       bind {{ .Values.configuration.bindAddress }}
     </source>
 
-{{- if .Values.configuration.metrics.enabled }}
-
-    <filter **>
-      @type prometheus
-      <metric>
-        name fluentd_input_status_num_records_total
-        desc The total number of incoming records before the global filters are applied.
-        type counter
-        <labels>
-          host ${hostname}
-          tag ${tag}
-        </labels>
-      </metric>
-    </filter>
-
-{{- end }}
-
-{{- with .Values.configuration.filters }}
-    {{ . | nindent 4 }}
-{{- end }}
-
-{{- if .Values.configuration.debug }}
-
-    <filter **>
-      @type stdout
-    </filter>
-
-{{- end }}
-
-{{- if .Values.configuration.metrics.enabled }}
-
-    <filter **>
-      @type prometheus
-      <metric>
-        name fluentd_output_status_num_records_total
-        desc The total number of outgoing records after the global filters are applied.
-        type counter
-        <labels>
-          host ${hostname}
-          tag ${tag}
-        </labels>
-      </metric>
-    </filter>
-
-{{- end }}
-
     <label @INPUT>
+{{- if .Values.configuration.debug }}
+      <filter **>
+        @type stdout
+      </filter>
+{{- end }}
+{{- if .Values.configuration.metrics.enabled }}
+      <filter **>
+        @type prometheus
+        <metric>
+          name fluentd_input_status_num_records_total
+          desc The total number of incoming records before global filters are applied.
+          type counter
+          <labels>
+            host ${hostname}
+            tag ${tag}
+          </labels>
+        </metric>
+      </filter>
+{{- end }}
+{{- with .Values.configuration.filters }}
+      {{ . | nindent 6 }}
+{{- end }}
+      <match **>
+        @type relabel
+        @label @OUTPUT
+      </match>
+    </label>
+
+    <label @OUTPUT>
       <match **>
         @type route
-  {{- range .Values.configuration.routes }}
+{{- if .Values.configuration.metrics.enabled }}
+        <route **>
+          @label @PROMETHEUS
+          copy
+        </route>
+{{- end }}
+{{- range .Values.configuration.routes }}
         <route {{ .match }}>
           @label {{ .label }}
-          {{- if .copy }}
+{{- if .copy }}
           copy
-          {{- end }}
+{{- end }}
         </route>
-  {{- end }}
+{{- end }}
       </match>
     </label>
 
@@ -133,6 +122,21 @@ data:
     <label @FLUENT_PROMETHEUS>
       <match **>
         @type null
+      </match>
+    </label>
+
+    <label @PROMETHEUS>
+      <match **>
+        @type prometheus
+        <metric>
+          name fluentd_output_status_num_records_total
+          desc The total number of outgoing records after global filters are applied.
+          type counter
+          <labels>
+            host ${hostname}
+            tag ${tag}
+          </labels>
+        </metric>
       </match>
     </label>
 
