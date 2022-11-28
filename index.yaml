@@ -3132,6 +3132,33 @@ entries:
   fluentd-aggregator:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed route copy bug."
+    apiVersion: v2
+    appVersion: 2.4.0
+    created: "2022-11-28T15:25:24.261621485Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: 521e55e26c4505401aac297dd9391c14e65cb5b04abfb65e26a06c96473737ec
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.4.1/fluentd-aggregator-3.4.1.tgz
+    version: 3.4.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated Fluentd Aggregator OCI image to v2.4.0 (Fluentd v1.15.3)."
         - kind: fixed
@@ -15209,4 +15236,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-28T13:05:21.060632391Z"
+generated: "2022-11-28T15:25:24.263021105Z"
