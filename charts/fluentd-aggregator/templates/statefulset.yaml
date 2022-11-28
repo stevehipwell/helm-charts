@@ -71,7 +71,7 @@ spec:
             - name: config
               mountPath: /fluentd/etc
             - name: {{ if and .Values.persistence.enabled .Values.persistence.legacy }}buffer{{ else }}state{{ end }}
-              mountPath: "/fluentd/state"
+              mountPath: ${{ .Values.configuration.system.rootDir }}
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

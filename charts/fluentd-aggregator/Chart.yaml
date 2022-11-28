@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.3.0
-appVersion: 2.3.0
+version: 3.4.0
+appVersion: 2.4.0
 keywords:
   - fluent
   - fluentd
@@ -20,4 +20,10 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated Fluentd Aggregator OCI image to v2.3.0 (Fluentd v1.15.3)."
+      description: "Updated Fluentd Aggregator OCI image to v2.4.0 (Fluentd v1.15.3)."
+    - kind: fixed
+      description: "Fixed missing use of configuration.system.rootDir to set the mount path; this means that the buffer paths can be kept as /fluentd/buffers when migrating from v2."
+    - kind: fixed
+      description: "Fixed bug in creating dashboards."
+    - kind: fixed
+      description: "Fixed missing service annotations in template."
