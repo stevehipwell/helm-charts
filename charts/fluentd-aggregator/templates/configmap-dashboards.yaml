@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dashboard-{{ trimSuffix "-dashboard.json" (base $path) }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" $ | nindent 4 }}
     grafana_dashboard: "1"
