@@ -3133,6 +3133,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: "Fixed internal labelling pattern to work correctly."
+        - kind: fixed
+          description: "Fixed ServiceMonitor port."
+        - kind: fixed
+          description: "Moved debug filter to above global filters."
+    apiVersion: v2
+    appVersion: 2.4.0
+    created: "2022-11-28T17:23:43.047526797Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: c4f753884ef8ebffbaa69f24b32f716a21dfac9822346d2e5c2860865e548247
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.4.2/fluentd-aggregator-3.4.2.tgz
+    version: 3.4.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: "Fixed route copy bug."
     apiVersion: v2
     appVersion: 2.4.0
@@ -15236,4 +15267,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-28T15:25:24.263021105Z"
+generated: "2022-11-28T17:23:43.048532598Z"
