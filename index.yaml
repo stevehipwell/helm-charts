@@ -12830,6 +12830,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Changed HorizontalPodAutoscaler API version to autoscaling/v2beta2 for K8s versions lower than v1.23."
+        - kind: fixed
+          description: "Fixed incorrect HorizontalPodAutoscaler implementation for autoscaling/v2 API version."
+    apiVersion: v2
+    appVersion: 0.29.0
+    created: "2022-12-02T21:12:32.121240639Z"
+    description: Helm chart for Thanos components.
+    digest: 649cd850c9cf3dac0ac076e654c3c5f1fea35c944256cdc72214c2b32229ec39
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.9.0/thanos-1.9.0.tgz
+    version: 1.9.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for annotating the services."
         - kind: fixed
@@ -15370,4 +15402,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-02T14:59:57.099059713Z"
+generated: "2022-12-02T21:12:32.125099093Z"
