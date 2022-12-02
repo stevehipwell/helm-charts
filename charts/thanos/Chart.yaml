@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.7.0
+version: 1.8.0
 appVersion: 0.29.0
 keywords:
   - kubernetes
@@ -22,5 +22,7 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the Thanos image to v0.29.0."
+    - kind: added
+      description: "Added support for annotating the services."
+    - kind: fixed
+      description: "Fixed incorrect HorizontalPodAutoscaler API version; this will now be autoscaling/v2 from K8s v1.23 upwards."

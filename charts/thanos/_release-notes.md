@@ -1,3 +1,4 @@
 ### All Changes
 
-- Updated the _Thanos_ image to [v0.29.0](https://github.com/thanos-io/thanos/releases/tag/v0.29.0).
+- Added support for annotating the services.
+- Fixed incorrect `HorizontalPodAutoscaler` API version; this will now be `autoscaling/v2` from K8s `v1.23` upwards.

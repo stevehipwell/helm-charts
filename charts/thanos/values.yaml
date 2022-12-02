@@ -43,6 +43,9 @@ compact:
     name: ""
     automountToken: false
 
+  service:
+    annotations: {}
+
   updateStrategy: {}
 
   podLabels: {}
@@ -108,6 +111,9 @@ query:
     annotations: {}
     name: ""
     automountToken: false
+
+  service:
+    annotations: {}
 
   replicas: 1
 
@@ -198,6 +204,9 @@ queryFrontend:
     name: ""
     automountToken: false
 
+  service:
+    annotations: {}
+
   replicas: 1
 
   updateStrategy: {}
@@ -283,6 +292,9 @@ rule:
     annotations: {}
     name: ""
     automountToken: false
+
+  service:
+    annotations: {}
 
   replicas: 1
 
@@ -388,6 +400,9 @@ storeGateway:
     annotations: {}
     name: ""
     automountToken: false
+
+  service:
+    annotations: {}
 
   replicas: 1
 
