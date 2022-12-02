@@ -91,6 +91,15 @@ The Thanos image to use
   {{- or (eq (include "thanos.ingress.isStable" .) "true") (and (eq (include "thanos.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
 
+{{/* Get HorizontalPodAutoscaler API Version */}}
+{{- define "thanos.hpa.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "autoscaling/v2") (semverCompare ">= 1.23-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "autoscaling/v2" -}}
+  {{- else -}}
+    {{- print "autoscaling/v2beta1" -}}
+  {{- end -}}
+{{- end -}}
+
 {{/* Get PodDisruptionBudget API Version */}}
 {{- define "thanos.pdb.apiVersion" -}}
   {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}

@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.8.0] - 2022-12-02
+
+### All Changes
+
+- Added support for annotating the services.
+- Fixed incorrect `HorizontalPodAutoscaler` API version; this will now be `autoscaling/v2` from K8s `v1.23` upwards.
+
 ## [v1.7.0] - 2022-11-03
 
 ### All Changes
