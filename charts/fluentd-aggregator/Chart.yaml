@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.4.2
-appVersion: 2.4.0
+version: 3.5.0
+appVersion: 2.5.0
 keywords:
   - fluent
   - fluentd
@@ -19,9 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed internal labelling pattern to work correctly."
-    - kind: fixed
-      description: "Fixed ServiceMonitor port."
-    - kind: fixed
-      description: "Moved debug filter to above global filters."
+    - kind: changed
+      description: "Updated Fluentd Aggregator OCI image to v2.5.0 (Fluentd v1.15.3)."
