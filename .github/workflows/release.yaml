@@ -16,7 +16,7 @@ jobs:
         shell: bash
     steps:
       - name: Checkout
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
         with:
           fetch-depth: 0
 
@@ -26,17 +26,16 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Set-up Helm
-        uses: azure/setup-helm@f382f75448129b3be48f8121b9857be18d815a82
+        uses: azure/setup-helm@f382f75448129b3be48f8121b9857be18d815a82 # v3.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
 
       - name: Set-up Helm repos
-        run: |
-          helm repo add bitnami https://charts.bitnami.com/bitnami/
+        run: helm repo add bitnami https://charts.bitnami.com/bitnami/
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@98bccfd32b0f76149d188912ac8e45ddd3f8695f
+        uses: helm/chart-releaser-action@98bccfd32b0f76149d188912ac8e45ddd3f8695f # v1.4.1
         with:
           config: ct.yaml
         env:
