@@ -10591,6 +10591,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the PlantUML image to v1.2022.14."
+        - kind: changed
+          description: "Updated HorizontalPodAutoscaler API to use either autoscaling/v2 or autoscaling/v2beta2."
+    apiVersion: v2
+    appVersion: 1.2022.14
+    created: "2022-12-08T10:03:47.623144828Z"
+    description: Helm chart for PlantUML.
+    digest: 5ecd1e329c8c2c0991b6f81c0d45a993468107f38a5d2ab8040401c60dbe9372
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.17.0/plantuml-3.17.0.tgz
+    version: 3.17.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the PlantUML image to v1.2022.13."
     apiVersion: v2
     appVersion: 1.2022.13
@@ -15464,4 +15493,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-07T09:45:20.251944613Z"
+generated: "2022-12-08T10:03:47.624144827Z"
