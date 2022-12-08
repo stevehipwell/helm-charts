@@ -15493,4 +15493,32 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-1.0.0/tigera-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-08T10:03:47.624144827Z"
+  vertical-pod-autoscaler:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Initial release."
+    apiVersion: v2
+    appVersion: 0.11.0
+    created: "2022-12-08T15:58:54.102496847Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: a1b09c5b0b7c7ff086f702ed4ad65761b77fbeaa4ac2d3f7d6ad7c4f0edd8feb
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    kubeVersion: '>= 1.22-0'
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-12-08T15:58:54.103519409Z"
