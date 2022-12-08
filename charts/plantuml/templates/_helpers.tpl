@@ -71,6 +71,15 @@ The image to use
 {{- printf "%s:%s" .Values.image.repository (default (printf "jetty-v%s" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}
 
+{{/* Get HorizontalPodAutoscaler API Version */}}
+{{- define "plantuml.hpa.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "autoscaling/v2") (semverCompare ">= 1.23-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "autoscaling/v2" -}}
+  {{- else -}}
+    {{- print "autoscaling/v2beta2" -}}
+  {{- end -}}
+{{- end -}}
+
 {{/* Get Ingress API Version */}}
 {{- define "plantuml.ingress.apiVersion" -}}
   {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}

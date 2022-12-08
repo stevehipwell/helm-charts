@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.17.0] - 2022-12-08
+
+### All Changes
+
+- Updated the _PlantUML_ image to [v1.2022.14](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2022.14)).
+- Updated `HorizontalPodAutoscaler` API to use either `autoscaling/v2` or `autoscaling/v2beta2`.
+
 ## [v3.16.0] - 2022-11-21
 
 ### All Changes
