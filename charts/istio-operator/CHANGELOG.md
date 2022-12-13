@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v2.8.1] - 2022-12-13
+
+### All Changes
+
+- Updated the _Istio Operator_ image version to [v1.16.1](https://github.com/istio/istio/releases/tag/1.16.1).
+
 ## [v2.8.0] - 2022-11-16
 
 ### All Changes
