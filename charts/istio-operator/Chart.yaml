@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.8.0
-appVersion: 1.8.0
+version: 2.8.1
+appVersion: 1.16.1
 keywords:
   - kubernetes
   - istio
@@ -21,4 +21,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Istio Operator image version to v1.16.0."
+      description: "Updated the Istio Operator image version to v1.16.1."
