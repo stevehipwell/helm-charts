@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.9.1] - 2022-12-18
+
+### All Changes
+
+- Fixed incorrect `HorizontalPodAutoscaler` API version for K8s versions lower than `v1.23`.
+- Fixed incorrect `PodDisruptionBudget` API version for K8s versions lower than `v1.21`.
+
 ## [v1.9.0] - 2022-12-02
 
 ### All Changes

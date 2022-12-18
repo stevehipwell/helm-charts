@@ -1,4 +1,4 @@
 ### All Changes
 
-- Added support for annotating the services.
-- Fixed incorrect `HorizontalPodAutoscaler` API version; this will now be `autoscaling/v2` from K8s `v1.23` upwards.
+- Fixed incorrect `HorizontalPodAutoscaler` API version for K8s versions lower than `v1.23`.
+- Fixed incorrect `PodDisruptionBudget` API version for K8s versions lower than `v1.21`.

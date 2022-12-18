@@ -96,7 +96,7 @@ The Thanos image to use
   {{- if and (.Capabilities.APIVersions.Has "autoscaling/v2") (semverCompare ">= 1.23-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "autoscaling/v2" -}}
   {{- else -}}
-    {{- print "autoscaling/v2beta1" -}}
+    {{- print "autoscaling/v2beta2" -}}
   {{- end -}}
 {{- end -}}
 
@@ -105,7 +105,7 @@ The Thanos image to use
   {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "policy/v1" -}}
   {{- else -}}
-    {{- print "policy/v1beta2" -}}
+    {{- print "policy/v1beta1" -}}
   {{- end -}}
 {{- end -}}
 
