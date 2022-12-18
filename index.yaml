@@ -13016,6 +13016,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed incorrect HorizontalPodAutoscaler API version for K8s versions lower than v1.23."
+        - kind: fixed
+          description: "Fixed incorrect PodDisruptionBudget API version for K8s versions lower than v1.21."
+    apiVersion: v2
+    appVersion: 0.29.0
+    created: "2022-12-18T20:34:53.28710054Z"
+    description: Helm chart for Thanos components.
+    digest: 075f40a75bc2f214033e8872de8f70fcbdfa94e48599707705ccb53503fd01a9
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.9.1/thanos-1.9.1.tgz
+    version: 1.9.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Changed HorizontalPodAutoscaler API version to autoscaling/v2beta2 for K8s versions lower than v1.23."
         - kind: fixed
@@ -15616,4 +15648,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-16T09:57:06.039247087Z"
+generated: "2022-12-18T20:34:53.288468251Z"
