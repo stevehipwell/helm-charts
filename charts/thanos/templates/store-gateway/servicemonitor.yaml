@@ -1,4 +1,4 @@
-{{- if .Values.serviceMonitor.enabled -}}
+{{- if and (.Values.serviceMonitor.enabled) (.Values.storeGateway.enabled) -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -32,4 +32,4 @@ spec:
       interval: {{ . }}
     {{- end }}
     {{- end }}
-{{- end -}}
+{{- end }}

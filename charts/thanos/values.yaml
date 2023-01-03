@@ -283,6 +283,84 @@ queryFrontend:
 
   affinity: {}
 
+receive:
+  # - Enable Receiver for Prometheus integration
+  enabled: false
+  serviceAccount:
+    create: true
+    labels: {}
+    annotations: {}
+    name: ""
+    automountToken: false
+
+  service:
+    annotations: {}
+
+  replicas: 1
+
+  updateStrategy: {}
+
+  podDisruptionBudget:
+    enabled: false
+    minAvailable:
+    maxUnavailable:
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    fsGroup: 65534
+    runAsUser: 65534
+
+  securityContext: {}
+
+  priorityClassName: ""
+
+  terminationGracePeriodSeconds:
+
+  extraEnv: []
+
+  extraArgs: []
+
+  livenessProbe:
+    httpGet:
+      path: /-/healthy
+      port: http
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 30
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 8
+
+  readinessProbe:
+    httpGet:
+      path: /-/ready
+      port: 10908
+      scheme: HTTP
+    initialDelaySeconds: 0
+    periodSeconds: 5
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 20
+
+  resources: {}
+
+  persistence:
+    enabled: false
+    existingClaim: ""
+    annotations: {}
+    accessMode: ReadWriteOnce
+    storageClass: standard
+    size: 8Gi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
 rule:
   enabled: false
 
@@ -394,6 +472,7 @@ rule:
     value: |-
 
 storeGateway:
+  enabled: true
   serviceAccount:
     create: true
     labels: {}
