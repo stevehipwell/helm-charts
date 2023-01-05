@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "thanos.receiveFullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveLabels" . | nindent 4 }}
+  {{- with .Values.receive.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 10907
+      targetPort: grpc
+    - name: http-remote-write
+      protocol: TCP
+      port: 10908
+      targetPort: remote-write
+    - name: http
+      protocol: TCP
+      port: 10909
+      targetPort: http
+
+  selector:
+    {{- include "thanos.receiveSelectorLabels" . | nindent 4 }}

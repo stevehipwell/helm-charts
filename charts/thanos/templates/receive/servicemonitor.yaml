@@ -1,0 +1,35 @@
+{{- if .Values.serviceMonitor.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "thanos.receiveFullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveLabels" . | nindent 4 }}
+  {{- with .Values.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  jobLabel: {{ .Release.Name }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      {{- include "thanos.receiveSelectorLabels" . | nindent 6 }}
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http
+      path: /metrics
+    {{- if .Values.serviceMonitor.endpointConfig }}
+      {{- toYaml .Values.serviceMonitor.endpointConfig | nindent 6 }}
+    {{- else }}
+    {{- with .Values.serviceMonitor.interval }}
+      interval: {{ . }}
+    {{- end }}
+    {{- end }}
+{{- end -}}
