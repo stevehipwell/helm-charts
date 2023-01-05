@@ -472,7 +472,6 @@ rule:
     value: |-
 
 storeGateway:
-  enabled: true
   serviceAccount:
     create: true
     labels: {}

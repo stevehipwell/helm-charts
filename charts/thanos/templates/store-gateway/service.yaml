@@ -1,4 +1,3 @@
-{{- if .Values.storeGateway.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -22,4 +21,3 @@ spec:
       targetPort: http
   selector:
     {{- include "thanos.storeGatewaySelectorLabels" . | nindent 4 }}
-{{- end }}
