@@ -72,6 +72,9 @@ spec:
           {{- if .Values.rule.enabled }}
             - {{ printf "--store=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.ruleFullname" .) .Release.Namespace }}
           {{- end }}
+          {{- if .Values.receive.enabled }}
+            - {{ printf "--store=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.receiveFullname" .) .Release.Namespace }}
+          {{- end }}
           {{- range .Values.query.additionalStores }}
             - --store={{ . }}
           {{- end }}
