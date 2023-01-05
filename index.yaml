@@ -13122,6 +13122,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the Thanos image to v0.30.1."
+    apiVersion: v2
+    appVersion: 0.30.1
+    created: "2023-01-05T15:26:45.880675365Z"
+    description: Helm chart for Thanos components.
+    digest: c9fd1f753e8a8ff948273400cc572b941d95f34ea133338688e8a6c55f5ccc96
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.10.1/thanos-1.10.1.tgz
+    version: 1.10.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Thanos image to v0.30.0."
     apiVersion: v2
     appVersion: 0.30.0
@@ -15783,4 +15813,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-03T15:52:47.989170913Z"
+generated: "2023-01-05T15:26:45.882058363Z"
