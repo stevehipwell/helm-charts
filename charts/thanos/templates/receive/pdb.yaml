@@ -1,4 +1,4 @@
-{{- if .Values.receive.podDisruptionBudget.enabled -}}
+{{- if and .Values.receive.podDisruptionBudget.enabled .Values.receive.enabled -}}
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:

@@ -1,3 +1,4 @@
+{{- if .Values.receive.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -77,8 +78,8 @@ spec:
             - --tsdb.path=/var/thanos/tsdb
             - --objstore.config-file=/etc/thanos/objstore.yaml
             - --tsdb.retention={{ .Values.receive.tsdbRetention }}
-            {{- with .Values.receive.receiveLabels }}
-            - --label "{{ .name }}"=\"\{{ .value }}""
+            {{- range .Values.receive.receiveAppLabels }}
+            - --label=receive_{{ .name }}="{{ .value }}"
             {{- end }}
           {{- with .Values.receive.extraArgs }}
             {{- toYaml . | nindent 12 }}
@@ -153,3 +154,4 @@ spec:
           requests:
             storage: {{ .Values.receive.persistence.size }}
   {{- end }}
+{{- end }}

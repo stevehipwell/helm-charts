@@ -322,7 +322,10 @@ receive:
   extraEnv: []
 
   extraArgs: []
-
+  receiveAppLabels:
+    - name: "location"
+      value: "main"
+  tsdbRetention: "15d"
   livenessProbe:
     httpGet:
       path: /-/healthy
@@ -337,7 +340,7 @@ receive:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10908
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
