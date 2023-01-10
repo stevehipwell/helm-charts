@@ -47,19 +47,19 @@ livenessProbe:
   httpGet:
     path: /fluent.live?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http-probe
-  initialDelaySeconds: 15
+  initialDelaySeconds: 60
   periodSeconds: 30
   failureThreshold: 10
-  timeoutSeconds: 1
+  timeoutSeconds: 5
 
 readinessProbe:
   httpGet:
     path: /fluent.ready?json=%7B%22ping%22%3A+%22pong%22%7D
     port: http-probe
-  initialDelaySeconds: 15
+  initialDelaySeconds: 60
   periodSeconds: 30
   failureThreshold: 10
-  timeoutSeconds: 1
+  timeoutSeconds: 2
 
 service:
   type: ClusterIP
