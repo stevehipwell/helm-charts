@@ -1,0 +1,149 @@
+name: Commit
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/commit.yaml
+      - charts/**
+
+jobs:
+  check:
+    name: Check charts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    outputs:
+      release: ${{ steps.charts.outputs.release }}
+      matrix: ${{ steps.charts.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Install chart-testing
+        uses: helm/chart-testing-action@afea100a513515fbd68b0e72a7bb0ae34cb62aec # v2.3.1
+
+      - name: Check for charts to release
+        id: charts
+        run: |
+          set -euo pipefail
+
+          changed="$(ct list-changed --target-branch main --chart-dirs charts)"
+          changed_charts_json="$(echo "${changed}" | tr '\n' ',' | rev | cut -c 2- | rev | jq -Rrc '[split(",") | .[] | split("/") | .[1]]')"
+          changed_charts="$(jq -r 'join(",")' <<< "${changed_charts_json}")"
+
+          release_charts=""
+
+          set +e
+          for chart in ${changed_charts//,/ }
+          do
+            ct lint --target-branch=main --chart-dirs=charts --excluded-charts="$(jq -r '[.[] | select(. != "a")] | join(",")' <<< "${changed_charts_json}")" --check-version-increment=true
+            if [[ "$?" == "0" ]]
+            then
+              release_charts="${release_charts}${chart},"
+            fi
+          done
+          set -e
+
+          if [[ -n "${release_charts}" ]]
+          then
+            echo "release=true" >> $GITHUB_OUTPUT
+            echo "matrix=$(echo "${release_charts}" | rev | cut -c 2- | rev | jq -Rrc 'split(",")')" >> $GITHUB_OUTPUT
+          else
+            echo "release=false" >> $GITHUB_OUTPUT
+            echo "matrix=[]" >> $GITHUB_OUTPUT
+          fi
+
+  release:
+    name: Release charts
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    needs: check
+    if: ${{ fromJson(needs.check.outputs.release) }}
+    strategy:
+      matrix:
+        chart: ${{ fromJson(needs.check.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Install Crane
+        uses: imjasonh/setup-crane@e82f1b9a8007d399333baba4d75915558e9fb6a4 # v0.1
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@9becc617647dfa20ae7b1151972e9b3a2c338a2b # v2.8.1
+
+      - name: Install Helm
+        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+
+      - name: Install chart-releaser
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
+        with:
+          install_only: true
+
+      - name: Configure Git
+        run: |
+          set -euo pipefail
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Configure Helm
+        run: helm repo add bitnami https://charts.bitnami.com/bitnami/
+
+      - name: Get chart version
+        id: chart_version
+        uses: mikefarah/yq@42e7c3cdf08ccd664875d7ac685c7414b61962be # v4.30.5
+        with:
+          cmd: yq eval '.version' './charts/${{ matrix.chart }}/Chart.yaml'
+
+      - name: Get changelog entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@b97ce03a10d9bdbb07beb491c76a5a01d78cd3ef # v2.2.2
+        with:
+          path: ./charts/${{ matrix.chart }}/CHANGELOG.md
+          version: "v${{ steps.chart_version.outputs.version }}"
+
+      - name: Create release notes
+        run: |
+          set -euo pipefail
+          cat <<"EOF" > ./charts/${{ matrix.chart }}/RELEASE.md
+          ${{ steps.changelog_reader.outputs.changes }}
+          EOF
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release chart
+        env:
+          COSIGN_EXPERIMENTAL: 1
+        run: |
+          set -euo pipefail
+
+          cr package ./charts/${{ matrix.chart }}
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push--owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
+
+          oci_registry="ghcr.io/${{ github.repository }}"
+          helm push "./.cr-release-packages/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" "oci://${oci_registry}"
+          oci_image="${oci_registry}/${{ matrix.chart }}:${{ steps.chart_version.outputs.version }}"
+          digest="$(crane digest "${oci_image}")"
+          cosign sign "${oci_image}@${digest}"

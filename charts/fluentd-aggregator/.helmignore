@@ -21,3 +21,6 @@
 .idea/
 *.tmproj
 .vscode/
+# Automation files
+/ci/kubeconform.yaml
+/ci/*-values.yaml
