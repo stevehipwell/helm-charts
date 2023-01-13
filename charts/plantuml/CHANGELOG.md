@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.18.0] - 2023-01-13
+
+### All Changes
+
+- Updated the _PlantUML_ image to [v1.2023.0](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.0)).
+- Added support for `terminationGracePeriodSeconds`.
+
 ## [v3.17.0] - 2022-12-08
 
 ### All Changes

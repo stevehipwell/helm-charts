@@ -39,6 +39,7 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `podSecurityContext`                            | Security context for the _Pod_.                                                             | `{}`                             |
 | `securityContext`                               | Security context for the _plantuml_ container.                                              | `{}`                             |
 | `priorityClassName`                             | Priority class name to use.                                                                 | `""`                             |
+| `terminationGracePeriodSeconds`                 | Termination grace period in seconds.                                                        |                                  |
 | `livenessProbe`                                 | The liveness probe.                                                                         | See _values.yaml_                |
 | `readinessProbe`                                | The readiness probe.                                                                        | See _values.yaml_                |
 | `service.type`                                  | Service type.                                                                               | `ClusterIP`                      |
