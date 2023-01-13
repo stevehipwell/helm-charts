@@ -36,6 +36,8 @@ podSecurityContext: {}
 
 priorityClassName: ""
 
+terminationGracePeriodSeconds:
+
 livenessProbe:
   httpGet:
     path: /png
