@@ -10782,6 +10782,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the PlantUML image to v1.2023.0."
+        - kind: added
+          description: "Added support for terminationGracePeriodSeconds."
+    apiVersion: v2
+    appVersion: 1.2023.0
+    created: "2023-01-13T10:11:47.478279297Z"
+    description: Helm chart for PlantUML.
+    digest: ec4f6561eadb259b2d747a30f2c25099c6140be98d120fa0ba4e72420e2fa3d1
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.18.0/plantuml-3.18.0.tgz
+    version: 3.18.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the PlantUML image to v1.2022.14."
         - kind: changed
           description: "Updated HorizontalPodAutoscaler API to use either autoscaling/v2 or autoscaling/v2beta2."
@@ -15876,4 +15905,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-10T14:26:56.011233661Z"
+generated: "2023-01-13T10:11:47.479286298Z"
