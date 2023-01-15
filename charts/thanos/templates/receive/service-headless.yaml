@@ -17,7 +17,7 @@ spec:
     - name: http-remote-write
       protocol: TCP
       port: 10908
-      targetPort: remote-write
+      targetPort: http-remote-write
     - name: http
       protocol: TCP
       port: 10909
