@@ -1,4 +1,9 @@
+# Junk
+.DS_Store
 **/*.log
-**/*test-values.y*ml
+
+# Chart dependencies
 /charts/**/charts/
-/out
+
+# Test files
+**/*test-values.y*ml
