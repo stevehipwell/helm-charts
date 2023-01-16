@@ -32,8 +32,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          changed="$(ct list-changed --target-branch main --chart-dirs charts)"
-          changed_charts_json="$(echo "${changed}" | tr '\n' ',' | rev | cut -c 2- | rev | jq -Rrc '[split(",") | .[] | split("/") | .[1]]')"
+          changed="$(ct list-changed --target-branch main --chart-dirs charts | tr '\n' ',')"
+          changed_charts_json="$(jq -Rrc '[split(",") | .[] | split("/") | .[1]]' <<< "${changed%,}")"
           changed_charts="$(jq -r 'join(",")' <<< "${changed_charts_json}")"
 
           release_charts=""
@@ -52,11 +52,11 @@ jobs:
           if [[ -n "${release_charts}" ]]
           then
             echo "release=true" >> $GITHUB_OUTPUT
-            echo "matrix=$(echo "${release_charts}" | rev | cut -c 2- | rev | jq -Rrc 'split(",")')" >> $GITHUB_OUTPUT
           else
             echo "release=false" >> $GITHUB_OUTPUT
-            echo "matrix=[]" >> $GITHUB_OUTPUT
           fi
+
+          echo "matrix=$(jq -Rrc 'split(",")' <<< "${release_charts%,}")" >> $GITHUB_OUTPUT
 
   release:
     name: Release charts
