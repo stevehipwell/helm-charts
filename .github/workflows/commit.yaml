@@ -96,6 +96,12 @@ jobs:
         with:
           install_only: true
 
+      - name: Install yq
+        run: |
+          set -euo pipefail
+          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
+
       - name: Configure Git
         run: |
           set -euo pipefail
@@ -107,9 +113,9 @@ jobs:
 
       - name: Get chart version
         id: chart_version
-        uses: mikefarah/yq@42e7c3cdf08ccd664875d7ac685c7414b61962be # v4.30.5
-        with:
-          cmd: yq eval '.version' './charts/${{ matrix.chart }}/Chart.yaml'
+        run: |
+          set -euo pipefail
+          echo "version=$(yq eval '.version' './charts/${{ matrix.chart }}/Chart.yaml')" >> $GITHUB_OUTPUT
 
       - name: Get changelog entry
         id: changelog_reader
