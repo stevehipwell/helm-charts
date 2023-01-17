@@ -10778,6 +10778,34 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-1.1.0/nexus3-1.1.0.tgz
     version: 1.1.0
+  overprovisioner:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Initial release."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-01-17T16:33:54.759990084Z"
+    description: Helm chart for overprovisioning Kubernetes clusters.
+    digest: 408773c5331b78a1fa4bf2799ec1935e4fb76ebc64b77e329c646c07aee032a7
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - cluster
+    - scheduler
+    - provisioning
+    - overprovisioning
+    - preemption
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: overprovisioner
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/overprovisioner-0.1.0/overprovisioner-0.1.0.tgz
+    version: 0.1.0
   plantuml:
   - annotations:
       artifacthub.io/changes: |
@@ -15937,4 +15965,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-13T10:25:10.371299952Z"
+generated: "2023-01-17T16:33:54.761316057Z"
