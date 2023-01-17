@@ -1,0 +1,18 @@
+{{- if .Values.priorityClass.create -}}
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: {{ include "overprovisioner.priorityClassName" . }}
+  labels:
+    {{- include "overprovisioner.labels" . | nindent 4 }}
+  {{- with .Values.priorityClass.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.priorityClass.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+description: "Preemptible priority class used for overprovisioning."
+value: {{ .Values.priorityClass.value }}
+globalDefault: false
+{{- end }}
