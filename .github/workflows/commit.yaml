@@ -148,9 +148,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          cr package ./charts/${{ matrix.chart }}
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md --make-release-latest=false
-          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
+          package_dir=".cr-release-packages"
+          index_dir=".cr-index"
+
+          mkdir -p "${package_dir}" "${index_dir}"
+
+          cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=false
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
 
           oci_registry="ghcr.io/${{ github.repository }}"
           helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
