@@ -149,6 +149,7 @@ jobs:
           cr index --token=${{ secrets.GITHUB_TOKEN }} --push--owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
 
           oci_registry="ghcr.io/${{ github.repository }}"
+          helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
           helm push "./.cr-release-packages/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" "oci://${oci_registry}"
           oci_image="${oci_registry}/${{ matrix.chart }}:${{ steps.chart_version.outputs.version }}"
           digest="$(crane digest "${oci_image}")"
