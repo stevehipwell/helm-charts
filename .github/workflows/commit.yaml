@@ -149,7 +149,7 @@ jobs:
           set -euo pipefail
 
           cr package ./charts/${{ matrix.chart }}
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md --make-release-latest=true
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md --make-release-latest=false
           cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
 
           oci_registry="ghcr.io/${{ github.repository }}"
