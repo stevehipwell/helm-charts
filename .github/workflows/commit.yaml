@@ -149,8 +149,8 @@ jobs:
           set -euo pipefail
 
           cr package ./charts/${{ matrix.chart }}
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md
-          cr index --token=${{ secrets.GITHUB_TOKEN }} --push--owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --release-notes-file=RELEASE.md --make-release-latest=true
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }}
 
           oci_registry="ghcr.io/${{ github.repository }}"
           helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
