@@ -1,0 +1,53 @@
+# Default values for vertical-pod-autoscaler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride:
+fullnameOverride:
+
+commonLabels: {}
+
+imagePullSecrets: []
+
+priorityClass:
+  create: true
+  name:
+  labels: {}
+  annotations: {}
+  value: -1
+
+pause:
+  serviceAccount:
+    create: true
+    name:
+    labels: {}
+    annotations: {}
+
+  image:
+    repository: registry.k8s.io/pause
+    tag: 3.9
+    pullPolicy: IfNotPresent
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  replicas: 1
+
+  terminationGracePeriodSeconds: 0
+
+  resources:
+    requests:
+      cpu: 10m
+      memory: 16Mi
+    limits:
+      cpu: 10m
+      memory: 16Mi
+
+  nodeSelector: {}
+
+  affinity: {}
+
+  topologySpreadConstraints: {}
+
+  tolerations: []
