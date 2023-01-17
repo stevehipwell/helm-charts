@@ -1,12 +1,12 @@
 name: Commit
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - .github/workflows/commit.yaml
-      - charts/**
+      - charts/**/Chart.yaml
 
 jobs:
   check:
@@ -24,30 +24,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install chart-testing
-        uses: helm/chart-testing-action@afea100a513515fbd68b0e72a7bb0ae34cb62aec # v2.3.1
+      - name: Install yq
+        run: |
+          set -euo pipefail
+          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
 
       - name: Check for charts to release
         id: charts
         run: |
           set -euo pipefail
 
-          changed="$(ct list-changed --target-branch main --chart-dirs charts | tr '\n' ',')"
-          changed_charts_json="$(jq -Rrc '[split(",") | .[] | split("/") | .[1]]' <<< "${changed%,}")"
-          changed_charts="$(jq -r 'join(",")' <<< "${changed_charts_json}")"
-
           release_charts=""
 
-          set +e
-          for chart in ${changed_charts//,/ }
+          for chart_dir in ./charts/*
           do
-            ct lint --target-branch=main --chart-dirs=charts --excluded-charts="$(jq -r '[.[] | select(. != "a")] | join(",")' <<< "${changed_charts_json}")" --check-version-increment=true
-            if [[ "$?" == "0" ]]
+            if [[ -d "${chart_dir}" ]]
             then
-              release_charts="${release_charts}${chart},"
+              chart="$(basename "${chart_dir}")"
+              released_version="$(git tag -l --sort version:refname "${chart}-*" | tail -n 1 | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' || true)"
+              current_version="$(yq eval '.version' "./charts/${chart}/Chart.yaml")"
+
+              if [[ "${current_version}" != "${released_version}" ]]
+              then
+                echo "Chart: ${chart}, Released version: ${released_version}, Current version: ${current_version}"
+                release_charts="${release_charts}${chart},"
+              fi
             fi
           done
-          set -e
 
           if [[ -n "${release_charts}" ]]
           then
