@@ -21,6 +21,8 @@
 .idea/
 *.tmproj
 .vscode/
+# Metadata files
+artifacthub-repo.yml
 # Automation files
 /ci/kubeconform.yaml
 /ci/*-values.yaml

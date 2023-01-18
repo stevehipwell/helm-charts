@@ -100,6 +100,12 @@ jobs:
         with:
           install_only: true
 
+      - name: Install ORAS
+        run: |
+          set -euo pipefail
+          curl -L https://github.com/oras-project/oras/releases/download/v0.16.0/oras_0.16.0_linux_amd64.tar.gz | tar -xz --directory /usr/local/bin oras
+          chmod +x /usr/local/bin/oras
+
       - name: Install yq
         run: |
           set -euo pipefail
@@ -135,31 +141,54 @@ jobs:
           ${{ steps.changelog_reader.outputs.changes }}
           EOF
 
-      - name: Login to GitHub Container Registry
+      - name: Release chart
+        id: release
+        run: |
+          set -euo pipefail
+
+          package_dir="./.cr-release-packages"
+          index_dir="./.cr-index"
+
+          mkdir -p "${package_dir}" "${index_dir}"
+
+          cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
+
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=false
+
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
+
+          echo "path=${package_dir}/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" >> $GITHUB_OUTPUT
+
+      - name: Login to OCI registry
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release chart
+      - name: Configure OCI repository
+        run: |
+          set -euo pipefail
+
+          oci_registry="ghcr.io"
+          oci_repository="${oci_registry}/${{ github.repository }}/${{ matrix.chart }}"
+
+          oras login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
+          oras push "${oci_repository}:artifacthub.io" "./charts/${{ matrix.chart }}/artifacthub-repo.yml:application/vnd.cncf.artifacthub.repository-metadata.layer.v1.yaml"
+
+      - name: Push chart to OCI repository
         env:
           COSIGN_EXPERIMENTAL: 1
         run: |
           set -euo pipefail
 
-          package_dir=".cr-release-packages"
-          index_dir=".cr-index"
+          oci_registry="ghcr.io"
+          oci_repository_prefix="${oci_registry}/${{ github.repository }}"
+          oci_repository="${oci_repository_prefix}/${{ matrix.chart }}"
+          oci_image="${oci_repository}:${{ steps.chart_version.outputs.version }}"
 
-          mkdir -p "${package_dir}" "${index_dir}"
+          helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
+          helm push ${{ steps.release.outputs.path }} "oci://${oci_registry}"
 
-          cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=false
-          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
-
-          oci_registry="ghcr.io/${{ github.repository }}"
-          helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
-          helm push "./.cr-release-packages/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" "oci://${oci_registry}"
-          oci_image="${oci_registry}/${{ matrix.chart }}:${{ steps.chart_version.outputs.version }}"
           digest="$(crane digest "${oci_image}")"
           cosign sign "${oci_image}@${digest}"
