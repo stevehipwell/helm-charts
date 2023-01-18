@@ -9,10 +9,7 @@ tmp_file="/tmp/tmp.json"
 
 echo "Configuring Nexus3..."
 
-if [[ -f "${base_dir}/secret/root.password" ]]
-then
-  root_password="$(cat "${base_dir}/secret/root.password")"
-fi
+root_password="${NEXUS_SECURITY_INITIAL_PASSWORD:-}"
 
 if [[ -z "${root_password:-}" ]]
 then
@@ -27,26 +24,6 @@ do
     echo "Waiting for Nexus..."
     sleep 15
     continue
-  fi
-
-  if [[ -f "/nexus-data/admin.password" ]]
-  then
-    default_password="$(cat /nexus-data/admin.password)"
-  fi
-
-  if [[ -n "${default_password:-}" ]] && [[ -n "${root_password}" ]]
-  then
-    echo "Updating root password..."
-
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: text/plain' -u "${root_user}:${default_password}" -d "${root_password}" "${nexus_host}/service/rest/v1/security/users/${root_user}/change-password")
-    if [[ "${status_code}" -ne 204 ]]
-    then
-      >&2 echo "Could not update the root password."
-      exit 1
-    fi
-
-    echo "Root password updated."
-    rm -f /nexus-data/admin.password
   fi
 
   json_file="${base_dir}/conf/anonymous.json"

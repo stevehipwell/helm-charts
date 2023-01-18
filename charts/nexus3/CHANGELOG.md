@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v4.19.0] - 2023-01-18
+
+### All Changes
+
+- Changed root password implementation to use `NEXUS_SECURITY_INITIAL_PASSWORD` instead of scripting.
+- Added `rootPassword.secret` & `rootPassword.key` to replace `config.rootPassword.secret` & `config.rootPassword.key` as these can be used without needing the configuration script.
+- Deprecated `config.rootPassword.secret` & `config.rootPassword.key`.
+- Removed accidentally included `nexus-repository-composer` plugin.
+
 ## [v4.18.1] - 2023-01-18
 
 ### All Changes
