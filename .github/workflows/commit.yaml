@@ -188,7 +188,7 @@ jobs:
           oci_image="${oci_repository}:${{ steps.chart_version.outputs.version }}"
 
           helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
-          helm push ${{ steps.release.outputs.path }} "oci://${oci_registry}"
+          helm push ${{ steps.release.outputs.path }} "oci://${oci_repository_prefix}"
 
           digest="$(crane digest "${oci_image}")"
           cosign sign "${oci_image}@${digest}"
