@@ -10876,6 +10876,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Changed the default pod security context to run as non-root with a read-only root file system."
+        - kind: added
+          description: "Added an empty directory at /tmp/jetty to support using a read-only root file system."
+    apiVersion: v2
+    appVersion: 1.2023.0
+    created: "2023-01-19T11:47:25.820150973Z"
+    description: Helm chart for PlantUML.
+    digest: cc6ce66c8fc346c43d0c057b9626308820f4a2036d728a4d0fb18dfeadb7289d
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.19.0/plantuml-3.19.0.tgz
+    version: 3.19.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the PlantUML image to v1.2023.0."
         - kind: added
           description: "Added support for terminationGracePeriodSeconds."
@@ -16031,4 +16060,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-18T17:21:34.152084951Z"
+generated: "2023-01-19T11:47:25.821735591Z"
