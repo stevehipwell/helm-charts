@@ -44,6 +44,9 @@ spec:
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -58,12 +61,12 @@ spec:
       {{- end }}
       containers:
         - name: plantuml
+          image: {{ include "plantuml.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "plantuml.image" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
