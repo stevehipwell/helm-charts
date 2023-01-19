@@ -35,8 +35,7 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `serviceAccount.name`                           | _ServiceAccount_ name to use, if not set a name is generated using the `fullname` template. | `nil`                            |
 | `serviceAccount.automountToken`                 | If `true`, mount the ServiceAccount token.                                                  | `false`                          |
 | `podLabels`                                     | Labels to add to the _Pod_.                                                                 | `{}`                             |
-| `podAnnotations`                                | Annotations to add to the pod.                                                              | `{}`                             |
-| `podSecurityContext`                            | Security context for the _Pod_.                                                             | `{}`                             |
+| `podAnnotations`                                | Annotations to add to the pod.                                                              | `{}`See _values.yaml_`{}`        |
 | `securityContext`                               | Security context for the _plantuml_ container.                                              | `{}`                             |
 | `priorityClassName`                             | Priority class name to use.                                                                 | `""`                             |
 | `terminationGracePeriodSeconds`                 | Termination grace period in seconds.                                                        |                                  |
