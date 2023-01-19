@@ -38,6 +38,10 @@ priorityClassName: ""
 
 terminationGracePeriodSeconds:
 
+extraVolumes: []
+
+extraVolumeMounts: []
+
 livenessProbe:
   httpGet:
     path: /png

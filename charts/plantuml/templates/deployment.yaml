@@ -80,23 +80,33 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
-          {{- if .Values.caCerts.enabled }}
+          {{- if (or .Values.caCerts.enabled .Values.extraVolumeMounts) }}
           volumeMounts:
+          {{- end }}
+          {{- if .Values.caCerts.enabled }}
             - mountPath: /usr/local/openjdk-11/lib/security/cacerts
               name: ca-certs-keystore
               subPath: cacerts
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+          {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- if .Values.caCerts.enabled }}
+      {{- if (or .Values.caCerts.enabled .Values.extraVolumes) }}
       volumes:
+      {{- end }}
+      {{- if .Values.caCerts.enabled }}
         - name: ca-certs-secret
           secret:
             secretName: {{ .Values.caCerts.secret }}
         - name: ca-certs-keystore
           emptyDir: {}
+      {{- end }}
+      {{- if .Values.extraVolumes }}
+      {{- toYaml .Values.extraVolumes | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
