@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [UNRELEASED]
+
+### All Changes
+
+- Added `testResources` value to enable automated chart testing.
+
 ## [v4.19.0] - 2023-01-18
 
 ### All Changes
