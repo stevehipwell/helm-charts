@@ -280,3 +280,5 @@ config:
   #     crontab: "0 0 2 * * ?"
   #     attributes:
   #       blobStoreName: "default"
+
+testResources: false

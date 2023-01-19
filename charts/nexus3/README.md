@@ -130,3 +130,4 @@ The following table lists the configurable parameters of the _Nexus 3_ chart and
 | `config.repoCredentials.secret`           | Secret containing repo credentials, where the key should be the repo name and the value the password.                           | `[]`                                 |
 | `config.repos`                            | Repos to be configured (see `values.yaml` for structure).                                                                       | `[]`                                 |
 | `config.tasks`                            | Tasks to be configured (see `values.yaml` for structure).                                                                       | `[]`                                 |
+| `testResources`                           | If `true`, create resources required for testing and enable the resources to be used by the test hook.                          | `false`                              |

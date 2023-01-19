@@ -1,0 +1,20 @@
+{{- if .Values.testResources -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "nexus3.fullname" . }}-test-metrics"
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+    test-resource: "true"
+  annotations:
+    "helm.sh/hook": "test"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['-O-', '{{ include "nexus3.fullname" . }}:{{ .Values.service.port }}/service/metrics/prometheus']
+  restartPolicy: Never
+{{- end }}
