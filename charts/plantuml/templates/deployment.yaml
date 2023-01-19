@@ -51,10 +51,10 @@ spec:
           command: ["/bin/sh"]
           args: ["-c", "cp -f /opt/java/openjdk/lib/security/cacerts /var/cacerts/keystore/cacerts; for f in /var/cacerts/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /var/cacerts/keystore/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
           volumeMounts:
-            - mountPath: /var/cacerts/cas
-              name: ca-certs-secret
-            - mountPath: /var/cacerts/keystore
-              name: ca-certs-keystore
+            - name: ca-certs-secret
+              mountPath: /var/cacerts/cas
+            - name: ca-certs-keystore
+              mountPath: /var/cacerts/keystore
       {{- end }}
       containers:
         - name: plantuml
@@ -80,18 +80,22 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
-          {{- if .Values.caCerts.enabled }}
           volumeMounts:
-            - mountPath: /usr/local/openjdk-11/lib/security/cacerts
-              name: ca-certs-keystore
+            - name: jetty-tmp
+              mountPath: /tmp/jetty
+          {{- if .Values.caCerts.enabled }}
+            - name: ca-certs-keystore
+              mountPath: /usr/local/openjdk-11/lib/security/cacerts
               subPath: cacerts
           {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- if .Values.caCerts.enabled }}
       volumes:
+        - name: jetty-tmp
+          emptyDir: {}
+      {{- if .Values.caCerts.enabled }}
         - name: ca-certs-secret
           secret:
             secretName: {{ .Values.caCerts.secret }}

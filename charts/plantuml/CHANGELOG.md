@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v3.19.0] - 2023-01-19
+
+### All Changes
+
+- Changed the default pod security context to run as non-root with a read-only root file system.
+- Added an empty directory at `/tmp/jetty` to support using a read-only root file system.
+
 ## [v3.18.0] - 2023-01-13
 
 ### All Changes
