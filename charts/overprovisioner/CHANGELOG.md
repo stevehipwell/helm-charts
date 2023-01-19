@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v0.1.1] - 2023-01-19
+
+### All Changes
+
+- Fixed security context configuration.
+
 ## [v0.1.0] - 2023-01-17
 
 ### All Changes

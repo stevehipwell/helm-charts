@@ -2,7 +2,7 @@ apiVersion: v2
 name: overprovisioner
 description: Helm chart for overprovisioning Kubernetes clusters.
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 0.1.0
 home: https://github.com/stevehipwell/helm-charts/
 icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
@@ -19,5 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Initial release."
+    - kind: fixed
+      description: "Fixed security context configuration."
