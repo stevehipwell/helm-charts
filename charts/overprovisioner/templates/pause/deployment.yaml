@@ -29,19 +29,20 @@ spec:
       serviceAccountName: {{ include "overprovisioner.pause.serviceAccountName" . }}
       securityContext:
         runAsNonRoot: true
-        allowPrivilegeEscalation: false
-        readonlyRootFilesystem: true
         runAsUser: 65535
         runAsGroup: 65535
-        capabilities:
-          drop:
-            - all
       priorityClassName: {{ .Values.priorityClass.name }}
       terminationGracePeriodSeconds: {{ .Values.pause.terminationGracePeriodSeconds }}
       containers:
         - name: pause
           image: {{ printf "%s:%s" .Values.pause.image.repository (toString .Values.pause.image.tag) }}
           imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
           resources:
             {{- toYaml .Values.pause.resources | nindent 12 }}
       {{- with .Values.pause.nodeSelector }}
