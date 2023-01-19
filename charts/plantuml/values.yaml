@@ -32,11 +32,12 @@ podAnnotations: {}
 
 podSecurityContext:
   runAsNonRoot: true
-  readonlyRootFilesystem: true
   runAsUser: 999
   runAsGroup: 999
 
-securityContext: {}
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
 
 priorityClassName: ""
 
