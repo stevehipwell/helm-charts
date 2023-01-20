@@ -71,6 +71,8 @@ istioNamespace: istio-system
 
 controlPlane:
   install: false
+  # Annotations to place in the IstioOperator CR metadata.
+  annotations: {}
   spec: {}
   #   hub: docker.io/istio
   #   profile: default
