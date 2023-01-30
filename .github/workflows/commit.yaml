@@ -153,7 +153,7 @@ jobs:
 
           cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
 
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=false
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=true
 
           cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
 
