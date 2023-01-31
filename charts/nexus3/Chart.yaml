@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.19.0
-appVersion: 3.45.1
+version: 4.20.0
+appVersion: 3.46.0
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
 keywords:
@@ -21,12 +21,9 @@ maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
 annotations:
+  artifacthub.io/alternativeName: nexus
   artifacthub.io/changes: |
     - kind: changed
-      description: "Changed root password implementation to use NEXUS_SECURITY_INITIAL_PASSWORD instead of scripting."
+      description: "Updated the Nexus3 image to v3.46.0."
     - kind: added
-      description: "Added rootPassword.secret & rootPassword.key to replace config.rootPassword.secret & config.rootPassword.key as these can be used without needing the configuration script."
-    - kind: deprecated
-      description: "Deprecated config.rootPassword.secret & config.rootPassword.key."
-    - kind: removed
-      description: "Removed accidentally included nexus-repository-composer plugin."
+      description: "Added testResources value to enable automated chart testing."
