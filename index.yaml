@@ -8740,6 +8740,39 @@ entries:
     version: 3.0.0
   nexus3:
   - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the Nexus3 image to v3.46.0."
+        - kind: added
+          description: "Added testResources value to enable automated chart testing."
+    apiVersion: v2
+    appVersion: 3.46.0
+    created: "2023-01-31T07:10:17.509700848Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 785f5f2517b68755945ae6e479d15397f47eab323c682475a4d56ef63b9a9ca6
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.20.0/nexus3-4.20.0.tgz
+    version: 4.20.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: "Changed root password implementation to use NEXUS_SECURITY_INITIAL_PASSWORD instead of scripting."
@@ -16283,4 +16316,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-01-31T07:00:00.139936013Z"
+generated: "2023-01-31T07:10:17.51067958Z"
