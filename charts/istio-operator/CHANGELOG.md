@@ -17,11 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v2.8.2] - 2023-01-31
 
 ### All Changes
 
-- Added `controlPlane.annotations` to annotate the IstioOperator.install.istio.io resource
+- Updated the _Istio Operator_ image version to [v1.16.2](https://github.com/istio/istio/releases/tag/1.16.2).
+- Added `controlPlane.annotations` to annotate the `IstioOperator` resource.
 
 ## [v2.8.1] - 2022-12-13
 
