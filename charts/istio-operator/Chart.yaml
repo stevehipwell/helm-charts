@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.8.1
-appVersion: 1.16.1
+version: 2.8.2
+appVersion: 1.16.2
 keywords:
   - kubernetes
   - istio
@@ -19,6 +19,15 @@ maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
 annotations:
+  artifacthub.io/alternativeName: istio
+  artifacthub.io/crds: |
+    - kind: IstioOperator
+      version: v1alpha1
+      name: istiooperators.install.istio.io
+      displayName: IstioOperator
+      description: Represents an installation of Istio to be manmaged by the Istio Operator.
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Istio Operator image version to v1.16.1."
+      description: "Updated the Istio Operator image version to v1.16.2."
+    - kind: added
+      description: "Added controlPlane.annotations to annotate the IstioOperator resource."
