@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.6.0
-appVersion: 2.6.0
+version: 3.6.1
+appVersion: 2.6.1
 keywords:
   - fluent
   - fluentd
@@ -18,10 +18,7 @@ maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
 annotations:
+  artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated Fluentd Aggregator OCI image to v2.6.0 (Fluentd v1.15.3)."
-    - kind: changed
-      description: "Changed liveness probe to start later and be less sensitive."
-    - kind: changed
-      description: "Changed readiness probe to start later and be less sensitive."
+      description: "Updated Fluentd Aggregator OCI image to v2.6.1 (Fluentd v1.15.3)."
