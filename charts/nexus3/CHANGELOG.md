@@ -17,11 +17,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v4.21.0] - 2023-02-08
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.47.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/nexus-repository-3.47.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.47.0-01)).
+
 ## [v4.20.0] - 2023-01-31
 
 ### All Changes
 
-- Updated the _Nexus3_ image to [v3.46.0](https://help.sonatype.com/display/NXRM3M/Nexus+Repository+3.46.0+Release+Notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.46.0-01)).
+- Updated the _Nexus3_ image to [v3.46.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/nexus-repository-3.46.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.46.0-01)).
 - Added `testResources` value to enable automated chart testing.
 
 ## [v4.19.0] - 2023-01-18
