@@ -30,9 +30,14 @@ podLabels: {}
 
 podAnnotations: {}
 
-securityContext: {}
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 999
+  runAsGroup: 999
 
-podSecurityContext: {}
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
 
 priorityClassName: ""
 

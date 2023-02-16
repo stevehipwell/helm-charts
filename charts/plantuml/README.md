@@ -27,17 +27,16 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `image.pullPolicy`                              | Image pull policy.                                                                          | `IfNotPresent`                   |
 | `image.pullSecrets`                             | **DEPRECATED** Image pull secrets, use `imagePullSecrets`.                                  | `[]`                             |
 | `imagePullSecrets`                              | Image pull secrets, will override `image.pullSecrets`.                                      | `[]`                             |
-| `nameOverride`                                  | Override the `name` of the chart.                                                           | `nil`                            |
-| `fullnameOverride`                              | Override the `fullname` of the chart.                                                       | `nil`                            |
+| `nameOverride`                                  | Override the `name` of the chart.                                                           |                                  |
+| `fullnameOverride`                              | Override the `fullname` of the chart.                                                       |                                  |
 | `commonLabels`                                  | Labels to add to all chart resources.                                                       | `{}`                             |
 | `serviceAccount.create`                         | If `true`, create a new _ServiceAccount_.                                                   | `true`                           |
 | `serviceAccount.annotations`                    | Annotations to add to the _ServiceAccount_.                                                 | `{}`                             |
-| `serviceAccount.name`                           | _ServiceAccount_ name to use, if not set a name is generated using the `fullname` template. | `nil`                            |
+| `serviceAccount.name`                           | _ServiceAccount_ name to use, if not set a name is generated using the `fullname` template. |                                  |
 | `serviceAccount.automountToken`                 | If `true`, mount the ServiceAccount token.                                                  | `false`                          |
 | `podLabels`                                     | Labels to add to the _Pod_.                                                                 | `{}`                             |
-| `podAnnotations`                                | Annotations to add to the pod.                                                              | `{}`                             |
-| `podSecurityContext`                            | Security context for the _Pod_.                                                             | `{}`                             |
-| `securityContext`                               | Security context for the _plantuml_ container.                                              | `{}`                             |
+| `podAnnotations`                                | Annotations to add to the pod.                                                              | See _values.yaml_                |
+| `securityContext`                               | Security context for the _plantuml_ container.                                              | See _values.yaml_                |
 | `priorityClassName`                             | Priority class name to use.                                                                 | `""`                             |
 | `terminationGracePeriodSeconds`                 | Termination grace period in seconds.                                                        |                                  |
 | `livenessProbe`                                 | The liveness probe.                                                                         | See _values.yaml_                |
@@ -50,7 +49,7 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `ingress.ingressClassName`                      | _IngressClass_ for the _Ingress_ resource.                                                  | `""`                             |
 | `ingress.hosts`                                 | _Ingress_ hosts configuration.                                                              | `[]`                             |
 | `ingress.tls`                                   | _Ingress_ TLS configuration                                                                 | `[]`                             |
-| `resources`                                     | Resource requests and limits for the primary container.                                     | `nil`                            |
+| `resources`                                     | Resource requests and limits for the primary container.                                     |                                  |
 | `replicaCount`                                  | Number of replicas to create if `autoscalling.enabled` is `false`.                          | `1`                              |
 | `maxUnavailable`                                | Max unavailable pods for the _PDB_.                                                         | `0`                              |
 | `autoscaling.enabled`                           | If `true`, create a _HPA_.                                                                  | `true`                           |
@@ -62,6 +61,6 @@ The following table lists the configurable parameters of the _PlantUML_ chart an
 | `tolerations`                                   | Toleration labels for _Pod_ assignment.                                                     | `[]`                             |
 | `affinity`                                      | Affinity settings for _Pod_ assignment.                                                     | `{}`                             |
 | `caCerts.enabled`                               | If `true`, add provided CA certificates to the JVM cacerts key store.                       | `false`                          |
-| `caCerts.secret`                                | Secret containing the additional CA certificates.                                           | `nil`                            |
+| `caCerts.secret`                                | Secret containing the additional CA certificates.                                           |                                  |
 | `env`                                           | Environment variables for all containers in the _Pod_.                                      | `[]`                             |
 | `args`                                          | Arguments for the _plantuml_ container.                                                     | `[]`                             |

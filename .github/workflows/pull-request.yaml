@@ -1,0 +1,121 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - charts/**
+
+jobs:
+  validate:
+    name: Validate changed charts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Install Python
+        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
+        with:
+          python-version: "3.x"
+
+      - name: Install Helm
+        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+
+      - name: Install Helm Docs
+        run: |
+          set -euo pipefail
+          curl -L https://github.com/norwoodj/helm-docs/releases/download/v1.11.0/helm-docs_1.11.0_Linux_x86_64.tar.gz | tar -xz --directory /usr/local/bin helm-docs
+          chmod +x /usr/local/bin/helm-docs
+
+      - name: Install Artifact Hub CLI
+        run: |
+          set -euo pipefail
+          curl -L https://github.com/artifacthub/hub/releases/download/v1.11.0/ah_1.11.0_linux_amd64.tar.gz | tar -xz --directory /usr/local/bin ah
+          chmod +x /usr/local/bin/ah
+
+      - name: Install Kubeconform
+        run: |
+          set -euo pipefail
+          curl -L https://github.com/yannh/kubeconform/releases/download/v0.5.0/kubeconform-linux-amd64.tar.gz | tar -xz --directory /usr/local/bin kubeconform
+          chmod +x /usr/local/bin/kubeconform
+
+      - name: Install chart-testing
+        uses: helm/chart-testing-action@afea100a513515fbd68b0e72a7bb0ae34cb62aec # v2.3.1
+
+      - name: Check for changes
+        id: changes
+        run: |
+          set -euo pipefail
+          changed="$(ct list-changed --target-branch main --chart-dirs charts)"
+          if [[ -n "${changed}" ]]
+          then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "charts=$(echo "${changed}" | tr '\n' ',' | rev | cut -c 2- | rev | jq -Rrc '[split(",") | .[] | split("/") | .[1]] | join(",")')" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "charts=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Configure Helm
+        if: fromJSON(steps.changes.outputs.changed)
+        run: helm repo add bitnami https://charts.bitnami.com/bitnami/
+
+      - name: Run Helm Docs check
+        if: fromJSON(steps.changes.outputs.changed)
+        run: |
+          set -euo pipefail
+          helm-docs
+          if [[ -n "$(git status --porcelain --untracked-files=no)" ]]
+          then
+            echo "Documentation not up to date. Please run helm-docs and commit changes!" >&2
+            exit 1
+          fi
+
+      - name: Run Artifact Hub lint
+        if: fromJSON(steps.changes.outputs.changed)
+        run: ah lint --kind helm || exit 1
+
+      - name: Run chart-testing lint
+        if: fromJSON(steps.changes.outputs.changed)
+        run: ct lint --target-branch=main --chart-dirs=charts --check-version-increment=false
+
+      - name: Run Kubeconform
+        if: fromJSON(steps.changes.outputs.changed)
+        run: |
+          set -euo pipefail
+
+          charts="${{ steps.changes.outputs.charts }}"
+          for chart in ${charts//,/ }
+          do
+            values="./charts/${chart}/ci/kubeconform.yaml"
+            if [[ ! -f "${values}" ]]
+            then
+              values="./charts/${chart}/test-values.yaml"
+              touch "${values}"
+            fi
+
+            k8s_versions="1.26.0,1.25.0,1.24.0,1.23.0"
+            for k8s_version in ${k8s_versions//,/ }
+            do
+              echo "Chart: ${chart}, K8s: ${k8s_version}"
+              helm template --kube-version "${k8s_version}" "./charts/${chart}" --values "${values}" | kubeconform --kubernetes-version "${k8s_version}" --schema-location default --schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' --strict --summary
+            done
+          done
+
+      - name: Create Kind cluster
+        if: fromJSON(steps.changes.outputs.changed)
+        uses: helm/kind-action@d8ccf8fb623ce1bb360ae2f45f323d9d5c5e9f00 # v1.5.0
+
+      - name: Run chart-testing install
+        if: fromJSON(steps.changes.outputs.changed)
+        run: ct install --target-branch=main --chart-dirs=charts --helm-extra-args="--timeout 600s"

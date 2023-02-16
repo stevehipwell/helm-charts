@@ -17,6 +17,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v4.21.1] - 2023-02-13
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.47.1](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/nexus-repository-3.47.0---3.47.1-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.47.1-01)).
+
+## [v4.21.0] - 2023-02-08
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.47.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/nexus-repository-3.47.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.47.0-01)).
+
+## [v4.20.0] - 2023-01-31
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.46.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/nexus-repository-3.46.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.46.0-01)).
+- Added `testResources` value to enable automated chart testing.
+
+## [v4.19.0] - 2023-01-18
+
+### All Changes
+
+- Changed root password implementation to use `NEXUS_SECURITY_INITIAL_PASSWORD` instead of scripting.
+- Added `rootPassword.secret` & `rootPassword.key` to replace `config.rootPassword.secret` & `config.rootPassword.key` as these can be used without needing the configuration script.
+- Deprecated `config.rootPassword.secret` & `config.rootPassword.key`.
+- Removed accidentally included `nexus-repository-composer` plugin.
+
+## [v4.18.1] - 2023-01-18
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.45.1](https://help.sonatype.com/repomanager3/product-information/release-notes/2022-release-notes/nexus-repository-3.45.0---3.45.1-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.45.1-SNAPSHOT)).
+
 ## [v4.18.0] - 2022-12-29
 
 ### All Changes

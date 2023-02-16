@@ -2,8 +2,8 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML.
 type: application
-version: 3.18.0
-appVersion: 1.2023.0
+version: 3.20.0
+appVersion: 1.2023.1
 home: https://plantuml.com/
 icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
 keywords:
@@ -20,6 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the PlantUML image to v1.2023.0."
-    - kind: added
-      description: "Added support for terminationGracePeriodSeconds."
+      description: "Updated the PlantUML image to v1.2023.1."

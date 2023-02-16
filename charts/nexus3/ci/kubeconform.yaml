@@ -1,0 +1,194 @@
+commonLabels:
+  common-label: test
+
+serviceAccount:
+  labels:
+    sa-label: test
+  annotations:
+    sa-annotation: test
+
+podLabels:
+  pod-label: test
+
+podAnnotations:
+  pod-annotation: test
+
+priorityClassName: test
+
+service:
+  type: ClusterIP
+  clusterIP:
+  annotations: {}
+  port: 8081
+  additionalPorts:
+    - port: 8082
+      name: docker-group
+      containerPort: 8082
+      host: nexus-docker.local
+    - port: 8083
+      name: docker-hosted
+      containerPort: 8083
+      host: nexus-docker-hosted.local
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    additionalLabels:
+      sm-label: test
+    endpointConfig:
+      interval: 60s
+
+ingress:
+  enabled: true
+  annotations:
+    ig-annotation: test
+  ingressClassName: my-ingress
+  hosts:
+    - nexus.local
+  tls:
+    - hosts:
+        - nexus.local
+        - nexus-docker.local
+        - nexus-docker-hosted.local
+      secretName: nexus3-local-tls
+
+persistence:
+  enabled: true
+  annotations:
+    ps-annotation: test
+  accessMode: ReadWriteOnce
+  storageClass: standard
+  size: 8Gi
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1024Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+
+nodeSelector:
+  foo: bar
+
+tolerations: []
+
+affinity: {}
+
+caCerts:
+  enabled: true
+  secret: nexus3-cas
+
+envVars:
+  jvmMinHeapSize: 1024m
+  jvmMaxHeapSize: 1024m
+  jvmAdditionalMemoryOptions: "-XX:MaxDirectMemorySize=2048m"
+  jvmAdditionalOptions: "-d64"
+
+env:
+  - name: VARIABLE
+    value: my-value
+
+properties:
+  - nexus.scripts.allowCreation=true
+  - nexus.golang.hosted=true
+
+plugins:
+  - name: nexus-repository-composer
+    url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
+
+rootPassword:
+  secret: nexus3-creds
+  key: password
+
+config:
+  enabled: true
+  anonymous:
+    enabled: true
+    roles:
+      - nx-anonymous
+      - nx-metrics
+  realms:
+    enabled: true
+    values:
+      - NexusAuthenticatingRealm
+      - NexusAuthorizingRealm
+      - LdapRealm
+      - DockerToken
+      - NpmToken
+      - NuGetApiKey
+      - rutauth-realm
+  roles:
+    - id: nexus-administrators
+      source: default
+      name: nexus-administrators
+      description: LDAP Administrator Role
+      privileges: []
+      roles:
+        - nx-admin
+  users:
+    - userId: test
+      firstName: Test
+      lastName: User
+      emailAddress: test@example.org
+      source: default
+      status: active
+      roles:
+        - nx-anonymous
+      externalRoles: []
+  ldap:
+    enabled: false
+  blobStores:
+    - name: ExampleFileBlobStore
+      type: file
+      path: /nexus-data/blobs/foo
+      softQuota:
+        type: spaceRemainingQuota
+        limit: 500
+  cleanup:
+    - name: ExampleCleanup
+      notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
+      format: ALL_FORMATS
+      mode: delete
+      criteria:
+        isPrerelease:
+        lastBlobUpdated: "1209600"
+        lastDownloaded: "2419200"
+        regex:
+  repoCredentials:
+    enabled: true
+    secret: nexus3-repo-creds
+  repos:
+    - name: test-repo
+      type: raw-hosted
+      online: true
+      attributes:
+        storage:
+          blobStoreName: default
+          strictContentTypeValidation: false
+          writePolicy: ALLOW
+        cleanup:
+          policyName:
+            - ExampleCleanup
+  tasks:
+    - name: "Cleanup service"
+      typeId: repository.cleanup
+      crontab: "0 0 0 * * ?"
+    - name: "Docker cleanup uploads"
+      typeId: repository.docker.upload-purge
+      crontab: "0 0 0 * * ?"
+      attributes:
+        age: "24"
+    - name: "Docker cleanup artifacts"
+      typeId: repository.docker.gc
+      crontab: "0 0 1 * * ?"
+      attributes:
+        repositoryName: "*"
+    - name: "Cleanup blob store"
+      typeId: blobstore.compact
+      crontab: "0 0 2 * * ?"
+      attributes:
+        blobStoreName: "default"
+
+testResources: true

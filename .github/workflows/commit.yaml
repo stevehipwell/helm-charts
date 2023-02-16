@@ -1,0 +1,194 @@
+name: Commit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - charts/**/Chart.yaml
+
+jobs:
+  check:
+    name: Check charts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    outputs:
+      release: ${{ steps.charts.outputs.release }}
+      matrix: ${{ steps.charts.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Install yq
+        run: |
+          set -euo pipefail
+          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
+
+      - name: Check for charts to release
+        id: charts
+        run: |
+          set -euo pipefail
+
+          release_charts=""
+
+          for chart_dir in ./charts/*
+          do
+            if [[ -d "${chart_dir}" ]]
+            then
+              chart="$(basename "${chart_dir}")"
+              released_version="$(git tag -l --sort version:refname "${chart}-*" | tail -n 1 | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' || true)"
+              current_version="$(yq eval '.version' "./charts/${chart}/Chart.yaml")"
+
+              if [[ "${current_version}" != "${released_version}" ]]
+              then
+                echo "Chart: ${chart}, Released version: ${released_version}, Current version: ${current_version}"
+                release_charts="${release_charts}${chart},"
+              fi
+            fi
+          done
+
+          if [[ -n "${release_charts}" ]]
+          then
+            echo "release=true" >> $GITHUB_OUTPUT
+          else
+            echo "release=false" >> $GITHUB_OUTPUT
+          fi
+
+          echo "matrix=$(jq -Rrc 'split(",")' <<< "${release_charts%,}")" >> $GITHUB_OUTPUT
+
+  release:
+    name: Release charts
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    needs: check
+    if: ${{ fromJson(needs.check.outputs.release) }}
+    strategy:
+      matrix:
+        chart: ${{ fromJson(needs.check.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Install Crane
+        uses: imjasonh/setup-crane@e82f1b9a8007d399333baba4d75915558e9fb6a4 # v0.1
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@9becc617647dfa20ae7b1151972e9b3a2c338a2b # v2.8.1
+
+      - name: Install Helm
+        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+
+      - name: Install chart-releaser
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
+        with:
+          install_only: true
+
+      - name: Install ORAS
+        run: |
+          set -euo pipefail
+          curl -L https://github.com/oras-project/oras/releases/download/v0.16.0/oras_0.16.0_linux_amd64.tar.gz | tar -xz --directory /usr/local/bin oras
+          chmod +x /usr/local/bin/oras
+
+      - name: Install yq
+        run: |
+          set -euo pipefail
+          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
+
+      - name: Configure Git
+        run: |
+          set -euo pipefail
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Configure Helm
+        run: helm repo add bitnami https://charts.bitnami.com/bitnami/
+
+      - name: Get chart version
+        id: chart_version
+        run: |
+          set -euo pipefail
+          echo "version=$(yq eval '.version' './charts/${{ matrix.chart }}/Chart.yaml')" >> $GITHUB_OUTPUT
+
+      - name: Get changelog entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@b97ce03a10d9bdbb07beb491c76a5a01d78cd3ef # v2.2.2
+        with:
+          path: ./charts/${{ matrix.chart }}/CHANGELOG.md
+          version: "v${{ steps.chart_version.outputs.version }}"
+
+      - name: Create release notes
+        run: |
+          set -euo pipefail
+          cat <<"EOF" > ./charts/${{ matrix.chart }}/RELEASE.md
+          ${{ steps.changelog_reader.outputs.changes }}
+          EOF
+
+      - name: Release chart
+        id: release
+        run: |
+          set -euo pipefail
+
+          package_dir="./.cr-release-packages"
+          index_dir="./.cr-index"
+
+          mkdir -p "${package_dir}" "${index_dir}"
+
+          cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
+
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=true
+
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
+
+          echo "path=${package_dir}/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" >> $GITHUB_OUTPUT
+
+      - name: Login to OCI registry
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure OCI repository
+        run: |
+          set -euo pipefail
+
+          oci_registry="ghcr.io"
+          oci_repository="${oci_registry}/${{ github.repository }}/${{ matrix.chart }}"
+
+          oras login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
+          oras push "${oci_repository}:artifacthub.io" "./charts/${{ matrix.chart }}/artifacthub-repo.yml:application/vnd.cncf.artifacthub.repository-metadata.layer.v1.yaml"
+
+      - name: Push chart to OCI repository
+        env:
+          COSIGN_EXPERIMENTAL: 1
+        run: |
+          set -euo pipefail
+
+          oci_registry="ghcr.io"
+          oci_repository_prefix="${oci_registry}/${{ github.repository }}"
+          oci_repository="${oci_repository_prefix}/${{ matrix.chart }}"
+          oci_image="${oci_repository}:${{ steps.chart_version.outputs.version }}"
+
+          helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
+          helm push ${{ steps.release.outputs.path }} "oci://${oci_repository_prefix}"
+
+          digest="$(crane digest "${oci_image}")"
+          cosign sign "${oci_image}@${digest}"

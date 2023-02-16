@@ -108,10 +108,17 @@ spec:
               {{- else }}
               value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- end }}
-            {{- with .Values.env }}
+          {{- if or .Values.rootPassword.secret .Values.config.rootPassword.secret }}
+            - name: NEXUS_SECURITY_INITIAL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default .Values.rootPassword.secret .Values.config.rootPassword.secret }}
+                  key: {{ default .Values.rootPassword.key .Values.config.rootPassword.key }}
+          {{- end }}
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
-            {{- end }}
-          {{- if .Values.config.enabled }}
+          {{- end }}
+          {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
           lifecycle:
             postStart:
               exec:
@@ -147,13 +154,9 @@ spec:
             - mountPath: /opt/sonatype/nexus/deploy
               name: nexus-deploy
           {{- end }}
-          {{- if .Values.config.enabled }}
+          {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
             - mountPath: /opt/sonatype/nexus/conf
               name: {{ template "nexus3.fullname" . }}-conf
-              readOnly: true
-            - mountPath: /opt/sonatype/nexus/secret/root.password
-              name: {{ .Values.config.rootPassword.secret }}
-              subPath: {{ .Values.config.rootPassword.key }}
               readOnly: true
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
@@ -199,16 +202,11 @@ spec:
         - name: nexus-deploy
           emptyDir: {}
       {{- end }}
-      {{- if .Values.config.enabled }}
+      {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
         - name: {{ template "nexus3.fullname" . }}-conf
           configMap:
             name: {{ template "nexus3.fullname" . }}-conf
             defaultMode: 0755
-      {{- if .Values.config.rootPassword }}
-        - name: {{ .Values.config.rootPassword.secret }}
-          secret:
-            secretName: {{ .Values.config.rootPassword.secret }}
-      {{- end }}
       {{- if and .Values.config.ldap.enabled }}
         - name: {{ .Values.config.ldap.authPassword.secret }}
           secret:

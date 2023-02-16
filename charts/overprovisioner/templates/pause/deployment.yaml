@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "overprovisioner.pause.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "overprovisioner.pause.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.pause.replicas }}
+  selector:
+    matchLabels:
+      {{- include "overprovisioner.pause.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "overprovisioner.pause.selectorLabels" . | nindent 8 }}
+      {{- with .Values.pause.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.pause.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "overprovisioner.pause.serviceAccountName" . }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65535
+        runAsGroup: 65535
+      priorityClassName: {{ .Values.priorityClass.name }}
+      terminationGracePeriodSeconds: {{ .Values.pause.terminationGracePeriodSeconds }}
+      containers:
+        - name: pause
+          image: {{ printf "%s:%s" .Values.pause.image.repository (toString .Values.pause.image.tag) }}
+          imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          resources:
+            {{- toYaml .Values.pause.resources | nindent 12 }}
+      {{- with .Values.pause.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.pause.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.pause.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.pause.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

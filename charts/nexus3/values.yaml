@@ -149,15 +149,19 @@ properties:
   - nexus.scripts.allowCreation=true
   # - nexus.golang.hosted=true
 
-plugins:
-  - name: nexus-repository-composer
-    url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.18/nexus-repository-composer-0.0.18-bundle.kar
+plugins: []
+#   - name: nexus-repository-composer
+#     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
+
+rootPassword:
+  secret:
+  key: password
 
 config:
   enabled: false
   rootPassword:
     secret:
-    key:
+    key: password
   anonymous:
     enabled: false
     roles:
@@ -276,3 +280,5 @@ config:
   #     crontab: "0 0 2 * * ?"
   #     attributes:
   #       blobStoreName: "default"
+
+testResources: false

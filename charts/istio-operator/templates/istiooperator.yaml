@@ -4,6 +4,10 @@ kind: IstioOperator
 metadata:
   namespace: {{ .Values.istioNamespace }}
   name: istio-operator
+  {{- with .Values.controlPlane.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   labels:
     {{- include "istio-operator.labels" . | nindent 4 }}
 spec:
