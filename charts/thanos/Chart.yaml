@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.10.2
+version: 1.11.0
 appVersion: 0.30.2
 keywords:
   - kubernetes
@@ -22,5 +22,23 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added support for Thanos Receive."
+    - kind: added
+      description: "Added support for topologySpreadConstraints."
+    - kind: added
+      description: "Added top level additionalEndpoints value to replace query.additionalStores."
+    - kind: added
+      description: "Added top level additionalReplicaLabels value to replace query.replicaLabels."
     - kind: changed
-      description: "Updated the Thanos image to v0.30.2."
+      description: "Changed implementation to use --endpoint instead of store --store."
+    - kind: fixed
+      description: "Fixed missing Query replica label arguments."
+    - kind: fixed
+      description: "Fixed missing Rule replica label drop arguments."
+    - kind: deprecated
+      description: "Deprecated query.additionalStores."
+    - kind: deprecated
+      description: "Deprecated query.replicaLabels."
+    - kind: removed
+      description: "Removed non-headless services where there is a headless service present."

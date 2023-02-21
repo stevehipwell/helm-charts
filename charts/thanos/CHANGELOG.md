@@ -17,6 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.11.0] - 2023-02-22
+
+### All Changes
+
+- Added support for [Thanos Receive](https://thanos.io/tip/components/receive.md/).
+- Added top level `additionalEndpoints` value to replace `query.additionalStores`.
+- Added top level `additionalReplicaLabels` value to replace `query.replicaLabels`.
+- Added support for `topologySpreadConstraints`.
+- Changed implementation to use `--endpoint` instead of store `--store`.
+- Fixed missing Query replica label arguments.
+- Fixed missing Rule replica label drop arguments.
+- Deprecated `query.additionalStores`.
+- Deprecated `query.replicaLabels`.
+- Removed non-headless services where there is a headless service present.
+
 ## [v1.10.2] - 2023-02-01
 
 ### All Changes

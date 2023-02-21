@@ -1,0 +1,118 @@
+{{- if .Values.receive.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "thanos.receiveRouter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveRouter.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.receive.router.autoscaling.enabled }}
+  replicas: {{ .Values.receive.router.replicas }}
+  {{- end }}
+  {{- with .Values.receive.router.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "thanos.receiveRouter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "thanos.receiveRouter.selectorLabels" . | nindent 8 }}
+      {{- with .Values.receive.router.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.receive.router.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "thanos.receiveRouter.serviceAccountName" . }}
+      {{- with .Values.receive.router.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.receive.router.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.receive.router.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: thanos-receive-router
+          {{- with .Values.receive.router.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "thanos.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: HOST_IP_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          {{- with .Values.receive.router.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args:
+            - receive
+            - --log.level={{ .Values.logLevel }}
+            - --log.format={{ .Values.logFormat }}
+            - --grpc-address=0.0.0.0:10901
+            - --http-address=0.0.0.0:10902
+            - --remote-write.address=0.0.0.0:19291
+            - --receive.hashrings-file=/var/lib/thanos-receive/hashrings.json
+            - --receive.replication-factor={{ .Values.receive.replicationFactor }}
+          {{- with .Values.receive.router.extraArgs }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: grpc
+              protocol: TCP
+              containerPort: 10901
+            - name: http
+              protocol: TCP
+              containerPort: 10902
+            - name: http-remote-write
+              protocol: TCP
+              containerPort: 19291
+          livenessProbe:
+            {{- toYaml .Values.receive.router.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.receive.router.readinessProbe | nindent 12 }}
+          volumeMounts:
+            - name: hashrings-config
+              mountPath: /etc/thanos/hashrings.json
+              subPath: hashrings.json
+              readOnly: true
+          {{- with .Values.receive.router.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: hashrings-config
+          configMap:
+            name: {{ include "thanos.receiveRouter.hashringsConfigmapName" . }}
+      {{- with .Values.receive.router.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.receive.router.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.receive.router.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.receive.router.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end -}}

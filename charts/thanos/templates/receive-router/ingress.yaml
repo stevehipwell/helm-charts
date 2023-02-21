@@ -1,7 +1,7 @@
-{{- if and .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled -}}
+{{- if and .Values.receive.enabled .Values.receive.router.ingress.enabled -}}
 {{- $apiIsStable := eq (include "thanos.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "thanos.ingress.supportsPathType" .) "true" -}}
-{{- $serviceName := include "thanos.queryFrontendFullname" . -}}
+{{- $serviceName := include "thanos.receiveRouter.fullname" . -}}
 apiVersion: {{ include "thanos.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -9,20 +9,20 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.labels" . | nindent 4 }}
-  {{- with .Values.queryFrontend.ingress.annotations }}
+  {{- with .Values.receive.router.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-{{- if and $apiIsStable .Values.queryFrontend.ingress.ingressClassName }}
-  ingressClassName: {{ .Values.queryFrontend.ingress.ingressClassName }}
+{{- if and $apiIsStable .Values.receive.router.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.receive.router.ingress.ingressClassName }}
 {{- end }}
   rules:
-  {{- range .Values.queryFrontend.ingress.hosts }}
+  {{- range .Values.receive.router.ingress.hosts }}
     - host: {{ quote . }}
       http:
         paths:
-          - path: {{ $.Values.queryFrontend.ingress.path }}
+          - path: {{ $.Values.receive.router.ingress.path }}
             {{- if $ingressSupportsPathType }}
             pathType: Prefix
             {{- end }}
@@ -37,9 +37,9 @@ spec:
               servicePort: http
             {{- end }}
   {{- end }}
-{{- if .Values.queryFrontend.ingress.tls }}
+{{- if .Values.receive.router.ingress.tls }}
   tls:
-  {{- range .Values.queryFrontend.ingress.tls }}
+  {{- range .Values.receive.router.ingress.tls }}
     - hosts:
     {{- range .hosts }}
         - {{ quote . }}

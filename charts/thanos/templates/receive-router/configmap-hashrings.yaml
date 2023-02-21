@@ -1,0 +1,20 @@
+{{- if and .Values.receive.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "thanos.receiveRouter.hashringsConfigmapName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveRouter.labels" . | nindent 4 }}
+data:
+  hashrings.json: |
+    [{
+      "hashring": "default",
+      "tenants": [],
+      "endpoints": [
+      {{- range (until (.Values.receive.ingestor.replicas | int)) }}
+        {{ (printf "%s-%s.%s-headless.%s.svc.cluster.local:10901" (include "thanos.receiveIngestor.fullname" $) (toString .) (include "thanos.receiveIngestor.fullname" $) $.Release.Namespace) | quote }}
+      {{- end }}
+      ]
+    }]
+{{- end -}}
