@@ -33,6 +33,9 @@ objstoreConfig:
 logLevel: info
 logFormat: logfmt
 
+additionalEndpoints: []
+additionalReplicaLabels: []
+
 compact:
   enabled: false
 
@@ -80,7 +83,7 @@ compact:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10902
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
@@ -103,6 +106,8 @@ compact:
   tolerations: []
 
   affinity: {}
+
+  topologySpreadConstraints: {}
 
 query:
   serviceAccount:
@@ -166,7 +171,7 @@ query:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10902
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
@@ -193,6 +198,8 @@ query:
   tolerations: []
 
   affinity: {}
+
+  topologySpreadConstraints: {}
 
 queryFrontend:
   enabled: false
@@ -255,7 +262,7 @@ queryFrontend:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10902
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
@@ -282,6 +289,181 @@ queryFrontend:
   tolerations: []
 
   affinity: {}
+
+  topologySpreadConstraints: {}
+
+receive:
+  enabled: false
+
+  replicationFactor: 1
+  retention: 48h
+
+  ingestor:
+    serviceAccount:
+      create: true
+      labels: {}
+      annotations: {}
+      name: ""
+      automountToken: false
+
+    service:
+      annotations: {}
+
+    replicas: 1
+
+    updateStrategy: {}
+
+    podDisruptionBudget:
+      enabled: false
+      minAvailable:
+      maxUnavailable:
+
+    podLabels: {}
+
+    podAnnotations: {}
+
+    podSecurityContext:
+      fsGroup: 65534
+      runAsUser: 65534
+
+    securityContext: {}
+
+    priorityClassName: ""
+
+    terminationGracePeriodSeconds:
+
+    extraEnv: []
+
+    extraArgs: []
+
+    livenessProbe:
+      httpGet:
+        path: /-/healthy
+        port: http
+        scheme: HTTP
+      initialDelaySeconds: 0
+      periodSeconds: 30
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 8
+
+    readinessProbe:
+      httpGet:
+        path: /-/ready
+        port: http
+        scheme: HTTP
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 20
+
+    resources: {}
+
+    persistence:
+      enabled: false
+      existingClaim: ""
+      annotations: {}
+      accessMode: ReadWriteOnce
+      storageClass: standard
+      size: 8Gi
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+    topologySpreadConstraints: {}
+
+  router:
+    serviceAccount:
+      create: true
+      labels: {}
+      annotations: {}
+      name: ""
+      automountToken: false
+
+    service:
+      annotations: {}
+
+    replicas: 1
+
+    updateStrategy: {}
+
+    autoscaling:
+      enabled: false
+      minReplicas: 1
+      maxReplicas: 3
+      targetCPUUtilizationPercentage: 80
+      targetMemoryUtilizationPercentage:
+
+    podDisruptionBudget:
+      enabled: false
+      minAvailable:
+      maxUnavailable:
+
+    podLabels: {}
+
+    podAnnotations: {}
+
+    podSecurityContext:
+      fsGroup: 65534
+      runAsUser: 65534
+
+    securityContext: {}
+
+    priorityClassName: ""
+
+    terminationGracePeriodSeconds:
+
+    extraEnv: []
+
+    extraArgs: []
+
+    livenessProbe:
+      httpGet:
+        path: /-/healthy
+        port: http
+        scheme: HTTP
+      initialDelaySeconds: 0
+      periodSeconds: 30
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 4
+
+    readinessProbe:
+      httpGet:
+        path: /-/ready
+        port: http
+        scheme: HTTP
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 20
+
+    ingress:
+      enabled: false
+      annotations: {}
+      ingressClassName: ""
+      path: /
+      hosts: []
+      #   - chart-example.local
+      tls: []
+      #   - hosts:
+      #       - chart-example.local
+      #     secretName: chart-example-tls
+
+    resources: {}
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+    topologySpreadConstraints: {}
 
 rule:
   enabled: false
@@ -341,7 +523,7 @@ rule:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10902
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
@@ -376,6 +558,8 @@ rule:
   tolerations: []
 
   affinity: {}
+
+  topologySpreadConstraints: {}
 
   configReloader:
     enabled: true
@@ -445,7 +629,7 @@ storeGateway:
   readinessProbe:
     httpGet:
       path: /-/ready
-      port: 10902
+      port: http
       scheme: HTTP
     initialDelaySeconds: 0
     periodSeconds: 5
@@ -468,3 +652,5 @@ storeGateway:
   tolerations: []
 
   affinity: {}
+
+  topologySpreadConstraints: {}

@@ -65,15 +65,18 @@ spec:
             - --log.format={{ .Values.logFormat }}
             - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
-          {{- range .Values.query.replicaLabels }}
+          {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
-            - {{ printf "--store=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.storeGatewayFullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.storeGatewayFullname" .) .Release.Namespace }}
           {{- if .Values.rule.enabled }}
-            - {{ printf "--store=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.ruleFullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.ruleFullname" .) .Release.Namespace }}
           {{- end }}
-          {{- range .Values.query.additionalStores }}
-            - --store={{ . }}
+          {{- if .Values.receive.enabled }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.receiveIngestor.fullname" .) .Release.Namespace }}
+          {{- end }}
+          {{- range (concat .Values.additionalEndpoints .Values.query.additionalStores) | uniq }}
+            - --endpoint={{ . }}
           {{- end }}
           {{- with .Values.query.extraArgs }}
             {{- toYaml . | nindent 12 }}
@@ -97,11 +100,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.query.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.query.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.query.tolerations }}
-      tolerations:
+      {{- with .Values.query.topologySpreadConstraints }}
+      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}

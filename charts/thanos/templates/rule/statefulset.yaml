@@ -78,6 +78,12 @@ spec:
             - --objstore.config-file=/etc/thanos/objstore.yaml
             - --label=rule_replica="$(NAME)"
             - --alert.label-drop=rule_replica
+          {{- if .Values.receive.enabled }}
+            - --alert.label-drop=receive_replica
+          {{- end }}
+          {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels) | uniq }}
+            - --alert.label-drop={{ . }}
+          {{- end }}
             - --tsdb.retention={{ .Values.rule.retention }}
             - --tsdb.block-duration={{ .Values.rule.blockDuration }}
             - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.cluster.local" (include "thanos.queryFullname" .) .Release.Namespace }}
@@ -153,12 +159,16 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.rule.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.rule.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.rule.tolerations }}
-      tolerations:
+      {{- with .Values.rule.topologySpreadConstraints }}
+      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- if .Values.rule.persistence.enabled }}

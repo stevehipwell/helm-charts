@@ -1,0 +1,19 @@
+{{- if and .Values.receive.enabled .Values.receive.ingestor.podDisruptionBudget.enabled -}}
+apiVersion: {{ include "thanos.pdb.apiVersion" . }}
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "thanos.receiveIngestor.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveIngestor.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 6 }}
+{{- if .Values.receive.ingestor.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.receive.ingestor.podDisruptionBudget.minAvailable }}
+{{- end  }}
+{{- if .Values.receive.ingestor.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.receive.ingestor.podDisruptionBudget.maxUnavailable }}
+{{- end  }}
+{{- end -}}

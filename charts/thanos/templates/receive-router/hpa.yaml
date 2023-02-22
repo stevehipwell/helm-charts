@@ -1,0 +1,33 @@
+{{- if and (and .Values.receive.enabled .Values.receive.router.autoscaling.enabled) (or .Values.receive.router.autoscaling.targetCPUUtilizationPercentage .Values.receive.router.autoscaling.targetMemoryUtilizationPercentage) -}}
+apiVersion: {{ include "thanos.hpa.apiVersion" . }}
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "thanos.receiveRouter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveRouter.abels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "thanos.receiveRouter.fullname" . }}
+  minReplicas: {{ .Values.receive.router.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.receive.router.autoscaling.maxReplicas }}
+  metrics:
+  {{- with .Values.receive.router.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+  {{- with .Values.receive.router.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+{{- end -}}

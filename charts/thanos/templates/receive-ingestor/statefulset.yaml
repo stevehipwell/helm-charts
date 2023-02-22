@@ -1,34 +1,34 @@
-{{- if .Values.compact.enabled -}}
+{{- if .Values.receive.enabled -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "thanos.compactFullname" . }}
+  name: {{ include "thanos.receiveIngestor.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.compactLabels" . | nindent 4 }}
+    {{- include "thanos.receiveIngestor.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.compactFullname" .) }}
-  replicas: 1
-  {{- with .Values.compact.updateStrategy }}
+  serviceName: {{ printf "%s-headless" (include "thanos.receiveIngestor.fullname" .) }}
+  replicas: {{ .Values.receive.ingestor.replicas }}
+  {{- with .Values.receive.ingestor.updateStrategy }}
   updateStrategy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.compactSelectorLabels" . | nindent 6 }}
+      {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.compactSelectorLabels" . | nindent 8 }}
-      {{- with .Values.compact.podLabels }}
+        {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 8 }}
+      {{- with .Values.receive.ingestor.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if or .Values.objstoreConfig.create (gt (len .Values.compact.podAnnotations) 0) }}
+      {{- if or .Values.objstoreConfig.create (gt (len .Values.receive.ingestor.podAnnotations) 0) }}
       annotations:
       {{- if .Values.objstoreConfig.create }}
         checksum/config: {{ .Values.objstoreConfig.value | sha256sum }}
       {{- end }}
-      {{- with .Values.compact.podAnnotations }}
+      {{- with .Values.receive.ingestor.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- end }}
@@ -37,20 +37,20 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.compactServiceAccountName" . }}
-      {{- with .Values.compact.podSecurityContext }}
+      serviceAccountName: {{ include "thanos.receiveIngestor.serviceAccountName" . }}
+      {{- with .Values.receive.ingestor.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.priorityClassName }}
+      {{- with .Values.receive.ingestor.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
-      {{- with .Values.compact.terminationGracePeriodSeconds }}
+      {{- with .Values.receive.ingestor.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
       containers:
-        - name: thanos-compact
-          {{- with .Values.compact.securityContext }}
+        - name: thanos-receive-ingestor
+          {{- with .Values.receive.ingestor.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -65,37 +65,47 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-          {{- with .Values.compact.extraEnv }}
+          {{- with .Values.receive.ingestor.extraEnv }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args:
-            - compact
-            - --wait
+            - receive
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
+            - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
-            - --data-dir=/var/thanos/compact
+            - --remote-write.address=0.0.0.0:19291
             - --objstore.config-file=/etc/thanos/objstore.yaml
-          {{- with .Values.compact.extraArgs }}
+            - --tsdb.path=/var/thanos/receive
+            - --tsdb.retention={{ .Values.receive.retention }}
+            - --label=receive_replica="$(NAME)"
+            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.cluster.local:10901" (include "thanos.receiveIngestor.fullname" .) .Release.Namespace }}
+          {{- with .Values.receive.ingestor.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
+            - name: grpc
+              protocol: TCP
+              containerPort: 10901
             - name: http
               protocol: TCP
               containerPort: 10902
+            - name: http-remote-write
+              protocol: TCP
+              containerPort: 19291
           livenessProbe:
-            {{- toYaml .Values.compact.livenessProbe | nindent 12 }}
+            {{- toYaml .Values.receive.ingestor.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.compact.readinessProbe | nindent 12 }}
+            {{- toYaml .Values.receive.ingestor.readinessProbe | nindent 12 }}
           volumeMounts:
-            - mountPath: /etc/thanos/objstore.yaml
-              name: objstore-config
+            - name: objstore-config
+              mountPath: /etc/thanos/objstore.yaml
               subPath: {{ .Values.objstoreConfig.key }}
               readOnly: true
-            - mountPath: /var/thanos/compact
-              name: data
+            - name: data
+              mountPath: /var/thanos/receive
               readOnly: false
-          {{- with .Values.compact.resources }}
+          {{- with .Values.receive.ingestor.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -103,38 +113,38 @@ spec:
         - name: objstore-config
           secret:
             secretName: {{ include "thanos.objstoreConfigSecretName" . }}
-      {{- if not .Values.compact.persistence.enabled }}
+      {{- if not .Values.receive.ingestor.persistence.enabled }}
         - name: data
           emptyDir: {}
       {{- end }}
-      {{- with .Values.compact.nodeSelector }}
+      {{- with .Values.receive.ingestor.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.tolerations }}
+      {{- with .Values.receive.ingestor.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.affinity }}
+      {{- with .Values.receive.ingestor.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.topologySpreadConstraints }}
+      {{- with .Values.receive.ingestor.topologySpreadConstraints }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if .Values.compact.persistence.enabled }}
+  {{- if .Values.receive.ingestor.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.compactSelectorLabels" . | nindent 10 }}
-        {{- with .Values.compact.persistence.annotations }}
+          {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 10 }}
+        {{- with .Values.receive.ingestor.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}
         {{- end }}
       spec:
-      {{- with .Values.compact.persistence.storageClass }}
+      {{- with .Values.receive.ingestor.persistence.storageClass }}
       {{- if (eq "-" .) }}
         storageClassName: ""
       {{- else }}
@@ -142,9 +152,9 @@ spec:
       {{- end }}
       {{- end }}
         accessModes:
-          - {{ .Values.compact.persistence.accessMode }}
+          - {{ .Values.receive.ingestor.persistence.accessMode }}
         resources:
           requests:
-            storage: {{ .Values.compact.persistence.size }}
+            storage: {{ .Values.receive.ingestor.persistence.size }}
   {{- end }}
 {{- end -}}

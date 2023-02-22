@@ -1,0 +1,19 @@
+{{- if and .Values.receive.enabled .Values.receive.router.podDisruptionBudget.enabled -}}
+apiVersion: {{ include "thanos.pdb.apiVersion" . }}
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "thanos.receiveRouter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thanos.receiveRouter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "thanos.receiveRouter.selectorLabels" . | nindent 6 }}
+{{- if .Values.receive.router.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.receive.router.podDisruptionBudget.minAvailable }}
+{{- end  }}
+{{- if .Values.receive.router.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.receive.router.podDisruptionBudget.maxUnavailable }}
+{{- end  }}
+{{- end -}}
