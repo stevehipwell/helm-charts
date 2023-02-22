@@ -16663,6 +16663,32 @@ entries:
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the Vertical Pod Autoscaler image version to v0.12.0."
+    apiVersion: v2
+    appVersion: 0.12.0
+    created: "2023-02-22T19:52:09.749950561Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 62c328ebc6a5e45e5014946f89da12f4af208f5ba0c8640dab8d35ae3c591150
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.1.0/vertical-pod-autoscaler-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Initial release."
     apiVersion: v2
@@ -16688,4 +16714,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-02-22T13:40:01.10221455Z"
+generated: "2023-02-22T19:52:09.750844021Z"
