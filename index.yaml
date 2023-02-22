@@ -13821,6 +13821,54 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for Thanos Receive."
+        - kind: added
+          description: "Added support for topologySpreadConstraints."
+        - kind: added
+          description: "Added top level additionalEndpoints value to replace query.additionalStores."
+        - kind: added
+          description: "Added top level additionalReplicaLabels value to replace query.replicaLabels."
+        - kind: changed
+          description: "Changed implementation to use --endpoint instead of store --store."
+        - kind: fixed
+          description: "Fixed missing Query replica label arguments."
+        - kind: fixed
+          description: "Fixed missing Rule replica label drop arguments."
+        - kind: deprecated
+          description: "Deprecated query.additionalStores."
+        - kind: deprecated
+          description: "Deprecated query.replicaLabels."
+        - kind: removed
+          description: "Removed non-headless services where there is a headless service present."
+    apiVersion: v2
+    appVersion: 0.30.2
+    created: "2023-02-22T13:40:01.101076762Z"
+    description: Helm chart for Thanos components.
+    digest: 2be0375f97dd1459c895e1af9f97680d242b2d9ca1b6563061095a197d85f4e0
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.11.0/thanos-1.11.0.tgz
+    version: 1.11.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Thanos image to v0.30.2."
     apiVersion: v2
@@ -16640,4 +16688,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-02-15T11:36:49.132374803Z"
+generated: "2023-02-22T13:40:01.10221455Z"
