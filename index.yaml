@@ -16662,6 +16662,44 @@ entries:
     version: 1.0.0
   vertical-pod-autoscaler:
   - annotations:
+      artifacthub.io/alternativeName: vpa
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the Vertical Pod Autoscaler image version to v0.13.0."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 0.13.0
+    created: "2023-02-22T20:01:46.182744901Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 53f2d9e794150adb5f032eb671b9089507cfe4580ff55cf7696ea0c603a71b81
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.2.0/vertical-pod-autoscaler-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Vertical Pod Autoscaler image version to v0.12.0."
@@ -16714,4 +16752,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-02-22T19:52:09.750844021Z"
+generated: "2023-02-22T20:01:46.183973212Z"
