@@ -17,8 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [v1.0.0] - UNRELEASED
+## [v1.1.0] - 2023-02-22
 
-### Added
+### All Changes
+
+- Updated the _Vertical Pod Autoscaler_ image version to [v0.12.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.12.0).
+
+## [v1.0.0] - 2022-12-08
+
+### All Changes
 
 - Initial release.
