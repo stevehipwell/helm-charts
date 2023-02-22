@@ -17,7 +17,6 @@ maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
 annotations:
-  artifacthub.io/alternativeName: vpa
   artifacthub.io/crds: |
     - kind: VerticalPodAutoscalerCheckpoint
       version: v1
