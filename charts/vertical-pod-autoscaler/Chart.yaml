@@ -2,8 +2,8 @@ apiVersion: v2
 name: vertical-pod-autoscaler
 description: Helm chart for the Vertical Pod Autoscaler.
 type: application
-version: 1.1.0
-appVersion: 0.12.0
+version: 1.2.0
+appVersion: 0.13.0
 keywords:
   - kubernetes
   - autoscale
@@ -17,6 +17,18 @@ maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
 annotations:
+  artifacthub.io/alternativeName: vpa
+  artifacthub.io/crds: |
+    - kind: VerticalPodAutoscalerCheckpoint
+      version: v1
+      name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+      displayName: VerticalPodAutoscalerCheckpoint
+      description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+    - kind: VerticalPodAutoscalerCheckpoint
+      version: v1
+      name: verticalpodautoscalers.autoscaling.k8s.io
+      displayName: VerticalPodAutoscaler
+      description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Vertical Pod Autoscaler image version to v0.12.0."
+      description: "Updated the Vertical Pod Autoscaler image version to v0.13.0."

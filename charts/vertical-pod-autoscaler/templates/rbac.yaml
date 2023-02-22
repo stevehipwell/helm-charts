@@ -302,7 +302,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: system:vpa-evictionter-binding
+  name: system:vpa-evictioner-binding
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 roleRef:
