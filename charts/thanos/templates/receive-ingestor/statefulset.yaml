@@ -90,7 +90,7 @@ spec:
             - name: http
               protocol: TCP
               containerPort: 10902
-            - name: http-remote-write
+            - name: http-rem-write
               protocol: TCP
               containerPort: 19291
           livenessProbe:
