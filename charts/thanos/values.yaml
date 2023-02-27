@@ -377,6 +377,7 @@ receive:
     topologySpreadConstraints: {}
 
   router:
+    enabled: true
     serviceAccount:
       create: true
       labels: {}

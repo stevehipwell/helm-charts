@@ -1,4 +1,4 @@
-{{- if and .Values.receive.enabled .Values.receive.router.ingress.enabled -}}
+{{- if and .Values.receive.router.enabled .Values.receive.router.ingress.enabled -}}
 {{- $apiIsStable := eq (include "thanos.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "thanos.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "thanos.receiveRouter.fullname" . -}}

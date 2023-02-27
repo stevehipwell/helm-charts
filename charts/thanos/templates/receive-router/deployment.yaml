@@ -1,4 +1,4 @@
-{{- if .Values.receive.enabled -}}
+{{- if .Values.receive.router.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

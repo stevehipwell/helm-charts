@@ -1,4 +1,4 @@
-{{- if and .Values.receive.enabled .Values.serviceMonitor.enabled -}}
+{{- if and .Values.receive.router.enabled .Values.serviceMonitor.enabled -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:

@@ -1,4 +1,4 @@
-{{- if and (and .Values.receive.enabled .Values.receive.router.autoscaling.enabled) (or .Values.receive.router.autoscaling.targetCPUUtilizationPercentage .Values.receive.router.autoscaling.targetMemoryUtilizationPercentage) -}}
+{{- if and (and .Values.receive.router.enabled .Values.receive.router.autoscaling.enabled) (or .Values.receive.router.autoscaling.targetCPUUtilizationPercentage .Values.receive.router.autoscaling.targetMemoryUtilizationPercentage) -}}
 apiVersion: {{ include "thanos.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:
