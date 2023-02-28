@@ -46,7 +46,7 @@ jobs:
       - name: Install Kubeconform
         run: |
           set -euo pipefail
-          curl -L https://github.com/yannh/kubeconform/releases/download/v0.5.0/kubeconform-linux-amd64.tar.gz | tar -xz --directory /usr/local/bin kubeconform
+          curl -L https://github.com/yannh/kubeconform/releases/download/v0.6.1/kubeconform-linux-amd64.tar.gz | tar -xz --directory /usr/local/bin kubeconform
           chmod +x /usr/local/bin/kubeconform
 
       - name: Install chart-testing
