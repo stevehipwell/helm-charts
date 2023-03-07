@@ -141,21 +141,15 @@ jobs:
           ${{ steps.changelog_reader.outputs.changes }}
           EOF
 
-      - name: Release chart
-        id: release
+      - name: Package chart
+        id: package
         run: |
           set -euo pipefail
 
           package_dir="./.cr-release-packages"
-          index_dir="./.cr-index"
-
-          mkdir -p "${package_dir}" "${index_dir}"
+          mkdir -p "${package_dir}"
 
           cr package --package-path="${package_dir}" ./charts/${{ matrix.chart }}
-
-          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=true
-
-          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
 
           echo "path=${package_dir}/${{ matrix.chart }}-${{ steps.chart_version.outputs.version }}.tgz" >> $GITHUB_OUTPUT
 
@@ -176,9 +170,7 @@ jobs:
           oras login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
           oras push "${oci_repository}:artifacthub.io" "./charts/${{ matrix.chart }}/artifacthub-repo.yml:application/vnd.cncf.artifacthub.repository-metadata.layer.v1.yaml"
 
-      - name: Push chart to OCI repository
-        env:
-          COSIGN_EXPERIMENTAL: 1
+      - name: Publish chart to OCI repository
         run: |
           set -euo pipefail
 
@@ -188,7 +180,21 @@ jobs:
           oci_image="${oci_repository}:${{ steps.chart_version.outputs.version }}"
 
           helm registry login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} "${oci_registry}"
-          helm push ${{ steps.release.outputs.path }} "oci://${oci_repository_prefix}"
+          helm push ${{ steps.package.outputs.path }} "oci://${oci_repository_prefix}"
 
           digest="$(crane digest "${oci_image}")"
-          cosign sign "${oci_image}@${digest}"
+          cosign sign --yes "${oci_image}@${digest}"
+
+      - name: Release chart
+        id: release
+        run: |
+          set -euo pipefail
+
+          index_dir="./.cr-index"
+          mkdir -p "${index_dir}"
+
+          package_dir="$(dirname ${{ steps.package.outputs.path }})"
+
+          cr upload --token=${{ secrets.GITHUB_TOKEN }} --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --release-notes-file=RELEASE.md --make-release-latest=true
+
+          cr index --token=${{ secrets.GITHUB_TOKEN }} --push --owner=${{ github.repository_owner }} --git-repo=${{ github.event.repository.name }} --package-path="${package_dir}" --index-path="${index_dir}/index.yaml"
