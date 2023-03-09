@@ -13984,6 +13984,38 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`."
+        - kind: fixed
+          description: "Fixed receive remote write pod name being too long."
+    apiVersion: v2
+    appVersion: 0.30.2
+    created: "2023-03-09T17:27:10.624582437Z"
+    description: Helm chart for Thanos components.
+    digest: 24f1197664387286d821a0a9b2795338874e15935efba203a11e61d0471952b4
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.11.1/thanos-1.11.1.tgz
+    version: 1.11.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added support for Thanos Receive."
         - kind: added
           description: "Added support for topologySpreadConstraints."
@@ -16914,4 +16946,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-09T15:11:42.781177932Z"
+generated: "2023-03-09T17:27:10.626387837Z"
