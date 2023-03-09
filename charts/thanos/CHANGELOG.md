@@ -17,11 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v1.11.1] - 2023-03-09
 
 ### All Changes
 
 - Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
+- Fixed receive remote write pod name being too long.
 
 ## [v1.11.0] - 2023-02-22
 

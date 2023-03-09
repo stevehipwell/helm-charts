@@ -21,10 +21,10 @@ spec:
       protocol: TCP
       port: 10902
       targetPort: http
-    - name: http-remote-write
+    - name: http-rem-write
       protocol: TCP
       port: 19291
-      targetPort: http-remote-write
+      targetPort: http-rem-write
   selector:
     {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 4 }}
 {{- end -}}
