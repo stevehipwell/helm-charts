@@ -109,9 +109,11 @@ extraVolumes: []
 
 nodeSelector: {}
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 caCerts:
   enabled: false

@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "thanos.queryFullname" . }}
+  name: {{ include "thanos.query.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryLabels" . | nindent 4 }}
+    {{- include "thanos.query.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.query.autoscaling.enabled }}
   replicas: {{ .Values.query.replicas }}
@@ -15,11 +15,11 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.querySelectorLabels" . | nindent 6 }}
+      {{- include "thanos.query.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.querySelectorLabels" . | nindent 8 }}
+        {{- include "thanos.query.selectorLabels" . | nindent 8 }}
       {{- with .Values.query.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -32,7 +32,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.queryServiceAccountName" . }}
+      serviceAccountName: {{ include "thanos.query.serviceAccountName" . }}
       {{- with .Values.query.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -68,12 +68,12 @@ spec:
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.storeGatewayFullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.storeGateway.fullname" .) .Release.Namespace }}
           {{- if .Values.rule.enabled }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.ruleFullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.rule.fullname" .) .Release.Namespace }}
           {{- end }}
           {{- if .Values.receive.enabled }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.receiveIngestor.fullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace }}
           {{- end }}
           {{- range (concat .Values.additionalEndpoints .Values.query.additionalStores) | uniq }}
             - --endpoint={{ . }}
@@ -100,15 +100,79 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.query.affinity }}
+      affinity:
+      {{- with .Values.query.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.query.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.query.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.query.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.query.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.query.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.query.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.query.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.query.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.query.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.query.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.query.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.query.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.query.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.query.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.query.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.query.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "thanos.query.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.query.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.query.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.query.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}

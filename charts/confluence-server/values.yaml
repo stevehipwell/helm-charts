@@ -98,9 +98,11 @@ terminationGracePeriodSeconds: 30
 
 nodeSelector: {}
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 caCerts:
   enabled: false

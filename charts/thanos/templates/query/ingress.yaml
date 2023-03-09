@@ -1,7 +1,7 @@
 {{- if .Values.query.ingress.enabled -}}
 {{- $apiIsStable := eq (include "thanos.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "thanos.ingress.supportsPathType" .) "true" -}}
-{{- $serviceName := include "thanos.queryFullname" . -}}
+{{- $serviceName := include "thanos.query.fullname" . -}}
 apiVersion: {{ include "thanos.ingress.apiVersion" . }}
 kind: Ingress
 metadata:

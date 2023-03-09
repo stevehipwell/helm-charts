@@ -121,11 +121,11 @@ extraVolumes: []
 
 nodeSelector: {}
 
-tolerations: []
-
 affinity: {}
 
-topologySpreadConstraints: {}
+topologySpreadConstraints: []
+
+tolerations: []
 
 env: []
 #   - name: VARIABLE

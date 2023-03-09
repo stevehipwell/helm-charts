@@ -143,10 +143,10 @@ spec:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /opt/sonatype/nexus/etc/logback
-              name: {{ template "nexus3.fullname" . }}-logback
+              name: {{ include "nexus3.fullname" . }}-logback
               readOnly: true
             - mountPath: /nexus-data/etc/nexus.properties
-              name: {{ template "nexus3.fullname" . }}-properties
+              name: {{ include "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
           {{- if .Values.plugins }}
@@ -155,7 +155,7 @@ spec:
           {{- end }}
           {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
             - mountPath: /opt/sonatype/nexus/conf
-              name: {{ template "nexus3.fullname" . }}-conf
+              name: {{ include "nexus3.fullname" . }}-conf
               readOnly: true
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
@@ -186,22 +186,22 @@ spec:
           secret:
             secretName: {{ .Values.caCerts.secret }}
       {{- end }}
-        - name: {{ template "nexus3.fullname" . }}-logback
+        - name: {{ include "nexus3.fullname" . }}-logback
           configMap:
-            name: {{ template "nexus3.fullname" . }}-logback
+            name: {{ include "nexus3.fullname" . }}-logback
             defaultMode: 0755
-        - name: {{ template "nexus3.fullname" . }}-properties
+        - name: {{ include "nexus3.fullname" . }}-properties
           configMap:
-            name: {{ template "nexus3.fullname" . }}-properties
+            name: {{ include "nexus3.fullname" . }}-properties
             defaultMode: 0755
       {{- if .Values.plugins }}
         - name: nexus-deploy
           emptyDir: {}
       {{- end }}
       {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
-        - name: {{ template "nexus3.fullname" . }}-conf
+        - name: {{ include "nexus3.fullname" . }}-conf
           configMap:
-            name: {{ template "nexus3.fullname" . }}-conf
+            name: {{ include "nexus3.fullname" . }}-conf
             defaultMode: 0755
       {{- if and .Values.config.ldap.enabled }}
         - name: {{ .Values.config.ldap.authPassword.secret }}
@@ -221,9 +221,77 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- if .Values.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+      {{- with .Values.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "nexus3.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "nexus3.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "nexus3.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "nexus3.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "nexus3.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:

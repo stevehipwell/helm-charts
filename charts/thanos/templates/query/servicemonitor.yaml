@@ -2,10 +2,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "thanos.queryFullname" . }}
+  name: {{ include "thanos.query.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryLabels" . | nindent 4 }}
+    {{- include "thanos.query.labels" . | nindent 4 }}
   {{- with .Values.serviceMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -16,7 +16,7 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{- include "thanos.querySelectorLabels" . | nindent 6 }}
+      {{- include "thanos.query.selectorLabels" . | nindent 6 }}
     matchExpressions:
       - key: prometheus.io/service-monitor
         operator: NotIn

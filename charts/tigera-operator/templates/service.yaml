@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "tigera-operator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "tigera-operator.labels" . | nindent 4 }}
 spec:

@@ -2,10 +2,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "thanos.compactFullname" . }}
+  name: {{ include "thanos.compact.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.compactLabels" . | nindent 4 }}
+    {{- include "thanos.compact.labels" . | nindent 4 }}
   {{- with .Values.serviceMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -16,7 +16,7 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{- include "thanos.compactSelectorLabels" . | nindent 6 }}
+      {{- include "thanos.compact.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: http
       path: /metrics

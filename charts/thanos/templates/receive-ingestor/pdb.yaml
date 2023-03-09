@@ -2,14 +2,14 @@
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "thanos.receiveIngestor.fullname" . }}
+  name: {{ include "thanos.receive.ingestor.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receiveIngestor.labels" . | nindent 4 }}
+    {{- include "thanos.receive.ingestor.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 6 }}
+      {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 6 }}
 {{- if .Values.receive.ingestor.podDisruptionBudget.minAvailable }}
   minAvailable: {{ .Values.receive.ingestor.podDisruptionBudget.minAvailable }}
 {{- end  }}

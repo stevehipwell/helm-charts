@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "nexus3.fullname" . }}-logback
+  name: {{ include "nexus3.fullname" . }}-logback
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}

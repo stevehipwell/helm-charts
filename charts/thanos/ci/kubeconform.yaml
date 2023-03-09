@@ -1,0 +1,17 @@
+serviceMonitor:
+  enabled: true
+
+additionalReplicaLabels:
+  - prometheus_replica
+
+compact:
+  enabled: true
+
+queryFrontend:
+  enabled: true
+
+receive:
+  enabled: true
+
+rule:
+  enabled: true

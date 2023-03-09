@@ -2,14 +2,14 @@
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "thanos.queryFrontendFullname" . }}
+  name: {{ include "thanos.queryFrontend.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryFrontendLabels" . | nindent 4 }}
+    {{- include "thanos.queryFrontend.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "thanos.queryFrontendSelectorLabels" . | nindent 6 }}
+      {{- include "thanos.queryFrontend.selectorLabels" . | nindent 6 }}
 {{- if .Values.queryFrontend.podDisruptionBudget.minAvailable }}
   minAvailable: {{ .Values.queryFrontend.podDisruptionBudget.minAvailable }}
 {{- end  }}

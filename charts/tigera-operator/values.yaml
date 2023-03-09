@@ -55,9 +55,11 @@ resources: {}
 nodeSelector:
   kubernetes.io/os: linux
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 env: []
 #   - name: VARIABLE

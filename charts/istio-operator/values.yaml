@@ -61,9 +61,11 @@ resources: {}
 
 nodeSelector: {}
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 waitForResourcesTimeout: 300s
 

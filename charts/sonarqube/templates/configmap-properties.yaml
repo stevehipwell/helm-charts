@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "sonarqube.configName" . }}
+  name: {{ include "sonarqube.configName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "sonarqube.labels" . | nindent 4 }}
