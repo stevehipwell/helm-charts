@@ -1,0 +1,24 @@
+capacity:
+  mode: auto
+
+  auto:
+    coresPerReplica: 4
+    nodesPerReplica: 1
+    minReplicas: 1
+    maxReplicas: 12
+
+  resources:
+    cpu: 1000m
+    memory: 2048Mi
+
+pause:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 50
+          podAffinityTerm:
+            topologyKey: kubernetes.io/hostname
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway

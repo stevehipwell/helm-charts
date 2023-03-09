@@ -1,0 +1,140 @@
+{{- if eq .Values.capacity.mode "auto" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "overprovisioner.autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "overprovisioner.autoscaler.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "overprovisioner.autoscaler.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "overprovisioner.autoscaler.selectorLabels" . | nindent 8 }}
+      {{- with .Values.autoscaler.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.autoscaler.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "overprovisioner.autoscaler.serviceAccountName" . }}
+      {{- with .Values.autoscaler.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.autoscaler.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.autoscaler.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      containers:
+        - name: autoscaler
+          {{- with .Values.autoscaler.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ printf "%s:%s" .Values.autoscaler.image.repository (toString .Values.autoscaler.image.tag) }}
+          imagePullPolicy: {{ .Values.autoscaler.image.pullPolicy }}
+          command:
+            - /cluster-proportional-autoscaler
+            - --logtostderr=true
+            - {{ printf "--v=%s" (.Values.autoscaler.logLevel | toString) }}
+            - {{ printf "--namespace=%s" .Release.Namespace }}
+            - {{ printf "--target=deployment/%s" (include "overprovisioner.pause.fullname" .) }}
+            - {{ printf "--configmap=%s" (include "overprovisioner.autoscaler.fullname" .) }}
+          {{- with .Values.autoscaler.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.autoscaler.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.autoscaler.affinity }}
+      affinity:
+      {{- with .Values.autoscaler.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.autoscaler.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.autoscaler.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.autoscaler.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "overprovisioner.autoscaler.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.autoscaler.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.autoscaler.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "overprovisioner.autoscaler.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.autoscaler.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.autoscaler.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.autoscaler.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "overprovisioner.autoscaler.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.autoscaler.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.autoscaler.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "overprovisioner.autoscaler.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.autoscaler.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.autoscaler.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "overprovisioner.autoscaler.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.autoscaler.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end -}}

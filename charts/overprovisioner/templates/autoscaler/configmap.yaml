@@ -1,0 +1,19 @@
+
+{{- if eq .Values.capacity.mode "auto" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "overprovisioner.autoscaler.fullname" . }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "overprovisioner.autoscaler.labels" . | nindent 4 }}
+data:
+  linear: |-
+    {
+      "coresPerReplica": {{ .Values.capacity.auto.coresPerReplica }},
+      "nodesPerReplica": {{ .Values.capacity.auto.nodesPerReplica }},
+      "min": {{ .Values.capacity.auto.minReplicas }},
+      "max": {{ .Values.capacity.auto.maxReplicas }},
+      "includeUnschedulableNodes": true
+    }
+{{- end -}}
