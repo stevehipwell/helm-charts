@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v0.2.0] - 2023-03-09
+
+### All Changes
+
+- Added support for automatic scaling using the cluster proportional autoscaler.
+- Changed how the pause pod capacity works; use the new `capacity` values.
+
 ## [v0.1.1] - 2023-01-19
 
 ### All Changes

@@ -1,0 +1,17 @@
+{{- if eq .Values.capacity.mode "auto" -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "overprovisioner.autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "overprovisioner.autoscaler.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "overprovisioner.autoscaler.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "overprovisioner.autoscaler.fullname" . }}
+{{- end -}}

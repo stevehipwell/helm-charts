@@ -1,0 +1,31 @@
+{{- if eq .Values.capacity.mode "auto" -}}
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "overprovisioner.autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "overprovisioner.autoscaler.labels" . | nindent 4 }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - replicationcontrollers/scale
+    verbs:
+      - get
+      - update
+  - apiGroups:
+    - apps
+    resources:
+      - deployments/scale
+      - replicasets/scale
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - get
+{{- end -}}

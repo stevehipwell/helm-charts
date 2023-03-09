@@ -9,6 +9,22 @@ commonLabels: {}
 
 imagePullSecrets: []
 
+capacity:
+  mode: fixed
+
+  fixed:
+    replicas: 1
+
+  auto:
+    coresPerReplica: 4
+    nodesPerReplica: 1
+    minReplicas: 1
+    maxReplicas: 1
+
+  resources:
+    cpu: 10m
+    memory: 16Mi
+
 priorityClass:
   create: true
   name:
@@ -32,22 +48,54 @@ pause:
 
   podAnnotations: {}
 
-  replicas: 1
+  nodeSelector: {}
 
-  terminationGracePeriodSeconds: 0
+  affinity: {}
 
-  resources:
-    requests:
-      cpu: 10m
-      memory: 16Mi
-    limits:
-      cpu: 10m
-      memory: 16Mi
+  topologySpreadConstraints: []
+
+  tolerations: []
+
+autoscaler:
+  serviceAccount:
+    create: true
+    name:
+    labels: {}
+    annotations: {}
+
+  image:
+    repository: registry.k8s.io/cpa/cluster-proportional-autoscaler
+    tag: 1.8.6
+    pullPolicy: IfNotPresent
+
+  podLabels: {}
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 65535
+    runAsGroup: 65535
+
+  securityContext:
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - all
+
+  priorityClassName:
+
+  terminationGracePeriodSeconds:
+
+  resources: {}
 
   nodeSelector: {}
 
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
 
   tolerations: []
+
+  logLevel: 2
