@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "fluentd-aggregator.fullname" . }}
+  name: {{ include "fluentd-aggregator.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}

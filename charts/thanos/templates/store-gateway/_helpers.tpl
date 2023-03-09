@@ -1,14 +1,14 @@
 {{/*
 Fullname
 */}}
-{{- define "thanos.storeGatewayFullname" -}}
+{{- define "thanos.storeGateway.fullname" -}}
 {{ include "thanos.fullname" . }}-store-gateway
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "thanos.storeGatewayLabels" -}}
+{{- define "thanos.storeGateway.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: store-gateway
 {{- end }}
@@ -16,7 +16,7 @@ app.kubernetes.io/component: store-gateway
 {{/*
 Selector labels
 */}}
-{{- define "thanos.storeGatewaySelectorLabels" -}}
+{{- define "thanos.storeGateway.selectorLabels" -}}
 {{ include "thanos.selectorLabels" . }}
 app.kubernetes.io/component: store-gateway
 {{- end }}
@@ -24,7 +24,7 @@ app.kubernetes.io/component: store-gateway
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "thanos.storeGatewayServiceAccountName" -}}
+{{- define "thanos.storeGateway.serviceAccountName" -}}
 {{- if .Values.storeGateway.serviceAccount.create -}}
 {{- default (printf "%s-store-gateway" (include "thanos.fullname" .)) .Values.storeGateway.serviceAccount.name }}
 {{- else -}}

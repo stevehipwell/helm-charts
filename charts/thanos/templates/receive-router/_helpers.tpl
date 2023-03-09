@@ -1,14 +1,14 @@
 {{/*
 Fullname
 */}}
-{{- define "thanos.receiveRouter.fullname" -}}
+{{- define "thanos.receive.router.fullname" -}}
 {{ include "thanos.fullname" . }}-receive-router
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "thanos.receiveRouter.labels" -}}
+{{- define "thanos.receive.router.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: receive-router
 {{- end }}
@@ -16,7 +16,7 @@ app.kubernetes.io/component: receive-router
 {{/*
 Selector labels
 */}}
-{{- define "thanos.receiveRouter.selectorLabels" -}}
+{{- define "thanos.receive.router.selectorLabels" -}}
 {{ include "thanos.selectorLabels" . }}
 app.kubernetes.io/component: receive-router
 {{- end }}
@@ -24,7 +24,7 @@ app.kubernetes.io/component: receive-router
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "thanos.receiveRouter.serviceAccountName" -}}
+{{- define "thanos.receive.router.serviceAccountName" -}}
 {{- if .Values.receive.router.serviceAccount.create -}}
 {{- default (printf "%s-receive-router" (include "thanos.fullname" .)) .Values.receive.router.serviceAccount.name }}
 {{- else -}}
@@ -35,6 +35,6 @@ Create the name of the service account to use
 {{/*
 Hashrings configmap name
 */}}
-{{- define "thanos.receiveRouter.hashringsConfigmapName" -}}
-{{ include "thanos.receiveRouter.fullname" . }}-hashrings
+{{- define "thanos.receive.router.hashringsConfigmapName" -}}
+{{ include "thanos.receive.router.fullname" . }}-hashrings
 {{- end -}}

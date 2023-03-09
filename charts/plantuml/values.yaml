@@ -92,9 +92,11 @@ autoscaling:
 
 nodeSelector: {}
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 caCerts:
   enabled: false

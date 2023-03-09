@@ -2,15 +2,15 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ template "istio-operator.fullname" . }}
+  name: {{ include "istio-operator.fullname" . }}
   labels:
     {{- include "istio-operator.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "istio-operator.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ template "istio-operator.fullname" . }}
-subjects:
-  - kind: ServiceAccount
-    name: {{ template "istio-operator.serviceAccountName" . }}
-    namespace: {{ .Release.Namespace }}
+  name: {{ include "istio-operator.fullname" . }}
 {{- end -}}

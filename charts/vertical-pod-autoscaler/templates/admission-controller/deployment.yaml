@@ -95,15 +95,79 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.admissionController.affinity }}
+      {{- if .Values.admissionController.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+      {{- with .Values.admissionController.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.admissionController.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.admissionController.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.admissionController.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.admissionController.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.admissionController.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.admissionController.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.admissionController.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.admissionController.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.admissionController.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.admissionController.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.admissionController.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.admissionController.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
       {{- end }}
       {{- with .Values.admissionController.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.admissionController.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}

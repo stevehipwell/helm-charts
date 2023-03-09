@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "thanos.receiveRouter.fullname" . }}
+  name: {{ include "thanos.receive.router.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receiveRouter.labels" . | nindent 4 }}
+    {{- include "thanos.receive.router.labels" . | nindent 4 }}
   {{- with .Values.receive.router.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -25,5 +25,5 @@ spec:
       port: 19291
       targetPort: http-remote-write
   selector:
-    {{- include "thanos.receiveRouter.selectorLabels" . | nindent 4 }}
+    {{- include "thanos.receive.router.selectorLabels" . | nindent 4 }}
 {{- end -}}

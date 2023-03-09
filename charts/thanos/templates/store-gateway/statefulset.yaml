@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "thanos.storeGatewayFullname" . }}
+  name: {{ include "thanos.storeGateway.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.storeGatewayLabels" . | nindent 4 }}
+    {{- include "thanos.storeGateway.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.storeGatewayFullname" .) }}
+  serviceName: {{ printf "%s-headless" (include "thanos.storeGateway.fullname" .) }}
   replicas: {{ .Values.storeGateway.replicas }}
   {{- with .Values.storeGateway.updateStrategy }}
   updateStrategy:
@@ -14,11 +14,11 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.storeGatewaySelectorLabels" . | nindent 6 }}
+      {{- include "thanos.storeGateway.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.storeGatewaySelectorLabels" . | nindent 8 }}
+        {{- include "thanos.storeGateway.selectorLabels" . | nindent 8 }}
       {{- with .Values.storeGateway.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -36,7 +36,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.storeGatewayServiceAccountName" . }}
+      serviceAccountName: {{ include "thanos.storeGateway.serviceAccountName" . }}
       {{- with .Values.storeGateway.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -113,16 +113,80 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.storeGateway.affinity }}
+      affinity:
+      {{- with .Values.storeGateway.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.storeGateway.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.storeGateway.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.storeGateway.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.storeGateway.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.storeGateway.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.storeGateway.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.storeGateway.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.storeGateway.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.storeGateway.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.storeGateway.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.storeGateway.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.storeGateway.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.storeGateway.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.storeGateway.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.storeGateway.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.storeGateway.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "thanos.storeGateway.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.storeGateway.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.storeGateway.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.storeGateway.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- if .Values.storeGateway.persistence.enabled }}
@@ -130,7 +194,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.storeGatewaySelectorLabels" . | nindent 10 }}
+          {{- include "thanos.storeGateway.selectorLabels" . | nindent 10 }}
         {{- with .Values.storeGateway.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

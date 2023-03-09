@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [vX.Y.Z] - UNRELEASED
+<!-- ## [UNRELEASED]
 ### Highlights
 ### All Changes
 - Added
@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed
 - Deprecated
 - Removed -->
+
+## [UNRELEASED]
+
+### All Changes
+
+- Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
 ## [v1.11.0] - 2023-02-22
 

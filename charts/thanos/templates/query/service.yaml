@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "thanos.queryFullname" . }}
+  name: {{ include "thanos.query.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryLabels" . | nindent 4 }}
+    {{- include "thanos.query.labels" . | nindent 4 }}
   {{- with .Values.query.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -20,4 +20,4 @@ spec:
       port: 10902
       targetPort: http
   selector:
-    {{- include "thanos.querySelectorLabels" . | nindent 4 }}
+    {{- include "thanos.query.selectorLabels" . | nindent 4 }}

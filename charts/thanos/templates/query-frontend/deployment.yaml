@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "thanos.queryFrontendFullname" . }}
+  name: {{ include "thanos.queryFrontend.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryFrontendLabels" . | nindent 4 }}
+    {{- include "thanos.queryFrontend.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.queryFrontend.autoscaling.enabled }}
   replicas: {{ .Values.queryFrontend.replicas }}
@@ -16,11 +16,11 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.queryFrontendSelectorLabels" . | nindent 6 }}
+      {{- include "thanos.queryFrontend.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.queryFrontendSelectorLabels" . | nindent 8 }}
+        {{- include "thanos.queryFrontend.selectorLabels" . | nindent 8 }}
       {{- with .Values.queryFrontend.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -33,7 +33,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.queryFrontendServiceAccountName" . }}
+      serviceAccountName: {{ include "thanos.queryFrontend.serviceAccountName" . }}
       {{- with .Values.queryFrontend.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -65,7 +65,7 @@ spec:
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
             - --http-address=0.0.0.0:10902
-            - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.cluster.local:10902" (include "thanos.queryFullname" .) .Release.Namespace }}
+            - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.cluster.local:10902" (include "thanos.query.fullname" .) .Release.Namespace }}
           {{- with .Values.queryFrontend.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -85,16 +85,80 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.queryFrontend.affinity }}
+      affinity:
+      {{- with .Values.queryFrontend.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.queryFrontend.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.queryFrontend.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.queryFrontend.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.queryFrontend.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.queryFrontend.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.queryFrontend.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.queryFrontend.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.queryFrontend.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.queryFrontend.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.queryFrontend.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.queryFrontend.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.queryFrontend.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.queryFrontend.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.queryFrontend.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.queryFrontend.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.queryFrontend.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "thanos.queryFrontend.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.queryFrontend.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.queryFrontend.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.queryFrontend.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
 {{- end -}}

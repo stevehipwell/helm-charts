@@ -2,15 +2,15 @@
 apiVersion: {{ include "thanos.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "thanos.queryFullname" . }}
+  name: {{ include "thanos.query.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.queryLabels" . | nindent 4 }}
+    {{- include "thanos.query.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "thanos.queryFullname" . }}
+    name: {{ include "thanos.query.fullname" . }}
   minReplicas: {{ .Values.query.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.query.autoscaling.maxReplicas }}
   metrics:

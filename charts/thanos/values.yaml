@@ -103,11 +103,11 @@ compact:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
 query:
   serviceAccount:
@@ -195,11 +195,11 @@ query:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
 queryFrontend:
   enabled: false
@@ -286,11 +286,11 @@ queryFrontend:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
 receive:
   enabled: false
@@ -370,11 +370,11 @@ receive:
 
     nodeSelector: {}
 
-    tolerations: []
-
     affinity: {}
 
-    topologySpreadConstraints: {}
+    topologySpreadConstraints: []
+
+    tolerations: []
 
   router:
     serviceAccount:
@@ -459,11 +459,11 @@ receive:
 
     nodeSelector: {}
 
-    tolerations: []
-
     affinity: {}
 
-    topologySpreadConstraints: {}
+    topologySpreadConstraints: []
+
+    tolerations: []
 
 rule:
   enabled: false
@@ -555,11 +555,11 @@ rule:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
   configReloader:
     enabled: true
@@ -649,8 +649,8 @@ storeGateway:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []

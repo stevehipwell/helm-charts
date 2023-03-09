@@ -3,6 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "istio-operator.fullname" . }}
+  namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "istio-operator.labels" . | nindent 4 }}
     {{- with .Values.serviceMonitor.additionalLabels }}

@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "thanos.receiveRouter.fullname" . }}
+  name: {{ include "thanos.receive.router.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receiveRouter.labels" . | nindent 4 }}
+    {{- include "thanos.receive.router.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.receive.router.autoscaling.enabled }}
   replicas: {{ .Values.receive.router.replicas }}
@@ -16,11 +16,11 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.receiveRouter.selectorLabels" . | nindent 6 }}
+      {{- include "thanos.receive.router.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.receiveRouter.selectorLabels" . | nindent 8 }}
+        {{- include "thanos.receive.router.selectorLabels" . | nindent 8 }}
       {{- with .Values.receive.router.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -33,7 +33,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.receiveRouter.serviceAccountName" . }}
+      serviceAccountName: {{ include "thanos.receive.router.serviceAccountName" . }}
       {{- with .Values.receive.router.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -98,21 +98,85 @@ spec:
       volumes:
         - name: hashrings-config
           configMap:
-            name: {{ include "thanos.receiveRouter.hashringsConfigmapName" . }}
+            name: {{ include "thanos.receive.router.hashringsConfigmapName" . }}
       {{- with .Values.receive.router.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.receive.router.affinity }}
+      affinity:
+      {{- with .Values.receive.router.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.receive.router.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.receive.router.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.receive.router.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.receive.router.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.receive.router.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.receive.router.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.receive.router.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.receive.router.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.receive.router.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.receive.router.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.receive.router.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.receive.router.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.receive.router.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.receive.router.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.receive.router.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.receive.router.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "thanos.receive.router.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.receive.router.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.receive.router.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.receive.router.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
 {{- end -}}

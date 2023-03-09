@@ -2,14 +2,14 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
-  namespace: {{ .Values.istioNamespace }}
   name: istio-operator
+  namespace: {{ .Values.istioNamespace }}
+  labels:
+    {{- include "istio-operator.labels" . | nindent 4 }}
   {{- with .Values.controlPlane.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  labels:
-    {{- include "istio-operator.labels" . | nindent 4 }}
 spec:
 {{- with .Values.controlPlane.spec }}
 {{- if kindIs "string" . }}

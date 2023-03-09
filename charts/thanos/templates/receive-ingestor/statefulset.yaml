@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "thanos.receiveIngestor.fullname" . }}
+  name: {{ include "thanos.receive.ingestor.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receiveIngestor.labels" . | nindent 4 }}
+    {{- include "thanos.receive.ingestor.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.receiveIngestor.fullname" .) }}
+  serviceName: {{ printf "%s-headless" (include "thanos.receive.ingestor.fullname" .) }}
   replicas: {{ .Values.receive.ingestor.replicas }}
   {{- with .Values.receive.ingestor.updateStrategy }}
   updateStrategy:
@@ -15,11 +15,11 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 6 }}
+      {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 8 }}
+        {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 8 }}
       {{- with .Values.receive.ingestor.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -37,7 +37,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.receiveIngestor.serviceAccountName" . }}
+      serviceAccountName: {{ include "thanos.receive.ingestor.serviceAccountName" . }}
       {{- with .Values.receive.ingestor.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -79,7 +79,7 @@ spec:
             - --tsdb.path=/var/thanos/receive
             - --tsdb.retention={{ .Values.receive.retention }}
             - --label=receive_replica="$(NAME)"
-            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.cluster.local:10901" (include "thanos.receiveIngestor.fullname" .) .Release.Namespace }}
+            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.cluster.local:10901" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace }}
           {{- with .Values.receive.ingestor.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -121,16 +121,80 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.receive.ingestor.affinity }}
+      affinity:
+      {{- with .Values.receive.ingestor.affinity.nodeAffinity }}
+        nodeAffinity:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+      {{- if .Values.receive.ingestor.affinity.podAffinity }}
+        podAffinity:
+        {{- if .Values.receive.ingestor.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.receive.ingestor.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.receive.ingestor.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.receive.ingestor.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- if .Values.receive.ingestor.affinity.podAntiAffinity }}
+        podAntiAffinity:
+        {{- if .Values.receive.ingestor.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          {{- range $term := .Values.receive.ingestor.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+            {{- toYaml (list $term) | nindent 12 }}
+            {{- if not (hasKey $term "labelSelector") }}
+              labelSelector:
+                matchLabels:
+                  {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 18 }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.receive.ingestor.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          {{- range $weightedTerm := .Values.receive.ingestor.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+            - weight: {{ $weightedTerm.weight }}
+              podAffinityTerm:
+                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
+                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
+                labelSelector:
+                  matchLabels:
+                    {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 20 }}
+                {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.receive.ingestor.topologySpreadConstraints }}
+      topologySpreadConstraints:
+      {{- range $constraint := .Values.receive.ingestor.topologySpreadConstraints }}
+        {{- toYaml (list $constraint) | nindent 8 }}
+        {{- if not (hasKey $constraint "labelSelector") }}
+          labelSelector:
+            matchLabels:
+              {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 14 }}
+        {{- end }}
+      {{- end }}
+      {{- end }}
       {{- with .Values.receive.ingestor.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.receive.ingestor.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.receive.ingestor.topologySpreadConstraints }}
-      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- if .Values.receive.ingestor.persistence.enabled }}
@@ -138,7 +202,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.receiveIngestor.selectorLabels" . | nindent 10 }}
+          {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 10 }}
         {{- with .Values.receive.ingestor.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

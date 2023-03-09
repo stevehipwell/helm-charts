@@ -86,11 +86,11 @@ admissionController:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
   webhook:
     name: vpa-webhook-config
@@ -167,11 +167,11 @@ recommender:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []
 
 updater:
   image:
@@ -240,8 +240,8 @@ updater:
 
   nodeSelector: {}
 
-  tolerations: []
-
   affinity: {}
 
-  topologySpreadConstraints: {}
+  topologySpreadConstraints: []
+
+  tolerations: []

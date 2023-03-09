@@ -2,15 +2,15 @@
 apiVersion: {{ include "thanos.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "thanos.receiveRouter.fullname" . }}
+  name: {{ include "thanos.receive.router.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receiveRouter.abels" . | nindent 4 }}
+    {{- include "thanos.receive.router.abels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "thanos.receiveRouter.fullname" . }}
+    name: {{ include "thanos.receive.router.fullname" . }}
   minReplicas: {{ .Values.receive.router.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.receive.router.autoscaling.maxReplicas }}
   metrics:

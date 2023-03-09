@@ -1,14 +1,14 @@
 {{/*
 Fullname
 */}}
-{{- define "thanos.queryFullname" -}}
+{{- define "thanos.query.fullname" -}}
 {{ include "thanos.fullname" . }}-query
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "thanos.queryLabels" -}}
+{{- define "thanos.query.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: query
 {{- end }}
@@ -16,7 +16,7 @@ app.kubernetes.io/component: query
 {{/*
 Selector labels
 */}}
-{{- define "thanos.querySelectorLabels" -}}
+{{- define "thanos.query.selectorLabels" -}}
 {{ include "thanos.selectorLabels" . }}
 app.kubernetes.io/component: query
 {{- end }}
@@ -24,7 +24,7 @@ app.kubernetes.io/component: query
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "thanos.queryServiceAccountName" -}}
+{{- define "thanos.query.serviceAccountName" -}}
 {{- if .Values.query.serviceAccount.create -}}
 {{- default (printf "%s-query" (include "thanos.fullname" .)) .Values.query.serviceAccount.name }}
 {{- else -}}
