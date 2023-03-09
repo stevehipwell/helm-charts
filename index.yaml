@@ -11380,6 +11380,35 @@ entries:
   overprovisioner:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for automatic scaling using the cluster proportional autoscaler."
+        - kind: changed
+          description: "Changed how the pause pod capacity works; use the new `capacity` values."
+    apiVersion: v2
+    appVersion: 0.2.0
+    created: "2023-03-09T15:11:42.78011442Z"
+    description: Helm chart for overprovisioning Kubernetes clusters.
+    digest: ad98ac48845f078632a69b8ea867b69df5eb6ea47c6262d6f1e4397e71a2ac32
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - cluster
+    - scheduler
+    - provisioning
+    - overprovisioning
+    - preemption
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: overprovisioner
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/overprovisioner-0.2.0/overprovisioner-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed security context configuration."
     apiVersion: v2
@@ -16885,4 +16914,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-07T10:41:03.9632333Z"
+generated: "2023-03-09T15:11:42.781177932Z"
