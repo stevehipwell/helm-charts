@@ -1,0 +1,11 @@
+compact:
+  enabled: false
+
+queryFrontend:
+  enabled: true
+
+receive:
+  enabled: false
+
+rule:
+  enabled: false
