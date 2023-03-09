@@ -104,7 +104,7 @@ jobs:
               touch "${values}"
             fi
 
-            k8s_version_stable="$(curl -sL https://dl.k8s.io/release/stable.txt | grep -Eo '[0-9]+\.[0-9]+')"
+            k8s_version_stable="$(curl -sL https://dl.k8s.io/release/stable.txt | grep -Eo '[0-9]+\.[0-9]+').0"
             k8s_versions_in="${{ vars.K8S_VERSIONS }}"
             k8s_versions="${k8s_versions_in:-$k8s_version_stable}"
             for k8s_version in ${k8s_versions//,/ }
