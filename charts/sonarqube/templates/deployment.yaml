@@ -237,77 +237,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.affinity }}
+      {{- with .Values.affinity }}
+      {{- $_ := include "sonarqube.patchAffinity" $ }}
       affinity:
-      {{- with .Values.affinity.nodeAffinity }}
-        nodeAffinity:
-          {{- toYaml . | nindent 10 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.affinity.podAffinity }}
-        podAffinity:
-        {{- if .Values.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "sonarqube.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "sonarqube.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if .Values.affinity.podAntiAffinity }}
-        podAntiAffinity:
-        {{- if .Values.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "sonarqube.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "sonarqube.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- end }}
-      {{- if .Values.topologySpreadConstraints }}
+      {{- with .Values.topologySpreadConstraints }}
+      {{- $_ := include "sonarqube.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
-      {{- range $constraint := .Values.topologySpreadConstraints }}
-        {{- toYaml (list $constraint) | nindent 8 }}
-        {{- if not (hasKey $constraint "labelSelector") }}
-          labelSelector:
-            matchLabels:
-              {{- include "sonarqube.selectorLabels" $ | nindent 14 }}
-        {{- end }}
-      {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:

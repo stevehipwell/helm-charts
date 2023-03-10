@@ -26,6 +26,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
+  artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
       description: "Updated the Jira Software image to v9.6.0."

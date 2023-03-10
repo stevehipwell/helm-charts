@@ -121,77 +121,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.receive.ingestor.affinity }}
+      {{- with .Values.receive.ingestor.affinity }}
+      {{- $_ := include "thanos.receive.ingestor.patchAffinity" $ }}
       affinity:
-      {{- with .Values.receive.ingestor.affinity.nodeAffinity }}
-        nodeAffinity:
-          {{- toYaml . | nindent 10 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.receive.ingestor.affinity.podAffinity }}
-        podAffinity:
-        {{- if .Values.receive.ingestor.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.receive.ingestor.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.receive.ingestor.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.receive.ingestor.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if .Values.receive.ingestor.affinity.podAntiAffinity }}
-        podAntiAffinity:
-        {{- if .Values.receive.ingestor.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.receive.ingestor.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.receive.ingestor.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.receive.ingestor.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- end }}
-      {{- if .Values.receive.ingestor.topologySpreadConstraints }}
+      {{- with .Values.receive.ingestor.topologySpreadConstraints }}
+      {{- $_ := include "thanos.receive.ingestor.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
-      {{- range $constraint := .Values.receive.ingestor.topologySpreadConstraints }}
-        {{- toYaml (list $constraint) | nindent 8 }}
-        {{- if not (hasKey $constraint "labelSelector") }}
-          labelSelector:
-            matchLabels:
-              {{- include "thanos.receive.ingestor.selectorLabels" $ | nindent 14 }}
-        {{- end }}
-      {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.receive.ingestor.tolerations }}
       tolerations:

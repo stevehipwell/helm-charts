@@ -100,77 +100,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.query.affinity }}
+      {{- with .Values.query.affinity }}
+      {{- $_ := include "thanos.query.patchAffinity" $ }}
       affinity:
-      {{- with .Values.query.affinity.nodeAffinity }}
-        nodeAffinity:
-          {{- toYaml . | nindent 10 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.query.affinity.podAffinity }}
-        podAffinity:
-        {{- if .Values.query.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.query.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.query.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.query.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.query.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.query.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if .Values.query.affinity.podAntiAffinity }}
-        podAntiAffinity:
-        {{- if .Values.query.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.query.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.query.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.query.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.query.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.query.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- end }}
-      {{- if .Values.query.topologySpreadConstraints }}
+      {{- with .Values.query.topologySpreadConstraints }}
+      {{- $_ := include "thanos.query.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
-      {{- range $constraint := .Values.query.topologySpreadConstraints }}
-        {{- toYaml (list $constraint) | nindent 8 }}
-        {{- if not (hasKey $constraint "labelSelector") }}
-          labelSelector:
-            matchLabels:
-              {{- include "thanos.query.selectorLabels" $ | nindent 14 }}
-        {{- end }}
-      {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.query.tolerations }}
       tolerations:

@@ -102,6 +102,53 @@ Create pvc name.
 {{- end -}}
 
 {{/*
+Patch the label selector on an object
+*/}}
+{{- define "jira-software.patchLabelSelector" -}}
+{{- if not (hasKey ._target "labelSelector") }}
+{{- $selectorLabels := (include "jira-software.selectorLabels" .) | fromYaml }}
+{{- $_ := set ._target "labelSelector" (dict "matchLabels" $selectorLabels) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch pod affinity
+*/}}
+{{- define "jira-software.patchPodAffinity" -}}
+{{- if (hasKey ._podAffinity "requiredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $term := ._podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+{{- include "jira-software.patchLabelSelector" (merge (dict "_target" $term) $) }}
+{{- end }}
+{{- end }}
+{{- if (hasKey ._podAffinity "preferredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $weightedTerm := ._podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+{{- include "jira-software.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch affinity
+*/}}
+{{- define "jira-software.patchAffinity" -}}
+{{- if (hasKey .Values.affinity "podAffinity") }}
+{{- include "jira-software.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAffinity) .) }}
+{{- end }}
+{{- if (hasKey .Values.affinity "podAntiAffinity") }}
+{{- include "jira-software.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAntiAffinity) .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "jira-software.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.topologySpreadConstraints }}
+{{- include "jira-software.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
+{{- end }}
+{{- end }}
+
+{{/*
 Lookup postgresql chart service name.
 */}}
 {{- define "jira-software.postgresql.serviceName" -}}

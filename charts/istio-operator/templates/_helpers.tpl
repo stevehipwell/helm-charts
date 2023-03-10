@@ -71,3 +71,50 @@ The image to use
 {{- define "istio-operator.image" -}}
 {{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
 {{- end }}
+
+{{/*
+Patch the label selector on an object
+*/}}
+{{- define "istio-operator.patchLabelSelector" -}}
+{{- if not (hasKey ._target "labelSelector") }}
+{{- $selectorLabels := (include "istio-operator.selectorLabels" .) | fromYaml }}
+{{- $_ := set ._target "labelSelector" (dict "matchLabels" $selectorLabels) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch pod affinity
+*/}}
+{{- define "istio-operator.patchPodAffinity" -}}
+{{- if (hasKey ._podAffinity "requiredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $term := ._podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+{{- include "istio-operator.patchLabelSelector" (merge (dict "_target" $term) $) }}
+{{- end }}
+{{- end }}
+{{- if (hasKey ._podAffinity "preferredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $weightedTerm := ._podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+{{- include "istio-operator.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch affinity
+*/}}
+{{- define "istio-operator.patchAffinity" -}}
+{{- if (hasKey .Values.affinity "podAffinity") }}
+{{- include "istio-operator.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAffinity) .) }}
+{{- end }}
+{{- if (hasKey .Values.affinity "podAntiAffinity") }}
+{{- include "istio-operator.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAntiAffinity) .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "istio-operator.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.topologySpreadConstraints }}
+{{- include "istio-operator.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
+{{- end }}
+{{- end }}

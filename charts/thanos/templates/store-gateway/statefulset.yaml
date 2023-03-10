@@ -113,77 +113,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.storeGateway.affinity }}
+      {{- with .Values.storeGateway.affinity }}
+      {{- $_ := include "thanos.storeGateway.patchAffinity" $ }}
       affinity:
-      {{- with .Values.storeGateway.affinity.nodeAffinity }}
-        nodeAffinity:
-          {{- toYaml . | nindent 10 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.storeGateway.affinity.podAffinity }}
-        podAffinity:
-        {{- if .Values.storeGateway.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.storeGateway.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.storeGateway.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.storeGateway.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.storeGateway.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.storeGateway.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if .Values.storeGateway.affinity.podAntiAffinity }}
-        podAntiAffinity:
-        {{- if .Values.storeGateway.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.storeGateway.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "thanos.storeGateway.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.storeGateway.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.storeGateway.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "thanos.storeGateway.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- end }}
-      {{- if .Values.storeGateway.topologySpreadConstraints }}
+      {{- with .Values.storeGateway.topologySpreadConstraints }}
+      {{- $_ := include "thanos.storeGateway.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
-      {{- range $constraint := .Values.storeGateway.topologySpreadConstraints }}
-        {{- toYaml (list $constraint) | nindent 8 }}
-        {{- if not (hasKey $constraint "labelSelector") }}
-          labelSelector:
-            matchLabels:
-              {{- include "thanos.storeGateway.selectorLabels" $ | nindent 14 }}
-        {{- end }}
-      {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.storeGateway.tolerations }}
       tolerations:

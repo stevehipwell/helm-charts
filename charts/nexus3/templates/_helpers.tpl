@@ -100,3 +100,50 @@ Create pvc name.
 {{- define "nexus3.ingress.supportsPathType" -}}
   {{- or (eq (include "nexus3.ingress.isStable" .) "true") (and (eq (include "nexus3.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
+
+{{/*
+Patch the label selector on an object
+*/}}
+{{- define "nexus3.patchLabelSelector" -}}
+{{- if not (hasKey ._target "labelSelector") }}
+{{- $selectorLabels := (include "nexus3.selectorLabels" .) | fromYaml }}
+{{- $_ := set ._target "labelSelector" (dict "matchLabels" $selectorLabels) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch pod affinity
+*/}}
+{{- define "nexus3.patchPodAffinity" -}}
+{{- if (hasKey ._podAffinity "requiredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $term := ._podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+{{- include "nexus3.patchLabelSelector" (merge (dict "_target" $term) $) }}
+{{- end }}
+{{- end }}
+{{- if (hasKey ._podAffinity "preferredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $weightedTerm := ._podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+{{- include "nexus3.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch affinity
+*/}}
+{{- define "nexus3.patchAffinity" -}}
+{{- if (hasKey .Values.affinity "podAffinity") }}
+{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAffinity) .) }}
+{{- end }}
+{{- if (hasKey .Values.affinity "podAntiAffinity") }}
+{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAntiAffinity) .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "nexus3.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.topologySpreadConstraints }}
+{{- include "nexus3.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
+{{- end }}
+{{- end }}

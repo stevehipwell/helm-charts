@@ -54,4 +54,25 @@ Rules configmap name
 {{- end -}}
 {{- end -}}
 
+{{/*
+Patch affinity
+*/}}
+{{- define "thanos.rule.patchAffinity" -}}
+{{- if (hasKey .Values.pause.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
+{{- end }}
+{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "thanos.rule.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.rule.selectorLabels") $) }}
+{{- end }}
+{{- end }}
+
 

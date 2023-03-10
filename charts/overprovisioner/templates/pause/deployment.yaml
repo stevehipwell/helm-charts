@@ -56,77 +56,15 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.pause.affinity }}
+      {{- with .Values.pause.affinity }}
+      {{- $_ := include "overprovisioner.pause.patchAffinity" $ }}
       affinity:
-      {{- with .Values.pause.affinity.nodeAffinity }}
-        nodeAffinity:
-          {{- toYaml . | nindent 10 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.pause.affinity.podAffinity }}
-        podAffinity:
-        {{- if .Values.pause.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.pause.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "overprovisioner.pause.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.pause.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.pause.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "overprovisioner.pause.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- if .Values.pause.affinity.podAntiAffinity }}
-        podAntiAffinity:
-        {{- if .Values.pause.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-          requiredDuringSchedulingIgnoredDuringExecution:
-          {{- range $term := .Values.pause.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-            {{- toYaml (list $term) | nindent 12 }}
-            {{- if not (hasKey $term "labelSelector") }}
-              labelSelector:
-                matchLabels:
-                  {{- include "overprovisioner.pause.selectorLabels" $ | nindent 18 }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-        {{- if .Values.pause.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-          preferredDuringSchedulingIgnoredDuringExecution:
-          {{- range $weightedTerm := .Values.pause.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-            - weight: {{ $weightedTerm.weight }}
-              podAffinityTerm:
-                {{- toYaml $weightedTerm.podAffinityTerm | nindent 16 }}
-                {{- if not (hasKey $weightedTerm.podAffinityTerm "labelSelector") }}
-                labelSelector:
-                  matchLabels:
-                    {{- include "overprovisioner.pause.selectorLabels" $ | nindent 20 }}
-                {{- end }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- end }}
-      {{- if .Values.pause.topologySpreadConstraints }}
+      {{- with .Values.pause.topologySpreadConstraints }}
+      {{- $_ := include "overprovisioner.pause.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
-      {{- range $constraint := .Values.pause.topologySpreadConstraints }}
-        {{- toYaml (list $constraint) | nindent 8 }}
-        {{- if not (hasKey $constraint "labelSelector") }}
-          labelSelector:
-            matchLabels:
-              {{- include "overprovisioner.pause.selectorLabels" $ | nindent 14 }}
-        {{- end }}
-      {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.pause.tolerations }}
       tolerations:
