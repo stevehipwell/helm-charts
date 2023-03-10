@@ -72,9 +72,11 @@ resources:
 nodeSelector:
   foo: bar
 
-tolerations: []
-
 affinity: {}
+
+topologySpreadConstraints: []
+
+tolerations: []
 
 caCerts:
   enabled: true

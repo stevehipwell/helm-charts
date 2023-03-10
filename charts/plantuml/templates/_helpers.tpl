@@ -101,3 +101,50 @@ The image to use
 {{- define "plantuml.ingress.supportsPathType" -}}
   {{- or (eq (include "plantuml.ingress.isStable" .) "true") (and (eq (include "plantuml.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
+
+{{/*
+Patch the label selector on an object
+*/}}
+{{- define "plantuml.patchLabelSelector" -}}
+{{- if not (hasKey ._target "labelSelector") }}
+{{- $selectorLabels := (include "plantuml.selectorLabels" .) | fromYaml }}
+{{- $_ := set ._target "labelSelector" (dict "matchLabels" $selectorLabels) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch pod affinity
+*/}}
+{{- define "plantuml.patchPodAffinity" -}}
+{{- if (hasKey ._podAffinity "requiredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $term := ._podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
+{{- include "plantuml.patchLabelSelector" (merge (dict "_target" $term) $) }}
+{{- end }}
+{{- end }}
+{{- if (hasKey ._podAffinity "preferredDuringSchedulingIgnoredDuringExecution") }}
+{{- range $weightedTerm := ._podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
+{{- include "plantuml.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch affinity
+*/}}
+{{- define "plantuml.patchAffinity" -}}
+{{- if (hasKey .Values.affinity "podAffinity") }}
+{{- include "plantuml.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAffinity) .) }}
+{{- end }}
+{{- if (hasKey .Values.affinity "podAntiAffinity") }}
+{{- include "plantuml.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAntiAffinity) .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "plantuml.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.topologySpreadConstraints }}
+{{- include "plantuml.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
+{{- end }}
+{{- end }}

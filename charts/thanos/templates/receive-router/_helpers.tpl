@@ -38,3 +38,24 @@ Hashrings configmap name
 {{- define "thanos.receive.router.hashringsConfigmapName" -}}
 {{ include "thanos.receive.router.fullname" . }}-hashrings
 {{- end -}}
+
+{{/*
+Patch affinity
+*/}}
+{{- define "thanos.receive.router.patchAffinity" -}}
+{{- if (hasKey .Values.pause.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
+{{- end }}
+{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
+{{- end }}
+{{- end }}
+
+{{/*
+Patch topology spread constraints
+*/}}
+{{- define "thanos.receive.router.patchTopologySpreadConstraints" -}}
+{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") $) }}
+{{- end }}
+{{- end }}
