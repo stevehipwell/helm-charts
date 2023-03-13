@@ -2,7 +2,7 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.9.0
+version: 4.9.1
 appVersion: 9.9.0
 keywords:
   - sonarqube
@@ -28,5 +28,9 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the SonarQube image to v9.9.0."
+    - kind: added
+      description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+    - kind: added
+      description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+    - kind: fixed
+      description: "Fixed incorrect entrypoint when installing plugins due to a change in `v9.9.0`."
