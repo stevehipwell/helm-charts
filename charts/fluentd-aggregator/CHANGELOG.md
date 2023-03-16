@@ -17,10 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v3.7.0] - 2023-03-16
 
 ### All Changes
 
+- Updated _Fluentd Aggregator_ OCI image to [v2.7.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.7.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
+- Added support for alternative image variants using `image.tagPrefix` and a fixed digest using `image.digest`.
 - Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
 ## [v3.6.2] - 2023-02-15

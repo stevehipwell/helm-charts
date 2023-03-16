@@ -4,8 +4,10 @@
 
 image:
   repository: ghcr.io/stevehipwell/fluentd-aggregator
+  tagPrefix:
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-  tag: ""
+  tag:
+  digest:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
