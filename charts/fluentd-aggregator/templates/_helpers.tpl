@@ -68,7 +68,9 @@ Create the name of the service account to use
 The image to use
 */}}
 {{- define "fluentd-aggregator.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
+{{- $tagPrefix := ternary (printf "%s-" .Values.image.tagPrefix) "" (not (empty .Values.image.tagPrefix)) }}
+{{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
+{{- printf "%s:%s%s%s" .Values.image.repository $tagPrefix (default .Chart.AppVersion .Values.image.tag) $digest }}
 {{- end }}
 
 {{/* Get Ingress API Version */}}

@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation stateful set.
 type: application
-version: 3.6.2
-appVersion: 2.6.2
+version: 3.7.0
+appVersion: 2.7.0
 keywords:
   - fluent
   - fluentd
@@ -21,4 +21,8 @@ annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated Fluentd Aggregator OCI image to v2.6.2 (Fluentd v1.15.3)."
+      description: "Updated _Fluentd Aggregator_ OCI image to [v2.7.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.7.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3))."
+    - kind: added
+      description: "Added support for alternative image variants using `image.tagPrefix` and a fixed digest using `image.digest`."
+    - kind: added
+      description: "Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`."
