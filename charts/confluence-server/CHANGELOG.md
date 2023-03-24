@@ -17,10 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v5.1.2] - 2023-03-24
 
 ### All Changes
 
+- Updated the _Confluence Server_ image to [v8.1.3](https://confluence.atlassian.com/doc/confluence-8-1-release-notes-1206791873.html).
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
