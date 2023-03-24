@@ -5,6 +5,46 @@ entries:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the Confluence Server image to v8.1.3."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+    apiVersion: v2
+    appVersion: 8.1.3
+    created: "2023-03-24T21:24:58.133909653Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 6ecf33621b3d4fa5e205b107e39efcc282de3d3cb001ca7e8c42e0a8b58ed33f
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.1.2/confluence-server-5.1.2.tgz
+    version: 5.1.2
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Confluence Server image to v8.1.1."
     apiVersion: v2
     appVersion: 8.1.1
@@ -17058,4 +17098,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-24T19:59:47.659922765Z"
+generated: "2023-03-24T21:24:58.135186854Z"
