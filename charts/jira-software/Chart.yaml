@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.6.0
-appVersion: 9.6.0
+version: 5.7.0
+appVersion: 9.7.0
 keywords:
   - jira
   - jira-software
@@ -29,4 +29,8 @@ annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Jira Software image to v9.6.0."
+      description: "Updated the Jira Software image to v9.7.0."
+    - kind: added
+      description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+    - kind: added
+      description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
