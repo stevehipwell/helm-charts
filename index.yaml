@@ -6520,6 +6520,46 @@ entries:
     version: 1.0.0
   jira-software:
   - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the Jira Software image to v9.7.0."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+    apiVersion: v2
+    appVersion: 9.7.0
+    created: "2023-03-24T19:59:47.658040843Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Jira Software.
+    digest: b89a6fb7b1005c211d7c82db76d2fd91e8ac2ca133c1afae241ef19d7fd8b79c
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.7.0/jira-software-5.7.0.tgz
+    version: 5.7.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Jira Software image to v9.6.0."
@@ -17018,4 +17058,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-16T18:09:33.807608406Z"
+generated: "2023-03-24T19:59:47.659922765Z"
