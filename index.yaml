@@ -9089,6 +9089,41 @@ entries:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Nexus3_ image to [v3.50.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/sonatype-nexus-repository-3.50.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.50.0-01))."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+    apiVersion: v2
+    appVersion: 3.50.0
+    created: "2023-03-27T18:25:52.932076996Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 75a842e172869db1d40984083cd7326710c96b76bfe281f92f64e73d41ce8df7
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.24.0/nexus3-4.24.0.tgz
+    version: 4.24.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Nexus3 image to v3.49.0."
     apiVersion: v2
     appVersion: 3.49.0
@@ -17098,4 +17133,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-24T21:24:58.135186854Z"
+generated: "2023-03-27T18:25:52.933517898Z"
