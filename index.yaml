@@ -14170,6 +14170,40 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Thanos_ image to [v0.31.0](https://github.com/thanos-io/thanos/releases/tag/v0.31.0)."
+        - kind: added
+          description: "Added support for specifying `objstoreConfig.value` as an object."
+        - kind: fixed
+          description: "Fixed missing key in Rule config map."
+    apiVersion: v2
+    appVersion: 0.31.0
+    created: "2023-03-28T13:36:05.766029792Z"
+    description: Helm chart for Thanos components.
+    digest: 1af4aa5711c746d6be455747ef5c14132796330044a65bc60fb63270ea8a3705
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.12.0/thanos-1.12.0.tgz
+    version: 1.12.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`."
         - kind: fixed
@@ -17133,4 +17167,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-27T18:25:52.933517898Z"
+generated: "2023-03-28T13:36:05.767384722Z"
