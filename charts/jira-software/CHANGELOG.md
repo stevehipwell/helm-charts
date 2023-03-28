@@ -15,10 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v5.7.0] - 2023-03-24
 
 ### All Changes
 
+- Updated the _Jira Software_ image to [v9.7.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-7-x-release-notes-1217298752.html).
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
 

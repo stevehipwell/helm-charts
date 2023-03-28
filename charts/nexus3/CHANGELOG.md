@@ -17,10 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v4.24.0] - 2023-03-27
 
 ### All Changes
 
+- Updated the _Nexus3_ image to [v3.50.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/sonatype-nexus-repository-3.50.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.50.0-01)).
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
