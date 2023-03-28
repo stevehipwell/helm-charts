@@ -7,5 +7,6 @@ metadata:
   labels:
     {{- include "thanos.rule.labels" . | nindent 4 }}
 data:
-  {{- .Values.rule.rules.value | nindent 2 }}
+  rules.yaml: |-
+    {{- .Values.rule.rules.value | nindent 4 }}
 {{- end -}}

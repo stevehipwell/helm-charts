@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [UNRELEASED]
+
+### All Changes
+
+- Fixed issue in Rule config map.
+
 ## [v1.11.1] - 2023-03-09
 
 ### All Changes
