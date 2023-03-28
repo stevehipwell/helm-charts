@@ -14,7 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated
 - Changed
 - Fixed
-  - issue in Rule config map.
 - Deprecated
 - Removed -->
 
