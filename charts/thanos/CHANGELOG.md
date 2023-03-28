@@ -17,11 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v1.12.0] - 2023-03-28
 
 ### All Changes
 
-- Fixed issue in Rule config map.
+- Updated the _Thanos_ image to [v0.31.0](https://github.com/thanos-io/thanos/releases/tag/v0.31.0).
+- Added support for specifying `objstoreConfig.value` as an object.
+- Fixed missing key in Rule config map.
 
 ## [v1.11.1] - 2023-03-09
 
