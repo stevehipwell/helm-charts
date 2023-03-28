@@ -65,6 +65,19 @@ Objstore secret name
 {{- end -}}
 
 {{/*
+Objstore config hash
+*/}}
+{{- define "thanos.objstoreConfigHash" -}}
+{{- with .Values.objstoreConfig.value }}
+{{- if kindIs "string" . }}
+{{- sha256sum . }}
+{{- else }}
+{{- toYaml . | sha256sum }}
+{{- end }}
+{{- end }}
+{{- end -}}
+
+{{/*
 The Thanos image to use
 */}}
 {{- define "thanos.image" -}}

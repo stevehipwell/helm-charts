@@ -26,7 +26,7 @@ spec:
       {{- if or .Values.objstoreConfig.create (gt (len .Values.receive.ingestor.podAnnotations) 0) }}
       annotations:
       {{- if .Values.objstoreConfig.create }}
-        checksum/config: {{ .Values.objstoreConfig.value | sha256sum }}
+        checksum/config: {{ include "thanos.objstoreConfigHash" . }}
       {{- end }}
       {{- with .Values.receive.ingestor.podAnnotations }}
         {{- toYaml . | nindent 8 }}

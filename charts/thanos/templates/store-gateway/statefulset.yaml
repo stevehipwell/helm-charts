@@ -25,7 +25,7 @@ spec:
       {{- if or .Values.objstoreConfig.create (gt (len .Values.storeGateway.podAnnotations) 0) }}
       annotations:
       {{- if .Values.objstoreConfig.create }}
-        checksum/config: {{ .Values.objstoreConfig.value | sha256sum }}
+        checksum/config: {{ include "thanos.objstoreConfigHash" . }}
       {{- end }}
       {{- with .Values.storeGateway.podAnnotations }}
         {{- toYaml . | nindent 8 }}
