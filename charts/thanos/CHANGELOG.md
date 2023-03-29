@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.12.1] - 2023-03-29
+
+### All Changes
+
+- Fixed missing Receive Router `receive_replica` label.
+- Fixed Receive Router hashring mount path.
+- Fixed Receive hashring config when there are multiple Receive Ingestor replicas.
+
 ## [v1.12.0] - 2023-03-28
 
 ### All Changes

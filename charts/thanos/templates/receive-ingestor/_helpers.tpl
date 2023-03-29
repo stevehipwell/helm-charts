@@ -52,3 +52,12 @@ Patch topology spread constraints
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.receive.ingestor.selectorLabels") $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Endpoints
+*/}}
+{{- define "thanos.receive.ingestor.endpoints" -}}
+{{- range (until (.Values.receive.ingestor.replicas | int)) }}
+{{ printf "- %s" ((printf "%s-%s.%s-headless.%s.svc.cluster.local:10901" (include "thanos.receive.ingestor.fullname" $) (toString .) (include "thanos.receive.ingestor.fullname" $) $.Release.Namespace) | quote) }}
+{{- end }}
+{{- end -}}

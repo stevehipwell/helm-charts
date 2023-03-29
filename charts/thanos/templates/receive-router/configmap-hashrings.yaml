@@ -8,13 +8,5 @@ metadata:
     {{- include "thanos.receive.router.labels" . | nindent 4 }}
 data:
   hashrings.json: |
-    [{
-      "hashring": "default",
-      "tenants": [],
-      "endpoints": [
-      {{- range (until (.Values.receive.ingestor.replicas | int)) }}
-        {{ (printf "%s-%s.%s-headless.%s.svc.cluster.local:10901" (include "thanos.receive.ingestor.fullname" $) (toString .) (include "thanos.receive.ingestor.fullname" $) $.Release.Namespace) | quote }}
-      {{- end }}
-      ]
-    }]
+    [{{ include "thanos.receive.router.hashringDefaultConfig" . | fromYaml | toJson }}]
 {{- end -}}
