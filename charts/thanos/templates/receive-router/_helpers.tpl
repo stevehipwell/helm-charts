@@ -59,3 +59,13 @@ Patch topology spread constraints
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Hashring default config
+*/}}
+{{- define "thanos.receive.router.hashringDefaultConfig" -}}
+hashring: default
+tenants: []
+endpoints:
+  {{- include "thanos.receive.ingestor.endpoints" . | nindent 2 }}
+{{- end }}

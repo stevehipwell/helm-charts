@@ -53,6 +53,10 @@ spec:
           image: {{ include "thanos.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: HOST_IP_ADDRESS
               valueFrom:
                 fieldRef:
@@ -67,8 +71,9 @@ spec:
             - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
             - --remote-write.address=0.0.0.0:19291
-            - --receive.hashrings-file=/var/lib/thanos-receive/hashrings.json
+            - --receive.hashrings-file=/etc/thanos/hashrings.json
             - --receive.replication-factor={{ .Values.receive.replicationFactor }}
+            - --label=receive_replica="$(NAME)"
           {{- with .Values.receive.router.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
