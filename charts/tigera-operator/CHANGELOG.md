@@ -17,10 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v2.5.0] - 2023-03-31
 
 ### All Changes
 
+- Updated the _Tigera Operator_ image to [v1.29.3](https://github.com/tigera/operator/releases/tag/v1.29.3) (_Calico_ [v3.25.1](https://github.com/projectcalico/calico/releases/tag/v3.25.1)).
 - Added explicit namespace declaration in templates.
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
