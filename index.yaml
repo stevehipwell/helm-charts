@@ -3462,6 +3462,34 @@ entries:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.9.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.0) (_Fluentd_ [v1.16.0](https://github.com/fluent/fluentd/releases/tag/v1.16.0))."
+    apiVersion: v2
+    appVersion: 2.8.0
+    created: "2023-03-31T09:15:05.761069113Z"
+    description: Helm chart for Fluentd running as an aggregation stateful set.
+    digest: c19873245d793dd26b93f953552e906b6121532d04887fa244a7c484b67eb61f
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-3.8.0/fluentd-aggregator-3.8.0.tgz
+    version: 3.8.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.7.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.7.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3))."
         - kind: added
           description: "Added support for alternative image variants using `image.tagPrefix` and a fixed digest using `image.digest`."
@@ -17237,4 +17265,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-31T09:09:42.974739915Z"
+generated: "2023-03-31T09:15:05.764033Z"
