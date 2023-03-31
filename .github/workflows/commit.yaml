@@ -75,6 +75,7 @@ jobs:
     needs: check
     if: ${{ fromJson(needs.check.outputs.release) }}
     strategy:
+      max-parallel: 1
       matrix:
         chart: ${{ fromJson(needs.check.outputs.matrix) }}
     steps:
