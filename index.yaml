@@ -15461,6 +15461,45 @@ entries:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Tigera Operator_ image to [v1.29.3](https://github.com/tigera/operator/releases/tag/v1.29.3) (_Calico_ [v3.25.1](https://github.com/projectcalico/calico/releases/tag/v3.25.1))."
+        - kind: added
+          description: "Added explicit namespace declaration in templates."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+    apiVersion: v2
+    appVersion: 1.29.3
+    created: "2023-03-31T21:45:59.159728473Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: c4ded9b0c16aa920e91ca83d052cc18fa5fd0746408909f40ed5d5f7662ca713
+    home: https://www.tigera.io/
+    icon: https://avatars.githubusercontent.com/u/48935664?s=300
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.5.0/tigera-operator-2.5.0.tgz
+    version: 2.5.0
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Tigera Operator image to v1.29.1 (Calico v3.25.0)."
     apiVersion: v2
     appVersion: 1.29.1
@@ -17265,4 +17304,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-31T09:15:05.764033Z"
+generated: "2023-03-31T21:45:59.160745078Z"
