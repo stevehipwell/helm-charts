@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v5.0.0] - 2023-04-04
+
+### All Changes
+
+- Updated the _SonarQube_ image to [v10.0.0](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-0/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/10.0.0.68432)).
+- Updated the embedded _PostgreSQL_ chart to [v12.2.7](https://artifacthub.io/packages/helm/bitnami/postgresql/12.2.7) (PostgreSQL v15.2.0).
+
 ## [v4.9.1] - 2023-03-13
 
 ### All Changes
