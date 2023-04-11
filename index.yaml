@@ -12759,6 +12759,44 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _SonarQube_ image to [v10.0.0](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-0/)."
+        - kind: changed
+          description: "Updated the embedded _PostgreSQL_ chart to [v12.2.7](https://artifacthub.io/packages/helm/bitnami/postgresql/12.2.7) (PostgreSQL v15.2.0)."
+    apiVersion: v2
+    appVersion: 10.0.0
+    created: "2023-04-11T19:32:28.780448777Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~12.2.7
+    description: A Helm chart for deploying SonarQube.
+    digest: 3690048debde6a5206ce001d971b5d57f2d10148e55feb49b9e13f1a84fe08ca
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-5.0.0/sonarqube-5.0.0.tgz
+    version: 5.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
         - kind: added
@@ -17304,4 +17342,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-03-31T21:45:59.160745078Z"
+generated: "2023-04-11T19:32:28.781551274Z"
