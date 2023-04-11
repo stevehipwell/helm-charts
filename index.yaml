@@ -4868,6 +4868,47 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2)."
+        - kind: added
+          description: "Added explicit namespace declaration in templates."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be manmaged by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.17.2
+    created: "2023-04-11T20:01:53.144722886Z"
+    description: Helm chart for the Istio Operator.
+    digest: a19190c13a3b44071ec131cd3dac65936957d178281070776a8e4f92b71e31b6
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.10.0/istio-operator-2.10.0.tgz
+    version: 2.10.0
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Istio Operator image version to v1.17.1."
       artifacthub.io/crds: |
         - kind: IstioOperator
@@ -17342,4 +17383,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-11T19:32:28.781551274Z"
+generated: "2023-04-11T20:01:53.146182879Z"
