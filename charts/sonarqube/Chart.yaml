@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 4.9.1
-appVersion: 9.9.0
+version: 5.0.0
+appVersion: 10.0.0
 keywords:
   - sonarqube
   - sast
@@ -23,14 +23,12 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: ~11.9.13
+    version: ~12.2.7
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
-    - kind: added
-      description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
-    - kind: fixed
-      description: "Fixed incorrect entrypoint when installing plugins due to a change in `v9.9.0`."
+    - kind: changed
+      description: "Updated the _SonarQube_ image to [v10.0.0](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-0/)."
+    - kind: changed
+      description: "Updated the embedded _PostgreSQL_ chart to [v12.2.7](https://artifacthub.io/packages/helm/bitnami/postgresql/12.2.7) (PostgreSQL v15.2.0)."
