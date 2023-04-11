@@ -17,10 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
-## [UNRELEASED]
+## [v2.10.0] - 2023-04-11
 
 ### All Changes
 
+- Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2).
 - Added explicit namespace declaration in templates.
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
