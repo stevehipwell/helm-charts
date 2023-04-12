@@ -11748,6 +11748,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _PlantUML_ image to [v1.2023.5](https://plantuml.com/changes)."
+        - kind: added
+          description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
+        - kind: added
+          description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+    apiVersion: v2
+    appVersion: 1.2023.5
+    created: "2023-04-12T14:51:59.395184871Z"
+    description: Helm chart for PlantUML.
+    digest: e8548d0da7261cfde1936fb8b559898307345e850c94be38e9900a8e1e456ec8
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.21.0/plantuml-3.21.0.tgz
+    version: 3.21.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the PlantUML image to v1.2023.1."
     apiVersion: v2
     appVersion: 1.2023.1
@@ -17447,4 +17478,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-12T14:36:32.922601835Z"
+generated: "2023-04-12T14:51:59.396343992Z"
