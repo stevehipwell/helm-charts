@@ -2,8 +2,8 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML.
 type: application
-version: 3.21.0
-appVersion: 1.2023.5
+version: 3.22.0
+appVersion: 1.2023.6
 home: https://plantuml.com/
 icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
 keywords:
@@ -20,8 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _PlantUML_ image to [v1.2023.5](https://plantuml.com/changes)."
-    - kind: added
-      description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
-    - kind: added
-      description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+      description: "Updated the _PlantUML_ image to [v1.2023.6](https://plantuml.com/changes)."
