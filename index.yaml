@@ -6704,6 +6704,42 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Jira Software_ image to [v9.8.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-8-x-release-notes-1224776099.html)."
+    apiVersion: v2
+    appVersion: 9.8.0
+    created: "2023-04-25T12:41:56.211256456Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Jira Software.
+    digest: 5fb4ca47887d820919a63eb3ca02c4229e8f6f280aadfd03476e5e78fb7070cb
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.8.0/jira-software-5.8.0.tgz
+    version: 5.8.0
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ image to [v9.7.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-7-x-release-notes-1217298752.html)."
     apiVersion: v2
     appVersion: 9.7.1
@@ -17550,4 +17586,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-14T16:47:28.552258767Z"
+generated: "2023-04-25T12:41:56.212381365Z"
