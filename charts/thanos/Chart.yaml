@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.12.2
+version: 1.12.3
 appVersion: 0.31.0
 keywords:
   - kubernetes

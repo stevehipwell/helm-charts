@@ -78,12 +78,12 @@ Patch pod affinity
 {{- define "vertical-pod-autoscaler.patchPodAffinity" -}}
 {{- if (hasKey ._podAffinity "requiredDuringSchedulingIgnoredDuringExecution") }}
 {{- range $term := ._podAffinity.requiredDuringSchedulingIgnoredDuringExecution }}
-{{- include "overprovisioner.patchLabelSelector" (merge (dict "_target" $term) $) }}
+{{- include "vertical-pod-autoscaler.patchLabelSelector" (merge (dict "_target" $term) $) }}
 {{- end }}
 {{- end }}
 {{- if (hasKey ._podAffinity "preferredDuringSchedulingIgnoredDuringExecution") }}
 {{- range $weightedTerm := ._podAffinity.preferredDuringSchedulingIgnoredDuringExecution }}
-{{- include "overprovisioner.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
+{{- include "vertical-pod-autoscaler.patchLabelSelector" (merge (dict "_target" $weightedTerm.podAffinityTerm) $) }}
 {{- end }}
 {{- end }}
 {{- end }}
