@@ -14578,6 +14578,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: "Fixed incorrect affinity and topology spread logic."
+    apiVersion: v2
+    appVersion: 0.31.0
+    created: "2023-04-28T13:44:05.941847951Z"
+    description: Helm chart for Thanos components.
+    digest: 3ba5fdef13f60ba6d68a470d13a30038b0db4f89e3359c9eb69e2870a9dd4e7d
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.12.2/thanos-1.12.2.tgz
+    version: 1.12.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: "Fixed missing Receive Router `receive_replica` label."
         - kind: fixed
           description: "Fixed Receive Router hashring mount path."
@@ -17680,4 +17710,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-27T09:59:09.01248461Z"
+generated: "2023-04-28T13:44:05.943597267Z"
