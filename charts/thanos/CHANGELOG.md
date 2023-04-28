@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.12.2] - 2023-04-28
+
+### All Changes
+
+- Fixed incorrect affinity and topology spread logic.
+
 ## [v1.12.1] - 2023-03-29
 
 ### All Changes

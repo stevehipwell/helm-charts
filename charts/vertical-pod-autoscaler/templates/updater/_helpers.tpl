@@ -43,11 +43,11 @@ The image to use
 Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.updater.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
+{{- if (hasKey .Values.updater.affinity "podAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.updater.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
+{{- if (hasKey .Values.updater.affinity "podAntiAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.updater.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -55,7 +55,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "vertical-pod-autoscaler.updater.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.updater.topologySpreadConstraints }}
 {{- include "vertical-pod-autoscaler.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") $) }}
 {{- end }}
 {{- end }}

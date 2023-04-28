@@ -36,11 +36,11 @@ Create the name of the service account to use
 Patch affinity
 */}}
 {{- define "thanos.storeGateway.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") .) }}
+{{- if (hasKey .Values.storeGateway.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.storeGateway.affinity.podAffinity "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") .) }}
+{{- if (hasKey .Values.storeGateway.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.storeGateway.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -48,7 +48,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "thanos.storeGateway.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.storeGateway.topologySpreadConstraints }}
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") $) }}
 {{- end }}
 {{- end }}

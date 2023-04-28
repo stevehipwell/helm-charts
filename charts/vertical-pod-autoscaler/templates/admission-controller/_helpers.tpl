@@ -93,11 +93,11 @@ CertManager issuer name
 Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.admissionController.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
+{{- if (hasKey .Values.admissionController.affinity "podAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.admissionController.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
+{{- if (hasKey .Values.admissionController.affinity "podAntiAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.admissionController.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -105,7 +105,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "vertical-pod-autoscaler.admissionController.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.admissionController.topologySpreadConstraints }}
 {{- include "vertical-pod-autoscaler.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") $) }}
 {{- end }}
 {{- end }}
