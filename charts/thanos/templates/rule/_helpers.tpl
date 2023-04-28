@@ -58,11 +58,11 @@ Rules configmap name
 Patch affinity
 */}}
 {{- define "thanos.rule.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
+{{- if (hasKey .Values.rule.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.rule.affinity.podAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
+{{- if (hasKey .Values.rule.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.rule.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.rule.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -70,7 +70,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "thanos.rule.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.rule.topologySpreadConstraints }}
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.rule.selectorLabels") $) }}
 {{- end }}
 {{- end }}

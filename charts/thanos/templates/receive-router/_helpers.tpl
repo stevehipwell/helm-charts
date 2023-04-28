@@ -43,11 +43,11 @@ Hashrings configmap name
 Patch affinity
 */}}
 {{- define "thanos.receive.router.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
+{{- if (hasKey .Values.receive.router.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.receive.router.affinity.podAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
+{{- if (hasKey .Values.receive.router.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.receive.router.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -55,7 +55,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "thanos.receive.router.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.receive.router.topologySpreadConstraints }}
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.receive.router.selectorLabels") $) }}
 {{- end }}
 {{- end }}

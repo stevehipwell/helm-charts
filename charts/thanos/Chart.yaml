@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.12.1
+version: 1.12.2
 appVersion: 0.31.0
 keywords:
   - kubernetes
@@ -23,8 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: "Fixed missing Receive Router `receive_replica` label."
-    - kind: fixed
-      description: "Fixed Receive Router hashring mount path."
-    - kind: fixed
-      description: "Fixed Receive hashring config when there are multiple Receive Ingestor replicas."
+      description: "Fixed incorrect affinity and topology spread logic."

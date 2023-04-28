@@ -36,11 +36,11 @@ Create the name of the service account to use
 Patch affinity
 */}}
 {{- define "thanos.query.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "thanos.query.selectorLabels") .) }}
+{{- if (hasKey .Values.query.affinity "podAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.query.affinity.podAffinity "_selectorLabelsTemplate" "thanos.query.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.query.selectorLabels") .) }}
+{{- if (hasKey .Values.query.affinity "podAntiAffinity") }}
+{{- include "thanos.patchPodAffinity" (merge (dict "_podAffinity" .Values.query.affinity.podAntiAffinity "_selectorLabelsTemplate" "thanos.query.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -48,7 +48,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "thanos.query.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.query.topologySpreadConstraints }}
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.query.selectorLabels") $) }}
 {{- end }}
 {{- end }}

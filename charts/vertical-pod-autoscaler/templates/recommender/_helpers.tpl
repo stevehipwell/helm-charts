@@ -43,11 +43,11 @@ The image to use
 Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.recommender.patchAffinity" -}}
-{{- if (hasKey .Values.pause.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
+{{- if (hasKey .Values.recommender.affinity "podAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.recommender.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
 {{- end }}
-{{- if (hasKey .Values.pause.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.pause.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
+{{- if (hasKey .Values.recommender.affinity "podAntiAffinity") }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.recommender.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
@@ -55,7 +55,7 @@ Patch affinity
 Patch topology spread constraints
 */}}
 {{- define "vertical-pod-autoscaler.recommender.patchTopologySpreadConstraints" -}}
-{{- range $constraint := .Values.pause.topologySpreadConstraints }}
+{{- range $constraint := .Values.recommender.topologySpreadConstraints }}
 {{- include "vertical-pod-autoscaler.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") $) }}
 {{- end }}
 {{- end }}
