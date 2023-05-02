@@ -17,6 +17,11 @@ spec:
   selector:
     matchLabels:
       {{- include "thanos.rule.selectorLabels" . | nindent 6 }}
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
   endpoints:
     - port: http
       path: /metrics

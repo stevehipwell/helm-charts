@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v1.12.4] - 2023-05-02
+
+### All Changes
+
+- Fixed missing Thanos rule service when ingress is enabled.
+
 ## [v1.12.3] - 2023-04-28
 
 ### All Changes
