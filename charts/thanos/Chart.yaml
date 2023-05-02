@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.12.3
+version: 1.12.4
 appVersion: 0.31.0
 keywords:
   - kubernetes
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: "Fixed incorrect affinity and topology spread logic."
+      description: "Fixed missing Thanos rule service when ingress is enabled."
