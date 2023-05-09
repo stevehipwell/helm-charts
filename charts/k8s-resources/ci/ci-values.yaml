@@ -1,0 +1,15 @@
+resources:
+  - apiVersion: v1
+    kind: ConfigMap
+    name: test
+    namespace: default
+    labels:
+      xxx: yyy
+    annotations:
+      aaa: bbb
+    content:
+      data:
+        test.sh: |-
+          #!/usr/bin/env bash
+          set -eu
+          echo "Hello World!"
