@@ -1,0 +1,101 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: {{ include "node-config.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "node-config.labels" . | nindent 4 }}
+spec:
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  selector:
+    matchLabels:
+      {{- include "node-config.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "node-config.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "node-config.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ quote . }}
+      {{- end }}
+      {{- with .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
+      initContainers:
+        - name: config
+          {{- with .Values.config.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ printf "%s:%s" .Values.config.image.repository (toString .Values.config.image.tag) }}
+          imagePullPolicy: {{ .Values.config.image.pullPolicy }}
+          {{- with .Values.config.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          command:
+            {{- toYaml .Values.config.command | nindent 12 }}
+          {{- with .Values.scripts }}
+          volumeMounts:
+          {{- range . }}
+            - name: {{ .name }}
+              mountPath: {{ printf "/opt/%s" (default .name .filename) }}
+              readOnly: true
+          {{- end }}
+          {{- end }}
+          {{- with .Values.config.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      containers:
+        - name: pause
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            privileged: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          image: {{ printf "%s:%s" .Values.pause.image.repository (toString .Values.pause.image.tag) }}
+          imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
+          {{- with .Values.pause.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.scripts }}
+      volumes:
+      {{- range . }}
+        - name: {{ .name }}
+          configMap:
+            name: {{ include "node-config.scriptConfigmapName" . }}
+            defaultMode: 0755
+      {{- end }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
