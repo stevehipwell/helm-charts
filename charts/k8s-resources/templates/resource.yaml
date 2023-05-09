@@ -1,0 +1,22 @@
+{{- range .Values.resources -}}
+apiVersion: {{ .apiVersion }}
+kind: {{ .kind }}
+metadata:
+  name: {{ .name }}
+{{- with .namespace }}
+  namespace: {{ . }}
+{{- end }}
+  labels:
+    {{- include "k8s-resources.labels" $ | nindent 4 }}
+  {{- with .labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
+{{- with .content }}
+{{ toYaml . }}
+{{- end }}
+---
+{{- end -}}
