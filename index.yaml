@@ -9044,6 +9044,32 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-1.2.0/jira-software-1.2.0.tgz
     version: 1.2.0
+  k8s-resources:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Initial release."
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-05-09T13:01:29.642822958Z"
+    description: Helm chart for provisioning Kubernetes resources.
+    digest: 7aee2930d258d5ddb70da423ac530dd2ffaaed6619a5fbe77debfb597880cf00
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - Kubernetes
+    - resources
+    - custom
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: k8s-resources
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/k8s-resources-0.1.0/k8s-resources-0.1.0.tgz
+    version: 0.1.0
   metrics-server:
   - apiVersion: v2
     appVersion: 0.5.0
@@ -17801,4 +17827,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-03T12:52:44.50379062Z"
+generated: "2023-05-09T13:01:29.643742257Z"
