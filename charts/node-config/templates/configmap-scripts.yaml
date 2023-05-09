@@ -1,0 +1,13 @@
+{{- range .Values.scripts -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "node-config.scriptConfigmapName" . }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "node-config.labels" $ | nindent 4 }}
+data:
+  {{ default .name .filename }}: |-
+{{- .content | nindent 4 }}
+---
+{{- end -}}

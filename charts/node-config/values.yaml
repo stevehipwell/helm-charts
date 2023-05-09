@@ -1,0 +1,63 @@
+nameOverride:
+fullnameOverride:
+
+commonLabels: {}
+
+imagePullSecrets: []
+
+serviceAccount:
+  create: true
+  name:
+  labels: {}
+  annotations: {}
+  automountToken: false
+
+scripts:
+  - name: config
+    filename: config.sh
+    content: |-
+      #!/usr/bin/env sh
+      set -eu
+      echo "Hello World!"
+
+podLabels: {}
+podAnnotations: {}
+podSecurityContext: {}
+priorityClassName:
+terminationGracePeriodSeconds:
+
+config:
+  image:
+    repository: docker.io/alpine
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  securityContext: {}
+
+  env: []
+
+  command:
+    - sh
+    - -c
+    - /opt/config.sh
+
+  resources: {}
+
+pause:
+  image:
+    repository: registry.k8s.io/pause
+    tag: 3.9
+    pullPolicy: IfNotPresent
+
+  resources:
+    requests:
+      cpu: 10m
+      memory: 8Mi
+    limits:
+      cpu: 100m
+      memory: 8Mi
+
+nodeSelector:
+  kubernetes.io/os: linux
+
+tolerations: []
