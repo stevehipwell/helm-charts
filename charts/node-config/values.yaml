@@ -20,6 +20,8 @@ scripts:
       set -eu
       echo "Hello World!"
 
+extraVolumes: []
+
 podLabels: {}
 podAnnotations: {}
 podSecurityContext: {}
@@ -40,6 +42,8 @@ config:
     - sh
     - -c
     - /opt/config.sh
+
+  extraVolumeMounts: []
 
   resources: {}
 
