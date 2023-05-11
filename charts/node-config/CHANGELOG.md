@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v0.2.0] - 2023-05-11
+
+### All Changes
+
+- Added support for attaching additional volumes to the config container via `extraVolumes` & `config.extraVolumeMounts`.
+
 ## [v0.1.0] - 2023-05-09
 
 ### All Changes

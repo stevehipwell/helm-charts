@@ -34,6 +34,7 @@ The following table lists the configurable parameters of the _Node Config_ chart
 | `scripts.name`                  | Name of the script to create.                                                                                                   |                               |
 | `scripts.filename`              | Filename of the script to create.                                                                                               |                               |
 | `scripts.content`               | Content of the script to create.                                                                                                |                               |
+| `extraVolumes`                  | Extra volumes for the pod.                                                                                                      | `[]`                          |
 | `podLabels`                     | Labels to add to the pod.                                                                                                       | `{}`                          |
 | `podAnnotations`                | Annotations to add to the pod.                                                                                                  | `{}`                          |
 | `podSecurityContext`            | Security context for the pod.                                                                                                   | `{}`                          |
@@ -45,6 +46,7 @@ The following table lists the configurable parameters of the _Node Config_ chart
 | `config.securityContext`        | Security context for the _config_ container.                                                                                    | `{}`                          |
 | `config.env`                    | Environment variables for the _config_ container.                                                                               | `[]`                          |
 | `config.command`                | Command for the _config_ container.                                                                                             | _See values.yaml_             |
+| `config.extraVolumeMounts`      | Extra volume mounts for the _config_ container.                                                                                 | `[]`                          |
 | `config.resources`              | Resource requests and limits for the _config_ container.                                                                        | `{}`                          |
 | `pause.image.repository`        | Image repository for the _pause_ container image.                                                                               | `registry.k8s.io/pause`       |
 | `pause.image.tag`               | Image tag for the _pause_ container image.                                                                                      | `3.9`                         |
