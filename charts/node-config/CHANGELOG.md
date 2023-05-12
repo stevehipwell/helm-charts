@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v0.4.0] - 2023-05-12
+
+### All Changes
+
+- Added support for host PID.
+
 ## [v0.3.0] - 2023-05-12
 
 ### All Changes

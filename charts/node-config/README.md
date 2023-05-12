@@ -37,6 +37,7 @@ The following table lists the configurable parameters of the _Node Config_ chart
 | `extraVolumes`                  | Extra volumes for the pod.                                                                                                      | `[]`                          |
 | `podLabels`                     | Labels to add to the pod.                                                                                                       | `{}`                          |
 | `podAnnotations`                | Annotations to add to the pod.                                                                                                  | `{}`                          |
+| `hostPID`                       | If the pod should use the host PID.                                                                                             | `false`                       |
 | `podSecurityContext`            | Security context for the pod.                                                                                                   | `{}`                          |
 | `priorityClassName`             | Priority class name to use.                                                                                                     |                               |
 | `terminationGracePeriodSeconds` | Termination grace period of the pod in seconds.                                                                                 |                               |

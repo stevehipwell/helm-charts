@@ -24,6 +24,7 @@ extraVolumes: []
 
 podLabels: {}
 podAnnotations: {}
+hostPID: false
 podSecurityContext: {}
 priorityClassName:
 terminationGracePeriodSeconds:
