@@ -11895,6 +11895,30 @@ entries:
   node-config:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added a checksum for the script content."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-05-12T14:31:57.59230397Z"
+    description: Helm chart for configuring Kubernetes nodes with a DaemonSet.
+    digest: db5afa4960902915d9b227fb0a20083548c7cd86b858b75b10aeaf26a6f35259
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - node
+    - configuration
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: node-config
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/node-config-0.3.0/node-config-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed script mount logic."
     apiVersion: v2
@@ -17900,4 +17924,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-12T12:32:22.015833093Z"
+generated: "2023-05-12T14:31:57.593584369Z"
