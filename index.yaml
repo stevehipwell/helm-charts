@@ -11895,6 +11895,30 @@ entries:
   node-config:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed script mount logic."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-05-12T12:32:22.014583396Z"
+    description: Helm chart for configuring Kubernetes nodes with a DaemonSet.
+    digest: 6ff1484175c3d486c01f4cbae13504d803b2eb669ee19b62269bb65b2ecf61db
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - node
+    - configuration
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: node-config
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/node-config-0.2.1/node-config-0.2.1.tgz
+    version: 0.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for attaching additional volumes to the config container via `extraVolumes` & `config.extraVolumeMounts`."
     apiVersion: v2
@@ -17876,4 +17900,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-11T10:30:27.104279575Z"
+generated: "2023-05-12T12:32:22.015833093Z"
