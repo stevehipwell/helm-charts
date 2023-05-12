@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v0.2.1] - 2023-05-12
+
+### All Changes
+
+- Fixed script mount logic.
+
 ## [v0.2.0] - 2023-05-11
 
 ### All Changes
