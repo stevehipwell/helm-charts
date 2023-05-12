@@ -59,6 +59,7 @@ spec:
           {{- range . }}
             - name: {{ .name }}
               mountPath: {{ printf "/opt/%s" (default .name .filename) }}
+              subPath: {{ default .name .filename }}
               readOnly: true
           {{- end }}
           {{- end }}
