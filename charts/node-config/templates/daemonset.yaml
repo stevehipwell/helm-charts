@@ -58,13 +58,16 @@ spec:
           {{- end }}
           command:
             {{- toYaml .Values.config.command | nindent 12 }}
-          {{- with .Values.scripts }}
+          {{- if or .Values.scripts .Values.config.extraVolumeMounts }}
           volumeMounts:
-          {{- range . }}
+          {{- range .Values.scripts }}
             - name: {{ .name }}
               mountPath: {{ printf "/opt/%s" (default .name .filename) }}
               subPath: {{ default .name .filename }}
               readOnly: true
+          {{- end }}
+          {{- with .Values.config.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- with .Values.config.resources }}
@@ -87,13 +90,16 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.scripts }}
+      {{- if or .Values.scripts .Values.config.extraVolumeMounts }}
       volumes:
-      {{- range . }}
+      {{- range .Values.scripts }}
         - name: {{ .name }}
           configMap:
             name: {{ include "node-config.scriptConfigmapName" . }}
             defaultMode: 0755
+      {{- end }}
+      {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
