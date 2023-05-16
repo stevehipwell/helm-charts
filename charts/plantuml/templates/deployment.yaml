@@ -84,8 +84,8 @@ spec:
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
-            - name: jetty-tmp
-              mountPath: /tmp/jetty
+            - name: tmp
+              mountPath: /tmp
           {{- if .Values.caCerts.enabled }}
             - name: ca-certs-keystore
               mountPath: /usr/local/openjdk-11/lib/security/cacerts
@@ -96,7 +96,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
-        - name: jetty-tmp
+        - name: tmp
           emptyDir: {}
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs-secret
