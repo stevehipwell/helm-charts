@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Deprecated
 - Removed -->
 
+## [v4.27.1] - 2023-05-16
+
+### All Changes
+
+- Updated the _Nexus3_ image to [v3.53.1](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/sonatype-nexus-repository-3.53.0---3.53.1-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.53.1-02)).
+
 ## [v4.27.0] - 2023-05-03
 
 ### All Changes
