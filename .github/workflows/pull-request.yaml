@@ -32,22 +32,46 @@ jobs:
           version: latest
 
       - name: Install Helm Docs
-        run: |
-          set -euo pipefail
-          curl -L https://github.com/norwoodj/helm-docs/releases/download/v1.11.0/helm-docs_1.11.0_Linux_x86_64.tar.gz | tar -xz --directory /usr/local/bin helm-docs
-          chmod +x /usr/local/bin/helm-docs
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: norwoodj
+          repository: helm-docs
+          arch_amd64: x86_64
+          os_linux: Linux
+          check_command: helm-docs --version
+          version: latest
 
       - name: Install Artifact Hub CLI
-        run: |
-          set -euo pipefail
-          curl -L https://github.com/artifacthub/hub/releases/download/v1.11.0/ah_1.11.0_linux_amd64.tar.gz | tar -xz --directory /usr/local/bin ah
-          chmod +x /usr/local/bin/ah
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: artifacthub
+          repository: hub
+          name: ah
+          check_command: ah version
+          version: latest
+
+      - name: Install YQ
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: mikefarah
+          repository: yq
+          extract: false
+          filename_format: "{name}_{os}_{arch}"
+          check_command: yq --version
+          version: latest
 
       - name: Install Kubeconform
-        run: |
-          set -euo pipefail
-          curl -L https://github.com/yannh/kubeconform/releases/download/v0.6.1/kubeconform-linux-amd64.tar.gz | tar -xz --directory /usr/local/bin kubeconform
-          chmod +x /usr/local/bin/kubeconform
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: yannh
+          repository: kubeconform
+          filename_format: "{name}-{os}-{arch}.{ext}"
+          check_command: kubeconform -v
+          version: latest
 
       - name: Install chart-testing
         uses: helm/chart-testing-action@e8788873172cb653a90ca2e819d79d65a66d4e76 # v2.4.0
