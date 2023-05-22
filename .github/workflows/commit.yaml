@@ -24,11 +24,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install yq
-        run: |
-          set -euo pipefail
-          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
-          chmod +x /usr/local/bin/yq
+      - name: Install YQ
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: mikefarah
+          repository: yq
+          extract: false
+          filename_format: "{name}_{os}_{arch}"
+          check_command: yq --version
+          version: latest
 
       - name: Check for charts to release
         id: charts
@@ -102,16 +107,24 @@ jobs:
           install_only: true
 
       - name: Install ORAS
-        run: |
-          set -euo pipefail
-          curl -L https://github.com/oras-project/oras/releases/download/v0.16.0/oras_0.16.0_linux_amd64.tar.gz | tar -xz --directory /usr/local/bin oras
-          chmod +x /usr/local/bin/oras
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: oras-project
+          repository: oras
+          check_command: oras version
+          version: latest
 
-      - name: Install yq
-        run: |
-          set -euo pipefail
-          curl -Lo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.8/yq_linux_amd64
-          chmod +x /usr/local/bin/yq
+      - name: Install YQ
+        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: mikefarah
+          repository: yq
+          extract: false
+          filename_format: "{name}_{os}_{arch}"
+          check_command: yq --version
+          version: latest
 
       - name: Configure Git
         run: |
