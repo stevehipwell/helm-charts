@@ -2,7 +2,7 @@ apiVersion: v2
 name: node-config
 description: Helm chart for configuring Kubernetes nodes with a DaemonSet.
 type: application
-version: 0.4.1
+version: 0.5.0
 appVersion: 0.1.0
 home: https://github.com/stevehipwell/helm-charts/
 icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
@@ -16,5 +16,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed volume bug."
+    - kind: added
+      description: "Added `affinity.nodeAffinity`."

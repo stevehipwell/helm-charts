@@ -54,4 +54,5 @@ The following table lists the configurable parameters of the _Node Config_ chart
 | `pause.image.pullPolicy`        | Image pull policy for the _pause_ container image.                                                                              | `IfNotPresent`                |
 | `pause.resources`               | Resource requests and limits for the _pause_ container.                                                                         | _See values.yaml_             |
 | `nodeSelector`                  | Node labels for pod assignment.                                                                                                 | `{ kubernetes.io/os: linux }` |
+| `affinity.nodeAffinity`         | Node affinity settings for pod assignment.                                                                                      | `{}`                          |
 | `tolerations`                   | Toleration labels for pod assignment.                                                                                           | `[]`                          |
