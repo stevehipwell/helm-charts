@@ -11998,6 +11998,30 @@ entries:
   node-config:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added `affinity.nodeAffinity`."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-05-22T16:46:07.460012477Z"
+    description: Helm chart for configuring Kubernetes nodes with a DaemonSet.
+    digest: 8e58a2775560896109dce18e356299f19613cb5160b96c08151df0aafa4ab21d
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
+    keywords:
+    - node
+    - configuration
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: node-config
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/node-config-0.5.0/node-config-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed volume bug."
     apiVersion: v2
@@ -18102,4 +18126,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-17T09:15:18.567342603Z"
+generated: "2023-05-22T16:46:07.461305391Z"
