@@ -65,4 +65,7 @@ pause:
 nodeSelector:
   kubernetes.io/os: linux
 
+affinity:
+  nodeAffinity: {}
+
 tolerations: []
