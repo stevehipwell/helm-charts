@@ -1,0 +1,26 @@
+apiVersion: v2
+name: fluent-bit-aggregator
+description: Helm chart for Fluent Bit running as an aggregation stateful set.
+type: application
+version: 0.1.0
+appVersion: 2.1.4
+keywords:
+  - fluent
+  - fluentd
+  - fluent bit
+  - logging
+  - aggregator
+home: https://fluentbit.io/
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+sources:
+  - https://github.com/fluent/fluent-bit/
+  - https://github.com/stevehipwell/helm-charts/
+maintainers:
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+    url: https://github.com/stevehipwell
+annotations:
+  artifacthub.io/alternativeName: fluent-bit
+  artifacthub.io/changes: |
+    - kind: added
+      description: "Added initial release."

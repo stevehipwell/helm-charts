@@ -1,0 +1,79 @@
+ingresses:
+  - servicePort: 24224
+    className: my-ingress-class
+    annotations: {}
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - chart-example.local
+        secretName: chart-example-tls
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 12
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+podDisruptionBudget:
+  enabled: false
+  maxUnavailable: 33%
+
+priorityClassName: system-cluster-critical
+terminationGracePeriodSeconds: 120
+
+persistence:
+  enabled: true
+  annotations: {}
+  accessMode: ReadWriteOnce
+  storageClass: my-storage-class
+  size: 8Gi
+  retainDeleted: false
+  retainScaled: true
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 256Mi
+
+serviceMonitor:
+  enabled: true
+
+config:
+  customParsers: |-
+    [PARSER]
+        Name docker_no_time
+        Format json
+        Time_Keep Off
+        Time_Key time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L
+
+  extraFiles:
+    upstream.conf: |-
+      [UPSTREAM]
+          upstream1
+
+      [NODE]
+          name       node-1
+          host       127.0.0.1
+          port       43000
+
+  luaScripts:
+    test.lua: |-
+      function append_tag(tag, timestamp, record)
+          new_record = record
+          new_record["tag"] = tag
+          return 1, timestamp, new_record
+      end
