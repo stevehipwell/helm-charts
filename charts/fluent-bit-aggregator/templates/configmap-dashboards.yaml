@@ -1,0 +1,17 @@
+
+{{- if .Values.dashboards.enabled -}}
+{{- range $path, $_ :=  .Files.Glob "dashboards/*-dashboard.json" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ (printf "%s-%s" (include "fluent-bit-aggregator.fullname" $) (trimSuffix ".json" (base $path))) | trunc 63 | trimSuffix "-" }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "fluent-bit-aggregator.labels" $ | nindent 4 }}
+    grafana_dashboard: "1"
+data:
+  {{ base $path }}: |
+{{- $.Files.Get $path | nindent 4 }}
+---
+{{- end }}
+{{- end -}}

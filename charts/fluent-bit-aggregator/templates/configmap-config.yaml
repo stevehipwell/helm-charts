@@ -1,0 +1,29 @@
+{{- $serviceConfig := merge (dict "daemon" false "http_server" true "http_Port" .Values.service.httpPort "storage.path" (ternary "/fluent-bit/data" "" .Values.config.storage) "parsers_file" "parsers.conf") .Values.config.service -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fluent-bit-aggregator.configConfigMapName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "fluent-bit-aggregator.labels" . | nindent 4 }}
+data:
+  fluent-bit.conf: |-
+    [SERVICE]
+{{- range $k, $v := $serviceConfig }}
+        {{ printf "%s %s" $k (toString $v) }}
+{{- end }}
+{{- if .Values.config.customParsers }}
+        parsers_file custom-parsers.conf
+{{- end }}
+{{ print "" }}
+{{- (tpl .Values.config.pipeline .) | nindent 4 }}
+{{- with .Values.config.customParsers }}
+{{ print "" }}
+  custom-parsers.conf: |-
+{{- (tpl . $) | nindent 4 }}
+{{- end }}
+{{- range $k, $v := .Values.config.extraFiles }}
+{{ print "" }}
+  {{ $k }}: |-
+{{- (tpl $v $) | nindent 4 }}
+{{- end }}

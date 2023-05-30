@@ -1,0 +1,19 @@
+{{- if and .Values.podDisruptionBudget.enabled (or .Values.podDisruptionBudget.minAvailable .Values.podDisruptionBudget.maxUnavailable) -}}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "fluent-bit-aggregator.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "fluent-bit-aggregator.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "fluent-bit-aggregator.selectorLabels" . | nindent 6 }}
+{{- with .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ . }}
+{{- end  }}
+{{- with .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ . }}
+{{- end  }}
+{{- end -}}

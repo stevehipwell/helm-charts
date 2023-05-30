@@ -1,1 +1,13 @@
-charts
+confluence-server
+fluentd-aggregator
+istio-operator
+jira-software
+k8s-resources
+nexus3
+node-config
+overprovisioner
+plantuml
+sonarqube
+thanos
+tigera-operator
+vertical-pod-autoscaler
