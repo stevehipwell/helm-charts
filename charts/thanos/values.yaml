@@ -4,8 +4,9 @@
 
 image:
   repository: quay.io/thanos/thanos
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  # Overrides the image tag whose default is the chart appVersion, setting this to "-" will use no tag
+  tag:
+  digest:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

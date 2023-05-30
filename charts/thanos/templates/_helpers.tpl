@@ -81,7 +81,9 @@ Objstore config hash
 The Thanos image to use
 */}}
 {{- define "thanos.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "v%s" .Chart.AppVersion) .Values.image.tag) }}
+{{- $tag := ternary (printf ":%s" (default (printf "v%s" .Chart.AppVersion) .Values.image.tag)) "" (ne .Values.image.tag "-") }}
+{{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
+{{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
 
 {{/* Get Ingress API Version */}}
