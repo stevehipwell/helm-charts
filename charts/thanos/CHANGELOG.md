@@ -7,15 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
+<!--
+## [UNRELEASED]
+
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
+
+## [UNRELEASED]
+
+### Added
+
+- Added support for not providing a tag as part of the image by setting the value to `"-"`.
+- Added support for using a digest as part of the image.
 
 ## [v1.12.4] - 2023-05-02
 
