@@ -117,6 +117,7 @@ podAnnotations: {}
 # @default -- See _values.yaml_
 podSecurityContext:
   runAsNonRoot: true
+  fsGroup: 65534
 
 # -- Priority class name for the pod.
 priorityClassName:

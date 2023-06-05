@@ -151,7 +151,7 @@ spec:
   {{- if and .Values.config.storage .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
-        name: date
+        name: data
         labels:
           {{- include "fluent-bit-aggregator.selectorLabels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}

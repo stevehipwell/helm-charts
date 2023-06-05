@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v0.2.1] - 2023-06-05
+
+### Fixed
+
+- Fixed volume mount typo.
+- Fixed missing fsGroup from pod security context.
+
 ## [v0.2.0] - 2023-06-05
 
 ### Added
