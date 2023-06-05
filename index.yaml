@@ -6873,6 +6873,42 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Jira Software_ OCI image to [v9.9.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-9-x-release-notes-1236934945.html)."
+    apiVersion: v2
+    appVersion: 9.9.0
+    created: "2023-06-05T13:04:26.08156155Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Jira Software.
+    digest: 43331a299382d5fa37eed77fb6d134f220630f1624012634b29f4ab54b3c7d31
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.9.0/jira-software-5.9.0.tgz
+    version: 5.9.0
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ image to [v9.8.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-8-x-release-notes-1224776099.html)."
     apiVersion: v2
     appVersion: 9.8.1
@@ -18314,4 +18350,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-06-05T12:56:08.204861134Z"
+generated: "2023-06-05T13:04:26.082590361Z"
