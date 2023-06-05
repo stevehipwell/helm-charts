@@ -3269,6 +3269,36 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
         - kind: added
+          description: "Added support for HPA behaviour."
+    apiVersion: v2
+    appVersion: 2.1.4
+    created: "2023-06-05T12:56:08.203895142Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: 023db6b56ead589c2528318b43a46b164b0debde40ac3c716ab6ddc7acdc449f
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.2.0/fluent-bit-aggregator-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added initial release."
     apiVersion: v2
     appVersion: 2.1.4
@@ -18284,4 +18314,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-05-30T13:35:48.804883009Z"
+generated: "2023-06-05T12:56:08.204861134Z"
