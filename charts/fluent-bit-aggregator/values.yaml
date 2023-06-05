@@ -76,6 +76,8 @@ autoscaling:
   minReplicas: 1
   # -- Maximum number of replicas for the `HorizontalPodAutoscaler`.
   maxReplicas: 3
+  # -- Behaviour configuration for the `HorizontalPodAutoscaler`.
+  behavior: {}
   # -- Metrics configuration for the `HorizontalPodAutoscaler`.
   metrics: []
   #  - type: Resource

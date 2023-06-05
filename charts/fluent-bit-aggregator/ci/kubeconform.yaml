@@ -16,6 +16,9 @@ autoscaling:
   enabled: true
   minReplicas: 3
   maxReplicas: 12
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 3600
   metrics:
     - type: Resource
       resource:
