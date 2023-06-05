@@ -34,6 +34,10 @@ podDisruptionBudget:
 priorityClassName: system-cluster-critical
 terminationGracePeriodSeconds: 120
 
+env:
+  - name: TEST
+    value: my-value
+
 persistence:
   enabled: true
   annotations: {}
