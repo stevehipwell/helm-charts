@@ -3268,6 +3268,38 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed volume mount typo."
+        - kind: fixed
+          description: "Fixed missing fsGroup from pod security context."
+    apiVersion: v2
+    appVersion: 2.1.4
+    created: "2023-06-05T15:54:31.334748175Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: c1f74854892db0841fa9b364fdc11eef35e783cba8cd50636a904375eac6b20e
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.2.1/fluent-bit-aggregator-0.2.1.tgz
+    version: 0.2.1
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for HPA behaviour."
     apiVersion: v2
@@ -18350,4 +18382,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-06-05T13:04:26.082590361Z"
+generated: "2023-06-05T15:54:31.33607488Z"
