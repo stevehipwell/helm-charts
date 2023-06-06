@@ -70,6 +70,8 @@ envFrom: []
 #       name: kubernetes-services-endpoint
 #       optional: true
 
+args: []
+
 installation:
   enabled: false
   spec:
