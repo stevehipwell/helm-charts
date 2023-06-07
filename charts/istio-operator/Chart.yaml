@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart for the Istio Operator.
 type: application
-version: 2.10.0
-appVersion: 1.17.2
+version: 2.10.1
+appVersion: 1.17.3
 keywords:
   - kubernetes
   - istio
@@ -28,10 +28,4 @@ annotations:
       description: Represents an installation of Istio to be manmaged by the Istio Operator.
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2)."
-    - kind: added
-      description: "Added explicit namespace declaration in templates."
-    - kind: added
-      description: "Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods."
-    - kind: added
-      description: "Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`."
+      description: "Updated the _Istio Operator_ OCI image version to [v1.17.3](https://github.com/istio/istio/releases/tag/1.17.3)."
