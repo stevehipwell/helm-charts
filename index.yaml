@@ -5105,6 +5105,41 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.17.3](https://github.com/istio/istio/releases/tag/1.17.3)."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be manmaged by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.17.3
+    created: "2023-06-07T16:05:10.930396207Z"
+    description: Helm chart for the Istio Operator.
+    digest: 87b2f67a8126332b1176af670634d41698929557fe5429015bce37f9f6b74847
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.10.1/istio-operator-2.10.1.tgz
+    version: 2.10.1
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2)."
         - kind: added
           description: "Added explicit namespace declaration in templates."
@@ -18446,4 +18481,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-06-06T16:13:54.606528218Z"
+generated: "2023-06-07T16:05:10.931688142Z"
