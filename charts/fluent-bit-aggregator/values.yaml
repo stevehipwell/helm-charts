@@ -3,13 +3,13 @@
 # Declare variables to be passed into your templates.
 
 image:
-  # -- Image repository.
+  # -- Image repository for the default container.
   repository: cr.fluentbit.io/fluent/fluent-bit
-  # -- (string) Image tag, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`.
+  # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`.
   tag:
-  # -- (string) Optional image digest.
+  # -- (string) Optional image digest for the default container.
   digest:
-  # --  Image pull policy.
+  # --  Image pull policy for the default container.
   pullPolicy: IfNotPresent
 
 # -- Image pull secrets.
@@ -290,3 +290,18 @@ config:
   #        new_record["tag"] = tag
   #        return 1, timestamp, new_record
   #    end
+
+hotReload:
+  # -- If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container.
+  enabled: false
+  image:
+    # -- Image repository for the hot-reload sidecar container.
+    repository: ghcr.io/jimmidyson/configmap-reload
+    # -- Image tag for the hot-reload sidecar container.
+    tag: v0.11.1
+    # -- (string) Optional image digest for the hot-reload sidecar container.
+    digest:
+    # --  Image pull policy for the hot-reload sidecar container.
+    pullPolicy: IfNotPresent
+  # -- Resources for the hot-reload sidecar container.
+  resources: {}

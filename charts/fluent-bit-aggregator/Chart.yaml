@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluent-bit-aggregator
 description: Helm chart for Fluent Bit running as an aggregation stateful set.
 type: application
-version: 0.2.1
+version: 0.3.0
 appVersion: 2.1.4
 keywords:
   - fluent
@@ -22,7 +22,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed volume mount typo."
-    - kind: fixed
-      description: "Fixed missing fsGroup from pod security context."
+    - kind: added
+      description: "Added [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) support."

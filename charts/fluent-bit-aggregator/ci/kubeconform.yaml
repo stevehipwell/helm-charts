@@ -84,3 +84,6 @@ config:
           new_record["tag"] = tag
           return 1, timestamp, new_record
       end
+
+hotReload:
+  enabled: true

@@ -99,6 +99,15 @@ The image to use
 {{- end }}
 
 {{/*
+The config reloader image to use
+*/}}
+{{- define "fluent-bit-aggregator.reloaderImage" -}}
+{{- $tag := ternary (printf ":%s" .Values.hotReload.image.tag) "" (not (empty .Values.hotReload.image.tag)) }}
+{{- $digest := ternary (printf "@%s" .Values.hotReload.image.digest) "" (not (empty .Values.hotReload.image.digest)) }}
+{{- printf "%s%s%s" .Values.hotReload.image.repository $tag $digest }}
+{{- end }}
+
+{{/*
 Patch the label selector on an object
 */}}
 {{- define "fluent-bit-aggregator.patchLabelSelector" -}}
