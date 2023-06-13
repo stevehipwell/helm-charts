@@ -128,7 +128,7 @@ spec:
           {{- end }}
       {{- if .Values.rule.configReloader.enabled }}
         - name: config-reloader
-          image: jimmidyson/configmap-reload:v0.5.0
+          image: {{ include "thanos.configReloaderImage" . }}
           args:
             - -webhook-url=http://localhost:10902/-/reload
             - -volume-dir=/etc/thanos/rules

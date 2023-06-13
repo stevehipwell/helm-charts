@@ -24,6 +24,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added support for not providing a tag as part of the image by setting the value to `"-"`.
 - Added support for using a digest as part of the image.
+- Added support for customising the config reloader image.
+
+### Changed
+
+- Changed the config reloader default image.
 
 ## [v1.12.4] - 2023-05-02
 

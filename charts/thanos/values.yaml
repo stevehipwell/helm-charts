@@ -564,6 +564,11 @@ rule:
 
   configReloader:
     enabled: true
+    image:
+      repository: ghcr.io/jimmidyson/configmap-reload
+      tag: v0.11.1
+      digest:
+      pullPolicy: IfNotPresent
     resources: {}
 
   alertmanagersConfig:
