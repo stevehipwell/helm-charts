@@ -86,6 +86,15 @@ The Thanos image to use
 {{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
 
+{{/*
+The config reloader image to use
+*/}}
+{{- define "thanos.configReloaderImage" -}}
+{{- $tag := ternary (printf ":%s" .Values.rule.configReloader.image.tag) "" (not (empty .Values.rule.configReloader.image.tag)) }}
+{{- $digest := ternary (printf "@%s" .Values.rule.configReloader.image.digest) "" (not (empty .Values.rule.configReloader.image.digest)) }}
+{{- printf "%s%s%s" .Values.rule.configReloader.image.repository $tag $digest }}
+{{- end }}
+
 {{/* Get Ingress API Version */}}
 {{- define "thanos.ingress.apiVersion" -}}
   {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
