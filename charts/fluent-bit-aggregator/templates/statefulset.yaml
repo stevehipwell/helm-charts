@@ -35,7 +35,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       annotations:
+      {{- if not .Values.hotReload.enabled }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
+      {{- end }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
@@ -68,9 +70,14 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.args }}
+          {{- if or .Values.hotReload.enabled .Values.args }}
           args:
+          {{- if .Values.hotReload.enabled }}
+            - --enable-hot-reload
+          {{- end }}
+          {{- with .Values.args }}
             {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- end }}
           ports:
             - name: http
@@ -114,6 +121,31 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- if .Values.hotReload.enabled }}
+        - name: reloader
+          image: {{ include "fluent-bit-aggregator.reloaderImage" . }}
+          args:
+            - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
+            - -volume-dir=/fluent-bit/etc
+          volumeMounts:
+            - name: config
+              mountPath: /fluent-bit/etc/fluent-bit.conf
+              subPath: fluent-bit.conf
+          {{- if .Values.config.customParsers }}
+            - name: config
+              mountPath: /fluent-bit/etc/custom-parsers.conf
+              subPath: custom-parsers.conf
+          {{- end }}
+          {{- range $k, $v := .Values.config.extraFiles }}
+            - name: config
+              mountPath: {{ printf "/fluent-bit/etc/%s" $k }}
+              subPath: {{ $k }}
+          {{- end }}
+          {{- with .Values.hotReload.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- end }}
       volumes:
         - name: config
           configMap:
