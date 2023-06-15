@@ -70,14 +70,14 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if or .Values.hotReload.enabled .Values.args }}
           args:
+            - /fluent-bit/bin/fluent-bit
+            - --config=/fluent-bit/etc/fluent-bit.conf
           {{- if .Values.hotReload.enabled }}
             - --enable-hot-reload
           {{- end }}
           {{- with .Values.args }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}
           {{- end }}
           ports:
             - name: http
