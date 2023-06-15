@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v0.3.1] - 2023-06-15
+
+### Fixed
+
+- Fixed args when hot-reload is enabled.
+
 ## [v0.3.0] - 2023-06-13
 
 ### Added
