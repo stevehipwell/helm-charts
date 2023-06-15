@@ -126,21 +126,10 @@ spec:
           image: {{ include "fluent-bit-aggregator.reloaderImage" . }}
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
-            - -volume-dir=/fluent-bit/etc
+            - -volume-dir=/watch
           volumeMounts:
             - name: config
-              mountPath: /fluent-bit/etc/fluent-bit.conf
-              subPath: fluent-bit.conf
-          {{- if .Values.config.customParsers }}
-            - name: config
-              mountPath: /fluent-bit/etc/custom-parsers.conf
-              subPath: custom-parsers.conf
-          {{- end }}
-          {{- range $k, $v := .Values.config.extraFiles }}
-            - name: config
-              mountPath: {{ printf "/fluent-bit/etc/%s" $k }}
-              subPath: {{ $k }}
-          {{- end }}
+              mountPath: /watch
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
