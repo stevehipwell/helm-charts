@@ -243,7 +243,7 @@ config:
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
     # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage
-    # parsers_file: parsers.conf - This can't be set as it will use the default file and customParsers
+    # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
     log_level: info
     http_listen: "0.0.0.0"
     storage.metrics: true
@@ -282,7 +282,7 @@ config:
   #        host       127.0.0.1
   #        port       43000
 
-  # -- Lua scripts to configure.
+  # -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
   luaScripts: {}
   #  test.lua: |-
   #    function append_tag(tag, timestamp, record)

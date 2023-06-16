@@ -34,14 +34,16 @@ spec:
       {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+    {{- if or (not .Values.hotReload.enabled) .Values.podAnnotations }}
       annotations:
       {{- if not .Values.hotReload.enabled }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
-      {{- end }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+    {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -71,6 +73,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args:
+            - --workdir=/fluent-bit/etc
             - --config=/fluent-bit/etc/conf/fluent-bit.conf
           {{- if .Values.hotReload.enabled }}
             - --enable-hot-reload
@@ -115,9 +118,12 @@ spec:
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
             - -volume-dir=/watch/config
+            - -volume-dir=/watch/scripts
           volumeMounts:
             - name: config
               mountPath: /watch/config
+            - name: scripts
+              mountPath: /watch/scripts
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
