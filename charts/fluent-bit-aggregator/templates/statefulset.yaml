@@ -71,8 +71,7 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args:
-            - /fluent-bit/bin/fluent-bit
-            - --config=/fluent-bit/etc/fluent-bit.conf
+            - --config=/fluent-bit/etc/conf/fluent-bit.conf
           {{- if .Values.hotReload.enabled }}
             - --enable-hot-reload
           {{- end }}
@@ -94,18 +93,7 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
             - name: config
-              mountPath: /fluent-bit/etc/fluent-bit.conf
-              subPath: fluent-bit.conf
-          {{- if .Values.config.customParsers }}
-            - name: config
-              mountPath: /fluent-bit/etc/custom-parsers.conf
-              subPath: custom-parsers.conf
-          {{- end }}
-          {{- range $k, $v := .Values.config.extraFiles }}
-            - name: config
-              mountPath: {{ printf "/fluent-bit/etc/%s" $k }}
-              subPath: {{ $k }}
-          {{- end }}
+              mountPath: /fluent-bit/etc/conf
           {{- if .Values.config.luaScripts }}
             - name: scripts
               mountPath: /fluent-bit/scripts
@@ -126,10 +114,10 @@ spec:
           image: {{ include "fluent-bit-aggregator.reloaderImage" . }}
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
-            - -volume-dir=/watch
+            - -volume-dir=/watch/config
           volumeMounts:
             - name: config
-              mountPath: /watch
+              mountPath: /watch/config
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
