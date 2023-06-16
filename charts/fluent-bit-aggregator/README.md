@@ -1,6 +1,6 @@
 # fluent-bit-aggregator
 
-![Version: 0.3.3](https://img.shields.io/badge/Version-0.3.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.4](https://img.shields.io/badge/AppVersion-2.1.4-informational?style=flat-square)
+![Version: 0.3.4](https://img.shields.io/badge/Version-0.3.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.4](https://img.shields.io/badge/AppVersion-2.1.4-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
@@ -22,14 +22,14 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.3.3
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.3.4
 ```
 
 Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.3.3
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.3.4
 ```
 
 ## Values
@@ -46,7 +46,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | `nil` | Custom parsers to configure. |
 | config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc |
-| config.luaScripts | object | `{}` | Lua scripts to configure. |
+| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path. |
 | config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration. |
 | config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
 | config.storage | bool | `true` | If `true`, filesystem storage will be enabled. |
