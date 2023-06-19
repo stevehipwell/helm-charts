@@ -38,7 +38,9 @@ spec:
       annotations:
       {{- if not .Values.hotReload.enabled }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
+      {{- if .Values.config.luaScripts }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
+      {{- end }}
       {{- end }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
@@ -118,12 +120,16 @@ spec:
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
             - -volume-dir=/watch/config
+          {{- if .Values.config.luaScripts }}
             - -volume-dir=/watch/scripts
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /watch/config
+          {{- if .Values.config.luaScripts }}
             - name: scripts
               mountPath: /watch/scripts
+          {{- end }}
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
