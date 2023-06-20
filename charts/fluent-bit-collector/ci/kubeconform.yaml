@@ -1,0 +1,54 @@
+service:
+  enabled: true
+
+priorityClassName: system-node-critical
+
+env:
+  - name: TEST
+    value: my-value
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 256Mi
+
+serviceMonitor:
+  enabled: true
+
+dashboards:
+  enabled: true
+
+config:
+  storage: true
+
+  customParsers: |-
+    [PARSER]
+        Name docker_no_time
+        Format json
+        Time_Keep Off
+        Time_Key time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L
+
+  extraFiles:
+    upstream.conf: |-
+      [UPSTREAM]
+          upstream1
+
+      [NODE]
+          name       node-1
+          host       127.0.0.1
+          port       43000
+
+  luaScripts:
+    test.lua: |-
+      function append_tag(tag, timestamp, record)
+          new_record = record
+          new_record["tag"] = tag
+          return 1, timestamp, new_record
+      end
+
+hotReload:
+  enabled: true

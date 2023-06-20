@@ -1,0 +1,285 @@
+# Default values for fluent-bit-aggregator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  # -- Image repository for the default container.
+  repository: cr.fluentbit.io/fluent/fluent-bit
+  # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`.
+  tag:
+  # -- (string) Optional image digest for the default container.
+  digest:
+  # --  Image pull policy for the default container.
+  pullPolicy: IfNotPresent
+
+# -- Image pull secrets.
+imagePullSecrets: []
+
+# -- (string) Override the name of the chart.
+nameOverride:
+
+# -- (string) Override the full name of the chart.
+fullnameOverride:
+
+# -- Labels to add to all chart resources.
+commonLabels: {}
+
+serviceAccount:
+  # -- If `true`, create a new `ServiceAccount`.
+  create: true
+  # -- Labels to add to the service account.
+  labels: {}
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
+  name:
+  # -- If `true`, mount the `ServiceAccount` token.
+  automountToken: true
+
+service:
+  # -- If `true`, create an internal local traffic service.
+  enabled: false
+  # -- Service annotations.
+  annotations: {}
+  # -- Fluent Bit HTTP port used for status and metrics.
+  httpPort: 2020
+  # -- Additional ports to expose.
+  # @default -- See _values.yaml_
+  additionalPorts:
+    - name: http-otel
+      port: 4318
+      containerPort: 4318
+      protocol: TCP
+
+# -- Update strategy for the `DaemonSet`.
+updateStrategy: {}
+
+# -- Min ready seconds for the `DaemonSet`.
+minReadySeconds:
+
+# -- Labels to add to the pod.
+podLabels: {}
+
+# -- Annotations to add to the pod.
+podAnnotations: {}
+
+# -- Security context for the pod.
+# @default -- See _values.yaml_
+podSecurityContext:
+  runAsNonRoot: true
+  fsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- Priority class name for the pod.
+priorityClassName:
+
+# -- Termination grace period for the pod in seconds.
+terminationGracePeriodSeconds:
+
+# -- Security context for the default container.
+# @default -- See _values.yaml_
+securityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  capabilities:
+    drop:
+      - ALL
+
+# -- Environment variables for the default container.
+env: []
+
+# -- Args for the default container.
+args: []
+
+# -- Liveness probe configuration for the default container.
+# @default -- See _values.yaml_
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 6
+
+# -- Readiness probe configuration for the default container.
+# @default -- See _values.yaml_
+readinessProbe:
+  httpGet:
+    path: /api/v1/health
+    port: http
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 12
+
+# -- Extra volumes for the pod.
+extraVolumes: []
+
+# -- Extra volume mounts for the default container.
+extraVolumeMounts: []
+
+# -- Resources for the default container.
+resources: {}
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#   limits:
+#     cpu: 100m
+#     memory: 128Mi
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
+
+# -- Node labels to match for pod scheduling.
+nodeSelector: {}
+
+# -- Node affinity settings for pod scheduling.
+nodeAffinity: {}
+
+# -- Node taints which will be tolerated for pod scheduling.
+tolerations: []
+
+serviceMonitor:
+  # -- If `true`, create a `ServiceMonitor` (or `PodMonitor` if the Service isn't enabled) resource to support the _Prometheus Operator_.
+  enabled: false
+  # -- Additional labels for the `ServiceMonitor`.
+  additionalLabels: {}
+  # -- Additional endpoint configuration for the default `ServiceMonitor` endpoint.
+  endpointConfig: {}
+  # -- Additional `ServiceMonitor`endpoints, these are needed for metrics output plugins.
+  additionalEndpoints: []
+
+dashboards:
+  # -- If `true`, install the _Grafana_ dashboards provided by the chart.
+  enabled: false
+
+config:
+  # -- Host volumes to read-only mount to the default container.
+  # @default -- See _values.yaml_
+  hostVolumes:
+    - name: machine-id
+      hostPath:
+        path: /etc/machine-id
+        type: File
+      mountPath: /etc/machine-id
+    - name: container-logs
+      hostPath:
+        path: /var/log/containers
+      mountPath: /var/log/containers
+
+  # -- If `true`, writeable host filesystem storage will be enabled.
+  storage: false
+
+  # -- Fluent Bit service configuration.
+  # @default -- See _values.yaml_
+  service:
+    # daemon: false - This can't be set
+    # http_server: true - This can't be set
+    # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
+    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage
+    # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
+    log_level: info
+    http_listen: "0.0.0.0"
+    storage.metrics: true
+
+  # -- Fluent Bit pipeline configuration.
+  # @default -- See _values.yaml_
+  pipeline: |-
+    [INPUT]
+        name              systemd
+        systemd_filter    _SYSTEMD_UNIT=containerd.service
+        systemd_filter    _SYSTEMD_UNIT=kubelet.service
+        tag               host.*
+        strip_underscores true
+        lowercase         true
+    {{- if .Values.config.storage }}
+        db                /fluent-bit/data/systemd/systemd.db
+        storage.type      filesystem
+    {{- end }}
+
+    [INPUT]
+        name             tail
+        path             /var/log/containers/*.log
+        tag_regex        (?<pod_name>[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)_(?<namespace_name>[^_]+)_(?<container_name>.+)-
+        tag              kube.<namespace_name>.<pod_name>.<container_name>
+        read_from_head   true
+        multiline.parser cri
+        skip_long_lines  true
+        skip_empty_lines true
+    {{- if .Values.config.storage }}
+        db               fluent-bit/data/tail/tail.db
+        storage.type     filesystem
+    {{- end }}
+
+    [INPUT]
+        name         opentelemetry
+        listen       127.0.0.1
+        port         {{ (index .Values.service.additionalPorts 0).containerPort }}
+        tag          otel
+    {{- if .Values.config.storage }}
+        storage.type filesystem
+    {{- end }}
+
+    [FILTER]
+        name                kubernetes
+        match               kube.*
+        kube_tag_prefix     kube.
+        regex_parser        kubernetes-tag
+        k8s-logging.parser  true
+        k8s-logging.exclude true
+
+    [OUTPUT]
+        name   stdout
+        match  *
+
+  # -- Custom parsers to configure.
+  # @default -- See _values.yaml_
+  customParsers: |-
+    [PARSER]
+        name   kubernetes-tag
+        format regex
+        regex  ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
+
+  # -- Extra files to mount to /fluent-bit/etc
+  extraFiles: {}
+  #  upstream.conf: |-
+  #    [UPSTREAM]
+  #        upstream1
+  #
+  #    [NODE]
+  #        name       node-1
+  #        host       127.0.0.1
+  #        port       43000
+
+  # -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
+  luaScripts: {}
+  #  test.lua: |-
+  #    function append_tag(tag, timestamp, record)
+  #        new_record = record
+  #        new_record["tag"] = tag
+  #        return 1, timestamp, new_record
+  #    end
+
+hotReload:
+  # -- If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container.
+  enabled: false
+  image:
+    # -- Image repository for the hot-reload sidecar container.
+    repository: ghcr.io/jimmidyson/configmap-reload
+    # -- Image tag for the hot-reload sidecar container.
+    tag: v0.11.1
+    # -- (string) Optional image digest for the hot-reload sidecar container.
+    digest:
+    # --  Image pull policy for the hot-reload sidecar container.
+    pullPolicy: IfNotPresent
+  # -- Resources for the hot-reload sidecar container.
+  resources: {}
