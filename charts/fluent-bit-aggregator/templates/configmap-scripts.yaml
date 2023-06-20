@@ -1,4 +1,3 @@
-{{- if .Values.config.luaScripts -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,5 +9,4 @@ data:
 {{- range $k, $v := .Values.config.luaScripts }}
   {{ $k }}: |-
 {{- (tpl $v $) | nindent 4 }}
-{{- end }}
 {{- end }}

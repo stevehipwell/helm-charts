@@ -18,6 +18,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v0.4.0] - 2023-06-20
+
+### Added
+
+- Added Grafana dashboard.
+
+### Removed
+
+- Removed ability to customise `ServiceMonitor` job label.
+
+### Fixed
+
+- Fixed hot-reload not working correctly when scripts are enabled/disabled.
+
 ## [v0.3.5] - 2023-06-19
 
 ### Fixed

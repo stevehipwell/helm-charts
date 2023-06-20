@@ -58,6 +58,9 @@ resources:
 serviceMonitor:
   enabled: true
 
+dashboards:
+  enabled: true
+
 config:
   customParsers: |-
     [PARSER]
