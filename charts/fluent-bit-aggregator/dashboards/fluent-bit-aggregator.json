@@ -109,7 +109,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Active Fluent-bit",
+          "legendFormat": "Active Pods",
           "range": true,
           "refId": "A"
         }

@@ -28,7 +28,7 @@ autoscaling:
           averageUtilization: 80
 
 podDisruptionBudget:
-  enabled: false
+  enabled: true
   maxUnavailable: 33%
 
 priorityClassName: system-cluster-critical
