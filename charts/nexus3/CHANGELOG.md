@@ -7,15 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
+<!--
+## [UNRELEASED]
+
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
+
+## [v4.30.0] - 2023-06-20
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.56.0](https://help.sonatype.com/repomanager3/product-information/release-notes/2023-release-notes/sonatype-nexus-repository-3.56.0-release-notes) ([GH release](https://github.com/sonatype/nexus-public/releases/tag/release-3.56.0-01)).
 
 ## [v4.29.0] - 2023-06-06
 
