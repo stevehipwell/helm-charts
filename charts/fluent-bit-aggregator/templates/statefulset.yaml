@@ -99,7 +99,7 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /fluent-bit/etc/conf
-          {{- if .Values.config.luaScripts }}
+          {{- if or .Values.hotReload.enabled .Values.config.luaScripts }}
             - name: scripts
               mountPath: /fluent-bit/scripts
           {{- end }}
@@ -120,16 +120,12 @@ spec:
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
             - -volume-dir=/watch/config
-          {{- if .Values.config.luaScripts }}
             - -volume-dir=/watch/scripts
-          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /watch/config
-          {{- if .Values.config.luaScripts }}
             - name: scripts
               mountPath: /watch/scripts
-          {{- end }}
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -139,7 +135,7 @@ spec:
         - name: config
           configMap:
             name: {{ include "fluent-bit-aggregator.configConfigMapName" . }}
-      {{- if .Values.config.luaScripts }}
+      {{- if or .Values.hotReload.enabled .Values.config.luaScripts }}
         - name: scripts
           configMap:
             name: {{ include "fluent-bit-aggregator.scriptsConfigMapName" . }}

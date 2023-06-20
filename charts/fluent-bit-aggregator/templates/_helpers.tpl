@@ -90,6 +90,13 @@ Define the scripts configmap name
 {{- end }}
 
 {{/*
+Define the dashboard configmap name
+*/}}
+{{- define "fluent-bit-aggregator.dashboardConfigMapName" -}}
+{{- (printf "%s-dashboard" (include "fluent-bit-aggregator.fullname" .)) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
 The image to use
 */}}
 {{- define "fluent-bit-aggregator.image" -}}

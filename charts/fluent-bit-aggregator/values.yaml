@@ -220,14 +220,11 @@ serviceMonitor:
   enabled: false
   # -- Additional labels for the `ServiceMonitor`.
   additionalLabels: {}
-  # -- Job label for the `ServiceMonitor`.
-  jobLabel:
   # -- Additional endpoint configuration for the default `ServiceMonitor` endpoint.
   endpointConfig: {}
   # -- Additional `ServiceMonitor`endpoints, these are needed for metrics output plugins.
   additionalEndpoints: []
 
-# @ignored
 dashboards:
   # -- If `true`, install the _Grafana_ dashboards provided by the chart.
   enabled: false
@@ -257,6 +254,9 @@ config:
         port              {{ (index .Values.service.additionalPorts 0).containerPort }}
         buffer_chunk_size 1M
         buffer_max_size   6M
+    {{- if .Values.config.storage }}
+        storage.type      filesystem
+    {{- end }}
 
     [OUTPUT]
         name   stdout
