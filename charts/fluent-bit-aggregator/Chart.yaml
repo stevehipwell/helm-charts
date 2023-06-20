@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-aggregator
 description: Helm chart for Fluent Bit running as an aggregation stateful set.
 type: application
-version: 0.4.0
-appVersion: 2.1.4
+version: 0.5.0
+appVersion: 2.1.5
 keywords:
   - fluent
   - fluentd
@@ -22,5 +22,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed script config for hot-reload."
+    - kind: changed
+      description: "Updated _Fluent Bit_ OCI image to [v2.1.5](https://github.com/fluent/fluent-bit/releases/tag/v2.1.5)."
