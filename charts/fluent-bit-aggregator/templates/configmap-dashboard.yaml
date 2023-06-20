@@ -10,5 +10,5 @@ metadata:
     grafana_dashboard: "1"
 data:
   {{ printf "%s.json" (include "fluent-bit-aggregator.fullname" .) }}: |
-{{- tpl (.Files.Get "dashboards/fluent-bit.json") . | nindent 4 }}
+{{- tpl (.Files.Get "dashboards/fluent-bit-aggregator.json") . | nindent 4 }}
 {{- end -}}

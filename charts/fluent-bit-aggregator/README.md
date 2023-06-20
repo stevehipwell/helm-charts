@@ -96,7 +96,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | service.httpPort | int | `2020` | Fluent Bit HTTP port used for status and metrics. |
 | service.type | string | `"ClusterIP"` | Service type. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
-| serviceAccount.automountToken | bool | `false` | If `true``, mount the `ServiceAccount` token. |
+| serviceAccount.automountToken | bool | `false` | If `true`, mount the `ServiceAccount` token. |
 | serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
 | serviceAccount.labels | object | `{}` | Labels to add to the service account. |
 | serviceAccount.name | string | `nil` | If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use. |
