@@ -7,15 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
+<!--
+## [UNRELEASED]
+
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
+
+## [v5.1.0] - 2023-06-19
+
+### Changed
+
+- Updated the _SonarQube_ OCI image to [v10.1.0](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-1/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/10.1.0.73491)).
 
 ## [v5.0.0] - 2023-04-04
 
