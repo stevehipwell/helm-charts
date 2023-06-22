@@ -1,9 +1,9 @@
 apiVersion: v2
 name: fluentd-aggregator
-description: Helm chart for Fluentd running as an aggregation stateful set.
+description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 3.10.0
-appVersion: 2.9.2
+version: 4.0.0
+appVersion: 2.9.3
 keywords:
   - fluent
   - fluentd
@@ -20,9 +20,35 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added support for autoscaling via the `autoscaling` value."
+    - kind: added
+      description: "Added separate headless `Service` for the `StatefulSet`."
+    - kind: added
+      description: "Added support for deleting PVCs in Kubernetes v1.27 or newer via the `persistence.retainDeleted` & `persistence.retainScaled` values which are `true` by default."
+    - kind: added
+      description: "Added `minReadySeconds`, `ordinals`, `podManagementPolicy` & `updateStrategy` values to better configure the `StatefulSet`."
+    - kind: added
+      description: "Added support for custom args via the `args` value."
+    - kind: added
+      description: "Added `replicas` value to replace `replicaCount`."
+    - kind: added
+      description: "Added `ingresses` value to replace `ingress` as the chart now supports multiple ingresses."
+    - kind: added
+      description: "Added `config` value to replace `configuration`."
     - kind: changed
-      description: "Updated _Fluentd Aggregator_ OCI image to [v2.9.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.2) (_Fluentd_ [v1.16.1](https://github.com/fluent/fluentd/releases/tag/v1.16.1))."
+      description: "Changed the way ports are configured to be via `service.httpPort`, `service.metricsPort` or `service.additionalPorts`."
     - kind: changed
-      description: "Simplified routing logic."
+      description: "As part of the change to `config` all of the raw Fluentd config values can be templated."
+    - kind: changed
+      description: "The default `podSecurityContext` & `securityContext` are now locked down."
+    - kind: changed
+      description: "Changed the default readiness probe to fail before the liveness probe."
+    - kind: changed
+      description: "Improved dashboard which is now tightly scoped to the chart release."
     - kind: removed
-      description: "Removed `host` & `tag` labels form metrics to reduce cardinality."
+      description: "Removed the `replicaCount` value as it's been replaced by `replicas`."
+    - kind: removed
+      description: "Removed the `ingress` value as it's been replaced by `ingresses`."
+    - kind: removed
+      description: "Removed the `configuration` value as it's been replaced by `config`."

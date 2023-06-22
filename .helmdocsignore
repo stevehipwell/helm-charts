@@ -1,5 +1,4 @@
 confluence-server
-fluentd-aggregator
 istio-operator
 jira-software
 k8s-resources

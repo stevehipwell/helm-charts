@@ -1,88 +1,111 @@
-# Fluentd Aggregator
+# fluentd-aggregator
 
-[Fluentd](https://www.fluentd.org/) is an open source data collector for unified logging layer. _Fluentd_ allows you to unify data collection and consumption for a better use and understanding of data.
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.3](https://img.shields.io/badge/AppVersion-2.9.3-informational?style=flat-square)
+
+Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
+
+**Homepage:** <https://www.fluentd.org/>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
+
+## Source Code
+
+* <https://github.com/stevehipwell/fluentd-aggregator>
+* <https://hub.docker.com/r/stevehipwell/fluentd-aggregator>
+* <https://github.com/stevehipwell/helm-charts/>
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+To install the chart using the recommended OCI method you can use the following command.
+
+```shell
+helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.0.0
+```
+
+Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --version 4.0.0
 ```
 
-After you've installed the repo you can install the chart.
+## Values
 
-```shell
-helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/fluentd-aggregator
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` | Affinity settings for pod scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| args | list | `[]` | Args for the default container. |
+| autoscaling.behavior | object | `{}` | Behaviour configuration for the `HorizontalPodAutoscaler`. |
+| autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` to scale the `StatefulSet`. |
+| autoscaling.maxReplicas | int | `3` | Maximum number of replicas for the `HorizontalPodAutoscaler`. |
+| autoscaling.metrics | list | `[]` | Metrics configuration for the `HorizontalPodAutoscaler`. |
+| autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| config.filters | string | See _values.yaml_ | Fluentd filter configuration. |
+| config.metrics | bool | `true` | If `true`, configure metrics |
+| config.routes | list | See _values.yaml_ | Fluentd router configuration. |
+| config.sourceLabel | string | `"@INPUT"` | Label for input sources which will be used to route logs through the pipeline. |
+| config.sources | string | See _values.yaml_ | Fluentd source configuration. |
+| config.system | object | See _values.yaml_ | Fluent Bit system configuration. |
+| dashboards.enabled | bool | `false` | If `true`, install the _Grafana_ dashboards provided by the chart. |
+| env | list | `[]` | Environment variables for the default container. |
+| extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
+| extraVolumes | list | `[]` | Extra volumes for the pod. |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| image.digest | string | `nil` | Optional image digest for the default container. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
+| image.repository | string | `"ghcr.io/stevehipwell/fluentd-aggregator"` | Image repository for the default container. |
+| image.tag | string | `nil` | Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`. |
+| image.tagPrefix | string | `nil` | Tag prefix for the default container. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| ingresses | list | `[]` | Ingresses, each input plugin will need it's own. |
+| livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
+| minReadySeconds | string | `nil` | Min ready seconds for the `StatefulSet`. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
+| ordinals | object | `{}` | Ordinals configuration for the `StatefulSet`. |
+| persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the `PersistentVolumeClaim`. |
+| persistence.annotations | object | `{}` | Annotations for the `PersistentVolumeClaim`. |
+| persistence.enabled | bool | `false` | If `true`, persistence should be enabled for the `StatefulSet`. |
+| persistence.legacy | bool | `false` | If `true`, use the legacy volume claim pattern. |
+| persistence.legacyName | string | `"buffer"` | The name to use for legacy volume claims, either `buffer` or `state`. |
+| persistence.retainDeleted | bool | `true` | If `true`, keep `PersistentVolumeClaims` when the `StatefulSet` is deleted. |
+| persistence.retainScaled | bool | `true` | If `true`, keep `PersistentVolumeClaim` when the `StatefulSet` is scaled down. |
+| persistence.size | string | `"8Gi"` | Size of the `PersistentVolumeClaim`. |
+| persistence.storageClass | string | `nil` | Storage class for the `PersistentVolumeClaim`, if not set the default will be used. |
+| podAnnotations | object | `{}` | Annotations to add to the pod. |
+| podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` resource. |
+| podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods, either a number or a percentage. |
+| podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods, either a number or a percentage. |
+| podLabels | object | `{}` | Labels to add to the pod. |
+| podManagementPolicy | string | `nil` | Pod management policy for the `StatefulSet`. |
+| podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
+| priorityClassName | string | `nil` | Priority class name for the pod. |
+| readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the default container. |
+| replicas | int | `1` | Number of replicas to create if `autoscalling.enabled` is `false`. |
+| resources | object | `{}` | Resources for the default container. |
+| securityContext | object | See _values.yaml_ | Security context for the default container. |
+| service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
+| service.annotations | object | `{}` | Service annotations. |
+| service.httpPort | int | `9880` | Fluentd port used for status. |
+| service.metricsPort | int | `24231` | Fluentd port used for metrics. |
+| service.type | string | `"ClusterIP"` | Service type. |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.automountToken | bool | `false` | If `true`, mount the `ServiceAccount` token. |
+| serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
+| serviceAccount.labels | object | `{}` | Labels to add to the service account. |
+| serviceAccount.name | string | `nil` | If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use. |
+| serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
+| serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
+| serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
+| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
+| topologySpreadConstraints | list | `[]` | Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| updateStrategy | object | `{}` | Update strategy for the `StatefulSet`. |
 
-## Configuration
-
-The following table lists the configurable parameters of the _fluentd-aggregator_ chart and their default values.
-
-| Parameter                               | Description                                                                                                                                                                 | Default                                   |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `image.repository`                      | Image repository.                                                                                                                                                           | `ghcr.io/stevehipwell/fluentd-aggregator` |
-| `image.tagPrefix`                       | Image tag prefix, used with the pattern `<tag_prefix>-<tag>` when set.                                                                                                      |                                           |
-| `image.tag`                             | Image tag.                                                                                                                                                                  | `.Chart.AppVersion`                       |
-| `image.digest`                          | Image digest to use with the tag, if specified.                                                                                                                             |                                           |
-| `image.pullPolicy`                      | Image pull policy.                                                                                                                                                          | `IfNotPresent`                            |
-| `imagePullSecrets`                      | Image pull secrets.                                                                                                                                                         | `[]`                                      |
-| `nameOverride`                          | Override the `name` of the chart.                                                                                                                                           | `""`                                      |
-| `fullnameOverride`                      | Override the `fullname` of the chart.                                                                                                                                       | `""`                                      |
-| `commonLabels`                          | Labels to add to all chart resources.                                                                                                                                       | `{}`                                      |
-| `serviceAccount.create`                 | If `true`, create a new service account.                                                                                                                                    | `true`                                    |
-| `serviceAccount.labels`                 | Labels to add to the service account.                                                                                                                                       | `{}`                                      |
-| `serviceAccount.annotations`            | Annotations to add to the service account.                                                                                                                                  | `{}`                                      |
-| `serviceAccount.name`                   | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the full name template.                                             | `""`                                      |
-| `serviceAccount.automountToken`         | If `true`, mount the ServiceAccount token.                                                                                                                                  | `false`                                   |
-| `podLabels`                             | Labels to add to the pod.                                                                                                                                                   | `{}`                                      |
-| `podAnnotations`                        | Annotations to add to the pod.                                                                                                                                              | `{}`                                      |
-| `podSecurityContext`                    | Security context for the pod.                                                                                                                                               | `{fsGroup: 2000}`                         |
-| `securityContext`                       | Security context for the _fluentd_ container.                                                                                                                               | `{}`                                      |
-| `priorityClassName`                     | Priority class name to use.                                                                                                                                                 | `""`                                      |
-| `livenessProbe`                         | The liveness probe.                                                                                                                                                         | See _values.yaml_                         |
-| `readinessProbe`                        | The readiness probe.                                                                                                                                                        | See _values.yaml_                         |
-| `service.type`                          | Service type.                                                                                                                                                               | `ClusterIP`                               |
-| `service.clusterIP`                     | Service cluster IP.                                                                                                                                                         |                                           |
-| `service.annotations`                   | Annotations to add to the service.                                                                                                                                          | `{}`                                      |
-| `serviceMonitor.enabled`                | If `true`, create a _Prometheus_ service monitor.                                                                                                                           | `false`                                   |
-| `serviceMonitor.additionalLabels`       | Additional labels to be set on the service monitor.                                                                                                                         | `{}`                                      |
-| `serviceMonitor.endpointConfig`         | Additional endpoint configuration for the ServiceMonitor.                                                                                                                   | `{}`                                      |
-| `dashboards.enabled`                    | If _Grafana_ dashboards should be installed for the sidecar to pick up and apply.                                                                                           | `false`                                   |
-| `ingress.enabled`                       | If `true`, create an ingress object.                                                                                                                                        | `false`                                   |
-| `ingress.annotations`                   | Ingress annotations.                                                                                                                                                        | `{}`                                      |
-| `ingress.ingressClassName`              | Ingress class to use.                                                                                                                                                       | `""`                                      |
-| `ingress.hosts`                         | Ingress hosts configuration.                                                                                                                                                | `[]`                                      |
-| `ingress.tls`                           | Ingress TLS configuration                                                                                                                                                   | `[]`                                      |
-| `persistence.enabled`                   | If `true`, create a _PVC_ from a template.                                                                                                                                  | `false`                                   |
-| `persistence.legacy`                    | If `true`, use the legacy PVC logic (required when upgrading from `v2`).                                                                                                    | `false`                                   |
-| `persistence.annotations`               | Annotations to add to the _PVC_.                                                                                                                                            | `{}`                                      |
-| `persistence.existingClaim`             | Use an existing _PVC_ to persist data.                                                                                                                                      |                                           |
-| `persistence.accessMode`                | Persistence access mode.                                                                                                                                                    | `ReadWriteOnce`                           |
-| `persistence.storageClass`              | _PVC_ storage class (use `-` for default).                                                                                                                                  | `standard`                                |
-| `persistence.size`                      | Size of _PVC_ to create.                                                                                                                                                    | `8Gi`                                     |
-| `extraVolumeMounts`                     | Additional volume mounts for the _fluentd_ container.                                                                                                                       | `[]`                                      |
-| `resources`                             | Resource requests and limits for the _fluentd_ container.                                                                                                                   | `{}`                                      |
-| `replicaCount`                          | Number of replicas to create if `autoscalling.enabled` is `false`.                                                                                                          | `1`                                       |
-| `terminationGracePeriodSeconds`         | Termination grace period.                                                                                                                                                   |                                           |
-| `podDisruptionBudget.enabled`           | If `true`, create `PodDisruptionBudget` resource.                                                                                                                           | `{}`                                      |
-| `podDisruptionBudget.minAvailable`      | Set the `PodDisruptionBugdet` minimum available pods.                                                                                                                       |                                           |
-| `podDisruptionBudget.maxUnavailable`    | Set the `PodDisruptionBugdet` maximum unavailable pods.                                                                                                                     |                                           |
-| `extraVolumes`                          | Additional volumes.                                                                                                                                                         | `[]`                                      |
-| `nodeSelector`                          | Node labels for pod assignment.                                                                                                                                             | `{}`                                      |
-| `affinity`                              | Affinity settings for pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. | `{}`                                      |
-| `topologySpreadConstraints`             | Topology spread constraints for pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                             | `[]`                                      |
-| `tolerations`                           | Toleration labels for pod assignment.                                                                                                                                       | `[]`                                      |
-| `env`                                   | Environment variables for the _fluentd_ container.                                                                                                                          | `[]`                                      |
-| `configuration.bindAddress`             | Bind address for the listeners, for IPv6 you can use `::`.                                                                                                                  | `0.0.0.0`                                 |
-| `configuration.system.rootDir`          | Root directory for _Fluentd_ state.                                                                                                                                         | `/fluentd/state`                          |
-| `configuration.system.additionalConfig` | Additional system configuration options (key value only).                                                                                                                   | `{}`                                      |
-| `configuration.probe.port`              | Port used to run the probe endpoint.                                                                                                                                        | `9880`                                    |
-| `configuration.metrics.enabled`         | If `true`, collect and expose _Prometheus_ metrics.                                                                                                                         | `true`                                    |
-| `configuration.metrics.port`            | Port used to run the _Prometheus_ metrics endpoint.                                                                                                                         | `24231`                                   |
-| `configuration.metrics.path`            | Prometheus metrics path.                                                                                                                                                    | `/metrics`                                |
-| `configuration.forward.port`            | Port used for the forward input plugin endpoint.                                                                                                                            | `24224`                                   |
-| `configuration.filters`                 | Global filters _Fluentd_ configuration.                                                                                                                                     | `""`                                      |
-| `configuration.routes`                  | Array of routes to send logs through.                                                                                                                                       | See _values.yaml_                         |
-| `configuration.debug`                   | if `true`, all records after the global filters have been applied are sent to stdout before they are routed.                                                                | `false`                                   |
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)

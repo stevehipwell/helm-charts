@@ -18,6 +18,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v4.0.0] - 2023-06-23
+
+> **Warning**
+> This release has major breaking changes and you will need to check the values before upgrading.
+>
+> If you're upgrading from an older chart version and have persistence enabled you will need to set `persistence.legacy=true` and either `persistence.legacyName=buffer` or `persistence.legacyName=state` depending on the name of your volume claim template.
+
+### Added
+
+- Added support for autoscaling via the `autoscaling` value.
+- Added separate headless `Service` for the `StatefulSet`.
+- Added support for deleting PVCs in Kubernetes v1.27 or newer via the `persistence.retainDeleted` & `persistence.retainScaled` values which are `true` by default.
+- Added `minReadySeconds`, `ordinals`, `podManagementPolicy` & `updateStrategy` values to better configure the `StatefulSet`.
+- Added support for custom args via the `args` value.
+- Added `replicas` value to replace `replicaCount`.
+- Added `ingresses` value to replace `ingress` as the chart now supports multiple ingresses.
+- Added `config` value to replace `configuration`.
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.9.3](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.2) (_Fluentd_ [v1.16.1](https://github.com/fluent/fluentd/releases/tag/v1.16.1)).
+- Changed the way ports are configured to be via `service.httpPort`, `service.metricsPort` or `service.additionalPorts`.
+- As part of the change to `config` all of the raw Fluentd config values can be templated.
+- The default `podSecurityContext` & `securityContext` are now locked down.
+- Changed the default readiness probe to fail before the liveness probe.
+- Improved dashboard which is now tightly scoped to the chart release.
+
+### Removed
+
+- Removed the `replicaCount` value as it's been replaced by `replicas`.
+- Removed the `ingress` value as it's been replaced by `ingresses`.
+- Removed the `configuration` value as it's been replaced by `config`.
+
 ## [v3.10.0] - 2023-06-08
 
 ### Changed

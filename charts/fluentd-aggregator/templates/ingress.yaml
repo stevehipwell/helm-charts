@@ -1,51 +1,41 @@
-{{- if .Values.ingress.enabled -}}
-{{- $apiIsStable := eq (include "fluentd-aggregator.ingress.isStable" .) "true" -}}
-{{- $ingressSupportsPathType := eq (include "fluentd-aggregator.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "fluentd-aggregator.fullname" . -}}
-{{- $servicePort := .Values.configuration.forward.port -}}
-apiVersion: {{ include "fluentd-aggregator.ingress.apiVersion" . }}
+{{- range $i, $v := .Values.ingresses -}}
+{{- $servicePort := $v.servicePort -}}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $serviceName }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ (printf "%s-%s" ((include "fluentd-aggregator.fullname" $) | trunc 60) (toString $i)) | trunc 63 | trimSuffix "-" }}
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "fluentd-aggregator.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+    {{- include "fluentd-aggregator.labels" $ | nindent 4 }}
+  {{- with $v.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-{{- if and $apiIsStable .Values.ingress.ingressClassName }}
-  ingressClassName: {{ .Values.ingress.ingressClassName }}
-{{- end }}
+  ingressClassName: {{ $v.className }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ quote . }}
+  {{- range $v.hosts }}
+    - host: {{ quote .host }}
       http:
         paths:
-          - path: /
-            {{- if $ingressSupportsPathType }}
-            pathType: Prefix
-            {{- end }}
+        {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
             backend:
-            {{- if $apiIsStable }}
               service:
                 name: {{ $serviceName }}
                 port:
                   number: {{ $servicePort }}
-            {{- else }}
-              serviceName: {{ $serviceName }}
-              servicePort: http-forward
-            {{- end }}
+        {{- end }}
   {{- end }}
-  {{- if .Values.ingress.tls }}
+  {{- with $v.tls }}
   tls:
-  {{- range .Values.ingress.tls }}
+  {{- range . }}
     - hosts:
-    {{- range .hosts }}
-        - {{ quote . }}
-    {{- end }}
+        {{- toYaml .hosts | nindent 8 }}
       secretName: {{ .secretName }}
   {{- end }}
   {{- end }}
+---
 {{- end }}
