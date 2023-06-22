@@ -1472,7 +1472,7 @@
         "type": "datasource"
       },
       {
-        "allValue": "{{ include "fluent-bit-collector.fullname" . }}-.*",
+        "allValue": "$fullname-.*",
         "current": {
           "selected": false,
           "text": "All",
@@ -1517,11 +1517,19 @@
         "query": "{{ .Release.Name }}",
         "skipUrlSync": false,
         "type": "constant"
+      },
+      {
+        "hide": 2,
+        "label": "Full Name",
+        "name": "fullname",
+        "query": "{{ include "fluent-bit-collector.fullname" . }}",
+        "skipUrlSync": false,
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
