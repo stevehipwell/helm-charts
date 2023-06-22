@@ -69,23 +69,12 @@ data:
           name fluentd_input_status_num_records_total
           desc The total number of incoming records before global filters are applied.
           type counter
-          <labels>
-            host ${hostname}
-            tag ${tag}
-          </labels>
         </metric>
       </filter>
 {{- end }}
 {{- with .Values.configuration.filters }}
       {{ . | nindent 6 }}
 {{- end }}
-      <match **>
-        @type relabel
-        @label @OUTPUT
-      </match>
-    </label>
-
-    <label @OUTPUT>
       <match **>
         @type route
 {{- if .Values.configuration.metrics.enabled }}
@@ -132,10 +121,6 @@ data:
           name fluentd_output_status_num_records_total
           desc The total number of outgoing records after global filters are applied.
           type counter
-          <labels>
-            host ${hostname}
-            tag ${tag}
-          </labels>
         </metric>
       </match>
     </label>
