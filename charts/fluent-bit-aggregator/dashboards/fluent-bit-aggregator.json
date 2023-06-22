@@ -1460,7 +1460,7 @@
           "type": "prometheus",
           "uid": "$DS_PROMETHEUS"
         },
-        "definition": "label_values(kube_pod_info{job=\"kube-state-metrics\",namespace=\"$namespace\",created_by_kind=\"DaemonSet\",created_by_name=\"$release\"},pod)",
+        "definition": "label_values(kube_pod_info{job=\"kube-state-metrics\",namespace=\"$namespace\",created_by_kind=\"StatefulSet\",created_by_name=\"$release\"},pod)",
         "hide": 0,
         "includeAll": true,
         "label": "pod",
@@ -1468,7 +1468,7 @@
         "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(kube_pod_info{job=\"kube-state-metrics\",namespace=\"$namespace\",created_by_kind=\"DaemonSet\",created_by_name=\"$release\"},pod)",
+          "query": "label_values(kube_pod_info{job=\"kube-state-metrics\",namespace=\"$namespace\",created_by_kind=\"StatefulSet\",created_by_name=\"$release\"},pod)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
