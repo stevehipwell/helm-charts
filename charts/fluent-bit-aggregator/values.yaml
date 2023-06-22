@@ -156,7 +156,7 @@ livenessProbe:
   periodSeconds: 10
   timeoutSeconds: 1
   successThreshold: 1
-  failureThreshold: 6
+  failureThreshold: 12
 
 # -- Readiness probe configuration for the default container.
 # @default -- See _values.yaml_
@@ -168,7 +168,7 @@ readinessProbe:
   periodSeconds: 10
   timeoutSeconds: 1
   successThreshold: 1
-  failureThreshold: 12
+  failureThreshold: 6
 
 persistence:
   # -- If `true`, persistence should be enabled for the `StatefulSet`.

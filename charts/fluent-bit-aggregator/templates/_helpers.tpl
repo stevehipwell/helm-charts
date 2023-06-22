@@ -40,6 +40,9 @@ helm.sh/chart: {{ include "fluent-bit-aggregator.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.commonLabels }}
+{{ toYaml . }}
+{{- end }}
 {{- end }}
 
 {{/*
@@ -160,4 +163,3 @@ Patch topology spread constraints
 {{- include "fluent-bit-aggregator.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
 {{- end }}
 {{- end }}
-

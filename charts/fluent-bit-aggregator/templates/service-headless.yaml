@@ -21,7 +21,7 @@ spec:
   {{- range .Values.service.additionalPorts }}
     - name: {{ .name }}
       port: {{ .port }}
-      targetPort: {{ default .port .containerPort }}
+      targetPort: {{ .name }}
       protocol: {{ default "TCP" .protocol }}
   {{- end }}
   selector:
