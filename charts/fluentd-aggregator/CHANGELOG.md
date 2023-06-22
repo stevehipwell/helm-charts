@@ -7,15 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
+<!--
+## [UNRELEASED]
+
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
+
+## [v3.10.0] - 2023-06-08
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.9.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.2) (_Fluentd_ [v1.16.1](https://github.com/fluent/fluentd/releases/tag/v1.16.1)).
+- Simplified routing logic.
+
+### Removed
+
+- Removed `host` & `tag` labels form metrics to reduce cardinality.
 
 ## [v3.9.1] - 2023-06-08
 
