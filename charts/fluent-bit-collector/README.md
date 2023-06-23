@@ -1,6 +1,6 @@
 # fluent-bit-collector
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.5](https://img.shields.io/badge/AppVersion-2.1.5-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.6](https://img.shields.io/badge/AppVersion-2.1.6-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as a collector DaemonSet.
 
@@ -22,20 +22,21 @@ Helm chart for Fluent Bit running as a collector DaemonSet.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.2.0
+helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.3.0
 ```
 
 Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.2.0
+helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.3.0
 ```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| affinity | object | `{}` | Affinity settings for pod scheduling. |
 | args | list | `[]` | Args for the default container. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | See _values.yaml_ | Custom parsers to configure. |
@@ -64,7 +65,6 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
 | minReadySeconds | string | `nil` | Min ready seconds for the `DaemonSet`. |
 | nameOverride | string | `nil` | Override the name of the chart. |
-| nodeAffinity | object | `{}` | Node affinity settings for pod scheduling. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
 | podAnnotations | object | `{}` | Annotations to add to the pod. |
 | podLabels | object | `{}` | Labels to add to the pod. |
