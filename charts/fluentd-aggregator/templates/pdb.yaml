@@ -1,5 +1,5 @@
-{{- if .Values.podDisruptionBudget.enabled -}}
-apiVersion: {{ include "fluentd-aggregator.pdb.apiVersion" . }}
+{{- if and .Values.podDisruptionBudget.enabled (or .Values.podDisruptionBudget.minAvailable .Values.podDisruptionBudget.maxUnavailable) -}}
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "fluentd-aggregator.fullname" . }}
@@ -7,13 +7,13 @@ metadata:
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
-  {{- if .Values.podDisruptionBudget.minAvailable }}
-  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
-  {{- end  }}
-  {{- if .Values.podDisruptionBudget.maxUnavailable }}
-  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
-  {{- end  }}
   selector:
     matchLabels:
       {{- include "fluentd-aggregator.selectorLabels" . | nindent 6 }}
+{{- with .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ . }}
+{{- end  }}
+{{- with .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ . }}
+{{- end  }}
 {{- end -}}

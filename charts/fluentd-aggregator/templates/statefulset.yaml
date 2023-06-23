@@ -6,8 +6,24 @@ metadata:
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "fluentd-aggregator.fullname" . }}
-  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "fluentd-aggregator.headlessServiceName" . }}
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicas }}
+  {{- end }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.ordinals }}
+  ordinals:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.podManagementPolicy }}
+  podManagementPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.minReadySeconds }}
+  minReadySeconds: {{ . }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "fluentd-aggregator.selectorLabels" . | nindent 6 }}
@@ -19,7 +35,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -34,11 +50,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.priorityClassName }}
-      priorityClassName: {{ . | quote }}
+      priorityClassName: {{ . }}
       {{- end }}
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- with .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ . }}
+      {{- end }}
       containers:
-        - name: fluentd
+        - name: aggregator
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
@@ -46,22 +64,30 @@ spec:
           image: {{ include "fluentd-aggregator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: TMPDIR
+              value: /tmp/fluentd
             - name: FLUENTD_CONF
               value: fluentd.conf
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.args }}
+          args:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
-            - name: http-probe
+            - name: http
+              containerPort: {{ .Values.service.httpPort }}
               protocol: TCP
-              containerPort: {{ .Values.configuration.probe.port }}
-            - name: http-forward
-              protocol: TCP
-              containerPort: {{ .Values.configuration.forward.port }}
-          {{- if .Values.configuration.metrics.enabled }}
+          {{- if .Values.config.metrics }}
             - name: http-metrics
+              containerPort: {{ .Values.service.metricsPort }}
               protocol: TCP
-              containerPort: {{ .Values.configuration.metrics.port }}
+          {{- end }}
+          {{- range .Values.service.additionalPorts }}
+            - name: {{ .name }}
+              containerPort: {{ default .port .containerPort }}
+              protocol: {{ default "TCP" .protocol }}
           {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
@@ -70,8 +96,13 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /fluentd/etc
-            - name: {{ if and .Values.persistence.enabled .Values.persistence.legacy }}buffer{{ else }}state{{ end }}
-              mountPath: ${{ .Values.configuration.system.rootDir }}
+              readOnly: true
+            - name: {{ ternary .Values.persistence.legacyName "data" (and .Values.persistence.enabled .Values.persistence.legacy) }}
+              mountPath: /fluentd/data
+              readOnly: false
+            - name: tmp
+              mountPath: /tmp
+              readOnly: false
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -82,12 +113,13 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: {{ include "fluentd-aggregator.fullname" . }}
-            defaultMode: 0777
+            name: {{ include "fluentd-aggregator.configConfigMapName" . }}
       {{- if not .Values.persistence.enabled }}
-        - name: state
+        - name: data
           emptyDir: {}
       {{- end }}
+        - name: tmp
+          emptyDir: {}
       {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -112,7 +144,7 @@ spec:
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
-        name: {{ if and .Values.persistence.enabled .Values.persistence.legacy }}buffer{{ else }}state{{ end }}
+        name: {{ ternary .Values.persistence.legacyName "data" .Values.persistence.legacy }}
       {{- if not .Values.persistence.legacy }}
         labels:
           {{- include "fluentd-aggregator.selectorLabels" . | nindent 10 }}
@@ -134,4 +166,9 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.size | quote }}
+  {{- if semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version }}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {{ ternary "Retain" "Delete" .Values.persistence.retainDeleted }}
+    whenScaled: {{ ternary "Retain" "Delete" .Values.persistence.retainScaled }}
+  {{- end }}
   {{- end }}

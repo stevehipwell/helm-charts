@@ -65,44 +65,42 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+Define the service name
+*/}}
+{{- define "fluentd-aggregator.serviceName" -}}
+{{- include "fluentd-aggregator.fullname" . }}
+{{- end }}
+
+{{/*
+Define the headless service name
+*/}}
+{{- define "fluentd-aggregator.headlessServiceName" -}}
+{{- (printf "%s-headless" (include "fluentd-aggregator.serviceName" .)) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Define the config configmap name
+*/}}
+{{- define "fluentd-aggregator.configConfigMapName" -}}
+{{- (printf "%s-config" (include "fluentd-aggregator.fullname" .)) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Define the dashboard configmap name
+*/}}
+{{- define "fluentd-aggregator.dashboardConfigMapName" -}}
+{{- (printf "%s-dashboard" (include "fluentd-aggregator.fullname" .)) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
 The image to use
 */}}
 {{- define "fluentd-aggregator.image" -}}
 {{- $tagPrefix := ternary (printf "%s-" .Values.image.tagPrefix) "" (not (empty .Values.image.tagPrefix)) }}
+{{- $tag := ternary (printf ":%s%s" $tagPrefix (default .Chart.AppVersion .Values.image.tag)) "" (ne .Values.image.tag "-") }}
 {{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
-{{- printf "%s:%s%s%s" .Values.image.repository $tagPrefix (default .Chart.AppVersion .Values.image.tag) $digest }}
+{{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
-
-{{/* Get Ingress API Version */}}
-{{- define "fluentd-aggregator.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
-      {{- print "networking.k8s.io/v1" -}}
-  {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
-    {{- print "networking.k8s.io/v1beta1" -}}
-  {{- else -}}
-    {{- print "extensions/v1beta1" -}}
-  {{- end -}}
-{{- end -}}
-
-{{/* Check Ingress stability */}}
-{{- define "fluentd-aggregator.ingress.isStable" -}}
-  {{- eq (include "fluentd-aggregator.ingress.apiVersion" .) "networking.k8s.io/v1" -}}
-{{- end -}}
-
-{{/* Check Ingress supports pathType */}}
-{{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
-{{- define "fluentd-aggregator.ingress.supportsPathType" -}}
-  {{- or (eq (include "fluentd-aggregator.ingress.isStable" .) "true") (and (eq (include "fluentd-aggregator.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
-{{- end -}}
-
-{{/* Get PodDisruptionBudget API Version */}}
-{{- define "fluentd-aggregator.pdb.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
-      {{- print "policy/v1" -}}
-  {{- else -}}
-    {{- print "policy/v1beta1" -}}
-  {{- end -}}
-{{- end -}}
 
 {{/*
 Patch the label selector on an object
