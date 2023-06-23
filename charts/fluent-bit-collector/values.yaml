@@ -142,8 +142,8 @@ resources: {}
 # -- Node labels to match for pod scheduling.
 nodeSelector: {}
 
-# -- Node affinity settings for pod scheduling.
-nodeAffinity: {}
+# -- Affinity settings for pod scheduling.
+affinity: {}
 
 # -- Node taints which will be tolerated for pod scheduling.
 tolerations: []
