@@ -147,3 +147,14 @@ Patch topology spread constraints
 {{- include "nexus3.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Return the appropriate apiVersion for podDisruptionBudget.
+*/}}
+{{- define "nexus3.podDisruptionBudget.apiVersion" -}}
+{{- if $.Capabilities.APIVersions.Has "policy/v1/PodDisruptionBudget" }}
+{{- print "policy/v1" }}
+{{- else }}
+{{- print "policy/v1beta1" }}
+{{- end }}
+{{- end }}

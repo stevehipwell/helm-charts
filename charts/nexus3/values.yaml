@@ -36,6 +36,10 @@ securityContext:
   runAsGroup: 200
   runAsUser: 200
 
+podDisruptionBudget: {}
+#  minAvailable: 1
+#  maxUnavailable: 1
+
 priorityClassName: ""
 
 livenessProbe:
