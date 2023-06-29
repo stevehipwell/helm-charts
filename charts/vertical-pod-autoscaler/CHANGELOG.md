@@ -7,21 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-<!-- ## [UNRELEASED]
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
-
+<!--
 ## [UNRELEASED]
 
-### All Changes
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
+
+## [v1.3.0] - 2023-06-29
+
+### Added
 
 - Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
+
+### Changed
+
+- Updated the _Vertical Pod Autoscaler_ OCI image version to [v0.14.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.14.0).
 
 ## [v1.2.0] - 2023-02-22
 
