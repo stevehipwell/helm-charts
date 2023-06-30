@@ -32,7 +32,7 @@ jobs:
           version: latest
 
       - name: Install Helm Docs
-        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        uses: action-stars/install-tool-from-github-release@58e2dd20166c0eb19ab9ac4d0966c930a647ee69 # v0.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: norwoodj
@@ -43,7 +43,7 @@ jobs:
           version: latest
 
       - name: Install Artifact Hub CLI
-        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        uses: action-stars/install-tool-from-github-release@58e2dd20166c0eb19ab9ac4d0966c930a647ee69 # v0.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: artifacthub
@@ -53,7 +53,7 @@ jobs:
           version: latest
 
       - name: Install YQ
-        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        uses: action-stars/install-tool-from-github-release@58e2dd20166c0eb19ab9ac4d0966c930a647ee69 # v0.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: mikefarah
@@ -64,7 +64,7 @@ jobs:
           version: latest
 
       - name: Install Kubeconform
-        uses: action-stars/install-tool-from-github-release@94bce72df745fe8ed2811e6cdc3ec333022019e9 # v0.1.0
+        uses: action-stars/install-tool-from-github-release@58e2dd20166c0eb19ab9ac4d0966c930a647ee69 # v0.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: yannh
