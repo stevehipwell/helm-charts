@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.12.4
+version: 1.13.0
 appVersion: 0.31.0
 keywords:
   - kubernetes
@@ -22,5 +22,15 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added support for not providing a tag as part of the image by setting the value to `\"-\"`."
+    - kind: added
+      description: "Added support for using a digest as part of the image."
+    - kind: added
+      description: "Added support for customising the config reloader image."
+    - kind: added
+      description: "Added support for compact to deduplicate HA Prometheus replica metrics by setting `compact.replicaDeduplication` which will use the `penalty` deduplication function."
+    - kind: changed
+      description: "Changed the config reloader default image."
     - kind: fixed
-      description: "Fixed missing Thanos rule service when ingress is enabled."
+      description: "Fixed missing `--deduplication.replica-label` from compact."

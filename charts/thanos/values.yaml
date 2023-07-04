@@ -68,6 +68,8 @@ compact:
 
   extraEnv: []
 
+  replicaDeduplication: false
+
   extraArgs: []
 
   livenessProbe:
