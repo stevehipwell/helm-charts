@@ -15970,6 +15970,46 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for not providing a tag as part of the image by setting the value to `\"-\"`."
+        - kind: added
+          description: "Added support for using a digest as part of the image."
+        - kind: added
+          description: "Added support for customising the config reloader image."
+        - kind: added
+          description: "Added support for compact to deduplicate HA Prometheus replica metrics by setting `compact.replicaDeduplication` which will use the `penalty` deduplication function."
+        - kind: changed
+          description: "Changed the config reloader default image."
+        - kind: fixed
+          description: "Fixed missing `--deduplication.replica-label` from compact."
+    apiVersion: v2
+    appVersion: 0.31.0
+    created: "2023-07-04T09:46:34.546034519Z"
+    description: Helm chart for Thanos components.
+    digest: 088602deafc99c462a0f3ff019c1e370bbf65e5b68b1afc2bd94962ff2b33433
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.13.0/thanos-1.13.0.tgz
+    version: 1.13.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed missing Thanos rule service when ingress is enabled."
     apiVersion: v2
@@ -19334,4 +19374,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-06-29T15:28:15.152352945Z"
+generated: "2023-07-04T09:46:34.5481928Z"
