@@ -18,17 +18,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
-## [UNRELEASED]
+## [v1.13.0] - 2023-07-04
 
 ### Added
 
 - Added support for not providing a tag as part of the image by setting the value to `"-"`.
 - Added support for using a digest as part of the image.
 - Added support for customising the config reloader image.
+- Added support for compact to deduplicate HA Prometheus replica metrics by setting `compact.replicaDeduplication` which will use the `penalty` deduplication function.
 
 ### Changed
 
 - Changed the config reloader default image.
+
+### Fixed
+
+- Fixed missing `--deduplication.replica-label` from compact.
 
 ## [v1.12.4] - 2023-05-02
 
