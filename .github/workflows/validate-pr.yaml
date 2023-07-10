@@ -1,0 +1,23 @@
+name: Validate PR
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - charts/**
+
+jobs:
+  workflow:
+    name: Reusable Workflow
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@main
+    secrets: inherit
+    with:
+      chart_dir: charts
+      target_branch: main
+      helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
+      helm_docs: true
+      ah_lint: true
+      kubeconform: true
+      kubeconform_k8s_versions: ${{ vars.K8S_VERSIONS }}
+      helm_extra_args: "--timeout 600s"
