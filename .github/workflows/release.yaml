@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - charts/**/Chart.yaml
+
+jobs:
+  workflow:
+    name: Reusable Workflow
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@main
+    secrets: inherit
+    with:
+      chart_dir: charts
+      helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
+      release_name_template: "{{ .Name }}-{{ .Version }}"
+      release_as_latest: true
+      release_notes: true
+      publish_gh_pages: true
+      publish_oci: true
+      oci_registry: "ghcr.io"
+      oci_username: ${{ github.actor }}
+      oci_password: ${{ secrets.GITHUB_TOKEN }}
+      oci_repository_prefix: ${{ github.repository }}
