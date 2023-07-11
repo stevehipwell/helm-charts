@@ -15,7 +15,6 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
-    secrets: inherit
     with:
       chart_dir: charts
       target_branch: main

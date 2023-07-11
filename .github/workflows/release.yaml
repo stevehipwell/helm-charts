@@ -16,7 +16,8 @@ jobs:
       contents: write
       id-token: write
       packages: write
-    secrets: inherit
+    secrets:
+      oci_password: ${{ secrets.GITHUB_TOKEN }}
     with:
       chart_dir: charts
       helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
@@ -27,5 +28,4 @@ jobs:
       publish_oci: true
       oci_registry: "ghcr.io"
       oci_username: ${{ github.actor }}
-      oci_password: ${{ secrets.GITHUB_TOKEN }}
       oci_repository_prefix: ${{ github.repository }}

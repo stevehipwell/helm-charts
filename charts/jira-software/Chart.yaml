@@ -29,4 +29,4 @@ annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Jira Software OCI image to v9.10.0."
+      description: "Updated the _Jira Software_ OCI image to v9.10.0."
