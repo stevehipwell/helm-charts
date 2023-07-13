@@ -102,6 +102,15 @@ The image to use
   {{- or (eq (include "plantuml.ingress.isStable" .) "true") (and (eq (include "plantuml.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
 {{- end -}}
 
+{{/* Get PodDisruptionBudget API Version */}}
+{{- define "plantuml.pdb.apiVersion" -}}
+  {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
+      {{- print "policy/v1" -}}
+  {{- else -}}
+    {{- print "policy/v1beta1" -}}
+  {{- end -}}
+{{- end -}}
+
 {{/*
 Patch the label selector on an object
 */}}
