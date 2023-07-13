@@ -13328,6 +13328,33 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed incorrect `PodDisruptionBudget` API version for Kubernetes v1.25+."
+    apiVersion: v2
+    appVersion: 1.2023.8
+    created: "2023-07-13T09:07:44.337032133Z"
+    description: Helm chart for PlantUML.
+    digest: de1d7ab86ce2e58c48a619f938fed54eabcfa2891626a933d14b4ef2af2bc971
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.24.1/plantuml-3.24.1.tgz
+    version: 3.24.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the PlantUML OCI image to v1.2023.8."
     apiVersion: v2
@@ -19477,4 +19504,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-11T16:25:39.269329616Z"
+generated: "2023-07-13T09:07:44.338458937Z"
