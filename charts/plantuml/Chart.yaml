@@ -2,7 +2,7 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML.
 type: application
-version: 3.24.0
+version: 3.24.1
 appVersion: 1.2023.8
 home: https://plantuml.com/
 icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
@@ -19,5 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the PlantUML OCI image to v1.2023.8."
+    - kind: fixed
+      description: "Fixed incorrect `PodDisruptionBudget` API version for Kubernetes v1.25+."

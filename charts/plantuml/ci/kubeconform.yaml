@@ -1,0 +1,7 @@
+maxUnavailable: 1
+
+autoscaling:
+  enabled: true
+
+caCerts:
+  enabled: true
