@@ -1,6 +1,6 @@
 # fluent-bit-collector
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.7](https://img.shields.io/badge/AppVersion-2.1.7-informational?style=flat-square)
+![Version: 0.4.1](https://img.shields.io/badge/Version-0.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.7](https://img.shields.io/badge/AppVersion-2.1.7-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as a collector DaemonSet.
 
@@ -22,14 +22,14 @@ Helm chart for Fluent Bit running as a collector DaemonSet.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.4.0
+helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.4.1
 ```
 
 Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.4.0
+helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.4.1
 ```
 
 ## Values
@@ -37,7 +37,8 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod scheduling. |
-| args | list | `[]` | Args for the default container. |
+| args | list | `[]` | Extra args for the default container; `--workdir`, `--config` & `--enable-hot-reload` are managed by the chart. |
+| command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | See _values.yaml_ | Custom parsers to configure. |
 | config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc |
