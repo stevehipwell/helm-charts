@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluent-bit-collector
 description: Helm chart for Fluent Bit running as a collector DaemonSet.
 type: application
-version: 0.4.1
+version: 0.4.2
 appVersion: 2.1.7
 keywords:
   - fluent
@@ -24,3 +24,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: added
       description: "Added explicit command argument for the default container."
+    - kind: fixed
+      description: "Fixed incorrect implementation in previous version."

@@ -18,6 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v0.4.2] - 2023-07-14
+
+### Added
+
+- Added explicit command argument for the default container.
+
+### Fixed
+
+- Fixed incorrect implementation in previous version.
+
 ## [v0.4.1] - 2023-07-14
 
 ### Added
