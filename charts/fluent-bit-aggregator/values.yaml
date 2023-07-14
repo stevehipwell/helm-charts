@@ -143,7 +143,11 @@ securityContext:
 # -- Environment variables for the default container.
 env: []
 
-# -- Args for the default container.
+# -- Command for the default container
+command:
+  - /fluent-bit/bin/fluent-bit
+
+# -- Extra args for the default container; `--workdir`, `--config` & `--enable-hot-reload` are managed by the chart.
 args: []
 
 # -- Liveness probe configuration for the default container.
