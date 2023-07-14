@@ -74,6 +74,10 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.command }}
+          command:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           args:
             - --workdir=/fluent-bit/etc
             - --config=/fluent-bit/etc/conf/fluent-bit.conf

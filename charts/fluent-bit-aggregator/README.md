@@ -1,6 +1,6 @@
 # fluent-bit-aggregator
 
-![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.7](https://img.shields.io/badge/AppVersion-2.1.7-informational?style=flat-square)
+![Version: 0.7.1](https://img.shields.io/badge/Version-0.7.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.1.7](https://img.shields.io/badge/AppVersion-2.1.7-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
@@ -22,14 +22,14 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.7.0
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.7.1
 ```
 
 Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.7.0
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.7.1
 ```
 
 ## Values
@@ -37,12 +37,13 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
-| args | list | `[]` | Args for the default container. |
+| args | list | `[]` | Extra args for the default container; `--workdir`, `--config` & `--enable-hot-reload` are managed by the chart. |
 | autoscaling.behavior | object | `{}` | Behaviour configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` to scale the `StatefulSet`. |
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas for the `HorizontalPodAutoscaler`. |
 | autoscaling.metrics | list | `[]` | Metrics configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
+| command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | `nil` | Custom parsers to configure. |
 | config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc |
