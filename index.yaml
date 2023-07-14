@@ -3799,6 +3799,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added explicit command argument for the default container."
+    apiVersion: v2
+    appVersion: 2.1.7
+    created: "2023-07-14T13:24:08.475260481Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: 15b7c1a8426b65ba79be431e98773777c12bac2dc850757b0295a5bb52c79e9b
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.4.1/fluent-bit-collector-0.4.1.tgz
+    version: 0.4.1
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluent Bit_ OCI image to [v2.1.7](https://github.com/fluent/fluent-bit/releases/tag/v2.1.7)."
     apiVersion: v2
@@ -19564,4 +19594,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-13T09:33:00.990051133Z"
+generated: "2023-07-14T13:24:08.476634893Z"
