@@ -6,6 +6,7 @@ additionalReplicaLabels:
 
 compact:
   enabled: true
+  replicaDeduplication: true
 
 queryFrontend:
   enabled: true

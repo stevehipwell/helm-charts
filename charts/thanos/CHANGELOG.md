@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v1.13.1] - 2023-07-20### Fixed
+
+- Fixed typo in the compact deduplication argument.
+
 ## [v1.13.0] - 2023-07-04
 
 ### Added
