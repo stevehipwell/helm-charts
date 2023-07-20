@@ -80,7 +80,7 @@ spec:
             - --deduplication.replica-label={{ . }}
           {{- end }}
           {{- if .Values.compact.replicaDeduplication }}
-            --deduplication.func=penalty
+            - --deduplication.func=penalty
           {{- end }}
           {{- with .Values.compact.extraArgs }}
             {{- toYaml . | nindent 12 }}
