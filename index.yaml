@@ -16345,6 +16345,36 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed typo in the compact deduplication argument."
+    apiVersion: v2
+    appVersion: 0.31.0
+    created: "2023-07-20T13:55:27.407969322Z"
+    description: Helm chart for Thanos components.
+    digest: 413984e6eef6500b6f86cb773be4e7be04514526f0ddfbebd0776fefd150e1fc
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.13.1/thanos-1.13.1.tgz
+    version: 1.13.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for not providing a tag as part of the image by setting the value to `\"-\"`."
         - kind: added
@@ -19749,4 +19779,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-20T09:42:11.909612768Z"
+generated: "2023-07-20T13:55:27.409393651Z"
