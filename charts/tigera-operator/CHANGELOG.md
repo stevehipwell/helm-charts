@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v2.6.4] - 2023-07-25
+
+### Fixed
+
+- Fixed incorrect formatting of `bgpconfigurations.crd.projectcalico.org` CRD.
+
 ## [v2.6.3] - 2023-06-20
 
 ### Changed
