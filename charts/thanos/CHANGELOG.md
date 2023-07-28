@@ -18,7 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
-## [v1.13.1] - 2023-07-20### Fixed
+## [v1.13.2] - 2023-07-28
+
+### Fixed
+
+- Fixed incorrect template name in compact for patching affinity.
+- Fixed typo in receive HPA label template.
+
+## [v1.13.1] - 2023-07-20
+
+### Fixed
 
 - Fixed typo in the compact deduplication argument.
 

@@ -5,7 +5,7 @@ metadata:
   name: {{ include "thanos.receive.router.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.receive.router.abels" . | nindent 4 }}
+    {{- include "thanos.receive.router.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
