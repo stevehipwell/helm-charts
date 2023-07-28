@@ -1,18 +1,210 @@
 serviceMonitor:
   enabled: true
 
+additionalEndpoints:
+  - dnssrv+_grpc._tcp.kube-prometheus-stack-thanos-discovery.monitoring.svc.cluster.local
+
 additionalReplicaLabels:
   - prometheus_replica
 
 compact:
   enabled: true
+
+  persistence:
+    enabled: true
+
   replicaDeduplication: true
+
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+
+  tolerations:
+    - key: system
+      operator: Exists
+
+query:
+  autoscaling:
+    enabled: true
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+
+  tolerations:
+    - key: system
+      operator: Exists
 
 queryFrontend:
   enabled: true
 
+  autoscaling:
+    enabled: true
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+  ingress:
+    enabled: true
+    ingressClassName: test
+    hosts:
+      - query.chart-example.local
+    tls:
+      - hosts:
+          - query.chart-example.local
+        secretName: chart-example-tls
+
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+
+  tolerations:
+    - key: system
+      operator: Exists
+
 receive:
   enabled: true
 
+  ingestor:
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
+
+    persistence:
+      enabled: true
+
+    nodeSelector:
+      kubernetes.io/os: linux
+
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+
+    tolerations:
+      - key: system
+        operator: Exists
+
+  router:
+    autoscaling:
+      enabled: true
+
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
+
+    ingress:
+      enabled: true
+      ingressClassName: test
+      hosts:
+        - router.chart-example.local
+      tls:
+        - hosts:
+            - router.chart-example.local
+          secretName: chart-example-tls
+
+    nodeSelector:
+      kubernetes.io/os: linux
+
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+
+    tolerations:
+      - key: system
+        operator: Exists
+
 rule:
   enabled: true
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+  persistence:
+    enabled: true
+
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+
+  tolerations:
+    - key: system
+      operator: Exists
+
+storeGateway:
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+  persistence:
+    enabled: true
+
+  nodeSelector:
+    kubernetes.io/os: linux
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+
+  tolerations:
+    - key: system
+      operator: Exists

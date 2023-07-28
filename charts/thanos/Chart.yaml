@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.13.1
+version: 1.13.2
 appVersion: 0.31.0
 keywords:
   - kubernetes
@@ -23,4 +23,6 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: "Fixed typo in the compact deduplication argument."
+      description: "Fixed incorrect template name in compact for patching affinity."
+    - kind: fixed
+      description: "Fixed typo in receive HPA label template."
