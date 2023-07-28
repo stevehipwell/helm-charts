@@ -16472,6 +16472,38 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: "Fixed incorrect template name in compact for patching affinity."
+        - kind: fixed
+          description: "Fixed typo in receive HPA label template."
+    apiVersion: v2
+    appVersion: 0.31.0
+    created: "2023-07-28T10:45:24.752732979Z"
+    description: Helm chart for Thanos components.
+    digest: d510f1aa4b8d403bf926fe0e5be0acd3e29026ad8f3411331e1b5da34c42d0ea
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.13.2/thanos-1.13.2.tgz
+    version: 1.13.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: "Fixed typo in the compact deduplication argument."
     apiVersion: v2
     appVersion: 0.31.0
@@ -19938,4 +19970,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-07-26T10:54:51.965180749Z"
+generated: "2023-07-28T10:45:24.754012481Z"
