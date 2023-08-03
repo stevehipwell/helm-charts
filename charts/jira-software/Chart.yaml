@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.10.0
-appVersion: 9.10.0
+version: 5.10.1
+appVersion: 9.10.1
 keywords:
   - jira
   - jira-software
@@ -29,4 +29,4 @@ annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Jira Software_ OCI image to v9.10.0."
+      description: "Updated the _Jira Software_ OCI image to v9.10.1."
