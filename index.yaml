@@ -7939,6 +7939,42 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Jira Software_ OCI image to v9.10.1."
+    apiVersion: v2
+    appVersion: 9.10.1
+    created: "2023-08-03T09:18:28.998946766Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Jira Software.
+    digest: 0da8fc6f5d8392014983ac3be2b47cce97b6cedfd63c56ccb2b6504495b70d40
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.10.1/jira-software-5.10.1.tgz
+    version: 5.10.1
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ OCI image to v9.10.0."
     apiVersion: v2
     appVersion: 9.10.0
@@ -20006,4 +20042,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-02T10:18:49.398087748Z"
+generated: "2023-08-03T09:18:29.000501689Z"
