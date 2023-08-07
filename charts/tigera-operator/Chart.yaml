@@ -2,8 +2,8 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 2.6.4
-appVersion: 1.30.4
+version: 2.6.5
+appVersion: 1.30.5
 keywords:
   - kubernetes
   - cni
@@ -25,5 +25,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: tigera
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed incorrect formatting of `bgpconfigurations.crd.projectcalico.org` CRD."
+    - kind: changed
+      description: "Updated the _Tigera Operator_ OCI image to [v1.30.5](https://github.com/tigera/operator/releases/tag/v1.30.5) (_Calico_ [v3.26.1](https://github.com/projectcalico/calico/releases/tag/v3.26.1))."
