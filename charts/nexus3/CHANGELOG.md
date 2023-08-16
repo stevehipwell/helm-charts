@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v4.33.0] - 2023-08-16
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.59.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.59.0-01).
+
 ## [v4.32.1] - 2023-07-24
 
 ### Changed
