@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.4.2] - 2023-08-16
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.4.2](https://confluence.atlassian.com/doc/confluence-8-4-release-notes-1251411547.html).
+
 ## [v5.4.1] - 2023-08-02
 
 ### Changed
