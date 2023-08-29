@@ -16610,6 +16610,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for deleting PVCs in Kubernetes v1.27 or newer via the `persistence.retainDeleted` & `persistence.retainScaled` values under `compact`, `receive.ingestor`, `rule` & `storeGateway`; these default to `true`."
+        - kind: changed
+          description: "Updated the _Thanos_ OCI image from `v0.31.0` to [v0.32.1](https://github.com/thanos-io/thanos/releases/tag/v0.32.1)."
+    apiVersion: v2
+    appVersion: 0.32.1
+    created: "2023-08-29T14:34:40.237661621Z"
+    description: Helm chart for Thanos components.
+    digest: f175a235630932f3691eecfbac04e880f8f49edee32201f09ff99abd69dd1818
+    home: https://thanos.io/
+    icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.14.0/thanos-1.14.0.tgz
+    version: 1.14.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed incorrect template name in compact for patching affinity."
         - kind: fixed
@@ -20142,4 +20174,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-16T09:25:51.797675506Z"
+generated: "2023-08-29T14:34:40.239397548Z"
