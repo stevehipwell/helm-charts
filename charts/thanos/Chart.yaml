@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.13.2
-appVersion: 0.31.0
+version: 1.14.0
+appVersion: 0.32.1
 keywords:
   - kubernetes
   - thanos
@@ -22,7 +22,7 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed incorrect template name in compact for patching affinity."
-    - kind: fixed
-      description: "Fixed typo in receive HPA label template."
+    - kind: added
+      description: "Added support for deleting PVCs in Kubernetes v1.27 or newer via the `persistence.retainDeleted` & `persistence.retainScaled` values under `compact`, `receive.ingestor`, `rule` & `storeGateway`; these default to `true`."
+    - kind: changed
+      description: "Updated the _Thanos_ OCI image from `v0.31.0` to [v0.32.1](https://github.com/thanos-io/thanos/releases/tag/v0.32.1)."

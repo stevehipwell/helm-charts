@@ -154,5 +154,10 @@ spec:
         resources:
           requests:
             storage: {{ .Values.compact.persistence.size }}
+  {{- if semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version }}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {{ ternary "Retain" "Delete" .Values.compact.persistence.retainDeleted }}
+    whenScaled: {{ ternary "Retain" "Delete" .Values.compact.persistence.retainScaled }}
+  {{- end }}
   {{- end }}
 {{- end -}}

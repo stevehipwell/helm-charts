@@ -103,6 +103,8 @@ compact:
     accessMode: ReadWriteOnce
     storageClass: standard
     size: 8Gi
+    retainDeleted: true
+    retainScaled: true
 
   nodeSelector: {}
 
@@ -370,6 +372,8 @@ receive:
       accessMode: ReadWriteOnce
       storageClass: standard
       size: 8Gi
+      retainDeleted: true
+      retainScaled: true
 
     nodeSelector: {}
 
@@ -555,6 +559,8 @@ rule:
     accessMode: ReadWriteOnce
     storageClass: standard
     size: 8Gi
+    retainDeleted: true
+    retainScaled: true
 
   nodeSelector: {}
 
@@ -654,6 +660,8 @@ storeGateway:
     accessMode: ReadWriteOnce
     storageClass: standard
     size: 8Gi
+    retainDeleted: true
+    retainScaled: true
 
   nodeSelector: {}
 
