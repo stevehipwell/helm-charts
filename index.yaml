@@ -4,6 +4,44 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour."
+        - kind: changed
+          description: "Updated the Confluence Server OCI image to v8.5.0."
+    apiVersion: v2
+    appVersion: 8.5.0
+    created: "2023-08-31T09:17:29.201208775Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 45887f7b3560e60e492928406d33901bdf7da7e5497eafb00c07555d68d87b7e
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.0/confluence-server-5.5.0.tgz
+    version: 5.5.0
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the Confluence Server OCI image to v8.4.2."
     apiVersion: v2
@@ -20174,4 +20212,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-29T14:34:40.239397548Z"
+generated: "2023-08-31T09:17:29.202713001Z"
