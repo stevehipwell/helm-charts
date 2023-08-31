@@ -18,6 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.5.0] - 2023-08-31
+
+### Added
+
+- Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.0](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
 ## [v5.4.2] - 2023-08-16
 
 ### Changed

@@ -81,10 +81,11 @@ ingress:
 persistence:
   enabled: false
   annotations: {}
-  # existingClaim: existing-pvc
+  existingClaim:
   accessMode: ReadWriteOnce
   storageClass: standard
   size: 8Gi
+  retainDeleted: true
 
 resources: {}
 
