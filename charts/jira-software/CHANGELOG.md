@@ -16,6 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.11.0] - 2023-08-31
+
+### Added
+
+- Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour.
+
+### Changed
+
+- Updated the _Jira Software_ OCI image to [v9.11.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html).
+- Updated the embedded _PostgreSQL_ chart to [v12.10.0](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.0) (PostgreSQL v15.4.0).
+
 ## [v5.10.1] - 2023-08-03
 
 ### Changed
