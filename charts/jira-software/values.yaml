@@ -84,6 +84,7 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: standard
   size: 8Gi
+  retainDeleted: true
 
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
