@@ -18169,6 +18169,39 @@ entries:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Tigera Operator_ OCI image to [v1.31.0](https://github.com/tigera/operator/releases/tag/v1.31.0) (_Calico_ [v3.26.1](https://github.com/projectcalico/calico/releases/tag/v3.26.1))."
+    apiVersion: v2
+    appVersion: 1.31.0
+    created: "2023-09-01T08:59:33.133893233Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 3ba5416c56d5fb553daedf21b2318c0823812eab9175a35c488e008c82ff0506
+    home: https://www.tigera.io/
+    icon: https://avatars.githubusercontent.com/u/48935664?s=300
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.7.0/tigera-operator-2.7.0.tgz
+    version: 2.7.0
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Tigera Operator_ OCI image to [v1.30.5](https://github.com/tigera/operator/releases/tag/v1.30.5) (_Calico_ [v3.26.1](https://github.com/projectcalico/calico/releases/tag/v3.26.1))."
     apiVersion: v2
     appVersion: 1.30.5
@@ -20282,4 +20315,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-31T14:47:57.665867222Z"
+generated: "2023-09-01T08:59:33.135423042Z"
