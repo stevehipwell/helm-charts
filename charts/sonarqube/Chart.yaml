@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 5.1.0
-appVersion: 10.1.0
+version: 5.2.0
+appVersion: 10.2.0
 keywords:
   - sonarqube
   - sast
@@ -23,10 +23,12 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: ~12.2.7
+    version: ~12.10.0
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _SonarQube_ OCI image to v10.1.0."
+      description: "Updated the _SonarQube_ OCI image to v10.2.0."
+    - kind: changed
+      description: "Updated the embedded _PostgreSQL_ chart to v12.10.0 (PostgreSQL v15.4.0)."
