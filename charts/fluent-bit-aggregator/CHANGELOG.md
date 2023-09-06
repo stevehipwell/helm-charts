@@ -18,6 +18,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v0.9.0] - 2023-09-06
+
+> **Warning**
+> This release contains breaking changes, please make sure you read through the changes before upgrading.
+
+### Added
+
+- Added missing RBAC `ClusterRole` & `ClusterRoleBinding` to allow the _Kubernetes_ filter to work, these are off by default and controlled by `rbac.create` and made available by setting `serviceAccount.automountToken` to `true`.
+- Added ability to add custom RBAC rules via `rbac.additionalRules`.
+- Added restrictive security context to the `reloader` container.
+
+### Changed
+
+- Updated _Fluent Bit_ OCI image to [v2.1.9](https://github.com/fluent/fluent-bit/releases/tag/v2.1.9).
+- Changed `config.storage` to `config.storage.enabled`.
+- Changed storage metrics logic to use `config.storage.metrics`.
+
+### Fixed
+
+- Fixed _Fluent Bit_ not starting if storage was disabled.
+- Fixed setting the image pull policy for the `reloader` container.
+
 ## [v0.8.0] - 2023-07-26
 
 ### Changed

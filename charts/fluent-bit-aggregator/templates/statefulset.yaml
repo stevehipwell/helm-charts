@@ -107,7 +107,7 @@ spec:
             - name: scripts
               mountPath: /fluent-bit/scripts
           {{- end }}
-          {{- if .Values.config.storage }}
+          {{- if .Values.config.storage.enabled }}
             - name: data
               mountPath: /fluent-bit/data
           {{- end }}
@@ -120,7 +120,18 @@ spec:
           {{- end }}
       {{- if .Values.hotReload.enabled }}
         - name: reloader
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop:
+                - ALL
           image: {{ include "fluent-bit-aggregator.reloaderImage" . }}
+          imagePullPolicy: {{ .Values.hotReload.image.pullPolicy }}
           args:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
             - -volume-dir=/watch/config
@@ -144,7 +155,7 @@ spec:
           configMap:
             name: {{ include "fluent-bit-aggregator.scriptsConfigMapName" . }}
       {{- end }}
-      {{- if and .Values.config.storage (not .Values.persistence.enabled) }}
+      {{- if and .Values.config.storage.enabled (not .Values.persistence.enabled) }}
         - name: data
           emptyDir: {}
       {{- end }}
@@ -169,7 +180,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if and .Values.config.storage .Values.persistence.enabled }}
+  {{- if and .Values.config.storage.enabled .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
