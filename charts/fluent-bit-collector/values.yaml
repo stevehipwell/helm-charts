@@ -36,6 +36,12 @@ serviceAccount:
   # -- If `true`, mount the `ServiceAccount` token.
   automountToken: true
 
+rbac:
+  # -- If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API.
+  create: true
+  # -- Additional rules to add to the `ClusterRole`.
+  additionalRules: []
+
 service:
   # -- If `true`, create an internal local traffic service.
   enabled: false
@@ -66,7 +72,7 @@ podAnnotations: {}
 # -- Security context for the pod.
 # @default -- See _values.yaml_
 podSecurityContext:
-  runAsNonRoot: true
+  runAsNonRoot: false
   fsGroup: 65534
   seccompProfile:
     type: RuntimeDefault
@@ -83,9 +89,9 @@ securityContext:
   privileged: false
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 65532
-  runAsGroup: 65532
+  runAsNonRoot: false
+  runAsUser: 0
+  runAsGroup: 0
   capabilities:
     drop:
       - ALL
@@ -175,13 +181,22 @@ config:
         path: /etc/machine-id
         type: File
       mountPath: /etc/machine-id
-    - name: container-logs
+    - name: logs
       hostPath:
-        path: /var/log/containers
-      mountPath: /var/log/containers
+        path: /var/log
+      mountPath: /var/log
 
-  # -- If `true`, writeable host filesystem storage will be enabled.
-  storage: false
+  storage:
+    # -- If `true`, writeable host filesystem storage will be enabled.
+    enabled: false
+    # -- If `true`, storage metrics will be enabled if storage is enabled.
+    metrics: true
+
+  kubeletEndpoint:
+    # -- If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**).
+    enabled: false
+    # -- If `true`, the TLS connection will not be verified.
+    insecure: false
 
   # -- Fluent Bit service configuration.
   # @default -- See _values.yaml_
@@ -189,13 +204,13 @@ config:
     # daemon: false - This can't be set
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
-    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage
     # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
+    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage.enabled
+    # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
     http_listen: "0.0.0.0"
-    storage.metrics: true
 
-  # -- Fluent Bit pipeline configuration.
+  # -- Fluent Bit pipeline configuration; this should depend on config values and changing it incorrectly may break support for some of the config options.
   # @default -- See _values.yaml_
   pipeline: |-
     [INPUT]
@@ -205,7 +220,7 @@ config:
         tag               host.*
         strip_underscores true
         lowercase         true
-    {{- if .Values.config.storage }}
+    {{- if .Values.config.storage.enabled }}
         db                /fluent-bit/data/systemd/systemd.db
         storage.type      filesystem
     {{- end }}
@@ -219,7 +234,7 @@ config:
         multiline.parser cri
         skip_long_lines  true
         skip_empty_lines true
-    {{- if .Values.config.storage }}
+    {{- if .Values.config.storage.enabled }}
         db               fluent-bit/data/tail/tail.db
         storage.type     filesystem
     {{- end }}
@@ -229,13 +244,21 @@ config:
         listen       127.0.0.1
         port         {{ (index .Values.service.additionalPorts 0).containerPort }}
         tag          otel
-    {{- if .Values.config.storage }}
+    {{- if .Values.config.storage.enabled }}
         storage.type filesystem
     {{- end }}
 
     [FILTER]
         name                kubernetes
         match               kube.*
+      {{- if .Values.config.kubeletEndpoint.enabled }}
+        use_kubelet         true
+        kubelet_host        ${NODE_IP}
+        kubelet_port        10250
+      {{- if .Values.config.kubeletEndpoint.insecure }}
+        tls.verify          false
+      {{- end }}
+      {{- end }}
         kube_tag_prefix     kube.
         regex_parser        kubernetes-tag
         k8s-logging.parser  true

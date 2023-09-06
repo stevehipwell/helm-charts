@@ -22,7 +22,8 @@ dashboards:
   enabled: true
 
 config:
-  storage: true
+  storage:
+    enabled: true
 
   customParsers: |-
     [PARSER]
