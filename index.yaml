@@ -3486,6 +3486,58 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added missing RBAC `ClusterRole` & `ClusterRoleBinding` to allow the _Kubernetes_ filter to work, these are on by default and controlled by `rbac.create`."
+        - kind: added
+          description: "Added ability to add custom RBAC rules via `rbac.additionalRules`."
+        - kind: added
+          description: "Added `NODE_IP` env variable to the `collector` container."
+        - kind: added
+          description: "Added restrictive security context to the `reloader` container."
+        - kind: added
+          description: "Added experimental support for using the _Kubelet_ endpoint for the Kubernetes filter via `config.kubeletEndpoint.enabled`."
+        - kind: changed
+          description: "Updated _Fluent Bit_ OCI image to [v2.1.9](https://github.com/fluent/fluent-bit/releases/tag/v2.1.9)."
+        - kind: changed
+          description: "Changed `config.storage` to `config.storage.enabled`."
+        - kind: changed
+          description: "Changed storage metrics logic to use `config.storage.metrics`."
+        - kind: fixed
+          description: "Fixed incorrect security policy which would block accessing the host filesystem; the container must be run as root for this to work."
+        - kind: fixed
+          description: "Fixed host logs mount to work with the standard pattern of symlinked files; mounting all of `/var/log`."
+        - kind: fixed
+          description: "Fixed _Fluent Bit_ not starting if storage was disabled."
+        - kind: fixed
+          description: "Fixed setting the image pull policy for the `reloader` container."
+    apiVersion: v2
+    appVersion: 2.1.9
+    created: "2023-09-06T12:44:11.295337791Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: a212b749c0dce5a7cd997f17a986dcf06b8167e4d219bc9883c06fc85162f516
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.9.0/fluent-bit-aggregator-0.9.0.tgz
+    version: 0.9.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluent Bit_ OCI image to [v2.1.8](https://github.com/fluent/fluent-bit/releases/tag/v2.1.8)."
     apiVersion: v2
@@ -20438,4 +20490,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-06T11:46:26.774465606Z"
+generated: "2023-09-06T12:44:11.2972648Z"
