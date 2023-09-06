@@ -2,8 +2,8 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 5.5.0
-appVersion: 8.5.0
+version: 5.5.1
+appVersion: 8.5.1
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
 keywords:
@@ -28,7 +28,5 @@ dependencies:
 annotations:
   artifacthub.io/alternativeName: confluence
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour."
     - kind: changed
-      description: "Updated the Confluence Server OCI image to v8.5.0."
+      description: "Updated the Confluence Server OCI image to v8.5.1."
