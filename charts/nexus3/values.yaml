@@ -173,7 +173,6 @@ config:
     enabled: false
     values: []
     #   - NexusAuthenticatingRealm
-    #   - NexusAuthorizingRealm
     #   - LdapRealm
     #   - DockerToken
     #   - NpmToken
