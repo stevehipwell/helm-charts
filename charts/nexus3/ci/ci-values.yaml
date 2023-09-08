@@ -26,7 +26,6 @@ config:
     enabled: true
     values:
       - NexusAuthenticatingRealm
-      - NexusAuthorizingRealm
       - LdapRealm
       - DockerToken
       - NpmToken
