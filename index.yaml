@@ -8187,6 +8187,44 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Jira Software_ OCI image to [v9.11.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
+        - kind: changed
+          description: "Updated the embedded _PostgreSQL_ chart to [v12.10.2](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0)."
+    apiVersion: v2
+    appVersion: 9.11.1
+    created: "2023-09-25T10:34:32.958957635Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.10.2
+    description: Helm chart for Atlassian Jira Software.
+    digest: 6443d252a904b8764b6c99db3e6fb39c8a2115bfdd70c3068f4feb2ce01bd60c
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.11.1/jira-software-5.11.1.tgz
+    version: 5.11.1
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour."
         - kind: changed
@@ -20592,4 +20630,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-08T13:00:46.954798738Z"
+generated: "2023-09-25T10:34:32.960436761Z"
