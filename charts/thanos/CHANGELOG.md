@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v1.14.3] - 2023-09-25
+
+### Fixed
+
+- Fixed _Thanos_ chart icon.
+
 ## [v1.14.2] - 2023-09-25
 
 ### Changed
