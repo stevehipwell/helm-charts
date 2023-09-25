@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.2.1] - 2023-09-25
+
+### Changed
+
+- Updated the _SonarQube_ OCI image to [v10.2.1](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-2/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/10.2.1.78527)).
+- Updated the embedded _PostgreSQL_ chart to [v12.10.2](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0).
+
 ## [v5.2.0] - 2023-09-05
 
 ### Changed
