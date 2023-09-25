@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.11.1] - 2023-09-25
+
+### Changed
+
+- Updated the _Jira Software_ OCI image to [v9.11.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html).
+- Updated the embedded _PostgreSQL_ chart to [v12.10.2](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0).
+
 ## [v5.11.0] - 2023-08-31
 
 ### Added

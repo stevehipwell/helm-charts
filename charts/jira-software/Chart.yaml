@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.11.0
-appVersion: 9.11.0
+version: 5.11.1
+appVersion: 9.11.1
 keywords:
   - jira
   - jira-software
@@ -22,15 +22,13 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: 12.10.0
+    version: 12.10.2
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for deleting `StatefulSet` PVCs on deletion in Kubernetes v1.27 or newer via the `persistence.retainDeleted` value which defaults to `true` to match the existing behaviour."
     - kind: changed
-      description: "Updated the _Jira Software_ OCI image to [v9.11.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
+      description: "Updated the _Jira Software_ OCI image to [v9.11.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
     - kind: changed
-      description: "Updated the embedded _PostgreSQL_ chart to [v12.10.0](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.0) (PostgreSQL v15.4.0)."
+      description: "Updated the embedded _PostgreSQL_ chart to [v12.10.2](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0)."
