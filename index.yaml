@@ -15384,6 +15384,44 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _SonarQube_ OCI image to v10.2.1."
+        - kind: changed
+          description: "Updated the embedded _PostgreSQL_ chart to v12.10.2 (PostgreSQL v15.4.0)."
+    apiVersion: v2
+    appVersion: 10.2.1
+    created: "2023-09-25T12:00:25.093411333Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: ~12.10.0
+    description: A Helm chart for deploying SonarQube.
+    digest: 41044ac3dd1309accc4ec3c3ba2f07beb48498dd12d2d0d40d655c94d0400652
+    home: https://www.sonarqube.org/
+    icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-5.2.1/sonarqube-5.2.1.tgz
+    version: 5.2.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _SonarQube_ OCI image to v10.2.0."
         - kind: changed
           description: "Updated the embedded _PostgreSQL_ chart to v12.10.0 (PostgreSQL v15.4.0)."
@@ -20630,4 +20668,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-25T10:34:32.960436761Z"
+generated: "2023-09-25T12:00:25.095381964Z"
