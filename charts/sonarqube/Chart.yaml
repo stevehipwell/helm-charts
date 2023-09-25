@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 5.2.0
-appVersion: 10.2.0
+version: 5.2.1
+appVersion: 10.2.1
 keywords:
   - sonarqube
   - sast
@@ -29,6 +29,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _SonarQube_ OCI image to v10.2.0."
+      description: "Updated the _SonarQube_ OCI image to v10.2.1."
     - kind: changed
-      description: "Updated the embedded _PostgreSQL_ chart to v12.10.0 (PostgreSQL v15.4.0)."
+      description: "Updated the embedded _PostgreSQL_ chart to v12.10.2 (PostgreSQL v15.4.0)."
