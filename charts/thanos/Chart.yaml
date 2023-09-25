@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart for Thanos components.
 type: application
-version: 1.14.2
+version: 1.14.3
 appVersion: 0.32.3
 keywords:
   - kubernetes
@@ -12,7 +12,7 @@ keywords:
   - alerting
   - metrics
 home: https://thanos.io/
-icon: https://cncf-branding.netlify.app/img/projects/thanos/icon/color/thanos-icon-color.png
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/thanos/icon/color/thanos-icon-color.svg
 sources:
   - https://github.com/thanos-io/thanos
   - https://github.com/thanos-io/kube-thanos
@@ -22,5 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.32.3](https://github.com/thanos-io/thanos/releases/tag/v0.32.3)."
+    - kind: fixed
+      description: "Fixed _Thanos_ chart icon."
