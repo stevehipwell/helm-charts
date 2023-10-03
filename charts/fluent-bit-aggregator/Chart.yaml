@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-aggregator
 description: Helm chart for Fluent Bit running as an aggregation stateful set.
 type: application
-version: 0.9.0
-appVersion: 2.1.9
+version: 0.10.0
+appVersion: 2.1.10
 keywords:
   - fluent
   - fluentd
@@ -22,27 +22,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added missing RBAC `ClusterRole` & `ClusterRoleBinding` to allow the _Kubernetes_ filter to work, these are on by default and controlled by `rbac.create`."
-    - kind: added
-      description: "Added ability to add custom RBAC rules via `rbac.additionalRules`."
-    - kind: added
-      description: "Added `NODE_IP` env variable to the `collector` container."
-    - kind: added
-      description: "Added restrictive security context to the `reloader` container."
-    - kind: added
-      description: "Added experimental support for using the _Kubelet_ endpoint for the Kubernetes filter via `config.kubeletEndpoint.enabled`."
     - kind: changed
-      description: "Updated _Fluent Bit_ OCI image to [v2.1.9](https://github.com/fluent/fluent-bit/releases/tag/v2.1.9)."
-    - kind: changed
-      description: "Changed `config.storage` to `config.storage.enabled`."
-    - kind: changed
-      description: "Changed storage metrics logic to use `config.storage.metrics`."
-    - kind: fixed
-      description: "Fixed incorrect security policy which would block accessing the host filesystem; the container must be run as root for this to work."
-    - kind: fixed
-      description: "Fixed host logs mount to work with the standard pattern of symlinked files; mounting all of `/var/log`."
-    - kind: fixed
-      description: "Fixed _Fluent Bit_ not starting if storage was disabled."
-    - kind: fixed
-      description: "Fixed setting the image pull policy for the `reloader` container."
+      description: "Updated _Fluent Bit_ OCI image to [v2.1.10](https://github.com/fluent/fluent-bit/releases/tag/v2.1.10)."
