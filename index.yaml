@@ -5,6 +5,42 @@ entries:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the Confluence Server OCI image to v8.5.2."
+    apiVersion: v2
+    appVersion: 8.5.2
+    created: "2023-10-06T08:44:03.061964236Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 11.9.13
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 8a64396d7ed4253ff4580c50c37c7d589f52006bf6b077e4dd8b249965d2cd08
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.2/confluence-server-5.5.2.tgz
+    version: 5.5.2
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the Confluence Server OCI image to v8.5.1."
     apiVersion: v2
     appVersion: 8.5.1
@@ -20889,4 +20925,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-06T08:30:48.530581013Z"
+generated: "2023-10-06T08:44:03.063280353Z"
