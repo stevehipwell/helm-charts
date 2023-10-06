@@ -2,8 +2,8 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.11.1
-appVersion: 9.11.1
+version: 5.11.2
+appVersion: 9.11.2
 keywords:
   - jira
   - jira-software
@@ -29,6 +29,4 @@ annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Jira Software_ OCI image to [v9.11.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
-    - kind: changed
-      description: "Updated the embedded _PostgreSQL_ chart to [v12.10.2](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0)."
+      description: "Updated the _Jira Software_ OCI image to [v9.11.2](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
