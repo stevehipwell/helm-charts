@@ -22,11 +22,13 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: 11.9.13
+    version: 12.12.10
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/alternativeName: confluence
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the Confluence Server OCI image to v8.5.2."
+      description: "Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html)."
+    - kind: changed
+      description: "Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0)."
