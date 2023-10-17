@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [UNRELEASED]
+
+### Fixed
+
+- Allow to use `"` and `/` in the LDAP password
+
 ## [v4.34.0] - 2023-09-08
 
 ### Changed
