@@ -4,6 +4,42 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed incorrect _PostgreSQL_ sub chart template names."
+    apiVersion: v2
+    appVersion: 8.6.0
+    created: "2023-10-20T13:20:14.700494623Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.12.10
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 2d5cb283ccccbc9672b3d103d9280be4af1974f3c0186d79253729bdf13a5344
+    home: https://www.atlassian.com/software/confluence
+    icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.6.1/confluence-server-5.6.1.tgz
+    version: 5.6.1
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html)."
         - kind: changed
@@ -20963,4 +20999,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-06T09:39:28.415921148Z"
+generated: "2023-10-20T13:20:14.70196474Z"
