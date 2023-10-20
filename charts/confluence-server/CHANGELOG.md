@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.6.1] - 2023-10-20
+
+### Fixed
+
+- Fixed incorrect _PostgreSQL_ sub chart template names.
+
 ## [v5.6.0] - 2023-10-06
 
 ### Changed
