@@ -8393,6 +8393,44 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0)."
+        - kind: fixed
+          description: "Fixed incorrect _PostgreSQL_ sub chart template names."
+    apiVersion: v2
+    appVersion: 9.11.2
+    created: "2023-10-20T13:47:15.020706259Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.12.10
+    description: Helm chart for Atlassian Jira Software.
+    digest: ed176ed7f6ea33900d38feb6fec8180f0addc3e1dfdf9737047e4a0b75e4191a
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.11.3/jira-software-5.11.3.tgz
+    version: 5.11.3
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ OCI image to [v9.11.2](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
     apiVersion: v2
     appVersion: 9.11.2
@@ -21030,4 +21068,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-20T13:40:15.036365396Z"
+generated: "2023-10-20T13:47:15.023525641Z"
