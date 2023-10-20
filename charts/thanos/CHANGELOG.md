@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v1.14.5] - 2023-10-20
+
+### Changed
+
+- Updated the _Thanos_ OCI image to [v0.32.5](https://github.com/thanos-io/thanos/releases/tag/v0.32.5).
+
 ## [v1.14.4] - 2023-10-03
 
 ### Changed
