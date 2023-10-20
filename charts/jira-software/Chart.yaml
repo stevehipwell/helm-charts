@@ -2,7 +2,7 @@ apiVersion: v2
 name: jira-software
 description: Helm chart for Atlassian Jira Software.
 type: application
-version: 5.11.2
+version: 5.11.3
 appVersion: 9.11.2
 keywords:
   - jira
@@ -22,11 +22,13 @@ maintainers:
     email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
-    version: 12.10.2
+    version: 12.12.10
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
 annotations:
   artifacthub.io/alternativeName: jira
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Jira Software_ OCI image to [v9.11.2](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
+      description: "Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0)."
+    - kind: fixed
+      description: "Fixed incorrect _PostgreSQL_ sub chart template names."

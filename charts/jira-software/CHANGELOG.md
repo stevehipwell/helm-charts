@@ -16,6 +16,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v5.11.3] - 2023-10-20
+
+### Changed
+
+- Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.10.2) (PostgreSQL v15.4.0).
+
+### Fixed
+
+- Fixed incorrect _PostgreSQL_ sub chart template names.
+
 ## [v5.11.2] - 2023-10-06
 
 ### Changed
