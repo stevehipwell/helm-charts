@@ -6383,6 +6383,41 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.19.3](https://github.com/istio/istio/releases/tag/1.19.3)."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be manmaged by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.19.3
+    created: "2023-10-20T13:50:54.180514011Z"
+    description: Helm chart for the Istio Operator.
+    digest: 35d1be4bef7b13db50abb987f696d4a8c54753647a7c0a3c113a2943838a2842
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.12.2/istio-operator-2.12.2.tgz
+    version: 2.12.2
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Istio Operator_ OCI image version to [v1.19.1](https://github.com/istio/istio/releases/tag/1.19.1)."
       artifacthub.io/crds: |
         - kind: IstioOperator
@@ -21068,4 +21103,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-20T13:47:15.023525641Z"
+generated: "2023-10-20T13:50:54.182027738Z"
