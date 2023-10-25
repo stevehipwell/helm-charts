@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [v3.26.0] - 2023-10-25
+
+### All Changes
+
+- Updated the _PlantUML_ OCI image to [v1.2023.12](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.12) ([Changes](https://plantuml.com/changes)).
+
 ## [v3.25.0] - 2023-07-20
 
 ### All Changes
