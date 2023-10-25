@@ -14479,6 +14479,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the PlantUML OCI image to v1.2023.12."
+    apiVersion: v2
+    appVersion: 1.2023.12
+    created: "2023-10-25T17:11:45.43641716Z"
+    description: Helm chart for PlantUML.
+    digest: 93c4334130d098ebe454e1c341fcd5bdb63c0f0640e9b4102148cd369f8660ce
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.26.0/plantuml-3.26.0.tgz
+    version: 3.26.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the PlantUML OCI image to v1.2023.10."
     apiVersion: v2
     appVersion: 1.2023.10
@@ -21166,4 +21193,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-10-20T14:22:20.708690892Z"
+generated: "2023-10-25T17:11:45.438844985Z"
