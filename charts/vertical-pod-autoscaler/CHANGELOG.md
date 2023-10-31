@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [UNRELEASED]
+
+## [v1.4.0] - 2023-10-31
+
+### Changed
+
+- Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.0.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.0.0).
+
 ## [v1.3.0] - 2023-06-29
 
 ### Added

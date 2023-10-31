@@ -48,7 +48,6 @@ rules:
       - get
       - list
       - watch
-      - patch
   - apiGroups:
       - "autoscaling.k8s.io"
     resources:
@@ -57,6 +56,21 @@ rules:
       - get
       - list
       - watch
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:vpa-status-actor
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+rules:
+  - apiGroups:
+      - "autoscaling.k8s.io"
+    resources:
+      - verticalpodautoscalers/status
+    verbs:
+      - get
       - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -261,6 +275,21 @@ subjects:
     namespace: {{ .Release.Namespace }}
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:vpa-status-actor
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:vpa-status-actor
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.recommender.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
