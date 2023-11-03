@@ -6,7 +6,10 @@ updates:
       github-actions:
         patterns:
           - "*"
+        update-types:
+          - minor
+          - patch
     schedule:
-      interval: daily
+      interval: weekly
     assignees:
       - stevehipwell
