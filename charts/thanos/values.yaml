@@ -573,8 +573,8 @@ rule:
   configReloader:
     enabled: true
     image:
-      repository: ghcr.io/jimmidyson/configmap-reload
-      tag: v0.11.1
+      repository: cgr.dev/chainguard/configmap-reload
+      tag: latest
       digest:
       pullPolicy: IfNotPresent
     resources: {}
