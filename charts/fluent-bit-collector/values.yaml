@@ -301,9 +301,9 @@ hotReload:
   enabled: false
   image:
     # -- Image repository for the hot-reload sidecar container.
-    repository: ghcr.io/jimmidyson/configmap-reload
+    repository: cgr.dev/chainguard/configmap-reload
     # -- Image tag for the hot-reload sidecar container.
-    tag: v0.11.1
+    tag: latest
     # -- (string) Optional image digest for the hot-reload sidecar container.
     digest:
     # --  Image pull policy for the hot-reload sidecar container.

@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security - In case of vulnerabilities.
 -->
 
+## [UNRELEASED]
+
+### Changed
+
+- Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`.
+
 ## [v1.14.5] - 2023-10-20
 
 ### Changed
