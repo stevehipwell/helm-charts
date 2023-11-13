@@ -20,13 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
-## [v4.36.1] - 2023-11-13
-
-### Changed
-
-- Updated lifecycle script configure.sh to prefix log errors with `ERROR:`
-- Updated lifecycle script configure.sh to output errors to termination log (default `/dev/termination-log`)
-  - Use env var `TERMINATION_LOG` to override the default location
+- Lifecycle script configure.sh prefixes log errors with `ERROR:` and echos the same string to `$TERMINATION_LOG`
 
 ## [v4.36.0] - 2023-11-10
 
