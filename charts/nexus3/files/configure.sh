@@ -2,13 +2,13 @@
 set -eu
 
 function error() {
-  msg="ERROR $*"
-  >&2 echo "$msg"
-  echo "$msg" > "$TERMINATION_LOG"
+  msg="ERROR: $*"
+  >&2 echo "${msg}"
+  echo "${msg}" > "${TERMINATION_LOG}"
   exit 1
 }
 
-TERMINATION_LOG=${TERMINATION_LOG:-/dev/termination-log}
+TERMINATION_LOG="${TERMINATION_LOG:-/dev/termination-log}"
 nexus_host="http://localhost:8081"
 root_user="admin"
 base_dir="/opt/sonatype/nexus"
