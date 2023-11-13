@@ -20,8 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v0.8.0] - 2023-11-13
+
 ### Changed
 
+- Updated _Fluent Bit_ OCI image to [v2.2.0](https://github.com/fluent/fluent-bit/releases/tag/v2.2.0).
 - Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`.
 
 ### Fixed
