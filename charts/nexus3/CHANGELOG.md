@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Changed
+
+- Support embedding of env vars for JVM by permitting `INSTALL4J_ADD_VM_PARAMS` to be defined after all other env vars
+
 ## [v4.36.0] - 2023-11-10
 
 ### Changed
