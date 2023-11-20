@@ -79,7 +79,7 @@ spec:
             - --tsdb.path=/var/thanos/receive
             - --tsdb.retention={{ .Values.receive.retention }}
             - --label=receive_replica="$(NAME)"
-            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.cluster.local:10901" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace }}
+            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.%s:10901" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain }}
           {{- with .Values.receive.ingestor.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

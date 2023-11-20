@@ -37,6 +37,8 @@ logFormat: logfmt
 additionalEndpoints: []
 additionalReplicaLabels: []
 
+clusterDomain: cluster.local
+
 compact:
   enabled: false
 

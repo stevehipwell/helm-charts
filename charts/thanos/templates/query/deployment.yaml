@@ -68,12 +68,12 @@ spec:
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.storeGateway.fullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- if .Values.rule.enabled }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.rule.fullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.rule.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}
           {{- if .Values.receive.enabled }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.cluster.local" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}
           {{- range (concat .Values.additionalEndpoints .Values.query.additionalStores) | uniq }}
             - --endpoint={{ . }}
