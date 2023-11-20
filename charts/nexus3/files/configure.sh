@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -eu
 
+function error() {
+  msg="ERROR: $*"
+  >&2 echo "${msg}"
+  echo "${msg}" > "${TERMINATION_LOG}"
+  exit 1
+}
+
+TERMINATION_LOG="${TERMINATION_LOG:-/dev/termination-log}"
 nexus_host="http://localhost:8081"
 root_user="admin"
 base_dir="/opt/sonatype/nexus"
@@ -13,8 +21,7 @@ root_password="${NEXUS_SECURITY_INITIAL_PASSWORD:-}"
 
 if [[ -z "${root_password:-}" ]]
 then
-  >&2 echo "No root password was provided."
-  exit 1
+  error "No root password was provided."
 fi
 
 while /bin/true
@@ -34,8 +41,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/anonymous")"
     if [[ "${status_code}" -ne 200 ]]
     then
-      >&2 echo "Could not configure anonymous access."
-      exit 1
+      error "Could not configure anonymous access."
     fi
 
     echo "Anonymous access configured."
@@ -49,8 +55,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/realms/active")"
     if [[ "${status_code}" -ne 204 ]]
     then
-      >&2 echo "Could not configure realms."
-      exit 1
+      error "Could not configure realms."
     fi
 
     echo "Realms configured."
@@ -70,15 +75,13 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/roles/${id}")"
         if [[ "${status_code}" -ne 204 ]]
         then
-          >&2 echo "Could not configure role."
-          exit 1
+          error "Could not configure role."
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/roles")"
         if [[ "${status_code}" -ne 200 ]]
         then
-          >&2 echo "Could not configure role."
-          exit 1
+          error "Could not configure role."
         fi
       fi
 
@@ -100,8 +103,7 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/users/${id}")"
         if [[ "${status_code}" -ne 204 ]]
         then
-          >&2 echo "Could not configure user."
-          exit 1
+          error "Could not configure user."
         fi
       else
         password="$(echo "${RANDOM}" | md5sum | head -c 20)"
@@ -111,8 +113,7 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/users")"
         if [[ "${status_code}" -ne 200 ]]
         then
-          >&2 echo "Could not configure user."
-          exit 1
+          error "Could not configure user."
         fi
       fi
 
@@ -129,8 +130,7 @@ do
     status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/users/anonymous")"
     if [[ "${status_code}" -ne 204 ]]
     then
-      >&2 echo "Could not configure anonymous user."
-      exit 1
+      error "Could not configure anonymous user."
     fi
 
     echo "Anonymous user configured."
@@ -161,8 +161,7 @@ do
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap/${name// /%20}")"
       if [[ "${status_code}" -ne 204 ]]
       then
-        >&2 echo "Could not configure LDAP."
-        exit 1
+        error "Could not configure LDAP."
       fi
     else
       echo "Adding LDAP configuration for '${name}'..."
@@ -170,8 +169,7 @@ do
       status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/ldap")"
       if [[ "${status_code}" -ne 201 ]]
       then
-        >&2 echo "Could not configure LDAP."
-        exit 1
+        error "Could not configure LDAP."
       fi
     fi
 
@@ -198,15 +196,13 @@ do
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}/${name}")"
         if [[ "${status_code}" -ne 204 ]]
         then
-          >&2 echo "Could not configure blob store."
-          exit 1
+          error "Could not configure blob store."
         fi
       else
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/blobstores/${type}")"
         if [[ "${status_code}" -ne 204 ]] && [[ "${status_code}" -ne 201 ]]
         then
-          >&2 echo "Could not configure blob store."
-          exit 1
+          error "Could not configure blob store."
         fi
       fi
 
@@ -232,8 +228,7 @@ do
 
     if [[ "${status_code}" -ne 204 ]]
     then
-      >&2 echo "Could not update script ${name}."
-      exit 1
+      error "Could not update script ${name}."
     fi
 
     echo "Script ${script_file} updated."
@@ -248,8 +243,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/cleanup/run")
       if [[ "${status_code}" -ne 200 ]]
       then
-        >&2 echo "Could not set cleanup policy."
-        exit 1
+        error "Could not set cleanup policy."
       fi
 
       echo "Cleanup policy configured."
@@ -276,8 +270,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/repo/run")
       if [[ "${status_code}" -ne 200 ]]
       then
-        >&2 echo "Could not set repo."
-        exit 1
+        error "Could not set repo."
       fi
 
       rm -f "${json_file}"
@@ -292,8 +285,7 @@ do
       status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/script/task/run")
       if [[ "${status_code}" -ne 200 ]]
       then
-        >&2 echo "Could not set task."
-        exit 1
+        error "Could not set task."
       fi
 
       echo "Task configured."

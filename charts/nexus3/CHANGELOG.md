@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+- Lifecycle script configure.sh prefixes log errors with `ERROR:` and echos the same string to `$TERMINATION_LOG`
+
 ## [v4.36.0] - 2023-11-10
 
 ### Changed
