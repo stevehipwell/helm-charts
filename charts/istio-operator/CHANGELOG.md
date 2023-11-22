@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v2.12.3] - 2023-11-22
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.19.4](https://github.com/istio/istio/releases/tag/1.19.4).
+
 ## [v2.12.2] - 2023-10-20
 
 ### Changed
