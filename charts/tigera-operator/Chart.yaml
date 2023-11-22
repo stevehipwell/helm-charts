@@ -2,8 +2,8 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart for the Tigera Operator for Calico.
 type: application
-version: 2.8.0
-appVersion: 1.30.7
+version: 2.8.1
+appVersion: 1.30.9
 keywords:
   - kubernetes
   - cni
@@ -26,4 +26,4 @@ annotations:
   artifacthub.io/alternativeName: tigera
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Tigera Operator_ OCI image to [v1.30.7](https://github.com/tigera/operator/releases/tag/v1.30.7) (_Calico_ [v3.26.3](https://github.com/projectcalico/calico/releases/tag/v3.26.3))."
+      description: "Updated the _Tigera Operator_ OCI image to [v1.30.9](https://github.com/tigera/operator/releases/tag/v1.30.9) (_Calico_ [v3.26.4](https://github.com/projectcalico/calico/releases/tag/v3.26.4))."

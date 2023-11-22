@@ -20,6 +20,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v2.13.0] - 2023-11-22
+
+### Added
+
+- Added support for adding additional labels to the `ServiceAccount` via the new `serviceAccount.labels` value.
+- Added support for customising the termination grace period via the new `terminationGracePeriodSeconds` value.
+- Added support for setting the _Istio_ revision via the new `revision` value.
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.20.0](https://github.com/istio/istio/releases/tag/1.20.0).
+- Updated the pod security context to be more secure and closer aligned to the operator container security context.
+
+## [v2.12.3] - 2023-11-22
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.19.4](https://github.com/istio/istio/releases/tag/1.19.4).
+
 ## [v2.12.2] - 2023-10-20
 
 ### Changed

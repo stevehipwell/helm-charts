@@ -1,71 +1,79 @@
-# Istio Operator
+# istio-operator
 
-[Istio](https://istio.io/) is a service mesh that lets you connect, secure, control, and observe services. At a high level, _Istio_ helps reduce the complexity of these deployments, and eases the strain on your development teams. It is a completely open source service mesh that layers transparently onto existing distributed applications. It is also a platform, including APIs that let it integrate into any logging platform, or telemetry or policy system. _Istio's_ diverse feature set lets you successfully, and efficiently, run a distributed microservice architecture, and provides a uniform way to secure, connect, and monitor microservices.
+![Version: 2.13.0](https://img.shields.io/badge/Version-2.13.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
+
+The [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) provides a declarative _Kubernetes_ native way to manage [Istio](https://istio.io/) via `IstioOperator` custom resources.
+
+[Istio](https://istio.io/) extends Kubernetes to establish a programmable, application-aware network using the powerful _Envoy_ service proxy. Working with both _Kubernetes_ and traditional workloads, _Istio_ brings standard, universal traffic management, telemetry, and security to complex deployments.
+
+**Homepage:** <https://istio.io/>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
+
+## Source Code
+
+* <https://github.com/istio/istio/tree/master/operator>
+* <https://github.com/stevehipwell/helm-charts/>
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+To install the chart using the recommended OCI method you can use the following command.
+
+```shell
+helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.13.0
+```
+
+Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.13.0
 ```
 
-After you've installed the repo you can install the chart.
+## Values
 
-```shell
-helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/istio-operator
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` | Affinity settings for pod scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| controlPlane.annotations | object | `{}` | Annotations to add to the `IstioOperator` CR. |
+| controlPlane.install | bool | `false` | If `true`, install the _Istio_ control plane. |
+| controlPlane.spec | object | `{}` | Spec for the `IstioOperator` CR. |
+| dashboards.enabled | bool | `false` | If `true`, install the _Grafana_ dashboards provided by the chart. |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
+| image.pullSecrets | list | `[]` | Image pull secrets (DEPRECATED). |
+| image.repository | string | `"docker.io/istio/operator"` | Image repository for the default container. |
+| image.tag | string | `nil` | Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| istioNamespace | string | `"istio-system"` | Namespace to install _Istio_ into. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
+| podAnnotations | object | `{}` | Annotations to add to the pod. |
+| podLabels | object | `{}` | Labels to add to the pod. |
+| podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
+| priorityClassName | string | `nil` | Priority class name for the pod. |
+| rbac.create | bool | `true` | If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API. |
+| resources | object | `{}` | Resources for the default container. |
+| revision | string | `nil` | The control plane revision, if required. |
+| securityContext | object | See _values.yaml_ | Security context for the default container. |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
+| serviceAccount.labels | object | `{}` | Labels to add to the service account. |
+| serviceAccount.name | string | `nil` | If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use. |
+| serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
+| serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
+| serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
+| serviceMonitor.interval | string | `nil` | _Prometheus_ scrape interval (DEPRECATED). |
+| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
+| topologySpreadConstraints | list | `[]` | Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| waitForResourcesTimeout | string | `"300s"` | Period to wait for resources before timing out. |
 
-### Production Usage
+----------------------------------------------
 
-#### CRDs
-
-For production usage it's generally suggested that you use the _Helm_ `--skip-crds` argument and manage the CRDs separately so they can be updated (_Helm_ doesn't update CRDs once it's installed them). However while _Istio_ only provides an un-validated CRD for `IstioOperator` there is no need to do this (it's still worth doing IMHO).
-
-#### Image Registry
-
-_Istio_ provides multiple image registries which can be used to work around [rate limiting](https://istio.io/latest/blog/2020/docker-rate-limit/) or other concerns. To use this you need to override the `image.repository` for the operator and the `controlPlane.spec.hub` for the control plane components.
-
-- [docker.io/istio](https://hub.docker.com/u/istio)
-- [gcr.io/istio-release](https://console.cloud.google.com/gcr/images/istio-release/GLOBAL)
-
-#### Image Hardening
-
-Production workloads should run hardened container images where possible, Istio provide a [hardened image](https://istio.io/latest/docs/ops/configuration/security/harden-docker-images/) based on the _Google_ [distroless](https://github.com/GoogleContainerTools/distroless/) images. To use this you need to override the `image.tag` for the operator and the `controlPlane.spec.tag` for the control plane components.
-
-## Configuration
-
-The following table lists the configurable parameters of the _Istio Operator_ chart and their default values.
-
-| Parameter                         | Description                                                                                                                                                                                                  | Default                    |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
-| `image.repository`                | Image repository.                                                                                                                                                                                            | `docker.io/istio/operator` |
-| `image.tag`                       | Image tag, will override the default tag derived from the chart app version.                                                                                                                                 | `""`                       |
-| `image.pullPolicy`                | Image pull policy.                                                                                                                                                                                           | `IfNotPresent`             |
-| `image.pullSecrets`               | Image pull secrets, deprecated in favour of `imagePullSecrets`.                                                                                                                                              | `[]`                       |
-| `imagePullSecrets`                | Image pull secrets, will override `image.pullSecrets`.                                                                                                                                                       | `[]`                       |
-| `nameOverride`                    | Override the `name` of the chart.                                                                                                                                                                            | `nil`                      |
-| `fullnameOverride`                | Override the `fullname` of the chart.                                                                                                                                                                        | `nil`                      |
-| `commonLabels`                    | Labels to add to all chart resources.                                                                                                                                                                        | `{}`                       |
-| `serviceAccount.create`           | If `true`, create a new service account.                                                                                                                                                                     | `true`                     |
-| `serviceAccount.annotations`      | Annotations to add to the service account.                                                                                                                                                                   | `{}`                       |
-| `serviceAccount.name`             | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the full name template.                                                                              | `nil`                      |
-| `rbac.create`                     | If `true`, create a cluster role and a cluster role binding.                                                                                                                                                 | `true`                     |
-| `podLabels`                       | Labels to add to the pod.                                                                                                                                                                                    | `{}`                       |
-| `podAnnotations`                  | Annotations to add to the pod.                                                                                                                                                                               | `{}`                       |
-| `podSecurityContext`              | Security context for the pod.                                                                                                                                                                                | `{}`                       |
-| `securityContext`                 | Security context for the _istio-operator_ container.                                                                                                                                                         | `{}`                       |
-| `priorityClassName`               | Priority class name to use.                                                                                                                                                                                  | `""`                       |
-| `serviceMonitor.enabled`          | If `true`, create a _Prometheus_ service monitor.                                                                                                                                                            | `false`                    |
-| `serviceMonitor.additionalLabels` | Additional labels to be set on the service monitor.                                                                                                                                                          | `{}`                       |
-| `serviceMonitor.endpointConfig`   | Additional endpoint configuration for the ServiceMonitor.                                                                                                                                                    | `{}`                       |
-| `serviceMonitor.interval`         | **DEPRECATED** _Prometheus_ scrape frequency, use `serviceMonitor.endpointConfig.interval` instead.                                                                                                          | `""`                       |
-| `dashboards.enabled`              | If _Grafana_ dashboards should be installed for the sidecar to pick up and apply.                                                                                                                            | `false`                    |
-| `resources`                       | Resource requests and limits for the _istio-operator_ container.                                                                                                                                             | `nil`                      |
-| `nodeSelector`                    | Node labels for pod assignment.                                                                                                                                                                              | `{}`                       |
-| `affinity`                        | Affinity settings for pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.                                  | `{}`                       |
-| `topologySpreadConstraints`       | Topology spread constraints for pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                                                              | `[]`                       |
-| `tolerations`                     | Tolerations for pod assignment.                                                                                                                                                                              | `[]`                       |
-| `istioNamespace`                  | Namespace to install _Istio_ into.                                                                                                                                                                           | `istio-system`             |
-| `controlPlane.install`            | If `true`, install the _Istio_ control plane accoring to the `controlPlane.spec`.                                                                                                                            | `false`                    |
-| `controlPlane.spec`               | The [Istio Operator Spec](https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/#IstioOperatorSpec) to deploy the control plane; this can either be structured YAML or a templatable string. | `{}`                       |
+Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/helm-docs/).

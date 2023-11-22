@@ -9,7 +9,7 @@ image:
   tag:
   # -- (string) Optional image digest for the default container.
   digest:
-  # --  Image pull policy for the default container.
+  # -- Image pull policy for the default container.
   pullPolicy: IfNotPresent
 
 # -- Image pull secrets.

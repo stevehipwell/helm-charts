@@ -86,7 +86,7 @@ spec:
           {{- end }}
             - --tsdb.retention={{ .Values.rule.retention }}
             - --tsdb.block-duration={{ .Values.rule.blockDuration }}
-            - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.cluster.local" (include "thanos.query.fullname" .) .Release.Namespace }}
+            - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.%s" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain}}
             - --rule-file=/etc/thanos/rules/*.yaml
             - --eval-interval={{ .Values.rule.evalInterval }}
             - --alertmanagers.config-file=/etc/thanos/alertmanagers-config.yaml

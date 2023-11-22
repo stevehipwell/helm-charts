@@ -58,6 +58,6 @@ Endpoints
 */}}
 {{- define "thanos.receive.ingestor.endpoints" -}}
 {{- range (until (.Values.receive.ingestor.replicas | int)) }}
-{{ printf "- %s" ((printf "%s-%s.%s-headless.%s.svc.cluster.local:10901" (include "thanos.receive.ingestor.fullname" $) (toString .) (include "thanos.receive.ingestor.fullname" $) $.Release.Namespace) | quote) }}
+{{ printf "- %s" ((printf "%s-%s.%s-headless.%s.svc.%s:10901" (include "thanos.receive.ingestor.fullname" $) (toString .) (include "thanos.receive.ingestor.fullname" $) $.Release.Namespace $.Values.clusterDomain) | quote) }}
 {{- end }}
 {{- end -}}
