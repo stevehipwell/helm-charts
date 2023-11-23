@@ -2,12 +2,13 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 4.0.0
-appVersion: 2.9.3
+version: 4.1.0
+appVersion: 2.10.0
 keywords:
   - fluent
   - fluentd
   - logging
+  - aggregator
 home: https://www.fluentd.org/
 icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
 sources:
@@ -20,35 +21,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for autoscaling via the `autoscaling` value."
-    - kind: added
-      description: "Added separate headless `Service` for the `StatefulSet`."
-    - kind: added
-      description: "Added support for deleting PVCs in Kubernetes v1.27 or newer via the `persistence.retainDeleted` & `persistence.retainScaled` values which are `true` by default."
-    - kind: added
-      description: "Added `minReadySeconds`, `ordinals`, `podManagementPolicy` & `updateStrategy` values to better configure the `StatefulSet`."
-    - kind: added
-      description: "Added support for custom args via the `args` value."
-    - kind: added
-      description: "Added `replicas` value to replace `replicaCount`."
-    - kind: added
-      description: "Added `ingresses` value to replace `ingress` as the chart now supports multiple ingresses."
-    - kind: added
-      description: "Added `config` value to replace `configuration`."
     - kind: changed
-      description: "Changed the way ports are configured to be via `service.httpPort`, `service.metricsPort` or `service.additionalPorts`."
-    - kind: changed
-      description: "As part of the change to `config` all of the raw Fluentd config values can be templated."
-    - kind: changed
-      description: "The default `podSecurityContext` & `securityContext` are now locked down."
-    - kind: changed
-      description: "Changed the default readiness probe to fail before the liveness probe."
-    - kind: changed
-      description: "Improved dashboard which is now tightly scoped to the chart release."
-    - kind: removed
-      description: "Removed the `replicaCount` value as it's been replaced by `replicas`."
-    - kind: removed
-      description: "Removed the `ingress` value as it's been replaced by `ingresses`."
-    - kind: removed
-      description: "Removed the `configuration` value as it's been replaced by `config`."
+      description: "Updated _Fluentd Aggregator_ OCI image to [v2.10.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.0) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3))."

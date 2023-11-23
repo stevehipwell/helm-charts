@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v4.1.0] - 2023-11-23
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.10.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.0) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3)).
+
 ## [v4.0.0] - 2023-06-23
 
 > **Warning**
