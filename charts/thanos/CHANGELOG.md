@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`.
 - Added support for specifying custom Kubernetes cluster domain
+- Add support for time based partitioning for [compactor](https://thanos.io/tip/operating/compactor-backlog.md/#scale-the-compactor:~:text=To%20scale%20the%20compactor%20horizontally%2C%20you%20can%20run%20multiple%20compactor%20instances%20with%20different%20min%2Dtime%20and%20max%2Dtime%20flags%20so%20that%20each%20compactor%20will%20only%20work%20on%20the%20blocks%20that%20are%20within%20the%20time%20range.) and [store gateway](https://thanos.io/tip/components/store.md/#time-based-partitioning) 
 
 ## [v1.14.5] - 2023-10-20
 

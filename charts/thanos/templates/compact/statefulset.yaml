@@ -1,4 +1,4 @@
-{{- if .Values.compact.enabled -}}
+{{- if and .Values.compact.enabled (not .Values.compact.sharded.enabled) -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
