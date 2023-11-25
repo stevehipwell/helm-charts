@@ -102,12 +102,9 @@ spec:
           image: {{ include "nexus3.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: INSTALL4J_ADD_VM_PARAMS
-              {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
-              {{- else }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
-              {{- end }}
+          {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- if or .Values.rootPassword.secret .Values.config.rootPassword.secret }}
             - name: NEXUS_SECURITY_INITIAL_PASSWORD
               valueFrom:
@@ -115,9 +112,12 @@ spec:
                   name: {{ default .Values.rootPassword.secret .Values.config.rootPassword.secret }}
                   key: {{ default .Values.rootPassword.key .Values.config.rootPassword.key }}
           {{- end }}
-          {{- with .Values.env }}
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: INSTALL4J_ADD_VM_PARAMS
+              {{- if .Values.caCerts.enabled }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              {{- else }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              {{- end }}
           {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
           lifecycle:
             postStart:
