@@ -8,9 +8,10 @@ metadata:
   name: {{ printf "%s-%s" (include "thanos.storeGateway.fullname" $) (toString $index) }}
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "thanos.storeGateway.labels" $ | nindent 4 }}
+    {{- include "thanos.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: {{ printf "%s-%s" (include "thanos.storeGateway.fullname" $) (toString $index) }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.storeGateway.fullname" $) }}
+  serviceName: {{ printf "%s-headless-%s" (include "thanos.storeGateway.fullname" $) (toString $index) }}
   replicas: {{ $.Values.storeGateway.replicas }}
   {{- with $.Values.storeGateway.updateStrategy }}
   updateStrategy:
@@ -18,11 +19,13 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.storeGateway.selectorLabels" $ | nindent 6 }}
+      {{- include "thanos.selectorLabels" $ | nindent 6 }}
+      app.kubernetes.io/component: {{ printf "%s-%s" (include "thanos.storeGateway.fullname" $) (toString $index) }}
   template:
     metadata:
       labels:
-        {{- include "thanos.storeGateway.selectorLabels" $ | nindent 8 }}
+        {{- include "thanos.storeGateway.selectorLabels" $ | nindent 8 }} 
+        app.kubernetes.io/component: {{ printf "%s-%s" (include "thanos.storeGateway.fullname" $) (toString $index) }}
       {{- with $.Values.storeGateway.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -167,5 +170,6 @@ spec:
     whenScaled: {{ ternary "Retain" "Delete" $.Values.storeGateway.persistence.retainScaled }}
   {{- end }}
   {{- end }}
+---
 {{- end }}
 {{- end }}
