@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v5.12.0] - 2023-11-30
+
+### Changed
+
+- Updated the _Jira Software_ OCI image to [v9.12.0](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html).
+
 ## [v5.11.4] - 2023-11-10
 
 ### Changed
