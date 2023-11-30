@@ -8633,6 +8633,42 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Jira Software_ OCI image to [v9.12.0](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html)."
+    apiVersion: v2
+    appVersion: 9.12.0
+    created: "2023-11-30T15:14:53.233883696Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.12.10
+    description: Helm chart for Atlassian Jira Software.
+    digest: 5108f8be6c94c38de7f0aaacc36e224b171341e10ed28c913bfa2922c79f50c1
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.12.0/jira-software-5.12.0.tgz
+    version: 5.12.0
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ OCI image to [v9.11.3](https://confluence.atlassian.com/jirasoftware/jira-software-9-11-x-release-notes-1272283668.html)."
     apiVersion: v2
     appVersion: 9.11.3
@@ -21573,4 +21609,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-11-23T10:17:31.817616937Z"
+generated: "2023-11-30T15:14:53.234796925Z"
