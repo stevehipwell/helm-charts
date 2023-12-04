@@ -70,6 +70,10 @@ compact:
 
   extraEnv: []
 
+  deduplication:
+    enabled: true
+    func:
+
   replicaDeduplication: false
 
   extraArgs: []

@@ -13,7 +13,9 @@ compact:
   persistence:
     enabled: true
 
-  replicaDeduplication: true
+  deduplication:
+    enabled: true
+    func: penalty
 
   nodeSelector:
     kubernetes.io/os: linux

@@ -20,10 +20,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `compact.deduplication.enabled` value to disable compact deduplication.
+- Added `compact.deduplication.func` value to set the compact deduplication function.
+
 ### Changed
 
 - Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`.
 - Added support for specifying custom Kubernetes cluster domain
+
+### Deprecated
+
+- Deprecated the `compact.replicaDeduplication` value in favour of setting `compact.deduplication.func=penalty`.
 
 ## [v1.14.5] - 2023-10-20
 

@@ -76,11 +76,15 @@ spec:
             - --http-address=0.0.0.0:10902
             - --data-dir=/var/thanos/compact
             - --objstore.config-file=/etc/thanos/objstore.yaml
+          {{- if .Values.compact.deduplication.enabled }}
           {{- range (concat .Values.additionalReplicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --deduplication.replica-label={{ . }}
           {{- end }}
-          {{- if .Values.compact.replicaDeduplication }}
+          {{- if .Values.compact.deduplication.func }}
+            - --deduplication.func={{ .Values.compact.deduplication.func }}
+          {{- else if .Values.compact.replicaDeduplication }}
             - --deduplication.func=penalty
+          {{- end }}
           {{- end }}
           {{- with .Values.compact.extraArgs }}
             {{- toYaml . | nindent 12 }}
