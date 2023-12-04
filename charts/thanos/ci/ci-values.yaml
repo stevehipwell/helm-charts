@@ -1,6 +1,9 @@
 compact:
   enabled: false
 
+  deduplication:
+    enabled: false
+
 queryFrontend:
   enabled: true
 
