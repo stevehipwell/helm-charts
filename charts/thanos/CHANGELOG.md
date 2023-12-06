@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added `compact.deduplication.enabled` value to disable compact deduplication.
 - Added `compact.deduplication.func` value to set the compact deduplication function.
-- Added `rule.instanceLabel` to set the label `thanos-rule` to `<NAMESPACE>/<RULE_FULLNAME>`.
+- Added `rule.instanceLabel` to set the label `thanos_rule` to `<NAMESPACE>/<RULE_FULLNAME>`.
 
 ### Changed
 
