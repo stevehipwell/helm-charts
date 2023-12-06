@@ -516,6 +516,7 @@ rule:
 
   extraEnv: []
 
+  instanceLabel: false
   retention: 48h
   blockDuration: 2h
   evalInterval: 1m

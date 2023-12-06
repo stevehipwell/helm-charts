@@ -186,6 +186,8 @@ rule:
     - key: system
       operator: Exists
 
+  instanceLabel: true
+
 storeGateway:
   podDisruptionBudget:
     enabled: true
