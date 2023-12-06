@@ -20,10 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v4.37.0] - 2023-12-06
+
 ### Changed
 
-- Support embedding of env vars for JVM by permitting `INSTALL4J_ADD_VM_PARAMS` to be defined after all other env vars
-- Lifecycle script configure.sh prefixes log errors with `ERROR:` and echos the same string to `$TERMINATION_LOG`
+- Updated the _Nexus3_ OCI image to [v3.63.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.63.0-01).
+- Support embedding of env vars for JVM by permitting `INSTALL4J_ADD_VM_PARAMS` to be defined after all other env vars.
+- Lifecycle script `configure.sh` prefixes log errors with `ERROR:` and echos the same string to `$TERMINATION_LOG`.
 
 ## [v4.36.0] - 2023-11-10
 
