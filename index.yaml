@@ -4962,6 +4962,40 @@ entries:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.10.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.1) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3))."
+        - kind: fixed
+          description: "Fixed legacy migration by adding `service.legacy` value to support keeping the legacy headless service name."
+        - kind: fixed
+          description: "Fixed incorrect truncation of names when full name is longer than `53` characters."
+    apiVersion: v2
+    appVersion: 2.10.1
+    created: "2023-12-07T18:29:31.271159203Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 362ccc18e15782104a609d93267682d723bc1a44fd505362252aa46c674b40bd
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.1.1/fluentd-aggregator-4.1.1.tgz
+    version: 4.1.1
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.10.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.0) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3))."
     apiVersion: v2
     appVersion: 2.10.0
@@ -21680,4 +21714,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-06T17:41:33.013949309Z"
+generated: "2023-12-07T18:29:31.272067694Z"
