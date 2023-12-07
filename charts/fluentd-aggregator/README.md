@@ -1,6 +1,6 @@
 # fluentd-aggregator
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.0](https://img.shields.io/badge/AppVersion-2.10.0-informational?style=flat-square)
+![Version: 4.1.1](https://img.shields.io/badge/Version-4.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.10.1](https://img.shields.io/badge/AppVersion-2.10.1-informational?style=flat-square)
 
 Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 
@@ -23,14 +23,14 @@ Helm chart for Fluentd running as an aggregation StatefulSet and using the fluen
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.1.0
+helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.1.1
 ```
 
 Alternativly you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --version 4.1.0
+helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --version 4.1.1
 ```
 
 ## Values
@@ -92,6 +92,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
 | service.annotations | object | `{}` | Service annotations. |
 | service.httpPort | int | `9880` | Fluentd port used for status. |
+| service.legacy | bool | `false` | If `true`, use legacy naming so the headless service doesn't change. |
 | service.metricsPort | int | `24231` | Fluentd port used for metrics. |
 | service.type | string | `"ClusterIP"` | Service type. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |

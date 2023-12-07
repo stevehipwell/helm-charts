@@ -68,28 +68,36 @@ Create the name of the service account to use
 Define the service name
 */}}
 {{- define "fluentd-aggregator.serviceName" -}}
+{{- if .Values.service.legacy }}
+{{- (printf "%s-default" (include "fluentd-aggregator.fullname" .) | trunc 55 | trimSuffix "-") }}
+{{- else }}
 {{- include "fluentd-aggregator.fullname" . }}
+{{- end }}
 {{- end }}
 
 {{/*
 Define the headless service name
 */}}
 {{- define "fluentd-aggregator.headlessServiceName" -}}
-{{- (printf "%s-headless" (include "fluentd-aggregator.serviceName" .)) | trunc 63 | trimSuffix "-" }}
+{{- if .Values.service.legacy }}
+{{- include "fluentd-aggregator.fullname" . }}
+{{- else }}
+{{- (printf "%s-headless" (include "fluentd-aggregator.serviceName" .) | trunc 54 | trimSuffix "-") }}
+{{- end }}
 {{- end }}
 
 {{/*
 Define the config configmap name
 */}}
 {{- define "fluentd-aggregator.configConfigMapName" -}}
-{{- (printf "%s-config" (include "fluentd-aggregator.fullname" .)) | trunc 63 | trimSuffix "-" }}
+{{- (printf "%s-config" (include "fluentd-aggregator.fullname" .) | trunc 56 | trimSuffix "-") }}
 {{- end }}
 
 {{/*
 Define the dashboard configmap name
 */}}
 {{- define "fluentd-aggregator.dashboardConfigMapName" -}}
-{{- (printf "%s-dashboard" (include "fluentd-aggregator.fullname" .)) | trunc 63 | trimSuffix "-" }}
+{{- (printf "%s-dashboard" (include "fluentd-aggregator.fullname" .) | trunc 53 | trimSuffix "-") }}
 {{- end }}
 
 {{/*
