@@ -54,6 +54,8 @@ service:
       port: 24224
       containerPort: 24224
       protocol: TCP
+  # -- If `true`, use legacy naming so the headless service doesn't change.
+  legacy: false
 
 # -- Ingresses, each input plugin will need it's own.
 ingresses: []
