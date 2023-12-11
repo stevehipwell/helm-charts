@@ -2,7 +2,7 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 4.1.1
+version: 4.1.2
 appVersion: 2.10.1
 keywords:
   - fluent
@@ -21,9 +21,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated _Fluentd Aggregator_ OCI image to [v2.10.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.1) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3))."
     - kind: fixed
-      description: "Fixed legacy migration by adding `service.legacy` value to support keeping the legacy headless service name."
-    - kind: fixed
-      description: "Fixed incorrect truncation of names when full name is longer than `53` characters."
+      description: "Fixed legacy migration by fixing the changes when the `service.legacy` value is set."

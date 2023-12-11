@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "fluentd-aggregator.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "fluentd-aggregator.headlessServiceName" . }}
+  serviceName: {{ ternary (include "fluentd-aggregator.serviceName" .) (include "fluentd-aggregator.headlessServiceName" .) .Values.service.legacy }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicas }}
   {{- end }}
