@@ -68,22 +68,14 @@ Create the name of the service account to use
 Define the service name
 */}}
 {{- define "fluentd-aggregator.serviceName" -}}
-{{- if .Values.service.legacy }}
-{{- (printf "%s-default" (include "fluentd-aggregator.fullname" .) | trunc 55 | trimSuffix "-") }}
-{{- else }}
 {{- include "fluentd-aggregator.fullname" . }}
-{{- end }}
 {{- end }}
 
 {{/*
 Define the headless service name
 */}}
 {{- define "fluentd-aggregator.headlessServiceName" -}}
-{{- if .Values.service.legacy }}
-{{- include "fluentd-aggregator.fullname" . }}
-{{- else }}
 {{- (printf "%s-headless" (include "fluentd-aggregator.serviceName" .) | trunc 54 | trimSuffix "-") }}
-{{- end }}
 {{- end }}
 
 {{/*

@@ -20,7 +20,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v4.1.2] - 2023-12-11### Fixed
+
+- Fixed legacy migration by fixing the changes when the `service.legacy` value is set.
+
 ## [v4.1.1] - 2023-12-07
+
+> [!WARNING] 
+> Do not use this version with `service.legacy` as the implementation was incorrect.
 
 ### Changed
 
