@@ -4961,6 +4961,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed legacy migration by fixing the changes when the `service.legacy` value is set."
+    apiVersion: v2
+    appVersion: 2.10.1
+    created: "2023-12-11T16:46:25.385374348Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: f9db9c9398565a0c1ec0eabd13e3962f244ad13c6bb100b979ae665f7adea9be
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.1.2/fluentd-aggregator-4.1.2.tgz
+    version: 4.1.2
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.10.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.1) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3))."
         - kind: fixed
@@ -21714,4 +21744,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-07T18:29:31.272067694Z"
+generated: "2023-12-11T16:46:25.387090412Z"
