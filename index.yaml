@@ -6608,6 +6608,42 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.20.1](https://github.com/istio/istio/releases/tag/1.20.1)."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be managed by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.20.1
+    created: "2023-12-13T11:14:45.230277298Z"
+    description: Helm chart to install the Istio Operator and optionally create the
+      IstioOperator CR to install Istio into the cluster.
+    digest: 5747ebabce5c22fcf168408556c08ea4d9e76cf7e5a63d26afb2a507f39c814a
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.13.1/istio-operator-2.13.1.tgz
+    version: 2.13.1
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for adding additional labels to the `ServiceAccount` via the new `serviceAccount.labels` value."
         - kind: added
@@ -21744,4 +21780,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-11T16:46:25.387090412Z"
+generated: "2023-12-13T11:14:45.231235866Z"
