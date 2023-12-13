@@ -68,7 +68,16 @@ spec:
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
+          {{- if (not .Values.storeGateway.sharded.enabled) -}}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
+          {{- end }}
+          {{- if .Values.storeGateway.sharded.enabled -}}
+          {{- $shards := int 0 }}
+          {{- $shards = len .Values.storeGateway.sharded.timePartitioning }}
+          {{- range $index, $_ := until $shards }}
+            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless-%s.%s.svc.%s" (include "thanos.storeGateway.fullname" $) (toString $index) $.Release.Namespace $.Values.clusterDomain }}
+          {{- end }}
+          {{- end }}
           {{- if .Values.rule.enabled }}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.rule.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}

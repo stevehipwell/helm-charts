@@ -42,6 +42,12 @@ clusterDomain: cluster.local
 compact:
   enabled: false
 
+  sharded:
+    enabled: false
+    timePartitioning:
+      - min: ""
+        max: ""
+
   serviceAccount:
     create: true
     labels: {}
@@ -605,6 +611,12 @@ storeGateway:
     annotations: {}
     name: ""
     automountToken: false
+
+  sharded:
+    enabled: false
+    timePartitioning:
+      - min: ""
+        max: ""
 
   service:
     annotations: {}
