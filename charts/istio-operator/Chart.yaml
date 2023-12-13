@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart to install the Istio Operator and optionally create the IstioOperator CR to install Istio into the cluster.
 type: application
-version: 2.13.0
-appVersion: 1.20.0
+version: 2.13.1
+appVersion: 1.20.1
 keywords:
   - kubernetes
   - istio
@@ -27,13 +27,5 @@ annotations:
       displayName: IstioOperator
       description: Represents an installation of Istio to be managed by the Istio Operator.
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for adding additional labels to the `ServiceAccount` via the new `serviceAccount.labels` value."
-    - kind: added
-      description: "Added support for customising the termination grace period via the new `terminationGracePeriodSeconds` value."
-    - kind: added
-      description: "Added support for setting the _Istio_ revision via the new `revision` value."
     - kind: changed
-      description: "Updated the _Istio Operator_ OCI image version to [v1.20.0](https://github.com/istio/istio/releases/tag/1.20.0)."
-    - kind: changed
-      description: "Updated the pod security context to be more secure and closer aligned to the operator container security context."
+      description: "Updated the _Istio Operator_ OCI image version to [v1.20.1](https://github.com/istio/istio/releases/tag/1.20.1)."
