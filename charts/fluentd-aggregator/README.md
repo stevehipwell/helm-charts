@@ -26,7 +26,7 @@ To install the chart using the recommended OCI method you can use the following 
 helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.1.2
 ```
 
-Alternativly you can use the legacy non-OCI method via the following commands.
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
@@ -42,7 +42,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | autoscaling.behavior | object | `{}` | Behaviour configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` to scale the `StatefulSet`. |
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas for the `HorizontalPodAutoscaler`. |
-| autoscaling.metrics | list | `[]` | Metrics configuration for the `HorizontalPodAutoscaler`. |
+| autoscaling.metrics | list | See _values.yaml_ | Metrics configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.filters | string | See _values.yaml_ | Fluentd filter configuration. |
@@ -62,9 +62,9 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | image.tag | string | `nil` | Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`. |
 | image.tagPrefix | string | `nil` | Tag prefix for the default container. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
-| ingresses | list | `[]` | Ingresses, each input plugin will need it's own. |
+| ingresses | list | See _values.yaml_ | Ingresses, each input plugin will need it's own. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
-| minReadySeconds | string | `nil` | Min ready seconds for the `StatefulSet`. |
+| minReadySeconds | int | `nil` | Min ready seconds for the `StatefulSet`. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
 | ordinals | object | `{}` | Ordinals configuration for the `StatefulSet`. |
@@ -86,7 +86,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
 | priorityClassName | string | `nil` | Priority class name for the pod. |
 | readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the default container. |
-| replicas | int | `1` | Number of replicas to create if `autoscalling.enabled` is `false`. |
+| replicas | int | `1` | Number of replicas to create if `autoscaling.enabled` is `false`. |
 | resources | object | `{}` | Resources for the default container. |
 | securityContext | object | See _values.yaml_ | Security context for the default container. |
 | service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
@@ -103,7 +103,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
-| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
 | tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
 | topologySpreadConstraints | list | `[]` | Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | updateStrategy | object | `{}` | Update strategy for the `StatefulSet`. |

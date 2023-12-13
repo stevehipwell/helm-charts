@@ -25,7 +25,7 @@ To install the chart using the recommended OCI method you can use the following 
 helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.11.0
 ```
 
-Alternativly you can use the legacy non-OCI method via the following commands.
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
@@ -41,7 +41,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | autoscaling.behavior | object | `{}` | Behaviour configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` to scale the `StatefulSet`. |
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas for the `HorizontalPodAutoscaler`. |
-| autoscaling.metrics | list | `[]` | Metrics configuration for the `HorizontalPodAutoscaler`. |
+| autoscaling.metrics | list | See _values.yaml_ | Metrics configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
@@ -68,9 +68,9 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | image.repository | string | `"cr.fluentbit.io/fluent/fluent-bit"` | Image repository for the default container. |
 | image.tag | string | `nil` | Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
-| ingresses | list | `[]` | Ingresses, each input plugin will need it's own. |
+| ingresses | list | See _values.yaml_ | Ingresses, each input plugin will need it's own. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
-| minReadySeconds | string | `nil` | Min ready seconds for the `StatefulSet`. |
+| minReadySeconds | int | `nil` | Min ready seconds for the `StatefulSet`. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
 | ordinals | object | `{}` | Ordinals configuration for the `StatefulSet`. |
@@ -92,7 +92,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | rbac.additionalRules | list | `[]` | Additional rules to add to the `ClusterRole`. |
 | rbac.create | bool | `false` | If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API. |
 | readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the default container. |
-| replicas | int | `1` | Number of replicas to create if `autoscalling.enabled` is `false`. |
+| replicas | int | `1` | Number of replicas to create if `autoscaling.enabled` is `false`. |
 | resources | object | `{}` | Resources for the default container. |
 | securityContext | object | See _values.yaml_ | Security context for the default container. |
 | service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
@@ -108,7 +108,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
-| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
 | tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
 | topologySpreadConstraints | list | `[]` | Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | updateStrategy | object | `{}` | Update strategy for the `StatefulSet`. |

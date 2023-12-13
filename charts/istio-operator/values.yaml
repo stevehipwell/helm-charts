@@ -52,10 +52,10 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
-# -- Priority class name for the pod.
+# -- (string) Priority class name for the pod.
 priorityClassName:
 
-# -- Termination grace period for the pod in seconds.
+# -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds:
 
 # -- Security context for the default container.
@@ -93,7 +93,7 @@ serviceMonitor:
   additionalLabels: {}
   # -- Additional endpoint configuration for the default `ServiceMonitor` endpoint.
   endpointConfig: {}
-  # -- _Prometheus_ scrape interval (DEPRECATED).
+  # -- (int) _Prometheus_ scrape interval (DEPRECATED).
   interval:
 
 dashboards:
