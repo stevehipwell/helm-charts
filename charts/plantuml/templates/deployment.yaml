@@ -45,8 +45,15 @@ spec:
           image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
+            privileged: false
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop:
+                - ALL
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}

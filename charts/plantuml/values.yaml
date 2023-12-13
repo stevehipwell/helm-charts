@@ -3,72 +3,150 @@
 # Declare variables to be passed into your templates.
 
 image:
+  # -- Image repository for the default container.
   repository: plantuml/plantuml-server
-  # Overrides the image tag whose default is jetty-v{{ .Chart.AppVersion }}
-  tag: ""
+  # -- (string) Image tag for the default container, this will default to `jetty-v{{ .Chart.AppVersion }}` if not set.
+  tag:
+  # -- Image pull policy for the default container.
   pullPolicy: IfNotPresent
+  # -- Image pull secrets (**DEPRECATED**).
   pullSecrets: []
 
+# -- Image pull secrets.
 imagePullSecrets: []
 
-nameOverride: ""
-fullnameOverride: ""
+# -- (string) Override the name of the chart.
+nameOverride:
 
+# -- (string) Override the full name of the chart.
+fullnameOverride:
+
+# -- Labels to add to all chart resources.
 commonLabels: {}
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- If `true`, create a new `ServiceAccount`.
   create: true
-  # Annotations to add to the service account
+  # -- Labels to add to the service account.
+  labels: {}
+  # -- Annotations to add to the service account.
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
+  name:
+  # -- If `true`, mount the `ServiceAccount` token.
   automountToken: false
 
-podLabels: {}
-
-podAnnotations: {}
-
-podSecurityContext:
-  runAsNonRoot: true
-  runAsUser: 999
-  runAsGroup: 999
-
-securityContext:
-  allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: true
-
-priorityClassName: ""
-
-terminationGracePeriodSeconds:
-
-livenessProbe:
-  httpGet:
-    path: /png
-    port: http
-
-readinessProbe:
-  httpGet:
-    path: /png
-    port: http
-
 service:
+  # -- Service type.
   type: ClusterIP
+  # -- Service annotations.
   annotations: {}
+  # -- Service HTTP port.
   port: 80
 
 ingress:
+  # -- If `true`, create an `Ingress` resource.
   enabled: false
+  # -- Ingress annotations.
   annotations: {}
-  ingressClassName: ""
+  # -- (string) Ingress class name.
+  ingressClassName:
+  # -- (list) Ingress hosts.
+  # @default -- See _values.yaml_
   hosts: []
   #   - plantuml.local
+  # -- (list) Ingress TLS.
+  # @default -- See _values.yaml_
   tls: []
   #    - hosts:
   #        - plantuml.local
   #      secretName: plantuml-tls
 
+# -- Number of replicas to create if `autoscaling.enabled` is `false`.
+replicaCount: 1
+
+autoscaling:
+  # -- If `true`, create a `HorizontalPodAutoscaler` to scale the `StatefulSet`.
+  enabled: false
+  # -- Minimum number of replicas for the `HorizontalPodAutoscaler`.
+  minReplicas: 1
+  # -- Maximum number of replicas for the `HorizontalPodAutoscaler`.
+  maxReplicas: 3
+  # -- Behaviour configuration for the `HorizontalPodAutoscaler`.
+  behavior: {}
+  # -- (list) Metrics configuration for the `HorizontalPodAutoscaler`.
+  # @default -- See _values.yaml_
+  metrics: []
+  # -- Target average CPU utilization percentage (**DEPRECATED**).
+  targetCPUUtilizationPercentage: 80
+  # -- (int) Target average memory utilization percentage (**DEPRECATED**).
+  targetMemoryUtilizationPercentage:
+
+podDisruptionBudget:
+  # -- If `true`, create a `PodDisruptionBudget` resource.
+  enabled: false
+  # -- (string) Minimum number of available pods, either a number or a percentage.
+  minAvailable:
+  # -- (string) Minimum number of unavailable pods, either a number or a percentage.
+  maxUnavailable:
+
+# -- If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource (**DEPRECATED**).
+maxUnavailable: 0
+
+# -- Labels to add to the pod.
+podLabels: {}
+
+# -- Annotations to add to the pod.
+podAnnotations: {}
+
+# -- Security context for the pod.
+# @default -- See _values.yaml_
+podSecurityContext:
+  runAsNonRoot: true
+  fsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- (string) Priority class name for the pod.
+priorityClassName:
+
+# -- (int) Termination grace period for the pod in seconds.
+terminationGracePeriodSeconds:
+
+# -- Security context for the default container.
+# @default -- See _values.yaml_
+securityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 999
+  runAsGroup: 999
+  capabilities:
+    drop:
+      - ALL
+
+# -- Environment variables for the default container.
+env: []
+
+# -- Args for the default container.
+args: []
+
+# -- Liveness probe configuration for the default container.
+# @default -- See _values.yaml_
+livenessProbe:
+  httpGet:
+    path: /png
+    port: http
+
+# -- Readiness probe configuration for the default container.
+# @default -- See _values.yaml_
+readinessProbe:
+  httpGet:
+    path: /png
+    port: http
+
+# -- Resources for the default container.
 resources: {}
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
@@ -81,30 +159,20 @@ resources: {}
 #     cpu: 100m
 #     memory: 128Mi
 
-replicaCount: 1
-maxUnavailable: 0
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
+# -- Node labels to match for pod scheduling.
 nodeSelector: {}
 
+# -- Affinity settings for pod scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
 affinity: {}
 
+# -- Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels.
 topologySpreadConstraints: []
 
+# -- Node taints which will be tolerated for pod scheduling.
 tolerations: []
 
 caCerts:
+  # -- If `true`, configure the JVM CA certificates from the provided secret.
   enabled: false
+  # -- (string) Name of the secret containing the CA certificates.
   secret:
-
-env: []
-#   - name: VARIABLE
-#     value: my-value
-
-args: []
-#   - --module=http-forwarded

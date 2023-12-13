@@ -1,4 +1,4 @@
-{{- if gt (int .Values.maxUnavailable) 0 }}
+{{- if or (and .Values.podDisruptionBudget.enabled (or .Values.podDisruptionBudget.minAvailable .Values.podDisruptionBudget.maxUnavailable)) .Values.maxUnavailable }}
 apiVersion: {{ include "plantuml.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
@@ -7,8 +7,17 @@ metadata:
   labels:
     {{- include "plantuml.labels" . | nindent 4 }}
 spec:
-  maxUnavailable: {{ .Values.maxUnavailable }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "plantuml.name" . }}
+      {{- include "plantuml.selectorLabels" . | nindent 6 }}
+{{- if .Values.maxUnavailable }}
+  maxUnavailable: {{ .Values.maxUnavailable }}
+{{- else }}
+{{- with .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ . }}
+{{- end  }}
+{{- with .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ . }}
+{{- end  }}
+{{- end }}
 {{- end }}

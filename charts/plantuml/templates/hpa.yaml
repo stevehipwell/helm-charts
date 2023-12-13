@@ -1,4 +1,4 @@
-{{- if .Values.autoscaling.enabled }}
+{{- if and .Values.autoscaling.enabled (or .Values.autoscaling.metrics .Values.autoscaling.targetCPUUtilizationPercentage .Values.autoscaling.targetMemoryUtilizationPercentage) }}
 apiVersion: {{ include "plantuml.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:
@@ -13,21 +13,29 @@ spec:
     name: {{ include "plantuml.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  {{- with .Values.autoscaling.behavior }}
+  behavior:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   metrics:
-  {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
+  {{- if .Values.autoscaling.metrics }}
+    {{- toYaml .Values.autoscaling.metrics | nindent 4 }}
+  {{- else }}
+  {{- with .Values.autoscaling.targetCPUUtilizationPercentage }}
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
+          averageUtilization: {{ . }}
   {{- end }}
-  {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
+  {{- with .Values.autoscaling.targetMemoryUtilizationPercentage }}
     - type: Resource
       resource:
         name: memory
         target:
           type: Utilization
-          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
+          averageUtilization: {{ . }}
+  {{- end }}
   {{- end }}
 {{- end }}

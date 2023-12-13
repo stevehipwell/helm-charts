@@ -1,7 +1,22 @@
-maxUnavailable: 1
-
 autoscaling:
   enabled: true
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
 
 caCerts:
   enabled: true
