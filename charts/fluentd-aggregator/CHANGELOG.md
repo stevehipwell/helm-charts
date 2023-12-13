@@ -20,7 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
-## [v4.1.2] - 2023-12-11### Fixed
+## [v4.1.3] - 2023-12-13
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.10.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.10.2) (_Fluentd_ [v1.16.3](https://github.com/fluent/fluentd/releases/tag/v1.16.3)).
+
+## [v4.1.2] - 2023-12-11
+
+### Fixed
 
 - Fixed legacy migration by fixing the changes when the `service.legacy` value is set.
 
