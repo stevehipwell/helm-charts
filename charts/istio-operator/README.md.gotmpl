@@ -21,7 +21,7 @@ To install the chart using the recommended OCI method you can use the following 
 helm upgrade --install {{ template "chart.name" . }} oci://ghcr.io/stevehipwell/helm-charts/{{ template "chart.name" . }} --version {{ template "chart.version" . }}
 ```
 
-Alternativly you can use the legacy non-OCI method via the following commands.
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/

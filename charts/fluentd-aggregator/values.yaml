@@ -57,7 +57,8 @@ service:
   # -- If `true`, use legacy naming so the headless service doesn't change.
   legacy: false
 
-# -- Ingresses, each input plugin will need it's own.
+# -- (list) Ingresses, each input plugin will need it's own.
+# @default -- See _values.yaml_
 ingresses: []
 #  - servicePort: 24224
 #    className: my-ingress-class
@@ -72,7 +73,7 @@ ingresses: []
 #          - chart-example.local
 #        secretName: chart-example-tls
 
-# -- Number of replicas to create if `autoscalling.enabled` is `false`.
+# -- Number of replicas to create if `autoscaling.enabled` is `false`.
 replicas: 1
 
 autoscaling:
@@ -84,7 +85,8 @@ autoscaling:
   maxReplicas: 3
   # -- Behaviour configuration for the `HorizontalPodAutoscaler`.
   behavior: {}
-  # -- Metrics configuration for the `HorizontalPodAutoscaler`.
+  # -- (list) Metrics configuration for the `HorizontalPodAutoscaler`.
+  # @default -- See _values.yaml_
   metrics: []
   #  - type: Resource
   #    resource:
@@ -102,7 +104,7 @@ ordinals: {}
 # -- Pod management policy for the `StatefulSet`.
 podManagementPolicy:
 
-# -- Min ready seconds for the `StatefulSet`.
+# -- (int) Min ready seconds for the `StatefulSet`.
 minReadySeconds:
 
 podDisruptionBudget:
@@ -127,10 +129,10 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
-# -- Priority class name for the pod.
+# -- (string) Priority class name for the pod.
 priorityClassName:
 
-# -- Termination grace period for the pod in seconds.
+# -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds:
 
 # -- Security context for the default container.

@@ -27,7 +27,7 @@ To install the chart using the recommended OCI method you can use the following 
 helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.13.1
 ```
 
-Alternativly you can use the legacy non-OCI method via the following commands.
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
@@ -68,8 +68,8 @@ helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.13
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
-| serviceMonitor.interval | string | `nil` | _Prometheus_ scrape interval (DEPRECATED). |
-| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| serviceMonitor.interval | int | `nil` | _Prometheus_ scrape interval (DEPRECATED). |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
 | tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
 | topologySpreadConstraints | list | `[]` | Topology spread constraints for pod scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | waitForResourcesTimeout | string | `"300s"` | Period to wait for resources before timing out. |

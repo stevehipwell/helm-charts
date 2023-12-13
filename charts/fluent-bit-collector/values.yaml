@@ -60,7 +60,7 @@ service:
 # -- Update strategy for the `DaemonSet`.
 updateStrategy: {}
 
-# -- Min ready seconds for the `DaemonSet`.
+# -- (int) Min ready seconds for the `DaemonSet`.
 minReadySeconds:
 
 # -- Labels to add to the pod.
@@ -77,10 +77,10 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
-# -- Priority class name for the pod.
+# -- (string) Priority class name for the pod.
 priorityClassName:
 
-# -- Termination grace period for the pod in seconds.
+# -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds:
 
 # -- Security context for the default container.

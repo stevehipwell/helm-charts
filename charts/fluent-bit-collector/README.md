@@ -25,7 +25,7 @@ To install the chart using the recommended OCI method you can use the following 
 helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.8.0
 ```
 
-Alternativly you can use the legacy non-OCI method via the following commands.
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
@@ -67,7 +67,7 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | image.tag | string | `nil` | Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
-| minReadySeconds | string | `nil` | Min ready seconds for the `DaemonSet`. |
+| minReadySeconds | int | `nil` | Min ready seconds for the `DaemonSet`. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
 | podAnnotations | object | `{}` | Annotations to add to the pod. |
@@ -92,7 +92,7 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` (or `PodMonitor` if the Service isn't enabled) resource to support the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the default `ServiceMonitor` endpoint. |
-| terminationGracePeriodSeconds | string | `nil` | Termination grace period for the pod in seconds. |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
 | tolerations | list | `[]` | Node taints which will be tolerated for pod scheduling. |
 | updateStrategy | object | `{}` | Update strategy for the `DaemonSet`. |
 
