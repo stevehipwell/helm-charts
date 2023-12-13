@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -19,6 +17,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -->
 
 ## [UNRELEASED]
+
+## [v3.27.0] - 2023-12-13
+
+### Added
+
+- Added `serviceAccount.labels` value.
+- Added support for configuring `HorizontalPodAutoscaler` behaviour with the `autoscaling.behavior` value.
+- Added `autoscaling.metrics` value to replace the deprecated `autoscaling.targetCPUUtilizationPercentage` & `autoscaling.targetMemoryUtilizationPercentage` values.
+- Added `podDisruptionBudget` value to replace the deprecated `maxUnavailable` variable.
+
+### Changed
+
+- Updated the _PlantUML_ OCI image to [v1.2023.13](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.13) ([Changes](https://plantuml.com/changes)).
+- Changed the pod security policy defaults.
+- Changed the PlantUML container security policy defaults.
+- Changed the CA certificates init container security policy.
+
+### Deprecated
+
+- Deprecated `autoscaling.targetCPUUtilizationPercentage` value.
+- Deprecated `autoscaling.targetMemoryUtilizationPercentage` value.
+- Deprecated `podDisruptionBudget` value.
 
 ## [v3.26.0] - 2023-10-25
 
