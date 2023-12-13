@@ -14957,6 +14957,54 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added `serviceAccount.labels` value."
+        - kind: added
+          description: "Added support for configuring `HorizontalPodAutoscaler` behaviour with the `autoscaling.behavior` value."
+        - kind: added
+          description: "Added `autoscaling.metrics` value to replace the deprecated `autoscaling.targetCPUUtilizationPercentage` & `autoscaling.targetMemoryUtilizationPercentage` values."
+        - kind: added
+          description: "Added `podDisruptionBudget` value to replace the deprecated `maxUnavailable` variable."
+        - kind: changed
+          description: "Updated the PlantUML OCI image to v1.2023.13."
+        - kind: changed
+          description: "Changed the pod security policy defaults."
+        - kind: changed
+          description: "Changed the PlantUML container security policy defaults."
+        - kind: changed
+          description: "Changed the CA certificates init container security policy."
+        - kind: deprecated
+          description: "Deprecated `autoscaling.targetCPUUtilizationPercentage` value."
+        - kind: deprecated
+          description: "Deprecated `autoscaling.targetMemoryUtilizationPercentage` value."
+        - kind: deprecated
+          description: "Deprecated `podDisruptionBudget` value."
+    apiVersion: v2
+    appVersion: 1.2023.13
+    created: "2023-12-13T12:44:18.822992419Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: bfa6f8c20fdeb889205720f96bf7daae1ff4f9426db7f2a7480913db0d9bc8a9
+    home: https://plantuml.com/
+    icon: https://kieranborsden.gallerycdn.vsassets.io/extensions/kieranborsden/plantumllanguageservice/1.1.5.1/1556620084743/Microsoft.VisualStudio.Services.Icons.Default
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.27.0/plantuml-3.27.0.tgz
+    version: 3.27.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the PlantUML OCI image to v1.2023.12."
     apiVersion: v2
@@ -21780,4 +21828,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-13T11:14:45.231235866Z"
+generated: "2023-12-13T12:44:18.824006282Z"
