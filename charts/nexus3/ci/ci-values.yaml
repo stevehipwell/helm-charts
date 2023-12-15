@@ -1,8 +1,12 @@
+deployment: false
+
 metrics:
   enabled: true
 
 persistence:
   enabled: true
+
+chownDataDir: true
 
 caCerts:
   enabled: true

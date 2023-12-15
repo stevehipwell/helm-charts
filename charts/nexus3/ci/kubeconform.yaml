@@ -1,3 +1,5 @@
+deployment: false
+
 commonLabels:
   common-label: test
 

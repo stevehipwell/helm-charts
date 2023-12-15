@@ -44,51 +44,80 @@ spec:
       {{- if or .Values.caCerts.enabled .Values.plugins .Values.extraInitContainers .Values.chownDataDir }}
       initContainers:
       {{- if .Values.caCerts.enabled }}
-        - name: ca-certs
-          image: adoptopenjdk:8-jdk-hotspot
+        - name: import-ca-certs
+          image: {{ printf "%s:%s" .Values.jdkImage.repository .Values.jdkImage.tag }}
+          imagePullPolicy: {{ .Values.jdkImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args: ["-c", "mkdir -p /nexus-data/keystores; cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          command: ["/bin/bash", "-c"]
+          args: ["/scripts/import-ca-certs.sh"]
           volumeMounts:
+            - mountPath: /scripts/import-ca-certs.sh
+              name: scripts
+              subPath: import-ca-certs.sh
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /nexus-data/secrets/cas
-              name: nexus3-cas
+              name: ca-certs
       {{- end }}
       {{- if .Values.plugins }}
         - name: download-plugins
-          image: alpine:3
+          image: {{ printf "%s:%s" .Values.bashImage.repository .Values.bashImage.tag }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop:
+                - ALL
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - |
-          {{- range .Values.plugins }}
-              wget -O /deploy/{{ .name }}.kar {{ .url }}
-          {{- end }}
+          args: ["/scripts/download-plugins.sh"]
           volumeMounts:
+            - mountPath: /scripts/download-plugins.sh
+              name: scripts
+              subPath: download-plugins.sh
             - mountPath: /deploy
-              name: nexus-deploy
+              name: deploy
       {{- end }}
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.chownDataDir }}
-        - name: volume-mount
-          image: alpine:3
+        - name: chown-data-dir
+          image: {{ printf "%s:%s" .Values.bashImage.repository .Values.bashImage.tag }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          args: ["/scripts/chown-data-dir.sh"]
           volumeMounts:
+            - mountPath: /scripts/chown-data-dir.sh
+              name: scripts
+              subPath: chown-data-dir.sh
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
       {{- end }}
@@ -106,6 +135,8 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- if or .Values.rootPassword.secret .Values.config.rootPassword.secret }}
+            - name: NEXUS_SECURITY_RANDOMPASSWORD
+              value: "false"
             - name: NEXUS_SECURITY_INITIAL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -144,14 +175,13 @@ spec:
             - mountPath: /nexus-data
               name: {{ include "nexus3.pvcname" . }}
             - mountPath: /opt/sonatype/nexus/etc/logback
-              name: {{ include "nexus3.fullname" . }}-logback
-              readOnly: true
+              name: logback
             - mountPath: /nexus-data/etc/nexus.properties
-              name: {{ include "nexus3.fullname" . }}-properties
+              name: properties
               subPath: nexus.properties
               readOnly: true
             - mountPath: /nexus-data/etc/fabric/nexus-store.properties
-              name: {{ include "nexus3.fullname" . }}-properties
+              name: properties
               subPath: nexus-store.properties
               readOnly: true
           {{- if .Values.license.enabled }}
@@ -162,22 +192,19 @@ spec:
           {{- end }}
           {{- if .Values.plugins }}
             - mountPath: /opt/sonatype/nexus/deploy
-              name: nexus-deploy
+              name: deploy
           {{- end }}
           {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
             - mountPath: /opt/sonatype/nexus/conf
-              name: {{ include "nexus3.fullname" . }}-conf
-              readOnly: true
+              name: config
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/ldap.password
-              name: {{ .Values.config.ldap.authPassword.secret }}
+              name: ldap-password
               subPath: {{ .Values.config.ldap.authPassword.key }}
-              readOnly: true
           {{- end }}
           {{- if .Values.config.repoCredentials.enabled }}
             - mountPath: /opt/sonatype/nexus/secret/repo-credentials
-              name: {{ .Values.config.repoCredentials.secret }}
-              readOnly: true
+              name: repo-credentials
           {{- end }}
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
@@ -188,6 +215,14 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
+        - name: logback
+          configMap:
+            name: {{ include "nexus3.fullname" . }}-logback
+            defaultMode: 0440
+        - name: properties
+          configMap:
+            name: {{ include "nexus3.fullname" . }}-properties
+            defaultMode: 0440
         - name: {{ include "nexus3.pvcname" . }}
         {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
@@ -200,35 +235,33 @@ spec:
           secret:
             secretName: {{ .Values.license.secret }}
       {{- end }}
+      {{- if or .Values.caCerts.enabled .Values.plugins .Values.chownDataDir }}
+        - name: scripts
+          configMap:
+            name: {{ include "nexus3.fullname" . }}-scripts
+            defaultMode: 0550
+      {{- end }}
       {{- if .Values.caCerts.enabled }}
-        - name: nexus3-cas
+        - name: ca-certs
           secret:
             secretName: {{ .Values.caCerts.secret }}
       {{- end }}
-        - name: {{ include "nexus3.fullname" . }}-logback
-          configMap:
-            name: {{ include "nexus3.fullname" . }}-logback
-            defaultMode: 0755
-        - name: {{ include "nexus3.fullname" . }}-properties
-          configMap:
-            name: {{ include "nexus3.fullname" . }}-properties
-            defaultMode: 0755
       {{- if .Values.plugins }}
-        - name: nexus-deploy
+        - name: deploy
           emptyDir: {}
       {{- end }}
       {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
-        - name: {{ include "nexus3.fullname" . }}-conf
+        - name: config
           configMap:
             name: {{ include "nexus3.fullname" . }}-conf
-            defaultMode: 0755
+            defaultMode: 0550
       {{- if and .Values.config.ldap.enabled }}
-        - name: {{ .Values.config.ldap.authPassword.secret }}
+        - name: ldap-password
           secret:
             secretName: {{ .Values.config.ldap.authPassword.secret }}
       {{- end }}
       {{- if .Values.config.repoCredentials.enabled }}
-        - name: {{ .Values.config.repoCredentials.secret }}
+        - name: repo-credentials
           secret:
             secretName: {{ .Values.config.repoCredentials.secret }}
       {{- end }}

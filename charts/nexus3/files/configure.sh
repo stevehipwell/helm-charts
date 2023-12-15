@@ -12,8 +12,8 @@ TERMINATION_LOG="${TERMINATION_LOG:-/dev/termination-log}"
 nexus_host="http://localhost:8081"
 root_user="admin"
 base_dir="/opt/sonatype/nexus"
-out_file="/tmp/out.json"
-tmp_file="/tmp/tmp.json"
+out_file="${NEXUS_DATA}/tmp/out.json"
+tmp_file="${NEXUS_DATA}/tmp/tmp.json"
 
 echo "Configuring Nexus3..."
 
@@ -98,7 +98,7 @@ do
       echo "Updating user '${id}'..."
 
       status_code=$(curl -s -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${root_user}:${root_password}" "${nexus_host}/service/rest/v1/security/users/?userId=${id}&source=${source}")
-      if [[ "${status_code}" -eq 200 ]] && [[ -n "$(grep -r 'userId' ${out_file} || true)" ]]
+      if [[ "${status_code}" -eq 200 ]] && [[ -n "$(grep -r 'userId' "${out_file}" || true)" ]]
       then
         status_code="$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${root_user}:${root_password}" -d "@${json_file}" "${nexus_host}/service/rest/v1/security/users/${id}")"
         if [[ "${status_code}" -ne 204 ]]
@@ -144,7 +144,7 @@ do
 
     if [[ -f "${base_dir}/secret/ldap.password" ]]
     then
-      ldap_password=$(cat "${base_dir}/secret/ldap.password" | sed 's|"|\\"|g;s|/|\\/|g')
+      ldap_password=$(sed 's|"|\\"|g;s|/|\\/|g' "${base_dir}/secret/ldap.password")
       sed -i "s/PASSWORD/${ldap_password}/g" "${json_file}"
     fi
 

@@ -1,0 +1,34 @@
+{{- if or .Values.caCerts.enabled .Values.plugins .Values.chownDataDir -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nexus3.fullname" . }}-scripts
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+data:
+  import-ca-certs.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    mkdir -p /nexus-data/keystores
+    cp -f "${JAVA_HOME}/jre/lib/security/cacerts" /nexus-data/keystores/cacerts
+
+    for f in /nexus-data/secrets/cas/*
+    do
+      keytool -importcert -file "${f}" -alias "$(basename "${f}")" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt
+    done
+  download-plugins.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+{{- range .Values.plugins }}
+      curl -sSLo /deploy/{{ .name }}.kar {{ .url }}
+{{- end }}
+  chown-data-dir.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    mkdir -p /nexus-data/etc
+    chown -R {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} /nexus-data;
+{{- end }}
