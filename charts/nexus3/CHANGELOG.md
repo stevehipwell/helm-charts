@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring high availability when running _Nexus3_ as a `StatefulSet`.
+- Added `license.enabled`, `license.secret` & `license.key` to configure the licence.
+
 ## [v4.37.0] - 2023-12-06
 
 ### Changed
