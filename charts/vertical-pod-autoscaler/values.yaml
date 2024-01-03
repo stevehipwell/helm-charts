@@ -19,6 +19,9 @@ serviceMonitor:
 
 logLevel: 4
 
+# Only deploy the recommender
+recommenderOnly: false
+
 admissionController:
   image:
     repository: registry.k8s.io/autoscaling/vpa-admission-controller

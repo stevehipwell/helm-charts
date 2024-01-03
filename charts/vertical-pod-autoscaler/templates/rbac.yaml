@@ -173,6 +173,7 @@ rules:
       - get
       - list
       - watch
+{{ if not .Values.recommenderOnly }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -227,6 +228,7 @@ rules:
       - get
       - list
       - watch
+{{ end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -273,9 +275,11 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.recommender.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+  {{- if not .Values.recommenderOnly }}
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+  {{ end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -321,12 +325,15 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.recommender.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+  {{- if not .Values.recommenderOnly }}
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.admissionController.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+  {{ end }}
+{{ if not .Values.recommenderOnly }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -342,6 +349,8 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+{{ end }}
+{{ if not .Values.recommenderOnly }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -357,6 +366,8 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.admissionController.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+{{ end }}
+{{ if not .Values.recommenderOnly }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -372,4 +383,5 @@ subjects:
   - kind: ServiceAccount
     name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
+{{ end }}
 {{- end -}}

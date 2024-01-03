@@ -1,4 +1,4 @@
-{{- if .Values.admissionController.podDisruptionBudget.enabled -}}
+{{- if and (not .Values.recommenderOnly) .Values.admissionController.podDisruptionBudget.enabled -}}
 apiVersion: {{ include "vertical-pod-autoscaler.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:

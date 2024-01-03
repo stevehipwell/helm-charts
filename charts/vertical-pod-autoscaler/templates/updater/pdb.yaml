@@ -1,4 +1,4 @@
-{{- if .Values.updater.podDisruptionBudget.enabled -}}
+{{- if and (not .Values.recommenderOnly) .Values.updater.podDisruptionBudget.enabled -}}
 apiVersion: {{ include "vertical-pod-autoscaler.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
