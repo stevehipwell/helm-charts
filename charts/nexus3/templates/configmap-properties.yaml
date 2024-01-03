@@ -7,6 +7,12 @@ metadata:
     {{- include "nexus3.labels" . | nindent 4 }}
 data:
   nexus.properties: |
+    {{- if .Values.license.enabled }}
+    nexus.licenseFile=/nexus-data/etc/nexus.license
+    {{- end }}
+    {{- if and (not .Values.deployment) .Values.highAvailability.enabled }}
+    nexus.datastore.clustered.enabled=true
+    {{- end }}
     {{- range .Values.properties }}
     {{ . }}
     {{- end }}

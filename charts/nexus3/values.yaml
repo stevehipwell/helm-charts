@@ -26,6 +26,12 @@ serviceAccount:
 
 deployment: true
 
+# highAvailability only supported in StatefulSet mode (to use that mode set deployment = false)
+# Be aware that you need to fulfill a few prerequisites for a HA deployment. Please check sonatype documentation!
+highAvailability:
+  enabled: false
+  replicas: 2
+
 podLabels: {}
 podAnnotations: {}
 
@@ -133,6 +139,12 @@ tolerations: []
 caCerts:
   enabled: false
   secret:
+
+# if secret is provided, the license will be configured via properties, otherwise a license can still be entered manually via UI
+license:
+  enabled: false
+  secret:
+  key: nexus.license
 
 envVars:
   jvmMinHeapSize: 1024m

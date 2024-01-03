@@ -8,7 +8,11 @@ metadata:
     {{- include "nexus3.labels" . | nindent 4 }}
 spec:
   serviceName: {{ include "nexus3.fullname" . }}
+  {{- if .Values.highAvailability.enabled }}
+  replicas: {{ .Values.highAvailability.replicas }}
+  {{- else }}
   replicas: 1
+  {{- end }}
   selector:
     matchLabels:
       {{- include "nexus3.selectorLabels" . | nindent 6 }}
@@ -149,6 +153,12 @@ spec:
               name: {{ include "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
+          {{- if .Values.license.enabled}}
+            - mountPath: /nexus-data/etc/nexus.license
+              name: license
+              subPath: {{ .Values.license.key }}
+              readOnly: true
+          {{- end }}
           {{- if .Values.plugins }}
             - mountPath: /opt/sonatype/nexus/deploy
               name: nexus-deploy
@@ -180,6 +190,11 @@ spec:
       {{- if not .Values.persistence.enabled }}
         - name: {{ include "nexus3.pvcname" . }}
           emptyDir: {}
+      {{- end }}
+      {{- if .Values.license.enabled }}
+        - name: license
+          secret:
+            secretName: {{ .Values.license.secret }}
       {{- end }}
       {{- if .Values.caCerts.enabled }}
         - name: nexus3-cas
