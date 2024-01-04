@@ -114,9 +114,9 @@ spec:
           {{- end }}
             - name: INSTALL4J_ADD_VM_PARAMS
               {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- else }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- end }}
           {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
           lifecycle:
@@ -150,6 +150,16 @@ spec:
               name: {{ include "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
+            - mountPath: /nexus-data/etc/fabric/nexus-store.properties
+              name: {{ include "nexus3.fullname" . }}-properties
+              subPath: nexus-store.properties
+              readOnly: true
+          {{- if .Values.license.enabled }}
+            - mountPath: /var/opt/sonatype/nexus.license
+              name: license
+              subPath: {{ .Values.license.key }}
+              readOnly: true
+          {{- end }}
           {{- if .Values.plugins }}
             - mountPath: /opt/sonatype/nexus/deploy
               name: nexus-deploy
@@ -185,6 +195,11 @@ spec:
         {{- else }}
           emptyDir: {}
         {{- end }}
+      {{- if .Values.license.enabled }}
+        - name: license
+          secret:
+            secretName: {{ .Values.license.secret }}
+      {{- end }}
       {{- if .Values.caCerts.enabled }}
         - name: nexus3-cas
           secret:

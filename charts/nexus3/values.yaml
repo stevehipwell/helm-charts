@@ -30,7 +30,7 @@ deployment: true
 # Be aware that you need to fulfill a few prerequisites for a HA deployment. Please check sonatype documentation!
 highAvailability:
   enabled: false
-  replicas: 2
+  replicas: 3
 
 podLabels: {}
 podAnnotations: {}
@@ -162,6 +162,8 @@ logback:
 properties:
   - nexus.scripts.allowCreation=true
   # - nexus.golang.hosted=true
+
+storeProperties: []
 
 plugins: []
 #   - name: nexus-repository-composer
