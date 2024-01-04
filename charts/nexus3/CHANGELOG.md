@@ -20,10 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v4.38.0] - 2024-01-04
+
 ### Added
 
-- Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring high availability when running _Nexus3_ as a `StatefulSet`.
-- Added `license.enabled`, `license.secret` & `license.key` to configure the licence.
+- Added `license.enabled`, `license.secret` & `license.key` to configure the _Nexus3_ pro licence.
+- Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring [high availability](https://help.sonatype.com/repomanager3/planning-your-implementation/resiliency-and-high-availability/high-availability-deployment-options/option-1---manual-high-availability-deployment) when running _Nexus3_ as a `StatefulSet` with a pro licence.
+- Added `storeProperties` value to configure a _PostgreSQl_ data store for _Nexus3_ with a pro licence.
 
 ## [v4.37.0] - 2023-12-06
 

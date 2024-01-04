@@ -107,9 +107,9 @@ spec:
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
               {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Djavax.net.ssl.trustStore=/nexus-data/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- else }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=/nexus-data/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
+              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
               {{- end }}
           {{- if or .Values.rootPassword.secret .Values.config.rootPassword.secret }}
             - name: NEXUS_SECURITY_INITIAL_PASSWORD
@@ -153,8 +153,12 @@ spec:
               name: {{ include "nexus3.fullname" . }}-properties
               subPath: nexus.properties
               readOnly: true
-          {{- if .Values.license.enabled}}
-            - mountPath: /nexus-data/etc/nexus.license
+            - mountPath: /nexus-data/etc/fabric/nexus-store.properties
+              name: {{ include "nexus3.fullname" . }}-properties
+              subPath: nexus-store.properties
+              readOnly: true
+          {{- if .Values.license.enabled }}
+            - mountPath: /var/opt/sonatype/nexus.license
               name: license
               subPath: {{ .Values.license.key }}
               readOnly: true
