@@ -11826,6 +11826,41 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added `license.enabled`, `license.secret` & `license.key` to configure the _Nexus3_ pro licence."
+        - kind: added
+          description: "Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring [high availability](https://help.sonatype.com/repomanager3/planning-your-implementation/resiliency-and-high-availability/high-availability-deployment-options/option-1---manual-high-availability-deployment) when running _Nexus3_ as a `StatefulSet` with a pro licence."
+        - kind: added
+          description: "Added `storeProperties` value to configure a _PostgreSQl_ data store for _Nexus3_ with a pro licence."
+    apiVersion: v2
+    appVersion: 3.63.0
+    created: "2024-01-04T14:36:24.072482332Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 86541a31e41f1f5ad838b2a8a01134793556fdceb19cb21e8bb5a6cd10cf3989
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.38.0/nexus3-4.38.0.tgz
+    version: 4.38.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _Nexus3_ OCI image to [v3.63.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.63.0-01)."
         - kind: changed
@@ -21858,4 +21893,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-13T12:50:58.248755937Z"
+generated: "2024-01-04T14:36:24.073584528Z"
