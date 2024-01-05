@@ -19652,6 +19652,41 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added an uninstall job to make sure that Tigera Operator can be uninstalled. This is on by default but can be disabled by setting `uninstall.enabled` to `true`."
+        - kind: changed
+          description: "Updated the _Tigera Operator_ OCI image to [v1.32.3](https://github.com/tigera/operator/releases/tag/v1.32.3) (_Calico_ [v3.27.0](https://github.com/projectcalico/calico/releases/tag/v3.27.0))."
+    apiVersion: v2
+    appVersion: 1.32.3
+    created: "2024-01-05T12:12:17.995495182Z"
+    description: Helm chart for the Tigera Operator for Calico.
+    digest: 251058d0ae22f3cca6ab9652e123342aa918209614893ddba7b8906fbfea5117
+    home: https://www.tigera.io/
+    icon: https://avatars.githubusercontent.com/u/48935664?s=300
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.9.0/tigera-operator-2.9.0.tgz
+    version: 2.9.0
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _Tigera Operator_ OCI image to [v1.30.9](https://github.com/tigera/operator/releases/tag/v1.30.9) (_Calico_ [v3.26.4](https://github.com/projectcalico/calico/releases/tag/v3.26.4))."
     apiVersion: v2
@@ -21935,4 +21970,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-05T10:46:40.702700704Z"
+generated: "2024-01-05T12:12:17.996391335Z"
