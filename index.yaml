@@ -18010,6 +18010,48 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added `compact.deduplication.enabled` value to disable compact deduplication."
+        - kind: added
+          description: "Added `compact.deduplication.func` value to set the compact deduplication function."
+        - kind: added
+          description: "Added `rule.instanceLabel` to set the label `thanos_rule` to `<NAMESPACE>/<RULE_FULLNAME>`."
+        - kind: added
+          description: "Added support for specifying custom Kubernetes cluster domain."
+        - kind: changed
+          description: "Updated the _Thanos_ OCI image to [v0.33.0](https://github.com/thanos-io/thanos/releases/tag/v0.33.0)."
+        - kind: changed
+          description: "Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`."
+        - kind: deprecated
+          description: "Deprecated the `compact.replicaDeduplication` value in favour of setting `compact.deduplication.func=penalty`."
+    apiVersion: v2
+    appVersion: 0.33.0
+    created: "2024-01-05T10:46:40.701601516Z"
+    description: Helm chart for Thanos components.
+    digest: d966cfa185707c0ec6b3aa5cbed2260b319ee7d530eb80785cb2013e94a3f8f4
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/thanos/icon/color/thanos-icon-color.svg
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.15.0/thanos-1.15.0.tgz
+    version: 1.15.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Updated the _Thanos_ OCI image to [v0.32.5](https://github.com/thanos-io/thanos/releases/tag/v0.32.5)."
     apiVersion: v2
@@ -21893,4 +21935,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-04T14:36:24.073584528Z"
+generated: "2024-01-05T10:46:40.702700704Z"
