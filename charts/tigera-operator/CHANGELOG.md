@@ -20,6 +20,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Added
+
+- Added an uninstall job to make sure that _Tigera Operator_ can be uninstalled. This is on by default but can be disabled by setting `uninstall.enabled` to `true`.
+
+### Changed
+
+- Updated the _Tigera Operator_ OCI image to [v1.32.3](https://github.com/tigera/operator/releases/tag/v1.32.3) (_Calico_ [v3.27.0](https://github.com/projectcalico/calico/releases/tag/v3.27.0)).
+
 ## [v2.8.1] - 2023-11-21
 
 ### Changed
