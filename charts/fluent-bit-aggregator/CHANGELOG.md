@@ -20,6 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v0.12.0] - 2024-01-05
+
+### Changed
+
+- Updated _Fluent Bit_ OCI image to [v2.2.1](https://github.com/fluent/fluent-bit/releases/tag/v2.2.1).
+- Changed the `ServiceMonitor` to use [v2 metrics](https://docs.fluentbit.io/manual/administration/monitoring#for-v2-metrics).
+
 ## [v0.11.0] - 2023-11-13
 
 ### Changed
