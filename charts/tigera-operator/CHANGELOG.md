@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v2.9.0] - 2024-01-05
+
 ### Added
 
 - Added an uninstall job to make sure that _Tigera Operator_ can be uninstalled. This is on by default but can be disabled by setting `uninstall.enabled` to `true`.

@@ -26,6 +26,6 @@ annotations:
   artifacthub.io/alternativeName: tigera
   artifacthub.io/changes: |
     - kind: added
-      description: "Added an uninstall job to make sure that _Tigera Operator_ can be uninstalled. This is on by default but can be disabled by setting `uninstall.enabled` to `true`."
+      description: "Added an uninstall job to make sure that Tigera Operator can be uninstalled. This is on by default but can be disabled by setting `uninstall.enabled` to `true`."
     - kind: changed
       description: "Updated the _Tigera Operator_ OCI image to [v1.32.3](https://github.com/tigera/operator/releases/tag/v1.32.3) (_Calico_ [v3.27.0](https://github.com/projectcalico/calico/releases/tag/v3.27.0))."
