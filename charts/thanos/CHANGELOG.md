@@ -20,16 +20,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+## [v1.15.0] - 2024-01-05
+
 ### Added
 
 - Added `compact.deduplication.enabled` value to disable compact deduplication.
 - Added `compact.deduplication.func` value to set the compact deduplication function.
 - Added `rule.instanceLabel` to set the label `thanos_rule` to `<NAMESPACE>/<RULE_FULLNAME>`.
+- Added support for specifying custom Kubernetes cluster domain.
 
 ### Changed
 
+- Updated the _Thanos_ OCI image to [v0.33.0](https://github.com/thanos-io/thanos/releases/tag/v0.33.0).
 - Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`.
-- Added support for specifying custom Kubernetes cluster domain
 
 ### Deprecated
 
