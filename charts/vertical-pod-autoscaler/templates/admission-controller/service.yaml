@@ -1,3 +1,4 @@
+{{- if not .Values.recommenderOnly -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -20,3 +21,4 @@ spec:
       targetPort: http-metrics
   selector:
     {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 4 }}
+{{- end -}}

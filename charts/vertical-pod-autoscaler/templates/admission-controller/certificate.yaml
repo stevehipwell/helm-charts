@@ -1,4 +1,4 @@
-{{- if .Values.admissionController.certManager.enabled -}}
+{{- if and (not .Values.recommenderOnly) .Values.admissionController.certManager.enabled -}}
 {{- if not .Values.admissionController.certManager.issuerName }}
 apiVersion: cert-manager.io/v1
 kind: Issuer
