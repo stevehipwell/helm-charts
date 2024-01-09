@@ -1,14 +1,14 @@
 image:
   repository: sonatype/nexus3
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-  tag: ""
+  tag:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 imagePullSecrets: []
 
-nameOverride: ""
-fullnameOverride: ""
+nameOverride:
+fullnameOverride:
 
 commonLabels: {}
 
@@ -21,7 +21,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name:
   automountToken: false
 
 deployment: true
@@ -36,13 +36,23 @@ podLabels: {}
 podAnnotations: {}
 
 podSecurityContext:
+  runAsNonRoot: false
   fsGroup: 200
+  seccompProfile:
+    type: RuntimeDefault
 
 securityContext:
-  runAsGroup: 200
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
   runAsUser: 200
+  runAsGroup: 200
+  capabilities:
+    drop:
+      - ALL
 
-priorityClassName: ""
+priorityClassName:
 
 livenessProbe:
   httpGet:
@@ -88,7 +98,7 @@ metrics:
 ingress:
   enabled: false
   annotations: {}
-  ingressClassName: ""
+  ingressClassName:
   hosts: []
   #   - nexus.local
   tls: []
@@ -119,6 +129,16 @@ resources: {}
 #   requests:
 #     cpu: 100m
 #     memory: 128Mi
+
+bashImage:
+  repository: cgr.dev/chainguard/bash
+  tag: latest
+  pullPolicy: IfNotPresent
+
+jdkImage:
+  repository: cgr.dev/chainguard/jdk-lts
+  tag: latest-dev
+  pullPolicy: IfNotPresent
 
 chownDataDir: true
 

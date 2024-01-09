@@ -20,6 +20,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `bashImage` & `jdkImage` values to allow configuring the init container images.
+- Added init container security contexts.
+
+### Changed
+
+- Updated the defaults for `podSecurityContext` to be more secure.
+- Changed the default `fsGroup` to `65534`.
+- Updated the `securityContext` to be more secure.
+
 ## [v4.38.0] - 2024-01-04
 
 ### Added
