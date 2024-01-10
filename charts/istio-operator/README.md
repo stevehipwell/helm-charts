@@ -1,6 +1,6 @@
 # istio-operator
 
-![Version: 2.13.1](https://img.shields.io/badge/Version-2.13.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.1](https://img.shields.io/badge/AppVersion-1.20.1-informational?style=flat-square)
+![Version: 2.13.2](https://img.shields.io/badge/Version-2.13.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.20.2](https://img.shields.io/badge/AppVersion-1.20.2-informational?style=flat-square)
 
 The [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) provides a declarative _Kubernetes_ native way to manage [Istio](https://istio.io/) via `IstioOperator` custom resources.
 
@@ -24,14 +24,14 @@ The [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) provi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.13.1
+helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.13.2
 ```
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.13.1
+helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.13.2
 ```
 
 ## Values
