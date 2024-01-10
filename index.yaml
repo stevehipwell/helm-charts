@@ -6703,6 +6703,42 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.20.2](https://github.com/istio/istio/releases/tag/1.20.2)."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be managed by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.20.2
+    created: "2024-01-10T09:01:12.293168336Z"
+    description: Helm chart to install the Istio Operator and optionally create the
+      IstioOperator CR to install Istio into the cluster.
+    digest: b509c2ded27db9660a1cf41e3b66229a34c9ba2860c3598277ffc528d8680c1e
+    home: https://istio.io/
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.13.2/istio-operator-2.13.2.tgz
+    version: 2.13.2
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Istio Operator_ OCI image version to [v1.20.1](https://github.com/istio/istio/releases/tag/1.20.1)."
       artifacthub.io/crds: |
         - kind: IstioOperator
@@ -22034,4 +22070,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-05T12:28:45.940903059Z"
+generated: "2024-01-10T09:01:12.294236927Z"
