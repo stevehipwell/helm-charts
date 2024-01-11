@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -19,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -->
 
 ## [UNRELEASED]
+
+## [v4.39.0] - 2024-01-11
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.64.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.64.0-03).
 
 ## [v4.38.0] - 2024-01-04
 
