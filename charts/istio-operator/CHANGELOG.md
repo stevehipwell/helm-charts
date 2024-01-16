@@ -1,11 +1,7 @@
 # Istio Operator Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
 ### Added - For new features.
@@ -85,95 +81,101 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated the _Istio Operator_ OCI image version to [v1.18.0](https://github.com/istio/istio/releases/tag/1.18.0).
 
-## [v2.10.1] - 2023-06-07
+## v2.10.1 - 2023-06-07
 
 ### Changed
 
 - Updated the _Istio Operator_ OCI image version to [v1.17.3](https://github.com/istio/istio/releases/tag/1.17.3).
 
-## [v2.10.0] - 2023-04-11
+## v2.10.0 - 2023-04-11
 
-### All Changes
+### Added
 
-- Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2).
 - Added explicit namespace declaration in templates.
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
-## [v2.9.1] - 2023-02-24
+### Changed
 
-### All Changes
+- Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2).
+
+## v2.9.1 - 2023-02-24
+
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.17.1](https://github.com/istio/istio/releases/tag/1.17.1).
 
-## [v2.9.0] - 2023-02-15
+## v2.9.0 - 2023-02-15
 
-### All Changes
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.17.0](https://github.com/istio/istio/releases/tag/1.17.0).
 
-## [v2.8.2] - 2023-01-31
+## v2.8.2 - 2023-01-31
 
-### All Changes
+### Added
 
-- Updated the _Istio Operator_ image version to [v1.16.2](https://github.com/istio/istio/releases/tag/1.16.2).
 - Added `controlPlane.annotations` to annotate the `IstioOperator` resource.
 
-## [v2.8.1] - 2022-12-13
+### Changed
 
-### All Changes
+- Updated the _Istio Operator_ image version to [v1.16.2](https://github.com/istio/istio/releases/tag/1.16.2).
+
+## v2.8.1 - 2022-12-13
+
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.16.1](https://github.com/istio/istio/releases/tag/1.16.1).
 
-## [v2.8.0] - 2022-11-16
+## v2.8.0 - 2022-11-16
 
-### All Changes
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.16.0](https://github.com/istio/istio/releases/tag/1.16.0).
 
-## [v2.7.3] - 2022-10-28
+## v2.7.3 - 2022-10-28
 
-### All Changes
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.3](https://github.com/istio/istio/releases/tag/1.15.3).
 
-## [v2.7.2] - 2022-10-12
+## v2.7.2 - 2022-10-12
 
-### All Changes
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.2](https://github.com/istio/istio/releases/tag/1.15.2).
 
-## [v2.7.1] - 2022-10-03
+## v2.7.1 - 2022-10-03
 
-### All Changes
+### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.1](https://github.com/istio/istio/releases/tag/1.15.1).
 
-## [v2.7.0] - 2022-08-01
+## v2.7.0 - 2022-08-01
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.0](https://github.com/istio/istio/releases/tag/1.15.0).
 
-## [v2.6.2] - 2022-08-01
+## v2.6.2 - 2022-08-01
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.3](https://github.com/istio/istio/releases/tag/1.14.3).
 
-## [v2.6.2] - 2022-07-26
+## v2.6.2 - 2022-07-26
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.2](https://github.com/istio/istio/releases/tag/1.14.2).
 
-## [v2.6.1] - 2022-06-10
+## v2.6.1 - 2022-06-10
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.1](https://github.com/istio/istio/releases/tag/1.14.1).
 
-## [v2.6.0] - 2022-06-06
+## v2.6.0 - 2022-06-06
 
 ### Added
 
@@ -192,31 +194,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Removed chart default for `serviceMonitor.interval`, the interval should be the _Prometheus_ default if not overridden.
 
-## [v2.5.4] - 2022-05-23
+## v2.5.4 - 2022-05-23
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.13.4](https://github.com/istio/istio/releases/tag/1.13.4).
 
-## [v2.5.3] - 2022-04-19
+## v2.5.3 - 2022-04-19
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.13.3](https://github.com/istio/istio/releases/tag/1.13.3).
 
-## [v2.5.2] - 2022-03-10
+## v2.5.2 - 2022-03-10
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.13.2](https://github.com/istio/istio/releases/tag/1.13.2).
 
-## [v2.5.1] - 2022-02-23
+## v2.5.1 - 2022-02-23
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.13.1](https://github.com/istio/istio/releases/tag/1.13.1).
 
-## [v2.5.0] - 2022-02-14
+## v2.5.0 - 2022-02-14
 
 ### Added
 
@@ -231,62 +233,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Deprecated `image.pullSecrets` in favour of the idiomatic `imagePullSecrets`.
 
-## [v2.4.3] - 2022-02-11
+## v2.4.3 - 2022-02-11
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.12.3](https://github.com/istio/istio/releases/tag/1.12.3).
 
-## [v2.4.2] - 2022-01-19
+## v2.4.2 - 2022-01-19
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.12.2](https://github.com/istio/istio/releases/tag/1.12.2).
 
-## [v2.4.1] - 2021-12-11
+## v2.4.1 - 2021-12-11
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.12.1](https://github.com/istio/istio/releases/tag/1.12.1).
 
-## [v2.4.0] - 2021-11-19
+## v2.4.0 - 2021-11-19
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to `v1.12.0`.
 - Updated dashboards (_Istio_ repo commit `48d133cd19deef1723ef9a0fdabf5e9b6cf3181c`).
 
-## [v2.3.5] - 2021-11-12
+## v2.3.5 - 2021-11-12
 
 ### Changed
 
 - Fixed missing `pods/portfoward` permissions from the ClusterRole.
 
-## [v2.3.4] - 2021-10-18
+## v2.3.4 - 2021-10-18
 
 ### Changed
 
 - Updated _Istio_ version to [v1.11.4](https://github.com/istio/istio/releases/tag/1.11.4).
 
-## [v2.3.3] - 2021-10-04
+## v2.3.3 - 2021-10-04
 
 ### Changed
 
 - Updated _Istio_ version to [v1.11.3](https://github.com/istio/istio/releases/tag/1.11.3).
 
-## [v2.3.2] - 2021-09-03
+## v2.3.2 - 2021-09-03
 
 ### Changed
 
 - Updated _Istio_ version to [v1.11.2](https://github.com/istio/istio/releases/tag/1.11.2).
 
-## [v2.3.1] - 2021-08-17
+## v2.3.1 - 2021-08-17
 
 ### Changed
 
 - Updated _Istio_ version to `v1.11.1`.
 
-## [v2.3.0] - 2021-08-17
+## v2.3.0 - 2021-08-17
 
 ### Changed
 
@@ -354,114 +356,115 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v2.1.1 - 2021-02-11
 
-## Changed
+### Changed
 
 - Lease `istio-operator` permission update
 
 ## v2.1.0 - 2021-02-10
 
-## Changed
+### Changed
 
 - Upgraded _Istio_ version to _v1.9.0_
 
 ## v2.0.5 - 2021-02-09
 
-## Changed
+### Changed
 
 - Upgraded _Istio_ version to _v1.8.3_
 
 ## v2.0.4 - 2021-02-09
 
-## Changed
+### Changed
 
 - Add `podLabels` parameter
 
 ## v2.0.3 - 2021-01-22
 
-## Changed
+### Changed
 
-- Update _Grafana_ dashboards to dynamically set datasource.
+- Update _Grafana_ dashboards to dynamically set data source.
 
 ## v2.0.2 - 2021-01-19
 
-## Changed
+### Changed
 
 - Add _Grafana_ dashboards to be installed by the sidecar via `dashboards.enabled: true`.
 
 ## v2.0.1 - 2021-01-15
 
-## Changed
+### Changed
 
 - Upgraded _Istio_ version to _v1.8.2_
 
 ## v2.0.0 - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
-## Changed
+### Changed
 
 - Upgraded chart API version to `v2`
 
-## 1.2.1 - 2020-12-08
+## v1.2.1 - 2020-12-08
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.8.1_
 
-## 1.2.0 - 2020-11-20
+## v1.2.0 - 2020-11-20
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.8.0_
 
-## 1.1.6 - 2020-11-19
+## v1.1.6 - 2020-11-19
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.5_
 
-## 1.1.5 - 2020-11-02
+## v1.1.5 - 2020-11-02
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.4_
 - Use `.Chart.AppVersion` for default tag value
 
-## 1.1.4 - 2020-09-30
+## v1.1.4 - 2020-09-30
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.3_
 
-## 1.1.3 - 2020-09-21
+## v1.1.3 - 2020-09-21
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.2_
 
-## 1.1.2 - 2020-09-11
+## v1.1.2 - 2020-09-11
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.1_
 
-## 1.1.1 - 2020-09-02
+## v1.1.1 - 2020-09-02
 
 ### Changed
 
 - Fix metrics path from `/` to `/metrics`
 
-## 1.1.0 - 2020-08-28
+## v1.1.0 - 2020-08-28
 
 ### Changed
 
 - Upgraded _Istio_ version to _v1.7.0_
 
-## 1.0.12 - 2020-08-12
+## v1.0.12 - 2020-08-12
 
 ### Changed
 
@@ -473,8 +476,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - README
 
-## 1.0.7 - 2020-08-03
+## v1.0.7 - 2020-08-03
 
 ### Changed
 
-- Upgraded _Istio_ version to _v1.6.7_
+- Upgraded _Istio_ version to _v1.6.7_.
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/istio-operator
+[v2.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.13.2
+[v2.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.13.1
+[v2.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.13.0
+[v2.12.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.12.3
+[v2.12.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.12.2
+[v2.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.12.1
+[v2.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.12.0
+[v2.11.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.2
+[v2.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.1
+[v2.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.0

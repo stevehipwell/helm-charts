@@ -1,15 +1,9 @@
 # Tigera Operator Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -474,3 +468,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial release based on _Tigera Operator_ [v1.20.0](https://github.com/tigera/operator/releases/tag/v1.20.0).
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/tigera-operator

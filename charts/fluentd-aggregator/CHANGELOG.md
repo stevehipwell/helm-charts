@@ -1,15 +1,9 @@
 # Fluentd Aggregator Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -54,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v4.0.0] - 2023-06-23
 
-> **Warning**
+> [!WARNING]
 > This release has major breaking changes and you will need to check the values before upgrading.
 >
 > If you're upgrading from an older chart version and have persistence enabled you will need to set `persistence.legacy=true` and either `persistence.legacyName=buffer` or `persistence.legacyName=state` depending on the name of your volume claim template.
@@ -98,45 +92,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v3.9.1] - 2023-06-08
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.9.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.1) (_Fluentd_ [v1.16.1](https://github.com/fluent/fluentd/releases/tag/v1.16.1)).
 
 ## [v3.9.0] - 2023-06-08
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.9.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.9.0) (_Fluentd_ [v1.16.1](https://github.com/fluent/fluentd/releases/tag/v1.16.1)).
 
 ## [v3.8.0] - 2023-03-29
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.8.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.8.0) (_Fluentd_ [v1.16.0](https://github.com/fluent/fluentd/releases/tag/v1.16.0)).
 
 ## [v3.7.0] - 2023-03-16
 
-### All Changes
+### Added
 
-- Updated _Fluentd Aggregator_ OCI image to [v2.7.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.7.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 - Added support for alternative image variants using `image.tagPrefix` and a fixed digest using `image.digest`.
 - Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.7.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.7.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
+
 ## [v3.6.2] - 2023-02-15
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.6.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.6.2) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 
 ## [v3.6.1] - 2023-02-06
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.6.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.6.1) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 
 ## [v3.6.0] - 2023-01-10
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.6.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.6.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 - Changed liveness probe to start later and be less sensitive.
@@ -144,60 +141,66 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v3.5.0] - 2022-12-06
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.5.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.5.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 
 ## [v3.4.2] - 2022-11-28
 
-### All Changes
+### Changed
+
+- Moved debug filter to above global filters.
+
+### Fixed
 
 - Fixed internal labelling pattern to work correctly.
 - Fixed `ServiceMonitor` port.
-- Moved debug filter to above global filters.
 
 ## [v3.4.1] - 2022-11-28
 
-### All Changes
+### Fixed
 
 - Fixed route copy bug.
 
 ## [v3.4.0] - 2022-11-28
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.4.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.4.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
+
+### Fixed
+
 - Fixed missing use of `configuration.system.rootDir` to set the mount path; this means that the buffer paths can be kept as `/fluentd/buffers` when migrating from `v2`.
 - Fixed bug in creating dashboards.
 - Fixed missing service annotations in template.
 
 ## [v3.3.0] - 2022-11-15
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.3.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.3.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 
 ## [v3.2.0] - 2022-11-02
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.2.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.2.0) (_Fluentd_ [v1.15.3](https://github.com/fluent/fluentd/releases/tag/v1.15.3)).
 
 ## [v3.1.0] - 2022-11-02
 
-### All Changes
+### Changed
 
 - Updated _Fluentd Aggregator_ OCI image to [v2.1.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.1.0) (_Fluentd_ [v1.15.2](https://github.com/fluent/fluentd/releases/tag/v1.15.2)).
 
 ## [v3.0.2] - 2022-10-12
 
-### All Changes
+### Added
 
 - Added a new `serviceAccount.labels` value to add labels to the `ServiceAccount`.
 
 ## [v3.0.1] - 2022-10-12
 
-### All Changes
+### Added
 
 - Added support for setting an IPv6 bind address.
 
@@ -214,9 +217,8 @@ This release introduces a new strongly typed configuration mode which isn't comp
 
 The Fluentd configuration is now much more structured to make it much harder to break chart functionality while configuring Fluentd. This change starts with the replacement of `config` with `configuration` and is founded on the new `routes` sub-value which is used to set up message routing in a strongly typed way. This design reduces the raw Fluentd configuration inputs to the `filters` value for global filters and the nested `config` value for each route.
 
-### All Changes
+### Added
 
-- Updated _Fluentd Aggregator_ Docker image to [v2.0.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.0.0) (_Fluentd_ [v1.15.2](https://github.com/fluent/fluentd/releases/tag/v1.15.2)).
 - Added explicit namespace declaration in templates.
 - Added `imagePullSecrets` value.
 - Added `serviceAccount.automountToken` to default token binding to `false`.
@@ -225,7 +227,14 @@ The Fluentd configuration is now much more structured to make it much harder to 
 - Added `topologySpreadConstraints` value.
 - Added `persistence.legacy` value to support migrating from `v2` chart versions.
 - Added `configuration` value to support a strongly typed configuration pattern.
+
+### Changed
+
+- Updated _Fluentd Aggregator_ Docker image to [v2.0.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.0.0) (_Fluentd_ [v1.15.2](https://github.com/fluent/fluentd/releases/tag/v1.15.2)).
 - Changed `PersistentVolume` mount point to `/fluentd/state`; use this path for buffers.
+
+### Removed
+
 - Removed `image.pullSecrets` as they've been replaced by `imagePullSecrets`.
 - Removed `service.ports` value as the ports are now part of the `configuration` value.
 - Removed `metrics` value, see `serviceMonitor` and `configuration.metrics`.
@@ -475,3 +484,13 @@ The Fluentd configuration is now much more structured to make it much harder to 
 ### Added
 
 - Initial release
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v4.1.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.3
+[v4.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.2
+[v4.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.1
+[v4.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.0
+[v4.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.0.0

@@ -1,37 +1,45 @@
 # Overprovisioner Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+<!--
+### Added - For new features.
+### Changed - For changes in existing functionality.
+### Deprecated - For soon-to-be removed features.
+### Removed - For now removed features.
+### Fixed - For any bug fixes.
+### Security - In case of vulnerabilities.
+-->
 
----
-
-<!-- ## [vX.Y.Z] - UNRELEASED
-### Highlights
-### All Changes
-- Added
-- Updated
-- Changed
-- Fixed
-- Deprecated
-- Removed -->
+## [UNRELEASED]
 
 ## [v0.2.0] - 2023-03-09
 
-### All Changes
+### Added
 
 - Added support for automatic scaling using the cluster proportional autoscaler.
+
+### Changed
+
 - Changed how the pause pod capacity works; use the new `capacity` values.
 
 ## [v0.1.1] - 2023-01-19
 
-### All Changes
+### Fixed
 
 - Fixed security context configuration.
 
 ## [v0.1.0] - 2023-01-17
 
-### All Changes
+### Added
 
 - Initial release.
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/overprovisioner
+[v0.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.2.0
+[v0.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.1.1
+[v0.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.1.0

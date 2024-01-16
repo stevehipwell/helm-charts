@@ -1,15 +1,9 @@
 # Vertical Pod Autoscaler Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -42,18 +36,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.2.0] - 2023-02-22
 
-### All Changes
+### Changed
 
 - Updated the _Vertical Pod Autoscaler_ image version to [v0.13.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.13.0).
 
 ## [v1.1.0] - 2023-02-22
 
-### All Changes
+### Changed
 
 - Updated the _Vertical Pod Autoscaler_ image version to [v0.12.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.12.0).
 
 ## [v1.0.0] - 2022-12-08
 
-### All Changes
+### Added
 
 - Initial release.
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.4.0
+[v1.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.3.0
+[v1.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.2.0
+[v1.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.1.0
+[v1.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.0.0

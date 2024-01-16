@@ -1,15 +1,9 @@
 # Thanos Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -110,25 +104,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.12.4] - 2023-05-02
 
-### All Changes
+### Fixed
 
 - Fixed missing Thanos rule service when ingress is enabled.
 
 ## [v1.12.3] - 2023-04-28
 
-### All Changes
+### Fixed
 
 - Fixed incorrect affinity and topology spread logic.
 
 ## [v1.12.2] - 2023-04-28
 
-### All Changes
+### Fixed
 
 - Fixed incorrect affinity and topology spread logic.
 
 ## [v1.12.1] - 2023-03-29
 
-### All Changes
+### Fixed
 
 - Fixed missing Receive Router `receive_replica` label.
 - Fixed Receive Router hashring mount path.
@@ -136,88 +130,115 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.12.0] - 2023-03-28
 
-### All Changes
+### Added
+
+- Added support for specifying `objstoreConfig.value` as an object.
+
+### Changed
 
 - Updated the _Thanos_ image to [v0.31.0](https://github.com/thanos-io/thanos/releases/tag/v0.31.0).
-- Added support for specifying `objstoreConfig.value` as an object.
+
+### Fixed
+
 - Fixed missing key in Rule config map.
 
 ## [v1.11.1] - 2023-03-09
 
-### All Changes
+### Added
 
 - Added a default `labelSelector` for the release pods to `topologySpreadConstraints`, `affinity.podAffinity` & `affinity.podAntiAffinity`.
+
+### Fixed
+
 - Fixed receive remote write pod name being too long.
 
 ## [v1.11.0] - 2023-02-22
 
-### All Changes
+### Added
 
 - Added support for [Thanos Receive](https://thanos.io/tip/components/receive.md/).
 - Added top level `additionalEndpoints` value to replace `query.additionalStores`.
 - Added top level `additionalReplicaLabels` value to replace `query.replicaLabels`.
 - Added support for `topologySpreadConstraints`.
+
+### Changed
+
 - Changed implementation to use `--endpoint` instead of store `--store`.
+
+### Fixed
+
 - Fixed missing Query replica label arguments.
 - Fixed missing Rule replica label drop arguments.
+
+### Deprecated
+
 - Deprecated `query.additionalStores`.
 - Deprecated `query.replicaLabels`.
+
+### Removed
+
 - Removed non-headless services where there is a headless service present.
 
 ## [v1.10.2] - 2023-02-01
 
-### All Changes
+### Changed
 
 - Updated the _Thanos_ image to [v0.30.2](https://github.com/thanos-io/thanos/releases/tag/v0.30.2).
 
 ## [v1.10.1] - 2023-01-05
 
-### All Changes
+### Changed
 
 - Updated the _Thanos_ image to [v0.30.1](https://github.com/thanos-io/thanos/releases/tag/v0.30.1).
 
 ## [v1.10.0] - 2023-01-03
 
-### All Changes
+### Changed
 
 - Updated the _Thanos_ image to [v0.30.0](https://github.com/thanos-io/thanos/releases/tag/v0.30.0).
 
 ## [v1.9.1] - 2022-12-18
 
-### All Changes
+### Fixed
 
 - Fixed incorrect `HorizontalPodAutoscaler` API version for K8s versions lower than `v1.23`.
 - Fixed incorrect `PodDisruptionBudget` API version for K8s versions lower than `v1.21`.
 
 ## [v1.9.0] - 2022-12-02
 
-### All Changes
+### Changed
 
 - Changed `HorizontalPodAutoscaler` API version to `autoscaling/v2beta2` for K8s versions lower than `v1.23`.
+
+### Fixed
+
 - Fixed incorrect `HorizontalPodAutoscaler` implementation for `autoscaling/v2` API version.
 
 ## [v1.8.0] - 2022-12-02
 
-### All Changes
+### Added
 
 - Added support for annotating the services.
+
+### Fixed
+
 - Fixed incorrect `HorizontalPodAutoscaler` API version; this will now be `autoscaling/v2` from K8s `v1.23` upwards.
 
 ## [v1.7.0] - 2022-11-03
 
-### All Changes
+### Changed
 
 - Updated the _Thanos_ image to [v0.29.0](https://github.com/thanos-io/thanos/releases/tag/v0.29.0).
 
 ## [v1.6.2] - 2022-10-24
 
-### All Changes
+### Added
 
 - Added new `compact.serviceAccount.labels`, `query.serviceAccount.labels`, `queryFrontend.serviceAccount.labels`, `rule.serviceAccount.labels` & `storeGateway.serviceAccount.labels` values to add labels to the `ServiceAccount` resources.
 
 ## [v1.6.1] - 2022-10-07
 
-### All Changes
+### Changed
 
 - Updated the _Thanos_ image to [v0.28.1](https://github.com/thanos-io/thanos/releases/tag/v0.28.1).
 
@@ -410,3 +431,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial release based on [v0.22.0](https://github.com/thanos-io/thanos/releases/tag/v0.22.0).
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.15.0
+[v1.14.5]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.5
+[v1.14.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.4
+[v1.14.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.3
+[v1.14.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.2
+[v1.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.1
+[v1.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.14.0
+[v1.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.13.2
+[v1.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.13.1
+[v1.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.13.0
+[v1.12.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.12.4
+[v1.12.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.12.3
+[v1.12.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.12.2
+[v1.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.12.1
+[v1.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.12.0
+[v1.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.11.1
+[v1.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.11.0
+[v1.10.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.10.2
+[v1.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.10.1
+[v1.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.10.0
+[v1.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.9.1
+[v1.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.9.0
+[v1.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.8.0
+[v1.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.7.0
+[v1.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.6.2
+[v1.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.6.1
+[v1.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.6.0
+[v1.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.5.0
+[v1.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.4.0
+[v1.3.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.3.2
+[v1.3.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.3.1
+[v1.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.3.0
+[v1.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.2.0
+[v1.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.1.2
+[v1.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.1.1
+[v1.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.1.0
+[v1.0.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.0.3
+[v1.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.0.2
+[v1.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.0.1
+[v1.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.0.0
+[v0.10.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.10.2
+[v0.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.10.1
+[v0.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.10.0
+[v0.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.9.0
+[v0.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.8.0
+[v0.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.7.0
+[v0.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.6.0
+[v0.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.5.0
+[v0.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.4.0
+[v0.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.3.0
+[v0.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.2.0
+[v0.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-0.1.0

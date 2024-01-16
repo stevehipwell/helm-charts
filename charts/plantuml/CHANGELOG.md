@@ -1,11 +1,7 @@
 # PlantUML Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
 ### Added - For new features.
@@ -42,13 +38,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v3.26.0] - 2023-10-25
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ OCI image to [v1.2023.12](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.12) ([Changes](https://plantuml.com/changes)).
 
 ## [v3.25.0] - 2023-07-20
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ OCI image to [v1.2023.10](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.10) ([Changes](https://plantuml.com/changes)).
 
@@ -60,72 +56,81 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v3.24.0] - 2023-05-23
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ OCI image to [v1.2023.8](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.7)).
 
 ## [v3.23.0] - 2023-05-16
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ OCI image to [v1.2023.7](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.7)).
 
 ## [v3.22.0] - 2023-04-25
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2023.6](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.6)).
 
 ## [v3.21.0] - 2023-04-12
 
-### All Changes
+### Added
 
-- Updated the _PlantUML_ image to [v1.2023.5](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.5)).
 - Added support for `topologySpreadConstraints` with a default `labelSelector` for the release pods.
 - Added a default `labelSelector` for the release pods to `affinity.podAffinity` & `affinity.podAntiAffinity`.
 
+### Changed
+
+- Updated the _PlantUML_ image to [v1.2023.5](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.5)).
+
 ## [v3.20.0] - 2023-01-30
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2023.1](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.1)).
 
 ## [v3.19.1] - 2023-01-19
 
-### All Changes
+### Fixed
 
 - Fixed a bug in the default security context implementation.
 
 ## [v3.19.0] - 2023-01-19
 
-### All Changes
+### Added
+
+- Added an empty directory at `/tmp/jetty` to support using a read-only root file system.
+
+### Changed
 
 - Changed the default pod security context to run as non-root with a read-only root file system.
-- Added an empty directory at `/tmp/jetty` to support using a read-only root file system.
 
 ## [v3.18.0] - 2023-01-13
 
-### All Changes
+### Added
+
+- Added support for `terminationGracePeriodSeconds`.
+
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2023.0](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.0)).
-- Added support for `terminationGracePeriodSeconds`.
 
 ## [v3.17.0] - 2022-12-08
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2022.14](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2022.14)).
 - Updated `HorizontalPodAutoscaler` API to use either `autoscaling/v2` or `autoscaling/v2beta2`.
 
 ## [v3.16.0] - 2022-11-21
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2022.13](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2022.13)).
 
 ## [v3.15.0] - 2022-11-07
 
-### All Changes
+### Changed
 
 - Updated the _PlantUML_ image to [v1.2022.12](https://plantuml.com/changes) ([GH](https://github.com/plantuml/plantuml-server/releases/tag/v1.2022.12)).
 
@@ -351,7 +356,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- n/a (bumping to fix failed CI job)
+- Bumping to fix failed CI job.
 
 ## [v1.1.0] - 2020-10-09
 
@@ -368,4 +373,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of [PlantUML](https://github.com/plantuml/plantuml-server) _v1.2020.18_
+- Initial release of [PlantUML](https://github.com/plantuml/plantuml-server) _v1.2020.18_.
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.27.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.27.0
+[v3.26.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.26.0
+[v3.25.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.25.0
