@@ -1,6 +1,6 @@
 # overprovisioner
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 Helm chart for overprovisioning Kubernetes clusters.
 
@@ -23,7 +23,7 @@ Helm chart for overprovisioning Kubernetes clusters.
 | autoscaler.affinity | object | `{}` | Affinity settings for scheduling the _Autoscaler_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | autoscaler.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Autoscaler_ component default container. |
 | autoscaler.image.repository | string | `"registry.k8s.io/cpa/cluster-proportional-autoscaler"` | Image repository for the _Autoscaler_ component default container. |
-| autoscaler.image.tag | string | `"1.8.6"` | Image tag for the _Autoscaler_ component default container. |
+| autoscaler.image.tag | string | `"v1.8.9"` | Image tag for the _Autoscaler_ component default container. |
 | autoscaler.logLevel | int | `2` | Log level for the _Autoscaler_ component. |
 | autoscaler.nodeSelector | object | `{}` | Node selector labels for scheduling the _Autoscaler_ component. |
 | autoscaler.podAnnotations | object | `{}` | Annotations to add to the _Autoscaler_ pod. |
