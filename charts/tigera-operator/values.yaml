@@ -1,86 +1,123 @@
-# Default values for istio-operator.
+# Default values for tigera-operator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-image:
-  repository: quay.io/tigera/operator
-  # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
-  tag: ""
-  pullPolicy: IfNotPresent
+# -- (string) Override the name of the chart.
+nameOverride:
 
-imagePullSecrets: []
-# - registrySecretName
+# -- (string) Override the full name of the chart.
+fullnameOverride:
 
-nameOverride: ""
-fullnameOverride: ""
-
+# -- Labels to add to all chart resources.
 commonLabels: {}
 
+# -- Image pull secrets.
+imagePullSecrets: []
+
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- If `true`, create a new `ServiceAccount`.
   create: true
-  # Labels to add to the service account
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created service account name, if set and `serviceAccount.create` is `false` then this will define an existing service account to use.
+  name:
+  # -- Labels to add to the service account.
   labels: {}
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account.
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
 
 rbac:
-  # Specifies whether RBAC resources should be created
+  # -- If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API.
   create: true
+  # -- Additional rules to add to the `ClusterRole`.
   customRules:
 
+# -- Labels to add to the pod.
 podLabels: {}
+
+# -- Annotations to add to the pod.
 podAnnotations: {}
 
+# -- Security context for the pod.
+# @default -- See _values.yaml_
 podSecurityContext: {}
 
-securityContext: {}
+# -- (string) Priority class name for the pod.
+priorityClassName:
 
-priorityClassName: ""
+# -- (int) Termination grace period for the pod in seconds.
+terminationGracePeriodSeconds:
 
+# -- If `true`, the pod will use the host network namespace. This can be set to `false` if _Calico_ is not the CNI.
 hostNetwork: true
+
+# -- Pod DNS policy.
 dnsPolicy: ClusterFirstWithHostNet
 
-serviceMonitor:
-  enabled: false
-  additionalLabels: {}
-  endpointConfig: {}
-  interval:
+# -- Security context for the default container.
+# @default -- See _values.yaml_
+securityContext: {}
 
-resources: {}
+image:
+  # -- Image repository for the default container.
+  repository: quay.io/tigera/operator
+  # -- (string) Image tag for the default container, this will default to `printf "v%s" .Chart.AppVersion` if not set.
+  tag:
+  # -- Image pull policy for the default container.
+  pullPolicy: IfNotPresent
 
-nodeSelector:
-  kubernetes.io/os: linux
-
-affinity: {}
-
-topologySpreadConstraints: []
-
-tolerations: []
-
+# -- Environment variables for the default container.
 env: []
 #   - name: VARIABLE
 #     value: my-value
 
+# -- Environment variables from a config map or secret for the default container (**DEPRECATED**).
 envFrom: []
 #   - configMapRef:
 #       name: kubernetes-services-endpoint
 #       optional: true
 
+# -- Extra args for the default container.
 args: []
 
-installation:
+# -- Resources for the default container.
+resources: {}
+
+# -- Node selector labels for scheduling.
+nodeSelector:
+  kubernetes.io/os: linux
+
+# -- Affinity settings for scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
+affinity: {}
+
+# -- Topology spread constraints for scheduling. If an explicit label selector is not provided one will be created from the pod selector labels.
+topologySpreadConstraints: []
+
+# -- Node taints that will be tolerated for scheduling.
+tolerations: []
+
+serviceMonitor:
+  # -- If `true`, create a `ServiceMonitor` resource to support collecting metrics via the _Prometheus Operator_.
   enabled: false
+  # -- Additional labels for the service monitor.
+  additionalLabels: {}
+  # -- Additional endpoint configuration for the service monitor endpoint.
+  endpointConfig: {}
+  # -- (int) _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**).
+  interval:
+
+installation:
+  # -- If `true`, install a _Calico_ control plane according to the `installation.spec` value.
+  enabled: false
+  # -- [Tigera Operator Spec](https://docs.projectcalico.org/reference/installation/api#operator.tigera.io/v1.Installation) to deploy _Calico_ with.
   spec:
     variant: Calico
     registry: quay.io/
 
 apiServer:
+  # -- If `true`, install an `APIServer` control plane according to the `apiServer.spec`.
   enabled: false
+  # -- [APIServer Spec](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) to enable kubectl to manage _Calico_ APIs.
   spec: {}
 
 uninstall:
+  # -- If `true`, run a `Job` as a pre-delete _Helm_ hook to make sure that _Tigera Operator_ can be uninstalled.
   enabled: true
