@@ -122,7 +122,7 @@ autoscaler:
     # -- Image repository for the _Autoscaler_ component default container.
     repository: registry.k8s.io/cpa/cluster-proportional-autoscaler
     # -- Image tag for the _Autoscaler_ component default container.
-    tag: 1.8.6
+    tag: v1.8.9
     # -- Image pull policy for the _Autoscaler_ component default container.
     pullPolicy: IfNotPresent
 
