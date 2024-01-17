@@ -1,6 +1,6 @@
 apiVersion: v2
 name: tigera-operator
-description: Helm chart for the Tigera Operator for Calico.
+description: Helm chart to install the Tigera Operator for managing Calico.
 type: application
 version: 2.9.0
 appVersion: 1.32.3

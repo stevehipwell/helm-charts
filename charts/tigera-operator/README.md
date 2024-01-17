@@ -1,62 +1,83 @@
-# Tigera Operator for Calico
+# tigera-operator
+
+![Version: 2.9.0](https://img.shields.io/badge/Version-2.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.32.3](https://img.shields.io/badge/AppVersion-1.32.3-informational?style=flat-square)
 
 The [Tigera Operator](https://www.tigera.io/) is a Kubernetes operator which manages the lifecycle of a [Calico](https://www.tigera.io/project-calico/) or [Calico Enterprise](https://www.tigera.io/tigera-products/calico-enterprise/) installation on Kubernetes. Its goal is to make installation, upgrades, and ongoing lifecycle management of _Calico_ and _Calico Enterprise_ as simple and reliable as possible.
 
 It is possible to use the _Tigera Operator_ for other use-cases by installing additional CRDs and adding custom RBAC rules via `rbac.customRules`.
 
+**Homepage:** <https://www.tigera.io/>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
+
+## Source Code
+
+* <https://github.com/tigera/operator>
+* <https://github.com/projectcalico/calico>
+* <https://github.com/stevehipwell/helm-charts/>
+
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+To install the chart using the recommended OCI method you can use the following command.
+
+```shell
+helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/tigera-operator --version 2.9.0
+```
+
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.9.0
 ```
 
-After you've installed the repo you can install the chart.
+## Values
 
-```shell
-helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/tigera-operator
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` | Affinity settings for scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| apiServer.enabled | bool | `false` | If `true`, install an `APIServer` control plane according to the `apiServer.spec`. |
+| apiServer.spec | object | `{}` | [APIServer Spec](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) to enable kubectl to manage _Calico_ APIs. |
+| args | list | `[]` | Extra args for the default container. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| dnsPolicy | string | `"ClusterFirstWithHostNet"` | Pod DNS policy. |
+| env | list | `[]` | Environment variables for the default container. |
+| envFrom | list | `[]` | Environment variables from a config map or secret for the default container (**DEPRECATED**). |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| hostNetwork | bool | `true` | If `true`, the pod will use the host network namespace. This can be set to `false` if _Calico_ is not the CNI. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
+| image.repository | string | `"quay.io/tigera/operator"` | Image repository for the default container. |
+| image.tag | string | `nil` | Image tag for the default container, this will default to `printf "v%s" .Chart.AppVersion` if not set. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| installation.enabled | bool | `false` | If `true`, install a _Calico_ control plane according to the `installation.spec` value. |
+| installation.spec | object | `{"registry":"quay.io/","variant":"Calico"}` | [Tigera Operator Spec](https://docs.projectcalico.org/reference/installation/api#operator.tigera.io/v1.Installation) to deploy _Calico_ with. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node selector labels for scheduling. |
+| podAnnotations | object | `{}` | Annotations to add to the pod. |
+| podLabels | object | `{}` | Labels to add to the pod. |
+| podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
+| priorityClassName | string | `nil` | Priority class name for the pod. |
+| rbac.create | bool | `true` | If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API. |
+| rbac.customRules | string | `nil` | Additional rules to add to the `ClusterRole`. |
+| resources | object | `{}` | Resources for the default container. |
+| securityContext | object | See _values.yaml_ | Security context for the default container. |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
+| serviceAccount.labels | object | `{}` | Labels to add to the service account. |
+| serviceAccount.name | string | `nil` | If this is set and `serviceAccount.create` is `true` this will be used for the created service account name, if set and `serviceAccount.create` is `false` then this will define an existing service account to use. |
+| serviceMonitor.additionalLabels | object | `{}` | Additional labels for the service monitor. |
+| serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support collecting metrics via the _Prometheus Operator_. |
+| serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
+| serviceMonitor.interval | int | `nil` | _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**). |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
+| tolerations | list | `[]` | Node taints that will be tolerated for scheduling. |
+| topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| uninstall.enabled | bool | `true` | If `true`, run a `Job` as a pre-delete _Helm_ hook to make sure that _Tigera Operator_ can be uninstalled. |
 
-## Configuration
+----------------------------------------------
 
-The following table lists the configurable parameters of the _Tigera Operator_ chart and their default values.
-
-| Parameter                         | Description                                                                                                                                                                 | Default                       |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `image.repository`                | Image repository.                                                                                                                                                           | `quay.io/tigera/operator`     |
-| `image.tag`                       | Image tag.                                                                                                                                                                  | `.Chart.AppVersion`           |
-| `image.pullPolicy`                | Image pull policy.                                                                                                                                                          | `IfNotPresent`                |
-| `imagePullSecrets`                | Image pull secrets.                                                                                                                                                         | `[]`                          |
-| `nameOverride`                    | Override the `name` of the chart.                                                                                                                                           | `nil`                         |
-| `fullnameOverride`                | Override the `fullname` of the chart.                                                                                                                                       | `nil`                         |
-| `commonLabels`                    | Labels to add to all chart resources.                                                                                                                                       | `{}`                          |
-| `serviceAccount.create`           | If `true`, create a new service account.                                                                                                                                    | `true`                        |
-| `serviceAccount.labels`           | Labels to add to the service account.                                                                                                                                       | `{}`                          |
-| `serviceAccount.annotations`      | Annotations to add to the service account.                                                                                                                                  | `{}`                          |
-| `serviceAccount.name`             | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the full name template.                                             | `nil`                         |
-| `rbac.create`                     | If `true`, create a cluster role and a cluster role binding.                                                                                                                | `true`                        |
-| `rbac.customRules`                | Custom rules to add to the cluster role, these are needed to use advanced CRDs.                                                                                             | `[]`                          |
-| `podLabels`                       | Labels to add to the pod.                                                                                                                                                   | `{}`                          |
-| `podAnnotations`                  | Annotations to add to the pod.                                                                                                                                              | `{}`                          |
-| `podSecurityContext`              | Security context for the pod.                                                                                                                                               | `{}`                          |
-| `securityContext`                 | Security context for the _tigera-operator_ container.                                                                                                                       | `{}`                          |
-| `priorityClassName`               | Priority class name to use.                                                                                                                                                 | `""`                          |
-| `hostNetwork`                     | If `true` the operator should use the host network, this can be set to `false` if _Calico_ is not the CNI.                                                                  | `true`                        |
-| `dnsPolicy`                       | The DNS policy to use for the operator.                                                                                                                                     | `ClusterFirstWithHostNet`     |
-| `serviceMonitor.enabled`          | If `true`, create a _Prometheus_ service monitor.                                                                                                                           | `false`                       |
-| `serviceMonitor.additionalLabels` | Additional labels to be set on the service monitor.                                                                                                                         | `{}`                          |
-| `serviceMonitor.endpointConfig`   | Additional endpoint configuration for the ServiceMonitor.                                                                                                                   | `{}`                          |
-| `serviceMonitor.interval`         | **DEPRECATED** _Prometheus_ scrape frequency, use `serviceMonitor.endpointConfig.interval` instead.                                                                         | `""`                          |
-| `resources`                       | Resource requests and limits for the _tigera-operator_ container.                                                                                                           | `{}`                          |
-| `nodeSelector`                    | Node labels for pod assignment.                                                                                                                                             | `{ kubernetes.io/os: linux }` |
-| `affinity`                        | Affinity settings for pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. | `{}`                          |
-| `topologySpreadConstraints`       | Topology spread constraints for pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                             | `[]`                          |
-| `tolerations`                     | Tolerations for pod assignment.                                                                                                                                             | `[]`                          |
-| `env`                             | Environment variables for the default container.                                                                                                                            | `[]`                          |
-| `args`                            | Args for the default container.                                                                                                                                             | `[]`                          |
-| `installation.enabled`            | If `true`, install _Calico_ control plane according to the `installation.spec`.                                                                                             | `false`                       |
-| `installation.spec`               | The [Tigera Operator Spec](https://docs.projectcalico.org/reference/installation/api#operator.tigera.io/v1.Installation) to deploy _Calico_ with.                           | `{}`                          |
-| `apiServer.enabled`               | If `true`, install an `APIServer` plane according to the `apiServer.spec`.                                                                                                  | `false`                       |
-| `apiServer.spec`                  | The [APIServer Spec](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) to enable kubectl to manage _Calico_ APIs.                                         | `{}`                          |
-| `uninstall.enabled`               | If `true`, run a `Job` as a pre-delete _Helm_ hook to make sure that _Tigera Operator_ can be uninstalled.                                                                  | `true`                        |
+Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/helm-docs/).
