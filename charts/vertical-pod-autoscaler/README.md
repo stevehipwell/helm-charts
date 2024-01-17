@@ -1,4 +1,6 @@
-# Vertical Pod Autoscaler Helm Chart
+# vertical-pod-autoscaler
+
+![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 The [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/) (VPA) frees the users from necessity of setting up-to-date resource limits and requests for the containers in their pods. When configured, it will set the requests automatically based on usage and thus allow proper scheduling onto nodes so that appropriate resource amount is available for each pod. It will also maintain ratios between limits and requests that were specified in initial containers configuration.
 
@@ -11,113 +13,137 @@ This chart manages the `MutatingWebhookConfiguration` outside of the workload so
 - [Recommender parameters](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/FAQ.md#what-are-the-parameters-to-vpa-recommender)
 - [Updater parameters](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/FAQ.md#what-are-the-parameters-to-vpa-updater)
 
-To enable vertical pod autoscaling on your cluster please follow the installation procedure described below.
+**Homepage:** <https://github.com/kubernetes/autoscaler/>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
+
+## Source Code
+
+* <https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/>
+* <https://github.com/stevehipwell/helm-charts/>
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+To install the chart using the recommended OCI method you can use the following command.
+
+```shell
+helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.4.0
+```
+
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.4.0
 ```
 
-After you've installed the repo you can install the chart.
+## Values
 
-```shell
-helm upgrade --install --namespace kube-system vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| admissionController.affinity | object | `{}` | Affinity settings for scheduling the _Admission Controller_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| admissionController.certManager.enabled | bool | `false` | If `true`, create a `Certificate` resource for the _Admission Controller_ webhook. |
+| admissionController.certManager.issuerKind | string | `"Issuer"` | `Issuer` kind for the _Admission Controller_ webhook certificate. |
+| admissionController.certManager.issuerName | string | `nil` | `Issuer` name for the _Admission Controller_ webhook certificate; if not provided an `Issuer` will be created. |
+| admissionController.extraArgs | list | `[]` | Additional args for the _Admission Controller_ default container. |
+| admissionController.extraEnv | list | `[]` | Additional environment variables for the _Admission Controller_ default container. |
+| admissionController.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Admission Controller_ default container. |
+| admissionController.image.repository | string | `"registry.k8s.io/autoscaling/vpa-admission-controller"` | Image repository for the _Admission Controller_ default container. |
+| admissionController.image.tag | string | `nil` | Image tag for the _Admission Controller_ default container; this will default to `.Chart.AppVersion` if not set. |
+| admissionController.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Admission Controller_ default container. |
+| admissionController.nodeSelector | object | `{}` | Node selector labels for scheduling the _Admission Controller_. |
+| admissionController.podAnnotations | object | `{}` | Annotations to add to the _Admission Controller_ pod. |
+| admissionController.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Admission Controller_. |
+| admissionController.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Admission Controller_; either a number or a percentage. |
+| admissionController.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Admission Controller_; either a number or a percentage. |
+| admissionController.podLabels | object | `{}` | Labels to add to the _Admission Controller_ pod. |
+| admissionController.podSecurityContext | object | See _values.yaml_ | Security context for the _Admission Controller_ pod. |
+| admissionController.priorityClassName | string | `nil` | Priority class name for the _Admission Controller_. |
+| admissionController.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Admission Controller_ default container. |
+| admissionController.replicas | int | `1` | Number of _Admission Controller_ replicas to create. |
+| admissionController.resources | object | `{}` | Resources for the _Admission Controller_ default container. |
+| admissionController.securityContext | object | See _values.yaml_ | Security context for the _Admission Controller_ default container. |
+| admissionController.service.annotations | object | `{}` | Annotations to add to the _Admission Controller_ service. |
+| admissionController.serviceAccount.annotations | object | `{}` | Annotations to add to the _Admission Controller_ service account. |
+| admissionController.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Admission Controller_. |
+| admissionController.serviceAccount.labels | object | `{}` | Labels to add to the _Admission Controller_ service account. |
+| admissionController.serviceAccount.name | string | `nil` | If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Admission Controller_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use. |
+| admissionController.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Admission Controller_; in seconds. |
+| admissionController.tolerations | list | `[]` | Node taints the _Admission Controller_ will be tolerate for scheduling. |
+| admissionController.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Admission Controller_ component. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| admissionController.updateStrategy | object | `{}` | Update strategy for the _Admission Controller_. |
+| admissionController.webhook.name | string | `"vpa-webhook-config"` | Name of the _Admission Controller_ webhook to create. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| logLevel | int | `4` | Log level for all components. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| rbac.create | bool | `true` | If `true`, create `ClusterRole` & `ClusterRoleBinding` resources to enable access to the Kubernetes API. |
+| recommender.affinity | object | `{}` | Affinity settings for scheduling the _Recommender_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| recommender.extraArgs | list | `[]` | Additional args for the _Recommender_ default container. |
+| recommender.extraEnv | list | `[]` | Additional environment variables for the _Recommender_ default container. |
+| recommender.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Recommender_ default container. |
+| recommender.image.repository | string | `"registry.k8s.io/autoscaling/vpa-recommender"` | Image repository for the _Recommender_ default container. |
+| recommender.image.tag | string | `nil` | Image tag for the _Recommender_ default container; this will default to `.Chart.AppVersion` if not set. |
+| recommender.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Recommender_ default container. |
+| recommender.nodeSelector | object | `{}` | Node selector labels for scheduling the _Recommender_. |
+| recommender.podAnnotations | object | `{}` | Annotations to add to the _Recommender_ pod. |
+| recommender.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Recommender_. |
+| recommender.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Recommender_; either a number or a percentage. |
+| recommender.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Recommender_; either a number or a percentage. |
+| recommender.podLabels | object | `{}` | Labels to add to the _Recommender_ pod. |
+| recommender.podSecurityContext | object | See _values.yaml_ | Security context for the _Recommender_ pod. |
+| recommender.priorityClassName | string | `nil` | Priority class name for the _Recommender_. |
+| recommender.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Recommender_ default container. |
+| recommender.replicas | int | `1` | Number of _Recommender_ replicas to create. |
+| recommender.resources | object | `{}` | Resources for the _Recommender_ default container. |
+| recommender.securityContext | object | See _values.yaml_ | Security context for the _Recommender_ default container. |
+| recommender.service.annotations | object | `{}` | Annotations to add to the _Recommender_ service. |
+| recommender.serviceAccount.annotations | object | `{}` | Annotations to add to the _Recommender_ service account. |
+| recommender.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Recommender_. |
+| recommender.serviceAccount.labels | object | `{}` | Labels to add to the _Recommender_ service account. |
+| recommender.serviceAccount.name | string | `nil` | If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Recommender_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use. |
+| recommender.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Recommender_; in seconds. |
+| recommender.tolerations | list | `[]` | Node taints the _Recommender_ will be tolerate for scheduling. |
+| recommender.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Recommender_ component. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| recommender.updateStrategy | object | `{}` | Update strategy for the _Recommender_. |
+| recommenderOnly | bool | `false` | If `true`, only deploy the _Recommender_ component. |
+| serviceMonitor.additionalLabels | object | `{}` | Additional labels for the service monitor. |
+| serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` to support collecting metrics via the _Prometheus Operator_. |
+| serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
+| updater.affinity | object | `{}` | Affinity settings for scheduling the _Updater_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| updater.extraArgs | list | `[]` | Additional args for the _Updater_ default container. |
+| updater.extraEnv | list | `[]` | Additional environment variables for the _Updater_ default container. |
+| updater.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Updater_ default container. |
+| updater.image.repository | string | `"registry.k8s.io/autoscaling/vpa-updater"` | Image repository for the _Updater_ default container. |
+| updater.image.tag | string | `nil` | Image tag for the _Updater_ default container; this will default to `.Chart.AppVersion` if not set. |
+| updater.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Updater_ default container. |
+| updater.nodeSelector | object | `{}` | Node selector labels for scheduling the _Updater_. |
+| updater.podAnnotations | object | `{}` | Annotations to add to the _Updater_ pod. |
+| updater.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Updater_. |
+| updater.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Updater_; either a number or a percentage. |
+| updater.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Updater_; either a number or a percentage. |
+| updater.podLabels | object | `{}` | Labels to add to the _Updater_ pod. |
+| updater.podSecurityContext | object | See _values.yaml_ | Security context for the _Updater_ pod. |
+| updater.priorityClassName | string | `nil` | Priority class name for the _Updater_. |
+| updater.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Updater_ default container. |
+| updater.replicas | int | `1` | Number of _Updater_ replicas to create. |
+| updater.resources | object | `{}` | Resources for the _Updater_ default container. |
+| updater.securityContext | object | See _values.yaml_ | Security context for the _Updater_ default container. |
+| updater.service.annotations | object | `{}` | Annotations to add to the _Updater_ service. |
+| updater.serviceAccount.annotations | object | `{}` | Annotations to add to the _Updater_ service account. |
+| updater.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Updater_. |
+| updater.serviceAccount.labels | object | `{}` | Labels to add to the _Updater_ service account. |
+| updater.serviceAccount.name | string | `nil` | If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Updater_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use. |
+| updater.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Updater_; in seconds. |
+| updater.tolerations | list | `[]` | Node taints the _Updater_ will be tolerate for scheduling. |
+| updater.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Updater_ component. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| updater.updateStrategy | object | `{}` | Update strategy for the _Updater_. |
 
-## Configuration
+----------------------------------------------
 
-The following table lists the configurable parameters of the _Vertical Pod Autoscaler_ Helm chart and their default values.
-
-| Parameter                                                | Description                                                                                                                                                                                      | Default                                  |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
-| `imagePullSecrets`                                       | Image pull secrets.                                                                                                                                                                              | `[]`                                     |
-| `nameOverride`                                           | Override the `name` of the chart.                                                                                                                                                                | `null`                                   |
-| `fullnameOverride`                                       | Override the `fullname` of the chart.                                                                                                                                                            | `null`                                   |
-| `commonLabels`                                           | Labels to add to all chart resources.                                                                                                                                                            | `{}`                                     |
-| `serviceMonitor.enabled`                                 | If `true`, create a _Prometheus_ `ServiceMonitor` for each of the components.                                                                                                                    | `false`                                  |
-| `serviceMonitor.additionalLabels`                        | Additional labels to be set on the `ServiceMonitor`.                                                                                                                                             | `{}`                                     |
-| `serviceMonitor.endpointConfig`                          | Additional endpoint configuration for the `ServiceMonitor`.                                                                                                                                      | `{}`                                     |
-| `logLevel`                                               | Log level to pass in to `klog`.                                                                                                                                                                  | `4`                                      |
-| `admissionController.serviceAccount.create`              | If `true`, create a new `ServiceAccount` for the admission controller pod.                                                                                                                       | `true`                                   |
-| `admissionController.serviceAccount.labels`              | Labels to add to the admission controller `ServiceAccount`.                                                                                                                                      | `{}`                                     |
-| `admissionController.serviceAccount.annotations`         | Annotations to add to the admission controller `ServiceAccount`.                                                                                                                                 | `{}`                                     |
-| `admissionController.serviceAccount.name`                | Name of the `ServiceAccount` to be used for the admission controller pod. If not set and `admissionController.serviceAccount.create` is `true` a name is generated using the full name template. | `null`                                   |
-| `admissionController.service.annotations`                | Annotations to add to the admission controller `Service`.                                                                                                                                        | `{}`                                     |
-| `admissionController.replicas`                           | The number of replicas of the admission controller pod.                                                                                                                                          | `1`                                      |
-| `admissionController.updateStrategy`                     | Update strategy for the admission controller pod.                                                                                                                                                | `{}`                                     |
-| `admissionController.podDisruptionBudget.enabled`        | If `true`, create a `PodDisruptionBudget` for the admission controller deployment.                                                                                                               | `{}`                                     |
-| `admissionController.podDisruptionBudget.minAvailable`   | Set the admission controller PDB minimum available pods.                                                                                                                                         | `null`                                   |
-| `admissionController.podDisruptionBudget.maxUnavailable` | Set the admission controller PDB maximum unavailable pods.                                                                                                                                       | `null`                                   |
-| `admissionController.podLabels`                          | Labels to add to the admission controller pod.                                                                                                                                                   | `{}`                                     |
-| `admissionController.podAnnotations`                     | Annotations to add to the admission controller pod.                                                                                                                                              | `{}`                                     |
-| `admissionController.podSecurityContext`                 | Security context for the admission controller pod.                                                                                                                                               | `{runAsNonRoot: true, runAsUser: 65534}` |
-| `admissionController.securityContext`                    | Security context for the _admission-controller_ container in the admission controller pod.                                                                                                       | `{}`                                     |
-| `admissionController.priorityClassName`                  | Priority class name to use for the admission controller pod.                                                                                                                                     | `null`                                   |
-| `admissionController.terminationGracePeriodSeconds`      | Termination grace period for the admission controller pod.                                                                                                                                       | `null`                                   |
-| `admissionController.extraEnv`                           | Extra environment variables for the _admission-controller_ container in the admission controller pod.                                                                                            | `[]`                                     |
-| `admissionController.extraArgs`                          | Extra arguments for the _admission-controller_ container in the admission controller pod.                                                                                                        | `[]`                                     |
-| `admissionController.livenessProbe`                      | Liveness probe for the _admission-controller_ container in the admission controller pod.                                                                                                         | See _values.yaml_                        |
-| `admissionController.readinessProbe`                     | Readiness probe for the _admission-controller_ container in the admission controller pod.                                                                                                        | See _values.yaml_                        |
-| `admissionController.resources`                          | Resource requests and limits for the _admission-controller_ container in the admission controller pod.                                                                                           | `{}`                                     |
-| `admissionController.nodeSelector`                       | Node labels for admission controller pod assignment.                                                                                                                                             | `{}`                                     |
-| `admissionController.affinity`                           | Affinity settings for admission controller pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. | `{}`                                     |
-| `admissionController.topologySpreadConstraints`          | Topology spread constraints for admission controller pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                             | `[]`                                     |
-| `admissionController.tolerations`                        | Toleration labels for admission controller pod assignment.                                                                                                                                       | `[]`                                     |
-| `admissionController.webhook.name`                       | Name of the admission controller webhook.                                                                                                                                                        | `vpa-webhook-config`                     |
-| `admissionController.certManager.enabled`                | If `true`, use _Cert Manager_ to create and manage the certificates for the webhook.                                                                                                             | `false`                                  |
-| `admissionController.certManager.issuerKind`             | The type of issuer that `admissionController.certManager.issuerName` refers to.                                                                                                                  | `Issuer`                                 |
-| `admissionController.certManager.issuerName`             | If set, the _Cert Manager_ certificate will be configured to use this issuer.                                                                                                                    |
-| `recommenderOnly`                                        | If `true`, only deploy the VPA recommender. This is useful if you're only wanting to use VPA for resource recommendations.                                                                       | `false`                                  |
-| `recommender.serviceAccount.create`                      | If `true`, create a new `ServiceAccount` for the recommender pod.                                                                                                                                | `true`                                   |
-| `recommender.serviceAccount.labels`                      | Labels to add to the recommender `ServiceAccount`.                                                                                                                                               | `{}`                                     |
-| `recommender.serviceAccount.annotations`                 | Annotations to add to the recommender `ServiceAccount`.                                                                                                                                          | `{}`                                     |
-| `recommender.serviceAccount.name`                        | Name of the `ServiceAccount` to be used for the recommender pod. If not set and `recommender.serviceAccount.create` is `true` a name is generated using the full name template.                  | `null`                                   |
-| `recommender.service.annotations`                        | Annotations to add to the recommender `Service`.                                                                                                                                                 | `{}`                                     |
-| `recommender.replicas`                                   | The number of replicas of the recommender pod.                                                                                                                                                   | `1`                                      |
-| `recommender.updateStrategy`                             | Update strategy for the recommender pod.                                                                                                                                                         | `{}`                                     |
-| `recommender.podDisruptionBudget.enabled`                | If `true`, create a `PodDisruptionBudget` for the recommender deployment.                                                                                                                        | `{}`                                     |
-| `recommender.podDisruptionBudget.minAvailable`           | Set the recommender PDB minimum available pods.                                                                                                                                                  | `null`                                   |
-| `recommender.podDisruptionBudget.maxUnavailable`         | Set the recommender PDB maximum unavailable pods.                                                                                                                                                | `null`                                   |
-| `recommender.podLabels`                                  | Labels to add to the recommender pod.                                                                                                                                                            | `{}`                                     |
-| `recommender.podAnnotations`                             | Annotations to add to the recommender pod.                                                                                                                                                       | `{}`                                     |
-| `recommender.podSecurityContext`                         | Security context for the recommender pod.                                                                                                                                                        | `{runAsNonRoot: true, runAsUser: 65534}` |
-| `recommender.securityContext`                            | Security context for the _recommender_ container in the recommender pod.                                                                                                                         | `{}`                                     |
-| `recommender.priorityClassName`                          | Priority class name to use for the recommender pod.                                                                                                                                              | `null`                                   |
-| `recommender.terminationGracePeriodSeconds`              | Termination grace period for the recommender pod.                                                                                                                                                | `null`                                   |
-| `recommender.extraEnv`                                   | Extra environment variables for the _recommender_ container in the recommender pod.                                                                                                              | `[]`                                     |
-| `recommender.extraArgs`                                  | Extra arguments for the _recommender_ container in the recommender pod.                                                                                                                          | `[]`                                     |
-| `recommender.livenessProbe`                              | Liveness probe for the _recommender_ container in the recommender pod.                                                                                                                           | See _values.yaml_                        |
-| `recommender.readinessProbe`                             | Readiness probe for the _recommender_ container in the recommender pod.                                                                                                                          | See _values.yaml_                        |
-| `recommender.resources`                                  | Resource requests and limits for the _recommender_ container in the recommender pod.                                                                                                             | `{}`                                     |
-| `recommender.nodeSelector`                               | Node labels for recommender pod assignment.                                                                                                                                                      | `{}`                                     |
-| `recommender.affinity`                                   | Affinity settings for recommender pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.          | `{}`                                     |
-| `recommender.topologySpreadConstraints`                  | Topology spread constraints for recommender pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                                      | `[]`                                     |
-| `recommender.tolerations`                                | Toleration labels for recommender pod assignment.                                                                                                                                                | `[]`                                     |
-| `updater.serviceAccount.create`                          | If `true`, create a new `ServiceAccount` for the updater pod.                                                                                                                                    | `true`                                   |
-| `updater.serviceAccount.labels`                          | Labels to add to the updater `ServiceAccount`.                                                                                                                                                   | `{}`                                     |
-| `updater.serviceAccount.annotations`                     | Annotations to add to the updater `ServiceAccount`.                                                                                                                                              | `{}`                                     |
-| `updater.serviceAccount.name`                            | Name of the `ServiceAccount` to be used for the updater pod. If not set and `updater.serviceAccount.create` is `true` a name is generated using the full name template.                          | `null`                                   |
-| `updater.service.annotations`                            | Annotations to add to the updater `Service`.                                                                                                                                                     | `{}`                                     |
-| `updater.replicas`                                       | The number of replicas of the updater pod.                                                                                                                                                       | `1`                                      |
-| `updater.updateStrategy`                                 | Update strategy for the updater pod.                                                                                                                                                             | `{}`                                     |
-| `updater.podDisruptionBudget.enabled`                    | If `true`, create a `PodDisruptionBudget` for the updater deployment.                                                                                                                            | `{}`                                     |
-| `updater.podDisruptionBudget.minAvailable`               | Set the updater PDB minimum available pods.                                                                                                                                                      | `null`                                   |
-| `updater.podDisruptionBudget.maxUnavailable`             | Set the updater PDB maximum unavailable pods.                                                                                                                                                    | `null`                                   |
-| `updater.podLabels`                                      | Labels to add to the updater pod.                                                                                                                                                                | `{}`                                     |
-| `updater.podAnnotations`                                 | Annotations to add to the updater pod.                                                                                                                                                           | `{}`                                     |
-| `updater.podSecurityContext`                             | Security context for the updater pod.                                                                                                                                                            | `{runAsNonRoot: true, runAsUser: 65534}` |
-| `updater.securityContext`                                | Security context for the _updater_ container in the updater pod.                                                                                                                                 | `{}`                                     |
-| `updater.priorityClassName`                              | Priority class name to use for the updater pod.                                                                                                                                                  | `null`                                   |
-| `updater.terminationGracePeriodSeconds`                  | Termination grace period for the updater pod.                                                                                                                                                    | `null`                                   |
-| `updater.extraEnv`                                       | Extra environment variables for the _updater_ container in the updater pod.                                                                                                                      | `[]`                                     |
-| `updater.extraArgs`                                      | Extra arguments for the _updater_ container in the updater pod.                                                                                                                                  | `[]`                                     |
-| `updater.livenessProbe`                                  | Liveness probe for the _updater_ container in the updater pod.                                                                                                                                   | See _values.yaml_                        |
-| `updater.readinessProbe`                                 | Readiness probe for the _updater_ container in the updater pod.                                                                                                                                  | See _values.yaml_                        |
-| `updater.resources`                                      | Resource requests and limits for the _updater_ container in the updater pod.                                                                                                                     | `{}`                                     |
-| `updater.nodeSelector`                                   | Node labels for updater pod assignment.                                                                                                                                                          | `{}`                                     |
-| `updater.affinity`                                       | Affinity settings for updater pod assignment. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.              | `{}`                                     |
-| `updater.topologySpreadConstraints`                      | Topology spread constraints for updater pod assignment. If an explicit label selector is not provided one will be created from the pod selector labels.                                          | `[]`                                     |
-| `updater.tolerations`                                    | Toleration labels for updater pod assignment.                                                                                                                                                    | `[]`                                     |
+Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/helm-docs/).
