@@ -31,18 +31,23 @@ spec:
       serviceAccountName: {{ include "overprovisioner.pause.serviceAccountName" . }}
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65535
-        runAsGroup: 65535
+        fsGroup: 65534
+        seccompProfile:
+          type: RuntimeDefault
       priorityClassName: {{ include "overprovisioner.priorityClassName" . }}
       terminationGracePeriodSeconds: 0
       containers:
         - name: pause
           securityContext:
-            readOnlyRootFilesystem: true
+            privileged: false
             allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65535
+            runAsGroup: 65535
             capabilities:
               drop:
-                - all
+                - ALL
           image: {{ printf "%s:%s" .Values.pause.image.repository (toString .Values.pause.image.tag) }}
           imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
           resources:
