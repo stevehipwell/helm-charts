@@ -1,101 +1,158 @@
-# Default values for vertical-pod-autoscaler.
+# Default values for overprovisioner.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- (string) Override the name of the chart.
 nameOverride:
+
+# -- (string) Override the full name of the chart.
 fullnameOverride:
 
+# -- Labels to add to all chart resources.
 commonLabels: {}
 
+# -- Image pull secrets.
 imagePullSecrets: []
 
 capacity:
+  # -- Capacity mode to use; one of `fixed` or `auto`. If `auto` is used, a [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) deployment will be used to scale the pause pods
   mode: fixed
 
   fixed:
+    # -- Number of pause pod replicas to create; if `capacity.mode` is `fixed`.
     replicas: 1
 
   auto:
+    # -- Number of pause pod replicas to create per cluster core; if `capacity.mode` is `auto`.
     coresPerReplica: 4
+    # -- Number of pause pod replicas to create per cluster node; if `capacity.mode` is `auto`.
     nodesPerReplica: 1
+    # -- Minimum number of pause pod replicas to create; if `capacity.mode` is `auto`.
     minReplicas: 1
+    # -- Maximum number of pause pod replicas to create; if `capacity.mode` is `auto`.
     maxReplicas: 1
 
   resources:
+    # -- CPU resource requests and limits for the pause pods.
     cpu: 10m
+    # -- Memory resource requests and limits for the pause pods.
     memory: 16Mi
 
 priorityClass:
+  # -- If `true`, create a new preemptible `PriorityClass`.
   create: true
+  # -- (string) If this is set and `priorityClass.create` is `true` this will be used for the created priority class name, if set and `priorityClass.create` is `false` then this will define an existing priority class to use.
   name:
+  # -- Labels to add to the priority class.
   labels: {}
+  # -- Annotations to add to the priority class.
   annotations: {}
+  # -- Value for the priority class.
   value: -1
 
 pause:
   serviceAccount:
+    # -- If `true`, create a new `ServiceAccount` for the _Pause_ component.
     create: true
+    # -- (string) If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Pause_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
+    # -- Labels to add to the _Pause_ service account.
     labels: {}
+    # -- Annotations to add to the _Pause_ service account.
     annotations: {}
 
-  image:
-    repository: registry.k8s.io/pause
-    tag: 3.9
-    pullPolicy: IfNotPresent
-
+  # -- Labels to add to the _Pause_ pod.
   podLabels: {}
 
+  # -- Annotations to add to the _Pause_ pod.
   podAnnotations: {}
 
+  image:
+    # -- Image repository for the _Pause_ component default container.
+    repository: registry.k8s.io/pause
+    # -- Image tag for the _Pause_ component default container.
+    tag: 3.9
+    # -- Image pull policy for the _Pause_ component default container.
+    pullPolicy: IfNotPresent
+
+  # -- Node selector labels for scheduling the _Pause_ component.
   nodeSelector: {}
 
+  # -- Affinity settings for scheduling the _Pause_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
   affinity: {}
 
+  # -- Topology spread constraints for scheduling for the _Pause_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
   topologySpreadConstraints: []
 
+  # -- Node taints the _Pause_ component will tolerate for scheduling.
   tolerations: []
 
 autoscaler:
   serviceAccount:
+    # -- If `true`, create a new `ServiceAccount` for the _Autoscaler_ component.
     create: true
+    # -- (string) If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Autoscaler_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
+    # -- Labels to add to the _Autoscaler_ service account.
     labels: {}
+    # -- Annotations to add to the _Autoscaler_ service account.
     annotations: {}
 
-  image:
-    repository: registry.k8s.io/cpa/cluster-proportional-autoscaler
-    tag: 1.8.6
-    pullPolicy: IfNotPresent
-
+  # -- Labels to add to the _Autoscaler_ pod.
   podLabels: {}
 
+  # -- Annotations to add to the _Autoscaler_ pod.
   podAnnotations: {}
 
+  # -- Security context for the _Autoscaler_ pod.
+  # @default -- See _values.yaml_
   podSecurityContext:
     runAsNonRoot: true
-    runAsUser: 65535
-    runAsGroup: 65535
+    fsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
-  securityContext:
-    readOnlyRootFilesystem: true
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - all
-
+  # -- (string) Priority class name for the _Autoscaler_ pod.
   priorityClassName:
 
+  # -- (int) Termination grace period for the _Autoscaler_ pod; in seconds.
   terminationGracePeriodSeconds:
 
+  image:
+    # -- Image repository for the _Autoscaler_ component default container.
+    repository: registry.k8s.io/cpa/cluster-proportional-autoscaler
+    # -- Image tag for the _Autoscaler_ component default container.
+    tag: 1.8.6
+    # -- Image pull policy for the _Autoscaler_ component default container.
+    pullPolicy: IfNotPresent
+
+  # -- Security context for the _Autoscaler_ component default container.
+  # @default -- See _values.yaml_
+  securityContext:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    capabilities:
+      drop:
+        - ALL
+
+  # -- Resources for the _Autoscaler_ component default container.
   resources: {}
 
+  # -- Node selector labels for scheduling the _Autoscaler_ component.
   nodeSelector: {}
 
+  # -- Affinity settings for scheduling the _Autoscaler_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
   affinity: {}
 
+  # -- Topology spread constraints for scheduling for the _Autoscaler_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
   topologySpreadConstraints: []
 
+  # -- Node taints the _Autoscaler_ component will tolerate for scheduling.
   tolerations: []
 
+  # -- Log level for the _Autoscaler_ component.
   logLevel: 2

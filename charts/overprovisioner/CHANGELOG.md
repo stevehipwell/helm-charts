@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Changed the default `podSecurityContext` & `securityContext` values for all components.
+
 ## [v0.2.0] - 2023-03-09
 
 ### Added

@@ -1,73 +1,74 @@
-# Overprovisioner
+# overprovisioner
 
-The _Overprovisioner_ chart is designed to overprovision a _Kubernetes_ cluster and is based on the _Cluster Autoscaler_ [documentation](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-can-i-configure-overprovisioning-with-cluster-autoscaler) but can be used in any dynamic scaling _Kubernetes_ cluster.
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
 
-## Installing the Chart
+Helm chart for overprovisioning Kubernetes clusters.
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+**Homepage:** <https://github.com/stevehipwell/helm-charts/>
 
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-```
+## Maintainers
 
-After you've installed the repo you can install the chart.
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
 
-```shell
-helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/overprovisioner
-```
+## Source Code
 
-## Configuration
+* <https://github.com/stevehipwell/helm-charts/>
 
-The following table lists the configurable parameters of the _Overprovisioner_ chart and their default values.
+## Values
 
-| Parameter                                  | Description                                                                                                                                                                     | Default                                               |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `nameOverride`                             | Override the `name` of the chart.                                                                                                                                               |                                                       |
-| `fullnameOverride`                         | Override the `fullname` of the chart.                                                                                                                                           |                                                       |
-| `commonLabels`                             | Labels to add to all chart resources.                                                                                                                                           | `{}`                                                  |
-| `imagePullSecrets`                         | Image pull secrets.                                                                                                                                                             | `[]`                                                  |
-| `capacity.mode`                            | The mode to use for overprovisioning, if set to `auto` a cluster proportional autoscaler deployment will be used to scale the pause pods.                                       | `fixed`                                               |
-| `capacity.fixed.replicas`                  | The number of pause pod replicas to create if `capacity.mode` is `fixed`.                                                                                                       | `1`                                                   |
-| `capacity.auto.coresPerReplica`            | The number of pause pod replicas to create per core if `capacity.mode` is `auto`.                                                                                               | `4`                                                   |
-| `capacity.auto.nodesPerReplica`            | The number of pause pod replicas to create per node if `capacity.mode` is `auto`.                                                                                               | `1`                                                   |
-| `capacity.auto.minReplicas`                | The minimum number of pause pod replicas to create if `capacity.mode` is `auto`.                                                                                                | `1`                                                   |
-| `capacity.auto.maxReplicas`                | The maximum number of pause pod replicas to create if `capacity.mode` is `auto`.                                                                                                | `1`                                                   |
-| `capacity.resources.cpu`                   | The CPU requests/limits for the pause pods.                                                                                                                                     | `10m`                                                 |
-| `capacity.resources.memory`                | The memory requests/limits for the pause pods.                                                                                                                                  | `16Mi`                                                |
-| `priorityClass.create`                     | If `true`, create a new preemptible _PriorityClass_ to use for overprovisioning.                                                                                                | `true`                                                |
-| `priorityClass.name`                       | Name to use for the preemptible priority class, if not set a name is generated using the chart full name.                                                                       |                                                       |
-| `priorityClass.labels`                     | Labels to add to the priority class.                                                                                                                                            | `{}`                                                  |
-| `priorityClass.annotations`                | Annotations to add to the priority class.                                                                                                                                       | `{}`                                                  |
-| `priorityClass.value`                      | Value of the priority class, should be less then `0`.                                                                                                                           | `-1`                                                  |
-| `pause.serviceAccount.create`              | If `true`, create a new _ServiceAccount_ for the pause pod.                                                                                                                     | `true`                                                |
-| `pause.serviceAccount.name`                | Name to use for the pause pod service account, if not set a name is generated using the pause full name template.                                                               |                                                       |
-| `pause.serviceAccount.labels`              | Labels to add to the pause service account.                                                                                                                                     | `{}`                                                  |
-| `pause.serviceAccount.annotations`         | Annotations to add to the pause service account.                                                                                                                                | `{}`                                                  |
-| `pause.image.repository`                   | Image repository.                                                                                                                                                               | `registry.k8s.io/pause`                               |
-| `pause.image.tag`                          | Image tag.                                                                                                                                                                      | `3.9`                                                 |
-| `pause.image.pullPolicy`                   | Image pull policy.                                                                                                                                                              | `IfNotPresent`                                        |
-| `pause.podLabels`                          | Labels to add to the pause pod.                                                                                                                                                 | `{}`                                                  |
-| `pause.podAnnotations`                     | Annotations to add to the pause pod.                                                                                                                                            | `{}`                                                  |
-| `pause.nodeSelector`                       | Node label selector for the pause pod.                                                                                                                                          | `{}`                                                  |
-| `pause.affinity`                           | Affinity settings for the pause pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.      | `{}`                                                  |
-| `pause.topologySpreadConstraints`          | Topology spread constraints for the pause pod. If an explicit label selector is not provided one will be created from the pod selector labels.                                  | `[]`                                                  |
-| `pause.tolerations`                        | Tolerations for the pause pod.                                                                                                                                                  | `[]`                                                  |
-| `autoscaler.serviceAccount.create`         | If `true`, create a new _ServiceAccount_ for the autoscaler pod.                                                                                                                | `true`                                                |
-| `autoscaler.serviceAccount.name`           | Name to use for the autoscaler pod service account, if not set a name is generated using the autoscaler full name template.                                                     |                                                       |
-| `autoscaler.serviceAccount.labels`         | Labels to add to the autoscaler service account.                                                                                                                                | `{}`                                                  |
-| `autoscaler.serviceAccount.annotations`    | Annotations to add to the autoscaler service account.                                                                                                                           | `{}`                                                  |
-| `autoscaler.image.repository`              | Image repository.                                                                                                                                                               | `registry.k8s.io/cpa/cluster-proportional-autoscaler` |
-| `autoscaler.image.tag`                     | Image tag.                                                                                                                                                                      | `1.8.6`                                               |
-| `autoscaler.image.pullPolicy`              | Image pull policy.                                                                                                                                                              | `IfNotPresent`                                        |
-| `autoscaler.podLabels`                     | Labels to add to the autoscaler pod.                                                                                                                                            | `{}`                                                  |
-| `autoscaler.podAnnotations`                | Annotations to add to the autoscaler pod.                                                                                                                                       | `{}`                                                  |
-| `autoscaler.podSecurityContext`            | Security context for the autoscaler pod.                                                                                                                                        | _See values.yaml_                                     |
-| `autoscaler.securityContext`               | Security context for the _autoscaler_ container in the autoscaler pod.                                                                                                          | _See values.yaml_                                     |
-| `autoscaler.priorityClassName`             | Priority class name to use for the autoscaler pod.                                                                                                                              |                                                       |
-| `autoscaler.terminationGracePeriodSeconds` | Termination grace period for the autoscaler pod in seconds.                                                                                                                     | `0`                                                   |
-| `autoscaler.resources`                     | Resource requests and limits for the autoscaler pod container.                                                                                                                  | `{}`                                                  |
-| `autoscaler.nodeSelector`                  | Node label selector for the autoscaler pod.                                                                                                                                     | `{}`                                                  |
-| `autoscaler.affinity`                      | Affinity settings for the autoscaler pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. | `{}`                                                  |
-| `autoscaler.topologySpreadConstraints`     | Topology spread constraints for the autoscaler pod. If an explicit label selector is not provided one will be created from the pod selector labels.                             | `[]`                                                  |
-| `autoscaler.tolerations`                   | Tolerations for the autoscaler pod.                                                                                                                                             | `[]`                                                  |
-| `autoscaler.logLevel`                      | Log level for the autoscaler pod.                                                                                                                                               | `2`                                                   |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| autoscaler.affinity | object | `{}` | Affinity settings for scheduling the _Autoscaler_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| autoscaler.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Autoscaler_ component default container. |
+| autoscaler.image.repository | string | `"registry.k8s.io/cpa/cluster-proportional-autoscaler"` | Image repository for the _Autoscaler_ component default container. |
+| autoscaler.image.tag | string | `"1.8.6"` | Image tag for the _Autoscaler_ component default container. |
+| autoscaler.logLevel | int | `2` | Log level for the _Autoscaler_ component. |
+| autoscaler.nodeSelector | object | `{}` | Node selector labels for scheduling the _Autoscaler_ component. |
+| autoscaler.podAnnotations | object | `{}` | Annotations to add to the _Autoscaler_ pod. |
+| autoscaler.podLabels | object | `{}` | Labels to add to the _Autoscaler_ pod. |
+| autoscaler.podSecurityContext | object | See _values.yaml_ | Security context for the _Autoscaler_ pod. |
+| autoscaler.priorityClassName | string | `nil` | Priority class name for the _Autoscaler_ pod. |
+| autoscaler.resources | object | `{}` | Resources for the _Autoscaler_ component default container. |
+| autoscaler.securityContext | object | See _values.yaml_ | Security context for the _Autoscaler_ component default container. |
+| autoscaler.serviceAccount.annotations | object | `{}` | Annotations to add to the _Autoscaler_ service account. |
+| autoscaler.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Autoscaler_ component. |
+| autoscaler.serviceAccount.labels | object | `{}` | Labels to add to the _Autoscaler_ service account. |
+| autoscaler.serviceAccount.name | string | `nil` | If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Autoscaler_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use. |
+| autoscaler.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Autoscaler_ pod; in seconds. |
+| autoscaler.tolerations | list | `[]` | Node taints the _Autoscaler_ component will tolerate for scheduling. |
+| autoscaler.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Autoscaler_ component. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| capacity.auto.coresPerReplica | int | `4` | Number of pause pod replicas to create per cluster core; if `capacity.mode` is `auto`. |
+| capacity.auto.maxReplicas | int | `1` | Maximum number of pause pod replicas to create; if `capacity.mode` is `auto`. |
+| capacity.auto.minReplicas | int | `1` | Minimum number of pause pod replicas to create; if `capacity.mode` is `auto`. |
+| capacity.auto.nodesPerReplica | int | `1` | Number of pause pod replicas to create per cluster node; if `capacity.mode` is `auto`. |
+| capacity.fixed.replicas | int | `1` | Number of pause pod replicas to create; if `capacity.mode` is `fixed`. |
+| capacity.mode | string | `"fixed"` | Capacity mode to use; one of `fixed` or `auto`. If `auto` is used, a [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) deployment will be used to scale the pause pods |
+| capacity.resources.cpu | string | `"10m"` | CPU resource requests and limits for the pause pods. |
+| capacity.resources.memory | string | `"16Mi"` | Memory resource requests and limits for the pause pods. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| pause.affinity | object | `{}` | Affinity settings for scheduling the _Pause_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| pause.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Pause_ component default container. |
+| pause.image.repository | string | `"registry.k8s.io/pause"` | Image repository for the _Pause_ component default container. |
+| pause.image.tag | float | `3.9` | Image tag for the _Pause_ component default container. |
+| pause.nodeSelector | object | `{}` | Node selector labels for scheduling the _Pause_ component. |
+| pause.podAnnotations | object | `{}` | Annotations to add to the _Pause_ pod. |
+| pause.podLabels | object | `{}` | Labels to add to the _Pause_ pod. |
+| pause.serviceAccount.annotations | object | `{}` | Annotations to add to the _Pause_ service account. |
+| pause.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Pause_ component. |
+| pause.serviceAccount.labels | object | `{}` | Labels to add to the _Pause_ service account. |
+| pause.serviceAccount.name | string | `nil` | If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Pause_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use. |
+| pause.tolerations | list | `[]` | Node taints the _Pause_ component will tolerate for scheduling. |
+| pause.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Pause_ component. If an explicit label selector is not provided one will be created from the pod selector labels. |
+| priorityClass.annotations | object | `{}` | Annotations to add to the priority class. |
+| priorityClass.create | bool | `true` | If `true`, create a new preemptible `PriorityClass`. |
+| priorityClass.labels | object | `{}` | Labels to add to the priority class. |
+| priorityClass.name | string | `nil` | If this is set and `priorityClass.create` is `true` this will be used for the created priority class name, if set and `priorityClass.create` is `false` then this will define an existing priority class to use. |
+| priorityClass.value | int | `-1` | Value for the priority class. |
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.12.0](https://github.com/norwoodj/helm-docs/releases/v1.12.0)
