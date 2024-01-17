@@ -16,7 +16,11 @@
 
 ### Added
 
-- Added `recommenderOnly` to allow for deployment of only the [VPA Recommender](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/recommender/README.md).
+- Added `recommenderOnly` value to allow for deployment of only the [VPA Recommender](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/recommender/README.md).
+
+### Changed
+
+- Changed the default `podSecurityContext` & `securityContext` values for all components.
 
 ## [v1.4.0] - 2023-10-31
 

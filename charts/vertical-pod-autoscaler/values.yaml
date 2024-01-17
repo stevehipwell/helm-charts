@@ -2,69 +2,114 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Image pull secrets.
 imagePullSecrets: []
 
+# -- (string) Override the name of the chart.
 nameOverride:
+
+# -- (string) Override the full name of the chart.
 fullnameOverride:
 
+# -- Labels to add to all chart resources.
 commonLabels: {}
 
 rbac:
+  # -- If `true`, create `ClusterRole` & `ClusterRoleBinding` resources to enable access to the Kubernetes API.
   create: true
 
 serviceMonitor:
+  # -- If `true`, create a `ServiceMonitor` to support collecting metrics via the _Prometheus Operator_.
   enabled: false
+  # -- Additional labels for the service monitor.
   additionalLabels: {}
+  # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
 
+# -- Log level for all components.
 logLevel: 4
 
-# Only deploy the recommender
+# -- If `true`, only deploy the _Recommender_ component.
 recommenderOnly: false
 
 admissionController:
   image:
+    # -- Image repository for the _Admission Controller_ default container.
     repository: registry.k8s.io/autoscaling/vpa-admission-controller
-    # Overrides the image tag whose default is the chart appVersion.
+    # -- (string) Image tag for the _Admission Controller_ default container; this will default to `.Chart.AppVersion` if not set.
     tag:
+    # -- Image pull policy for the _Admission Controller_ default container.
     pullPolicy: IfNotPresent
 
   serviceAccount:
+    # -- If `true`, create a new `ServiceAccount` for the _Admission Controller_.
     create: true
+    # -- Labels to add to the _Admission Controller_ service account.
     labels: {}
+    # -- Annotations to add to the _Admission Controller_ service account.
     annotations: {}
+    # -- (string) If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Admission Controller_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
 
   service:
+    # -- Annotations to add to the _Admission Controller_ service.
     annotations: {}
 
+  # -- Number of _Admission Controller_ replicas to create.
   replicas: 1
 
+  # -- Update strategy for the _Admission Controller_.
   updateStrategy: {}
 
   podDisruptionBudget:
+    # -- If `true`, create a `PodDisruptionBudget` for the _Admission Controller_.
     enabled: false
+    # -- (string) Minimum number of available pods for the _Admission Controller_; either a number or a percentage.
     minAvailable:
+    # -- (string) Minimum number of unavailable pods for the _Admission Controller_; either a number or a percentage.
     maxUnavailable:
 
+  # -- Labels to add to the _Admission Controller_ pod.
   podLabels: {}
 
+  # -- Annotations to add to the _Admission Controller_ pod.
   podAnnotations: {}
 
+  # -- Security context for the _Admission Controller_ pod.
+  # @default -- See _values.yaml_
   podSecurityContext:
     runAsNonRoot: true
-    runAsUser: 65534
+    fsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
-  securityContext: {}
-
+  # -- (string) Priority class name for the _Admission Controller_.
   priorityClassName:
 
+  # -- (int) Termination grace period for the _Admission Controller_; in seconds.
   terminationGracePeriodSeconds:
 
+  # -- Security context for the _Admission Controller_ default container.
+  # @default -- See _values.yaml_
+  securityContext:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    capabilities:
+      drop:
+        - ALL
+
+  # -- Additional environment variables for the _Admission Controller_ default container.
   extraEnv: []
 
+  # -- Additional args for the _Admission Controller_ default container.
   extraArgs: []
 
+  # -- Liveness probe configuration for the _Admission Controller_ default container.
+  # @default -- See _values.yaml_
   livenessProbe:
     httpGet:
       path: /health-check
@@ -75,6 +120,8 @@ admissionController:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Readiness probe configuration for the _Admission Controller_ default container.
+  # @default -- See _values.yaml_
   readinessProbe:
     httpGet:
       path: /health-check
@@ -85,67 +132,111 @@ admissionController:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Resources for the _Admission Controller_ default container.
   resources: {}
 
+  # -- Node selector labels for scheduling the _Admission Controller_.
   nodeSelector: {}
 
+  # -- Affinity settings for scheduling the _Admission Controller_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
   affinity: {}
 
+  # -- Topology spread constraints for scheduling for the _Admission Controller_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
   topologySpreadConstraints: []
 
+  # -- Node taints the _Admission Controller_ will be tolerate for scheduling.
   tolerations: []
 
   webhook:
+    # -- Name of the _Admission Controller_ webhook to create.
     name: vpa-webhook-config
 
   certManager:
+    # -- If `true`, create a `Certificate` resource for the _Admission Controller_ webhook.
     enabled: false
+    # -- `Issuer` kind for the _Admission Controller_ webhook certificate.
     issuerKind: Issuer
+    # -- `Issuer` name for the _Admission Controller_ webhook certificate; if not provided an `Issuer` will be created.
     issuerName:
 
 recommender:
   image:
+    # -- Image repository for the _Recommender_ default container.
     repository: registry.k8s.io/autoscaling/vpa-recommender
-    # Overrides the image tag whose default is the chart appVersion.
+    # -- (string) Image tag for the _Recommender_ default container; this will default to `.Chart.AppVersion` if not set.
     tag:
+    # -- Image pull policy for the _Recommender_ default container.
     pullPolicy: IfNotPresent
 
   serviceAccount:
+    # -- If `true`, create a new `ServiceAccount` for the _Recommender_.
     create: true
+    # -- Labels to add to the _Recommender_ service account.
     labels: {}
+    # -- Annotations to add to the _Recommender_ service account.
     annotations: {}
+    # -- (string) If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Recommender_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
 
   service:
+    # -- Annotations to add to the _Recommender_ service.
     annotations: {}
 
+  # -- Number of _Recommender_ replicas to create.
   replicas: 1
 
+  # -- Update strategy for the _Recommender_.
   updateStrategy: {}
 
   podDisruptionBudget:
+    # -- If `true`, create a `PodDisruptionBudget` for the _Recommender_.
     enabled: false
+    # -- (string) Minimum number of available pods for the _Recommender_; either a number or a percentage.
     minAvailable:
+    # -- (string) Minimum number of unavailable pods for the _Recommender_; either a number or a percentage.
     maxUnavailable:
 
+  # -- Labels to add to the _Recommender_ pod.
   podLabels: {}
 
+  # -- Annotations to add to the _Recommender_ pod.
   podAnnotations: {}
 
+  # -- Security context for the _Recommender_ pod.
+  # @default -- See _values.yaml_
   podSecurityContext:
     runAsNonRoot: true
-    runAsUser: 65534
+    fsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
-  securityContext: {}
-
+  # -- (string) Priority class name for the _Recommender_.
   priorityClassName:
 
+  # -- (int) Termination grace period for the _Recommender_; in seconds.
   terminationGracePeriodSeconds:
 
+  # -- Security context for the _Recommender_ default container.
+  # @default -- See _values.yaml_
+  securityContext:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    capabilities:
+      drop:
+        - ALL
+
+  # -- Additional environment variables for the _Recommender_ default container.
   extraEnv: []
 
+  # -- Additional args for the _Recommender_ default container.
   extraArgs: []
 
+  # -- Liveness probe configuration for the _Recommender_ default container.
+  # @default -- See _values.yaml_
   livenessProbe:
     httpGet:
       path: /health-check
@@ -156,6 +247,8 @@ recommender:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Readiness probe configuration for the _Recommender_ default container.
+  # @default -- See _values.yaml_
   readinessProbe:
     httpGet:
       path: /health-check
@@ -166,59 +259,99 @@ recommender:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Resources for the _Recommender_ default container.
   resources: {}
 
+  # -- Node selector labels for scheduling the _Recommender_.
   nodeSelector: {}
 
+  # -- Affinity settings for scheduling the _Recommender_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
   affinity: {}
 
+  # -- Topology spread constraints for scheduling for the _Recommender_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
   topologySpreadConstraints: []
 
+  # -- Node taints the _Recommender_ will be tolerate for scheduling.
   tolerations: []
 
 updater:
   image:
+    # -- Image repository for the _Updater_ default container.
     repository: registry.k8s.io/autoscaling/vpa-updater
-    # Overrides the image tag whose default is the chart appVersion.
+    # -- (string) Image tag for the _Updater_ default container; this will default to `.Chart.AppVersion` if not set.
     tag:
+    # -- Image pull policy for the _Updater_ default container.
     pullPolicy: IfNotPresent
 
   serviceAccount:
+    # -- If `true`, create a new `ServiceAccount` for the _Updater_.
     create: true
+    # -- Labels to add to the _Updater_ service account.
     labels: {}
+    # -- Annotations to add to the _Updater_ service account.
     annotations: {}
+    # -- (string) If this is set and `admissionController.serviceAccount.create` is `true` this will be used for the created _Updater_ service account name, if this is set and `admissionController.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
 
   service:
+    # -- Annotations to add to the _Updater_ service.
     annotations: {}
 
+  # -- Number of _Updater_ replicas to create.
   replicas: 1
 
+  # -- Update strategy for the _Updater_.
   updateStrategy: {}
 
   podDisruptionBudget:
+    # -- If `true`, create a `PodDisruptionBudget` for the _Updater_.
     enabled: false
+    # -- (string) Minimum number of available pods for the _Updater_; either a number or a percentage.
     minAvailable:
+    # -- (string) Minimum number of unavailable pods for the _Updater_; either a number or a percentage.
     maxUnavailable:
 
+  # -- Labels to add to the _Updater_ pod.
   podLabels: {}
 
+  # -- Annotations to add to the _Updater_ pod.
   podAnnotations: {}
 
+  # -- Security context for the _Updater_ pod.
+  # @default -- See _values.yaml_
   podSecurityContext:
     runAsNonRoot: true
-    runAsUser: 65534
+    fsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
-  securityContext: {}
-
+  # -- (string) Priority class name for the _Updater_.
   priorityClassName:
 
+  # -- (int) Termination grace period for the _Updater_; in seconds.
   terminationGracePeriodSeconds:
 
+  # -- Security context for the _Updater_ default container.
+  # @default -- See _values.yaml_
+  securityContext:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    capabilities:
+      drop:
+        - ALL
+
+  # -- Additional environment variables for the _Updater_ default container.
   extraEnv: []
 
+  # -- Additional args for the _Updater_ default container.
   extraArgs: []
 
+  # -- Liveness probe configuration for the _Updater_ default container.
+  # @default -- See _values.yaml_
   livenessProbe:
     httpGet:
       path: /health-check
@@ -229,6 +362,8 @@ updater:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Readiness probe configuration for the _Updater_ default container.
+  # @default -- See _values.yaml_
   readinessProbe:
     httpGet:
       path: /health-check
@@ -239,12 +374,17 @@ updater:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Resources for the _Updater_ default container.
   resources: {}
 
+  # -- Node selector labels for scheduling the _Updater_.
   nodeSelector: {}
 
+  # -- Affinity settings for scheduling the _Updater_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
   affinity: {}
 
+  # -- Topology spread constraints for scheduling for the _Updater_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
   topologySpreadConstraints: []
 
+  # -- Node taints the _Updater_ will be tolerate for scheduling.
   tolerations: []
