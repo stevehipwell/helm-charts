@@ -1,17 +1,31 @@
+# Default values for node-config.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- (string) Override the name of the chart.
 nameOverride:
+
+# -- (string) Override the full name of the chart.
 fullnameOverride:
 
+# -- Labels to add to all chart resources.
 commonLabels: {}
 
+# -- Image pull secrets.
 imagePullSecrets: []
 
 serviceAccount:
+  # -- If `true`, create a new `ServiceAccount`.
   create: true
-  name:
+  # -- Labels to add to the service account.
   labels: {}
+  # -- Annotations to add to the service account.
   annotations: {}
-  automountToken: false
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
+  name:
 
+# -- Scripts to create and mount.
+# @default -- See _values.yaml_
 scripts:
   - name: config
     filename: config.sh
@@ -20,40 +34,66 @@ scripts:
       set -eu
       echo "Hello World!"
 
-extraVolumes: []
-
+# -- Labels to add to the pod.
 podLabels: {}
+
+# -- Annotations to add to the pod.
 podAnnotations: {}
+
+# -- If `true`, allow the pod access to the host process ID namespace.
 hostPID: false
+
+# -- Security context for the pod.
+# @default -- See _values.yaml_
 podSecurityContext: {}
+
+# -- (string) Priority class name for the pod.
 priorityClassName:
+
+# -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds:
+
+# -- Extra volumes for the pod.
+extraVolumes: []
 
 config:
   image:
+    # -- Image repository for the config container.
     repository: docker.io/alpine
+    # -- Image tag for the config container
     tag: latest
+    # -- Image pull policy for the config container.
     pullPolicy: IfNotPresent
 
+  # -- Security context for the config container.
+  # @default -- See _values.yaml_
   securityContext: {}
 
+  # -- Environment variables for the config container.
   env: []
 
+  # -- Command for the config container
   command:
     - sh
     - -c
     - /opt/config.sh
 
+  # -- Extra volume mounts for the config container.
   extraVolumeMounts: []
 
+  # -- Resources for the config container.
   resources: {}
 
 pause:
   image:
+    # -- Image repository for the pause container.
     repository: registry.k8s.io/pause
+    # -- Image tag for the pause container
     tag: 3.9
+    # -- Image pull policy for the pause container.
     pullPolicy: IfNotPresent
 
+  # -- Resources for the pause container.
   resources:
     requests:
       cpu: 10m
@@ -62,10 +102,13 @@ pause:
       cpu: 100m
       memory: 8Mi
 
+# -- Node selector labels for scheduling.
 nodeSelector:
   kubernetes.io/os: linux
 
 affinity:
+  # -- Node affinity for scheduling.
   nodeAffinity: {}
 
+# -- Node taints that will be tolerated for scheduling.
 tolerations: []

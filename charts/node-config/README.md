@@ -1,58 +1,72 @@
-# Node Config
+# node-config
 
-The _Node Config_ chart is designed to run an init container as a DaemonSet to configure Kubernetes nodes.
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+
+Helm chart for configuring Kubernetes nodes via a DaemonSet init container.
+
+**Homepage:** <https://github.com/stevehipwell/helm-charts/>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| stevehipwell | <steve.hipwell@gmail.com> |  |
+
+## Source Code
+
+* <https://github.com/stevehipwell/helm-charts/>
 
 ## Installing the Chart
 
-Before you can install the chart you will need to add the `stevehipwell` repo to [Helm](https://helm.sh/).
+To install the chart using the recommended OCI method you can use the following command.
+
+```shell
+helm upgrade --install node-config oci://ghcr.io/stevehipwell/helm-charts/node-config --version 0.5.0
+```
+
+Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install node-config stevehipwell/node-config --version 0.5.0
 ```
 
-After you've installed the repo you can install the chart.
+## Values
 
-```shell
-helm upgrade --install --namespace default --values ./my-values.yaml my-release stevehipwell/node-config
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity.nodeAffinity | object | `{}` | Node affinity for scheduling. |
+| commonLabels | object | `{}` | Labels to add to all chart resources. |
+| config.command | list | `["sh","-c","/opt/config.sh"]` | Command for the config container |
+| config.env | list | `[]` | Environment variables for the config container. |
+| config.extraVolumeMounts | list | `[]` | Extra volume mounts for the config container. |
+| config.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the config container. |
+| config.image.repository | string | `"docker.io/alpine"` | Image repository for the config container. |
+| config.image.tag | string | `"latest"` | Image tag for the config container |
+| config.resources | object | `{}` | Resources for the config container. |
+| config.securityContext | object | See _values.yaml_ | Security context for the config container. |
+| extraVolumes | list | `[]` | Extra volumes for the pod. |
+| fullnameOverride | string | `nil` | Override the full name of the chart. |
+| hostPID | bool | `false` | If `true`, allow the pod access to the host process ID namespace. |
+| imagePullSecrets | list | `[]` | Image pull secrets. |
+| nameOverride | string | `nil` | Override the name of the chart. |
+| nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node selector labels for scheduling. |
+| pause.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the pause container. |
+| pause.image.repository | string | `"registry.k8s.io/pause"` | Image repository for the pause container. |
+| pause.image.tag | float | `3.9` | Image tag for the pause container |
+| pause.resources | object | `{"limits":{"cpu":"100m","memory":"8Mi"},"requests":{"cpu":"10m","memory":"8Mi"}}` | Resources for the pause container. |
+| podAnnotations | object | `{}` | Annotations to add to the pod. |
+| podLabels | object | `{}` | Labels to add to the pod. |
+| podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
+| priorityClassName | string | `nil` | Priority class name for the pod. |
+| scripts | list | See _values.yaml_ | Scripts to create and mount. |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
+| serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
+| serviceAccount.labels | object | `{}` | Labels to add to the service account. |
+| serviceAccount.name | string | `nil` | If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use. |
+| terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
+| tolerations | list | `[]` | Node taints that will be tolerated for scheduling. |
 
-## Configuration
+----------------------------------------------
 
-The following table lists the configurable parameters of the _Node Config_ chart and their default values.
-
-| Parameter                       | Description                                                                                                                     | Default                       |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `nameOverride`                  | Override the `name` of the chart.                                                                                               |                               |
-| `fullnameOverride`              | Override the `fullname` of the chart.                                                                                           |                               |
-| `commonLabels`                  | Labels to add to all chart resources.                                                                                           | `{}`                          |
-| `imagePullSecrets`              | Image pull secrets.                                                                                                             | `[]`                          |
-| `serviceAccount.create`         | If `true`, create a new service account.                                                                                        | `true`                        |
-| `serviceAccount.name`           | Service account to be used. If not set and `serviceAccount.create` is `true`, a name is generated using the full name template. |                               |
-| `serviceAccount.labels`         | Labels to add to the service account.                                                                                           | `{}`                          |
-| `serviceAccount.annotations`    | Annotations to add to the service account.                                                                                      | `{}`                          |
-| `serviceAccount.automountToken` | If `true`, mount the ServiceAccount token.                                                                                      | `false`                       |
-| `scripts.name`                  | Name of the script to create.                                                                                                   |                               |
-| `scripts.filename`              | Filename of the script to create.                                                                                               |                               |
-| `scripts.content`               | Content of the script to create.                                                                                                |                               |
-| `extraVolumes`                  | Extra volumes for the pod.                                                                                                      | `[]`                          |
-| `podLabels`                     | Labels to add to the pod.                                                                                                       | `{}`                          |
-| `podAnnotations`                | Annotations to add to the pod.                                                                                                  | `{}`                          |
-| `hostPID`                       | If the pod should use the host PID.                                                                                             | `false`                       |
-| `podSecurityContext`            | Security context for the pod.                                                                                                   | `{}`                          |
-| `priorityClassName`             | Priority class name to use.                                                                                                     |                               |
-| `terminationGracePeriodSeconds` | Termination grace period of the pod in seconds.                                                                                 |                               |
-| `config.image.repository`       | Image repository for the _config_ container image.                                                                              | `docker.io/alpine`            |
-| `config.image.tag`              | Image tag for the _config_ container image.                                                                                     | `latest`                      |
-| `config.image.pullPolicy`       | Image pull policy for the _config_ container image.                                                                             | `IfNotPresent`                |
-| `config.securityContext`        | Security context for the _config_ container.                                                                                    | `{}`                          |
-| `config.env`                    | Environment variables for the _config_ container.                                                                               | `[]`                          |
-| `config.command`                | Command for the _config_ container.                                                                                             | _See values.yaml_             |
-| `config.extraVolumeMounts`      | Extra volume mounts for the _config_ container.                                                                                 | `[]`                          |
-| `config.resources`              | Resource requests and limits for the _config_ container.                                                                        | `{}`                          |
-| `pause.image.repository`        | Image repository for the _pause_ container image.                                                                               | `registry.k8s.io/pause`       |
-| `pause.image.tag`               | Image tag for the _pause_ container image.                                                                                      | `3.9`                         |
-| `pause.image.pullPolicy`        | Image pull policy for the _pause_ container image.                                                                              | `IfNotPresent`                |
-| `pause.resources`               | Resource requests and limits for the _pause_ container.                                                                         | _See values.yaml_             |
-| `nodeSelector`                  | Node labels for pod assignment.                                                                                                 | `{ kubernetes.io/os: linux }` |
-| `affinity.nodeAffinity`         | Node affinity settings for pod assignment.                                                                                      | `{}`                          |
-| `tolerations`                   | Toleration labels for pod assignment.                                                                                           | `[]`                          |
+Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/helm-docs/).
