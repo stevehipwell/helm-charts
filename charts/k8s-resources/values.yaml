@@ -1,3 +1,8 @@
+# Default values for k8s-resources.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- _Kubernetes_ resources to create.
 resources: []
 #   - apiVersion: v1
 #     kind: ConfigMap

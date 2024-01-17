@@ -1,6 +1,6 @@
 apiVersion: v2
 name: k8s-resources
-description: Helm chart for provisioning Kubernetes resources.
+description: Helm chart for provisioning arbitrary Kubernetes resources.
 type: application
 version: 0.1.0
 appVersion: 1.0.0
