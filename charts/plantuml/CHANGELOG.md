@@ -305,13 +305,14 @@
 
 ## [v2.0.0] - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
-## Changed
+### Changed
 
 - Upgraded chart API version to `v2`
 

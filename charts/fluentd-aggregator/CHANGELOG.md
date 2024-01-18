@@ -208,7 +208,7 @@
 
 ### Highlights
 
-> **Info**
+> [!CAUTION]
 > This release contains a number of breaking changes, please check out the full list of changes for the values which have been removed as well as taking note that the root directory mounted to the `PersistentVolume` has changed so buffer paths will need to be changed accordingly.
 
 This release introduces a new strongly typed configuration mode which isn't compatible with the previous `v2` versions as well as updating the Fluentd image and adding new capabilities to the chart.

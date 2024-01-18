@@ -424,13 +424,14 @@
 
 ## v4.0.0 - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
-## Changed
+### Changed
 
 - Upgraded chart API version to `v2`
 
@@ -582,3 +583,14 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.39.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.39.0
+[v4.38.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.38.0
+[v4.37.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.37.0
+[v4.36.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.36.0
+[v4.35.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.35.0
+[v4.34.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.34.0
+[v4.33.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.33.0
+[v4.32.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.32.1
+[v4.32.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.32.0
+[v4.31.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.31.0
+[v4.30.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.30.0

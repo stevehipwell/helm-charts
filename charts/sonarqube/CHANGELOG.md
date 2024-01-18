@@ -43,7 +43,7 @@
 
 ## [v5.0.0] - 2023-04-04
 
-### All Changes
+### Changed
 
 - Updated the _SonarQube_ image to [v10.0.0](https://www.sonarsource.com/products/sonarqube/whats-new/sonarqube-10-0/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/10.0.0.68432)).
 - Updated the embedded _PostgreSQL_ chart to [v12.2.7](https://artifacthub.io/packages/helm/bitnami/postgresql/12.2.7) (PostgreSQL v15.2.0).
@@ -236,7 +236,7 @@
 
 ## [v2.0.1] - 2021-06-11
 
-## Changed
+### Changed
 
 - Upgraded _SonarQube_ image to `v8.9.1`
 
@@ -320,7 +320,7 @@
 
 ## [v1.1.0] - 2021-01-06
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
@@ -340,3 +340,8 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/sonarqube
+[v5.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.3.0
+[v5.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.2.1
+[v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.2.0
+[v5.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.1.0
+[v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.0.0

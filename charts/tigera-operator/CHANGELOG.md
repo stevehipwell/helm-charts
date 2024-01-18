@@ -32,7 +32,7 @@
 
 ## [v2.8.0] - 2023-10-20
 
-> **Important**
+> [!IMPORTANT]
 > This release upgrades the _Tigera Operator_ version to the recommended newer but lower versioned `v1.30` release.
 
 ### Changed
@@ -473,3 +473,8 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/tigera-operator
+[v2.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.9.0
+[v2.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.8.1
+[v2.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.8.0
+[v2.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.7.1
+[v2.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.7.0

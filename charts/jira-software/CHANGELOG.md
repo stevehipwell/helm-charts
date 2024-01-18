@@ -176,8 +176,8 @@
 
 ## [v5.0.0] - 2022-06-21
 
-> **BREAKING CHANGE:**
-> If you're upgrading to this version you need to set `deployment` to `true` otherwise you might loose your data.
+> [!CAUTION]
+> **BREAKING CHANGE** - If you're upgrading to this version you need to set `deployment` to `true` otherwise you might loose your data.
 
 ### Added
 
@@ -260,7 +260,7 @@
 
 ## [4.7.1] - 2021-09-16
 
-## Changed
+### Changed
 
 - Update _Jira Software_ image to [v8.19.1](https://confluence.atlassian.com/jirasoftware/jira-software-8-19-x-release-notes-1082526044.html).
 - Update embedded _PostgreSQL_ chart to [v10.9.6](https://artifacthub.io/packages/helm/bitnami/postgresql/10.9.6) (PostgreSQL v11.13.0).
@@ -300,7 +300,8 @@
 
 ## v4.5.1 - 2021-07-02
 
-> **NOTE** - Republished chart.
+> [!NOTE]
+> Republished chart.
 
 ### Changed
 
@@ -392,9 +393,10 @@
 
 ## v4.0.0 - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
@@ -462,3 +464,9 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/jira-software
+[v5.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.0
+[v5.11.4]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.4
+[v5.11.3]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.3
+[v5.11.2]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.2
+[v5.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.1
+[v5.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.0

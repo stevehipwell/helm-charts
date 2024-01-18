@@ -173,8 +173,8 @@
 
 ## [v5.0.0] - 2022-11-29
 
-> **BREAKING CHANGE:**
-> If you're upgrading to this version you need to set `deployment` to `true` otherwise you might lose your data.
+> [!CAUTION]
+> **BREAKING CHANGE** -If you're upgrading to this version you need to set `deployment` to `true` otherwise you might lose your data.
 
 ### All Changes
 
@@ -425,7 +425,7 @@
 
 ## v4.1.3 - 2021-03-25
 
-## Changed
+### Changed
 
 - Upgraded _Confluence Server_ image to `v7.11.2`
 
@@ -467,7 +467,8 @@
 
 ## v4.0.0 - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
 ### Added
 
@@ -545,3 +546,13 @@
 
 - Refactor chart
 - Upgrade image to _v7.6.2_
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/confluence-server
+[v5.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.1
+[v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
+[v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
+[v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
+[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.0
