@@ -1,6 +1,6 @@
 # fluent-bit-collector
 
-![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.1](https://img.shields.io/badge/AppVersion-2.2.1-informational?style=flat-square)
+![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as a collector DaemonSet.
 
@@ -22,14 +22,14 @@ Helm chart for Fluent Bit running as a collector DaemonSet.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.9.0
+helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.10.0
 ```
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.9.0
+helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.10.0
 ```
 
 ## Values
