@@ -12,7 +12,7 @@ on:
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@506f8427dce1c5941d1b9cb8e441dc29c3ff8b42 # v0.2.0
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@d8f919ae995a65d212a37ec9f0d33f6083eba331 # v0.3.0
     permissions:
       contents: write
       id-token: write
@@ -22,7 +22,6 @@ jobs:
     with:
       chart_dir: charts
       helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
-      release_name_template: "{{ .Name }}-{{ .Version }}"
       release_as_latest: true
       release_notes: true
       publish_gh_pages: true
