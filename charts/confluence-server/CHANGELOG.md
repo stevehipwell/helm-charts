@@ -16,11 +16,17 @@
 
 ## [v5.7.1] - 2024-01-16
 
+> [!CAUTION]
+> _Confluence_ [v8.7](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
+
 ### Changed
 
 - Updated the _Confluence Server_ OCI image to [v8.7.2](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html).
 
 ## [v5.7.0] - 2023-12-06
+
+> [!CAUTION]
+> _Confluence_ [v8.7](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
 
 ### Changed
 
@@ -28,11 +34,17 @@
 
 ## [v5.6.2] - 2023-10-31
 
+> [!CAUTION]
+> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
+
 ### Changed
 
 - Updated the _Confluence Server_ OCI image to [v8.6.1](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
 
 ## [v5.6.1] - 2023-10-20
+
+> [!CAUTION]
+> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
 
 ### Fixed
 
@@ -40,12 +52,46 @@
 
 ## [v5.6.0] - 2023-10-06
 
+> [!CAUTION]
+> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
+
 ### Changed
 
 - Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
 - Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
 
+## [v5.5.5] - 2024-01-23
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
+## [v5.5.4] - 2024-01-23
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.4](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
+## [v5.5.3] - 2024-01-23
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.3](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+- Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
+
 ## [v5.5.2] - 2023-10-06
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
 
 ### Changed
 
@@ -53,11 +99,17 @@
 
 ## [v5.5.1] - 2023-09-06
 
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
 ### Changed
 
 - Updated the _Confluence Server_ OCI image to [v8.5.1](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
 
 ## [v5.5.0] - 2023-08-31
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
 
 ### Added
 
@@ -556,6 +608,9 @@ RELEASE LINKS
 [v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
 [v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.0
+[v5.5.5]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.5
+[v5.5.4]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.4
+[v5.5.3]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.3
 [v5.5.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.2
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.0
