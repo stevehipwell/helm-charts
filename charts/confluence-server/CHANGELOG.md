@@ -1,15 +1,9 @@
 # Confluence Server Helm Chart Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+> [!NOTE]
+> All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--
-## [UNRELEASED]
-
 ### Added - For new features.
 ### Changed - For changes in existing functionality.
 ### Deprecated - For soon-to-be removed features.
@@ -17,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed - For any bug fixes.
 ### Security - In case of vulnerabilities.
 -->
+
+## [UNRELEASED]
+
+## [v5.5.3] - 2024-01-23
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.3](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+- Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
+
+### Fixed
+
+- Fixed incorrect _PostgreSQL_ sub chart template names.
 
 ## [v5.5.2] - 2023-10-06
 
@@ -146,8 +153,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v5.0.0] - 2022-11-29
 
-> **BREAKING CHANGE:**
-> If you're upgrading to this version you need to set `deployment` to `true` otherwise you might lose your data.
+> [!CAUTION]
+> **BREAKING CHANGE** -If you're upgrading to this version you need to set `deployment` to `true` otherwise you might lose your data.
 
 ### All Changes
 
@@ -332,13 +339,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.2.9 - 2021-08-03
 
-## Changed
+### Changed
 
 - Update _Confluence Server_ image to [v7.12.4](https://confluence.atlassian.com/doc/confluence-7-12-release-notes-1044092467.html)
 
 ## v4.2.8 - 2021-07-07
 
-## Changed
+### Changed
 
 - Update _Confluence Server_ image to [v7.12.3](https://confluence.atlassian.com/doc/confluence-7-12-release-notes-1044092467.html)
 
@@ -373,56 +380,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.2.3 - 2021-06-08
 
-## Changed
+### Changed
 
 - Upgraded _Confluence Server_ image to `v7.12.2`
 
 ## v4.2.2 - 2021-05-18
 
-## Changed
+### Changed
 
 - Upgraded _Confluence Server_ image to `v7.12.1`
 
 ## v4.2.1 - 2021-04-16
 
-## Changed
+### Changed
 
 - Use absolute reference to JDK 11 image
 
 ## v4.2.0 - 2021-04-14
 
-## Changed
+### Changed
 
 - Upgraded _Confluence Server_ image to `v7.12.0`
 - Upgraded _PostgreSQL_ chart to `v10.3.17` (_PostgreSQL_ `v11.11.0`)
 
 ## v4.1.3 - 2021-03-25
 
-## Changed
+### Changed
 
 - Upgraded _Confluence Server_ image to `v7.11.2`
 
 ## v4.1.2 - 2021-03-05
 
-## Changed
+### Changed
 
 - Upgraded `Confluence Server` image to _v7.11.1_
 
 ## v4.1.1 - 2021-02-16
 
-## Changed
+### Changed
 
 - Update default JVM config
 
 ## v4.1.0 - 2021-02-03
 
-## Changed
+### Changed
 
 - Upgraded `Confluence Server` image to _v7.11.0_
 
 ## v4.0.3 - 2021-01-20
 
-## Changed
+### Changed
 
 - Upgraded `Confluence Server` image to _v7.10.2_
 
@@ -434,43 +441,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.0.1 - 2021-01-07
 
-## Changed
+### Changed
 
 - Upgraded `confluence-server` image to _v7.10.1_
 
 ## v4.0.0 - 2021-01-06
 
-> **IMPORTANT** - This release is only compatible with _Helm_ v3.
+> [!IMPORTANT]
+> This release is only compatible with _Helm_ v3.
 
-## Added
+### Added
 
 - New `priorityClassName` value
 
-## Changed
+### Changed
 
 - Upgraded chart API version to `v2`
 
 ## v3.4.0 - 2020-12-16
 
-## Changed
+### Changed
 
 - Upgraded image to _v7.10.0_
 
 ## v3.3.2 - 2020-12-10
 
-## Changed
+### Changed
 
 - Upgraded image to _v7.9.3_
 
 ## v3.3.1 - 2020-11-25
 
-## Changed
+### Changed
 
 - Upgraded image to _v7.9.1_
 
 ## v3.3.0 - 2020-11-10
 
-## Changed
+### Changed
 
 - Upgraded to new minor version _v7.9_ ([release notes](https://confluence.atlassian.com/doc/confluence-7-9-release-notes-1026537698.html))
 - Upgraded image to _v7.9.0_
@@ -518,3 +526,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Refactor chart
 - Upgrade image to _v7.6.2_
+
+<!--
+RELEASE LINKS
+-->
+[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/confluence-server
+[v5.5.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.2
+[v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.1
+[v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.0

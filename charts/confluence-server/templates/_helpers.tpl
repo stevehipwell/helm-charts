@@ -155,7 +155,7 @@ Lookup postgresql chart service name.
 {{- define "confluence-server.postgresql.serviceName" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ include "postgresql.primary.fullname" $context }}
+{{ include "postgresql.v1.primary.fullname" $context }}
 {{- end -}}
 
 {{/*
@@ -164,7 +164,7 @@ Lookup postgresql chart service port.
 {{- define "confluence-server.postgresql.servicePort" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ include "postgresql.service.port" $context }}
+{{ include "postgresql.v1.service.port" $context }}
 {{- end -}}
 
 {{/*
@@ -173,7 +173,7 @@ Lookup postgresql chart database.
 {{- define "confluence-server.postgresql.database" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ include "postgresql.database" $context }}
+{{ include "postgresql.v1.database" $context }}
 {{- end -}}
 
 {{/*
@@ -182,7 +182,7 @@ Lookup postgresql chart username.
 {{- define "confluence-server.postgresql.username" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ default "postgres" (include "postgresql.username" $context) }}
+{{ default "postgres" (include "postgresql.v1.username" $context) }}
 {{- end -}}
 
 {{/*
@@ -191,5 +191,5 @@ Lookup postgresql chart password secret name.
 {{- define "confluence-server.postgresql.passwordSecretName" -}}
 {{- $values := merge .Values.postgresql (dict "global" .Values.global) -}}
 {{- $context := dict "Values" $values "Release" .Release "Chart" (dict "Name" "postgresql") "Template" .Template -}}
-{{ include "postgresql.secretName" $context }}
+{{ include "postgresql.v1.secretName" $context }}
 {{- end -}}

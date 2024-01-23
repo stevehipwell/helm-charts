@@ -5,13 +5,14 @@ on:
   push:
     branches:
       - main
+      - release-*
     paths:
       - charts/**/Chart.yaml
 
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@6e18ebf33192c4dc905900780c37667242109df9 # v0.1.5
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@506f8427dce1c5941d1b9cb8e441dc29c3ff8b42 # v0.2.0
     permissions:
       contents: write
       id-token: write
