@@ -12,7 +12,7 @@ on:
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@add-released-chart-check
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@d8f919ae995a65d212a37ec9f0d33f6083eba331 # v0.3.0
     permissions:
       contents: write
       id-token: write
