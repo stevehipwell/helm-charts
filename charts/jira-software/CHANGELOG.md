@@ -16,9 +16,12 @@
 
 ## [v5.12.0] - 2023-11-30
 
+> [!IMPORTANT]
+> _Jira_ [v9.12](https://confluence.atlassian.com/jirasoftware/jira-software-9-12-x-release-notes-1319575972.html) is the last LTS release that supports the _Jira Software_ licence.
+
 ### Changed
 
-- Updated the _Jira Software_ OCI image to [v9.12.0](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html).
+- Updated the _Jira Software_ OCI image to [v9.12.0](https://confluence.atlassian.com/jirasoftware/jira-software-9-12-x-release-notes-1319575972.html).
 
 ## [v5.11.4] - 2023-11-10
 
