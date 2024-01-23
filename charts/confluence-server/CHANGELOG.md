@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.5.4] - 2024-01-23
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.4](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
 ## [v5.5.3] - 2024-01-23
 
 ### Changed
@@ -531,6 +537,8 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/confluence-server
+[v5.5.4]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.4
+[v5.5.3]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.3
 [v5.5.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.2
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.0
