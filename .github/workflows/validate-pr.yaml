@@ -4,13 +4,14 @@ on:
   pull_request:
     branches:
       - main
+      - release-*
     paths:
       - charts/**
 
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@6e18ebf33192c4dc905900780c37667242109df9 # v0.1.5
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@506f8427dce1c5941d1b9cb8e441dc29c3ff8b42 # v0.2.0
     permissions:
       contents: read
       id-token: write
@@ -20,6 +21,7 @@ jobs:
       target_branch: main
       helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
       helm_docs: true
+      changelog: true
       ah_lint: true
       kubeconform: true
       kubeconform_k8s_versions: ${{ vars.K8S_VERSIONS }}
