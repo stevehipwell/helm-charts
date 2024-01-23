@@ -29,4 +29,4 @@ annotations:
   artifacthub.io/alternativeName: confluence
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Confluence Server_ OCI image to [v8.5.4](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
+      description: "Updated the Confluence Server OCI image to v8.5.4."
