@@ -14,6 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v5.12.1] - 2024-02-06
+
+> [!IMPORTANT]
+> _Jira_ [v9.12](https://confluence.atlassian.com/jirasoftware/jira-software-9-12-x-release-notes-1319575972.html) is the last LTS release that supports the _Jira Software_ licence.
+
+### Changed
+
+- Updated the _Jira Software_ OCI image to [v9.12.1](https://confluence.atlassian.com/jirasoftware/jira-software-9-12-x-release-notes-1319575972.html).
+
 ## [v5.12.0] - 2023-11-30
 
 > [!IMPORTANT]
@@ -467,6 +476,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/jira-software
+[v5.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.1
 [v5.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.0
 [v5.11.4]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.4
 [v5.11.3]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.11.3
