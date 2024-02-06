@@ -18,11 +18,23 @@ Helm chart for provisioning arbitrary Kubernetes resources.
 
 ## Installing the Chart
 
+### OCI Repository
+
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
 helm upgrade --install k8s-resources oci://ghcr.io/stevehipwell/helm-charts/k8s-resources --version 0.1.0
 ```
+
+#### Verification
+
+As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
+
+```shell
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/oci://ghcr.io/stevehipwell/helm-charts/k8s-resources:0.1.0
+```
+
+### Non-OCI Repository
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 

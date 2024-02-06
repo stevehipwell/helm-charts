@@ -19,11 +19,23 @@ Helm chart for Fluent Bit running as a collector DaemonSet.
 
 ## Installing the Chart
 
+### OCI Repository
+
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
 helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.10.0
 ```
+
+#### Verification
+
+As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
+
+```shell
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector:0.10.0
+```
+
+### Non-OCI Repository
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 

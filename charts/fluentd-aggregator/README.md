@@ -20,11 +20,23 @@ Helm chart for Fluentd running as an aggregation StatefulSet and using the fluen
 
 ## Installing the Chart
 
+### OCI Repository
+
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
 helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.2.0
 ```
+
+#### Verification
+
+As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
+
+```shell
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator:4.2.0
+```
+
+### Non-OCI Repository
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 

@@ -28,11 +28,32 @@ This chart manages the `MutatingWebhookConfiguration` outside of the workload so
 
 ## Installing the Chart
 
+### OCI Repository
+
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
 helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.4.0
 ```
+
+#### Verification
+
+As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
+
+```shell
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.4.0
+```
+
+### Non-OCI Repository
+
+Alternatively you can use the legacy non-OCI method via the following commands.
+
+```shell
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.4.0
+```
+
+### Non-OCI Repository
 
 Alternatively you can use the legacy non-OCI method via the following commands.
 
