@@ -37,7 +37,7 @@ podSecurityContext:
   fsGroup: 1000
 
 securityContext:
-  runAsGroup: 1000
+  runAsGroup: 0
   runAsUser: 1000
 
 priorityClassName: ""
