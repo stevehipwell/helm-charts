@@ -14,6 +14,8 @@
 
 ## [UNRELEASED]
 
+## [v1.5.0] - 2024-02-12
+
 ### Added
 
 - Added `recommenderOnly` value to allow for deployment of only the [VPA Recommender](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/recommender/README.md).
@@ -60,6 +62,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.5.0
 [v1.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.4.0
 [v1.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.3.0
 [v1.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.2.0
