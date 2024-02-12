@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.15.0
-appVersion: 0.33.0
+version: 1.16.0
+appVersion: 0.34.0
 keywords:
   - kubernetes
   - thanos
@@ -22,17 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added `compact.deduplication.enabled` value to disable compact deduplication."
-    - kind: added
-      description: "Added `compact.deduplication.func` value to set the compact deduplication function."
-    - kind: added
-      description: "Added `rule.instanceLabel` to set the label `thanos_rule` to `<NAMESPACE>/<RULE_FULLNAME>`."
-    - kind: added
-      description: "Added support for specifying custom Kubernetes cluster domain."
     - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.33.0](https://github.com/thanos-io/thanos/releases/tag/v0.33.0)."
-    - kind: changed
-      description: "Changed the default `configmap-reload` image variant to `cgr.dev/chainguard/configmap-reload:latest`."
-    - kind: deprecated
-      description: "Deprecated the `compact.replicaDeduplication` value in favour of setting `compact.deduplication.func=penalty`."
+      description: "Updated the _Thanos_ OCI image to [v0.34.0](https://github.com/thanos-io/thanos/releases/tag/v0.34.0)."
