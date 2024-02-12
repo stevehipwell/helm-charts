@@ -2,8 +2,8 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 5.7.1
-appVersion: 8.7.2
+version: 5.5.6
+appVersion: 8.5.6
 home: https://www.atlassian.com/software/confluence
 icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
 keywords:
@@ -29,4 +29,4 @@ annotations:
   artifacthub.io/alternativeName: confluence
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Confluence Server_ OCI image to [v8.7.2](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html)."
+      description: "Updated the _Confluence Server_ OCI image to [v8.5.6](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html); this changes the JDK version to `v17`."

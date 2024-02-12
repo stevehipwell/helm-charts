@@ -69,7 +69,7 @@ Create the name of the service account to use
 The image to use
 */}}
 {{- define "confluence-server.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "%s-jdk11" .Chart.AppVersion) .Values.image.tag) }}
+{{- printf "%s:%s" .Values.image.repository (default (printf "%s-jdk17" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}
 
 
