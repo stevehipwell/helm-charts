@@ -9173,6 +9173,42 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Jira Software_ OCI image to [v9.12.3](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html)."
+    apiVersion: v2
+    appVersion: 9.12.3
+    created: "2024-02-12T11:02:48.353111871Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.12.10
+    description: Helm chart for Atlassian Jira Software.
+    digest: 722aed9d3313b21df5d5b7466da05d19256f38f98057bf7e054518b5de230354
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.12.3/jira-software-5.12.3.tgz
+    version: 5.12.3
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ OCI image to [v9.12.2](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html)."
     apiVersion: v2
     appVersion: 9.12.2
@@ -22576,4 +22612,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-02-12T10:52:07.490987691Z"
+generated: "2024-02-12T11:02:48.354672612Z"
