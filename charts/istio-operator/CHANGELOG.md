@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Updated dashboards to match upstream.
+
 ## [v2.13.3] - 2024-02-12
 
 ### Changed
