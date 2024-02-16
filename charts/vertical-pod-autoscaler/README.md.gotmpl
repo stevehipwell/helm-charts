@@ -35,7 +35,7 @@ helm upgrade --install {{ template "chart.name" . }} oci://ghcr.io/stevehipwell/
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/oci://ghcr.io/stevehipwell/helm-charts/{{ template "chart.name" . }}:{{ template "chart.version" . }}
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/{{ template "chart.name" . }}:{{ template "chart.version" . }}
 ```
 
 ### Non-OCI Repository
