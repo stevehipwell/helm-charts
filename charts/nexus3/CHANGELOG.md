@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Allow to use `\` in the LDAP password
+
 ## [v4.40.0] - 2024-02-07
 
 ### Changed
