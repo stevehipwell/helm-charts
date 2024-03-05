@@ -14,6 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v5.5.7] - 2024-03-05
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.7](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
 ## [v5.5.6] - 2024-02-12
 
 > [!IMPORTANT]
@@ -566,11 +575,8 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/confluence-server
-[v5.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.1
-[v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
-[v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
-[v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
-[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.0
+[v5.5.7]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.7
+[v5.5.6]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.6
 [v5.5.5]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.5
 [v5.5.4]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.4
 [v5.5.3]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.3
