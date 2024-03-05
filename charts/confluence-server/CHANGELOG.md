@@ -14,52 +14,6 @@
 
 ## [UNRELEASED]
 
-## [v5.7.1] - 2024-01-16
-
-> [!CAUTION]
-> _Confluence_ [v8.7](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
-
-### Changed
-
-- Updated the _Confluence Server_ OCI image to [v8.7.2](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html).
-
-## [v5.7.0] - 2023-12-06
-
-> [!CAUTION]
-> _Confluence_ [v8.7](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
-
-### Changed
-
-- Updated the _Confluence Server_ OCI image to [v8.7.1](https://confluence.atlassian.com/doc/confluence-8-7-release-notes-1318391277.html).
-
-## [v5.6.2] - 2023-10-31
-
-> [!CAUTION]
-> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
-
-### Changed
-
-- Updated the _Confluence Server_ OCI image to [v8.6.1](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
-
-## [v5.6.1] - 2023-10-20
-
-> [!CAUTION]
-> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
-
-### Fixed
-
-- Fixed incorrect _PostgreSQL_ sub chart template names.
-
-## [v5.6.0] - 2023-10-06
-
-> [!CAUTION]
-> _Confluence_ [v8.6](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html) is not a LTS release and there will be no further LTS releases that support the _Confluence Server_ licence.
-
-### Changed
-
-- Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
-- Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
-
 ## [v5.5.6] - 2024-02-12
 
 > [!IMPORTANT]
