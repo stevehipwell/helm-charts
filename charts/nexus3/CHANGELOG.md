@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v4.41.0] - 2024-03-07
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.66.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.66.0-02).
+
 ### Fixed
 
-- Allow to use `\` in the LDAP password
+- Fixed the LDAP password logic to support having a password containing `\`.
 
 ## [v4.40.0] - 2024-02-07
 
@@ -593,6 +599,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.0
 [v4.40.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.40.0
 [v4.39.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.39.0
 [v4.38.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.38.0
