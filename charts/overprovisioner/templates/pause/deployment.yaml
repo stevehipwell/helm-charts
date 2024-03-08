@@ -54,9 +54,15 @@ spec:
             requests:
               cpu: {{ .Values.capacity.resources.cpu }}
               memory: {{ .Values.capacity.resources.memory }}
+              {{- with .Values.capacity.resources.extra }}
+              {{- toYaml . | nindent 14 }}
+              {{- end }}
             limits:
               cpu: {{ .Values.capacity.resources.cpu }}
               memory: {{ .Values.capacity.resources.memory }}
+              {{- with .Values.capacity.resources.extra }}
+              {{- toYaml . | nindent 14 }}
+              {{- end }}
       {{- with .Values.pause.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

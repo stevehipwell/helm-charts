@@ -9,10 +9,10 @@ nameOverride:
 fullnameOverride:
 
 # -- Labels to add to all chart resources.
-commonLabels: {}
+commonLabels: { }
 
 # -- Image pull secrets.
-imagePullSecrets: []
+imagePullSecrets: [ ]
 
 capacity:
   # -- Capacity mode to use; one of `fixed` or `auto`. If `auto` is used, a [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) deployment will be used to scale the pause pods
@@ -37,6 +37,7 @@ capacity:
     cpu: 10m
     # -- Memory resource requests and limits for the pause pods.
     memory: 16Mi
+    extra: {}
 
 priorityClass:
   # -- If `true`, create a new preemptible `PriorityClass`.
@@ -44,9 +45,9 @@ priorityClass:
   # -- (string) If this is set and `priorityClass.create` is `true` this will be used for the created priority class name, if set and `priorityClass.create` is `false` then this will define an existing priority class to use.
   name:
   # -- Labels to add to the priority class.
-  labels: {}
+  labels: { }
   # -- Annotations to add to the priority class.
-  annotations: {}
+  annotations: { }
   # -- Value for the priority class.
   value: -1
 
@@ -57,15 +58,15 @@ pause:
     # -- (string) If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Pause_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
     # -- Labels to add to the _Pause_ service account.
-    labels: {}
+    labels: { }
     # -- Annotations to add to the _Pause_ service account.
-    annotations: {}
+    annotations: { }
 
   # -- Labels to add to the _Pause_ pod.
-  podLabels: {}
+  podLabels: { }
 
   # -- Annotations to add to the _Pause_ pod.
-  podAnnotations: {}
+  podAnnotations: { }
 
   image:
     # -- Image repository for the _Pause_ component default container.
@@ -76,16 +77,16 @@ pause:
     pullPolicy: IfNotPresent
 
   # -- Node selector labels for scheduling the _Pause_ component.
-  nodeSelector: {}
+  nodeSelector: { }
 
   # -- Affinity settings for scheduling the _Pause_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
-  affinity: {}
+  affinity: { }
 
   # -- Topology spread constraints for scheduling for the _Pause_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
-  topologySpreadConstraints: []
+  topologySpreadConstraints: [ ]
 
   # -- Node taints the _Pause_ component will tolerate for scheduling.
-  tolerations: []
+  tolerations: [ ]
 
 autoscaler:
   serviceAccount:
@@ -94,15 +95,15 @@ autoscaler:
     # -- (string) If this is set and `pause.serviceAccount.create` is `true` this will be used for the created _Autoscaler_ service account name, if this is set and `pause.serviceAccount.create` is `false` then this will define an existing service account to use.
     name:
     # -- Labels to add to the _Autoscaler_ service account.
-    labels: {}
+    labels: { }
     # -- Annotations to add to the _Autoscaler_ service account.
-    annotations: {}
+    annotations: { }
 
   # -- Labels to add to the _Autoscaler_ pod.
-  podLabels: {}
+  podLabels: { }
 
   # -- Annotations to add to the _Autoscaler_ pod.
-  podAnnotations: {}
+  podAnnotations: { }
 
   # -- Security context for the _Autoscaler_ pod.
   # @default -- See _values.yaml_
@@ -140,19 +141,19 @@ autoscaler:
         - ALL
 
   # -- Resources for the _Autoscaler_ component default container.
-  resources: {}
+  resources: { }
 
   # -- Node selector labels for scheduling the _Autoscaler_ component.
-  nodeSelector: {}
+  nodeSelector: { }
 
   # -- Affinity settings for scheduling the _Autoscaler_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
-  affinity: {}
+  affinity: { }
 
   # -- Topology spread constraints for scheduling for the _Autoscaler_ component. If an explicit label selector is not provided one will be created from the pod selector labels.
-  topologySpreadConstraints: []
+  topologySpreadConstraints: [ ]
 
   # -- Node taints the _Autoscaler_ component will tolerate for scheduling.
-  tolerations: []
+  tolerations: [ ]
 
   # -- Log level for the _Autoscaler_ component.
   logLevel: 2
