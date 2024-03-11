@@ -33,7 +33,10 @@ capacity:
     maxReplicas: 1
 
   # -- map of resources
-  resources: {}
+  # @default -- See _values.yaml_
+  resources:
+    cpu: 10m
+    memory: 16Mi
 
 priorityClass:
   # -- If `true`, create a new preemptible `PriorityClass`.

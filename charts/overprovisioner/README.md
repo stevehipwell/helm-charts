@@ -72,7 +72,7 @@ helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.
 | capacity.auto.nodesPerReplica | int | `1` | Number of pause pod replicas to create per cluster node; if `capacity.mode` is `auto`. |
 | capacity.fixed.replicas | int | `1` | Number of pause pod replicas to create; if `capacity.mode` is `fixed`. |
 | capacity.mode | string | `"fixed"` | Capacity mode to use; one of `fixed` or `auto`. If `auto` is used, a [cluster-proportional-autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler) deployment will be used to scale the pause pods |
-| capacity.resources | object | `{}` | map of resources |
+| capacity.resources | object | See _values.yaml_ | map of resources |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
