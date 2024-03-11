@@ -37,7 +37,6 @@ capacity:
     cpu: 10m
     # -- Memory resource requests and limits for the pause pods.
     memory: 16Mi
-    extra: {}
 
 priorityClass:
   # -- If `true`, create a new preemptible `PriorityClass`.

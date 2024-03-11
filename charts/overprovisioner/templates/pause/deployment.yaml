@@ -52,15 +52,11 @@ spec:
           imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
           resources:
             requests:
-              cpu: {{ .Values.capacity.resources.cpu }}
-              memory: {{ .Values.capacity.resources.memory }}
-              {{- with .Values.capacity.resources.extra }}
+              {{- with .Values.capacity.resources }}
               {{- toYaml . | nindent 14 }}
               {{- end }}
             limits:
-              cpu: {{ .Values.capacity.resources.cpu }}
-              memory: {{ .Values.capacity.resources.memory }}
-              {{- with .Values.capacity.resources.extra }}
+              {{- with .Values.capacity.resources }}
               {{- toYaml . | nindent 14 }}
               {{- end }}
       {{- with .Values.pause.nodeSelector }}
