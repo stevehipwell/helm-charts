@@ -32,11 +32,8 @@ capacity:
     # -- Maximum number of pause pod replicas to create; if `capacity.mode` is `auto`.
     maxReplicas: 1
 
-  resources:
-    # -- CPU resource requests and limits for the pause pods.
-    cpu: 10m
-    # -- Memory resource requests and limits for the pause pods.
-    memory: 16Mi
+  # -- map of resources
+  resources: {}
 
 priorityClass:
   # -- If `true`, create a new preemptible `PriorityClass`.
