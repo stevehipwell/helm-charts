@@ -60,6 +60,24 @@
 - Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
 - Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
 
+## [v5.5.7] - 2024-03-05
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Added
+
+- Added a call to `/shutdown-wait.sh` from the pre-stop lifecycle hook.
+- Added support for overriding the `JVM_RESERVED_CODE_CACHE_SIZE` env variable via the `envVars.jvmReservedCodeCacheSize` value.
+- Added support for setting the `ATL_FORCE_CFG_UPDATE` env variable via the `envVars.forceConfigUpdate` value.
+- Added support for setting the `SET_PERMISSIONS` env variable via the `envVars.setPermissions` value.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.7](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+- Changed the default image repository to [docker.io/atlassian/confluence](https://hub.docker.com/r/atlassian/confluence).
+- Changed the default for `envVars.jvmAdditionalMemoryOptions` to be empty.
+
 ## [v5.5.6] - 2024-02-12
 
 > [!IMPORTANT]
@@ -616,7 +634,8 @@ RELEASE LINKS
 [v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
 [v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
 [v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
-[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.0
+[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
+[v5.5.7]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.6
 [v5.5.6]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.6
 [v5.5.5]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.5
 [v5.5.4]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.4
