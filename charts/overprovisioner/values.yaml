@@ -32,7 +32,7 @@ capacity:
     # -- Maximum number of pause pod replicas to create; if `capacity.mode` is `auto`.
     maxReplicas: 1
 
-  # -- map of resources
+  # -- (object) Map of resources to provision.
   # @default -- See _values.yaml_
   resources:
     cpu: 10m
