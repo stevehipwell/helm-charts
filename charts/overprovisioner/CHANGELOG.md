@@ -14,6 +14,11 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Updating `spec.template.spec.containers.resources` to be object map to support multiple resource types.
+
+
 ## [v0.3.0] - 2024-01-17
 
 ### Changed
