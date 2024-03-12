@@ -2,8 +2,8 @@ apiVersion: v2
 name: overprovisioner
 description: Helm chart for overprovisioning Kubernetes clusters.
 type: application
-version: 0.3.0
-appVersion: 0.3.0
+version: 0.4.0
+appVersion: 0.4.0
 home: https://github.com/stevehipwell/helm-charts/
 icon: https://upload.wikimedia.org/wikipedia/labs/thumb/b/ba/Kubernetes-icon-color.svg/2110px-Kubernetes-icon-color.svg.png
 keywords:
@@ -20,6 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _cluster-proportional-autoscaler_ OCI image version to [v1.8.9](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler/releases/tag/v1.8.9)."
-    - kind: changed
-      description: "Changed the default `podSecurityContext` & `securityContext` values for all components.."
+      description: "Changed `capacity.resources` to be object map to support multiple resource types."
