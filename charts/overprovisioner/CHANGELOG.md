@@ -14,10 +14,11 @@
 
 ## [UNRELEASED]
 
+## [v0.4.0] - 2024-03-12
+
 ### Changed
 
-- Updating `spec.template.spec.containers.resources` to be object map to support multiple resource types.
-
+- Changed `capacity.resources` to be object map to support multiple resource types.
 
 ## [v0.3.0] - 2024-01-17
 
@@ -52,6 +53,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/overprovisioner
+[v0.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.4.0
 [v0.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.3.0
 [v0.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.2.0
 [v0.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.1.1

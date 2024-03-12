@@ -52,13 +52,13 @@ spec:
           imagePullPolicy: {{ .Values.pause.image.pullPolicy }}
           resources:
             requests:
-              {{- with .Values.capacity.resources }}
+            {{- with .Values.capacity.resources }}
               {{- toYaml . | nindent 14 }}
-              {{- end }}
+            {{- end }}
             limits:
-              {{- with .Values.capacity.resources }}
+            {{- with .Values.capacity.resources }}
               {{- toYaml . | nindent 14 }}
-              {{- end }}
+            {{- end }}
       {{- with .Values.pause.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

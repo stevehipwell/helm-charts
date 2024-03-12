@@ -1,6 +1,6 @@
 # overprovisioner
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 Helm chart for overprovisioning Kubernetes clusters.
 
@@ -23,7 +23,7 @@ Helm chart for overprovisioning Kubernetes clusters.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/overprovisioner --version 0.3.0
+helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/overprovisioner --version 0.4.0
 ```
 
 #### Verification
@@ -31,7 +31,7 @@ helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/ov
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/overprovisioner:0.3.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/overprovisioner:0.4.0
 ```
 
 ### Non-OCI Repository
@@ -40,7 +40,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.3.0
+helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.4.0
 ```
 
 ## Values
