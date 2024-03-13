@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: atlassian/confluence-server
+  repository: docker.io/atlassian/confluence
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
@@ -112,9 +112,12 @@ caCerts:
 envVars:
   jvmMinHeapSize: 512M
   jvmMaxHeapSize: 512M
-  jvmAdditionalMemoryOptions: "-XX:+UseG1GC"
+  jvmReservedCodeCacheSize: 256M
+  jvmAdditionalMemoryOptions: ""
   jvmAdditionalOptions: ""
   synchronyMaxMemory: "0m"
+  forceConfigUpdate: false
+  setPermissions: true
 
 env: []
 #   - name: VARIABLE
