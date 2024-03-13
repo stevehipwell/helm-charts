@@ -14,6 +14,8 @@
 
 ## [UNRELEASED]
 
+- Fixed the LDAP password logic to support having a password containing `\`.
+
 ## [v4.41.0] - 2024-03-07
 
 ### Changed
