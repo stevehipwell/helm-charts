@@ -9274,6 +9274,42 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Jira Software_ OCI image to [v9.12.5](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html)."
+    apiVersion: v2
+    appVersion: 9.12.5
+    created: "2024-03-13T11:00:50.289381448Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 12.12.10
+    description: Helm chart for Atlassian Jira Software.
+    digest: d6a5ca5d2969a2e5cf3670befc5468309a79728e850c4514be1926ed33844040
+    home: https://www.atlassian.com/software/jira
+    icon: https://wac-cdn.atlassian.com/dam/jcr:b544631f-b225-441b-9e05-57b7fd0d495b/Jira%20Software@2x-icon-blue.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.12.5/jira-software-5.12.5.tgz
+    version: 5.12.5
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
         - kind: added
           description: "Added a call to `/shutdown-wait.sh` from the pre-stop lifecycle hook."
         - kind: changed
@@ -23068,4 +23104,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-03-13T10:53:41.849967224Z"
+generated: "2024-03-13T11:00:50.290305081Z"
