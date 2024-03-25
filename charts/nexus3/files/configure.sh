@@ -144,8 +144,8 @@ do
 
     if [[ -f "${base_dir}/secret/ldap.password" ]]
     then
-      ldap_password=$(cat "${base_dir}/secret/ldap.password" | sed 's|"|\\"|g;s|/|\\/|g;s|\\|\\\\\\\\|g')
-      sed -i "s/PASSWORD/${ldap_password}/g" "${json_file}"
+      ldap_password=$(sed 's|"|\\"|g;s|&|\\&|g;s|/|\\/|g;s|\\|\\\\\\\\|g' "${base_dir}/secret/ldap.password")
+      sed -i "s/PASSWORD/${ldap_password//&/\\&}/g" "${json_file}"
     fi
 
     name="$(grep -Pio '(?<="name":)\s*\"[^"]+\"' "${json_file}" | xargs)"
