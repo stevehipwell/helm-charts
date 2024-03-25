@@ -2,7 +2,7 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 4.41.0
+version: 4.41.1
 appVersion: 3.66.0
 home: https://www.sonatype.com/nexus-repository-oss
 icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
@@ -23,7 +23,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: nexus
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the Nexus3 OCI image to v3.66.0."
     - kind: fixed
-      description: "Fixed the LDAP password logic to support having a password containing a backslash."
+      description: "Fixed the LDAP password logic to support having a password containing special characters."
