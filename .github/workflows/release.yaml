@@ -12,7 +12,7 @@ on:
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@fix-artifact-hub-cleanup
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@2ba42e43df028808b58a6352859930d3e44fbc9e # v0.3.4
     permissions:
       contents: write
       id-token: write
