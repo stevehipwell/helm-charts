@@ -14,7 +14,11 @@
 
 ## [UNRELEASED]
 
-- Fixed the LDAP password logic to support having a password containing `\`.
+## [v4.41.1] - 2024-03-25
+
+### Fixed
+
+- Fixed the LDAP password logic to support having a password containing `\` or `&`.
 
 ## [v4.41.0] - 2024-03-07
 
@@ -601,6 +605,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.41.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.1
 [v4.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.0
 [v4.40.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.40.0
 [v4.39.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.39.0
