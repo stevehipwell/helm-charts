@@ -14,7 +14,7 @@ keywords:
   - policy
   - plugin
 home: https://www.tigera.io/
-icon: https://avatars.githubusercontent.com/u/48935664?s=300
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/tigera-operator/icon.png
 sources:
   - https://github.com/tigera/operator
   - https://github.com/projectcalico/calico

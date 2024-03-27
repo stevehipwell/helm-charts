@@ -5,7 +5,7 @@ type: application
 version: 5.5.7
 appVersion: 8.5.7
 home: https://www.atlassian.com/software/confluence
-icon: https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/f6/1f/d8/f61fd8a9-5451-cd1a-8ef0-5b865999bacb/source/256x256bb.jpg
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
 keywords:
   - confluence
   - confluence-server

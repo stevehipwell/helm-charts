@@ -11,7 +11,7 @@ keywords:
   - service
   - mesh
 home: https://istio.io/
-icon: https://istio.io/latest/favicons/android-192x192.png
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/istio-operator/icon.png
 sources:
   - https://github.com/istio/istio/tree/master/operator
   - https://github.com/stevehipwell/helm-charts/

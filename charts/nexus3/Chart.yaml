@@ -5,7 +5,7 @@ type: application
 version: 4.41.1
 appVersion: 3.66.0
 home: https://www.sonatype.com/nexus-repository-oss
-icon: https://help.sonatype.com/docs/files/331022/34537964/3/1564671303641/NexusRepo_Icon.png
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
 keywords:
   - artifacts
   - dependency

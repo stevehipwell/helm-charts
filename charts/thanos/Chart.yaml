@@ -12,7 +12,7 @@ keywords:
   - alerting
   - metrics
 home: https://thanos.io/
-icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/thanos/icon/color/thanos-icon-color.svg
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
 sources:
   - https://github.com/thanos-io/thanos
   - https://github.com/thanos-io/kube-thanos

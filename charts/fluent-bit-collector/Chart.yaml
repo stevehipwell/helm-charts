@@ -11,7 +11,7 @@ keywords:
   - logging
   - collector
 home: https://fluentbit.io/
-icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/fluentd/fluentbit/icon/fluentbit-icon-color.svg
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
 sources:
   - https://github.com/fluent/fluent-bit/
   - https://github.com/stevehipwell/helm-charts/

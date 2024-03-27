@@ -13,7 +13,7 @@ keywords:
   - coverage
   - quality
 home: https://www.sonarqube.org/
-icon: https://pbs.twimg.com/profile_images/1224335491899760641/h404B5dU_400x400.jpg
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/sonarqube/icon.png
 sources:
   - https://github.com/SonarSource/sonarqube/
   - https://github.com/SonarSource/docker-sonarqube/

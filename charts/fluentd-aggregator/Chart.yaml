@@ -10,7 +10,7 @@ keywords:
   - logging
   - aggregator
 home: https://www.fluentd.org/
-icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
 sources:
   - https://github.com/stevehipwell/fluentd-aggregator
   - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
