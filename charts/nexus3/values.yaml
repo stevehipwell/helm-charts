@@ -244,13 +244,24 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  blobStores: []
+  blobStores: []  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
   #   - name: ExampleFileBlobStore
   #     type: file
   #     path: /nexus-data/blobs/foo
   #     softQuota:
   #       type: spaceRemainingQuota
   #       limit: 500
+  #   - name: ExampleS3BlobStore
+  #     type: s3
+  #     bucketConfiguration:
+  #       bucket:
+  #         region: us-east-1
+  #         name: example-bucket-name
+  #         prefix: /
+  #         expiration: 3
+  #       #bucketSecurity:  # If not using Instance Profile
+  #       #  accessKeyId: access-key-id
+  #       #  secretAccessKey: secret-access-key
   cleanup: []
   #   - name: ExampleCleanup
   #     notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
