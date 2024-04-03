@@ -3,6 +3,7 @@
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/stevehipwell)](https://artifacthub.io/packages/search?ts_query_web=stevehipwell&sort=last_updated)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![](https://github.com/stevehipwell/helm-charts/workflows/Release/badge.svg?branch=main)](https://github.com/stevehipwell/helm-charts/actions/workflows/release.yaml)
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/stevehipwell/helm-charts?label=OpenSSF%20Scorecard)](https://securityscorecards.dev/viewer/?uri=github.com/stevehipwell/helm-charts)
 
 ## Usage
 
