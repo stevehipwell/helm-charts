@@ -14,6 +14,13 @@
 
 ## [UNRELEASED]
 
+## [v4.42.0] - 2024-04-03
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.67.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.67.0-03).
+- Changed Java version from 8 to 11.
+
 ## [v4.41.1] - 2024-03-25
 
 ### Fixed
@@ -605,6 +612,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.42.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.42.0
 [v4.41.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.1
 [v4.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.0
 [v4.40.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.40.0
