@@ -169,6 +169,12 @@ compact:
     # -- If `true`, retain the _Compact_ PVC after the pod is scaled down.
     retainScaled: true
 
+  # -- Extra volumes for the _Compact_ pod.
+  extraVolumes: []
+
+  # -- Extra volume mounts for the _Compact_ pod default container.
+  extraVolumeMounts: []
+
   # -- Node selector labels for scheduling the _Compact_ pod.
   nodeSelector: {}
 
@@ -307,6 +313,12 @@ query:
   # -- Resources for the _Query_ pod default container.
   resources: {}
 
+  # -- Extra volumes for the _Query_ pod.
+  extraVolumes: []
+
+  # -- Extra volume mounts for the _Query_ pod default container.
+  extraVolumeMounts: []
+
   # -- Node selector labels for scheduling the _Query_ pod.
   nodeSelector: {}
 
@@ -442,6 +454,12 @@ queryFrontend:
   # -- Resources for the _Query Frontend_ pod default container.
   resources: {}
 
+  # -- Extra volumes for the _Query Frontend_ pod.
+  extraVolumes: []
+
+  # -- Extra volume mounts for the _Query Frontend_ pod default container.
+  extraVolumeMounts: []
+
   # -- Node selector labels for scheduling the _Query Frontend_ pod.
   nodeSelector: {}
 
@@ -567,6 +585,12 @@ receive:
       retainDeleted: true
       # -- If `true`, retain the _Receive Ingestor_ PVC after the pod is scaled down.
       retainScaled: true
+
+    # -- Extra volumes for the _Receive Ingestor_ pod.
+    extraVolumes: []
+
+    # -- Extra volume mounts for the _Receive Ingestor_ pod default container.
+    extraVolumeMounts: []
 
     # -- Node selector labels for scheduling the _Receive Ingestor_ pod.
     nodeSelector: {}
@@ -699,6 +723,12 @@ receive:
 
     # -- Resources for the _Receive Router_ pod default container.
     resources: {}
+
+    # -- Extra volumes for the _Receive Router_ pod.
+    extraVolumes: []
+
+    # -- Extra volume mounts for the _Receive Router_ pod default container.
+    extraVolumeMounts: []
 
     # -- Node selector labels for scheduling the _Receive Router_ pod.
     nodeSelector: {}
@@ -853,19 +883,28 @@ rule:
     # -- If `true`, retain the _Rule_ PVC after the pod is scaled down.
     retainScaled: true
 
+  # -- Extra volumes for the _Rule_ pod.
+  extraVolumes: []
+
+  # -- Extra volume mounts for the _Rule_ pod default container.
+  extraVolumeMounts: []
+
   configReloader:
-    # -- If `true`, create the config reloader sidecar container.
+    # -- If `true`, create the _Rule_ pod config reloader sidecar container.
     enabled: true
     image:
-      # -- Image repository for the config reloader sidecar container.
+      # -- Image repository for the _Rule_ pod config reloader sidecar container.
       repository: cgr.dev/chainguard/configmap-reload
-      # -- Image tag for the config reloader sidecar container.
+      # -- Image tag for the _Rule_ pod config reloader sidecar container.
       tag: latest
-      # -- Image digest for the config reloader sidecar container.
+      # -- Image digest for the _Rule_ pod config reloader sidecar container.
       digest:
-      # -- Image pull policy for the config reloader sidecar container.
+      # -- Image pull policy for the _Rule_ pod config reloader sidecar container.
       pullPolicy: IfNotPresent
+    # -- Resources for the _Rule_ pod config reloader sidecar container.
     resources: {}
+    # -- Extra volume mounts for the _Rule_ pod config reloader sidecar container.
+    extraVolumeMounts: []
 
   # -- Node selector labels for scheduling the _Rule_ pod.
   nodeSelector: {}
@@ -985,6 +1024,12 @@ storeGateway:
 
   # -- Resources for the _Store Gateway_ pod default container.
   resources: {}
+
+  # -- Extra volumes for the _Store Gateway_ pod.
+  extraVolumes: []
+
+  # -- Extra volume mounts for the _Store Gateway_ pod default container.
+  extraVolumeMounts: []
 
   persistence:
     # -- If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Store Gateway_ pod data.

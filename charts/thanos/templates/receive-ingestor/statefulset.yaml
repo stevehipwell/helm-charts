@@ -105,6 +105,9 @@ spec:
             - name: data
               mountPath: /var/thanos/receive
               readOnly: false
+          {{- with .Values.receive.ingestor.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.receive.ingestor.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -116,6 +119,9 @@ spec:
       {{- if not .Values.receive.ingestor.persistence.enabled }}
         - name: data
           emptyDir: {}
+      {{- end }}
+      {{- with .Values.receive.ingestor.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.receive.ingestor.nodeSelector }}
       nodeSelector:

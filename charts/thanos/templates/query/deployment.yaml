@@ -93,9 +93,17 @@ spec:
           readinessProbe:
             {{- toYaml .Values.query.readinessProbe | nindent 12 }}
           {{- with .Values.query.resources }}
+          {{- with .Values.query.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- with .Values.query.extraVolumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.query.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

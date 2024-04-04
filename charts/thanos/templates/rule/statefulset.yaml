@@ -125,6 +125,9 @@ spec:
             - mountPath: /var/thanos/rule
               name: data
               readOnly: false
+          {{- with .Values.rule.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.rule.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -139,6 +142,9 @@ spec:
             - mountPath: /etc/thanos/rules
               name: rules
               readOnly: true
+          {{- with .Values.rule.configReloader.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.rule.configReloader.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -157,6 +163,9 @@ spec:
       {{- if not .Values.rule.persistence.enabled }}
         - name: data
           emptyDir: {}
+      {{- end }}
+      {{- with .Values.rule.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.rule.nodeSelector }}
       nodeSelector:
