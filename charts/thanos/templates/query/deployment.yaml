@@ -92,11 +92,11 @@ spec:
             {{- toYaml .Values.query.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.query.readinessProbe | nindent 12 }}
-          {{- with .Values.query.resources }}
           {{- with .Values.query.extraVolumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.query.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
