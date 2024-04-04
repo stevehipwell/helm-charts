@@ -96,6 +96,9 @@ spec:
               mountPath: /etc/thanos/hashrings.json
               subPath: hashrings.json
               readOnly: true
+          {{- with .Values.receive.router.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.receive.router.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -104,6 +107,9 @@ spec:
         - name: hashrings-config
           configMap:
             name: {{ include "thanos.receive.router.hashringsConfigmapName" . }}
+      {{- with .Values.receive.router.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.receive.router.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

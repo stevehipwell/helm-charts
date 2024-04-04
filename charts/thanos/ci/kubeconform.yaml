@@ -13,6 +13,15 @@ compact:
   persistence:
     enabled: true
 
+  extraVolumes:
+    - name: test
+      configMap:
+        name: thanos-test
+
+  extraVolumeMounts:
+    - name: test
+      mountPath: /test
+
   deduplication:
     enabled: true
     func: penalty
@@ -41,6 +50,15 @@ query:
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
+
+  extraVolumes:
+    - name: test
+      configMap:
+        name: thanos-test
+
+  extraVolumeMounts:
+    - name: test
+      mountPath: /test
 
   nodeSelector:
     kubernetes.io/os: linux
@@ -79,6 +97,15 @@ queryFrontend:
           - query.chart-example.local
         secretName: chart-example-tls
 
+  extraVolumes:
+    - name: test
+      configMap:
+        name: thanos-test
+
+  extraVolumeMounts:
+    - name: test
+      mountPath: /test
+
   nodeSelector:
     kubernetes.io/os: linux
 
@@ -106,6 +133,15 @@ receive:
 
     persistence:
       enabled: true
+
+    extraVolumes:
+      - name: test
+        configMap:
+          name: thanos-test
+
+    extraVolumeMounts:
+      - name: test
+        mountPath: /test
 
     nodeSelector:
       kubernetes.io/os: linux
@@ -142,6 +178,15 @@ receive:
             - router.chart-example.local
           secretName: chart-example-tls
 
+    extraVolumes:
+      - name: test
+        configMap:
+          name: thanos-test
+
+    extraVolumeMounts:
+      - name: test
+        mountPath: /test
+
     nodeSelector:
       kubernetes.io/os: linux
 
@@ -169,6 +214,21 @@ rule:
   persistence:
     enabled: true
 
+  extraVolumes:
+    - name: test
+      configMap:
+        name: thanos-test
+
+  extraVolumeMounts:
+    - name: test
+      mountPath: /test
+
+  configReloader:
+    enabled: true
+    extraVolumeMounts:
+      - name: test
+        mountPath: /test
+
   nodeSelector:
     kubernetes.io/os: linux
 
@@ -195,6 +255,15 @@ storeGateway:
 
   persistence:
     enabled: true
+
+  extraVolumes:
+    - name: test
+      configMap:
+        name: thanos-test
+
+  extraVolumeMounts:
+    - name: test
+      mountPath: /test
 
   nodeSelector:
     kubernetes.io/os: linux

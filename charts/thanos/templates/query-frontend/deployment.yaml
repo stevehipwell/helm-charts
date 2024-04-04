@@ -77,10 +77,18 @@ spec:
             {{- toYaml .Values.queryFrontend.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.queryFrontend.readinessProbe | nindent 12 }}
+          {{- with .Values.queryFrontend.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.queryFrontend.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- with .Values.queryFrontend.extraVolumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.queryFrontend.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

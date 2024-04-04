@@ -97,6 +97,9 @@ spec:
             - mountPath: /var/thanos/store
               name: data
               readOnly: false
+          {{- with .Values.storeGateway.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.storeGateway.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -108,6 +111,9 @@ spec:
       {{- if not .Values.storeGateway.persistence.enabled }}
         - name: data
           emptyDir: {}
+      {{- end }}
+      {{- with .Values.storeGateway.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.storeGateway.nodeSelector }}
       nodeSelector:

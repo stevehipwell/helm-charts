@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.16.2] - 2024-04-04
+
+### Added
+
+- Added support for setting `extraVolumes` & `extraVolumeMounts` for each component.
+
 ## [v1.16.1] - 2024-02-20
 
 ### Changed
@@ -448,6 +454,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.16.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.2
 [v1.16.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.1
 [v1.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.0
 [v1.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.15.0

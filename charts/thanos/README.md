@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.16.1](https://img.shields.io/badge/Version-1.16.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.34.1](https://img.shields.io/badge/AppVersion-0.34.1-informational?style=flat-square)
+![Version: 1.16.2](https://img.shields.io/badge/Version-1.16.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.34.1](https://img.shields.io/badge/AppVersion-0.34.1-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.16.1
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.16.2
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.16.1
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.16.2
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
+helm upgrade --install thanos stevehipwell/thanos --version 1.16.2
 ```
 
 ## Values
@@ -59,6 +59,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | compact.enabled | bool | `false` | If `true`, create the _Thanos Compact_ component. |
 | compact.extraArgs | list | `[]` | Additional args for the _Compact_ pod default container. |
 | compact.extraEnv | list | `[]` | Additional environment variables for the _Compact_ pod default container. |
+| compact.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Compact_ pod default container. |
+| compact.extraVolumes | list | `[]` | Extra volumes for the _Compact_ pod. |
 | compact.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Compact_ pod default container. |
 | compact.nodeSelector | object | `{}` | Node selector labels for scheduling the _Compact_ pod. |
 | compact.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Compact_ pod PVC. |
@@ -109,6 +111,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | query.autoscaling.targetMemoryUtilizationPercentage | int | `nil` | Target memory utilisation percentage for the _Query_ pod. |
 | query.extraArgs | list | `[]` | Additional args for the _Query_ pod default container. |
 | query.extraEnv | list | `[]` | Additional environment variables for the _Query_ pod default container. |
+| query.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query_ pod default container. |
+| query.extraVolumes | list | `[]` | Extra volumes for the _Query_ pod. |
 | query.ingress.annotations | object | `{}` | Annotations to add to the _Query_ service ingress. |
 | query.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Query_ service. |
 | query.ingress.hosts | list | See _values.yaml_ | Hosts for the _Query_ service ingress. |
@@ -148,6 +152,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | queryFrontend.enabled | bool | `false` | If `true`, create the _Thanos Query Frontend_ component. |
 | queryFrontend.extraArgs | list | `[]` | Additional args for the _Query Frontend_ pod default container. |
 | queryFrontend.extraEnv | list | `[]` | Additional environment variables for the _Query Frontend_ pod default container. |
+| queryFrontend.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query Frontend_ pod default container. |
+| queryFrontend.extraVolumes | list | `[]` | Extra volumes for the _Query Frontend_ pod. |
 | queryFrontend.ingress.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service ingress. |
 | queryFrontend.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Query Frontend_ service. |
 | queryFrontend.ingress.hosts | list | See _values.yaml_ | Hosts for the _Query Frontend_ service ingress. |
@@ -181,6 +187,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | receive.ingestor.affinity | object | `{}` | Affinity settings for scheduling the _Receive Ingestor_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | receive.ingestor.extraArgs | list | `[]` | Additional args for the _Receive Ingestor_ pod default container. |
 | receive.ingestor.extraEnv | list | `[]` | Additional environment variables for the _Receive Ingestor_ pod default container. |
+| receive.ingestor.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Receive Ingestor_ pod default container. |
+| receive.ingestor.extraVolumes | list | `[]` | Extra volumes for the _Receive Ingestor_ pod. |
 | receive.ingestor.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Receive Ingestor_ pod default container. |
 | receive.ingestor.nodeSelector | object | `{}` | Node selector labels for scheduling the _Receive Ingestor_ pod. |
 | receive.ingestor.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Receive Ingestor_ pod PVC. |
@@ -223,6 +231,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | receive.router.autoscaling.targetMemoryUtilizationPercentage | int | `nil` | Target memory utilisation percentage for the _Receive Router_ pod. |
 | receive.router.extraArgs | list | `[]` | Additional args for the _Receive Router_ pod default container. |
 | receive.router.extraEnv | list | `[]` | Additional environment variables for the _Receive Router_ pod default container. |
+| receive.router.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Receive Router_ pod default container. |
+| receive.router.extraVolumes | list | `[]` | Extra volumes for the _Receive Router_ pod. |
 | receive.router.ingress.annotations | object | `{}` | Annotations to add to the _Receive Router_ service ingress. |
 | receive.router.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Receive Router_ service. |
 | receive.router.ingress.hosts | list | See _values.yaml_ | Hosts for the _Receive Router_ service ingress. |
@@ -258,16 +268,19 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | rule.alertmanagersConfig.name | string | `nil` | If this is set and `rule.alertmanagersConfig.create` is `true` this will be used for the created secret name, if this is set and `rule.alertmanagersConfig.create` is `false` then this will define an existing secret to use. |
 | rule.alertmanagersConfig.value | string | `"alertmanagers: []"` | Alert managers configuration for the _Rule_ component. |
 | rule.blockDuration | string | `"2h"` | Block duration for the _Rule_ component (`--tsdb.block-duration`). |
-| rule.configReloader.enabled | bool | `true` | If `true`, create the config reloader sidecar container. |
-| rule.configReloader.image.digest | string | `nil` | Image digest for the config reloader sidecar container. |
-| rule.configReloader.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the config reloader sidecar container. |
-| rule.configReloader.image.repository | string | `"cgr.dev/chainguard/configmap-reload"` | Image repository for the config reloader sidecar container. |
-| rule.configReloader.image.tag | string | `"latest"` | Image tag for the config reloader sidecar container. |
-| rule.configReloader.resources | object | `{}` |  |
+| rule.configReloader.enabled | bool | `true` | If `true`, create the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.digest | string | `nil` | Image digest for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.repository | string | `"cgr.dev/chainguard/configmap-reload"` | Image repository for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.tag | string | `"latest"` | Image tag for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.resources | object | `{}` | Resources for the _Rule_ pod config reloader sidecar container. |
 | rule.enabled | bool | `false` | If `true`, create the _Thanos Rule_ component. |
 | rule.evalInterval | string | `"1m"` | Rule eval interval for the _Rule_ component (`--eval-interval`). |
 | rule.extraArgs | list | `[]` | Additional args for the _Rule_ pod default container. |
 | rule.extraEnv | list | `[]` | Additional environment variables for the _Rule_ pod default container. |
+| rule.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Rule_ pod default container. |
+| rule.extraVolumes | list | `[]` | Extra volumes for the _Rule_ pod. |
 | rule.ingress.annotations | object | `{}` | Annotations to add to the _Rule_ service ingress. |
 | rule.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Rule_ service. |
 | rule.ingress.hosts | list | See _values.yaml_ | Hosts for the _Rule_ service ingress. |
@@ -317,6 +330,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.1
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | storeGateway.extraArgs | list | `[]` | Additional args for the _Store Gateway_ pod default container. |
 | storeGateway.extraEnv | list | `[]` | Additional environment variables for the _Store Gateway_ pod default container. |
+| storeGateway.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Store Gateway_ pod default container. |
+| storeGateway.extraVolumes | list | `[]` | Extra volumes for the _Store Gateway_ pod. |
 | storeGateway.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Store Gateway_ pod default container. |
 | storeGateway.nodeSelector | object | `{}` | Node selector labels for scheduling the _Store Gateway_ pod. |
 | storeGateway.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Store Gateway_ pod PVC. |
