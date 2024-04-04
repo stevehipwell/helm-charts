@@ -10,6 +10,14 @@ additionalReplicaLabels:
 compact:
   enabled: true
 
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
   persistence:
     enabled: true
 
@@ -50,6 +58,14 @@ query:
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
 
   extraVolumes:
     - name: test
@@ -97,6 +113,14 @@ queryFrontend:
           - query.chart-example.local
         secretName: chart-example-tls
 
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
   extraVolumes:
     - name: test
       configMap:
@@ -133,6 +157,14 @@ receive:
 
     persistence:
       enabled: true
+
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1024Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
 
     extraVolumes:
       - name: test
@@ -178,6 +210,14 @@ receive:
             - router.chart-example.local
           secretName: chart-example-tls
 
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1024Mi
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+
     extraVolumes:
       - name: test
         configMap:
@@ -210,6 +250,14 @@ rule:
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
 
   persistence:
     enabled: true
@@ -252,6 +300,14 @@ storeGateway:
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
 
   persistence:
     enabled: true

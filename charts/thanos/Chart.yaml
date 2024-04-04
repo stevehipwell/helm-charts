@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.16.2
+version: 1.16.3
 appVersion: 0.34.1
 keywords:
   - kubernetes
@@ -22,5 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for setting `extraVolumes` & `extraVolumeMounts` for each component."
+    - kind: fixed
+      description: "Fixed bug introduced as part of adding extra volume support."
