@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.11.1] - 2024-04-05
+
+### Changed
+
+- Updated _Fluent Bit_ OCI image to [v3.0.1](https://github.com/fluent/fluent-bit/releases/tag/v3.0.1).
+
 ## [v0.11.0] - 2024-04-02
 
 ### Changed
@@ -123,6 +129,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-collector
+[v0.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.11.1
 [v0.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.11.0
 [v0.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.10.0
 [v0.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.9.0
