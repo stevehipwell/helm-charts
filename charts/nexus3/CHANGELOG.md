@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fixed incorrect behaviour when `rootPassword.key` is set due to the deprecated `config.rootPassword.key` incorrectly having a default value.
+
 ## [v4.42.0] - 2024-04-03
 
 ### Changed

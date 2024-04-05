@@ -177,7 +177,7 @@ config:
   enabled: false
   rootPassword:
     secret:
-    key: password
+    key:
   anonymous:
     enabled: false
     roles:
@@ -244,7 +244,8 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  blobStores: []  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
+  blobStores: []
+  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
   #   - name: ExampleFileBlobStore
   #     type: file
   #     path: /nexus-data/blobs/foo
