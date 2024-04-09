@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v2.14.1] - 2024-04-09
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.21.1](https://github.com/istio/istio/releases/tag/1.21.1).
+
 ## [v2.14.0] - 2024-03-14
 
 ### Changed
@@ -94,13 +100,13 @@
 
 - Updated the _Istio Operator_ OCI image version to [v1.18.0](https://github.com/istio/istio/releases/tag/1.18.0).
 
-## v2.10.1 - 2023-06-07
+## [v2.10.1] - 2023-06-07
 
 ### Changed
 
 - Updated the _Istio Operator_ OCI image version to [v1.17.3](https://github.com/istio/istio/releases/tag/1.17.3).
 
-## v2.10.0 - 2023-04-11
+## [v2.10.0] - 2023-04-11
 
 ### Added
 
@@ -112,19 +118,19 @@
 
 - Updated the _Istio Operator_ image version to [v1.17.2](https://github.com/istio/istio/releases/tag/1.17.2).
 
-## v2.9.1 - 2023-02-24
+## [v2.9.1] - 2023-02-24
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.17.1](https://github.com/istio/istio/releases/tag/1.17.1).
 
-## v2.9.0 - 2023-02-15
+## [v2.9.0] - 2023-02-15
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.17.0](https://github.com/istio/istio/releases/tag/1.17.0).
 
-## v2.8.2 - 2023-01-31
+## [v2.8.2] - 2023-01-31
 
 ### Added
 
@@ -134,61 +140,61 @@
 
 - Updated the _Istio Operator_ image version to [v1.16.2](https://github.com/istio/istio/releases/tag/1.16.2).
 
-## v2.8.1 - 2022-12-13
+## [v2.8.1] - 2022-12-13
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.16.1](https://github.com/istio/istio/releases/tag/1.16.1).
 
-## v2.8.0 - 2022-11-16
+## [v2.8.0] - 2022-11-16
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.16.0](https://github.com/istio/istio/releases/tag/1.16.0).
 
-## v2.7.3 - 2022-10-28
+## [v2.7.3] - 2022-10-28
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.3](https://github.com/istio/istio/releases/tag/1.15.3).
 
-## v2.7.2 - 2022-10-12
+## [v2.7.2] - 2022-10-12
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.2](https://github.com/istio/istio/releases/tag/1.15.2).
 
-## v2.7.1 - 2022-10-03
+## [v2.7.1] - 2022-10-03
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.1](https://github.com/istio/istio/releases/tag/1.15.1).
 
-## v2.7.0 - 2022-08-01
+## [v2.7.0] - 2022-08-01
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.15.0](https://github.com/istio/istio/releases/tag/1.15.0).
 
-## v2.6.2 - 2022-08-01
+## [v2.6.3] - 2022-08-01
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.3](https://github.com/istio/istio/releases/tag/1.14.3).
 
-## v2.6.2 - 2022-07-26
+## [v2.6.2] - 2022-07-26
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.2](https://github.com/istio/istio/releases/tag/1.14.2).
 
-## v2.6.1 - 2022-06-10
+## [v2.6.1] - 2022-06-10
 
 ### Changed
 
 - Updated the _Istio Operator_ image version to [v1.14.1](https://github.com/istio/istio/releases/tag/1.14.1).
 
-## v2.6.0 - 2022-06-06
+## [v2.6.0] - 2022-06-06
 
 ### Added
 
@@ -499,6 +505,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/istio-operator
+[v2.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.14.1
 [v2.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.14.0
 [v2.13.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.13.3
 [v2.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.13.2
@@ -511,3 +518,18 @@ RELEASE LINKS
 [v2.11.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.2
 [v2.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.1
 [v2.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.11.0
+[v2.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.10.1
+[v2.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.10.0
+[v2.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.9.1
+[v2.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.9.0
+[v2.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.8.2
+[v2.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.8.1
+[v2.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.8.0
+[v2.7.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.7.3
+[v2.7.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.7.2
+[v2.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.7.1
+[v2.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.7.0
+[v2.6.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.6.3
+[v2.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.6.2
+[v2.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.6.1
+[v2.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.6.0
