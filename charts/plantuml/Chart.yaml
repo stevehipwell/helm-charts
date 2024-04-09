@@ -2,8 +2,8 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML Server, a web application to generate UML diagrams on-the-fly.
 type: application
-version: 3.30.0
-appVersion: 1.2024.3
+version: 3.31.0
+appVersion: 1.2024.4
 home: https://plantuml.com/
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
 keywords:
@@ -20,4 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the PlantUML OCI image to v1.2024.3."
+      description: "Updated the PlantUML OCI image to v1.2024.4."
