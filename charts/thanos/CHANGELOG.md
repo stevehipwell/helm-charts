@@ -14,6 +14,18 @@
 
 ## [UNRELEASED]
 
+## [v1.17.0] - 2024-05-02
+
+### Added
+
+- Added built in support for automatically setting the `GOMEMLIMIT` env variable on all Thanos components via the `autoGomemlimit.enabled` & `autoGomemlimit.ratio` values.
+- Added experimental support for configuring query to access store pods as a group via the `storeEndpointGroup` value, this switches to round-robin instead of fanout.
+- Added experimental support for external endpoint groups via the `additionalEndpointGroups` value.
+
+### Changed
+
+- Updated the _Thanos_ OCI image to [v0.35.0](https://github.com/thanos-io/thanos/releases/tag/v0.35.0).
+
 ## [v1.16.5] - 2024-04-23
 
 ### Fixed
@@ -480,6 +492,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.0
 [v1.16.5]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.5
 [v1.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.4
 [v1.16.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.3

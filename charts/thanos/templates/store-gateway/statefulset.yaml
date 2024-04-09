@@ -75,6 +75,12 @@ spec:
             - --http-address=0.0.0.0:10902
             - --data-dir=/var/thanos/store
             - --objstore.config-file=/etc/thanos/objstore.yaml
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
           {{- with .Values.storeGateway.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

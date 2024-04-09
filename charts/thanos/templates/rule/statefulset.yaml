@@ -76,6 +76,12 @@ spec:
             - --http-address=0.0.0.0:10902
             - --data-dir=/var/thanos/rule
             - --objstore.config-file=/etc/thanos/objstore.yaml
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
           {{- if .Values.rule.instanceLabel }}
             - {{ printf "--label=thanos_rule=\"%s/%s\"" .Release.Namespace (include "thanos.rule.fullname" .) }}
           {{- end }}

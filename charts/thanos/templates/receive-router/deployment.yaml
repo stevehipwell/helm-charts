@@ -71,6 +71,12 @@ spec:
             - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
             - --remote-write.address=0.0.0.0:19291
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
             - --receive.hashrings-file=/etc/thanos/hashrings.json
             - --receive.replication-factor={{ .Values.receive.replicationFactor }}
             - --label=receive_replica="$(NAME)"

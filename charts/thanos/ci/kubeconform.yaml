@@ -7,6 +7,10 @@ additionalEndpoints:
 additionalReplicaLabels:
   - prometheus_replica
 
+autoGomemlimit:
+  enabled: true
+  ratio: 0.8
+
 compact:
   enabled: true
 

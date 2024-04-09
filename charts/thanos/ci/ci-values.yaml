@@ -1,3 +1,6 @@
+autoGomemlimit:
+  enabled: true
+
 compact:
   enabled: false
 

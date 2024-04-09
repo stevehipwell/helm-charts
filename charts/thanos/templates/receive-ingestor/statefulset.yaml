@@ -76,6 +76,12 @@ spec:
             - --http-address=0.0.0.0:10902
             - --remote-write.address=0.0.0.0:19291
             - --objstore.config-file=/etc/thanos/objstore.yaml
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
             - --tsdb.path=/var/thanos/receive
             - --tsdb.retention={{ .Values.receive.retention }}
             - --label=receive_replica="$(NAME)"
