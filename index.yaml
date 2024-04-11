@@ -23350,6 +23350,43 @@ entries:
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.1.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.1.0)."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.1.0
+    created: "2024-04-11T09:55:25.214482129Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 64ded008c8f2d24eb145987574dc6693f293d449f2be4dc3ec8c2730b1592972
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.6.0/vertical-pod-autoscaler-1.6.0.tgz
+    version: 1.6.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added `recommenderOnly` value to allow for deployment of only the [VPA Recommender](https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/pkg/recommender/README.md)."
         - kind: changed
@@ -23554,4 +23591,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-11T09:32:33.833399927Z"
+generated: "2024-04-11T09:55:25.2154706Z"
