@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v4.42.1] - 2024-04-11
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.67.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.67.1-01).
+
 ### Fixed
 
 - Fixed incorrect behaviour when `rootPassword.key` is set due to the deprecated `config.rootPassword.key` incorrectly having a default value.
@@ -616,6 +622,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.42.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.42.1
 [v4.42.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.42.0
 [v4.41.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.1
 [v4.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.41.0
