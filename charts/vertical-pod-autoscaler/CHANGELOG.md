@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.6.0] - 2024-04-11
+
+### Changed
+
+- Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.1.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.1.0).
+
 ## [v1.5.0] - 2024-02-12
 
 ### Added
@@ -62,6 +68,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.6.0
 [v1.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.5.0
 [v1.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.4.0
 [v1.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.3.0
