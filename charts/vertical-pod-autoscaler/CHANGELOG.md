@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fixed incorrect `ServiceMonitor` name via the `jobLabel` field.
+
 ## [v1.6.0] - 2024-04-11
 
 ### Changed
