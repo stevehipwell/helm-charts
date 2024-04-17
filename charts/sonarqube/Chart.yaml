@@ -24,7 +24,7 @@ maintainers:
 dependencies:
   - name: postgresql
     version: ~12.12.10
-    repository: https://charts.bitnami.com/bitnami/
+    repository: oci://docker.io/bitnamicharts
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
