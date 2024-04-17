@@ -1,3 +1,6 @@
 * text=auto eol=lf
+
+*.tpl linguist-language=YAML
+
 *.{cmd,[cC][mM][dD]} text eol=crlf
 *.{bat,[bB][aA][tT]} text eol=crlf
