@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Updated the _PostgreSQL_ dependency ot come from an OCI registry.
+
 ## [v5.7.1] - 2024-01-16
 
 > [!CAUTION]

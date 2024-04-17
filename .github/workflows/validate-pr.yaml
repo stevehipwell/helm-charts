@@ -19,7 +19,6 @@ jobs:
     with:
       chart_dir: charts
       target_branch: main
-      helm_repos: "bitnami=https://charts.bitnami.com/bitnami/"
       helm_docs: true
       changelog: true
       ah_lint: true
