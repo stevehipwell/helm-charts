@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.16.3
+version: 1.16.4
 appVersion: 0.34.1
 keywords:
   - kubernetes
@@ -22,5 +22,9 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added the remote write port to the _Thanos Receive_ ingress."
+    - kind: changed
+      description: "Switched to using the port name for ingress."
     - kind: fixed
-      description: "Fixed bug introduced as part of adding extra volume support."
+      description: "Fixed incorrect `ServiceMonitor` name via the `jobLabel` field."

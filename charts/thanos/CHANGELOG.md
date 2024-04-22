@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v1.16.4] - 2024-04-22
+
+### Added
+
+- Added the remote write port to the _Thanos Receive_ ingress.
+
+### Changed
+
+- Switched to using the port name for ingress.
+
 ### Fixed
 
 - Fixed incorrect `ServiceMonitor` name via the `jobLabel` field.
@@ -464,6 +474,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.4
 [v1.16.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.3
 [v1.16.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.2
 [v1.16.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.1
