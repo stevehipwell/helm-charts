@@ -2,7 +2,6 @@
 {{- $apiIsStable := eq (include "jira-software.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "jira-software.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "jira-software.fullname" . -}}
-{{- $servicePort := .Values.service.port -}}
 apiVersion: {{ include "jira-software.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -32,7 +31,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: {{ $servicePort }}
+                  name: http
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http
