@@ -22,6 +22,20 @@ spec:
     - host: {{ quote . }}
       http:
         paths:
+          - path: {{ printf "%s/api/v1/receive" $.Values.receive.router.ingress.path | replace "//" "/" }}
+            {{- if $ingressSupportsPathType }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+            {{- if $apiIsStable }}
+              service:
+                name: {{ $serviceName }}
+                port:
+                  name: http-rem-write
+            {{- else }}
+              serviceName: {{ $serviceName }}
+              servicePort: http-rem-write
+            {{- end }}
           - path: {{ $.Values.receive.router.ingress.path }}
             {{- if $ingressSupportsPathType }}
             pathType: Prefix
@@ -31,7 +45,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: 10902
+                  name: http
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http
