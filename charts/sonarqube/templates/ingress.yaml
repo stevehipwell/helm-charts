@@ -2,7 +2,6 @@
 {{- $apiIsStable := eq (include "sonarqube.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "sonarqube.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "sonarqube.fullname" . -}}
-{{- $servicePort := .Values.service.port -}}
 apiVersion: {{ include "sonarqube.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -32,7 +31,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: {{ $servicePort }}
+                  name: http
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http

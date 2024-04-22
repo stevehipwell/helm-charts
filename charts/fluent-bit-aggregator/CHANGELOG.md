@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for setting the `servicePort` for ingress to the port name.
+
 ## [v0.14.2] - 2024-04-12
 
 ### Changed

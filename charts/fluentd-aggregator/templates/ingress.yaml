@@ -26,7 +26,11 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
+                {{- if regexMatch "^[0-9]+$" (toString $servicePort) }}
                   number: {{ $servicePort }}
+                {{- else }}
+                  name: {{ $servicePort }}
+                {{- end }}
         {{- end }}
   {{- end }}
   {{- with $v.tls }}

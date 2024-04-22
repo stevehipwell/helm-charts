@@ -2,7 +2,6 @@
 {{- $apiIsStable := eq (include "nexus3.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "nexus3.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "nexus3.fullname" . -}}
-{{- $servicePort := .Values.service.port -}}
 apiVersion: {{ include "nexus3.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -32,7 +31,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: {{ $servicePort }}
+                  name: http
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http
@@ -51,7 +50,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: {{ .port }}
+                  name: {{ .name }}
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: {{ .name }}

@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Switched to using the port name for ingress.
+
 ## [v3.31.0] - 2024-04-09
 
 ### Changed

@@ -2,7 +2,6 @@
 {{- $apiIsStable := eq (include "plantuml.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "plantuml.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "plantuml.fullname" . -}}
-{{- $servicePort := .Values.service.port -}}
 apiVersion: {{ include "plantuml.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -32,7 +31,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: {{ $servicePort }}
+                  name: http
             {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http

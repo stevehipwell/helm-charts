@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Switched to using the port name for ingress.
+
 ### Fixed
 
 - Fixed incorrect `ServiceMonitor` name via the `jobLabel` field.
