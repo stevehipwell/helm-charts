@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.queryFrontend.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: query-frontend
+app.kubernetes.io/component-instance: {{ .Release.Name }}-query-frontend
 {{- end }}
 
 {{/*

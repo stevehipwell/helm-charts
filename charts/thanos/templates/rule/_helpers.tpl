@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.rule.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: rule
+app.kubernetes.io/component-instance: {{ .Release.Name }}-rule
 {{- end }}
 
 {{/*
@@ -74,5 +75,3 @@ Patch topology spread constraints
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.rule.selectorLabels") $) }}
 {{- end }}
 {{- end }}
-
-

@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.16.5] - 2024-04-23
+
+### Fixed
+
+- Fixed `ServiceMonitor` job name.
+
 ## [v1.16.4] - 2024-04-22
 
 ### Added
@@ -474,6 +480,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.16.5]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.5
 [v1.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.4
 [v1.16.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.3
 [v1.16.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.2

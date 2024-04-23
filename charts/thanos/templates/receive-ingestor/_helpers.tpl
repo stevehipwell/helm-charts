@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.receive.ingestor.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: receive-ingestor
+app.kubernetes.io/component-instance: {{ .Release.Name }}-receive-ingestor
 {{- end }}
 
 {{/*
