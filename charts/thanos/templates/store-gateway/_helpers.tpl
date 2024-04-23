@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.storeGateway.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: store-gateway
+app.kubernetes.io/component-instance: {{ .Release.Name }}-store-gateway
 {{- end }}
 
 {{/*

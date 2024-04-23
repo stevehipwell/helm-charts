@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.receive.router.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: receive-router
+app.kubernetes.io/component-instance: {{ .Release.Name }}-receive-router
 {{- end }}
 
 {{/*

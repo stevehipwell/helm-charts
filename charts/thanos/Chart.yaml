@@ -22,9 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added the remote write port to the _Thanos Receive_ ingress."
-    - kind: changed
-      description: "Switched to using the port name for ingress."
     - kind: fixed
-      description: "Fixed incorrect `ServiceMonitor` name via the `jobLabel` field."
+      description: "Fixed `ServiceMonitor` job name."

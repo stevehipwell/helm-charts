@@ -10,7 +10,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  jobLabel: app.kubernetes.io/instance
+  jobLabel: app.kubernetes.io/component-instance
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}

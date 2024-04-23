@@ -11,6 +11,7 @@ Common labels
 {{- define "thanos.compact.labels" -}}
 {{ include "thanos.labels" . }}
 app.kubernetes.io/component: compact
+app.kubernetes.io/component-instance: {{ .Release.Name }}-compact
 {{- end }}
 
 {{/*
