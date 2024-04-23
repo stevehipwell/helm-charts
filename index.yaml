@@ -19427,6 +19427,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed `ServiceMonitor` job name."
+    apiVersion: v2
+    appVersion: 0.34.1
+    created: "2024-04-23T13:20:28.911459155Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: b5bf77c9e31b795d9252aa50f854f4fb086bcc0c98555f21a5cb3a5e19ca80b4
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.16.5/thanos-1.16.5.tgz
+    version: 1.16.5
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added the remote write port to the _Thanos Receive_ ingress."
         - kind: changed
@@ -23726,4 +23758,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-23T12:26:11.021158611Z"
+generated: "2024-04-23T13:20:28.912471974Z"
