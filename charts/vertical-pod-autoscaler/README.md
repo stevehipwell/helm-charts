@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler
 
-![Version: 1.6.0](https://img.shields.io/badge/Version-1.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 1.6.1](https://img.shields.io/badge/Version-1.6.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 The [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/) (VPA) frees the users from necessity of setting up-to-date resource limits and requests for the containers in their pods. When configured, it will set the requests automatically based on usage and thus allow proper scheduling onto nodes so that appropriate resource amount is available for each pod. It will also maintain ratios between limits and requests that were specified in initial containers configuration.
 
@@ -33,7 +33,7 @@ This chart manages the `MutatingWebhookConfiguration` outside of the workload so
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.6.0
+helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.6.1
 ```
 
 #### Verification
@@ -41,7 +41,7 @@ helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-c
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.6.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.6.1
 ```
 
 ### Non-OCI Repository
@@ -50,7 +50,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.0
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.1
 ```
 
 ### Non-OCI Repository
@@ -59,7 +59,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.0
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.1
 ```
 
 ## Values

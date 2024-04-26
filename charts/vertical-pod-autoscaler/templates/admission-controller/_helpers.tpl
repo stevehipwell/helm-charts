@@ -11,6 +11,7 @@ Common labels
 {{- define "vertical-pod-autoscaler.admissionController.labels" -}}
 {{ include "vertical-pod-autoscaler.labels" . }}
 app.kubernetes.io/component: admission-controller
+app.kubernetes.io/component-instance: {{ .Release.Name }}-admission-controller
 {{- end }}
 
 {{/*
@@ -94,10 +95,10 @@ Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.admissionController.patchAffinity" -}}
 {{- if (hasKey .Values.admissionController.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.admissionController.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAffinity" nil .Values.admissionController.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
 {{- end }}
 {{- if (hasKey .Values.admissionController.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.admissionController.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAntiAffinity" nil .Values.admissionController.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.admissionController.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 

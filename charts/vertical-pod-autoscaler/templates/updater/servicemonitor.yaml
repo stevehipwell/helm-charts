@@ -10,7 +10,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  jobLabel: app.kubernetes.io/instance
+  jobLabel: app.kubernetes.io/component-instance
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
@@ -20,11 +20,7 @@ spec:
   endpoints:
     - port: http-metrics
       path: /metrics
-    {{- if .Values.serviceMonitor.endpointConfig }}
-      {{- toYaml .Values.serviceMonitor.endpointConfig | nindent 6 }}
-    {{- else }}
-    {{- with .Values.serviceMonitor.interval }}
-      interval: {{ . }}
-    {{- end }}
+    {{- with .Values.serviceMonitor.endpointConfig }}
+      {{- toYaml . | nindent 6 }}
     {{- end }}
 {{- end -}}
