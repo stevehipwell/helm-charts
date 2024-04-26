@@ -11,6 +11,7 @@ Common labels
 {{- define "vertical-pod-autoscaler.recommender.labels" -}}
 {{ include "vertical-pod-autoscaler.labels" . }}
 app.kubernetes.io/component: recommender
+app.kubernetes.io/component-instance: {{ .Release.Name }}-recommender
 {{- end }}
 
 {{/*
@@ -44,10 +45,10 @@ Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.recommender.patchAffinity" -}}
 {{- if (hasKey .Values.recommender.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.recommender.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAffinity" nil .Values.recommender.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
 {{- end }}
 {{- if (hasKey .Values.recommender.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.recommender.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAntiAffinity" nil .Values.recommender.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.recommender.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 

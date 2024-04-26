@@ -11,6 +11,7 @@ Common labels
 {{- define "vertical-pod-autoscaler.updater.labels" -}}
 {{ include "vertical-pod-autoscaler.labels" . }}
 app.kubernetes.io/component: updater
+app.kubernetes.io/component-instance: {{ .Release.Name }}-updater
 {{- end }}
 
 {{/*
@@ -44,10 +45,10 @@ Patch affinity
 */}}
 {{- define "vertical-pod-autoscaler.updater.patchAffinity" -}}
 {{- if (hasKey .Values.updater.affinity "podAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.updater.affinity.podAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAffinity" nil .Values.updater.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
 {{- end }}
 {{- if (hasKey .Values.updater.affinity "podAntiAffinity") }}
-{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" .Values.updater.affinity.podAntiAffinity "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
+{{- include "vertical-pod-autoscaler.patchPodAffinity" (merge (dict "_podAffinity" (dig "podAntiAffinity" nil .Values.updater.affinity) "_selectorLabelsTemplate" "vertical-pod-autoscaler.updater.selectorLabels") .) }}
 {{- end }}
 {{- end }}
 
