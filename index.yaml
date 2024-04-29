@@ -5583,6 +5583,38 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for setting the `servicePort` for ingress to the port name."
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.14.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.14.0) (_Fluentd_ [v1.16.5](https://github.com/fluent/fluentd/releases/tag/v1.16.5))."
+    apiVersion: v2
+    appVersion: 2.14.0
+    created: "2024-04-29T19:37:02.747331007Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: b30dc54965867fc797b1fbb37aa901d2367bbc2e896e2627feeffbcf7183e41f
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.5.0/fluentd-aggregator-4.5.0.tgz
+    version: 4.5.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.13.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.13.0) (_Fluentd_ [v1.16.5](https://github.com/fluent/fluentd/releases/tag/v1.16.5))."
     apiVersion: v2
@@ -23859,4 +23891,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-29T09:13:32.589243924Z"
+generated: "2024-04-29T19:37:02.748584423Z"
