@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v4.5.0] - 2024-04-29
+
 ### Added
 
 - Added support for setting the `servicePort` for ingress to the port name.
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.14.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.14.0) (_Fluentd_ [v1.16.5](https://github.com/fluent/fluentd/releases/tag/v1.16.5)).
 
 ## [v4.4.0] - 2024-04-02
 
@@ -517,6 +523,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v4.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.5.0
 [v4.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.4.0
 [v4.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.3.0
 [v4.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.2.1
