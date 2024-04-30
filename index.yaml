@@ -5583,6 +5583,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.15.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.15.0) (_Fluentd_ [v1.17.0](https://github.com/fluent/fluentd/releases/tag/v1.17.0))."
+    apiVersion: v2
+    appVersion: 2.15.0
+    created: "2024-04-30T15:07:51.065903172Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 83c43538bec9c316fd110b251baa45a70e0989c352283fb0c21cbd14da2094ed
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.6.0/fluentd-aggregator-4.6.0.tgz
+    version: 4.6.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for setting the `servicePort` for ingress to the port name."
         - kind: changed
@@ -23891,4 +23921,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-29T19:37:02.748584423Z"
+generated: "2024-04-30T15:07:51.067243196Z"
