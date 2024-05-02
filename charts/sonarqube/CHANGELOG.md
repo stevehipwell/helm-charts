@@ -14,9 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.5.1] - 2024-05-02
+
 ### Changed
 
-- Updated the _PostgreSQL_ dependency ot come from an OCI registry.
+- Updated the _SonarQube_ OCI image to [v10.5.1](https://www.sonarsource.com/blog/sonarqube-10-5-release-announcement/) ([GH release](https://github.com/SonarSource/sonarqube/releases/tag/10.5.1.90531)).
+- Updated the _PostgreSQL_ dependency to come from an OCI registry.
 - Switched to using the port name for ingress.
 
 ## [v5.5.0] - 2024-04-12
@@ -363,6 +366,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/sonarqube
+[v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.5.0
 [v5.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.4.1
 [v5.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.4.0
