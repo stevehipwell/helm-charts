@@ -19591,6 +19591,44 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added built in support for automatically setting the `GOMEMLIMIT` env variable on all Thanos components via the `autoGomemlimit.enabled` & `autoGomemlimit.ratio` values."
+        - kind: added
+          description: "Added experimental support for configuring query to access store pods as a group via the `storeEndpointGroup` value, this switches to round-robin instead of fanout."
+        - kind: added
+          description: "Added experimental support for external endpoint groups via the `additionalEndpointGroups` value."
+        - kind: changed
+          description: "Updated the _Thanos_ OCI image to [v0.35.0](https://github.com/thanos-io/thanos/releases/tag/v0.35.0)."
+    apiVersion: v2
+    appVersion: 0.35.0
+    created: "2024-05-02T12:02:21.297675912Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: b0c76bb41344e8fec91707e05c62e07ac62f99205f804a7c8d2c00934a469928
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.17.0/thanos-1.17.0.tgz
+    version: 1.17.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed `ServiceMonitor` job name."
     apiVersion: v2
@@ -23961,4 +23999,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-05-02T09:30:40.922980436Z"
+generated: "2024-05-02T12:02:21.298674605Z"
