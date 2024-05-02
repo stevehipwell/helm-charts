@@ -55,6 +55,25 @@ resources:
     cpu: 1000m
     memory: 256Mi
 
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+        weight: 100
+
+topologySpreadConstraints:
+  - maxSkew: 1
+    minDomains: 3
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
+    nodeAffinityPolicy: Honor
+    nodeTaintsPolicy: Honor
+
+tolerations:
+  - key: system
+    operator: Exists
+
 serviceMonitor:
   enabled: true
 
