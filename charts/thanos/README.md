@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.16.5](https://img.shields.io/badge/Version-1.16.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.34.1](https://img.shields.io/badge/AppVersion-0.34.1-informational?style=flat-square)
+![Version: 1.17.0](https://img.shields.io/badge/Version-1.17.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.35.0](https://img.shields.io/badge/AppVersion-0.35.0-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.16.5
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.17.0
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.16.5
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.17.0
 ```
 
 ### Non-OCI Repository
@@ -42,15 +42,18 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.16.5
+helm upgrade --install thanos stevehipwell/thanos --version 1.17.0
 ```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalEndpointGroups | list | `[]` | Additional endpoint groups external to the chart to be configured with `--endpoint-group` (**EXPERIMENTAL**). |
 | additionalEndpoints | list | `[]` | Additional endpoints external to the chart to be configured with `--endpoint`. |
 | additionalReplicaLabels | list | `[]` | Additional replica labels external to the chart. |
+| autoGomemlimit.enabled | bool | `false` | If `true`, enable the go runtime to automatically limit memory consumption for all Thanos components by setting GOMEMLIMIT. |
+| autoGomemlimit.ratio | float | `nil` | The ratio of reserved GOMEMLIMIT memory to the detected maximum container or system memory. |
 | clusterDomain | string | `"cluster.local"` | _Kubernetes_ cluster domain. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | compact.affinity | object | `{}` | Affinity settings for scheduling the _Compact_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
@@ -327,6 +330,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.16.5
 | serviceMonitor.enabled | bool | `false` | If `true`, create `ServiceMonitor` resources to support collecting metrics via the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
 | serviceMonitor.interval | int | `nil` | _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**). |
+| storeEndpointGroup | bool | `false` | If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**). |
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | storeGateway.extraArgs | list | `[]` | Additional args for the _Store Gateway_ pod default container. |
 | storeGateway.extraEnv | list | `[]` | Additional environment variables for the _Store Gateway_ pod default container. |

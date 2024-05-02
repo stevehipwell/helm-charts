@@ -53,8 +53,20 @@ logLevel: info
 # -- Log format for _Thanos_ components.
 logFormat: logfmt
 
+autoGomemlimit:
+  # -- If `true`, enable the go runtime to automatically limit memory consumption for all Thanos components by setting GOMEMLIMIT.
+  enabled: false
+  # -- (float) The ratio of reserved GOMEMLIMIT memory to the detected maximum container or system memory.
+  ratio:
+
+# -- If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**).
+storeEndpointGroup: false
+
 # -- Additional endpoints external to the chart to be configured with `--endpoint`.
 additionalEndpoints: []
+
+# -- Additional endpoint groups external to the chart to be configured with `--endpoint-group` (**EXPERIMENTAL**).
+additionalEndpointGroups: []
 
 # -- Additional replica labels external to the chart.
 additionalReplicaLabels: []
@@ -188,12 +200,6 @@ compact:
   tolerations: []
 
 query:
-  # -- Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead (**DEPRECATED**).
-  replicaLabels: []
-
-  # -- Additional stores to configure query with (`--store`); use `additionalEndpoints` instead (**DEPRECATED**).
-  additionalStores: []
-
   serviceAccount:
     # -- If `true`, create a new `ServiceAccount` for the _Query_ component.
     create: true
@@ -330,6 +336,12 @@ query:
 
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
+
+  # -- Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead (**DEPRECATED**).
+  replicaLabels: []
+
+  # -- Additional stores to configure query with (`--store`); use `additionalEndpoints` instead (**DEPRECATED**).
+  additionalStores: []
 
 queryFrontend:
   # -- If `true`, create the _Thanos Query Frontend_ component.

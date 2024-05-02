@@ -65,10 +65,16 @@ spec:
             - --log.format={{ .Values.logFormat }}
             - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
-            - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
+            - {{ printf "--endpoint%s=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (ternary "-group" "" .Values.storeEndpointGroup) (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- if .Values.rule.enabled }}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.rule.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}
@@ -77,6 +83,9 @@ spec:
           {{- end }}
           {{- range (concat .Values.additionalEndpoints .Values.query.additionalStores) | uniq }}
             - --endpoint={{ . }}
+          {{- end }}
+          {{- range .Values.additionalEndpointGroups }}
+            - --endpoint-group={{ . }}
           {{- end }}
           {{- with .Values.query.extraArgs }}
             {{- toYaml . | nindent 12 }}

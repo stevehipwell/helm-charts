@@ -65,6 +65,12 @@ spec:
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
             - --http-address=0.0.0.0:10902
+          {{- if .Values.autoGomemlimit.enabled }}
+            - --enable-auto-gomemlimit
+          {{- with .Values.autoGomemlimit.ratio }}
+            - --auto-gomemlimit.ratio={{ . }}
+          {{- end }}
+          {{- end }}
             - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.%s:10902" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- with .Values.queryFrontend.extraArgs }}
             {{- toYaml . | nindent 12 }}
