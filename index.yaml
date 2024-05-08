@@ -12995,6 +12995,41 @@ entries:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Nexus3_ OCI image to [v3.68.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.68.0-04)."
+        - kind: changed
+          description: "Switched to using the port name for ingress."
+        - kind: fixed
+          description: "Fixed incorrect `ServiceMonitor` name via the `jobLabel` field."
+    apiVersion: v2
+    appVersion: 3.68.0
+    created: "2024-05-08T10:57:21.752303249Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 49e43fc06db4924f1a943c056ef4132843dd3e8e1317b9bcfd6e0e80eb0ae2e6
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.43.0/nexus3-4.43.0.tgz
+    version: 4.43.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Nexus3_ OCI image to [v3.67.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.67.1-01)."
         - kind: fixed
           description: "Fixed incorrect behaviour when `rootPassword.key` is set due to the deprecated `config.rootPassword.key` incorrectly having a default value."
@@ -23999,4 +24034,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-05-02T12:02:21.298674605Z"
+generated: "2024-05-08T10:57:21.753402137Z"
