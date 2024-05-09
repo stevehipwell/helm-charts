@@ -187,6 +187,46 @@ entries:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Confluence Server_ OCI image to [v8.5.9](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
+        - kind: changed
+          description: "Updated the _PostgreSQL_ dependency ot come from an OCI registry."
+        - kind: changed
+          description: "Switched to using the port name for ingress."
+    apiVersion: v2
+    appVersion: 8.5.9
+    created: "2024-05-09T12:05:01.708389038Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: 12.12.10
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 19b285e2171d82cd142881fea89952e195d46023b83cbd4a861e54d50b4fa176
+    home: https://www.atlassian.com/software/confluence
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.9/confluence-server-5.5.9.tgz
+    version: 5.5.9
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Confluence Server_ OCI image to [v8.5.8](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
     apiVersion: v2
     appVersion: 8.5.8
@@ -24034,4 +24074,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-05-08T10:57:21.753402137Z"
+generated: "2024-05-09T12:05:01.709545827Z"
