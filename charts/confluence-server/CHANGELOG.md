@@ -14,11 +14,6 @@
 
 ## [UNRELEASED]
 
-### Changed
-
-- Updated the _PostgreSQL_ dependency ot come from an OCI registry.
-- Switched to using the port name for ingress.
-
 ## [v5.7.1] - 2024-01-16
 
 > [!CAUTION]
@@ -64,6 +59,17 @@
 
 - Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
 - Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
+
+## [v5.5.9] - 2024-05-09
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.9](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+- Updated the _PostgreSQL_ dependency ot come from an OCI registry.
+- Switched to using the port name for ingress.
 
 ## [v5.5.8] - 2024-04-02
 
@@ -649,6 +655,7 @@ RELEASE LINKS
 [v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
 [v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
+[v5.5.9]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.9
 [v5.5.8]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.8
 [v5.5.7]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.7
 [v5.5.6]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.6
