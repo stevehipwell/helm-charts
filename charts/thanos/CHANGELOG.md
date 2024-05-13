@@ -19,7 +19,7 @@
 ### Added
 
 - Added built in support for automatically setting the `GOMEMLIMIT` env variable on all Thanos components via the `autoGomemlimit.enabled` & `autoGomemlimit.ratio` values.
-- Added experimental support for configuring query to access store pods as a group via the `storeEndpointGroup` value, this switches to round-robin instead of fanout.
+- Added experimental support for configuring query to access store pods as a group via the `storeEndpointGroup` value, this switches to round-robin instead of fan-out.
 - Added experimental support for external endpoint groups via the `additionalEndpointGroups` value.
 
 ### Changed
@@ -147,7 +147,7 @@
 
 - Added support for not providing a tag as part of the image by setting the value to `"-"`.
 - Added support for using a digest as part of the image.
-- Added support for customising the config reloader image.
+- Added support for customizing the config reloader image.
 - Added support for compact to deduplicate HA Prometheus replica metrics by setting `compact.replicaDeduplication` which will use the `penalty` deduplication function.
 
 ### Changed
@@ -341,7 +341,7 @@
 
 ### Added
 
-- Added `serviceMonitor.endpointConfig` to allow customisation of the `ServiceMonitor` endpoint.
+- Added `serviceMonitor.endpointConfig` to allow customization of the `ServiceMonitor` endpoint.
 
 ### Changed
 
@@ -413,7 +413,7 @@
 
 ### Changed
 
-- Fix rule rules configmap support.
+- Fix rule rules ConfigMap support.
 
 ## [v0.10.0] - 2021-09-17
 
@@ -446,7 +446,7 @@
 
 ### Changed
 
-- Fixed compact service statefulset service name.
+- Fixed compact service StatefulSet service name.
 
 ### Removed
 

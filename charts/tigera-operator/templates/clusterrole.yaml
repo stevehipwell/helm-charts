@@ -156,13 +156,24 @@ rules:
   - apiGroups:
       - crd.projectcalico.org
     resources:
-      - ippools
       - kubecontrollersconfigurations
       - bgpconfigurations
     verbs:
       - get
       - list
       - watch
+  - apiGroups:
+    - projectcalico.org
+    resources:
+    - ippools
+    verbs:
+    - create
+    - update
+    - delete
+    - patch
+    - get
+    - list
+    - watch
   - apiGroups:
       - projectcalico.org
     resources:
@@ -225,27 +236,6 @@ rules:
       - get
       - create
       - delete
-  # Add the appropriate pod security policy permissions
-  - apiGroups:
-      - policy
-    resources:
-      - podsecuritypolicies
-    resourceNames:
-      - tigera-operator
-    verbs:
-      - use
-  - apiGroups:
-      - policy
-    resources:
-      - podsecuritypolicies
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - delete
-# Add the permissions to monitor the status of certificatesigningrequests when certificate management is enabled.
   - apiGroups:
       - certificates.k8s.io
     resources:

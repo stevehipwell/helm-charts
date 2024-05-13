@@ -33,7 +33,7 @@
 
 ### Fixed
 
-- Fixed incorrect behaviour when `rootPassword.key` is set due to the deprecated `config.rootPassword.key` incorrectly having a default value.
+- Fixed incorrect behavior when `rootPassword.key` is set due to the deprecated `config.rootPassword.key` incorrectly having a default value.
 
 ## [v4.42.0] - 2024-04-03
 
@@ -74,9 +74,9 @@
 
 ### Added
 
-- Added `license.enabled`, `license.secret` & `license.key` to configure the _Nexus3_ pro licence.
-- Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring [high availability](https://help.sonatype.com/repomanager3/planning-your-implementation/resiliency-and-high-availability/high-availability-deployment-options/option-1---manual-high-availability-deployment) when running _Nexus3_ as a `StatefulSet` with a pro licence.
-- Added `storeProperties` value to configure a _PostgreSQl_ data store for _Nexus3_ with a pro licence.
+- Added `license.enabled`, `license.secret` & `license.key` to configure the _Nexus3_ pro license.
+- Added `highAvailability.enabled` & `highAvailability.replicas` values to enable configuring [high availability](https://help.sonatype.com/repomanager3/planning-your-implementation/resiliency-and-high-availability/high-availability-deployment-options/option-1---manual-high-availability-deployment) when running _Nexus3_ as a `StatefulSet` with a pro license.
+- Added `storeProperties` value to configure a _PostgreSQl_ data store for _Nexus3_ with a pro license.
 
 ## [v4.37.0] - 2023-12-06
 
@@ -319,7 +319,7 @@
 
 ### Added
 
-- Added `metrics.serviceMonitor.endpointConfig` to allow customisation of the `ServiceMonitor` endpoint.
+- Added `metrics.serviceMonitor.endpointConfig` to allow customization of the `ServiceMonitor` endpoint.
 - Added `config.anonymous.roles` to allow the anonymous user's roles to be configured.
 - Added `config.users` to enable users to be configured, new users will get a random password.
 - Added `imagePullSecrets` to replace `image.pullSecrets`.
@@ -430,7 +430,7 @@
 
 ### Removed
 
-- Customisable ingress path (not actually supported)
+- Customizable ingress path (not actually supported)
 
 ## v4.2.1 - 2021-04-23
 
@@ -454,7 +454,7 @@
 
 ### Changed
 
-- Fixed regex when S3 blobstore is used
+- Fixed regex when S3 blob store is used
 
 ## v4.0.2 - 2021-01-15
 
@@ -553,7 +553,7 @@
 
 ### Changed
 
-- Use custom logback config with customizable retention
+- Use custom Logback config with customizable retention
 
 ## v3.2.2- 2020-09-30
 
