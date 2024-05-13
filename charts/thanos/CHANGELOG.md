@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.17.1] - 2024-05-15
+
+### Changed
+
+- Changed the defaults for `podSecurityContext` and `securityContext` for all services to be less permissive by default.
+
 ## [v1.17.0] - 2024-05-02
 
 ### Added
@@ -492,6 +498,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.1
 [v1.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.0
 [v1.16.5]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.5
 [v1.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.16.4

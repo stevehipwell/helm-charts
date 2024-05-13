@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.17.0](https://img.shields.io/badge/Version-1.17.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.35.0](https://img.shields.io/badge/AppVersion-0.35.0-informational?style=flat-square)
+![Version: 1.17.1](https://img.shields.io/badge/Version-1.17.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.35.0](https://img.shields.io/badge/AppVersion-0.35.0-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.17.0
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.17.1
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.17.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.17.1
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.17.0
+helm upgrade --install thanos stevehipwell/thanos --version 1.17.1
 ```
 
 ## Values
@@ -207,8 +207,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.17.0
 | receive.ingestor.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Receive Ingestor_ replicas that the PDB should allow to be unavailable. |
 | receive.ingestor.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Receive Ingestor_ replicas that the PDB should require to be available. |
 | receive.ingestor.podLabels | object | `{}` | Labels to add to the _Receive Ingestor_ pod. |
-| receive.ingestor.podSecurityContext.fsGroup | int | `65534` |  |
-| receive.ingestor.podSecurityContext.runAsUser | int | `65534` |  |
+| receive.ingestor.podSecurityContext | object | See _values.yaml_ | Security context for the _Receive Ingestor_ pod. |
 | receive.ingestor.priorityClassName | string | `nil` | Priority class name for the _Receive Ingestor_ pod. |
 | receive.ingestor.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Receive Ingestor_ pod default container. |
 | receive.ingestor.replicas | int | `1` | Number of _Receive Ingestor_ replicas to create. |

@@ -2,7 +2,7 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.17.0
+version: 1.17.1
 appVersion: 0.35.0
 keywords:
   - kubernetes
@@ -22,11 +22,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added built in support for automatically setting the `GOMEMLIMIT` env variable on all Thanos components via the `autoGomemlimit.enabled` & `autoGomemlimit.ratio` values."
-    - kind: added
-      description: "Added experimental support for configuring query to access store pods as a group via the `storeEndpointGroup` value, this switches to round-robin instead of fanout."
-    - kind: added
-      description: "Added experimental support for external endpoint groups via the `additionalEndpointGroups` value."
     - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.35.0](https://github.com/thanos-io/thanos/releases/tag/v0.35.0)."
+      description: "Changed the defaults for `podSecurityContext` and `securityContext` for all services to be less permissive by default."
