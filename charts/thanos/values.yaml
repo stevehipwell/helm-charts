@@ -116,7 +116,11 @@ compact:
   # @default -- See _values.yaml_
   podSecurityContext:
     fsGroup: 65534
+    runAsGroup: 65532
+    runAsNonRoot: true
     runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- (string) Priority class name for the _Compact_ pod.
   priorityClassName:
@@ -126,7 +130,17 @@ compact:
 
   # -- Security context for the _Compact_ pod default container.
   # @default -- See _values.yaml_
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsGroup: 65532
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- Additional environment variables for the _Compact_ pod default container.
   extraEnv: []
@@ -272,7 +286,11 @@ query:
   # @default -- See _values.yaml_
   podSecurityContext:
     fsGroup: 65534
+    runAsGroup: 65532
+    runAsNonRoot: true
     runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- (string) Priority class name for the _Query_ pod.
   priorityClassName:
@@ -282,7 +300,17 @@ query:
 
   # -- Security context for the _Query_ pod default container.
   # @default -- See _values.yaml_
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsGroup: 65532
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- Additional environment variables for the _Query_ pod default container.
   extraEnv: []
@@ -419,7 +447,11 @@ queryFrontend:
   # @default -- See _values.yaml_
   podSecurityContext:
     fsGroup: 65534
+    runAsGroup: 65532
+    runAsNonRoot: true
     runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- (string) Priority class name for the _Query Frontend_ pod.
   priorityClassName:
@@ -429,7 +461,17 @@ queryFrontend:
 
   # -- Security context for the _Query Frontend_ pod default container.
   # @default -- See _values.yaml_
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsGroup: 65532
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- Additional environment variables for the _Query Frontend_ pod default container.
   extraEnv: []
@@ -531,9 +573,15 @@ receive:
     # -- Annotations to add to the _Receive Ingestor_ pod.
     podAnnotations: {}
 
+    # -- Security context for the _Receive Ingestor_ pod.
+    # @default -- See _values.yaml_
     podSecurityContext:
       fsGroup: 65534
+      runAsGroup: 65532
+      runAsNonRoot: true
       runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
 
     # -- (string) Priority class name for the _Receive Ingestor_ pod.
     priorityClassName:
@@ -543,7 +591,17 @@ receive:
 
     # -- Security context for the _Receive Ingestor_ pod default container.
     # @default -- See _values.yaml_
-    securityContext: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      runAsGroup: 65532
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
 
     # -- Additional environment variables for the _Receive Ingestor_ pod default container.
     extraEnv: []
@@ -689,7 +747,11 @@ receive:
     # @default -- See _values.yaml_
     podSecurityContext:
       fsGroup: 65534
+      runAsGroup: 65532
+      runAsNonRoot: true
       runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
 
     # -- (string) Priority class name for the _Receive Router_ pod.
     priorityClassName:
@@ -699,7 +761,17 @@ receive:
 
     # -- Security context for the _Receive Router_ pod default container.
     # @default -- See _values.yaml_
-    securityContext: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      runAsGroup: 65532
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
 
     # -- Additional environment variables for the _Receive Router_ pod default container.
     extraEnv: []
@@ -830,7 +902,11 @@ rule:
   # @default -- See _values.yaml_
   podSecurityContext:
     fsGroup: 65534
+    runAsGroup: 65532
+    runAsNonRoot: true
     runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- (string) Priority class name for the _Rule_ pod.
   priorityClassName:
@@ -840,7 +916,17 @@ rule:
 
   # -- Security context for the _Rule_ pod default container.
   # @default -- See _values.yaml_
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsGroup: 65532
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- Additional environment variables for the _Rule_ pod default container.
   extraEnv: []
@@ -990,7 +1076,11 @@ storeGateway:
   # @default -- See _values.yaml_
   podSecurityContext:
     fsGroup: 65534
+    runAsGroup: 65532
+    runAsNonRoot: true
     runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- (string) Priority class name for the _Store Gateway_ pod.
   priorityClassName:
@@ -1000,7 +1090,17 @@ storeGateway:
 
   # -- Security context for the _Store Gateway_ pod default container.
   # @default -- See _values.yaml_
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsGroup: 65532
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile:
+      type: RuntimeDefault
 
   # -- Additional environment variables for the _Store Gateway_ pod default container.
   extraEnv: []
