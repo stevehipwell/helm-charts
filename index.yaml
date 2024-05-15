@@ -19702,6 +19702,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Changed the defaults for `podSecurityContext` and `securityContext` for all services to be less permissive by default."
+    apiVersion: v2
+    appVersion: 0.35.0
+    created: "2024-05-15T09:48:34.432467604Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: b982da02355372a15ffa3c01c0182031c28c24070c0d71cbb1c6db431b71cefc
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.17.1/thanos-1.17.1.tgz
+    version: 1.17.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added built in support for automatically setting the `GOMEMLIMIT` env variable on all Thanos components via the `autoGomemlimit.enabled` & `autoGomemlimit.ratio` values."
         - kind: added
@@ -24147,4 +24179,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-05-14T12:40:47.097853539Z"
+generated: "2024-05-15T09:48:34.433584285Z"
