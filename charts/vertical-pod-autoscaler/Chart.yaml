@@ -2,8 +2,8 @@ apiVersion: v2
 name: vertical-pod-autoscaler
 description: Helm chart for the Vertical Pod Autoscaler.
 type: application
-version: 1.6.1
-appVersion: 1.1.1
+version: 1.6.2
+appVersion: 1.1.2
 keywords:
   - kubernetes
   - autoscale
@@ -30,6 +30,4 @@ annotations:
       description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.1.1](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.1.1)."
-    - kind: fixed
-      description: "Fixed incorrect `ServiceMonitor` name via the `jobLabel` field."
+      description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.1.2](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.1.2)."

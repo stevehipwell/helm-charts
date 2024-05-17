@@ -2648,7 +2648,7 @@
   },
   "timezone": "utc",
   "title": "{{ include "fluentd-aggregator.fullname" . }}",
-  "uid": "f2b7650c-1330-4542-850e-b8ae30009190",
+  "uid": null,
   "version": 4,
   "weekStart": ""
 }
