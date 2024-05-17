@@ -1537,7 +1537,7 @@
   },
   "timezone": "",
   "title": "{{ include "fluent-bit-aggregator.fullname" . }}",
-  "uid": "d232d58b-fd89-4015-a035-82b88bf1614a",
+  "uid": null,
   "version": 0,
   "weekStart": ""
 }
