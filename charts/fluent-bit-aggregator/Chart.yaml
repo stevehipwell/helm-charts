@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-aggregator
 description: Helm chart for Fluent Bit running as an aggregation stateful set.
 type: application
-version: 0.14.3
-appVersion: 3.0.3
+version: 0.14.4
+appVersion: 3.0.4
 keywords:
   - fluent
   - fluentd
@@ -22,7 +22,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for setting the `servicePort` for ingress to the port name."
     - kind: changed
-      description: "Updated _Fluent Bit_ OCI image to [v3.0.3](https://github.com/fluent/fluent-bit/releases/tag/v3.0.3)."
+      description: "Updated _Fluent Bit_ OCI image to [v3.0.4](https://github.com/fluent/fluent-bit/releases/tag/v3.0.3)."
