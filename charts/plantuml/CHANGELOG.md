@@ -14,8 +14,11 @@
 
 ## [UNRELEASED]
 
+## [v3.32.0] - 2024-05-30
+
 ### Changed
 
+- Updated the _PlantUML_ OCI image to [v1.2024.5](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.5) ([Changes](https://plantuml.com/changes)).
 - Switched to using the port name for ingress.
 
 ## [v3.31.0] - 2024-04-09
@@ -408,6 +411,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.32.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.32.0
 [v3.31.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.31.0
 [v3.30.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.30.0
 [v3.29.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.29.0
