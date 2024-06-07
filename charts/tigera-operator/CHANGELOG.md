@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v2.10.1] - 2024-06-07
+
+### Fixed
+
+- Fixed missing rules for `ippools` in the `crd.projectcalico.org` API group.
+
 ## [v2.10.0] - 2024-05-13
 
 ### Changed
@@ -505,6 +511,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/tigera-operator
+[v2.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.1
 [v2.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.0
 [v2.9.3]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.9.3
 [v2.9.2]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.9.2
