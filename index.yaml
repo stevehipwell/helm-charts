@@ -187,6 +187,42 @@ entries:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Confluence Server_ OCI image to [v8.5.10](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
+    apiVersion: v2
+    appVersion: 8.5.10
+    created: "2024-06-10T12:36:07.411653098Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: 12.12.10
+    description: Helm chart for Atlassian Confluence Server.
+    digest: a50c3612d376370276ba2dfba93e72ca83cfbeafbb598868fb78b03aa71132a5
+    home: https://www.atlassian.com/software/confluence
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.10/confluence-server-5.5.10.tgz
+    version: 5.5.10
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Confluence Server_ OCI image to [v8.5.9](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
         - kind: changed
           description: "Updated the _PostgreSQL_ dependency ot come from an OCI registry."
@@ -24619,4 +24655,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-06-10T10:30:29.339033282Z"
+generated: "2024-06-10T12:36:07.412935654Z"
