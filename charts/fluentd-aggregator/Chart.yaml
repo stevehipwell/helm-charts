@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 4.6.0
-appVersion: 2.15.0
+version: 4.7.0
+appVersion: 2.16.0
 keywords:
   - fluent
   - fluentd
@@ -22,4 +22,4 @@ annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated _Fluentd Aggregator_ OCI image to [v2.15.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.15.0) (_Fluentd_ [v1.17.0](https://github.com/fluent/fluentd/releases/tag/v1.17.0))."
+      description: "Updated _Fluentd Aggregator_ OCI image to [v2.16.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.16.0) (_Fluentd_ [v1.17.0](https://github.com/fluent/fluentd/releases/tag/v1.17.0))."
