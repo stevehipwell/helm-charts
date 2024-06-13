@@ -60,6 +60,15 @@
 - Updated the _Confluence Server_ OCI image to [v8.6.0](https://confluence.atlassian.com/doc/confluence-8-6-release-notes-1289421595.html).
 - Updated the embedded _PostgreSQL_ chart to [v12.12.10](https://artifacthub.io/packages/helm/bitnami/postgresql/12.12.10) (PostgreSQL v15.4.0).
 
+## [v5.5.11] - 2024-06-13
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Changed
+
+- Updated the _Confluence Server_ OCI image to [v8.5.11](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html).
+
 ## [v5.5.10] - 2024-06-10
 
 > [!IMPORTANT]
@@ -664,6 +673,7 @@ RELEASE LINKS
 [v5.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.2
 [v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.6.1
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.7.0
+[v5.5.11]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.11
 [v5.5.10]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.10
 [v5.5.9]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.9
 [v5.5.8]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.8
