@@ -11,7 +11,7 @@ on:
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@81bd6d909f0a263bd145bd5c010f4c21c1d4ffdd # v0.5.2
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@7e6c2e1ccd482199c82fe9d35b5745578b4c183b # v0.5.3
     permissions:
       contents: read
       id-token: write
