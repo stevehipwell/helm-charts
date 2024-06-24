@@ -2,8 +2,8 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 5.5.1
-appVersion: 10.5.1
+version: 5.6.0
+appVersion: 10.6.0
 keywords:
   - sonarqube
   - sast
@@ -29,8 +29,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _SonarQube_ OCI image to v10.5.1."
-    - kind: changed
-      description: "Updated the _PostgreSQL_ dependency to come from an OCI registry."
-    - kind: changed
-      description: "Switched to using the port name for ingress."
+      description: "Updated the _SonarQube_ OCI image to v10.6.0."
