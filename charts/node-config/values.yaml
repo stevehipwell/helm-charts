@@ -24,6 +24,12 @@ serviceAccount:
   # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
   name:
 
+rbac:
+  # -- If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API.
+  create: false
+  # -- Rules to add to the `ClusterRole` if `rbac.create` is set to `true`.
+  rules: []
+
 # -- Scripts to create and mount.
 # @default -- See _values.yaml_
 scripts:
@@ -89,7 +95,7 @@ pause:
     # -- Image repository for the pause container.
     repository: registry.k8s.io/pause
     # -- Image tag for the pause container
-    tag: 3.9
+    tag: "3.10"
     # -- Image pull policy for the pause container.
     pullPolicy: IfNotPresent
 

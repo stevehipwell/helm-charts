@@ -1,0 +1,12 @@
+{{- if .Values.rbac.create -}}
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "node-config.fullname" . }}
+  labels:
+    {{- include "node-config.labels" . | nindent 4 }}
+rules:
+{{- with .Values.rbac.rules }}
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+{{- end -}}
