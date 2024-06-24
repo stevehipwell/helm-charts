@@ -1,6 +1,6 @@
 # node-config
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 Helm chart for configuring Kubernetes nodes via a DaemonSet init container.
 
@@ -23,7 +23,7 @@ Helm chart for configuring Kubernetes nodes via a DaemonSet init container.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install node-config oci://ghcr.io/stevehipwell/helm-charts/node-config --version 0.5.0
+helm upgrade --install node-config oci://ghcr.io/stevehipwell/helm-charts/node-config --version 0.6.0
 ```
 
 #### Verification
@@ -31,7 +31,7 @@ helm upgrade --install node-config oci://ghcr.io/stevehipwell/helm-charts/node-c
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/node-config:0.5.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/node-config:0.6.0
 ```
 
 ### Non-OCI Repository
@@ -40,7 +40,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install node-config stevehipwell/node-config --version 0.5.0
+helm upgrade --install node-config stevehipwell/node-config --version 0.6.0
 ```
 
 ## Values
@@ -65,12 +65,14 @@ helm upgrade --install node-config stevehipwell/node-config --version 0.5.0
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node selector labels for scheduling. |
 | pause.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the pause container. |
 | pause.image.repository | string | `"registry.k8s.io/pause"` | Image repository for the pause container. |
-| pause.image.tag | float | `3.9` | Image tag for the pause container |
+| pause.image.tag | string | `"3.10"` | Image tag for the pause container |
 | pause.resources | object | `{"limits":{"cpu":"100m","memory":"8Mi"},"requests":{"cpu":"10m","memory":"8Mi"}}` | Resources for the pause container. |
 | podAnnotations | object | `{}` | Annotations to add to the pod. |
 | podLabels | object | `{}` | Labels to add to the pod. |
 | podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
 | priorityClassName | string | `nil` | Priority class name for the pod. |
+| rbac.create | bool | `false` | If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API. |
+| rbac.rules | list | `[]` | Rules to add to the `ClusterRole` if `rbac.create` is set to `true`. |
 | scripts | list | See _values.yaml_ | Scripts to create and mount. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
 | serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |

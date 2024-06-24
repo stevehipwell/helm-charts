@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v0.6.0] - 2023-06-24
+
+### Added
+
+- Added `rbac.create` & `rbac.rules` to configure a `ClusterRole` for the `ServiceAccount`.
+
+### Changed
+
+- Updated the `registry.k8s.io/pause` image to `3.10`.
+
 ## [v0.5.0] - 2023-05-22
 
 ### Added
@@ -60,6 +70,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/node-config
+[v0.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.6.0
 [v0.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.5.0
 [v0.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.4.1
 [v0.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.4.0
