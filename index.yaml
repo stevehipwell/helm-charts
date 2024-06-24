@@ -16616,6 +16616,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added `rbac.create` & `rbac.rules` to configure a `ClusterRole` for the `ServiceAccount`."
+        - kind: changed
+          description: "Updated the `registry.k8s.io/pause` image to `3.10`."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-06-24T16:08:17.36261672Z"
+    description: Helm chart for configuring Kubernetes nodes via a DaemonSet init
+      container.
+    digest: 1c1d2c2c82b439ae522b033d5a488935359b09594371bc2f139205ef1a242e46
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/node-config/icon.png
+    keywords:
+    - node
+    - configuration
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: node-config
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/node-config-0.6.0/node-config-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added `affinity.nodeAffinity`."
     apiVersion: v2
     appVersion: 0.1.0
@@ -24814,4 +24841,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-06-24T10:31:48.815823885Z"
+generated: "2024-06-24T16:08:17.363642926Z"
