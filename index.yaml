@@ -7855,6 +7855,42 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.22.2](https://github.com/istio/istio/releases/tag/1.22.2)."
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be managed by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.22.2
+    created: "2024-07-02T14:52:23.287478856Z"
+    description: Helm chart to install the Istio Operator and optionally create the
+      IstioOperator CR to install Istio into the cluster.
+    digest: 61e5c3050f8cf41a06f727b85670b8036a5f0a0a158b4877a0e7d41df33d18cd
+    home: https://istio.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/istio-operator/icon.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.15.2/istio-operator-2.15.2.tgz
+    version: 2.15.2
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Istio Operator_ OCI image version to [v1.22.1](https://github.com/istio/istio/releases/tag/1.22.1)."
       artifacthub.io/crds: |
         - kind: IstioOperator
@@ -24877,4 +24913,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-02T14:17:21.025497013Z"
+generated: "2024-07-02T14:52:23.288700369Z"
