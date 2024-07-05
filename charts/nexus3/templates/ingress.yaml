@@ -37,8 +37,9 @@ spec:
               servicePort: http
             {{- end }}
   {{- end }}
-  {{- range .Values.service.additionalPorts }}
-    - host: {{ .host | quote }}
+  {{- range $additionalPort := .Values.service.additionalPorts }}
+  {{- range ternary $additionalPort.hosts (list $additionalPort.host) (empty $additionalPort.host) }}
+    - host: {{ . | quote }}
       http:
         paths:
           - path: /
@@ -50,11 +51,12 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  name: {{ .name }}
+                  name: {{ $additionalPort.name }}
             {{- else }}
               serviceName: {{ $serviceName }}
-              servicePort: {{ .name }}
+              servicePort: {{ $additionalPort.name }}
             {{- end }}
+  {{- end }}
   {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
