@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v3.33.0] - 2024-07-08
+
+### Changed
+
+- Updated the _PlantUML_ OCI image to [v1.2024.6](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.6) ([Changes](https://plantuml.com/changes)).
+
 ## [v3.32.0] - 2024-05-30
 
 ### Changed
@@ -411,6 +417,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.33.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.33.0
 [v3.32.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.32.0
 [v3.31.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.31.0
 [v3.30.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.30.0
