@@ -24,11 +24,14 @@ service:
     - port: 8082
       name: docker-group
       containerPort: 8082
-      host: nexus-docker.local
+      hosts:
+        - nexus-docker.local
     - port: 8083
       name: docker-hosted
       containerPort: 8083
-      host: nexus-docker-hosted.local
+      hosts:
+        - nexus-docker-hosted-1.local
+        - nexus-docker-hosted-2.local
 
 metrics:
   enabled: true
@@ -50,7 +53,8 @@ ingress:
     - hosts:
         - nexus.local
         - nexus-docker.local
-        - nexus-docker-hosted.local
+        - nexus-docker-hosted-1.local
+        - nexus-docker-hosted-2.local
       secretName: nexus3-local-tls
 
 persistence:

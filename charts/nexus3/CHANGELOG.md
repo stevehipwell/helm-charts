@@ -14,6 +14,14 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `service.additionalPorts.hosts` (list) for multi-hosts support
+
+### Deprecated
+
+- Deprecated `service.additionalPorts.host` in favour of `service.additionalPorts.hosts`
+
 ## [v4.44.0] - 2024-06-10
 
 ### Changed

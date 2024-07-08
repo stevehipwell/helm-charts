@@ -96,4 +96,13 @@ config:
       attributes:
         blobStoreName: "default"
 
+service:
+  additionalPorts:
+    - port: 8083
+      name: docker-hosted
+      containerPort: 8083
+      hosts:
+        - nexus-docker-hosted-1.local
+        - nexus-docker-hosted-2.local
+
 testResources: true
