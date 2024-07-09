@@ -4109,6 +4109,36 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated _Fluent Bit_ OCI image to [v3.1.0](https://github.com/fluent/fluent-bit/releases/tag/v3.1.0)."
+    apiVersion: v2
+    appVersion: 3.1.0
+    created: "2024-07-09T09:49:06.529056144Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: 266d75a1b0fd19813cac7e698e5702c981dc0cb8fe18775f82e7746299ed73b8
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.15.0/fluent-bit-aggregator-0.15.0.tgz
+    version: 0.15.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated _Fluent Bit_ OCI image to [v3.0.7](https://github.com/fluent/fluent-bit/releases/tag/v3.0.7)."
     apiVersion: v2
     appVersion: 3.0.7
@@ -25007,4 +25037,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-09T09:44:00.741787649Z"
+generated: "2024-07-09T09:49:06.530343201Z"
