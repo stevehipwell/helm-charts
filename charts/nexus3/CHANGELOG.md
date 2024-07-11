@@ -14,13 +14,19 @@
 
 ## [UNRELEASED]
 
+## [v4.45.0] - 2024-07-11
+
 ### Added
 
-- Added `service.additionalPorts.hosts` (list) for multi-hosts support
+- Added `service.additionalPorts.hosts` (list) for multi-hosts support.
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.70.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.70.1-02).
 
 ### Deprecated
 
-- Deprecated `service.additionalPorts.host` in favour of `service.additionalPorts.hosts`
+- Deprecated `service.additionalPorts.host` in favour of `service.additionalPorts.hosts`.
 
 ## [v4.44.0] - 2024-06-10
 
@@ -653,6 +659,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.44.0
 [v4.43.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.43.1
 [v4.43.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.43.0
