@@ -26,4 +26,4 @@ artifacthub-repo.yml
 # Automation files
 /ci/kubeconform.yaml
 /ci/*-values.yaml
-README.md.gotmpl
+_*.md
