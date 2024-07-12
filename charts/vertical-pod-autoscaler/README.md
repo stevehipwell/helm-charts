@@ -53,15 +53,6 @@ helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
 helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.2
 ```
 
-### Non-OCI Repository
-
-Alternatively you can use the legacy non-OCI method via the following commands.
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.6.2
-```
-
 ## Values
 
 | Key | Type | Default | Description |
