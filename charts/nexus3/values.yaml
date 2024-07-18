@@ -5,7 +5,6 @@ global:
 image:
   registry: ""
   repository: sonatype/nexus3
-  # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: "4.44.0-java11"
   pullPolicy: IfNotPresent
   pullSecrets: []
