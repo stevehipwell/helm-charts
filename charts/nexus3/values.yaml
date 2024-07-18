@@ -1,7 +1,12 @@
+global:
+  image:
+    registry: ""
+
 image:
+  registry: ""
   repository: sonatype/nexus3
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
-  tag: ""
+  tag: "4.44.0-java11"
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -124,7 +129,12 @@ resources: {}
 #     cpu: 100m
 #     memory: 128Mi
 
-chownDataDir: true
+chownDataDir:
+  enabled: true
+  image:
+    registry: sonatype
+    repository: alpine
+    tag: 3
 
 extraInitContainers: []
 
@@ -142,6 +152,9 @@ tolerations: []
 
 caCerts:
   enabled: false
+  image:
+    repository: adoptopenjdk
+    tag: 8-jdk-hotspot
   secret:
 
 # if secret is provided, the license will be configured via properties, otherwise a license can still be entered manually via UI
@@ -169,7 +182,11 @@ properties:
 
 storeProperties: []
 
-plugins: []
+plugins:
+  image:
+    repository: alpine
+    tag: 3.2.1
+  pluginsList: []
 #   - name: nexus-repository-composer
 #     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
 

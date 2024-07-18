@@ -45,7 +45,7 @@ spec:
       initContainers:
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs
-          image: adoptopenjdk:8-jdk-hotspot
+          image: {{- include "nexus3.image" (list .Values.global .Values.caCerts)}}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -60,7 +60,7 @@ spec:
       {{- end }}
       {{- if .Values.plugins }}
         - name: download-plugins
-          image: alpine:3
+          image: {{ include "nexus3.image" (list .Values.global .Values.plugins) }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -69,7 +69,7 @@ spec:
           args:
             - -c
             - |
-          {{- range .Values.plugins }}
+          {{- range .Values.plugins.pluginsList }}
               wget -O /deploy/{{ .name }}.kar {{ .url }}
           {{- end }}
           volumeMounts:
@@ -79,9 +79,9 @@ spec:
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.chownDataDir }}
+      {{- if .Values.chownDataDir.enabled }}
         - name: volume-mount
-          image: alpine:3
+          image: {{ include "nexus3.image" (list .Values.global .Values.chownDataDir)}}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -99,7 +99,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "nexus3.image" . }}
+          image: {{ include "nexus3.image" (list .Values.global .Values) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           {{- with .Values.env }}

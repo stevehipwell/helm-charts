@@ -68,8 +68,16 @@ Create the name of the service account to use
 {{/*
 The image to use
 */}}
-{{- define "nexus3.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "%s-java11" .Chart.AppVersion) .Values.image.tag) }}
+{{- define "nexus3.image" }}
+   {{- $globalValues := index . 0 -}}
+   {{- $componentValues := index . 1 -}}
+   {{- if $componentValues.image.registry -}}
+   {{- printf "%s/%s:%v" $componentValues.image.registry $componentValues.image.repository  $componentValues.image.tag -}}
+   {{- else if $globalValues.image.registry -}}
+   {{- printf "%s/%s:%v" $globalValues.image.registry $componentValues.image.repository  $componentValues.image.tag -}}
+   {{- else -}}
+   {{- printf "%s:%v" $componentValues.image.repository  $componentValues.image.tag -}}
+   {{- end }}
 {{- end }}
 
 {{/*
