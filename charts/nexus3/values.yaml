@@ -131,7 +131,6 @@ resources: {}
 chownDataDir:
   enabled: true
   image:
-    registry: sonatype
     repository: alpine
     tag: 3
 
@@ -184,7 +183,7 @@ storeProperties: []
 plugins:
   image:
     repository: alpine
-    tag: 3.2.1
+    tag: 3
   pluginsList: []
 #   - name: nexus-repository-composer
 #     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
