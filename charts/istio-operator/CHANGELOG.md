@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v2.15.3] - 2024-07-19
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.22.3](https://github.com/istio/istio/releases/tag/1.22.3).
+
 ## [v2.15.2] - 2024-07-02
 
 ### Changed
@@ -533,6 +539,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/istio-operator
+[v2.15.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.15.3
 [v2.15.2]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.15.2
 [v2.15.1]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.15.1
 [v2.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.15.0
