@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added access to `nodes/metrics` when `config.kubeletEndpoint.enabled` is set to true.
+
 ## [v0.12.3] - 2024-07-19
 
 ### Changed

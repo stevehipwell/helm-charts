@@ -25,6 +25,9 @@ config:
   storage:
     enabled: true
 
+  kubeletEndpoint:
+    enabled: true
+
   customParsers: |-
     [PARSER]
         Name docker_no_time
