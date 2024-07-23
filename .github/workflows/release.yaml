@@ -9,6 +9,8 @@ on:
     paths:
       - charts/**/Chart.yaml
 
+permissions: read-all
+
 jobs:
   workflow:
     name: Reusable Workflow

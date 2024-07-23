@@ -8,6 +8,8 @@ on:
     paths:
       - charts/**
 
+permissions: read-all
+
 jobs:
   workflow:
     name: Reusable Workflow
