@@ -69,7 +69,7 @@ Create the name of the service account to use
 The image to use
 */}}
 {{- define "nexus3.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "%s-java11" .Chart.AppVersion) .Values.image.tag) }}
+{{- printf "%s:%s" .Values.image.repository (default (printf "%s-java11-ubi" .Chart.AppVersion) .Values.image.tag) }}
 {{- end }}
 
 {{/*
