@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v0.12.4] - 2024-07-26
+
 ### Added
 
 - Added access to `nodes/metrics` when `config.kubeletEndpoint.enabled` is set to true.
+
+### Changed
+
+- Updated _Fluent Bit_ OCI image to [v3.1.4](https://github.com/fluent/fluent-bit/releases/tag/v3.1.4).
 
 ## [v0.12.3] - 2024-07-19
 
@@ -193,6 +199,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-collector
+[v0.12.4]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.12.4
 [v0.12.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.12.3
 [v0.12.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.12.2
 [v0.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.12.1
