@@ -1,0 +1,12 @@
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    memory: 256Mi
+
+serviceMonitor:
+  enabled: true
+
+apiServer:
+  endpoint: mycluster.test.com
