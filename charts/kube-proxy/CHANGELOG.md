@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.0.2] - 2024-07-30
+
+### Changed
+
+- Changed security context.
+
 ## [v0.0.1] - 2024-07-30
 
 ### Added
@@ -24,4 +30,5 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/kube-proxy
+[v0.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.2
 [v0.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.1
