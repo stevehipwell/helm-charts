@@ -13596,6 +13596,33 @@ entries:
   kube-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Changed security context."
+    apiVersion: v2
+    appVersion: 1.30.3
+    created: "2024-07-30T17:08:52.348718343Z"
+    description: Helm chart for managing kube-proxy.
+    digest: fb4cfab5a0c31731040123aa6dcc2d352773145545f5782a49f3a28c4f78591a
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.2/kube-proxy-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added initial chart version."
     apiVersion: v2
@@ -25409,4 +25436,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-30T15:35:15.621101299Z"
+generated: "2024-07-30T17:08:52.351262656Z"
