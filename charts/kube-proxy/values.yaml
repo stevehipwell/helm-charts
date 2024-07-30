@@ -1,0 +1,160 @@
+# Default values for kube-proxy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  # -- Image repository for the default container.
+  repository: registry.k8s.io/kube-proxy
+  # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set.
+  tag:
+  # -- Image pull policy for the default container.
+  pullPolicy: IfNotPresent
+
+# -- Image pull secrets.
+imagePullSecrets: []
+
+# -- (string) Override the name of the chart.
+nameOverride:
+
+# -- (string) Override the full name of the chart.
+fullnameOverride:
+
+# -- If configured replace the default selector labels with these.
+selectorLabelsOverride: {}
+
+# -- Labels to add to all chart resources.
+commonLabels: {}
+
+serviceAccount:
+  # -- If `true`, create a new `ServiceAccount`.
+  create: true
+  # -- Labels to add to the service account.
+  labels: {}
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
+  name:
+
+rbac:
+  # -- If `true`, create a `ClusterRole` & `ClusterRoleBinding` with access to the Kubernetes API.
+  create: true
+
+# -- Update strategy for the `DaemonSet`.
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 10%
+    maxSurge: 0
+
+# -- (int) Min ready seconds for the `DaemonSet`.
+minReadySeconds:
+
+# -- Labels to add to the pod.
+podLabels: {}
+
+# -- Annotations to add to the pod.
+podAnnotations: {}
+
+# -- Security context for the pod.
+podSecurityContext:
+  runAsNonRoot: false
+
+# -- (string) Priority class name for the pod.
+priorityClassName: system-node-critical
+
+# -- (int) Termination grace period for the pod in seconds.
+terminationGracePeriodSeconds: 30
+
+# -- Security context for the default container.
+securityContext:
+  privileged: true
+  allowPrivilegeEscalation: true
+  readOnlyRootFilesystem: true
+  runAsNonRoot: false
+
+# -- Extra args for the default container.
+args: []
+
+# -- Liveness probe configuration for the default container.
+livenessProbe:
+  httpGet:
+    path: /livez
+    port: http-health
+
+# -- Readiness probe configuration for the default container.
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: http-health
+
+# -- Resources for the default container.
+resources: {}
+
+# -- Node labels to match for pod scheduling.
+nodeSelector:
+  kubernetes.io/os: linux
+
+# -- Affinity settings for pod scheduling.
+affinity: {}
+
+# -- Node taints which will be tolerated for pod scheduling.
+tolerations:
+  - effect: NoSchedule
+    operator: Exists
+  - effect: NoExecute
+    operator: Exists
+
+serviceMonitor:
+  # -- If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_.
+  enabled: false
+  # -- Label used to define the scrape job name.
+  jobLabel: app.kubernetes.io/instance
+  # -- Additional labels for the `ServiceMonitor`.
+  additionalLabels: {}
+  # -- Additional endpoint configuration for the default `ServiceMonitor` endpoint.
+  endpointConfig:
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+apiServer:
+  # -- (string) API server endpoint for kube-proxy to communicate with.
+  endpoint:
+
+# -- Configuration for kube-proxy.
+config:
+  apiVersion: kubeproxy.config.k8s.io/v1alpha1
+  kind: KubeProxyConfiguration
+  bindAddress: 0.0.0.0
+  clientConnection:
+    acceptContentTypes: ""
+    burst: 10
+    contentType: application/vnd.kubernetes.protobuf
+    kubeconfig: /var/lib/kube-proxy/kubeconfig
+    qps: 5
+  clusterCIDR: ""
+  configSyncPeriod: 15m0s
+  conntrack:
+    maxPerCore: 32768
+    min: 131072
+    tcpCloseWaitTimeout: 1h0m0s
+    tcpEstablishedTimeout: 24h0m0s
+  enableProfiling: false
+  healthzBindAddress: 0.0.0.0:10256
+  hostnameOverride: ""
+  iptables:
+    masqueradeAll: false
+    masqueradeBit: 14
+    minSyncPeriod: 0s
+    syncPeriod: 30s
+  ipvs:
+    excludeCIDRs: null
+    minSyncPeriod: 0s
+    scheduler: ""
+    syncPeriod: 30s
+  metricsBindAddress: 0.0.0.0:10249
+  mode: iptables
+  nodePortAddresses:
+  oomScoreAdj: -999
+  portRange: ""
+
+# -- Log level for kube-proxy.
+logLevel: 2

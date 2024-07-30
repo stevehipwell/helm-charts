@@ -1,0 +1,23 @@
+apiVersion: v2
+name: kube-proxy
+description: Helm chart for managing kube-proxy.
+type: application
+version: 0.0.1
+appVersion: 1.30.3
+keywords:
+  - kubernetes
+  - kube-proxy
+  - networking
+  - proxy
+home: https://kubernetes.io/
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+sources:
+  - https://github.com/kubernetes/kubernetes/
+  - https://github.com/stevehipwell/helm-charts/
+maintainers:
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: "Added initial chart version."
