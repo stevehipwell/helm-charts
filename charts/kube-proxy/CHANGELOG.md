@@ -14,7 +14,7 @@
 
 ## [UNRELEASED]
 
-## [v0.0.1] - XXXX-XX-XX
+## [v0.0.1] - 2024-07-30
 
 ### Added
 
