@@ -69,7 +69,7 @@ terminationGracePeriodSeconds: 30
 securityContext:
   privileged: true
   allowPrivilegeEscalation: true
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   runAsNonRoot: false
 
 # -- Extra args for the default container.
