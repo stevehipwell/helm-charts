@@ -13593,6 +13593,34 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/k8s-resources-0.1.0/k8s-resources-0.1.0.tgz
     version: 0.1.0
+  kube-proxy:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Added initial chart version."
+    apiVersion: v2
+    appVersion: 1.30.3
+    created: "2024-07-30T15:35:15.619738954Z"
+    description: Helm chart for managing kube-proxy.
+    digest: d1412ab2a3db78e4753815e641193c4a5f8e0db4cc52e5c567bc74cc29ec7c23
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.1/kube-proxy-0.0.1.tgz
+    version: 0.0.1
   metrics-server:
   - apiVersion: v2
     appVersion: 0.5.0
@@ -25381,4 +25409,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-26T11:25:07.544965588Z"
+generated: "2024-07-30T15:35:15.621101299Z"
