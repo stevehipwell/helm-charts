@@ -1,6 +1,6 @@
 # kube-proxy
 
-![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.30.3](https://img.shields.io/badge/AppVersion-1.30.3-informational?style=flat-square)
+![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.30.3](https://img.shields.io/badge/AppVersion-1.30.3-informational?style=flat-square)
 
 Helm chart for managing kube-proxy.
 
@@ -24,7 +24,7 @@ Helm chart for managing kube-proxy.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-proxy --version 0.0.3
+helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-proxy --version 0.0.4
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-pr
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/kube-proxy:0.0.3
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/kube-proxy:0.0.4
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install kube-proxy stevehipwell/kube-proxy --version 0.0.3
+helm upgrade --install kube-proxy stevehipwell/kube-proxy --version 0.0.4
 ```
 
 ## Values
