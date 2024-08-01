@@ -65,12 +65,24 @@ priorityClassName: system-node-critical
 # -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds: 30
 
-# -- Security context for the default container.
+init:
+  # -- If `true`, create an init container so the default container can be unprivileged.
+  enabled: true
+  # -- Security context for the init container.
+  securityContext:
+    privileged: true
+    allowPrivilegeEscalation: true
+    readOnlyRootFilesystem: true
+    runAsNonRoot: false
+
+# -- Security context for the default container; if init is disabled then this needs to be modified to make the default container privileged.
 securityContext:
-  privileged: true
-  allowPrivilegeEscalation: true
-  readOnlyRootFilesystem: false
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
   runAsNonRoot: false
+  capabilities:
+    add: ["NET_ADMIN", "SYS_RESOURCE"]
 
 # -- Extra args for the default container.
 args: []

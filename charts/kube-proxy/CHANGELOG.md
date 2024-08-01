@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.0.3] - 2024-08-01
+
+### Added
+
+- Added default behavior to run an init container to allow the default container to [run unprivileged](https://www.kubernetes.dev/blog/2024/01/05/kube-proxy-non-privileged/).
+
 ## [v0.0.2] - 2024-07-30
 
 ### Changed
@@ -30,5 +36,6 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/kube-proxy
+[v0.0.3]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.3
 [v0.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.2
 [v0.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.1
