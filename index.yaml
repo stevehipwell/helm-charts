@@ -13597,6 +13597,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: "Fixed security context."
+    apiVersion: v2
+    appVersion: 1.30.3
+    created: "2024-08-01T14:05:17.847647579Z"
+    description: Helm chart for managing kube-proxy.
+    digest: 87c12faef08fdd714f1457c546f3c4b5391093c80aef12c00e632fd40f57c417
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.5/kube-proxy-0.0.5.tgz
+    version: 0.0.5
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: "Removed unknown `logtostderr` arg."
     apiVersion: v2
     appVersion: 1.30.3
@@ -25555,4 +25582,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-01T13:28:05.594560513Z"
+generated: "2024-08-01T14:05:17.849754095Z"
