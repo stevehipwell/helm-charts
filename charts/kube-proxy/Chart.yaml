@@ -2,7 +2,7 @@ apiVersion: v2
 name: kube-proxy
 description: Helm chart for managing kube-proxy.
 type: application
-version: 0.0.4
+version: 0.0.5
 appVersion: 1.30.3
 keywords:
   - kubernetes
@@ -20,4 +20,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: "Removed unknown `logtostderr` arg."
+      description: "Fixed security context."
