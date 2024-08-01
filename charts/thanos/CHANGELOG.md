@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.18.0] - 2024-08-01
+
+### Changed
+
+- Updated the _Thanos_ OCI image to [v0.36.0](https://github.com/thanos-io/thanos/releases/tag/v0.36.0).
+
 ## [v1.17.2] - 2024-05-30
 
 ### Changed
@@ -504,6 +510,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.0
 [v1.17.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.2
 [v1.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.1
 [v1.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.0
