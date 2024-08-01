@@ -72,14 +72,14 @@ init:
   securityContext:
     privileged: true
     allowPrivilegeEscalation: true
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
     runAsNonRoot: false
 
 # -- Security context for the default container; if init is disabled then this needs to be modified to make the default container privileged.
 securityContext:
   privileged: false
   allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   runAsNonRoot: false
   capabilities:
     add: ["NET_ADMIN", "SYS_RESOURCE"]
