@@ -2,7 +2,7 @@ apiVersion: v2
 name: kube-proxy
 description: Helm chart for managing kube-proxy.
 type: application
-version: 0.0.3
+version: 0.0.4
 appVersion: 1.30.3
 keywords:
   - kubernetes
@@ -19,5 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added default behavior to run an init container to allow the default container to [run unprivileged](https://www.kubernetes.dev/blog/2024/01/05/kube-proxy-non-privileged/)."
+    - kind: fixed
+      description: "Removed unknown `logtostderr` arg."

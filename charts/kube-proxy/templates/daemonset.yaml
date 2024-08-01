@@ -63,7 +63,6 @@ spec:
                   fieldPath: spec.nodeName
           command:
             - kube-proxy
-            - --logtostderr=true
             - {{ printf "--v=%s" (toString .Values.logLevel) }}
             - --config=/var/lib/kube-proxy/config
             - --hostname-override=$(NODE_NAME)
@@ -105,7 +104,6 @@ spec:
                   fieldPath: spec.nodeName
           command:
             - kube-proxy
-            - --logtostderr=true
             - {{ printf "--v=%s" (toString .Values.logLevel) }}
             - --config=/var/lib/kube-proxy/config
             - --hostname-override=$(NODE_NAME)
