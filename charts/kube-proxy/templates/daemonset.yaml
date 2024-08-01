@@ -46,6 +46,49 @@ spec:
       {{- end }}
       hostNetwork: true
       dnsPolicy: ClusterFirst
+    {{- if .Values.init.enabled }}
+      initContainers:
+        - name: kube-proxy-init
+          {{- with .Values.init.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: {{ include "kube-proxy.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+          command:
+            - kube-proxy
+            - --logtostderr=true
+            - {{ printf "--v=%s" (toString .Values.logLevel) }}
+            - --config=/var/lib/kube-proxy/config
+            - --hostname-override=$(NODE_NAME)
+            - --init-only
+          {{- with .Values.args }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - mountPath: /var/lib/kube-proxy/
+              name: config
+              readOnly: true
+            - mountPath: /var/log
+              name: varlog
+              readOnly: false
+            - mountPath: /run/xtables.lock
+              name: xtables-lock
+              readOnly: false
+            - mountPath: /lib/modules
+              name: lib-modules
+              readOnly: true
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+    {{- end }}
       containers:
         - name: kube-proxy
           {{- with .Values.securityContext }}
@@ -62,6 +105,7 @@ spec:
                   fieldPath: spec.nodeName
           command:
             - kube-proxy
+            - --logtostderr=true
             - {{ printf "--v=%s" (toString .Values.logLevel) }}
             - --config=/var/lib/kube-proxy/config
             - --hostname-override=$(NODE_NAME)
