@@ -13596,6 +13596,33 @@ entries:
   kube-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Removed unknown `logtostderr` arg."
+    apiVersion: v2
+    appVersion: 1.30.3
+    created: "2024-08-01T13:14:23.926719802Z"
+    description: Helm chart for managing kube-proxy.
+    digest: 9cba67fa0ee3e081b990b96c45b8b44332395dd2c58ae989518e1da5032e9a58
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.4/kube-proxy-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added default behavior to run an init container to allow the default container to [run unprivileged](https://www.kubernetes.dev/blog/2024/01/05/kube-proxy-non-privileged/)."
     apiVersion: v2
@@ -25496,4 +25523,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-01T11:47:01.2070263Z"
+generated: "2024-08-01T13:14:23.929147673Z"
