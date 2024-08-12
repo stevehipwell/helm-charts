@@ -1,0 +1,27 @@
+serviceMonitor:
+  enabled: true
+  additionalLabels:
+    sm-label: test
+  endpointConfig:
+    interval: 60s
+
+admissionController:
+  replicas: 2
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+recommender:
+  replicas: 2
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+
+updater:
+  replicas: 2
+
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1

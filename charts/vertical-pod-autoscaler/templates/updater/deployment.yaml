@@ -61,6 +61,11 @@ spec:
           args:
             - {{ printf "--v=%s" (toString .Values.logLevel) }}
             - --address=:8943
+          {{- if gt (int .Values.updater.replicas) 1 }}
+            - --leader-elect=true
+            - --leader-elect-resource-lock=leases
+            - {{ printf "--leader-elect-resource-namespace=%s" .Release.Namespace }}
+          {{- end }}
           {{- with .Values.updater.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
