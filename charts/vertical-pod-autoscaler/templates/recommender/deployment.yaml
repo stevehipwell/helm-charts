@@ -58,6 +58,13 @@ spec:
           args:
             - {{ printf "--v=%s" (toString .Values.logLevel) }}
             - --address=:8942
+          {{- if gt (int .Values.recommender.replicas) 1 }}
+            - --leader-elect=true
+            - --leader-elect-resource-lock=leases
+            - {{ printf "--leader-elect-resource-namespace=%s" .Release.Namespace }}
+          {{- end }}
+          {{- if .Values.recommender.enableProfiling }}
+          {{- end }}
           {{- with .Values.recommender.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
