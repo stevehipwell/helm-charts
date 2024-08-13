@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.0.6] - 2024-08-13
+
+### Changed
+
+- Updated _kube-proxy_ OCI image to [v1.31.0](https://github.com/kubernetes/kubernetes/releases/tag/v1.31.0).
+
 ## [v0.0.5] - 2024-08-01
 
 ### Fixed
@@ -48,6 +54,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/kube-proxy
+[v0.0.6]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.6
 [v0.0.5]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.5
 [v0.0.4]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.4
 [v0.0.3]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.3

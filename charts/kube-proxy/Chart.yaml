@@ -2,8 +2,8 @@ apiVersion: v2
 name: kube-proxy
 description: Helm chart for managing kube-proxy.
 type: application
-version: 0.0.5
-appVersion: 1.30.3
+version: 0.0.6
+appVersion: 1.31.0
 keywords:
   - kubernetes
   - kube-proxy
@@ -19,5 +19,5 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "Fixed security context."
+    - kind: changed
+      description: "Updated _kube-proxy_ OCI image to [v1.31.0](https://github.com/kubernetes/kubernetes/releases/tag/v1.31.0)."
