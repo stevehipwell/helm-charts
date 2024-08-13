@@ -10,6 +10,8 @@ on:
 
 permissions: read-all
 
+# curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | .[].latest] | join(",")'
+
 jobs:
   workflow:
     name: Reusable Workflow

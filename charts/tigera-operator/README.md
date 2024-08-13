@@ -58,7 +58,7 @@ helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | dnsPolicy | string | `"ClusterFirstWithHostNet"` | Pod DNS policy. |
 | env | list | `[]` | Environment variables for the default container. |
-| envFrom | list | `[]` | Environment variables from a config map or secret for the default container (**DEPRECATED**). |
+| envFrom | list | `[]` | **DEPRECATED** - Environment variables from a config map or secret for the default container. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | hostNetwork | bool | `true` | If `true`, the pod will use the host network namespace. This can be set to `false` if _Calico_ is not the CNI. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
@@ -84,7 +84,7 @@ helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the service monitor. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support collecting metrics via the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
-| serviceMonitor.interval | int | `nil` | _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**). |
+| serviceMonitor.interval | int | `nil` | **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint. |
 | terminationGracePeriodSeconds | int | `nil` | Termination grace period for the pod in seconds. |
 | tolerations | list | `[]` | Node taints that will be tolerated for scheduling. |
 | topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |

@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
+
 ## [v1.7.0] - 2024-08-12
 
 ### Added

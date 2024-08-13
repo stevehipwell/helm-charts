@@ -72,6 +72,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | admissionController.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Admission Controller_. |
 | admissionController.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Admission Controller_; either a number or a percentage. |
 | admissionController.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Admission Controller_; either a number or a percentage. |
+| admissionController.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Admission Controller_ PDB. |
 | admissionController.podLabels | object | `{}` | Labels to add to the _Admission Controller_ pod. |
 | admissionController.podSecurityContext | object | See _values.yaml_ | Security context for the _Admission Controller_ pod. |
 | admissionController.priorityClassName | string | `nil` | Priority class name for the _Admission Controller_. |
@@ -107,6 +108,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | recommender.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Recommender_. |
 | recommender.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Recommender_; either a number or a percentage. |
 | recommender.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Recommender_; either a number or a percentage. |
+| recommender.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Recommender_ PDB. |
 | recommender.podLabels | object | `{}` | Labels to add to the _Recommender_ pod. |
 | recommender.podSecurityContext | object | See _values.yaml_ | Security context for the _Recommender_ pod. |
 | recommender.priorityClassName | string | `nil` | Priority class name for the _Recommender_. |
@@ -139,6 +141,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | updater.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Updater_. |
 | updater.podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods for the _Updater_; either a number or a percentage. |
 | updater.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods for the _Updater_; either a number or a percentage. |
+| updater.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Updater_ PDB. |
 | updater.podLabels | object | `{}` | Labels to add to the _Updater_ pod. |
 | updater.podSecurityContext | object | See _values.yaml_ | Security context for the _Updater_ pod. |
 | updater.priorityClassName | string | `nil` | Priority class name for the _Updater_. |

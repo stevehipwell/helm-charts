@@ -54,6 +54,8 @@ service:
       port: 24224
       containerPort: 24224
       protocol: TCP
+  # -- (string) Traffic distribution for the service.
+  trafficDistribution:
   # -- If `true`, use legacy naming so the headless service doesn't change.
   legacy: false
 
@@ -114,6 +116,8 @@ podDisruptionBudget:
   minAvailable:
   # -- (string) Minimum number of unavailable pods, either a number or a percentage.
   maxUnavailable:
+  # -- (string) Unhealthy pod eviction policy for the PDB.
+  unhealthyPodEvictionPolicy:
 
 # -- Labels to add to the pod.
 podLabels: {}

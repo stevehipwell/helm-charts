@@ -16,4 +16,9 @@ spec:
 {{- if .Values.receive.ingestor.podDisruptionBudget.maxUnavailable }}
   maxUnavailable: {{ .Values.receive.ingestor.podDisruptionBudget.maxUnavailable }}
 {{- end  }}
+{{- if (semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version) }}
+{{- with .Values.receive.ingestor.podDisruptionBudget.unhealthyPodEvictionPolicy }}
+  unhealthyPodEvictionPolicy: {{ . }}
+{{- end  }}
+{{- end  }}
 {{- end -}}

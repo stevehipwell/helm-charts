@@ -44,7 +44,7 @@ serviceMonitor:
   additionalLabels: {}
   # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
-  # -- (int) _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**).
+  # -- (int) **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint.
   interval:
 
 # -- Log level for _Thanos_ components.
@@ -84,7 +84,7 @@ compact:
     # -- (string) If specified override the default deduplication function.
     func:
 
-  # -- If `true`, use the `penalty` deduplication function optimised for HA Prometheus replicas (**DEPRECATED**).
+  # -- **DEPRECATED** - If `true`, use the `penalty` deduplication function optimized for HA Prometheus replicas.
   replicaDeduplication: false
 
   serviceAccount:
@@ -229,6 +229,8 @@ query:
   service:
     # -- Annotations to add to the _Query_ service.
     annotations: {}
+    # -- (string) Traffic distribution for the _Query_ service.
+    trafficDistribution:
 
   ingress:
     # -- If `true`, create an `Ingress` for the _Query_ service.
@@ -271,10 +273,12 @@ query:
   podDisruptionBudget:
     # -- If `true`, create a `PodDisruptionBudget` for the _Query_ deployment.
     enabled: false
-    # -- Minimum number of _Query_ replicas that the PDB should require to be available.
+    # -- (string) Minimum number of _Query_ replicas that the PDB should require to be available.
     minAvailable:
-    # -- Maximum number of _Query_ replicas that the PDB should allow to be unavailable.
+    # -- (string) Maximum number of _Query_ replicas that the PDB should allow to be unavailable.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Query_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Query_ pod.
   podLabels: {}
@@ -365,10 +369,10 @@ query:
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
 
-  # -- Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead (**DEPRECATED**).
+  # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead.
   replicaLabels: []
 
-  # -- Additional stores to configure query with (`--store`); use `additionalEndpoints` instead (**DEPRECATED**).
+  # -- **DEPRECATED** - Additional stores to configure query with (`--store`); use `additionalEndpoints` instead.
   additionalStores: []
 
 queryFrontend:
@@ -390,6 +394,8 @@ queryFrontend:
   service:
     # -- Annotations to add to the _Query Frontend_ service.
     annotations: {}
+    # -- (string) Traffic distribution for the _Query Frontend_ service.
+    trafficDistribution:
 
   ingress:
     # -- If `true`, create an `Ingress` for the _Query Frontend_ service.
@@ -432,10 +438,12 @@ queryFrontend:
   podDisruptionBudget:
     # -- If `true`, create a `PodDisruptionBudget` for the _Query Frontend_ deployment.
     enabled: false
-    # -- Minimum number of _Query Frontend_ replicas that the PDB should require to be available.
+    # -- (string) Minimum number of _Query Frontend_ replicas that the PDB should require to be available.
     minAvailable:
-    # -- Maximum number of _Query Frontend_ replicas that the PDB should allow to be unavailable.
+    # -- (string) Maximum number of _Query Frontend_ replicas that the PDB should allow to be unavailable.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Query Frontend_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Query Frontend_ pod.
   podLabels: {}
@@ -562,10 +570,12 @@ receive:
     podDisruptionBudget:
       # -- If `true`, create a `PodDisruptionBudget` for the _Receive Ingestor_ stateful set.
       enabled: false
-      # -- Minimum number of _Receive Ingestor_ replicas that the PDB should require to be available.
+      # -- (string) Minimum number of _Receive Ingestor_ replicas that the PDB should require to be available.
       minAvailable:
-      # -- Maximum number of _Receive Ingestor_ replicas that the PDB should allow to be unavailable.
+      # -- (string) Maximum number of _Receive Ingestor_ replicas that the PDB should allow to be unavailable.
       maxUnavailable:
+      # -- (string) Unhealthy pod eviction policy for the _Receive Ingestor_ PDB.
+      unhealthyPodEvictionPolicy:
 
     # -- Labels to add to the _Receive Ingestor_ pod.
     podLabels: {}
@@ -732,10 +742,12 @@ receive:
     podDisruptionBudget:
       # -- If `true`, create a `PodDisruptionBudget` for the _Receive Router_ deployment.
       enabled: false
-      # -- Minimum number of _Receive Router_ replicas that the PDB should require to be available.
+      # -- (string) Minimum number of _Receive Router_ replicas that the PDB should require to be available.
       minAvailable:
-      # -- Maximum number of _Receive Router_ replicas that the PDB should allow to be unavailable.
+      # -- (string) Maximum number of _Receive Router_ replicas that the PDB should allow to be unavailable.
       maxUnavailable:
+      # -- (string) Unhealthy pod eviction policy for the _Receive Router_ PDB.
+      unhealthyPodEvictionPolicy:
 
     # -- Labels to add to the _Receive Router_ pod.
     podLabels: {}
@@ -887,10 +899,12 @@ rule:
   podDisruptionBudget:
     # -- If `true`, create a `PodDisruptionBudget` for the _Rule_ stateful set.
     enabled: false
-    # -- Minimum number of _Rule_ replicas that the PDB should require to be available.
+    # -- (string) Minimum number of _Rule_ replicas that the PDB should require to be available.
     minAvailable:
-    # -- Maximum number of _Rule_ replicas that the PDB should allow to be unavailable.
+    # -- (string) Maximum number of _Rule_ replicas that the PDB should allow to be unavailable.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Rule_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Rule_ pod.
   podLabels: {}
@@ -1051,6 +1065,8 @@ storeGateway:
   service:
     # -- Annotations to add to the _Store Gateway_ service.
     annotations: {}
+    # -- (string) Traffic distribution for the _Store Gateway_ service.
+    trafficDistribution:
 
   # -- Number of _Store Gateway_ replicas to create.
   replicas: 1
@@ -1061,10 +1077,12 @@ storeGateway:
   podDisruptionBudget:
     # -- If `true`, create a `PodDisruptionBudget` for the _Store Gateway_ stateful set.
     enabled: false
-    # -- Minimum number of _Store Gateway_ replicas that the PDB should require to be available.
+    # -- (string) Minimum number of _Store Gateway_ replicas that the PDB should require to be available.
     minAvailable:
-    # -- Maximum number of _Store Gateway_ replicas that the PDB should allow to be unavailable.
+    # -- (string) Maximum number of _Store Gateway_ replicas that the PDB should allow to be unavailable.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Store Gateway_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Store Gateway_ pod.
   podLabels: {}

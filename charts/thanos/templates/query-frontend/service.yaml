@@ -12,6 +12,11 @@ metadata:
   {{- end }}
 spec:
   type: ClusterIP
+{{- if (semverCompare ">= 1.31-0" .Capabilities.KubeVersion.Version) }}
+{{- with .Values.queryFrontend.service.trafficDistribution }}
+  trafficDistribution: {{ . }}
+{{- end }}
+{{- end }}
   ports:
     - name: http
       protocol: TCP

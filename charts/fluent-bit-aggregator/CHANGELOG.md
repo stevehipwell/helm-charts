@@ -14,6 +14,11 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
+- Added support for setting the `trafficDistribution` value for the `Services` via the `service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+
 ## [v0.15.5] - 2024-08-12
 
 ### Changed
