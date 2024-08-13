@@ -14,12 +14,18 @@
 
 ## [UNRELEASED]
 
+## [v1.18.1] - 2024-08-13
+
 ### Added
 
 - Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
 - Added support for setting the `trafficDistribution` value for the _Query_ `Service` via the `query.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
 - Added support for setting the `trafficDistribution` value for the _Query Frontend_ `Service` via the `queryFrontend.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
 - Added support for setting the `trafficDistribution` value for the _Store Gateway_ `Service` via the `storeGateway.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+
+### Changed
+
+- Updated the _Thanos_ OCI image to [v0.36.1](https://github.com/thanos-io/thanos/releases/tag/v0.36.1).
 
 ## [v1.18.0] - 2024-08-01
 
@@ -517,6 +523,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.18.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.1
 [v1.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.0
 [v1.17.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.2
 [v1.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.1

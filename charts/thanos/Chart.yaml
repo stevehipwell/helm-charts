@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.18.0
-appVersion: 0.36.0
+version: 1.18.1
+appVersion: 0.36.1
 keywords:
   - kubernetes
   - thanos
@@ -22,5 +22,13 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
+    - kind: added
+      description: "Added support for setting the `trafficDistribution` value for the _Query_ `Service` via the `query.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+    - kind: added
+      description: "Added support for setting the `trafficDistribution` value for the _Query Frontend_ `Service` via the `queryFrontend.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+    - kind: added
+      description: "Added support for setting the `trafficDistribution` value for the _Store Gateway_ `Service` via the `storeGateway.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
     - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.36.0](https://github.com/thanos-io/thanos/releases/tag/v0.36.0)."
+      description: "Updated the _Thanos_ OCI image to [v0.36.1](https://github.com/thanos-io/thanos/releases/tag/v0.36.1)."
