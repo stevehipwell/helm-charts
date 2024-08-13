@@ -13692,6 +13692,33 @@ entries:
   kube-proxy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated _kube-proxy_ OCI image to [v1.31.0](https://github.com/kubernetes/kubernetes/releases/tag/v1.31.0)."
+    apiVersion: v2
+    appVersion: 1.31.0
+    created: "2024-08-13T14:06:33.064962078Z"
+    description: Helm chart for managing kube-proxy.
+    digest: 65a4015484f254da100e6aed9eb98e5d1f8f501eb87e4136f4fad3c664185cac
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.6/kube-proxy-0.0.6.tgz
+    version: 0.0.6
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed security context."
     apiVersion: v2
@@ -25717,4 +25744,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-13T09:01:17.922126577Z"
+generated: "2024-08-13T14:06:33.065937579Z"
