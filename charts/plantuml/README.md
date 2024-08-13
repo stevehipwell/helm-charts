@@ -55,15 +55,15 @@ helm upgrade --install plantuml stevehipwell/plantuml --version 3.33.0
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas for the `HorizontalPodAutoscaler`. |
 | autoscaling.metrics | list | See _values.yaml_ | Metrics configuration for the `HorizontalPodAutoscaler`. |
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` | Target average CPU utilization percentage (**DEPRECATED**). |
-| autoscaling.targetMemoryUtilizationPercentage | int | `nil` | Target average memory utilization percentage (**DEPRECATED**). |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` | **DEPRECATED** - Target average CPU utilization percentage. |
+| autoscaling.targetMemoryUtilizationPercentage | int | `nil` | **DEPRECATED** - Target average memory utilization percentage. |
 | caCerts.enabled | bool | `false` | If `true`, configure the JVM CA certificates from the provided secret. |
 | caCerts.secret | string | `nil` | Name of the secret containing the CA certificates. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | env | list | `[]` | Environment variables for the default container. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
-| image.pullSecrets | list | `[]` | Image pull secrets (**DEPRECATED**). |
+| image.pullSecrets | list | `[]` | **DEPRECATED** - Image pull secrets. |
 | image.repository | string | `"plantuml/plantuml-server"` | Image repository for the default container. |
 | image.tag | string | `nil` | Image tag for the default container, this will default to `jetty-v{{ .Chart.AppVersion }}` if not set. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
@@ -73,13 +73,14 @@ helm upgrade --install plantuml stevehipwell/plantuml --version 3.33.0
 | ingress.ingressClassName | string | `nil` | Ingress class name. |
 | ingress.tls | list | See _values.yaml_ | Ingress TLS. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
-| maxUnavailable | int | `0` | If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource (**DEPRECATED**). |
+| maxUnavailable | int | `0` | **DEPRECATED** - If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |
 | podAnnotations | object | `{}` | Annotations to add to the pod. |
 | podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` resource. |
 | podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods, either a number or a percentage. |
 | podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods, either a number or a percentage. |
+| podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the PDB. |
 | podLabels | object | `{}` | Labels to add to the pod. |
 | podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
 | priorityClassName | string | `nil` | Priority class name for the pod. |

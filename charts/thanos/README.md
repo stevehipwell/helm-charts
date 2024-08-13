@@ -79,7 +79,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | compact.podSecurityContext | object | See _values.yaml_ | Security context for the _Compact_ pod. |
 | compact.priorityClassName | string | `nil` | Priority class name for the _Compact_ pod. |
 | compact.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Compact_ pod default container. |
-| compact.replicaDeduplication | bool | `false` | If `true`, use the `penalty` deduplication function optimised for HA Prometheus replicas (**DEPRECATED**). |
+| compact.replicaDeduplication | bool | `false` | **DEPRECATED** - If `true`, use the `penalty` deduplication function optimized for HA Prometheus replicas. |
 | compact.resources | object | `{}` | Resources for the _Compact_ pod default container. |
 | compact.securityContext | object | See _values.yaml_ | Security context for the _Compact_ pod default container. |
 | compact.service.annotations | object | `{}` | Annotations to add to the _Compact_ service. |
@@ -105,7 +105,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | objstoreConfig.key | string | `"config"` | Secret key for the objstore configuration. |
 | objstoreConfig.name | string | `nil` | If this is set and `objstoreConfig.create` is `true` this will be used for the created secret name, if this is set and `objstoreConfig.create` is `false` then this will define an existing secret to use. |
 | objstoreConfig.value | string | `"type: FILESYSTEM\nconfig:\n  directory: /var/thanos/store/s3"` | Objstore configuration; this can either be a string or a map. The default values are not suitable for production. |
-| query.additionalStores | list | `[]` | Additional stores to configure query with (`--store`); use `additionalEndpoints` instead (**DEPRECATED**). |
+| query.additionalStores | list | `[]` | **DEPRECATED** - Additional stores to configure query with (`--store`); use `additionalEndpoints` instead. |
 | query.affinity | object | `{}` | Affinity settings for scheduling the _Query_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | query.autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` for the _Query_ deployment. |
 | query.autoscaling.maxReplicas | int | `3` | Maximum number of _Query_ replicas that the HPA should create. |
@@ -128,15 +128,17 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | query.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Query_ deployment. |
 | query.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Query_ replicas that the PDB should allow to be unavailable. |
 | query.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Query_ replicas that the PDB should require to be available. |
+| query.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Query_ PDB. |
 | query.podLabels | object | `{}` | Labels to add to the _Query_ pod. |
 | query.podSecurityContext | object | See _values.yaml_ | Security context for the _Query_ pod. |
 | query.priorityClassName | string | `nil` | Priority class name for the _Query_ pod. |
 | query.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Query_ pod default container. |
-| query.replicaLabels | list | `[]` | Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead (**DEPRECATED**). |
+| query.replicaLabels | list | `[]` | **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead. |
 | query.replicas | int | `1` | Number of _Query_ replicas to create. |
 | query.resources | object | `{}` | Resources for the _Query_ pod default container. |
 | query.securityContext | object | See _values.yaml_ | Security context for the _Query_ pod default container. |
 | query.service.annotations | object | `{}` | Annotations to add to the _Query_ service. |
+| query.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query_ service. |
 | query.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query_ service account. |
 | query.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Query_ service account. |
 | query.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Query_ component. |
@@ -169,6 +171,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | queryFrontend.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Query Frontend_ deployment. |
 | queryFrontend.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Query Frontend_ replicas that the PDB should allow to be unavailable. |
 | queryFrontend.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Query Frontend_ replicas that the PDB should require to be available. |
+| queryFrontend.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Query Frontend_ PDB. |
 | queryFrontend.podLabels | object | `{}` | Labels to add to the _Query Frontend_ pod. |
 | queryFrontend.podSecurityContext | object | See _values.yaml_ | Security context for the _Query Frontend_ pod. |
 | queryFrontend.priorityClassName | string | `nil` | Priority class name for the _Query Frontend_ pod. |
@@ -177,6 +180,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | queryFrontend.resources | object | `{}` | Resources for the _Query Frontend_ pod default container. |
 | queryFrontend.securityContext | object | See _values.yaml_ | Security context for the _Query Frontend_ pod default container. |
 | queryFrontend.service.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service. |
+| queryFrontend.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query Frontend_ service. |
 | queryFrontend.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service account. |
 | queryFrontend.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Query Frontend_ service account. |
 | queryFrontend.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Query Frontend_ component. |
@@ -206,6 +210,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | receive.ingestor.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Receive Ingestor_ stateful set. |
 | receive.ingestor.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Receive Ingestor_ replicas that the PDB should allow to be unavailable. |
 | receive.ingestor.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Receive Ingestor_ replicas that the PDB should require to be available. |
+| receive.ingestor.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Receive Ingestor_ PDB. |
 | receive.ingestor.podLabels | object | `{}` | Labels to add to the _Receive Ingestor_ pod. |
 | receive.ingestor.podSecurityContext | object | See _values.yaml_ | Security context for the _Receive Ingestor_ pod. |
 | receive.ingestor.priorityClassName | string | `nil` | Priority class name for the _Receive Ingestor_ pod. |
@@ -247,6 +252,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | receive.router.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Receive Router_ deployment. |
 | receive.router.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Receive Router_ replicas that the PDB should allow to be unavailable. |
 | receive.router.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Receive Router_ replicas that the PDB should require to be available. |
+| receive.router.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Receive Router_ PDB. |
 | receive.router.podLabels | object | `{}` | Labels to add to the _Receive Router_ pod. |
 | receive.router.podSecurityContext | object | See _values.yaml_ | Security context for the _Receive Router_ pod. |
 | receive.router.priorityClassName | string | `nil` | Priority class name for the _Receive Router_ pod. |
@@ -304,6 +310,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | rule.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Rule_ stateful set. |
 | rule.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Rule_ replicas that the PDB should allow to be unavailable. |
 | rule.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Rule_ replicas that the PDB should require to be available. |
+| rule.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Rule_ PDB. |
 | rule.podLabels | object | `{}` | Labels to add to the _Rule_ pod. |
 | rule.podSecurityContext | object | See _values.yaml_ | Security context for the _Rule_ pod. |
 | rule.priorityClassName | string | `nil` | Priority class name for the _Rule_ pod. |
@@ -328,7 +335,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | serviceMonitor.additionalLabels | object | `{}` | Additional labels for the service monitor. |
 | serviceMonitor.enabled | bool | `false` | If `true`, create `ServiceMonitor` resources to support collecting metrics via the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
-| serviceMonitor.interval | int | `nil` | _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**). |
+| serviceMonitor.interval | int | `nil` | **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint. |
 | storeEndpointGroup | bool | `false` | If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**). |
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | storeGateway.extraArgs | list | `[]` | Additional args for the _Store Gateway_ pod default container. |
@@ -349,6 +356,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | storeGateway.podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` for the _Store Gateway_ stateful set. |
 | storeGateway.podDisruptionBudget.maxUnavailable | string | `nil` | Maximum number of _Store Gateway_ replicas that the PDB should allow to be unavailable. |
 | storeGateway.podDisruptionBudget.minAvailable | string | `nil` | Minimum number of _Store Gateway_ replicas that the PDB should require to be available. |
+| storeGateway.podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the _Store Gateway_ PDB. |
 | storeGateway.podLabels | object | `{}` | Labels to add to the _Store Gateway_ pod. |
 | storeGateway.podSecurityContext | object | See _values.yaml_ | Security context for the _Store Gateway_ pod. |
 | storeGateway.priorityClassName | string | `nil` | Priority class name for the _Store Gateway_ pod. |
@@ -357,6 +365,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.0
 | storeGateway.resources | object | `{}` | Resources for the _Store Gateway_ pod default container. |
 | storeGateway.securityContext | object | See _values.yaml_ | Security context for the _Store Gateway_ pod default container. |
 | storeGateway.service.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service. |
+| storeGateway.service.trafficDistribution | string | `nil` | Traffic distribution for the _Store Gateway_ service. |
 | storeGateway.serviceAccount.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service account. |
 | storeGateway.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Store Gateway_ service account. |
 | storeGateway.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Store Gateway_ component. |

@@ -56,6 +56,8 @@ service:
       port: 24224
       containerPort: 24224
       protocol: TCP
+  # -- (string) Traffic distribution for the service.
+  trafficDistribution:
 
 # -- (list) Ingresses, each input plugin will need it's own.
 # @default -- See _values.yaml_
@@ -114,6 +116,8 @@ podDisruptionBudget:
   minAvailable:
   # -- (string) Minimum number of unavailable pods, either a number or a percentage.
   maxUnavailable:
+  # -- (string) Unhealthy pod eviction policy for the PDB.
+  unhealthyPodEvictionPolicy:
 
 # -- Labels to add to the pod.
 podLabels: {}

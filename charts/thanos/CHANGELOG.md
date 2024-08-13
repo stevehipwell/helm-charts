@@ -14,6 +14,13 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
+- Added support for setting the `trafficDistribution` value for the _Query_ `Service` via the `query.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+- Added support for setting the `trafficDistribution` value for the _Query Frontend_ `Service` via the `queryFrontend.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+- Added support for setting the `trafficDistribution` value for the _Store Gateway_ `Service` via the `storeGateway.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+
 ## [v1.18.0] - 2024-08-01
 
 ### Changed

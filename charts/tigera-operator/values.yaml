@@ -69,7 +69,7 @@ env: []
 #   - name: VARIABLE
 #     value: my-value
 
-# -- Environment variables from a config map or secret for the default container (**DEPRECATED**).
+# -- **DEPRECATED** - Environment variables from a config map or secret for the default container.
 envFrom: []
 #   - configMapRef:
 #       name: kubernetes-services-endpoint
@@ -101,7 +101,7 @@ serviceMonitor:
   additionalLabels: {}
   # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
-  # -- (int) _Prometheus_ scrape interval for the service monitor endpoint (**DEPRECATED**).
+  # -- (int) **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint.
   interval:
 
 installation:

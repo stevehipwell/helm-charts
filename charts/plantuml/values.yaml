@@ -9,7 +9,7 @@ image:
   tag:
   # -- Image pull policy for the default container.
   pullPolicy: IfNotPresent
-  # -- Image pull secrets (**DEPRECATED**).
+  # -- **DEPRECATED** - Image pull secrets.
   pullSecrets: []
 
 # -- Image pull secrets.
@@ -77,9 +77,9 @@ autoscaling:
   # -- (list) Metrics configuration for the `HorizontalPodAutoscaler`.
   # @default -- See _values.yaml_
   metrics: []
-  # -- Target average CPU utilization percentage (**DEPRECATED**).
+  # -- **DEPRECATED** - Target average CPU utilization percentage.
   targetCPUUtilizationPercentage: 80
-  # -- (int) Target average memory utilization percentage (**DEPRECATED**).
+  # -- (int) **DEPRECATED** - Target average memory utilization percentage.
   targetMemoryUtilizationPercentage:
 
 podDisruptionBudget:
@@ -89,8 +89,10 @@ podDisruptionBudget:
   minAvailable:
   # -- (string) Minimum number of unavailable pods, either a number or a percentage.
   maxUnavailable:
+  # -- (string) Unhealthy pod eviction policy for the PDB.
+  unhealthyPodEvictionPolicy:
 
-# -- If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource (**DEPRECATED**).
+# -- **DEPRECATED** - If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource.
 maxUnavailable: 0
 
 # -- Labels to add to the pod.

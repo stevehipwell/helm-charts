@@ -68,6 +68,8 @@ admissionController:
     minAvailable:
     # -- (string) Minimum number of unavailable pods for the _Admission Controller_; either a number or a percentage.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Admission Controller_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Admission Controller_ pod.
   podLabels: {}
@@ -195,6 +197,8 @@ recommender:
     minAvailable:
     # -- (string) Minimum number of unavailable pods for the _Recommender_; either a number or a percentage.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Recommender_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Recommender_ pod.
   podLabels: {}
@@ -310,6 +314,8 @@ updater:
     minAvailable:
     # -- (string) Minimum number of unavailable pods for the _Updater_; either a number or a percentage.
     maxUnavailable:
+    # -- (string) Unhealthy pod eviction policy for the _Updater_ PDB.
+    unhealthyPodEvictionPolicy:
 
   # -- Labels to add to the _Updater_ pod.
   podLabels: {}

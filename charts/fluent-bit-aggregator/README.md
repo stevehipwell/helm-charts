@@ -97,6 +97,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` resource. |
 | podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods, either a number or a percentage. |
 | podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods, either a number or a percentage. |
+| podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the PDB. |
 | podLabels | object | `{}` | Labels to add to the pod. |
 | podManagementPolicy | string | `nil` | Pod management policy for the `StatefulSet`. |
 | podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
@@ -110,6 +111,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
 | service.annotations | object | `{}` | Service annotations. |
 | service.httpPort | int | `2020` | Fluent Bit HTTP port used for status and metrics. |
+| service.trafficDistribution | string | `nil` | Traffic distribution for the service. |
 | service.type | string | `"ClusterIP"` | Service type. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
 | serviceAccount.automountToken | bool | `false` | If `true`, mount the `ServiceAccount` token. |

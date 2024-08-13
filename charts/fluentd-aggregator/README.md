@@ -93,6 +93,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | podDisruptionBudget.enabled | bool | `false` | If `true`, create a `PodDisruptionBudget` resource. |
 | podDisruptionBudget.maxUnavailable | string | `nil` | Minimum number of unavailable pods, either a number or a percentage. |
 | podDisruptionBudget.minAvailable | string | `nil` | Minimum number of available pods, either a number or a percentage. |
+| podDisruptionBudget.unhealthyPodEvictionPolicy | string | `nil` | Unhealthy pod eviction policy for the PDB. |
 | podLabels | object | `{}` | Labels to add to the pod. |
 | podManagementPolicy | string | `nil` | Pod management policy for the `StatefulSet`. |
 | podSecurityContext | object | See _values.yaml_ | Security context for the pod. |
@@ -106,6 +107,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | service.httpPort | int | `9880` | Fluentd port used for status. |
 | service.legacy | bool | `false` | If `true`, use legacy naming so the headless service doesn't change. |
 | service.metricsPort | int | `24231` | Fluentd port used for metrics. |
+| service.trafficDistribution | string | `nil` | Traffic distribution for the service. |
 | service.type | string | `"ClusterIP"` | Service type. |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account. |
 | serviceAccount.automountToken | bool | `false` | If `true`, mount the `ServiceAccount` token. |

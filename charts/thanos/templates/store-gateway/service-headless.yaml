@@ -12,6 +12,11 @@ metadata:
 spec:
   type: ClusterIP
   clusterIP: None
+{{- if (semverCompare ">= 1.31-0" .Capabilities.KubeVersion.Version) }}
+{{- with .Values.storeGateway.service.trafficDistribution }}
+  trafficDistribution: {{ . }}
+{{- end }}
+{{- end }}
   ports:
     - name: grpc
       port: 10901

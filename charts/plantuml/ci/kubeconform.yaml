@@ -17,6 +17,7 @@ autoscaling:
 podDisruptionBudget:
   enabled: true
   maxUnavailable: 1
+  unhealthyPodEvictionPolicy: AlwaysAllow
 
 caCerts:
   enabled: true

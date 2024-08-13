@@ -1,3 +1,6 @@
+service:
+  trafficDistribution: PreferClose
+
 ingresses:
   - servicePort: 24224
     className: my-ingress-class
@@ -30,6 +33,7 @@ autoscaling:
 podDisruptionBudget:
   enabled: true
   maxUnavailable: 33%
+  unhealthyPodEvictionPolicy: AlwaysAllow
 
 priorityClassName: system-cluster-critical
 terminationGracePeriodSeconds: 120
