@@ -33,6 +33,7 @@ You can then run `helm search repo stevehipwell` to see the charts.
 - [istio-operator](./charts/istio-operator/README.md)
 - [jira-software](./charts/jira-software/README.md)
 - [k8s-resources](./charts/k8s-resources/README.md)
+- [kube-proxy](./charts/kube-proxy/README.md)
 - [nexus3](./charts/nexus3/README.md)
 - [node-config](./charts/node-config/README.md)
 - [overprovisioner](./charts/overprovisioner/README.md)
