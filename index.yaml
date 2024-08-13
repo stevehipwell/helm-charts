@@ -187,6 +187,42 @@ entries:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _Confluence Server_ OCI image to [v8.5.14](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
+    apiVersion: v2
+    appVersion: 8.5.14
+    created: "2024-08-13T09:01:17.919953894Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: 12.12.10
+    description: Helm chart for Atlassian Confluence Server.
+    digest: f8ed4724bf4a287029125b88c7ba4ab182f2aba59189d299aa4c2b8a49f88272
+    home: https://www.atlassian.com/software/confluence
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.13/confluence-server-5.5.13.tgz
+    version: 5.5.13
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Confluence Server_ OCI image to [v8.5.12](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
     apiVersion: v2
     appVersion: 8.5.12
@@ -25681,4 +25717,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-12T17:51:44.957996127Z"
+generated: "2024-08-13T09:01:17.922126577Z"
