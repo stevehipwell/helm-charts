@@ -20995,6 +20995,46 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
+        - kind: added
+          description: "Added support for setting the `trafficDistribution` value for the _Query_ `Service` via the `query.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+        - kind: added
+          description: "Added support for setting the `trafficDistribution` value for the _Query Frontend_ `Service` via the `queryFrontend.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+        - kind: added
+          description: "Added support for setting the `trafficDistribution` value for the _Store Gateway_ `Service` via the `storeGateway.service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+        - kind: changed
+          description: "Updated the _Thanos_ OCI image to [v0.36.1](https://github.com/thanos-io/thanos/releases/tag/v0.36.1)."
+    apiVersion: v2
+    appVersion: 0.36.1
+    created: "2024-08-13T14:57:36.285291419Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 4e69f700c2cc60856f2992090ef3a69170b4270ead811074fb5365effec9ffe5
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.18.1/thanos-1.18.1.tgz
+    version: 1.18.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _Thanos_ OCI image to [v0.36.0](https://github.com/thanos-io/thanos/releases/tag/v0.36.0)."
     apiVersion: v2
@@ -25744,4 +25784,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-13T14:06:33.065937579Z"
+generated: "2024-08-13T14:57:36.28648151Z"
