@@ -6431,6 +6431,40 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
+        - kind: added
+          description: "Added support for setting the `trafficDistribution` value for the `Services` via the `service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.1) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
+    apiVersion: v2
+    appVersion: 2.17.1
+    created: "2024-08-20T11:45:30.211260106Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: da8b3137e11814d772fb39f7c190301764043829a54d0c0905428ca101a6c11a
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.8.1/fluentd-aggregator-4.8.1.tgz
+    version: 4.8.1
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.0) (_Fluentd_ [v1.17.0](https://github.com/fluent/fluentd/releases/tag/v1.17.0))."
     apiVersion: v2
@@ -25884,4 +25918,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-15T15:11:41.616785768Z"
+generated: "2024-08-20T11:45:30.212492571Z"
