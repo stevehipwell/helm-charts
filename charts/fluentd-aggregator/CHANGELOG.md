@@ -14,10 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v4.8.1] - 2024-08-20
+
 ### Added
 
 - Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
 - Added support for setting the `trafficDistribution` value for the `Services` via the `service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters.
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.17.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.1) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1)).
 
 ## [v4.8.0] - 2024-06-14
 
@@ -546,6 +552,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v4.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.1
 [v4.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.0
 [v4.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.7.0
 [v4.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.6.0
