@@ -25563,6 +25563,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
+        - kind: changed
+          description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.2.1](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.2.1)."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.2.1
+    created: "2024-08-22T09:14:47.574742071Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 04390f920fe6c16e6e8642b36f012e6adf6e34af50d8e6fafe751c614a58aa20
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    - vertical
+    - vpa
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.7.1/vertical-pod-autoscaler-1.7.1.tgz
+    version: 1.7.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added behavior to use leader election when multiple recommender or updater replicas are created."
         - kind: changed
           description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.2.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.2.0)."
@@ -25918,4 +25959,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-20T11:45:30.212492571Z"
+generated: "2024-08-22T09:14:47.575856003Z"
