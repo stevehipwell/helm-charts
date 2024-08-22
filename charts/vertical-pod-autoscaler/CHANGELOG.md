@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v1.7.1] - 2024-08-22
+
 ### Added
 
 - Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
+
+### Changed
+
+- Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.2.1](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.2.1).
 
 ## [v1.7.0] - 2024-08-12
 
@@ -98,6 +104,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.1
 [v1.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.0
 [v1.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.6.2
 [v1.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.6.1
