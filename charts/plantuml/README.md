@@ -64,7 +64,7 @@ helm upgrade --install plantuml stevehipwell/plantuml --version 3.33.0
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
 | image.pullSecrets | list | `[]` | **DEPRECATED** - Image pull secrets. |
-| image.repository | string | `"plantuml/plantuml-server"` | Image repository for the default container. |
+| image.repository | string | `"docker.io/plantuml/plantuml-server"` | Image repository for the default container. |
 | image.tag | string | `nil` | Image tag for the default container, this will default to `jetty-v{{ .Chart.AppVersion }}` if not set. |
 | imagePullSecrets | list | `[]` | Image pull secrets. |
 | ingress.annotations | object | `{}` | Ingress annotations. |

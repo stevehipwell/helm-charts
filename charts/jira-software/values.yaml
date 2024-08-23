@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: atlassian/jira-software
+  repository: docker.io/atlassian/jira-software
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent

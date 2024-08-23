@@ -1,5 +1,5 @@
 image:
-  repository: sonatype/nexus3
+  repository: docker.io/sonatype/nexus3
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent

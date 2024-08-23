@@ -4,7 +4,7 @@
 
 image:
   # -- Image repository for the default container.
-  repository: plantuml/plantuml-server
+  repository: docker.io/plantuml/plantuml-server
   # -- (string) Image tag for the default container, this will default to `jetty-v{{ .Chart.AppVersion }}` if not set.
   tag:
   # -- Image pull policy for the default container.
