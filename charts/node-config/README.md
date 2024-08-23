@@ -53,7 +53,7 @@ helm upgrade --install node-config stevehipwell/node-config --version 0.6.0
 | config.env | list | `[]` | Environment variables for the config container. |
 | config.extraVolumeMounts | list | `[]` | Extra volume mounts for the config container. |
 | config.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the config container. |
-| config.image.repository | string | `"docker.io/alpine"` | Image repository for the config container. |
+| config.image.repository | string | `"docker.io/library/alpine"` | Image repository for the config container. |
 | config.image.tag | string | `"latest"` | Image tag for the config container |
 | config.resources | object | `{}` | Resources for the config container. |
 | config.securityContext | object | See _values.yaml_ | Security context for the config container. |

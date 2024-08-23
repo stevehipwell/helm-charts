@@ -65,7 +65,7 @@ extraVolumes: []
 config:
   image:
     # -- Image repository for the config container.
-    repository: docker.io/alpine
+    repository: docker.io/library/alpine
     # -- Image tag for the config container
     tag: latest
     # -- Image pull policy for the config container.
