@@ -6431,6 +6431,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.2) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
+    apiVersion: v2
+    appVersion: 2.17.2
+    created: "2024-08-29T15:51:38.327871593Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 98021cf548263a0f5298c5c3dbc8e1062d5fcf19c2fd7acbe98b3bd5b21f327f
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.8.2/fluentd-aggregator-4.8.2.tgz
+    version: 4.8.2
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
         - kind: added
@@ -25959,4 +25989,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-22T09:14:47.575856003Z"
+generated: "2024-08-29T15:51:38.329754398Z"
