@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-collector
 description: Helm chart for Fluent Bit running as a collector DaemonSet.
 type: application
-version: 0.12.6
-appVersion: 3.1.6
+version: 0.12.7
+appVersion: 3.1.7
 keywords:
   - fluent
   - fluentd
@@ -22,5 +22,7 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
     - kind: changed
-      description: "Updated _Fluent Bit_ OCI image to [v3.1.6](https://github.com/fluent/fluent-bit/releases/tag/v3.1.6)."
+      description: "Updated _Fluent Bit_ OCI image to [v3.1.7](https://github.com/fluent/fluent-bit/releases/tag/v3.1.7)."
