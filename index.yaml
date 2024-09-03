@@ -4145,6 +4145,38 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
         - kind: added
+          description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
+        - kind: changed
+          description: "Updated _Fluent Bit_ OCI image to [v3.1.7](https://github.com/fluent/fluent-bit/releases/tag/v3.1.7)."
+    apiVersion: v2
+    appVersion: 3.1.7
+    created: "2024-09-03T09:39:33.665214695Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: 97e2011949e309d2fd9d31d5f3db70efad4646f3c237ba9fccac960f618377a0
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.15.7/fluent-bit-aggregator-0.15.7.tgz
+    version: 0.15.7
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
+        - kind: added
           description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
         - kind: added
           description: "Added support for setting the `trafficDistribution` value for the `Services` via the `service.trafficDistribution` value on _Kubernetes_ `1.31` or higher clusters."
@@ -25989,4 +26021,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-08-29T15:51:38.329754398Z"
+generated: "2024-09-03T09:39:33.666410575Z"
