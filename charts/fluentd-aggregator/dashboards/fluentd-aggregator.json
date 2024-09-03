@@ -2648,7 +2648,7 @@
   },
   "timezone": "utc",
   "title": "{{ include "fluentd-aggregator.fullname" . }}",
-  "uid": null,
+  "uid": "{{ sha1sum (printf "%s-%s" .Release.Namespace (include "fluentd-aggregator.fullname" .)) }}",
   "version": 4,
   "weekStart": ""
 }
