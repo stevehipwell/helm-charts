@@ -1537,7 +1537,7 @@
   },
   "timezone": "",
   "title": "{{ include "fluent-bit-aggregator.fullname" . }}",
-  "uid": null,
+  "uid": "{{ sha1sum (printf "%s-%s" .Release.Namespace (include "fluent-bit-aggregator.fullname" .)) }}",
   "version": 0,
   "weekStart": ""
 }

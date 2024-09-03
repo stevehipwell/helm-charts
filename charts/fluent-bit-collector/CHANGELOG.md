@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname.
+
 ## [v0.12.6] - 2024-08-15
 
 ### Changed
