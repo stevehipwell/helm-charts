@@ -14,6 +14,14 @@
 
 ## [UNRELEASED]
 
+## [v4.45.1] - 2024-09-04
+
+### Addded
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.70.2](https://hub.docker.com/layers/sonatype/nexus3/3.70.2-java11-alpine/images/sha256-ae90e722a1d07b8810482e78be352686450cd468bd87529c1ca2e70468f0d36f?context=explore).
+
 ## [v4.45.0] - 2024-07-11
 
 ### Added
