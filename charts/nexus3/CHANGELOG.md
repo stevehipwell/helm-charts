@@ -20,14 +20,42 @@
 
 ### Breaking changes
 
-- **Important** With this image a migration from OrientDB to H2 (also for OSS) is mandatory, since OrientDB is no longer supported (due to the drop of Java11). See more in the [docs](https://help.sonatype.com/en/sonatype-nexus-repository-3-71-0-release-notes.html). You will most probably need to upgrade to h2 on 4.45.0 (3.70.2) before you upgrade to 5.0.0 (3.71.0)
+- **Important** With this image a migration from OrientDB to H2 (also for OSS) is mandatory, since OrientDB is no longer supported (due to the drop of Java11). See more in the [docs](https://help.sonatype.com/en/sonatype-nexus-repository-3-71-0-release-notes.html). You will need to migrate to h2 on 4.45.0 (3.70.2) before you upgrade to 5.0.0 (3.71.0)
+
+_Migration Example_
+
+You rather should read the official [migration dos](https://help.sonatype.com/en/orient-3-70-java-8-or-11.html). This is just an example that worked for this chart.
+
+You need to do this under the chart version `4.45.0 (3.70.2)` and NOT `5.0.0`
+
+```bash
+# connect to your nexus pod
+cd /nexus-data/backups
+mkdir -p /nexus-data/convert
+# be sure to select the right backup
+cp *-2024-09-04-10-54* ../convert/
+cd ../convert
+curl -s -L -O https://download.sonatype.com/nexus/nxrm3-migrator/nexus-db-migrator-3.70.2-01.jar
+# check first
+java -Xmx2G -Xms2G -XX:+UseG1GC -XX:MaxDirectMemorySize=28672M -jar nexus-db-migrator-3.70.2-01.jar --migration_type=h2 --healthcheck
+# convert
+java -Xmx2G -Xms2G -XX:+UseG1GC -XX:MaxDirectMemorySize=28672M -jar nexus-db-migrator-3.70.2-01.jar --migration_type=h2
+```
+
+Now, add this to your `values.yml` (`-Dnexus.datastore.enable=true -Dnexus.orient.enabled=false`)
+
+```yaml
+envVars:
+  jvmAdditionalOptions: "-Dnexus.loadAsOSS=true -Dnexus.datastore.enable=true -Dnexus.orient.enabled=false"
+```
+
+Now migrate to the chart `5.0.0`
 
 ### Changed
 
 - Updated the _Nexus3_ OCI image to [v3.71.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.71.0-06) and to a new baseline (Java17).
 
 ### Deprecated
-
 
 ## [v4.45.0] - 2024-07-11
 
@@ -673,6 +701,7 @@
 <!--
 RELEASE LINKS
 -->
+
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
 [v4.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.44.0
