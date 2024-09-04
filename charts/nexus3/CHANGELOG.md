@@ -14,6 +14,21 @@
 
 ## [UNRELEASED]
 
+## [v5.0.0] - 2024-09-10
+
+### Added
+
+### Breaking changes
+
+- **Important** With this image a migration from OrientDB to H2 (also for OSS) is mandatory, since OrientDB is no longer supported (due to the drop of Java11). See more in the [docs](https://help.sonatype.com/en/sonatype-nexus-repository-3-71-0-release-notes.html). You will most probably need to upgrade to h2 on 4.45.0 (3.70.2) before you upgrade to 5.0.0 (3.71.0)
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.71.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.71.0-06) and to a new baseline (Java17).
+
+### Deprecated
+
+
 ## [v4.45.0] - 2024-07-11
 
 ### Added
