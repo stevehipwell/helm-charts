@@ -57,6 +57,9 @@ Now migrate to the chart `5.0.0`
 
 ### Deprecated
 
+- Java17 is used in the OCI image, Java11 is no longer supported
+- you can no longer use the OrientDB as the database
+
 ## [v4.45.0] - 2024-07-11
 
 ### Added
