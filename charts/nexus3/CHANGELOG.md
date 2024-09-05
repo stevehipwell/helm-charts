@@ -667,6 +667,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v4.45.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.1
 [v4.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.44.0
 [v4.43.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.43.1
