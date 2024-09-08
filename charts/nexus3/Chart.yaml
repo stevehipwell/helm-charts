@@ -24,4 +24,4 @@ annotations:
   artifacthub.io/alternativeName: nexus
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Nexus3_ OCI image to [v3.70.2](https://hub.docker.com/layers/sonatype/nexus3/3.70.2-java17-alpine/images/sha256-2673b4f2ad59838d87ea066b6a275d4520b0aa1c0271f24954276eaa6686adf0?context=explore)."
+      description: "Updated the _Nexus3_ OCI image to v3.70.2"
