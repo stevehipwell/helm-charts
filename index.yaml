@@ -14373,6 +14373,37 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Nexus3_ OCI image to v3.70.2"
+    apiVersion: v2
+    appVersion: 3.70.2
+    created: "2024-09-09T08:58:59.453414721Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 0d2b109de8a6d63213fa0bc8942267ce7f4c9a0bd697fa8ef7ed1ef3e4d8f170
+    home: https://www.sonatype.com/nexus-repository-oss
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/docker-nexus3
+    - https://hub.docker.com/r/sonatype/nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-4.45.1/nexus3-4.45.1.tgz
+    version: 4.45.1
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
         - kind: added
           description: "Added `service.additionalPorts.hosts` (list) for multi-hosts support."
         - kind: changed
@@ -26086,4 +26117,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-09-05T08:03:20.67670111Z"
+generated: "2024-09-09T08:58:59.454503168Z"
