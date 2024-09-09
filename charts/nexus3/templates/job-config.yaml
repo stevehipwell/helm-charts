@@ -1,0 +1,98 @@
+{{- if and .Values.config.enabled .Values.rootPassword.secret -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "nexus3.configJob.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+spec:
+  template:
+    metadata:
+      name: {{ include "nexus3.configJob.name" . }}
+      labels:
+        {{- include "nexus3.configJob.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
+        checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: config
+          image: {{ include "nexus3.image" .Values.config.job.image }}
+          imagePullPolicy: {{ .Values.config.job.image.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop:
+                - ALL
+          env:
+            - name: NEXUS_HOST
+              value: {{ printf "http://%s.%s.svc.cluster.local:%s" (include "nexus3.serviceName" .) .Release.Namespace (toString .Values.service.port) }}
+            - name: NEXUS_USER
+              value: admin
+            - name: NEXUS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.rootPassword.secret }}
+                  key: {{ .Values.rootPassword.key }}
+            - name: CONFIG_DIR
+              value: /opt/sonatype/nexus/config
+          args: ["/scripts/configure.sh"]
+          volumeMounts:
+            - mountPath: /tmp
+              name: temp
+            - mountPath: /scripts
+              name: scripts
+            - mountPath: /opt/sonatype/nexus/config/conf
+              name: config
+          {{- if .Values.config.ldap.enabled }}
+            - mountPath: /opt/sonatype/nexus/config/secret/ldap.password
+              name: ldap-password
+              subPath: {{ .Values.config.ldap.authPassword.key }}
+          {{- end }}
+          {{- if .Values.config.repoCredentials.enabled }}
+            - mountPath: /opt/sonatype/nexus/config/secret/repo-credentials
+              name: repo-credentials
+          {{- end }}
+      volumes:
+        - name: temp
+          emptyDir: {}
+        - name: scripts
+          configMap:
+            name: {{ include "nexus3.configScriptsConfigMapName" . }}
+            defaultMode: 0555
+        - name: config
+          configMap:
+            name: {{ include "nexus3.configConfigMapName" . }}
+            defaultMode: 0444
+      {{- if .Values.config.ldap.enabled }}
+        - name: ldap-password
+          secret:
+            secretName: {{ .Values.config.ldap.authPassword.secret }}
+      {{- end }}
+      {{- if .Values.config.repoCredentials.enabled }}
+        - name: repo-credentials
+          secret:
+            secretName: {{ .Values.config.repoCredentials.secret }}
+      {{- end }}
+      {{- with .Values.config.job.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.config.job.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.config.job.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  backoffLimit: 0
+  ttlSecondsAfterFinished: {{ .Values.config.job.ttlSecondsAfterFinished }}
+  {{- end -}}

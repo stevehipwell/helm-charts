@@ -3,14 +3,16 @@ metrics:
 
 persistence:
   enabled: true
+  retainDeleted: false
+  retainScaled: false
 
 caCerts:
   enabled: true
   secret: nexus3-cas
 
-plugins:
-  - name: nexus-repository-composer
-    url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
+plugins: []
+#   - name: nexus-repository-composer
+#     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
 
 rootPassword:
   secret: nexus3-root-credentials
@@ -66,16 +68,16 @@ config:
     enabled: false
   repos:
     - name: test-repo
-      type: raw-hosted
+      format: raw
+      type: hosted
       online: true
-      attributes:
-        storage:
-          blobStoreName: default
-          strictContentTypeValidation: false
-          writePolicy: ALLOW
-        cleanup:
-          policyName:
-            - ExampleCleanup
+      storage:
+        blobStoreName: default
+        strictContentTypeValidation: false
+        writePolicy: allow
+      cleanup:
+        policyNames:
+          - ExampleCleanup
   tasks:
     - name: "Cleanup service"
       typeId: repository.cleanup

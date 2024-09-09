@@ -52,6 +52,16 @@ Selector labels
 {{- define "nexus3.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "nexus3.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: repository
+{{- end }}
+
+{{/*
+Create an image
+*/}}
+{{- define "nexus3.image" -}}
+{{- $tag := ternary (printf ":%s" .tag) "" (ne .tag "-") }}
+{{- $digest := ternary (printf "@%s" .digest) "" (not (empty .digest)) }}
+{{- printf "%s%s%s" .repository $tag $digest }}
 {{- end }}
 
 {{/*
@@ -66,39 +76,59 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-The image to use
+Define the Service name
 */}}
-{{- define "nexus3.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "%s-java11-ubi" .Chart.AppVersion) .Values.image.tag) }}
+{{- define "nexus3.serviceName" -}}
+{{- include "nexus3.fullname" . }}
 {{- end }}
 
 {{/*
-Create pvc name.
+Define the headless Service name
 */}}
-{{- define "nexus3.pvcname" -}}
-{{- template "nexus3.fullname" . -}}-data
-{{- end -}}
+{{- define "nexus3.headlessServiceName" -}}
+{{- printf "%s-hl" ((include "nexus3.serviceName" .) | trunc 60 | trimSuffix "-") }}
+{{- end }}
 
-{{/* Get Ingress API Version */}}
-{{- define "nexus3.ingress.apiVersion" -}}
-  {{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= 1.19-0" .Capabilities.KubeVersion.Version) -}}
-      {{- print "networking.k8s.io/v1" -}}
-  {{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
-    {{- print "networking.k8s.io/v1beta1" -}}
-  {{- else -}}
-    {{- print "extensions/v1beta1" -}}
-  {{- end -}}
-{{- end -}}
+{{/*
+Define the config scripts ConfigMap name
+*/}}
+{{- define "nexus3.configScriptsConfigMapName" -}}
+{{- printf "%s-conf-scripts" ((include "nexus3.fullname" .) | trunc 50 | trimSuffix "-") }}
+{{- end }}
 
-{{/* Check Ingress stability */}}
-{{- define "nexus3.ingress.isStable" -}}
-  {{- eq (include "nexus3.ingress.apiVersion" .) "networking.k8s.io/v1" -}}
-{{- end -}}
+{{/*
+Define the config ConfigMap name
+*/}}
+{{- define "nexus3.configConfigMapName" -}}
+{{- printf "%s-conf" ((include "nexus3.fullname" .) | trunc 58 | trimSuffix "-") }}
+{{- end }}
 
-{{/* Check Ingress supports pathType */}}
-{{/* pathType was added to networking.k8s.io/v1beta1 in Kubernetes 1.18 */}}
-{{- define "nexus3.ingress.supportsPathType" -}}
-  {{- or (eq (include "nexus3.ingress.isStable" .) "true") (and (eq (include "nexus3.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{/*
+Define the Logback ConfigMap name
+*/}}
+{{- define "nexus3.logbackConfigMapName" -}}
+{{- printf "%s-logback" ((include "nexus3.fullname" .) | trunc 55 | trimSuffix "-") }}
+{{- end }}
+
+{{/*
+Define the properties ConfigMap name
+*/}}
+{{- define "nexus3.propertiesConfigMapName" -}}
+{{- printf "%s-props" ((include "nexus3.fullname" .) | trunc 57 | trimSuffix "-") }}
+{{- end }}
+
+{{/*
+Define the scripts ConfigMap name
+*/}}
+{{- define "nexus3.scriptsConfigMapName" -}}
+{{- printf "%s-scripts" ((include "nexus3.fullname" .) | trunc 55 | trimSuffix "-") }}
+{{- end }}
+
+{{/*
+Define pvc name.
+*/}}
+{{- define "nexus3.pvcName" -}}
+{{- printf "%s-data" ((include "nexus3.fullname" .) | trunc 58 | trimSuffix "-") }}
 {{- end -}}
 
 {{/*
@@ -131,11 +161,13 @@ Patch pod affinity
 Patch affinity
 */}}
 {{- define "nexus3.patchAffinity" -}}
-{{- if (hasKey .Values.affinity "podAffinity") }}
-{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAffinity) .) }}
+{{- $podAffinity := dig "podAffinity" nil .Values.affinity }}
+{{- $podAntiAffinity := dig "podAntiAffinity" nil .Values.affinity }}
+{{- if $podAffinity }}
+{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" $podAffinity) .) }}
 {{- end }}
-{{- if (hasKey .Values.affinity "podAntiAffinity") }}
-{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" .Values.affinity.podAntiAffinity) .) }}
+{{- if $podAntiAffinity }}
+{{- include "nexus3.patchPodAffinity" (merge (dict "_podAffinity" $podAntiAffinity) .) }}
 {{- end }}
 {{- end }}
 
@@ -147,3 +179,34 @@ Patch topology spread constraints
 {{- include "nexus3.patchLabelSelector" (merge (dict "_target" $constraint) $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "nexus3.configJob.labels" -}}
+helm.sh/chart: {{ include "nexus3.chart" . }}
+{{ include "nexus3.configJob.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.commonLabels }}
+{{ toYaml . }}
+{{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "nexus3.configJob.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "nexus3.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: config-job
+{{- end }}
+
+{{/*
+Define config Job name.
+*/}}
+{{- define "nexus3.configJob.name" -}}
+{{- printf "%s-config-%s" ((include "nexus3.fullname" .) | trunc 52 | trimSuffix "-") (toString .Release.Revision) }}
+{{- end -}}

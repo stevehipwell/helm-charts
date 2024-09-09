@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nexus3.scriptsConfigMapName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+data:
+  import-ca-certs.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p /nexus-data/keystores
+    cp -f "${JAVA_HOME}/lib/security/cacerts" /nexus-data/keystores/cacerts
+    for f in /nexus-data/secrets/cas/*
+    do
+      keytool -importcert -file "${f}" -alias "$(basename "${f}")" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt
+    done
+  download-plugins.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+{{- range .Values.plugins }}
+    curl -sSLo /deploy/{{ .name }}.kar {{ .url }}
+{{- end }}
+  chown-data-dir.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    mkdir -p /nexus-data/etc/logback
+    mkdir -p /nexus-data/log/tasks
+    mkdir -p /nexus-data/log/audit
+
+    touch -a /nexus-data/log/tasks/allTasks.log
+    touch -a /nexus-data/log/audit/audit.log
+    touch -a /nexus-data/log/request.log
+
+    chown -R {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} /nexus-data
+  tail-logs.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    _term() {
+      kill -TERM "${child}" 2>/dev/null
+    }
+
+    trap _term SIGTERM
+
+    tail -F -n+1 "${LOG_FILE}" &
+
+    child=$!
+    wait "${child}"

@@ -14,9 +14,43 @@
 
 ## [UNRELEASED]
 
-## [v4.45.1] - 2024-09-06
+## [v5.0.0] - 2024-09-10
 
-### Addded
+> [!WARNING]
+> The release contains multiple breaking changes including removing support for OrientDB, please pay attention to the removals section. If you were previously using OrientDB you need to make sure you follow the [upgrade guide](https://help.sonatype.com/en/upgrading-to-nexus-repository-3-71-0-and-beyond.html) before upgrading to this version.
+
+### Added
+
+- Added `Job` to configure _nexus3_ instead of a lifecycle script, this can be configured via the `config.job` value.
+- Added sidecar pods to tail all logs, these can be configured via the `tailLogs` value.
+- Added configuration for the Bash & JDK images via the `bashImage` & `jdkImage` values respectively.
+- Added support for setting image digests.
+- Added `install4jAddVmParams` to configure _Nexus3_ via env variables.
+- Added `replicas` value.
+- Added `updateStrategy`, `ordinals`, `podManagementPolicy` & `minReadySeconds` values to better configure the `StatefulSet`.
+- Added `startupProbe` value.
+- Added separate headless `Service`.
+- Added support for creating a `PodDisruptionBudget` via the `podDisruptionBudget` value.
+- Added support for `StatefulSet` volume cleanup options `retainDeleted` & `retainScaled` via the `persistence.retainDeleted` & `persistence.retainScaled` values respectively.
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.72.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.72.0-04).
+- Changed defaults for `podSecurityContext` & `securityContext`.
+- Changed defaults for `livenessProbe` & `readinessProbe` to align to the use of a `startupProbe`.
+- Increased the default `terminationGracePeriodSeconds` to `120`.
+- Change repository config to use the REST API, this means that the configuration structure should be modified to match the API spec (for example no more nesting under `attributes`). Passwords also no longer need a `PASSWORD` placeholder.
+
+### Removed
+
+- Removed support for running _Nexus3_ as a `Deployment` by removing the `deployment` value.
+- Removed support for beta `Ingress` versions.
+- Removed `envVars` value in favour of `install4jAddVmParams`.
+- Removed `highAvailability` value, Pro level features are now enabled by setting `licence.enabled` to `true`.
+- Removed `image.pullSecrets` value.
+- Removed `metrics.serviceMonitor.interval` value.
+
+## [v4.45.1] - 2024-09-06
 
 ### Changed
 
@@ -668,6 +702,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.45.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.1
 [v4.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.44.0

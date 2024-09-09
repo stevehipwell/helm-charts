@@ -1,22 +1,27 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "nexus3.fullname" . }}-properties
+  name: {{ include "nexus3.propertiesConfigMapName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
 data:
   nexus.properties: |
+    nexus.datastore.enabled=true
+{{- if gt (int .Values.replicas) 1 }}
+    nexus.datastore.clustered.enabled=true
+{{- end }}
 {{- if .Values.license.enabled }}
     nexus.licenseFile=/var/opt/sonatype/nexus.license
+{{- else }}
+    nexus.loadAsOSS=true
 {{- end }}
-{{- if and (not .Values.deployment) .Values.highAvailability.enabled }}
-    nexus.datastore.clustered.enabled=true
+{{- if .Values.config.enabled }}
+    nexus.scripts.allowCreation=true
 {{- end }}
 {{- range .Values.properties }}
     {{ . }}
 {{- end }}
-
   nexus-store.properties: |
 {{- range .Values.storeProperties }}
     {{ . }}

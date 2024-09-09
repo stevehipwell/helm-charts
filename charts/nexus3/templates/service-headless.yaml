@@ -1,26 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "nexus3.serviceName" . }}
+  name: {{ include "nexus3.headlessServiceName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
+    prometheus.io/service-monitor: "false"
   {{- with .Values.service.annotations }}
   annotations:
     {{- . | toYaml | nindent 4 }}
   {{- end }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
       name: http
-  {{- range .Values.service.additionalPorts }}
-    - port: {{ .port }}
-      targetPort: {{ .name }}
-      protocol: TCP
-      name: {{ .name }}
-  {{- end }}
   selector:
     {{- include "nexus3.selectorLabels" . | nindent 4 }}

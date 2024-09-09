@@ -1,4 +1,3 @@
-{{- if not .Values.deployment -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -8,10 +7,24 @@ metadata:
     {{- include "nexus3.labels" . | nindent 4 }}
 spec:
   serviceName: {{ include "nexus3.fullname" . }}
-  {{- if .Values.highAvailability.enabled }}
-  replicas: {{ .Values.highAvailability.replicas }}
+  {{- if .Values.license.enabled }}
+  replicas: {{ .Values.replicas }}
   {{- else }}
   replicas: 1
+  {{- end }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.ordinals }}
+  ordinals:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.podManagementPolicy }}
+  podManagementPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.minReadySeconds }}
+  minReadySeconds: {{ . }}
   {{- end }}
   selector:
     matchLabels:
@@ -26,12 +39,12 @@ spec:
       annotations:
         checksum/logback: {{ include (print $.Template.BasePath "/configmap-logback.yaml") . | sha256sum }}
         checksum/properties: {{ include (print $.Template.BasePath "/configmap-properties.yaml") . | sha256sum }}
-        checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
+        checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with default .Values.image.pullSecrets .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -44,57 +57,150 @@ spec:
       priorityClassName: {{ . | quote }}
       {{- end }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-    {{- if or .Values.caCerts.enabled .Values.plugins .Values.extraInitContainers .Values.chownDataDir }}
       initContainers:
       {{- if .Values.caCerts.enabled }}
-        - name: ca-certs
-          image: adoptopenjdk:8-jdk-hotspot
+        - name: import-ca-certs
+          image: {{ include "nexus3.image" .Values.jdkImage }}
+          imagePullPolicy: {{ .Values.jdkImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args: ["-c", "mkdir -p /nexus-data/keystores; cp -f \"${JAVA_HOME}/jre/lib/security/cacerts\" /nexus-data/keystores/cacerts; for f in /nexus-data/secrets/cas/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /nexus-data/keystores/cacerts -storepass changeit -trustcacerts -noprompt; done;"]
+          command: ["/bin/bash", "-c"]
+          args: ["/scripts/import-ca-certs.sh"]
           volumeMounts:
+            - mountPath: /scripts/import-ca-certs.sh
+              name: scripts
+              subPath: import-ca-certs.sh
             - mountPath: /nexus-data
-              name: {{ include "nexus3.pvcname" . }}
+              name: data
             - mountPath: /nexus-data/secrets/cas
-              name: nexus3-cas
+              name: ca-certs
       {{- end }}
       {{- if .Values.plugins }}
         - name: download-plugins
-          image: alpine:3
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop:
+                - ALL
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - |
-          {{- range .Values.plugins }}
-              wget -O /deploy/{{ .name }}.kar {{ .url }}
-          {{- end }}
+          args: ["/scripts/download-plugins.sh"]
           volumeMounts:
+            - mountPath: /scripts/download-plugins.sh
+              name: scripts
+              subPath: download-plugins.sh
             - mountPath: /deploy
-              name: nexus-deploy
+              name: deploy
       {{- end }}
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.chownDataDir }}
-        - name: volume-mount
-          image: alpine:3
+        - name: chown-data-dir
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]
-          args: ["-c", "mkdir -p /nexus-data/etc; chown -R 200:200 /nexus-data;"]
+          args: ["/scripts/chown-data-dir.sh"]
           volumeMounts:
+            - mountPath: /scripts/chown-data-dir.sh
+              name: scripts
+              subPath: chown-data-dir.sh
             - mountPath: /nexus-data
-              name: {{ include "nexus3.pvcname" . }}
-      {{- end }}
+              name: data
+      {{- if (semverCompare ">= 1.29-0" .Capabilities.KubeVersion.Version) }}
+        - name: tail-request-log
+          restartPolicy: Always
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/request.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        - name: tail-audit-log
+          restartPolicy: Always
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/audit/audit.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        - name: tail-tasks-log
+          restartPolicy: Always
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/tasks/allTasks.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- end }}
       containers:
         - name: nexus3
@@ -102,33 +208,25 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "nexus3.image" . }}
+          image: {{ include "nexus3.image" (merge .Values.image (dict "tag" (printf "%s-java17-ubi" .Chart.AppVersion))) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
-              {{- if .Values.caCerts.enabled }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
-              {{- else }}
-              value: {{ printf "-Xms%s -Xmx%s %s -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs %s" .Values.envVars.jvmMinHeapSize .Values.envVars.jvmMaxHeapSize .Values.envVars.jvmAdditionalMemoryOptions .Values.envVars.jvmAdditionalOptions | quote }}
-              {{- end }}
-          {{- if or .Values.rootPassword.secret .Values.config.rootPassword.secret }}
+              value: {{ printf "-Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs%s %s" (ternary " -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts" "" .Values.caCerts.enabled) .Values.install4jAddVmParams }}
+          {{- if .Values.rootPassword.secret }}
+            - name: NEXUS_SECURITY_RANDOMPASSWORD
+              value: "false"
             - name: NEXUS_SECURITY_INITIAL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ default .Values.rootPassword.secret .Values.config.rootPassword.secret }}
-                  key: {{ default .Values.rootPassword.key .Values.config.rootPassword.key }}
+                  name: {{ .Values.rootPassword.secret }}
+                  key: {{ .Values.rootPassword.key }}
+          {{- else }}
+            - name: NEXUS_SECURITY_RANDOMPASSWORD
+              value: "true"
           {{- end }}
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - "/bin/bash"
-                  - "-c"
-                  - "${SONATYPE_DIR}/nexus/conf/configure.sh > /proc/1/fd/1 2>/proc/1/fd/2"
           {{- end }}
           ports:
             - name: http
@@ -139,24 +237,28 @@ spec:
               containerPort: {{ .containerPort }}
               protocol: TCP
           {{- end }}
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           volumeMounts:
+            - mountPath: /tmp
+              name: temp
             - mountPath: /nexus-data
-              name: {{ include "nexus3.pvcname" . }}
+              name: data
             - mountPath: /opt/sonatype/nexus/etc/logback
-              name: {{ include "nexus3.fullname" . }}-logback
-              readOnly: true
+              name: logback
             - mountPath: /nexus-data/etc/nexus.properties
-              name: {{ include "nexus3.fullname" . }}-properties
+              name: properties
               subPath: nexus.properties
-              readOnly: true
+          {{- if .Values.storeProperties }}
             - mountPath: /nexus-data/etc/fabric/nexus-store.properties
-              name: {{ include "nexus3.fullname" . }}-properties
+              name: properties
               subPath: nexus-store.properties
               readOnly: true
+          {{- end }}
           {{- if .Values.license.enabled }}
             - mountPath: /var/opt/sonatype/nexus.license
               name: license
@@ -165,23 +267,7 @@ spec:
           {{- end }}
           {{- if .Values.plugins }}
             - mountPath: /opt/sonatype/nexus/deploy
-              name: nexus-deploy
-          {{- end }}
-          {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
-            - mountPath: /opt/sonatype/nexus/conf
-              name: {{ include "nexus3.fullname" . }}-conf
-              readOnly: true
-          {{- if .Values.config.ldap.enabled }}
-            - mountPath: /opt/sonatype/nexus/secret/ldap.password
-              name: {{ .Values.config.ldap.authPassword.secret }}
-              subPath: {{ .Values.config.ldap.authPassword.key }}
-              readOnly: true
-          {{- end }}
-          {{- if .Values.config.repoCredentials.enabled }}
-            - mountPath: /opt/sonatype/nexus/secret/repo-credentials
-              name: {{ .Values.config.repoCredentials.secret }}
-              readOnly: true
-          {{- end }}
+              name: deploy
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
@@ -190,9 +276,88 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- if (semverCompare "< 1.29-0" .Capabilities.KubeVersion.Version) }}
+        - name: tail-request-log
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/request.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        - name: tail-audit-log
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/audit/audit.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        - name: tail-tasks-log
+          image: {{ include "nexus3.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: LOG_FILE
+              value: /nexus-data/log/tasks/allTasks.log
+          args: ["/scripts/tail-logs.sh"]
+          volumeMounts:
+            - mountPath: /scripts/tail-logs.sh
+              name: scripts
+              subPath: tail-logs.sh
+            - mountPath: /nexus-data
+              name: data
+          {{- with .Values.tailLogs.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- end }}
       volumes:
+        - name: temp
+          emptyDir: {}
+        - name: scripts
+          configMap:
+            name: {{ include "nexus3.scriptsConfigMapName" . }}
+            defaultMode: 0555
+        - name: logback
+          configMap:
+            name: {{ include "nexus3.logbackConfigMapName" . }}
+            defaultMode: 0444
+        - name: properties
+          configMap:
+            name: {{ include "nexus3.propertiesConfigMapName" . }}
+            defaultMode: 0444
       {{- if not .Values.persistence.enabled }}
-        - name: {{ include "nexus3.pvcname" . }}
+        - name: data
           emptyDir: {}
       {{- end }}
       {{- if .Values.license.enabled }}
@@ -201,37 +366,13 @@ spec:
             secretName: {{ .Values.license.secret }}
       {{- end }}
       {{- if .Values.caCerts.enabled }}
-        - name: nexus3-cas
+        - name: ca-certs
           secret:
             secretName: {{ .Values.caCerts.secret }}
       {{- end }}
-        - name: {{ include "nexus3.fullname" . }}-logback
-          configMap:
-            name: {{ include "nexus3.fullname" . }}-logback
-            defaultMode: 0755
-        - name: {{ include "nexus3.fullname" . }}-properties
-          configMap:
-            name: {{ include "nexus3.fullname" . }}-properties
-            defaultMode: 0755
       {{- if .Values.plugins }}
-        - name: nexus-deploy
+        - name: deploy
           emptyDir: {}
-      {{- end }}
-      {{- if and .Values.config.enabled (or .Values.rootPassword.secret .Values.config.rootPassword.secret) }}
-        - name: {{ include "nexus3.fullname" . }}-conf
-          configMap:
-            name: {{ include "nexus3.fullname" . }}-conf
-            defaultMode: 0755
-      {{- if and .Values.config.ldap.enabled }}
-        - name: {{ .Values.config.ldap.authPassword.secret }}
-          secret:
-            secretName: {{ .Values.config.ldap.authPassword.secret }}
-      {{- end }}
-      {{- if .Values.config.repoCredentials.enabled }}
-        - name: {{ .Values.config.repoCredentials.secret }}
-          secret:
-            secretName: {{ .Values.config.repoCredentials.secret }}
-      {{- end }}
       {{- end }}
       {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
@@ -257,7 +398,7 @@ spec:
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
-        name: {{ include "nexus3.pvcname" . }}
+        name: data
         labels:
           {{- include "nexus3.labels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}
@@ -277,5 +418,9 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.size | quote }}
+  {{- if semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version }}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {{ ternary "Retain" "Delete" .Values.persistence.retainDeleted }}
+    whenScaled: {{ ternary "Retain" "Delete" .Values.persistence.retainScaled }}
   {{- end }}
-{{- end }}
+  {{- end }}
