@@ -18022,6 +18022,36 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
+        - kind: changed
+          description: "Updated the PlantUML OCI image to v1.2024.7."
+    apiVersion: v2
+    appVersion: 1.2024.7
+    created: "2024-09-10T14:41:19.196143412Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: 8b37f6e0f9a8f5e5ff52dcfb9e6a6ab396cf6522e0fe86625d134042871f8cc5
+    home: https://plantuml.com/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.34.0/plantuml-3.34.0.tgz
+    version: 3.34.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the PlantUML OCI image to v1.2024.6."
     apiVersion: v2
@@ -26227,4 +26257,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-09-10T11:41:56.156239559Z"
+generated: "2024-09-10T14:41:19.197387194Z"
