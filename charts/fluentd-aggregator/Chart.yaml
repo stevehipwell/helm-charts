@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 4.8.2
-appVersion: 2.17.2
+version: 4.8.3
+appVersion: 2.17.3
 keywords:
   - fluent
   - fluentd
@@ -21,5 +21,7 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: fluentd
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
     - kind: changed
-      description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.2) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
+      description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.3](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.3) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."

@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v4.8.3] - 2024-09-10
+
 ### Added
 
 - Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname.
+
+### Changed
+
+- Updated _Fluentd Aggregator_ OCI image to [v2.17.3](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.3) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1)).
 
 ## [v4.8.2] - 2024-08-29
 
@@ -562,6 +568,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v4.8.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.3
 [v4.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.2
 [v4.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.1
 [v4.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.8.0
