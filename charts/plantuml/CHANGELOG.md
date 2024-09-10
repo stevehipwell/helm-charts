@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v3.34.0] - 2024-09-10
+
 ### Added
 
 - Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters.
+
+### Changed
+
+- Updated the _PlantUML_ OCI image to [v1.2024.7](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.7) ([Changes](https://plantuml.com/changes)).
 
 ## [v3.33.0] - 2024-07-08
 
@@ -421,6 +427,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.34.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.34.0
 [v3.33.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.33.0
 [v3.32.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.32.0
 [v3.31.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.31.0
