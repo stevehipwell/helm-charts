@@ -6531,6 +6531,38 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.3](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.3) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
+    apiVersion: v2
+    appVersion: 2.17.3
+    created: "2024-09-10T14:59:24.443440823Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: eb296544dbc1a98b9f00276f22e7675ce047ed97799d0e31c145022c88785f20
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.8.3/fluentd-aggregator-4.8.3.tgz
+    version: 4.8.3
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.2](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.2) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
     apiVersion: v2
@@ -26257,4 +26289,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-09-10T14:41:19.197387194Z"
+generated: "2024-09-10T14:59:24.44453754Z"
