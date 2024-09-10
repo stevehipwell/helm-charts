@@ -64,6 +64,8 @@ persistence:
   accessMode: ReadWriteOnce
   storageClass: standard
   size: 8Gi
+  retainDeleted: false
+  retainScaled: false
 
 resources:
   requests:
@@ -167,16 +169,16 @@ config:
     secret: nexus3-repo-creds
   repos:
     - name: test-repo
-      type: raw-hosted
+      format: raw
+      type: hosted
       online: true
-      attributes:
-        storage:
-          blobStoreName: default
-          strictContentTypeValidation: false
-          writePolicy: ALLOW
-        cleanup:
-          policyName:
-            - ExampleCleanup
+      storage:
+        blobStoreName: default
+        strictContentTypeValidation: false
+        writePolicy: allow
+      cleanup:
+        policyNames:
+          - ExampleCleanup
   tasks:
     - name: "Cleanup service"
       typeId: repository.cleanup

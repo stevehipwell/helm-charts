@@ -1,0 +1,15 @@
+{{- if and .Values.config.enabled .Values.rootPassword.secret -}}
+{{- $root := . }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nexus3.configScriptsConfigMapName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+data:
+{{- range $path, $bytes := .Files.Glob "scripts/*" }}
+  {{ $path | base }}: |
+    {{- $root.Files.Get $path | nindent 4 }}
+{{- end }}
+{{- end -}}

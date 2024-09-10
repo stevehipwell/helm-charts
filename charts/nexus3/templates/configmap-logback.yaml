@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "nexus3.fullname" . }}-logback
+  name: {{ include "nexus3.logbackConfigMapName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
@@ -23,6 +23,7 @@ data:
 
       <appender-ref ref="request.logfile"/>
     </configuration>
+
   logback.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -41,6 +42,11 @@ data:
         <encoder>
           <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
         </encoder>
+      </appender>
+
+      <appender name="jvm" class="ch.qos.logback.core.FileAppender">
+        <File>${karaf.data}/log/jvm.log</File>
+        <append>true</append>
       </appender>
 
       <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -85,6 +91,42 @@ data:
         </sift>
       </appender>
 
+      <appender name="replicationlogfile" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <filter class="org.sonatype.nexus.pax.logging.ReplicationLogsFilter" />
+        <discriminator>
+          <key>repositoryName</key>
+          <defaultValue>unknown</defaultValue>
+        </discriminator>
+        <sift>
+          <appender name="replicationAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${karaf.data}/log/replication/replication-${repositoryName}.log</file>
+            <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+              <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+              <fileNamePattern>${karaf.data}/log/replication/replication-${repositoryName}-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+              <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+            </rollingPolicy>
+          </appender>
+        </sift>
+      </appender>
+
+      <appender name="outboundRequestslogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${karaf.data}/log/outbound-request.log</File>
+        <Append>true</Append>
+        <encoder>
+          <pattern>%msg%n</pattern>
+        </encoder>
+        <filter class="org.sonatype.nexus.pax.logging.OutboundRequestsLogFilter" />
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <fileNamePattern>${karaf.data}/log/outbound-request-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+        </rollingPolicy>
+      </appender>
+      <logger name="outboundRequests">
+        <appender-ref ref="outboundRequestslogfile"/>
+      </logger>
+
       <appender name="auditlogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${karaf.data}/log/audit/audit.log</File>
         <Append>true</Append>
@@ -102,6 +144,27 @@ data:
         <appender-ref ref="auditlogfile"/>
       </logger>
 
+      <appender name="blobstore-reconciliation-log-file" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+          <key>blobstore-reconciliation-path</key>
+          <defaultValue>unknown</defaultValue>
+        </discriminator>
+        <sift>
+          <appender name="FILE-${blobstore}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+              <Pattern>%d{"yyyy-MM-dd HH:mm:ss"},%msg%n</Pattern>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+              <fileNamePattern>${blobstore-reconciliation-path}/%d</fileNamePattern>
+              <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+            </rollingPolicy>
+          </appender>
+        </sift>
+      </appender>
+      <logger name="blobstore-reconciliation-log" additivity="false">
+        <appender-ref ref="blobstore-reconciliation-log-file"/>
+      </logger>
+
       <appender name="metrics" class="org.sonatype.nexus.pax.logging.InstrumentedAppender"/>
 
       <logger name="org.eclipse.jetty.webapp" level="INFO"/>
@@ -111,14 +174,32 @@ data:
       <logger name="org.apache.felix" level="WARN"/>
       <logger name="org.apache.karaf" level="WARN"/>
 
-      <include file="${karaf.data}/etc/logback/logback-overrides.xml" optional="true"/>
+      <include file="${karaf.data}/etc/logback/logback-tasklogfile-appender-override.xml" optional="true"/>
 
       <root level="${root.level:-INFO}">
         <appender-ref ref="osgi"/>
         <appender-ref ref="console"/>
+        <appender-ref ref="jvm"/>
         <appender-ref ref="logfile"/>
         <appender-ref ref="clusterlogfile"/>
         <appender-ref ref="tasklogfile"/>
+        <appender-ref ref="replicationlogfile"/>
         <appender-ref ref="metrics"/>
       </root>
     </configuration>
+
+  logback-tasklogfile-appender-override.xml: |
+    <included>
+      <appender name="tasklogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${karaf.data}/log/tasks/allTasks.log</File>
+        <filter class="org.sonatype.nexus.pax.logging.TaskLogsFilter" />
+        <Append>true</Append>
+        <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+          <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <fileNamePattern>${karaf.data}/log/tasks/allTasks-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+        </rollingPolicy>
+      </appender>
+    </included>

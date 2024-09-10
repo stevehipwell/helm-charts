@@ -12,9 +12,19 @@ metadata:
     "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
 spec:
   containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args: ['-O-', '{{ include "nexus3.fullname" . }}:{{ .Values.service.port }}/service/metrics/prometheus']
+    - name: test
+      image: {{ include "nexus3.image" .Values.bashImage }}
+      imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+      securityContext:
+        privileged: false
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        capabilities:
+          drop:
+            - ALL
+      args: ["sleep 30; curl -sS {{ printf "http://%s.%s.svc.cluster.local:%s/service/metrics/prometheus" (include "nexus3.serviceName" .) .Release.Namespace (toString .Values.service.port) }}"]
   restartPolicy: Never
 {{- end }}

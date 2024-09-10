@@ -1,57 +1,52 @@
 {{- if .Values.config.enabled -}}
-{{ $root := . }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "nexus3.fullname" . }}-conf
+  name: {{ include "nexus3.configConfigMapName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
 data:
-  {{- range $path, $bytes := .Files.Glob "files/*" }}
-  {{ $path | base }}: |
-    {{- $root.Files.Get $path | nindent 4 }}
-  {{- end }}
   anonymous.json: |
     {"enabled":{{ .Values.config.anonymous.enabled }}}
-  {{- if .Values.config.realms.enabled }}
+{{- if .Values.config.realms.enabled }}
   realms.json: |
     {{- .Values.config.realms.values | toJson | nindent 4 }}
-  {{- end }}
+{{- end }}
   nx-metrics-role.json: |
     {"id":"nx-metrics","source":"default","name":"nx-metrics","description":"Metrics Role","privileges":["nx-metrics-all"],"roles":[]}
-  {{- range .Values.config.roles }}
+{{- range .Values.config.roles }}
   {{ .id }}-role.json: |
     {{- . | toJson | nindent 4 }}
-  {{- end }}
-  {{- if .Values.config.anonymous.enabled }}
+{{- end }}
+{{- if .Values.config.anonymous.enabled }}
   anonymous-user.json: |
     {"userId":"anonymous","firstName":"Anonymous","lastName":"User","emailAddress":"anonymous@example.org","source":"default","status":"active","roles":{{ .Values.config.anonymous.roles | toJson }},"externalRoles":[]}
-  {{- end }}
-  {{- range .Values.config.users }}
+{{- end }}
+{{- range .Values.config.users }}
   {{ .userId }}-user.json: |
     {{- . | toJson | nindent 4 }}
-  {{- end }}
-  {{- if .Values.config.ldap.enabled }}
+{{- end }}
+{{- if .Values.config.ldap.enabled }}
   ldap.json: |
-    {{- with omit .Values.config.ldap "enabled" "authPassword" }}
-    {{-  set . "authPassword" "PASSWORD" | toJson | nindent 4 }}
-    {{- end }}
-  {{- end }}
-  {{- range $index, $blobStore := .Values.config.blobStores }}
+{{- with omit .Values.config.ldap "enabled" "authPassword" }}
+    {{-  toJson | nindent 4 }}
+{{- end }}
+{{- end }}
+{{- range $index, $blobStore := .Values.config.blobStores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
     {{- $blobStore | toJson | nindent 4 }}
-  {{- end }}
-  {{- range $index, $cleanup := .Values.config.cleanup }}
+{{- end }}
+{{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
     {{- $cleanup | toJson | nindent 4 }}
-  {{- end }}
-  {{- range $index, $repo := .Values.config.repos }}
+{{- end }}
+{{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
     {{- $repo | toJson | nindent 4 }}
-  {{- end }}
-  {{- range $index, $task := .Values.config.tasks }}
+{{- end }}
+{{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |
     {{- $task | toJson | nindent 4 }}
-  {{- end }}
+{{- end }}
 {{- end }}
