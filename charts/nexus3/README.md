@@ -60,7 +60,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.0.0
 | config.anonymous | object | `{"enabled":false,"roles":["nx-anonymous","nx-metrics"]}` | Anonymous access configuration. |
 | config.blobStores | list | `[]` | Blob store configuration. |
 | config.cleanup | list | `[]` | Cleanup configuration. |
-| config.enabled | bool | `false` | If `true`, enable the configuration Job. |
+| config.enabled | bool | `false` | If `true` and `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
