@@ -5355,6 +5355,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated _Fluent Bit_ OCI image to [v3.1.8](https://github.com/fluent/fluent-bit/releases/tag/v3.1.8)."
+    apiVersion: v2
+    appVersion: 3.1.8
+    created: "2024-10-03T16:00:24.419822555Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: fce1c5445a0ae58e3340ac8212fd730c5eda14cff58273c82b0600e3211c7ede
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.12.8/fluent-bit-collector-0.12.8.tgz
+    version: 0.12.8
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
         - kind: added
           description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
         - kind: changed
@@ -26391,4 +26421,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-03T15:59:53.087667077Z"
+generated: "2024-10-03T16:00:24.420983778Z"
