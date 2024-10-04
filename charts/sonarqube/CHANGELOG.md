@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.7.0] - 2024-10-04
+
+### Changed
+
+- Updated the _SonarQube_ OCI image to [v10.7.0](https://github.com/SonarSource/sonarqube/releases/tag/10.7.0.96327). _@stevehipwell_
+
 ## [v5.6.0] - 2024-06-24
 
 ### Changed
@@ -372,6 +378,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/sonarqube
+[v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.7.0
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.6.0
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.5.0
