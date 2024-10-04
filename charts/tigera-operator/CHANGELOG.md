@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v2.10.6] - 2024-10-04
+
+### Changed
+
+- Updated the _Tigera Operator_ OCI image to [v1.34.5](https://github.com/tigera/operator/releases/tag/v1.34.5) (_Calico_ [v3.28.2](https://github.com/projectcalico/calico/releases/tag/v3.28.2)). _@stevehipwell_
+
 ## [v2.10.5] - 2024-09-05
 
 ### Changed
@@ -535,6 +541,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/tigera-operator
+[v2.10.6]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.6
 [v2.10.5]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.5
 [v2.10.4]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.4
 [v2.10.3]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.10.3
