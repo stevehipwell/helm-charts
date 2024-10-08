@@ -299,7 +299,7 @@ rootPassword:
   key: password
 
 config:
-  # -- If `true`, enable the configuration Job.
+  # -- Enables the configuration Job if set to `true` and `rootPassword.secret` is set.
   enabled: false
   job:
     image:
@@ -392,7 +392,8 @@ config:
     groupMemberFormat:
   # -- Blob store configuration.
   blobStores: []
-  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
+  # Reference the Nexus Blob store REST API (https://help.sonatype.com/en/blob-store-api.html) for supported types and expected request body structures of each
+  # You can also find the API reference on an existing Nexus installation at Administration section under System → API
   #   - name: ExampleFileBlobStore
   #     type: file
   #     path: /nexus-data/blobs/foo
