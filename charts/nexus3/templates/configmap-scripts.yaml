@@ -20,7 +20,7 @@ data:
     set -euo pipefail
 
 {{- range .Values.plugins }}
-    curl -sSLo /deploy/{{ .name }}.kar {{ .url }}
+    curl -fLo /deploy/{{ .name }}.kar {{ .url }}
 {{- end }}
   chown-data-dir.sh: |
     #!/usr/bin/env bash
