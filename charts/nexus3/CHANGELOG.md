@@ -14,6 +14,13 @@
 
 ## [UNRELEASED]
 
+## [v5.1.0] - 2024-10-14
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.73.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.73.0-12). _@stevehipwell_
+- Updated plugin install logic to show status and fail if the plugin can't be installed. _@EugenMayer_
+
 ## [v5.0.0] - 2024-09-10
 
 > [!WARNING]
@@ -702,7 +709,8 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
-[v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
+[v5.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.1.0
+[v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.0.0
 [v4.45.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.1
 [v4.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.0
 [v4.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.44.0
