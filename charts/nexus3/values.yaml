@@ -299,7 +299,7 @@ rootPassword:
   key: password
 
 config:
-  # -- If `true`, enable the configuration Job.
+  # -- If `true` and `rootPassword.secret` is set, enable the configuration Job.
   enabled: false
   job:
     image:
@@ -390,7 +390,7 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  # -- Blob store configuration.
+  # -- Blob store configuration, based on the REST API (the API reference can be found on an existing Nexus installation in the **Administration** section under _System_ → _API_).
   blobStores: []
   # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
   #   - name: ExampleFileBlobStore
