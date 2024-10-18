@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 5.0.0
-appVersion: 3.72.0
+version: 5.1.0
+appVersion: 3.73.0
 home: https://www.sonatype.com/products/sonatype-nexus-repository
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
 keywords:
@@ -23,48 +23,5 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: nexus
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added `Job` to configure _nexus3_ instead of a lifecycle script, this can be configured via the `config.job` value."
-    - kind: added
-      description: "Added sidecar pods to tail all logs, these can be configured via the `tailLogs` value."
-    - kind: added
-      description: "Added configuration for the Bash & JDK images via the `bashImage` & `jdkImage` values respectively."
-    - kind: added
-      description: "Added support for setting image digests."
-    - kind: added
-      description: "Added `install4jAddVmParams` to configure _Nexus3_ via env variables."
-    - kind: added
-      description: "Added `replicas` value."
-    - kind: added
-      description: "Added `updateStrategy`, `ordinals`, `podManagementPolicy` & `minReadySeconds` values to better configure the `StatefulSet`."
-    - kind: added
-      description: "Added `startupProbe` value."
-    - kind: added
-      description: "Added separate headless `Service`."
-    - kind: added
-      description: "Added support for creating a `PodDisruptionBudget` via the `podDisruptionBudget` value."
-    - kind: added
-      description: "Added support for `StatefulSet` volume cleanup options `retainDeleted` & `retainScaled` via the `persistence.retainDeleted` & `persistence.retainScaled` values respectively."
     - kind: changed
-      description: "Updated the _Nexus3_ OCI image to [v3.72.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.72.0-04)."
-    - kind: changed
-      description: "Changed defaults for `podSecurityContext` & `securityContext`."
-    - kind: changed
-      description: "Changed defaults for `livenessProbe` & `readinessProbe` to align to the use of a `startupProbe`."
-    - kind: changed
-      description: "Increased the default `terminationGracePeriodSeconds` to `120`."
-    - kind: changed
-      description: "Change repository config to use the REST API, this means that the configuration structure should be modified to match the API     - kind: changed
-      description: spec (for example no more nesting under `attributes`). Passwords also no longer need a `PASSWORD` placeholder."
-    - kind: removed
-      description: "Removed support for running _Nexus3_ as a `Deployment` by removing the `deployment` value."
-    - kind: removed
-      description: "Removed support for beta `Ingress` versions."
-    - kind: removed
-      description: "Removed `envVars` value in favour of `install4jAddVmParams`."
-    - kind: removed
-      description: "Removed `highAvailability` value, Pro level features are now enabled by setting `licence.enabled` to `true`."
-    - kind: removed
-      description: "Removed `image.pullSecrets` value."
-    - kind: removed
-      description: "Removed `metrics.serviceMonitor.interval` value."
+      description: "Updated the _Nexus3_ OCI image to [v3.73.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.73.0-12)."
