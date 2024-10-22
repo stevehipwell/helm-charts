@@ -14,6 +14,7 @@
 
 ## [UNRELEASED]
 
+- User passwords can be set using `password` field. Otherwise, a random password is generated and prompted in the configuration container.
 - Changed the order of the initialization scripts to allow creating roles based on repository privileges (fixes #1059)
 
 ## [v5.1.0] - 2024-10-14

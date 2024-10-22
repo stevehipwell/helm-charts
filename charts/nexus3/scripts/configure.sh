@@ -117,7 +117,7 @@ echo "Configuring roles..."
 for json_file in "${CONFIG_DIR}"/conf/*-role.json; do
   if [[ -f "${json_file}" ]]; then
     id="$(jq -r '.id' "${json_file}")"
-    source="$(jq -r '.source' "${json_file}")"
+    source="$(jq -r '.source // "default"' "${json_file}")"
 
     status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}?source=${source}")
     if [[ "${status_code}" -eq 200 ]]; then
@@ -150,8 +150,15 @@ for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
         error "Could not update user '${id}'."
       fi
     else
+
+      user_password="$(jq -r '.password // ""' "${json_file}")"
+      if [[ -z "${user_password}" ]]; then
+        user_password="$(echo "${RANDOM}" | md5sum | head -c 20)"
+        echo "Generating random password for user '${id}': ${user_password}"
+      fi
+
       tmp_file="$(mktemp -p "${tmp_dir}")"
-      jq -r --arg password "$(echo "${RANDOM}" | md5sum | head -c 20)" '. + {password: $password}' "${json_file}" >"${tmp_file}"
+      jq -r --arg password "${user_password}" '. + {password: $password}' "${json_file}" >"${tmp_file}"
       json_file="${tmp_file}"
 
       status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users")"
