@@ -400,7 +400,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{- include "nexus3.labels" . | nindent 10 }}
+          {{- include "nexus3.selectorLabels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}
         annotations:
           {{- . | toYaml | nindent 10 }}

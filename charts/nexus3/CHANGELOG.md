@@ -14,11 +14,25 @@
 
 ## [UNRELEASED]
 
+## [v5.2.0] - 2024-10-24
+
+> [!IMPORTANT]
+> If you're upgrading to this version you will need to run `kubectl --namespace <namespace> delete statefulset <name> --cascade=orphan` before upgrading as there was a bug in previous versions of this chart that incorrectly labeled the volume claim template.
+
+### Changed
+
+- Changed the order of the initialization scripts to allow creating roles based on repository privileges. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_ & _@mreiche_
+- Improved docs for config with reference to the API documentation. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_ & _@mreiche_
+
 ### Fixed
 
-- Fix ldap config missing argument
+- Fixed LDAP templating incorrectly using `toJson` without passing in the data resulting in no configuration to apply. ([#1064](https://github.com/stevehipwell/helm-charts/pull/1064)) _@KuroXII_
+- Fixed incorrect labeling on the volume claim template. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_
 
 ## [v5.1.0] - 2024-10-14
+
+> [!CAUTION]
+> Don't use this version, there is a bug in the logic for creating the `StatefulSet` volume; please use [`5.2.0`](https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0).
 
 ### Changed
 
@@ -26,6 +40,9 @@
 - Updated plugin install logic to show status and fail if the plugin can't be installed. _@EugenMayer_
 
 ## [v5.0.0] - 2024-09-10
+
+> [!CAUTION]
+> Don't use this version, there is a bug in the logic for creating the `StatefulSet` volume; please use [`5.2.0`](https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0).
 
 > [!WARNING]
 > The release contains multiple breaking changes including removing support for OrientDB, please pay attention to the removals section. If you were previously using OrientDB you need to make sure you follow the [upgrade guide](https://help.sonatype.com/en/upgrading-to-nexus-repository-3-71-0-and-beyond.html) before upgrading to this version.
@@ -713,6 +730,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0
 [v5.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.1.0
 [v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.0.0
 [v4.45.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.45.1

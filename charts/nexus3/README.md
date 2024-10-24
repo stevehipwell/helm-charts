@@ -1,6 +1,6 @@
 # nexus3
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.73.0](https://img.shields.io/badge/AppVersion-3.73.0-informational?style=flat-square)
+![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.73.0](https://img.shields.io/badge/AppVersion-3.73.0-informational?style=flat-square)
 
 Helm chart for Sonatype Nexus 3 OSS.
 
@@ -25,7 +25,7 @@ Helm chart for Sonatype Nexus 3 OSS.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.1.0
+helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.2.0
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.1.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.2.0
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.1.0
+helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.2.0
 ```
 
 ## Values
@@ -57,10 +57,11 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.1.0
 | caCerts.enabled | bool | `false` | If `true`, add the CA certificates in the provided secret to the JVM cacerts key store. |
 | caCerts.secret | string | `nil` | Name of the secret containing the CA certificates. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
-| config.anonymous | object | `{"enabled":false,"roles":["nx-anonymous","nx-metrics"]}` | Anonymous access configuration. |
-| config.blobStores | list | `[]` | Blob store configuration. |
+| config.anonymous.enabled | bool | `false` | If `true`, enable anonymous access. |
+| config.anonymous.roles | list | `["nx-anonymous","nx-metrics"]` | Roles for anonymous access. |
+| config.blobStores | list | `[]` | Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | config.cleanup | list | `[]` | Cleanup configuration. |
-| config.enabled | bool | `false` | If `true`, enable the configuration Job. |
+| config.enabled | bool | `false` | If `true` & `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
@@ -69,14 +70,15 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.1.0
 | config.job.nodeSelector | object | `{}` | Node labels to match for scheduling the config job. |
 | config.job.tolerations | list | `[]` | Node taints which will be tolerated for scheduling the config job. |
 | config.job.ttlSecondsAfterFinished | int | `600` | The number of seconds to keep the config job after it's finished. |
-| config.ldap | object | `{"authPassword":{"key":null,"secret":null},"authRealm":null,"authScheme":"simple","authUsername":null,"connectionRetryDelaySeconds":300,"connectionTimeoutSeconds":30,"enabled":false,"groupBaseDn":null,"groupIdAttribute":null,"groupMemberAttribute":null,"groupMemberFormat":null,"groupObjectClass":null,"groupSubtree":false,"groupType":"dynamic","host":null,"ldapGroupsAsRoles":false,"maxIncidentsCount":3,"name":null,"port":636,"protocol":"ldaps","searchBase":null,"useTrustStore":true,"userBaseDn":null,"userEmailAddressAttribute":"email","userIdAttribute":"sAMAccountName","userLdapFilter":null,"userMemberOfAttribute":"memberOf","userObjectClass":"user","userPasswordAttribute":null,"userRealNameAttribute":"cn","userSubtree":false}` | LDAP configuration. |
-| config.realms | object | `{"enabled":false,"values":[]}` | Realms configuration. |
+| config.ldap | object | `{"authPassword":{"key":null,"secret":null},"authRealm":null,"authScheme":"simple","authUsername":null,"connectionRetryDelaySeconds":300,"connectionTimeoutSeconds":30,"enabled":false,"groupBaseDn":null,"groupIdAttribute":null,"groupMemberAttribute":null,"groupMemberFormat":null,"groupObjectClass":null,"groupSubtree":false,"groupType":"dynamic","host":null,"ldapGroupsAsRoles":false,"maxIncidentsCount":3,"name":null,"port":636,"protocol":"ldaps","searchBase":null,"useTrustStore":true,"userBaseDn":null,"userEmailAddressAttribute":"email","userIdAttribute":"sAMAccountName","userLdapFilter":null,"userMemberOfAttribute":"memberOf","userObjectClass":"user","userPasswordAttribute":null,"userRealNameAttribute":"cn","userSubtree":false}` | LDAP configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
+| config.realms.enabled | bool | `false` | If `true`, enable realms. |
+| config.realms.values | list | `[]` | List of realms to configure; can be empty or contain any of `NexusAuthenticatingRealm`, `LdapRealm`, `DockerToken`, `NpmToken`, `NuGetApiKey` or `rutauth-realm`. |
 | config.repoCredentials.enabled | bool | `false` | If `true`, enable repository credentials. |
 | config.repoCredentials.secret | string | `nil` | Name of the secret containing the repository credentials. |
-| config.repos | list | `[]` | Repository configuration. |
-| config.roles | list | `[]` | Roles configuration. |
+| config.repos | list | `[]` | Repository configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_) but with `format` & `type` defined in the object. |
+| config.roles | list | `[]` | Roles configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | config.tasks | list | `[]` | Task configuration. |
-| config.users | list | `[]` | Users configuration. |
+| config.users | list | `[]` | Users configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | env | list | `[]` | Environment variables for the default container. |
 | extraInitContainers | list | `[]` | Extra init container to run before the default container. |
 | extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
