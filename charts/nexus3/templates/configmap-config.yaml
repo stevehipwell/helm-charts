@@ -30,7 +30,7 @@ data:
 {{- if .Values.config.ldap.enabled }}
   ldap.json: |
 {{- with omit .Values.config.ldap "enabled" "authPassword" }}
-    {{-  toJson | nindent 4 }}
+    {{-  toJson . | nindent 4 }}
 {{- end }}
 {{- end }}
 {{- range $index, $blobStore := .Values.config.blobStores }}
