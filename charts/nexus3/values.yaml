@@ -350,6 +350,7 @@ config:
   #     firstName: Test
   #     lastName: User
   #     emailAddress: test@example.org
+  #     password: secret
   #     source: default
   #     status: active
   #     roles:

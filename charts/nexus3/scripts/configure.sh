@@ -53,11 +53,71 @@ if [[ -f "${json_file}" ]]; then
   echo "Realms configured."
 fi
 
+echo "Configuring blob stores..."
+for json_file in "${CONFIG_DIR}"/conf/*-blobstore.json; do
+  if [[ -f "${json_file}" ]]; then
+    type="$(jq -r '.type' "${json_file}")"
+    name="$(jq -r '.name' "${json_file}")"
+
+    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")
+    if [[ "${status_code}" -eq 200 ]]; then
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")"
+      if [[ "${status_code}" -ne 204 ]]; then
+        error "Could not update blob store '${name}'."
+      fi
+    else
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}")"
+      if [[ "${status_code}" -ne 204 ]] && [[ "${status_code}" -ne 201 ]]; then
+        error "Could not create blob store '${name}'."
+      fi
+    fi
+
+    echo "Blob store '${name}' configured."
+  fi
+done
+
+echo "Configuring repositories..."
+for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
+  if [[ -f "${json_file}" ]]; then
+    name="$(jq -r '.name' "${json_file}")"
+    format="$(jq -r '.format' "${json_file}")"
+    type="$(jq -r '.type' "${json_file}")"
+
+    tmp_file="$(mktemp -p "${tmp_dir}")"
+    jq -r 'del(.format,.type)' "${json_file}" >"${tmp_file}"
+    json_file="${tmp_file}"
+
+    if [[ "${type}" == "proxy" ]]; then
+      password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
+      if [[ -f "${password_file}" ]]; then
+        tmp_file="$(mktemp -p "${tmp_dir}")"
+        jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
+        json_file="${tmp_file}"
+      fi
+    fi
+
+    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}/${name}")
+    if [[ "${status_code}" -eq 200 ]]; then
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}/${name}")"
+      if [[ "${status_code}" -ne 204 ]]; then
+        error "Could not update repository '${name}'."
+      fi
+    else
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}")"
+      if [[ "${status_code}" -ne 201 ]]; then
+        error "Could not create repository '${name}'."
+      fi
+    fi
+
+    echo "Repository '${name}' configured."
+  fi
+done
+
 echo "Configuring roles..."
 for json_file in "${CONFIG_DIR}"/conf/*-role.json; do
   if [[ -f "${json_file}" ]]; then
     id="$(jq -r '.id' "${json_file}")"
-    source="$(jq -r '.source' "${json_file}")"
+    source="$(jq -r '.source // "default"' "${json_file}")"
 
     status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}?source=${source}")
     if [[ "${status_code}" -eq 200 ]]; then
@@ -90,8 +150,15 @@ for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
         error "Could not update user '${id}'."
       fi
     else
+
+      user_password="$(jq -r '.password // ""' "${json_file}")"
+      if [[ -z "${user_password}" ]]; then
+        user_password="$(echo "${RANDOM}" | md5sum | head -c 20)"
+        echo "Generating random password for user '${id}': ${user_password}"
+      fi
+
       tmp_file="$(mktemp -p "${tmp_dir}")"
-      jq -r --arg password "$(echo "${RANDOM}" | md5sum | head -c 20)" '. + {password: $password}' "${json_file}" >"${tmp_file}"
+      jq -r --arg password "${user_password}" '. + {password: $password}' "${json_file}" >"${tmp_file}"
       json_file="${tmp_file}"
 
       status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users")"
@@ -137,29 +204,6 @@ if [[ -f "${json_file}" ]]; then
   echo "LDAP '${name}' configured."
 fi
 
-echo "Configuring blob stores..."
-for json_file in "${CONFIG_DIR}"/conf/*-blobstore.json; do
-  if [[ -f "${json_file}" ]]; then
-    type="$(jq -r '.type' "${json_file}")"
-    name="$(jq -r '.name' "${json_file}")"
-
-    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")
-    if [[ "${status_code}" -eq 200 ]]; then
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")"
-      if [[ "${status_code}" -ne 204 ]]; then
-        error "Could not update blob store '${name}'."
-      fi
-    else
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}")"
-      if [[ "${status_code}" -ne 204 ]] && [[ "${status_code}" -ne 201 ]]; then
-        error "Could not create blob store '${name}'."
-      fi
-    fi
-
-    echo "Blob store '${name}' configured."
-  fi
-done
-
 echo "Configuring scripts..."
 for script_file in /scripts/*.groovy; do
   if [[ -f "${script_file}" ]]; then
@@ -197,43 +241,6 @@ for json_file in "${CONFIG_DIR}"/conf/*-cleanup.json; do
     fi
 
     echo "Cleanup policy '${name}' configured."
-  fi
-done
-
-echo "Configuring repositories..."
-for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
-  if [[ -f "${json_file}" ]]; then
-    name="$(jq -r '.name' "${json_file}")"
-    format="$(jq -r '.format' "${json_file}")"
-    type="$(jq -r '.type' "${json_file}")"
-
-    tmp_file="$(mktemp -p "${tmp_dir}")"
-    jq -r 'del(.format,.type)' "${json_file}" >"${tmp_file}"
-    json_file="${tmp_file}"
-
-    if [[ "${type}" == "proxy" ]]; then
-      password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
-      if [[ -f "${password_file}" ]]; then
-        tmp_file="$(mktemp -p "${tmp_dir}")"
-        jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
-        json_file="${tmp_file}"
-      fi
-    fi
-
-    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}/${name}")
-    if [[ "${status_code}" -eq 200 ]]; then
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}/${name}")"
-      if [[ "${status_code}" -ne 204 ]]; then
-        error "Could not update repository '${name}'."
-      fi
-    else
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}")"
-      if [[ "${status_code}" -ne 201 ]]; then
-        error "Could not create repository '${name}'."
-      fi
-    fi
-
-    echo "Repository '${name}' configured."
   fi
 done
 
