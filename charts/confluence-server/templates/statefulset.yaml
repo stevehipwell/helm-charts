@@ -183,7 +183,7 @@ spec:
     - metadata:
         name: {{ include "confluence-server.pvcname" . }}
         labels:
-          {{- include "confluence-server.labels" . | nindent 10 }}
+          {{- include "confluence-server.selectorLabels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}
         annotations:
           {{- . | toYaml | nindent 10 }}

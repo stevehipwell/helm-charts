@@ -21,13 +21,13 @@
 
 ### Changed
 
-- Changed the order of the initialization scripts to allow creating roles based on repository privileges. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_ & _@mreiche_
-- Improved docs for config with reference to the API documentation. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_ & _@mreiche_
+- Changed the order of the initialization scripts to allow creating roles based on repository privileges. ([#1066](https://github.com/stevehipwell/helm-charts/pull/1066)) _@stevehipwell_ & _@mreiche_
+- Improved docs for config with reference to the API documentation. ([#1066](https://github.com/stevehipwell/helm-charts/pull/1066)) _@stevehipwell_ & _@mreiche_
 
 ### Fixed
 
 - Fixed LDAP templating incorrectly using `toJson` without passing in the data resulting in no configuration to apply. ([#1064](https://github.com/stevehipwell/helm-charts/pull/1064)) _@KuroXII_
-- Fixed incorrect labeling on the volume claim template. ([#xxxx](https://github.com/stevehipwell/helm-charts/pull/xxxx)) _@stevehipwell_
+- Fixed incorrect labeling on the volume claim template. ([#1066](https://github.com/stevehipwell/helm-charts/pull/1066)) _@stevehipwell_
 
 ## [v5.1.0] - 2024-10-14
 
