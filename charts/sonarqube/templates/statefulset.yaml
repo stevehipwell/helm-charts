@@ -250,7 +250,7 @@ spec:
     - metadata:
         name: {{ include "sonarqube.pvcname" . }}
         labels:
-          {{- include "sonarqube.labels" . | nindent 10 }}
+          {{- include "sonarqube.selectorLabels" . | nindent 10 }}
         {{- with .Values.persistence.annotations }}
         annotations:
           {{- . | toYaml | nindent 10 }}

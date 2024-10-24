@@ -14,6 +14,13 @@
 
 ## [UNRELEASED]
 
+> [!IMPORTANT]
+> If you're using a `StatefulSet` and upgrading to this version you will need to run `kubectl --namespace <namespace> delete statefulset <name> --cascade=orphan` before upgrading as there was a bug in previous versions of this chart that incorrectly labeled the volume claim template.
+
+### Fixed
+
+- Fixed incorrect labeling on the volume claim template. ([#1067](https://github.com/stevehipwell/helm-charts/pull/1067)) _@stevehipwell_
+
 ## [v5.7.0] - 2024-10-04
 
 ### Changed
