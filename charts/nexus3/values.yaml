@@ -299,7 +299,7 @@ rootPassword:
   key: password
 
 config:
-  # -- If `true`, enable the configuration Job.
+  # -- If `true` & `rootPassword.secret` is set, enable the configuration Job.
   enabled: false
   job:
     image:
@@ -319,15 +319,17 @@ config:
     affinity: {}
     # -- Node taints which will be tolerated for scheduling the config job.
     tolerations: []
-  # -- Anonymous access configuration.
   anonymous:
+    # -- If `true`, enable anonymous access.
     enabled: false
+    # -- Roles for anonymous access.
     roles:
       - nx-anonymous
       - nx-metrics
-  # -- Realms configuration.
   realms:
+    # -- If `true`, enable realms.
     enabled: false
+    # -- List of realms to configure; can be empty or contain any of `NexusAuthenticatingRealm`, `LdapRealm`, `DockerToken`, `NpmToken`, `NuGetApiKey` or `rutauth-realm`.
     values: []
     #   - NexusAuthenticatingRealm
     #   - LdapRealm
@@ -335,7 +337,7 @@ config:
     #   - NpmToken
     #   - NuGetApiKey
     #   - rutauth-realm
-  # -- Roles configuration.
+  # -- Roles configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   roles: []
   #   - id: nexus-administrators
   #     source: default
@@ -344,7 +346,7 @@ config:
   #     privileges: []
   #     roles:
   #       - nx-admin
-  # -- Users configuration.
+  # -- Users configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   users: []
   #   - userId: test
   #     firstName: Test
@@ -355,7 +357,7 @@ config:
   #     roles:
   #       - nx-anonymous
   #     externalRoles: []
-  # -- LDAP configuration.
+  # -- LDAP configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   ldap:
     enabled: false
     name:
@@ -390,7 +392,7 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  # -- Blob store configuration.
+  # -- Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   blobStores: []
   # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
   #   - name: ExampleFileBlobStore
@@ -426,7 +428,7 @@ config:
     enabled: false
     # -- (string) Name of the secret containing the repository credentials.
     secret:
-  # -- Repository configuration.
+  # -- Repository configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_) but with `format` & `type` defined in the object.
   repos: []
   #   - name: test-repo
   #     format: raw

@@ -53,90 +53,6 @@ if [[ -f "${json_file}" ]]; then
   echo "Realms configured."
 fi
 
-echo "Configuring roles..."
-for json_file in "${CONFIG_DIR}"/conf/*-role.json; do
-  if [[ -f "${json_file}" ]]; then
-    id="$(jq -r '.id' "${json_file}")"
-    source="$(jq -r '.source' "${json_file}")"
-
-    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}?source=${source}")
-    if [[ "${status_code}" -eq 200 ]]; then
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}")"
-      if [[ "${status_code}" -ne 204 ]]; then
-        error "Could not update role '${id}'."
-      fi
-    else
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/roles")"
-      if [[ "${status_code}" -ne 200 ]]; then
-        error "Could not create role '${id}'."
-      fi
-    fi
-
-    echo "Role '${id}' configured."
-  fi
-done
-
-echo "Configuring users..."
-for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
-  if [[ -f "${json_file}" ]]; then
-    id="$(jq -r '.userId' "${json_file}")"
-    source="$(jq -r '.source' "${json_file}")"
-
-    out_file="$(mktemp -p "${tmp_dir}")"
-    status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/users/?userId=${id}&source=${source}")
-    if [[ "${status_code}" -eq 200 ]] && [[ -n "$(jq -r 'first(.[]).userId // empty' "${out_file}")" ]]; then
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users/${id}")"
-      if [[ "${status_code}" -ne 204 ]]; then
-        error "Could not update user '${id}'."
-      fi
-    else
-      tmp_file="$(mktemp -p "${tmp_dir}")"
-      jq -r --arg password "$(echo "${RANDOM}" | md5sum | head -c 20)" '. + {password: $password}' "${json_file}" >"${tmp_file}"
-      json_file="${tmp_file}"
-
-      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users")"
-      if [[ "${status_code}" -ne 200 ]]; then
-        error "Could not create user '${id}'."
-      fi
-    fi
-
-    echo "User '${id}' configured."
-  fi
-done
-
-json_file="${CONFIG_DIR}/conf/ldap.json"
-if [[ -f "${json_file}" ]]; then
-  echo "Configuring LDAP..."
-
-  name="$(jq -r '.name' "${json_file}")"
-
-  if [[ -f "${CONFIG_DIR}/secret/ldap.password" ]]; then
-    tmp_file="$(mktemp -p "${tmp_dir}")"
-    jq -r --arg password "$(sed 's|"|\\"|g;s|/|\\/|g' "${CONFIG_DIR}/secret/ldap.password")" '. + {authPassword: $password}' "${json_file}" >"${tmp_file}"
-    json_file="${tmp_file}"
-  fi
-
-  out_file="$(mktemp -p "${tmp_dir}")"
-  status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/ldap/${name// /%20}")
-  if [[ "${status_code}" -eq 200 ]]; then
-    tmp_file="$(mktemp -p "${tmp_dir}")"
-    jq -r --arg id "$(jq -r '.id' "${out_file}")" '. + {id: $id}' "${json_file}" >"${tmp_file}"
-    json_file="${tmp_file}"
-
-    status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/ldap/${name// /%20}")"
-    if [[ "${status_code}" -ne 204 ]]; then
-      error "Could not update LDAP '${name}'."
-    fi
-  else
-    status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/ldap")"
-    if [[ "${status_code}" -ne 201 ]]; then
-      error "Could not create LDAP '${name}'."
-    fi
-  fi
-
-  echo "LDAP '${name}' configured."
-fi
-
 echo "Configuring blob stores..."
 for json_file in "${CONFIG_DIR}"/conf/*-blobstore.json; do
   if [[ -f "${json_file}" ]]; then
@@ -236,6 +152,90 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
     echo "Repository '${name}' configured."
   fi
 done
+
+echo "Configuring roles..."
+for json_file in "${CONFIG_DIR}"/conf/*-role.json; do
+  if [[ -f "${json_file}" ]]; then
+    id="$(jq -r '.id' "${json_file}")"
+    source="$(jq -r '.source' "${json_file}")"
+
+    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}?source=${source}")
+    if [[ "${status_code}" -eq 200 ]]; then
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/roles/${id}")"
+      if [[ "${status_code}" -ne 204 ]]; then
+        error "Could not update role '${id}'."
+      fi
+    else
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/roles")"
+      if [[ "${status_code}" -ne 200 ]]; then
+        error "Could not create role '${id}'."
+      fi
+    fi
+
+    echo "Role '${id}' configured."
+  fi
+done
+
+echo "Configuring users..."
+for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
+  if [[ -f "${json_file}" ]]; then
+    id="$(jq -r '.userId' "${json_file}")"
+    source="$(jq -r '.source' "${json_file}")"
+
+    out_file="$(mktemp -p "${tmp_dir}")"
+    status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/users/?userId=${id}&source=${source}")
+    if [[ "${status_code}" -eq 200 ]] && [[ -n "$(jq -r 'first(.[]).userId // empty' "${out_file}")" ]]; then
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users/${id}")"
+      if [[ "${status_code}" -ne 204 ]]; then
+        error "Could not update user '${id}'."
+      fi
+    else
+      tmp_file="$(mktemp -p "${tmp_dir}")"
+      jq -r --arg password "$(echo "${RANDOM}" | md5sum | head -c 20)" '. + {password: $password}' "${json_file}" >"${tmp_file}"
+      json_file="${tmp_file}"
+
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users")"
+      if [[ "${status_code}" -ne 200 ]]; then
+        error "Could not create user '${id}'."
+      fi
+    fi
+
+    echo "User '${id}' configured."
+  fi
+done
+
+json_file="${CONFIG_DIR}/conf/ldap.json"
+if [[ -f "${json_file}" ]]; then
+  echo "Configuring LDAP..."
+
+  name="$(jq -r '.name' "${json_file}")"
+
+  if [[ -f "${CONFIG_DIR}/secret/ldap.password" ]]; then
+    tmp_file="$(mktemp -p "${tmp_dir}")"
+    jq -r --arg password "$(sed 's|"|\\"|g;s|/|\\/|g' "${CONFIG_DIR}/secret/ldap.password")" '. + {authPassword: $password}' "${json_file}" >"${tmp_file}"
+    json_file="${tmp_file}"
+  fi
+
+  out_file="$(mktemp -p "${tmp_dir}")"
+  status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/ldap/${name// /%20}")
+  if [[ "${status_code}" -eq 200 ]]; then
+    tmp_file="$(mktemp -p "${tmp_dir}")"
+    jq -r --arg id "$(jq -r '.id' "${out_file}")" '. + {id: $id}' "${json_file}" >"${tmp_file}"
+    json_file="${tmp_file}"
+
+    status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/ldap/${name// /%20}")"
+    if [[ "${status_code}" -ne 204 ]]; then
+      error "Could not update LDAP '${name}'."
+    fi
+  else
+    status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/ldap")"
+    if [[ "${status_code}" -ne 201 ]]; then
+      error "Could not create LDAP '${name}'."
+    fi
+  fi
+
+  echo "LDAP '${name}' configured."
+fi
 
 echo "Configuring tasks..."
 for json_file in "${CONFIG_DIR}"/conf/*-task.json; do
