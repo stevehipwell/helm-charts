@@ -128,7 +128,10 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
     json_file="${tmp_file}"
 
     if [[ "${type}" == "proxy" ]]; then
-      password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
+      password_file="${CONFIG_DIR}/secret/repo-${name}.password"
+      if [[ ! -f "${password_file}" ]]; then
+        password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
+      fi
       if [[ -f "${password_file}" ]]; then
         tmp_file="$(mktemp -p "${tmp_dir}")"
         jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
@@ -190,8 +193,13 @@ for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
         error "Could not update user '${id}'."
       fi
     else
+      password_file="${CONFIG_DIR}/secret/user-${id}.password"
+      if [[ ! -f "${password_file}" ]]; then
+        echo "${RANDOM}" | md5sum | head -c 20 >"${password_file}"
+      fi
+
       tmp_file="$(mktemp -p "${tmp_dir}")"
-      jq -r --arg password "$(echo "${RANDOM}" | md5sum | head -c 20)" '. + {password: $password}' "${json_file}" >"${tmp_file}"
+      jq -r --arg password "$(cat "${password_file}")" '. + {password: $password}' "${json_file}" >"${tmp_file}"
       json_file="${tmp_file}"
 
       status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users")"
