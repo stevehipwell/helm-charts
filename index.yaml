@@ -14669,6 +14669,43 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for specifying `password.secret` & `password.key` on the `config.repos` objects."
+        - kind: added
+          description: "Added support for specifying `password.secret` & `password.key` on the `config.users` objects."
+        - kind: changed
+          description: "Updated ingress docs to better explain hosts."
+        - kind: deprecated
+          description: "Deprecated `.config.repoCredentials` in favour of directly specifying `password.secret` on the `config.repos` objects."
+    apiVersion: v2
+    appVersion: 3.73.0
+    created: "2024-10-29T12:41:33.652618396Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: db62c8b87f939ec1ca1ed9a5486e7716763a882344397e631a650f1dd934bb8b
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.3.0/nexus3-5.3.0.tgz
+    version: 5.3.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
         - kind: changed
           description: "Changed the order of the initialization scripts to allow creating roles based on repository privileges."
         - kind: changed
@@ -26654,4 +26691,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-24T12:17:05.469178972Z"
+generated: "2024-10-29T12:41:33.654001468Z"
