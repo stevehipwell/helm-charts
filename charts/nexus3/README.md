@@ -1,6 +1,6 @@
 # nexus3
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.73.0](https://img.shields.io/badge/AppVersion-3.73.0-informational?style=flat-square)
+![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.73.0](https://img.shields.io/badge/AppVersion-3.73.0-informational?style=flat-square)
 
 Helm chart for Sonatype Nexus 3 OSS.
 
@@ -25,7 +25,7 @@ Helm chart for Sonatype Nexus 3 OSS.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.2.0
+helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.3.0
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.2.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.3.0
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.2.0
+helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.3.0
 ```
 
 ## Values
@@ -73,7 +73,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.2.0
 | config.ldap | object | `{"authPassword":{"key":null,"secret":null},"authRealm":null,"authScheme":"simple","authUsername":null,"connectionRetryDelaySeconds":300,"connectionTimeoutSeconds":30,"enabled":false,"groupBaseDn":null,"groupIdAttribute":null,"groupMemberAttribute":null,"groupMemberFormat":null,"groupObjectClass":null,"groupSubtree":false,"groupType":"dynamic","host":null,"ldapGroupsAsRoles":false,"maxIncidentsCount":3,"name":null,"port":636,"protocol":"ldaps","searchBase":null,"useTrustStore":true,"userBaseDn":null,"userEmailAddressAttribute":"email","userIdAttribute":"sAMAccountName","userLdapFilter":null,"userMemberOfAttribute":"memberOf","userObjectClass":"user","userPasswordAttribute":null,"userRealNameAttribute":"cn","userSubtree":false}` | LDAP configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | config.realms.enabled | bool | `false` | If `true`, enable realms. |
 | config.realms.values | list | `[]` | List of realms to configure; can be empty or contain any of `NexusAuthenticatingRealm`, `LdapRealm`, `DockerToken`, `NpmToken`, `NuGetApiKey` or `rutauth-realm`. |
-| config.repoCredentials.enabled | bool | `false` | If `true`, enable repository credentials. |
+| config.repoCredentials.enabled | bool | `false` | **DEPRECATED** - If `true`, enable repository credentials. Use inline repo password instead. |
 | config.repoCredentials.secret | string | `nil` | Name of the secret containing the repository credentials. |
 | config.repos | list | `[]` | Repository configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_) but with `format` & `type` defined in the object. |
 | config.roles | list | `[]` | Roles configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
@@ -91,9 +91,9 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.2.0
 | imagePullSecrets | list | `[]` | Image pull secrets. |
 | ingress.annotations | object | `{}` | Ingress annotations. |
 | ingress.enabled | bool | `false` | If `true`, create an `Ingress` resource. |
-| ingress.hosts | list | See _values.yaml_ | Ingress hosts. |
+| ingress.hosts | list | See _values.yaml_ | Ingress hosts, do not include hosts defined in `service.additionalPorts`. |
 | ingress.ingressClassName | string | `nil` | Ingress class name. |
-| ingress.tls | list | See _values.yaml_ | Ingress TLS. |
+| ingress.tls | list | See _values.yaml_ | Ingress TLS, hosts defined in both `ingress.hosts` & `service.additionalPorts[*].hosts` should be covered. |
 | install4jAddVmParams | string | `"-Xms1024m -Xmx1024m -XX:MaxDirectMemorySize=2048m"` | Env configuration for the _Nexus3_ container. |
 | jdkImage.digest | string | `nil` | Optional image digest for the JDK container. |
 | jdkImage.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the JDK container. |

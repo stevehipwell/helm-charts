@@ -51,14 +51,28 @@ spec:
               name: scripts
             - mountPath: /opt/sonatype/nexus/config/conf
               name: config
+          {{- if .Values.config.repoCredentials.enabled }}
+            - mountPath: /opt/sonatype/nexus/config/secret/repo-credentials
+              name: repo-credentials
+          {{- end }}
+          {{- range .Values.config.repos }}
+          {{- if dig "password" "secret" nil . }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/repo-%s.password" .name }}
+              name: {{ printf "repo-%s" .name }}
+              subPath: {{ default "password" .password.key }}
+          {{- end }}
+          {{- end }}
+          {{- range .Values.config.users }}
+          {{- if dig "password" "secret" nil . }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/user-%s.password" .userId }}
+              name: {{ printf "user-%s" .userId }}
+              subPath: {{ default "password" .password.key }}
+          {{- end }}
+          {{- end }}
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/config/secret/ldap.password
               name: ldap-password
               subPath: {{ .Values.config.ldap.authPassword.key }}
-          {{- end }}
-          {{- if .Values.config.repoCredentials.enabled }}
-            - mountPath: /opt/sonatype/nexus/config/secret/repo-credentials
-              name: repo-credentials
           {{- end }}
       volumes:
         - name: temp
@@ -71,15 +85,29 @@ spec:
           configMap:
             name: {{ include "nexus3.configConfigMapName" . }}
             defaultMode: 0444
-      {{- if .Values.config.ldap.enabled }}
-        - name: ldap-password
-          secret:
-            secretName: {{ .Values.config.ldap.authPassword.secret }}
-      {{- end }}
       {{- if .Values.config.repoCredentials.enabled }}
         - name: repo-credentials
           secret:
             secretName: {{ .Values.config.repoCredentials.secret }}
+      {{- end }}
+      {{- range .Values.config.repos }}
+      {{- if dig "password" "secret" nil . }}
+        - name: {{ printf "repo-%s" .name }}
+          secret:
+            secretName: {{ .password.secret }}
+      {{- end }}
+      {{- end }}
+      {{- range .Values.config.users }}
+      {{- if dig "password" "secret" nil . }}
+        - name: {{ printf "user-%s" .userId }}
+          secret:
+            secretName: {{ .password.secret }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.config.ldap.enabled }}
+        - name: ldap-password
+          secret:
+            secretName: {{ .Values.config.ldap.authPassword.secret }}
       {{- end }}
       {{- with .Values.config.job.nodeSelector }}
       nodeSelector:

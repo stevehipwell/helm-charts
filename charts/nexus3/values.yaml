@@ -85,11 +85,11 @@ ingress:
   annotations: {}
   # -- (string) Ingress class name.
   ingressClassName:
-  # -- (list) Ingress hosts.
+  # -- (list) Ingress hosts, do not include hosts defined in `service.additionalPorts`.
   # @default -- See _values.yaml_
   hosts: []
   #   - nexus.local
-  # -- (list) Ingress TLS.
+  # -- (list) Ingress TLS, hosts defined in both `ingress.hosts` & `service.additionalPorts[*].hosts` should be covered.
   # @default -- See _values.yaml_
   tls: []
   #   - hosts:
@@ -337,6 +337,58 @@ config:
     #   - NpmToken
     #   - NuGetApiKey
     #   - rutauth-realm
+  # -- Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
+  blobStores: []
+  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
+  #   - name: ExampleFileBlobStore
+  #     type: file
+  #     path: /nexus-data/blobs/foo
+  #     softQuota:
+  #       type: spaceRemainingQuota
+  #       limit: 500
+  #   - name: ExampleS3BlobStore
+  #     type: s3
+  #     bucketConfiguration:
+  #       bucket:
+  #         region: us-east-1
+  #         name: example-bucket-name
+  #         prefix: /
+  #         expiration: 3
+  #       #bucketSecurity:  # If not using Instance Profile
+  #       #  accessKeyId: access-key-id
+  #       #  secretAccessKey: secret-access-key
+  # -- Cleanup configuration.
+  cleanup: []
+  #   - name: ExampleCleanup
+  #     notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
+  #     format: ALL_FORMATS
+  #     mode: delete
+  #     criteria:
+  #       isPrerelease:
+  #       lastBlobUpdated: "1209600"
+  #       lastDownloaded: "2419200"
+  #       regex:
+  repoCredentials:
+    # -- **DEPRECATED** - If `true`, enable repository credentials. Use inline repo password instead.
+    enabled: false
+    # -- (string) Name of the secret containing the repository credentials.
+    secret:
+  # -- Repository configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_) but with `format` & `type` defined in the object.
+  repos: []
+  #   - name: test-repo
+  #     format: raw
+  #     type: hosted
+  #     online: true
+  #     storage:
+  #       blobStoreName: default
+  #       strictContentTypeValidation: false
+  #       writePolicy: allow
+  #     cleanup:
+  #       policyNames:
+  #         - ExampleCleanup
+  #     password:
+  #       secret: test-repo
+  #       key: password
   # -- Roles configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   roles: []
   #   - id: nexus-administrators
@@ -357,6 +409,9 @@ config:
   #     roles:
   #       - nx-anonymous
   #     externalRoles: []
+  #     password:
+  #       secret: test-user
+  #       key: password
   # -- LDAP configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   ldap:
     enabled: false
@@ -392,55 +447,6 @@ config:
     groupIdAttribute:
     groupMemberAttribute:
     groupMemberFormat:
-  # -- Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
-  blobStores: []
-  # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
-  #   - name: ExampleFileBlobStore
-  #     type: file
-  #     path: /nexus-data/blobs/foo
-  #     softQuota:
-  #       type: spaceRemainingQuota
-  #       limit: 500
-  #   - name: ExampleS3BlobStore
-  #     type: s3
-  #     bucketConfiguration:
-  #       bucket:
-  #         region: us-east-1
-  #         name: example-bucket-name
-  #         prefix: /
-  #         expiration: 3
-  #       #bucketSecurity:  # If not using Instance Profile
-  #       #  accessKeyId: access-key-id
-  #       #  secretAccessKey: secret-access-key
-  # -- Cleanup configuration.
-  cleanup: []
-  #   - name: ExampleCleanup
-  #     notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
-  #     format: ALL_FORMATS
-  #     mode: delete
-  #     criteria:
-  #       isPrerelease:
-  #       lastBlobUpdated: "1209600"
-  #       lastDownloaded: "2419200"
-  #       regex:
-  repoCredentials:
-    # -- If `true`, enable repository credentials.
-    enabled: false
-    # -- (string) Name of the secret containing the repository credentials.
-    secret:
-  # -- Repository configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_) but with `format` & `type` defined in the object.
-  repos: []
-  #   - name: test-repo
-  #     format: raw
-  #     type: hosted
-  #     online: true
-  #     storage:
-  #       blobStoreName: default
-  #       strictContentTypeValidation: false
-  #       writePolicy: allow
-  #     cleanup:
-  #       policyNames:
-  #         - ExampleCleanup
   # -- Task configuration.
   tasks: []
   #   - name: "Cleanup service"

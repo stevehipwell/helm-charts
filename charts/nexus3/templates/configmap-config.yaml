@@ -25,7 +25,7 @@ data:
 {{- end }}
 {{- range .Values.config.users }}
   {{ .userId }}-user.json: |
-    {{- . | toJson | nindent 4 }}
+    {{- omit . "password" | toJson | nindent 4 }}
 {{- end }}
 {{- if .Values.config.ldap.enabled }}
   ldap.json: |
@@ -43,7 +43,7 @@ data:
 {{- end }}
 {{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
-    {{- $repo | toJson | nindent 4 }}
+    {{- omit $repo "password" | toJson | nindent 4 }}
 {{- end }}
 {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |

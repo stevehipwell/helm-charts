@@ -127,26 +127,6 @@ config:
       - NpmToken
       - NuGetApiKey
       - rutauth-realm
-  roles:
-    - id: nexus-administrators
-      source: default
-      name: nexus-administrators
-      description: LDAP Administrator Role
-      privileges: []
-      roles:
-        - nx-admin
-  users:
-    - userId: test
-      firstName: Test
-      lastName: User
-      emailAddress: test@example.org
-      source: default
-      status: active
-      roles:
-        - nx-anonymous
-      externalRoles: []
-  ldap:
-    enabled: false
   blobStores:
     - name: ExampleFileBlobStore
       type: file
@@ -179,6 +159,43 @@ config:
       cleanup:
         policyNames:
           - ExampleCleanup
+      password:
+        secret: test-repo
+        key: passwordx
+  roles:
+    - id: nexus-administrators
+      source: default
+      name: nexus-administrators
+      description: LDAP Administrator Role
+      privileges: []
+      roles:
+        - nx-admin
+  users:
+    - userId: test
+      firstName: Test
+      lastName: User
+      emailAddress: test@example.org
+      source: default
+      status: active
+      roles:
+        - nx-anonymous
+      externalRoles: []
+      password:
+        secret: test-user
+        key: passwordx
+    - userId: test2
+      firstName: Test2
+      lastName: User
+      emailAddress: test2@example.org
+      source: default
+      status: active
+      roles:
+        - nx-anonymous
+      externalRoles: []
+      password:
+        secret: test-user2
+  ldap:
+    enabled: false
   tasks:
     - name: "Cleanup service"
       typeId: repository.cleanup

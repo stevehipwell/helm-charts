@@ -14,6 +14,21 @@
 
 ## [UNRELEASED]
 
+## [v5.3.0] - 2024-10-29
+
+### Added
+
+- Added support for specifying `password.secret` & `password.key` on the `config.repos` objects. ([#1070](https://github.com/stevehipwell/helm-charts/pull/1070)) _@stevehipwell_
+- Added support for specifying `password.secret` & `password.key` on the `config.users` objects. ([#1070](https://github.com/stevehipwell/helm-charts/pull/1070)) _@stevehipwell_
+
+### Changed
+
+- Updated ingress docs to better explain hosts. ([#1070](https://github.com/stevehipwell/helm-charts/pull/1070)) _@stevehipwell_
+
+### Deprecated
+
+- Deprecated `.config.repoCredentials` in favour of directly specifying `password.secret` on the `config.repos` objects. ([#1070](https://github.com/stevehipwell/helm-charts/pull/1070)) _@stevehipwell_
+
 ## [v5.2.0] - 2024-10-24
 
 > [!IMPORTANT]
@@ -730,6 +745,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.3.0
 [v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0
 [v5.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.1.0
 [v5.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.0.0

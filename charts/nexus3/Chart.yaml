@@ -2,7 +2,7 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 5.2.0
+version: 5.3.0
 appVersion: 3.73.0
 home: https://www.sonatype.com/products/sonatype-nexus-repository
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
@@ -23,11 +23,11 @@ maintainers:
 annotations:
   artifacthub.io/alternativeName: nexus
   artifacthub.io/changes: |
+    - kind: added
+      description: "Added support for specifying `password.secret` & `password.key` on the `config.repos` objects."
+    - kind: added
+      description: "Added support for specifying `password.secret` & `password.key` on the `config.users` objects."
     - kind: changed
-      description: "Changed the order of the initialization scripts to allow creating roles based on repository privileges."
-    - kind: changed
-      description: "Improved docs for config with reference to the API documentation."
-    - kind: fixed
-      description: "Fixed LDAP templating incorrectly using `toJson` without passing in the data resulting in no configuration to apply."
-    - kind: fixed
-      description: "Fixed incorrect labeling on the volume claim template."
+      description: "Updated ingress docs to better explain hosts."
+    - kind: deprecated
+      description: "Deprecated `.config.repoCredentials` in favour of directly specifying `password.secret` on the `config.repos` objects."
