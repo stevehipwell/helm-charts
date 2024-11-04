@@ -6687,6 +6687,36 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.17.4](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.17.4) (_Fluentd_ [v1.17.1](https://github.com/fluent/fluentd/releases/tag/v1.17.1))."
+    apiVersion: v2
+    appVersion: 2.17.4
+    created: "2024-11-04T13:08:49.411350664Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 82e67a0986edc7b8f8e96549f1c6069dbe6f64de0d2201ab42c87c370934ae24
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.8.4/fluentd-aggregator-4.8.4.tgz
+    version: 4.8.4
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |
         - kind: added
           description: "Added deterministic _Grafana_ dashboard `uid` based on the chart namespace and fullname."
         - kind: changed
@@ -26760,4 +26790,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-04T11:14:51.085579113Z"
+generated: "2024-11-04T13:08:49.41260274Z"
