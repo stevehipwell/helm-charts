@@ -1,6 +1,6 @@
 # fluentd-aggregator
 
-![Version: 4.8.3](https://img.shields.io/badge/Version-4.8.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.17.3](https://img.shields.io/badge/AppVersion-2.17.3-informational?style=flat-square)
+![Version: 4.8.4](https://img.shields.io/badge/Version-4.8.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.17.4](https://img.shields.io/badge/AppVersion-2.17.4-informational?style=flat-square)
 
 Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 
@@ -25,7 +25,7 @@ Helm chart for Fluentd running as an aggregation StatefulSet and using the fluen
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.8.3
+helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluentd-aggregator --version 4.8.4
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install fluentd-aggregator oci://ghcr.io/stevehipwell/helm-charts
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluentd-aggregator:4.8.3
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluentd-aggregator:4.8.4
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --version 4.8.3
+helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --version 4.8.4
 ```
 
 ## Values
