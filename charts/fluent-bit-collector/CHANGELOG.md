@@ -18,7 +18,7 @@
 
 ### Changed
 
-- Updated _Fluent Bit_ OCI image to [v3.1.10](https://github.com/fluent/fluent-bit/releases/tag/v3.1.10).
+- Updated _Fluent Bit_ OCI image to [v3.1.10](https://github.com/fluent/fluent-bit/releases/tag/v3.1.10). ([#1074](https://github.com/stevehipwell/helm-charts/pull/1074)) _@stevehipwell_
 
 ## [v0.12.9] - 2024-10-03
 
