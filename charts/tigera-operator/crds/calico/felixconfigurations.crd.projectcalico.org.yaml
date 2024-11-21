@@ -1076,6 +1076,11 @@ spec:
                     "WireguardRoutingRulePriority controls the priority value
                     to use for the Wireguard routing rule. [Default: 99]"
                   type: integer
+                wireguardThreadingEnabled:
+                  description:
+                    "WireguardThreadingEnabled controls whether Wireguard
+                    has NAPI threading enabled. [Default: false]"
+                  type: boolean
                 workloadSourceSpoofing:
                   description:
                     WorkloadSourceSpoofing controls whether pods can use
