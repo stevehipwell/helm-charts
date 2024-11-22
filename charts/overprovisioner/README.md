@@ -1,6 +1,6 @@
 # overprovisioner
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.0](https://img.shields.io/badge/AppVersion-0.5.0-informational?style=flat-square)
 
 Helm chart for overprovisioning Kubernetes clusters.
 
@@ -23,7 +23,7 @@ Helm chart for overprovisioning Kubernetes clusters.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/overprovisioner --version 0.4.0
+helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/overprovisioner --version 0.5.0
 ```
 
 #### Verification
@@ -31,7 +31,7 @@ helm upgrade --install overprovisioner oci://ghcr.io/stevehipwell/helm-charts/ov
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/overprovisioner:0.4.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/overprovisioner:0.5.0
 ```
 
 ### Non-OCI Repository
@@ -40,7 +40,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.4.0
+helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.5.0
 ```
 
 ## Values
@@ -50,7 +50,7 @@ helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.
 | autoscaler.affinity | object | `{}` | Affinity settings for scheduling the _Autoscaler_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | autoscaler.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Autoscaler_ component default container. |
 | autoscaler.image.repository | string | `"registry.k8s.io/cpa/cluster-proportional-autoscaler"` | Image repository for the _Autoscaler_ component default container. |
-| autoscaler.image.tag | string | `"v1.8.9"` | Image tag for the _Autoscaler_ component default container. |
+| autoscaler.image.tag | string | `"v1.9.0"` | Image tag for the _Autoscaler_ component default container. |
 | autoscaler.logLevel | int | `2` | Log level for the _Autoscaler_ component. |
 | autoscaler.nodeSelector | object | `{}` | Node selector labels for scheduling the _Autoscaler_ component. |
 | autoscaler.podAnnotations | object | `{}` | Annotations to add to the _Autoscaler_ pod. |

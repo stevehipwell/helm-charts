@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.5.0] - 2024-11-22
+
+### Changed
+
+- Updated the _cluster-proportional-autoscaler_ OCI image version to [v1.9.0](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler/releases/tag/v1.9.0). ([#1083](https://github.com/stevehipwell/helm-charts/pull/1083)) _@stevehipwell_
+
 ## [v0.4.0] - 2024-03-12
 
 ### Changed
@@ -53,6 +59,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/overprovisioner
+[v0.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.5.0
 [v0.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.4.0
 [v0.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.3.0
 [v0.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/overprovisioner-0.2.0
