@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.18.2] - 2024-11-22
+
+### Changed
+
+- Updated configmap reload image to use `ghcr.io/jimmidyson/configmap-reload` as the _Chainguard_ image is no longer available. ([#1082](https://github.com/stevehipwell/helm-charts/pull/1082)) _@stevehipwell_
+
 ## [v1.18.1] - 2024-08-13
 
 ### Added
@@ -523,6 +529,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.18.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.2
 [v1.18.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.1
 [v1.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.18.0
 [v1.17.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.17.2

@@ -304,9 +304,9 @@ config:
   job:
     image:
       # -- Image repository for the config container.
-      repository: cgr.dev/chainguard/min-toolkit-debug
+      repository: docker.io/alpine/k8s
       # -- Image tag for config container, this will be omitted if set to `-`.
-      tag: latest
+      tag: 1.31.2
       # -- (string) Optional image digest for the config container.
       digest:
       # -- Image pull policy for config container.

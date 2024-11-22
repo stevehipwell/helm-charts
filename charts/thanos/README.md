@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.18.1](https://img.shields.io/badge/Version-1.18.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.36.1](https://img.shields.io/badge/AppVersion-0.36.1-informational?style=flat-square)
+![Version: 1.18.2](https://img.shields.io/badge/Version-1.18.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.36.1](https://img.shields.io/badge/AppVersion-0.36.1-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.18.1
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.18.2
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.18.1
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.18.2
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.18.1
+helm upgrade --install thanos stevehipwell/thanos --version 1.18.2
 ```
 
 ## Values
@@ -280,8 +280,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.18.1
 | rule.configReloader.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.image.digest | string | `nil` | Image digest for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Rule_ pod config reloader sidecar container. |
-| rule.configReloader.image.repository | string | `"cgr.dev/chainguard/configmap-reload"` | Image repository for the _Rule_ pod config reloader sidecar container. |
-| rule.configReloader.image.tag | string | `"latest"` | Image tag for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.repository | string | `"ghcr.io/jimmidyson/configmap-reload"` | Image repository for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.tag | string | `"v0.14.0"` | Image tag for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.resources | object | `{}` | Resources for the _Rule_ pod config reloader sidecar container. |
 | rule.enabled | bool | `false` | If `true`, create the _Thanos Rule_ component. |
 | rule.evalInterval | string | `"1m"` | Rule eval interval for the _Rule_ component (`--eval-interval`). |

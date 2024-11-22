@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.4.1] - 2024-11-05
+
+### Changed
+
+- Updated the config image to use `docker.io/alpine/k8s` as the _Chainguard_ image is no longer available. ([#1082](https://github.com/stevehipwell/helm-charts/pull/1082)) _@stevehipwell_
+
 ## [v5.4.0] - 2024-11-05
 
 ### Changed
@@ -751,6 +757,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.4.1
 [v5.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.4.0
 [v5.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.3.0
 [v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0
