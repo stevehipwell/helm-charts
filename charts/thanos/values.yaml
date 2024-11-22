@@ -1006,9 +1006,9 @@ rule:
     enabled: true
     image:
       # -- Image repository for the _Rule_ pod config reloader sidecar container.
-      repository: cgr.dev/chainguard/configmap-reload
+      repository: ghcr.io/jimmidyson/configmap-reload
       # -- Image tag for the _Rule_ pod config reloader sidecar container.
-      tag: latest
+      tag: v0.14.0
       # -- Image digest for the _Rule_ pod config reloader sidecar container.
       digest:
       # -- Image pull policy for the _Rule_ pod config reloader sidecar container.

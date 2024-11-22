@@ -1,6 +1,6 @@
 # fluent-bit-aggregator
 
-![Version: 0.16.0](https://img.shields.io/badge/Version-0.16.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.1](https://img.shields.io/badge/AppVersion-3.2.1-informational?style=flat-square)
+![Version: 0.16.1](https://img.shields.io/badge/Version-0.16.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.1](https://img.shields.io/badge/AppVersion-3.2.1-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
@@ -24,7 +24,7 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.16.0
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.16.1
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-cha
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.16.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.16.1
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.16.0
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.16.1
 ```
 
 ## Values
@@ -72,8 +72,8 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | hotReload.enabled | bool | `false` | If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container. |
 | hotReload.image.digest | string | `nil` | Optional image digest for the hot-reload sidecar container. |
 | hotReload.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the hot-reload sidecar container. |
-| hotReload.image.repository | string | `"cgr.dev/chainguard/configmap-reload"` | Image repository for the hot-reload sidecar container. |
-| hotReload.image.tag | string | `"latest"` | Image tag for the hot-reload sidecar container. |
+| hotReload.image.repository | string | `"ghcr.io/jimmidyson/configmap-reload"` | Image repository for the hot-reload sidecar container. |
+| hotReload.image.tag | string | `"v0.14.0"` | Image tag for the hot-reload sidecar container. |
 | hotReload.resources | object | `{}` | Resources for the hot-reload sidecar container. |
 | image.digest | string | `nil` | Optional image digest for the default container. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |

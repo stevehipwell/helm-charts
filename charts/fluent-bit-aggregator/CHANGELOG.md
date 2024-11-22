@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.16.1] - 2024-11-22
+
+### Changed
+
+- Updated hot-reload image to use `ghcr.io/jimmidyson/configmap-reload` as the _Chainguard_ image is no longer available. ([#1082](https://github.com/stevehipwell/helm-charts/pull/1082)) _@stevehipwell_
+
 ## [v0.16.0] - 2024-11-20
 
 ### Changed
@@ -308,6 +314,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.16.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.1
 [v0.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.0
 [v0.15.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.15.10
 [v0.15.9]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.15.9

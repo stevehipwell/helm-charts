@@ -1,6 +1,6 @@
 # nexus3
 
-![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.74.0](https://img.shields.io/badge/AppVersion-3.74.0-informational?style=flat-square)
+![Version: 5.4.1](https://img.shields.io/badge/Version-5.4.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.74.0](https://img.shields.io/badge/AppVersion-3.74.0-informational?style=flat-square)
 
 Helm chart for Sonatype Nexus 3 OSS.
 
@@ -25,7 +25,7 @@ Helm chart for Sonatype Nexus 3 OSS.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.4.0
+helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.4.1
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.4.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.4.1
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.4.0
+helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.4.1
 ```
 
 ## Values
@@ -65,8 +65,8 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.4.0
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
-| config.job.image.repository | string | `"cgr.dev/chainguard/min-toolkit-debug"` | Image repository for the config container. |
-| config.job.image.tag | string | `"latest"` | Image tag for config container, this will be omitted if set to `-`. |
+| config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |
+| config.job.image.tag | string | `"1.31.2"` | Image tag for config container, this will be omitted if set to `-`. |
 | config.job.nodeSelector | object | `{}` | Node labels to match for scheduling the config job. |
 | config.job.tolerations | list | `[]` | Node taints which will be tolerated for scheduling the config job. |
 | config.job.ttlSecondsAfterFinished | int | `600` | The number of seconds to keep the config job after it's finished. |
