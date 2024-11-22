@@ -22167,6 +22167,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated configmap reload image to use `ghcr.io/jimmidyson/configmap-reload` as the _Chainguard_ image is no longer available."
+    apiVersion: v2
+    appVersion: 0.36.1
+    created: "2024-11-22T11:36:30.317481388Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 1a238abd68abc94c0099fcbd277c572fa088261edeadeece61a0ccbe8e7164cb
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.18.2/thanos-1.18.2.tgz
+    version: 1.18.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
         - kind: added
@@ -27162,4 +27194,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-22T11:36:01.756795658Z"
+generated: "2024-11-22T11:36:30.318619924Z"
