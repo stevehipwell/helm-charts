@@ -5548,6 +5548,36 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated hot-reload image to use `ghcr.io/jimmidyson/configmap-reload` as the _Chainguard_ image is no longer available."
+    apiVersion: v2
+    appVersion: 3.2.1
+    created: "2024-11-22T11:35:34.794041239Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: bf9052367bc2748289fb5118e451caa8f3454c4cb526c9a76b2397b6f734e642
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.13.1/fluent-bit-collector-0.13.1.tgz
+    version: 0.13.1
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated _Fluent Bit_ OCI image to [v3.2.1](https://github.com/fluent/fluent-bit/releases/tag/v3.2.1)."
     apiVersion: v2
     appVersion: 3.2.1
@@ -27101,4 +27131,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-22T11:35:07.100242799Z"
+generated: "2024-11-22T11:35:34.795253305Z"
