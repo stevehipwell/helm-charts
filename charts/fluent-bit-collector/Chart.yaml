@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-collector
 description: Helm chart for Fluent Bit running as a collector DaemonSet.
 type: application
-version: 0.13.1
-appVersion: 3.2.1
+version: 0.13.2
+appVersion: 3.2.2
 keywords:
   - fluent
   - fluentd
@@ -23,4 +23,4 @@ annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated hot-reload image to use `ghcr.io/jimmidyson/configmap-reload` as the _Chainguard_ image is no longer available."
+      description: "Updated _Fluent Bit_ OCI image to [v3.2.2](https://github.com/fluent/fluent-bit/releases/tag/v3.2.2)."
