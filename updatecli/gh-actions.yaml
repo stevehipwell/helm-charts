@@ -1,0 +1,7 @@
+github:
+  owner: '{{ requiredEnv "GITHUB_REPOSITORY_OWNER" }}'
+  repository: '{{ requiredEnv "GITHUB_REPOSITORY_OWNER" | splitList "/" | last }}'
+  user: '{{ requiredEnv "GITHUB_ACTOR" }}'
+  email: '{{ requiredEnv "GITHUB_ACTOR" }}@users.noreply.github.com'
+  username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+  token: '{{ requiredEnv "GITHUB_TOKEN" }}'
