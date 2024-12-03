@@ -446,7 +446,8 @@ rules:
   - apiGroups:
       - coordination.k8s.io
     resourceNames:
-      - vpa-recommender
+      - vpa-recommender  # kept here for historical reasons
+      - vpa-recommender-lease
     resources:
       - leases
     verbs:
