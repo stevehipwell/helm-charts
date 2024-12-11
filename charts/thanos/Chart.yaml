@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.19.1
-appVersion: 0.37.1
+version: 1.19.2
+appVersion: 0.37.2
 keywords:
   - kubernetes
   - thanos
@@ -23,4 +23,4 @@ maintainers:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.37.1](https://github.com/thanos-io/thanos/releases/tag/v0.37.1)."
+      description: "Updated the _Thanos_ OCI image to [v0.37.2](https://github.com/thanos-io/thanos/releases/tag/v0.37.2)."
