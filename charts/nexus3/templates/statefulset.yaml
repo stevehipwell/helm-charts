@@ -134,7 +134,7 @@ spec:
               subPath: chown-data-dir.sh
             - mountPath: /nexus-data
               name: data
-      {{- if (semverCompare ">= 1.29-0" .Capabilities.KubeVersion.Version) }}
+      {{- if and (semverCompare ">= 1.29-0" .Capabilities.KubeVersion.Version) (not .Values.workarounds.forceOldSidecarContainers)}}
         - name: tail-request-log
           restartPolicy: Always
           image: {{ include "nexus3.image" .Values.bashImage }}
@@ -276,7 +276,7 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- if (semverCompare "< 1.29-0" .Capabilities.KubeVersion.Version) }}
+      {{- if or (semverCompare "< 1.29-0" .Capabilities.KubeVersion.Version) (.Values.workarounds.forceOldSidecarContainers) }}
         - name: tail-request-log
           image: {{ include "nexus3.image" .Values.bashImage }}
           imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
