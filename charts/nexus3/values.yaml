@@ -470,3 +470,6 @@ config:
 
 # @ignored
 testResources: false
+
+workarounds:
+  forceOldSidecarContainers: false
