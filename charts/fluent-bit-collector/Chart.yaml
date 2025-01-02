@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-collector
 description: Helm chart for Fluent Bit running as a collector DaemonSet.
 type: application
-version: 0.13.3
-appVersion: 3.2.3
+version: 0.13.4
+appVersion: 3.2.4
 keywords:
   - fluent
   - fluentd
@@ -23,4 +23,4 @@ annotations:
   artifacthub.io/alternativeName: fluent-bit
   artifacthub.io/changes: |
     - kind: changed
-      description: "Updated _Fluent Bit_ OCI image to [v3.2.3](https://github.com/fluent/fluent-bit/releases/tag/v3.2.3)."
+      description: "Updated _Fluent Bit_ OCI image to [v3.2.4](https://github.com/fluent/fluent-bit/releases/tag/v3.2.4)."
