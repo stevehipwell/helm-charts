@@ -20655,6 +20655,42 @@ entries:
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
+        - kind: deprecated
+          description: "The _SonarQube_ Helm chart has been deprecated in favour of the [official chart](https://artifacthub.io/packages/helm/sonarqube/sonarqube)."
+        - kind: fixed
+          description: "Fixed incorrect labeling on the volume claim template."
+    apiVersion: v2
+    appVersion: 10.7.0
+    created: "2025-01-03T17:49:37.95744467Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: ~12.12.10
+    deprecated: true
+    description: A Helm chart for deploying SonarQube.
+    digest: db47994ae8add74608c8ee124dfe9c6a1c2ea0b385b28d2796de1c3e6245872e
+    home: https://www.sonarqube.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/sonarqube/icon.png
+    keywords:
+    - sonarqube
+    - sast
+    - analysis
+    - security
+    - code
+    - coverage
+    - quality
+    name: sonarqube
+    sources:
+    - https://github.com/SonarSource/sonarqube/
+    - https://github.com/SonarSource/docker-sonarqube/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/sonarqube-5.7.1/sonarqube-5.7.1.tgz
+    version: 5.7.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _SonarQube_ OCI image to [v10.7.0](https://github.com/SonarSource/sonarqube/releases/tag/10.7.0.96327)."
     apiVersion: v2
@@ -27694,4 +27730,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-01-02T14:33:02.996392998Z"
+generated: "2025-01-03T17:49:37.958500161Z"
