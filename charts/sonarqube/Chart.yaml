@@ -2,8 +2,9 @@ apiVersion: v2
 name: sonarqube
 description: A Helm chart for deploying SonarQube.
 type: application
-version: 5.7.0
+version: 5.7.1
 appVersion: 10.7.0
+deprecated: true
 keywords:
   - sonarqube
   - sast
@@ -18,9 +19,6 @@ sources:
   - https://github.com/SonarSource/sonarqube/
   - https://github.com/SonarSource/docker-sonarqube/
   - https://github.com/stevehipwell/helm-charts/
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
     version: ~12.12.10
@@ -28,5 +26,7 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _SonarQube_ OCI image to [v10.7.0](https://github.com/SonarSource/sonarqube/releases/tag/10.7.0.96327)."
+    - kind: deprecated
+      description: "The _SonarQube_ Helm chart has been deprecated in favour of the [official chart](https://artifacthub.io/packages/helm/sonarqube/sonarqube)."
+    - kind: fixed
+      description: "Fixed incorrect labeling on the volume claim template."
