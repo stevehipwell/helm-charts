@@ -14,8 +14,14 @@
 
 ## [UNRELEASED]
 
+## [v5.7.1] - 2025-01-03
+
 > [!IMPORTANT]
 > If you're using a `StatefulSet` and upgrading to this version you will need to run `kubectl --namespace <namespace> delete statefulset <name> --cascade=orphan` before upgrading as there was a bug in previous versions of this chart that incorrectly labeled the volume claim template.
+
+### Deprecated
+
+- The _SonarQube_ Helm chart has been deprecated in favour of the [official chart](https://artifacthub.io/packages/helm/sonarqube/sonarqube). ([#1103](https://github.com/stevehipwell/helm-charts/pull/1103)) _@stevehipwell_
 
 ### Fixed
 
@@ -385,6 +391,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/sonarqube
+[v5.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.7.1
 [v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.7.0
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.6.0
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/sonarqube-5.5.1
