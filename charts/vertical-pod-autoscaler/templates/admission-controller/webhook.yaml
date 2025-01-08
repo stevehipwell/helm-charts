@@ -23,7 +23,7 @@ metadata:
     {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
   {{- if .Values.admissionController.certManager.enabled }}
   annotations:
-    cert-manager.io/inject-ca-from: {{ printf "%s/%s" .Release.Namespace (include "vertical-pod-autoscaler.admissionController.webhookCertSecret" .) }}
+    cert-manager.io/inject-ca-from: {{ printf "%s/%s" .Release.Namespace (include "vertical-pod-autoscaler.admissionController.fullname" .) }}
   {{- end }}
 webhooks:
   - name: vpa.k8s.io
