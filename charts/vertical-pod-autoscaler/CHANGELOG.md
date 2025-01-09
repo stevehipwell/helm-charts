@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fixed incorrect cert-manager ca-injection target in mutatingwebhookconfiguration. ([#1106](https://github.com/stevehipwell/helm-charts/pull/1106)) _@PaulFarver_
+
 ## [v1.7.1] - 2024-08-22
 
 ### Added
