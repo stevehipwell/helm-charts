@@ -186,6 +186,40 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: confluence
       artifacthub.io/changes: |
+        - kind: deprecated
+          description: "This chart has been deprecated as Confluence Server is no longer a supported product."
+    apiVersion: v2
+    appVersion: 8.5.18
+    created: "2025-01-13T17:13:58.305669999Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: 12.12.10
+    deprecated: true
+    description: Helm chart for Atlassian Confluence Server.
+    digest: 4f64ea81ccb958d80c435e7b7a8d0f46d143a1854b3090abc16b92c06afc874d
+    home: https://www.atlassian.com/software/confluence
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
+    keywords:
+    - confluence
+    - confluence-server
+    - atlassian
+    - agile
+    - documentation
+    - wiki
+    name: confluence-server
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
+    - https://hub.docker.com/r/atlassian/confluence-server
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/confluence-server-5.5.18/confluence-server-5.5.18.tgz
+    version: 5.5.18
+  - annotations:
+      artifacthub.io/alternativeName: confluence
+      artifacthub.io/changes: |
         - kind: changed
           description: "Updated the _Confluence Server_ OCI image to [v8.5.18](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
     apiVersion: v2
@@ -27791,4 +27825,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-01-13T16:55:52.070059873Z"
+generated: "2025-01-13T17:13:58.306886709Z"
