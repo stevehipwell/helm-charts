@@ -14,6 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v5.5.18] - 2025-01-13
+
+> [!IMPORTANT]
+> _Confluence_ [v8.5](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html) is the last LTS release that supports the _Confluence Server_ licence.
+
+### Deprecated
+
+- This chart has been deprecated as Confluence Server is no longer a supported product. ([#1110](https://github.com/stevehipwell/helm-charts/pull/1110)) _@stevehipwell_
+
 ## [v5.5.17] - 2024-12-04
 
 > [!IMPORTANT]
@@ -683,6 +692,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/confluence-server
+[v5.5.18]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.18
 [v5.5.17]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.17
 [v5.5.16]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.16
 [v5.5.15]: https://github.com/stevehipwell/helm-charts/releases/tag/confluence-server-5.5.15

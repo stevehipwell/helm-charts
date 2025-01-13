@@ -2,8 +2,9 @@ apiVersion: v2
 name: confluence-server
 description: Helm chart for Atlassian Confluence Server.
 type: application
-version: 5.5.17
+version: 5.5.18
 appVersion: 8.5.18
+deprecated: true
 home: https://www.atlassian.com/software/confluence
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/confluence-server/icon.png
 keywords:
@@ -17,9 +18,6 @@ sources:
   - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server
   - https://hub.docker.com/r/atlassian/confluence-server
   - https://github.com/stevehipwell/helm-charts/
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
 dependencies:
   - name: postgresql
     version: 12.12.10
@@ -28,5 +26,5 @@ dependencies:
 annotations:
   artifacthub.io/alternativeName: confluence
   artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _Confluence Server_ OCI image to [v8.5.18](https://confluence.atlassian.com/doc/confluence-8-5-release-notes-1252010185.html)."
+    - kind: deprecated
+      description: "This chart has been deprecated as Confluence Server is no longer a supported product."

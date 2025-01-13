@@ -14,10 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v5.12.6] - 2025-01-13
+
 ### Changed
 
 - Updated the _PostgreSQL_ dependency ot come from an OCI registry.
 - Switched to using the port name for ingress.
+
+### Deprecated
+
+- This chart has been deprecated as Jira Server is no longer a supported product. ([#1110](https://github.com/stevehipwell/helm-charts/pull/1110)) _@stevehipwell_
 
 ## [v5.12.5] - 2024-03-13
 
@@ -521,6 +527,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/jira-software
+[v5.12.6]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.6
 [v5.12.5]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.5
 [v5.12.4]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.4
 [v5.12.3]: https://github.com/stevehipwell/helm-charts/releases/tag/jira-software-5.12.3
