@@ -11895,6 +11895,44 @@ entries:
       artifacthub.io/alternativeName: jira
       artifacthub.io/changes: |
         - kind: changed
+          description: "Updated the _PostgreSQL_ dependency ot come from an OCI registry."
+        - kind: changed
+          description: "Switched to using the port name for ingress."
+        - kind: deprecated
+          description: "This chart has been deprecated as Jira Server is no longer a supported product."
+    apiVersion: v2
+    appVersion: 9.12.5
+    created: "2025-01-13T17:14:46.20260042Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://docker.io/bitnamicharts
+      version: 12.12.10
+    deprecated: true
+    description: Helm chart for Atlassian Jira Software.
+    digest: 915b11dd16e45fa67ccef25ef103574fdd623f0f994f74ae438bec50b04fc4fb
+    home: https://www.atlassian.com/software/jira
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/jira-software/icon.png
+    keywords:
+    - jira
+    - jira-software
+    - atlassian
+    - agile
+    - project
+    - management
+    name: jira-software
+    sources:
+    - https://bitbucket.org/atlassian-docker/docker-atlassian-jira/
+    - https://hub.docker.com/r/atlassian/jira-software/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/jira-software-5.12.6/jira-software-5.12.6.tgz
+    version: 5.12.6
+  - annotations:
+      artifacthub.io/alternativeName: jira
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Updated the _Jira Software_ OCI image to [v9.12.5](https://confluence.atlassian.com/jirasoftware/issues-resolved-in-9-12-0-1318887015.html)."
     apiVersion: v2
     appVersion: 9.12.5
@@ -27825,4 +27863,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-01-13T17:13:58.306886709Z"
+generated: "2025-01-13T17:14:46.203726689Z"
