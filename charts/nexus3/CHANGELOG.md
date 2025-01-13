@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v5.6.0] - 2025-01-13
+
+### Added
+
+- Added a default value of `"default"` for users and roles where this is undefined. ([#1109](https://github.com/stevehipwell/helm-charts/pull/1109)) _@stevehipwell_
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.76.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.76.0-03). ([#1109](https://github.com/stevehipwell/helm-charts/pull/1109)) _@stevehipwell_
+
 ## [v5.5.1] - 2024-12-06
 
 ### Changed
@@ -769,6 +779,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.6.0
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.5.0
 [v5.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.4.1
