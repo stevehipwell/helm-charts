@@ -14,6 +14,8 @@
 
 ## [UNRELEASED]
 
+## [v1.7.2] - 2025-01-14
+
 ### Fixed
 
 - Fixed incorrect cert-manager ca-injection target in mutatingwebhookconfiguration. ([#1106](https://github.com/stevehipwell/helm-charts/pull/1106)) _@PaulFarver_
@@ -108,6 +110,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.7.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.2
 [v1.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.1
 [v1.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.0
 [v1.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.6.2
