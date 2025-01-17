@@ -2,8 +2,8 @@ apiVersion: v2
 name: vertical-pod-autoscaler
 description: Helm chart for the Vertical Pod Autoscaler.
 type: application
-version: 1.7.2
-appVersion: 1.2.1
+version: 1.7.3
+appVersion: 1.2.2
 keywords:
   - kubernetes
   - autoscale
@@ -31,7 +31,5 @@ annotations:
       displayName: VerticalPodAutoscaler
       description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
   artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for setting the `unhealthyPodEvictionPolicy` value for the `PodDisruptionBudget` via the `<component>.podDisruptionBudget.unhealthyPodEvictionPolicy` value on _Kubernetes_ `1.27` or higher clusters."
     - kind: changed
-      description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.2.1](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.2.1)."
+      description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [v1.2.2](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.2.2)."
