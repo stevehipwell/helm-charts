@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.6.1] - 2025-01-21
+
+### Fixed
+
+- Fixed user configuration bug ([#1115](https://github.com/stevehipwell/helm-charts/issues/1115)). ([#1116](https://github.com/stevehipwell/helm-charts/pull/1116)) _@stevehipwell_
+
 ## [v5.6.0] - 2025-01-13
 
 ### Added
@@ -779,6 +785,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.6.1
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.6.0
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.5.0
