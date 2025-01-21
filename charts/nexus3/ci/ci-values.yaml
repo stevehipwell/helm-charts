@@ -66,6 +66,11 @@ config:
       privileges: []
       roles:
         - nx-admin
+    - id: test-role
+      name: test
+      description: test role
+      privileges: []
+      roles: []
   users:
     - userId: test
       firstName: Test
@@ -83,7 +88,6 @@ config:
       firstName: Test2
       lastName: User
       emailAddress: test2@example.org
-      source: default
       status: active
       roles:
         - nx-anonymous

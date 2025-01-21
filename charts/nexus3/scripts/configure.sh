@@ -183,7 +183,7 @@ echo "Configuring users..."
 for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
   if [[ -f "${json_file}" ]]; then
     id="$(jq -r '.userId' "${json_file}")"
-    source="$(jq -r '.source // "default' "${json_file}")"
+    source="$(jq -r '.source // "default"' "${json_file}")"
 
     out_file="$(mktemp -p "${tmp_dir}")"
     status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/users/?userId=${id}&source=${source}")
