@@ -15305,6 +15305,37 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "Fixed user configuration bug."
+    apiVersion: v2
+    appVersion: 3.76.0
+    created: "2025-01-21T10:08:12.047265744Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: d01bff9717be4d2e85eb292019c52f96393b7028d3e147fed550e43837ca4f0b
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.6.1/nexus3-5.6.1.tgz
+    version: 5.6.1
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
         - kind: added
           description: "Added a default value of `default` for users and roles where this is undefined."
         - kind: changed
@@ -27943,4 +27974,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-01-17T14:24:45.112240242Z"
+generated: "2025-01-21T10:08:12.048466297Z"
