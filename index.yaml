@@ -15305,6 +15305,37 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |
+        - kind: changed
+          description: "Updated the _Nexus3_ OCI image to [v3.76.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.76.1-01)."
+    apiVersion: v2
+    appVersion: 3.76.1
+    created: "2025-01-24T13:33:37.021439998Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 015c0c9a400cc9960c4c3c005f6df27cbafda25b68f3cc76fb8bf90d091d3d81
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.6.2/nexus3-5.6.2.tgz
+    version: 5.6.2
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Fixed user configuration bug."
     apiVersion: v2
@@ -27974,4 +28005,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-01-21T10:08:12.048466297Z"
+generated: "2025-01-24T13:33:37.02300417Z"
