@@ -61,7 +61,6 @@ spec:
                     would take the highest precedence.
                     ANPs with no egress rules do not affect egress traffic.
 
-
                     Support: Core
                   items:
                     description: |-
@@ -81,7 +80,6 @@ spec:
                           If the pod is not selected by any NetworkPolicies then execution
                           is passed to any BaselineAdminNetworkPolicies that select the pod.
 
-
                           Support: Core
                         enum:
                           - Allow
@@ -95,7 +93,6 @@ spec:
                           improve observability, readability and error-reporting for any applied
                           AdminNetworkPolicies.
 
-
                           Support: Core
                         maxLength: 100
                         type: string
@@ -104,7 +101,6 @@ spec:
                           Ports allows for matching traffic based on port and protocols.
                           This field is a list of destination ports for the outgoing egress traffic.
                           If Ports is not set then the rule does not filter traffic via port.
-
 
                           Support: Core
                         items:
@@ -118,9 +114,7 @@ spec:
                               description: |-
                                 NamedPort selects a port on a pod(s) based on name.
 
-
                                 Support: Extended
-
 
                                 <network-policy-api:experimental>
                               type: string
@@ -128,13 +122,11 @@ spec:
                               description: |-
                                 Port selects a port on a pod(s) based on number.
 
-
                                 Support: Core
                               properties:
                                 port:
                                   description: |-
                                     Number defines a network port value.
-
 
                                     Support: Core
                                   format: int32
@@ -146,7 +138,6 @@ spec:
                                   description: |-
                                     Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must
                                     match. If not specified, this field defaults to TCP.
-
 
                                     Support: Core
                                   type: string
@@ -159,14 +150,12 @@ spec:
                                 PortRange selects a port range on a pod(s) based on provided start and end
                                 values.
 
-
                                 Support: Core
                               properties:
                                 end:
                                   description: |-
                                     End defines a network port that is the end of a port range, the End value
                                     must be greater than Start.
-
 
                                     Support: Core
                                   format: int32
@@ -179,14 +168,12 @@ spec:
                                     Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must
                                     match. If not specified, this field defaults to TCP.
 
-
                                     Support: Core
                                   type: string
                                 start:
                                   description: |-
                                     Start defines a network port that is the start of a port range, the Start
                                     value must be less than End.
-
 
                                     Support: Core
                                   format: int32
@@ -207,7 +194,6 @@ spec:
                           traffic then the specified action is applied.
                           This field must be defined and contain at least one item.
 
-
                           Support: Core
                         items:
                           description: |-
@@ -223,22 +209,17 @@ spec:
                                 Namespaces defines a way to select all pods within a set of Namespaces.
                                 Note that host-networked pods are not included in this type of peer.
 
-
                                 Support: Core
                               properties:
                                 matchExpressions:
-                                  description:
-                                    matchExpressions is a list of label selector
-                                    requirements. The requirements are ANDed.
+                                  description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                   items:
                                     description: |-
                                       A label selector requirement is a selector that contains values, a key, and an operator that
                                       relates the key and values.
                                     properties:
                                       key:
-                                        description:
-                                          key is the label key that the selector
-                                          applies to.
+                                        description: key is the label key that the selector applies to.
                                         type: string
                                       operator:
                                         description: |-
@@ -279,16 +260,12 @@ spec:
                                 or deny all IPv4 pod-to-pod traffic as well. If you don't want that,
                                 add a rule that Passes all pod traffic before the Networks rule.
 
-
                                 Each item in Networks should be provided in the CIDR format and should be
                                 IPv4 or IPv6, for example "10.0.0.0/8" or "fd00::/8".
 
-
                                 Networks can have upto 25 CIDRs specified.
 
-
                                 Support: Extended
-
 
                                 <network-policy-api:experimental>
                               items:
@@ -299,10 +276,7 @@ spec:
                                 maxLength: 43
                                 type: string
                                 x-kubernetes-validations:
-                                  - message:
-                                      CIDR must be either an IPv4 or IPv6 address.
-                                      IPv4 address embedded in IPv6 addresses are not
-                                      supported
+                                  - message: CIDR must be either an IPv4 or IPv6 address. IPv4 address embedded in IPv6 addresses are not supported
                                     rule: self.contains(':') != self.contains('.')
                               maxItems: 25
                               minItems: 1
@@ -314,25 +288,19 @@ spec:
                                 the cluster. This field follows standard label selector
                                 semantics; if present but empty, it selects all Nodes.
 
-
                                 Support: Extended
-
 
                                 <network-policy-api:experimental>
                               properties:
                                 matchExpressions:
-                                  description:
-                                    matchExpressions is a list of label selector
-                                    requirements. The requirements are ANDed.
+                                  description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                   items:
                                     description: |-
                                       A label selector requirement is a selector that contains values, a key, and an operator that
                                       relates the key and values.
                                     properties:
                                       key:
-                                        description:
-                                          key is the label key that the selector
-                                          applies to.
+                                        description: key is the label key that the selector applies to.
                                         type: string
                                       operator:
                                         description: |-
@@ -369,7 +337,6 @@ spec:
                                 a set of namespaces. Note that host-networked pods
                                 are not included in this type of peer.
 
-
                                 Support: Core
                               properties:
                                 namespaceSelector:
@@ -378,19 +345,14 @@ spec:
                                     it selects all Namespaces.
                                   properties:
                                     matchExpressions:
-                                      description:
-                                        matchExpressions is a list of label
-                                        selector requirements. The requirements are
-                                        ANDed.
+                                      description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                       items:
                                         description: |-
                                           A label selector requirement is a selector that contains values, a key, and an operator that
                                           relates the key and values.
                                         properties:
                                           key:
-                                            description:
-                                              key is the label key that the
-                                              selector applies to.
+                                            description: key is the label key that the selector applies to.
                                             type: string
                                           operator:
                                             description: |-
@@ -427,19 +389,14 @@ spec:
                                     it selects all Pods.
                                   properties:
                                     matchExpressions:
-                                      description:
-                                        matchExpressions is a list of label
-                                        selector requirements. The requirements are
-                                        ANDed.
+                                      description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                       items:
                                         description: |-
                                           A label selector requirement is a selector that contains values, a key, and an operator that
                                           relates the key and values.
                                         properties:
                                           key:
-                                            description:
-                                              key is the label key that the
-                                              selector applies to.
+                                            description: key is the label key that the selector applies to.
                                             type: string
                                           operator:
                                             description: |-
@@ -483,12 +440,8 @@ spec:
                       - to
                     type: object
                     x-kubernetes-validations:
-                      - message:
-                          networks/nodes peer cannot be set with namedPorts since
-                          there are no namedPorts for networks/nodes
-                        rule:
-                          "!(self.to.exists(peer, has(peer.networks) || has(peer.nodes))
-                          && has(self.ports) && self.ports.exists(port, has(port.namedPort)))"
+                      - message: networks/nodes peer cannot be set with namedPorts since there are no namedPorts for networks/nodes
+                        rule: '!(self.to.exists(peer, has(peer.networks) || has(peer.nodes)) && has(self.ports) && self.ports.exists(port, has(port.namedPort)))'
                   maxItems: 100
                   type: array
                 ingress:
@@ -500,7 +453,6 @@ spec:
                     is written. Thus, a rule that appears at the top of the ingress rules
                     would take the highest precedence.
                     ANPs with no ingress rules do not affect ingress traffic.
-
 
                     Support: Core
                   items:
@@ -520,7 +472,6 @@ spec:
                           If the pod is not selected by any NetworkPolicies then execution
                           is passed to any BaselineAdminNetworkPolicies that select the pod.
 
-
                           Support: Core
                         enum:
                           - Allow
@@ -533,7 +484,6 @@ spec:
                           If any AdminNetworkPolicyIngressPeer matches the source of incoming
                           traffic then the specified action is applied.
                           This field must be defined and contain at least one item.
-
 
                           Support: Core
                         items:
@@ -550,22 +500,17 @@ spec:
                                 Namespaces defines a way to select all pods within a set of Namespaces.
                                 Note that host-networked pods are not included in this type of peer.
 
-
                                 Support: Core
                               properties:
                                 matchExpressions:
-                                  description:
-                                    matchExpressions is a list of label selector
-                                    requirements. The requirements are ANDed.
+                                  description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                   items:
                                     description: |-
                                       A label selector requirement is a selector that contains values, a key, and an operator that
                                       relates the key and values.
                                     properties:
                                       key:
-                                        description:
-                                          key is the label key that the selector
-                                          applies to.
+                                        description: key is the label key that the selector applies to.
                                         type: string
                                       operator:
                                         description: |-
@@ -602,7 +547,6 @@ spec:
                                 a set of namespaces. Note that host-networked pods
                                 are not included in this type of peer.
 
-
                                 Support: Core
                               properties:
                                 namespaceSelector:
@@ -611,19 +555,14 @@ spec:
                                     it selects all Namespaces.
                                   properties:
                                     matchExpressions:
-                                      description:
-                                        matchExpressions is a list of label
-                                        selector requirements. The requirements are
-                                        ANDed.
+                                      description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                       items:
                                         description: |-
                                           A label selector requirement is a selector that contains values, a key, and an operator that
                                           relates the key and values.
                                         properties:
                                           key:
-                                            description:
-                                              key is the label key that the
-                                              selector applies to.
+                                            description: key is the label key that the selector applies to.
                                             type: string
                                           operator:
                                             description: |-
@@ -660,19 +599,14 @@ spec:
                                     it selects all Pods.
                                   properties:
                                     matchExpressions:
-                                      description:
-                                        matchExpressions is a list of label
-                                        selector requirements. The requirements are
-                                        ANDed.
+                                      description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                       items:
                                         description: |-
                                           A label selector requirement is a selector that contains values, a key, and an operator that
                                           relates the key and values.
                                         properties:
                                           key:
-                                            description:
-                                              key is the label key that the
-                                              selector applies to.
+                                            description: key is the label key that the selector applies to.
                                             type: string
                                           operator:
                                             description: |-
@@ -718,7 +652,6 @@ spec:
                           improve observability, readability and error-reporting for any applied
                           AdminNetworkPolicies.
 
-
                           Support: Core
                         maxLength: 100
                         type: string
@@ -729,7 +662,6 @@ spec:
                           the pods selected for this policy i.e the subject of the policy.
                           So it matches on the destination port for the ingress traffic.
                           If Ports is not set then the rule does not filter traffic via port.
-
 
                           Support: Core
                         items:
@@ -743,9 +675,7 @@ spec:
                               description: |-
                                 NamedPort selects a port on a pod(s) based on name.
 
-
                                 Support: Extended
-
 
                                 <network-policy-api:experimental>
                               type: string
@@ -753,13 +683,11 @@ spec:
                               description: |-
                                 Port selects a port on a pod(s) based on number.
 
-
                                 Support: Core
                               properties:
                                 port:
                                   description: |-
                                     Number defines a network port value.
-
 
                                     Support: Core
                                   format: int32
@@ -771,7 +699,6 @@ spec:
                                   description: |-
                                     Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must
                                     match. If not specified, this field defaults to TCP.
-
 
                                     Support: Core
                                   type: string
@@ -784,14 +711,12 @@ spec:
                                 PortRange selects a port range on a pod(s) based on provided start and end
                                 values.
 
-
                                 Support: Core
                               properties:
                                 end:
                                   description: |-
                                     End defines a network port that is the end of a port range, the End value
                                     must be greater than Start.
-
 
                                     Support: Core
                                   format: int32
@@ -804,14 +729,12 @@ spec:
                                     Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must
                                     match. If not specified, this field defaults to TCP.
 
-
                                     Support: Core
                                   type: string
                                 start:
                                   description: |-
                                     Start defines a network port that is the start of a port range, the Start
                                     value must be less than End.
-
 
                                     Support: Core
                                   format: int32
@@ -839,7 +762,6 @@ spec:
                     BaselineAdminNetworkPolicy rules
                     The behavior is undefined if two ANP objects have same priority.
 
-
                     Support: Core
                   format: int32
                   maximum: 1000
@@ -850,7 +772,6 @@ spec:
                     Subject defines the pods to which this AdminNetworkPolicy applies.
                     Note that host-networked pods are not included in subject selection.
 
-
                     Support: Core
                   maxProperties: 1
                   minProperties: 1
@@ -859,18 +780,14 @@ spec:
                       description: Namespaces is used to select pods via namespace selectors.
                       properties:
                         matchExpressions:
-                          description:
-                            matchExpressions is a list of label selector
-                            requirements. The requirements are ANDed.
+                          description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                           items:
                             description: |-
                               A label selector requirement is a selector that contains values, a key, and an operator that
                               relates the key and values.
                             properties:
                               key:
-                                description:
-                                  key is the label key that the selector
-                                  applies to.
+                                description: key is the label key that the selector applies to.
                                 type: string
                               operator:
                                 description: |-
@@ -902,9 +819,7 @@ spec:
                       type: object
                       x-kubernetes-map-type: atomic
                     pods:
-                      description:
-                        Pods is used to select pods via namespace AND pod
-                        selectors.
+                      description: Pods is used to select pods via namespace AND pod selectors.
                       properties:
                         namespaceSelector:
                           description: |-
@@ -912,18 +827,14 @@ spec:
                             it selects all Namespaces.
                           properties:
                             matchExpressions:
-                              description:
-                                matchExpressions is a list of label selector
-                                requirements. The requirements are ANDed.
+                              description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                               items:
                                 description: |-
                                   A label selector requirement is a selector that contains values, a key, and an operator that
                                   relates the key and values.
                                 properties:
                                   key:
-                                    description:
-                                      key is the label key that the selector
-                                      applies to.
+                                    description: key is the label key that the selector applies to.
                                     type: string
                                   operator:
                                     description: |-
@@ -960,18 +871,14 @@ spec:
                             it selects all Pods.
                           properties:
                             matchExpressions:
-                              description:
-                                matchExpressions is a list of label selector
-                                requirements. The requirements are ANDed.
+                              description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                               items:
                                 description: |-
                                   A label selector requirement is a selector that contains values, a key, and an operator that
                                   relates the key and values.
                                 properties:
                                   key:
-                                    description:
-                                      key is the label key that the selector
-                                      applies to.
+                                    description: key is the label key that the selector applies to.
                                     type: string
                                   operator:
                                     description: |-
@@ -1016,17 +923,7 @@ spec:
               properties:
                 conditions:
                   items:
-                    description:
-                      "Condition contains details for one aspect of the current
-                      state of this API Resource.\n---\nThis struct is intended for
-                      direct use as an array at the field path .status.conditions.  For
-                      example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
-                      observations of a foo's current state.\n\t    // Known .status.conditions.type
-                      are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
-                      +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
-                      \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
-                      patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
-                      \   // other fields\n\t}"
+                    description: "Condition contains details for one aspect of the current state of this API Resource.\n---\nThis struct is intended for direct use as an array at the field path .status.conditions.  For example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the observations of a foo's current state.\n\t    // Known .status.conditions.type are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    // +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t    // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t    // other fields\n\t}"
                     properties:
                       lastTransitionTime:
                         description: |-
