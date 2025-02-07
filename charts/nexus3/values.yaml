@@ -264,8 +264,8 @@ license:
   key: nexus.license
 
 # -- _Nexus3_ properties.
-properties:
-  # - nexus.golang.hosted=true
+properties: []
+# - nexus.golang.hosted=true
 
 # -- _Nexus3_ store properties.
 storeProperties: []
