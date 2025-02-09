@@ -71,6 +71,7 @@ helm upgrade --install plantuml stevehipwell/plantuml --version 3.36.0
 | ingress.enabled | bool | `false` | If `true`, create an `Ingress` resource. |
 | ingress.hosts | list | See _values.yaml_ | Ingress hosts. |
 | ingress.ingressClassName | string | `nil` | Ingress class name. |
+| ingress.path | string | `"/"` | Ingress path. |
 | ingress.tls | list | See _values.yaml_ | Ingress TLS. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
 | maxUnavailable | int | `0` | **DEPRECATED** - If set greater than `0` and `podDisruptionBudget.enabled` is `false`, create a `PodDisruptionBudget` resource. |
