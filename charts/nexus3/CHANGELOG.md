@@ -14,11 +14,16 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for running manual maintenance by setting the `manualMaintenanceMode` values; this will run a custom command on the default container, reduce the termination grace period to 10s and remove the probes so the pod doesn't get restarted. ([#1126](https://github.com/stevehipwell/helm-charts/pull/1126)) _@stevehipwell_
+
 ## [v5.7.2] - 2025-02-26
 
 ### Changed
 
 - Updated the _Nexus3_ OCI image to [v3.77.2](https://github.com/sonatype/nexus-public/releases/tag/release-3.77.2-02). ([#1132](https://github.com/stevehipwell/helm-charts/pull/1132)) _@stevehipwell_
+
 
 ## [v5.7.1] - 2025-02-07
 

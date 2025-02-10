@@ -56,7 +56,7 @@ spec:
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ ternary 10 .Values.terminationGracePeriodSeconds .Values.manualMaintenanceMode.enabled }}
       initContainers:
       {{- if .Values.caCerts.enabled }}
         - name: import-ca-certs
@@ -228,6 +228,10 @@ spec:
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+        {{- if .Values.manualMaintenanceMode.enabled }}
+          command: {{ toJson .Values.manualMaintenanceMode.command }}
+          args: {{ toJson .Values.manualMaintenanceMode.args }}
+        {{- end }}
           ports:
             - name: http
               containerPort: 8081
@@ -237,12 +241,14 @@ spec:
               containerPort: {{ .containerPort }}
               protocol: TCP
           {{- end }}
+        {{- if not .Values.manualMaintenanceMode.enabled }}
           startupProbe:
             {{- toYaml .Values.startupProbe | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
+        {{- end }}
           volumeMounts:
             - mountPath: /tmp
               name: temp

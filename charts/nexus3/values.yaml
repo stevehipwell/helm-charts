@@ -468,5 +468,13 @@ config:
   #     attributes:
   #       blobStoreName: "default"
 
+manualMaintenanceMode:
+  # -- If `true`, enable manual maintenance mode. This is running the default container with a custom command, reducing the termination grace period to 10s and disabling the probes.
+  enabled: false
+  # -- The command to run in manual maintenance mode.
+  command: ["/bin/bash", "-c"]
+  # -- The arguments to pass to the command in manual maintenance mode.
+  args: ["while true; do sleep 60; done"]
+
 # @ignored
 testResources: false
