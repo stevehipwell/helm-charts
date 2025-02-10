@@ -22,7 +22,7 @@ spec:
     - host: {{ quote . }}
       http:
         paths:
-          - path: /
+          - path: {{ $.Values.ingress.path }}
             {{- if $ingressSupportsPathType }}
             pathType: Prefix
             {{- end }}

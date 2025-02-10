@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added support for setting the `path` value for the `Ingress` via the `ingress.path` value. ([#1125](https://github.com/stevehipwell/helm-charts/pull/1125)) _@ChaosKid42_
+
 ## [v3.36.0] - 2025-01-08
 
 ### Changed

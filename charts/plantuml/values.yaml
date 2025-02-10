@@ -55,6 +55,8 @@ ingress:
   # @default -- See _values.yaml_
   hosts: []
   #   - plantuml.local
+  # -- (string) Ingress path.
+  path: /
   # -- (list) Ingress TLS.
   # @default -- See _values.yaml_
   tls: []
