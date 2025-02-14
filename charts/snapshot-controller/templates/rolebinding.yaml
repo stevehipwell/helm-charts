@@ -1,0 +1,14 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ printf "%s-leaderelection" (include "snapshot-controller.fullname" .) }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "snapshot-controller.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ printf "%s-leaderelection" (include "snapshot-controller.fullname" .) }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "snapshot-controller.serviceAccountName" . }}

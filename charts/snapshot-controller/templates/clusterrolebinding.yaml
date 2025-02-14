@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "snapshot-controller.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "snapshot-controller.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "snapshot-controller.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "snapshot-controller.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
