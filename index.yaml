@@ -21029,6 +21029,37 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-1.0.0/plantuml-1.0.0.tgz
     version: 1.0.0
+  snapshot-controller:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Initial release."
+    apiVersion: v2
+    appVersion: 8.2.0
+    created: "2025-02-14T15:44:41.344249952Z"
+    description: Helm chart for the External Snapshotter Snapshot Controller. The
+      CSI snapshotter is part of Kubernetes implementation of Container Storage Interface
+      (CSI) and implements both the volume snapshot and the volume group snapshot
+      feature.
+    digest: 68872594d0f8740b203c0ee6ee3315d1f476c73e3041ab3fcd67668040816c88
+    home: https://github.com/kubernetes-csi/external-snapshotter/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/external-snapshotter/icon.png
+    keywords:
+    - kubernetes
+    - csi
+    - storage
+    - snapshot
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: snapshot-controller
+    sources:
+    - https://github.com/kubernetes-csi/external-snapshotter/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/snapshot-controller-0.1.0/snapshot-controller-0.1.0.tgz
+    version: 0.1.0
   sonarqube:
   - annotations:
       artifacthub.io/changes: |
@@ -28294,4 +28325,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-02-14T11:30:05.122404819Z"
+generated: "2025-02-14T15:44:41.345404374Z"
