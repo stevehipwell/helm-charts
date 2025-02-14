@@ -1,9 +1,0 @@
-# installPlugins:
-#   enabled: true
-#   plugins:
-#     - name: sonarqube-community-branch-plugin
-#       url: https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.12.0/sonarqube-community-branch-plugin-1.12.0.jar
-
-# envVars:
-#   javaAdditionalOptionsWeb: "-javaagent:./extensions/plugins/sonarqube-community-branch-plugin.jar=web"
-#   javaAdditionalOptionsCE: "-javaagent:./extensions/plugins/sonarqube-community-branch-plugin.jar=ce"
