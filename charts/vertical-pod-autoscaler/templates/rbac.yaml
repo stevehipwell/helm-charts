@@ -404,6 +404,9 @@ rules:
       - coordination.k8s.io
     resourceNames:
       - vpa-updater
+    {{- if not (eq .Values.updater.leaderElect.name "vpa-updater") }}
+      - {{ .Values.updater.leaderElect.name }}
+    {{- end }}
     resources:
       - leases
     verbs:
@@ -447,6 +450,9 @@ rules:
       - coordination.k8s.io
     resourceNames:
       - vpa-recommender
+    {{- if not (eq .Values.recommender.leaderElect.name "vpa-recommender") }}
+      - {{ .Values.recommender.leaderElect.name }}
+    {{- end }}
     resources:
       - leases
     verbs:

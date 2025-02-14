@@ -187,6 +187,10 @@ recommender:
   # -- Number of _Recommender_ replicas to create.
   replicas: 1
 
+  leaderElect:
+    # -- Name of resource object that is used for locking during leader election for the _Recommender_.
+    name: vpa-recommender
+
   # -- Update strategy for the _Recommender_.
   updateStrategy: {}
 
@@ -303,6 +307,10 @@ updater:
 
   # -- Number of _Updater_ replicas to create.
   replicas: 1
+
+  leaderElect:
+    # -- Name of resource object that is used for locking during leader election for the _Updater_.
+    name: vpa-updater
 
   # -- Update strategy for the _Updater_.
   updateStrategy: {}
