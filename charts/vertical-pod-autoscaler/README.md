@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler
 
-![Version: 1.7.3](https://img.shields.io/badge/Version-1.7.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.2](https://img.shields.io/badge/AppVersion-1.2.2-informational?style=flat-square)
+![Version: 1.8.0](https://img.shields.io/badge/Version-1.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
 The [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/) (VPA) frees the users from necessity of setting up-to-date resource limits and requests for the containers in their pods. When configured, it will set the requests automatically based on usage and thus allow proper scheduling onto nodes so that appropriate resource amount is available for each pod. It will also maintain ratios between limits and requests that were specified in initial containers configuration.
 
@@ -33,7 +33,7 @@ This chart manages the `MutatingWebhookConfiguration` outside of the workload so
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.7.3
+helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.8.0
 ```
 
 #### Verification
@@ -41,7 +41,7 @@ helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-c
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.7.3
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.8.0
 ```
 
 ### Non-OCI Repository
@@ -50,7 +50,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.7.3
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.8.0
 ```
 
 ## Values
@@ -102,6 +102,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | recommender.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Recommender_ default container. |
 | recommender.image.repository | string | `"registry.k8s.io/autoscaling/vpa-recommender"` | Image repository for the _Recommender_ default container. |
 | recommender.image.tag | string | `nil` | Image tag for the _Recommender_ default container; this will default to `.Chart.AppVersion` if not set. |
+| recommender.leaderElect.name | string | `"vpa-recommender"` | Name of resource object that is used for locking during leader election for the _Recommender_. |
 | recommender.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Recommender_ default container. |
 | recommender.nodeSelector | object | `{}` | Node selector labels for scheduling the _Recommender_. |
 | recommender.podAnnotations | object | `{}` | Annotations to add to the _Recommender_ pod. |
@@ -135,6 +136,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | updater.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Updater_ default container. |
 | updater.image.repository | string | `"registry.k8s.io/autoscaling/vpa-updater"` | Image repository for the _Updater_ default container. |
 | updater.image.tag | string | `nil` | Image tag for the _Updater_ default container; this will default to `.Chart.AppVersion` if not set. |
+| updater.leaderElect.name | string | `"vpa-updater"` | Name of resource object that is used for locking during leader election for the _Updater_. |
 | updater.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Updater_ default container. |
 | updater.nodeSelector | object | `{}` | Node selector labels for scheduling the _Updater_. |
 | updater.podAnnotations | object | `{}` | Annotations to add to the _Updater_ pod. |

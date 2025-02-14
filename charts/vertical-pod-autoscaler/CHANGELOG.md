@@ -14,7 +14,17 @@
 
 ## [UNRELEASED]
 
-## [v1.7.3] - 2025-08-17
+## [v1.8.0] - 2025-02-14
+
+### Added
+
+- Added support for changing the name of the leader election resource for the _Recommender_ & _Updater_ components via the `recommender.leaderElect.name` & `updater.leaderElect.name` values. If you're running VPA on GKE you will need to set `recommender.leaderElect.name` to an alternative value due to conflicts it creates with the built-in HPA/VPA deployment in GKE. ([#1128](https://github.com/stevehipwell/helm-charts/pull/1128)) _@stevehipwell_
+
+### Changed
+
+- Updated the _Vertical Pod Autoscaler_ OCI image version to [`v1.3.0`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.3.0). ([#1128](https://github.com/stevehipwell/helm-charts/pull/1128)) _@stevehipwell_
+
+## [v1.7.3] - 2025-01-17
 
 ### Changed
 
@@ -116,6 +126,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.8.0
 [v1.7.3]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.3
 [v1.7.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.2
 [v1.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.1

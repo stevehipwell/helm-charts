@@ -65,6 +65,7 @@ spec:
             - --leader-elect=true
             - --leader-elect-resource-lock=leases
             - {{ printf "--leader-elect-resource-namespace=%s" .Release.Namespace }}
+            - {{ printf "--leader-elect-resource-name=%s" .Values.updater.leaderElect.name }}
           {{- end }}
           {{- with .Values.updater.extraArgs }}
             {{- toYaml . | nindent 12 }}
