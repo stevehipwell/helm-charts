@@ -1,0 +1,153 @@
+# Default values for vertical-pod-autoscaler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Image pull secrets.
+imagePullSecrets: []
+
+# -- (string) Override the name of the chart.
+nameOverride:
+
+# -- (string) Override the full name of the chart.
+fullnameOverride:
+
+# -- Labels to add to all chart resources.
+commonLabels: {}
+
+serviceMonitor:
+  # -- If `true`, create a `ServiceMonitor` to support collecting metrics via the _Prometheus Operator_.
+  enabled: false
+  # -- Additional labels for the service monitor.
+  additionalLabels: {}
+  # -- Additional endpoint configuration for the service monitor endpoint.
+  endpointConfig: {}
+
+# -- Log level.
+logLevel: 5
+
+# -- Maximum interval between retries for CRD operations; in seconds.
+retryCrdIntervalMax: 30
+
+distributedSnapshotting:
+  # -- If `true`, enable distributed snapshotting.
+  enabled: false
+
+image:
+  # -- Image repository for the default container.
+  repository: registry.k8s.io/sig-storage/snapshot-controller
+  # -- (string) Image tag for the default container; this will default to `.Chart.AppVersion` if not set.
+  tag:
+  # -- Image pull policy for the default container.
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  # -- If `true`, create a new `ServiceAccount`.
+  create: true
+  # -- Labels to add to the service account.
+  labels: {}
+  # -- Annotations to add to the service account.
+  annotations: {}
+  # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
+  name:
+
+service:
+  # -- Labels to add to the service.
+  labels: {}
+  # -- Annotations to add to the service.
+  annotations: {}
+
+# -- Number of replicas to create.
+replicas: 1
+
+# -- Update strategy.
+updateStrategy: {}
+
+podDisruptionBudget:
+  # -- If `true`, create a `PodDisruptionBudget`.
+  enabled: false
+  # -- (string) Minimum number of available pods; either a number or a percentage.
+  minAvailable:
+  # -- (string) Minimum number of unavailable pods; either a number or a percentage.
+  maxUnavailable:
+  # -- (string) Unhealthy pod eviction policy PDB.
+  unhealthyPodEvictionPolicy:
+
+# -- Labels to add to the pod.
+podLabels: {}
+
+# -- Annotations to add to the pod.
+podAnnotations: {}
+
+# -- Security context for the pod.
+# @default -- See _values.yaml_
+podSecurityContext:
+  runAsNonRoot: true
+  fsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- (string) Priority class name.
+priorityClassName:
+
+# -- (int) Termination grace period; in seconds.
+terminationGracePeriodSeconds:
+
+# -- Security context for the default container.
+# @default -- See _values.yaml_
+securityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  capabilities:
+    drop:
+      - ALL
+
+# -- Additional environment variables for the default container.
+extraEnv: []
+
+# -- Additional args for the default container.
+extraArgs: []
+
+# -- Liveness probe configuration for the default container; this only works where there are multiple replicas.
+# @default -- See _values.yaml_
+livenessProbe:
+  httpGet:
+    path: /healthz/leader-election
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 0
+  periodSeconds: 30
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 10
+
+# -- Readiness probe configuration for the default container; this only works where there are multiple replicas.
+# @default -- See _values.yaml_
+readinessProbe:
+  httpGet:
+    path: /healthz/leader-election
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 10
+
+# -- Resources for the default container.
+resources: {}
+
+# -- Node selector labels for scheduling.
+nodeSelector: {}
+
+# -- Affinity settings for scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels.
+affinity: {}
+
+# -- Topology spread constraints for scheduling. If an explicit label selector is not provided one will be created from the pod selector labels.
+topologySpreadConstraints: []
+
+# -- Node taints the pod will be tolerate for scheduling.
+tolerations: []

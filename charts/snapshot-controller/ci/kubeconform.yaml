@@ -1,0 +1,19 @@
+serviceMonitor:
+  enabled: true
+
+distributedSnapshotting:
+  enabled: true
+
+replicas: 2
+
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1024Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi

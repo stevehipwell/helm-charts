@@ -8,6 +8,10 @@ on:
     paths:
       - charts/**
 
+concurrency:
+  group: pr-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions: read-all
 
 # curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | .[].latest] | join(",")'

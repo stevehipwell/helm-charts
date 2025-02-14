@@ -1,0 +1,23 @@
+apiVersion: v2
+name: snapshot-controller
+description: Helm chart for the External Snapshotter Snapshot Controller. The CSI snapshotter is part of Kubernetes implementation of Container Storage Interface (CSI) and implements both the volume snapshot and the volume group snapshot feature.
+type: application
+version: 0.1.0
+appVersion: 8.2.0
+keywords:
+  - kubernetes
+  - csi
+  - storage
+  - snapshot
+home: https://github.com/kubernetes-csi/external-snapshotter/
+icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/external-snapshotter/icon.png
+sources:
+  - https://github.com/kubernetes-csi/external-snapshotter/
+  - https://github.com/stevehipwell/helm-charts/
+maintainers:
+  - name: stevehipwell
+    email: steve.hipwell@gmail.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: "Initial release."
