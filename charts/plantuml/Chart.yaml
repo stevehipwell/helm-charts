@@ -17,7 +17,4 @@ sources:
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the PlantUML OCI image to v1.2025.0."
+annotations: {}

@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - release-*
-    paths:
-      - charts/**
 
 concurrency:
   group: pr-${{ github.ref }}
@@ -14,12 +11,39 @@ concurrency:
 
 permissions: read-all
 
-# curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | .[].latest] | join(",")'
-
 jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    outputs:
+      k8s_versions: ${{ steps.setup.outputs.k8s_versions }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+
+      - name: Chart changes
+        id: changed
+        uses: tj-actions/changed-files@dcc7a0cba800f454d79fff4b993e8c3555bcc0a8 # v45.0.7
+        with:
+          files: charts/**
+
+      - name: Setup
+        id: setup
+        run: |
+          set -euo pipefail
+
+          k8s_versions="$(curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | .[].latest] | join(",")')"
+          echo "k8s_versions=${k8s_versions}" >> "${GITHUB_OUTPUT}"
+
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@generate-changlog-annotations # d53c1e50d94a748dc43233b2b0ea73b551610563 # v0.7.0
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@fdd22ff9583609c6c3dd0d4fd94a06252015a985 # v0.8.1
+    needs: setup
     permissions:
       contents: read
       id-token: write
@@ -32,5 +56,5 @@ jobs:
       changelog: true
       ah_lint: true
       kubeconform: true
-      kubeconform_k8s_versions: ${{ vars.K8S_VERSIONS }}
+      kubeconform_k8s_versions: ${{ needs.setup.outputs.k8s_versions }}
       helm_extra_args: "--timeout 600s"

@@ -17,7 +17,4 @@ sources:
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _cluster-proportional-autoscaler_ OCI image version to [v1.9.0](https://github.com/kubernetes-sigs/cluster-proportional-autoscaler/releases/tag/v1.9.0)."
+annotations: {}
