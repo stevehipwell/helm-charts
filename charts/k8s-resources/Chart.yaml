@@ -15,7 +15,4 @@ sources:
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: "Initial release."
+annotations: {}

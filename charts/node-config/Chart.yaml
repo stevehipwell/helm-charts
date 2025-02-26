@@ -14,9 +14,4 @@ sources:
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: "Added `rbac.create` & `rbac.rules` to configure a `ClusterRole` for the `ServiceAccount`."
-    - kind: changed
-      description: "Updated the `registry.k8s.io/pause` image to `3.10`."
+annotations: {}

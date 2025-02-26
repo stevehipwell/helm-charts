@@ -24,6 +24,3 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/alternativeName: tigera
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _Tigera Operator_ OCI image to [v1.36.5](https://github.com/tigera/operator/releases/tag/v1.36.5) (_Calico_ [v3.29.2](https://github.com/projectcalico/calico/releases/tag/v3.29.2))."

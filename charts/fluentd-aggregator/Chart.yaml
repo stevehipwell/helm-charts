@@ -20,6 +20,3 @@ maintainers:
     email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/alternativeName: fluentd
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated _Fluentd Aggregator_ OCI image to [v2.18.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.18.0) (_Fluentd_ [v1.18.0](https://github.com/fluent/fluentd/releases/tag/v1.18.0))."

@@ -20,7 +20,4 @@ sources:
 maintainers:
   - name: stevehipwell
     email: steve.hipwell@gmail.com
-annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: "Updated the _Thanos_ OCI image to [v0.37.2](https://github.com/thanos-io/thanos/releases/tag/v0.37.2)."
+annotations: {}

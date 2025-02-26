@@ -30,8 +30,3 @@ annotations:
       name: verticalpodautoscalers.autoscaling.k8s.io
       displayName: VerticalPodAutoscaler
       description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
-  artifacthub.io/changes: |
-    - kind: added
-      description: "Added support for changing the name of the leader election resource for the _Recommender_ & _Updater_ components via the `recommender.leaderElect.name` & `updater.leaderElect.name` values. If you're running VPA on GKE you will need to set `recommender.leaderElect.name` to an alternative value due to conflicts it creates with the built-in HPA/VPA deployment in GKE."
-    - kind: changed
-      description: "Updated the _Vertical Pod Autoscaler_ OCI image version to [`v1.3.0``](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.3.0)."

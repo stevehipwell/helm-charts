@@ -14,7 +14,7 @@ permissions: read-all
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@generate-changlog-annotations # d53c1e50d94a748dc43233b2b0ea73b551610563 # v0.7.0
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@fdd22ff9583609c6c3dd0d4fd94a06252015a985 # v0.8.1
     permissions:
       attestations: write
       contents: write
