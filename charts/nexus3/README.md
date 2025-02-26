@@ -104,6 +104,9 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.7.2
 | license.secret | string | `nil` | Name of the secret containing the license. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
 | logback.maxHistory | int | `30` | Maximum history for log files. |
+| manualMaintenanceMode.args | list | `["while true; do sleep 60; done"]` | The arguments to pass to the command in manual maintenance mode. |
+| manualMaintenanceMode.command | list | `["/bin/bash","-c"]` | The command to run in manual maintenance mode. |
+| manualMaintenanceMode.enabled | bool | `false` | If `true`, enable manual maintenance mode. This is running the default container with a custom command, reducing the termination grace period to 10s and disabling the probes. |
 | metrics.enabled | bool | `false` | If `true`, enable metrics. |
 | metrics.serviceMonitor.additionalLabels | object | `{}` | Additional labels for the `ServiceMonitor`. |
 | metrics.serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` resource to support the _Prometheus Operator_. |
