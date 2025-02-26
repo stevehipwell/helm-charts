@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.16.7] - 2025-02-26
+
+### Changed
+
+- Updated _Fluent Bit_ OCI image to [v3.2.7](https://github.com/fluent/fluent-bit/releases/tag/v3.2.7). ([#1131](https://github.com/stevehipwell/helm-charts/pull/1131)) _@stevehipwell_
+
 ## [v0.16.6] - 2025-02-12
 
 ### Changed
@@ -344,6 +350,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.16.7]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.7
 [v0.16.6]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.6
 [v0.16.5]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.5
 [v0.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.4
