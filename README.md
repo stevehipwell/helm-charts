@@ -26,19 +26,18 @@ You can then run `helm search repo stevehipwell` to see the charts.
 
 ## Charts
 
-- [confluence-server](./charts/confluence-server/README.md)
 - [fluent-bit-aggregator](./charts/fluent-bit-aggregator/README.md)
 - [fluent-bit-collector](./charts/fluent-bit-collector/README.md)
 - [fluentd-aggregator](./charts/fluentd-aggregator/README.md)
 - [istio-operator](./charts/istio-operator/README.md)
-- [jira-software](./charts/jira-software/README.md)
 - [k8s-resources](./charts/k8s-resources/README.md)
 - [kube-proxy](./charts/kube-proxy/README.md)
+- [node-config](./charts/node-config/README.md)
 - [nexus3](./charts/nexus3/README.md)
 - [node-config](./charts/node-config/README.md)
 - [overprovisioner](./charts/overprovisioner/README.md)
 - [plantuml](./charts/plantuml/README.md)
-- [sonarqube](./charts/sonarqube/README.md)
+- [snapshot-controller](./charts/snapshot-controller/README.md)
 - [thanos](./charts/thanos/README.md)
 - [tigera-operator](./charts/tigera-operator/README.md)
 - [vertical-pod-autoscaler](./charts/vertical-pod-autoscaler/README.md)
