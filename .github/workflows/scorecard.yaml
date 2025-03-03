@@ -12,7 +12,7 @@ permissions: read-all
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/generic-workflows/.github/workflows/scorecard.yaml@086743338187563958bd5aaeca24c871753b21ca # v0.3.6
+    uses: action-stars/generic-workflows/.github/workflows/scorecard.yaml@604510d403a3321d590358a555ca3bdfc02a56e6 # v0.4.0
     permissions:
       id-token: write
       security-events: write
