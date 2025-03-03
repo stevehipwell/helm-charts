@@ -19,6 +19,7 @@ jobs:
       run:
         shell: bash
     outputs:
+      changed: ${{ steps.changed.outputs.any_changed }}
       k8s_versions: ${{ steps.setup.outputs.k8s_versions }}
     steps:
       - name: Checkout
@@ -44,6 +45,7 @@ jobs:
     name: Reusable Workflow
     uses: action-stars/helm-workflows/.github/workflows/validate.yaml@fdd22ff9583609c6c3dd0d4fd94a06252015a985 # v0.8.1
     needs: setup
+    if: needs.setup.outputs.changed == 'true'
     permissions:
       contents: read
       id-token: write
