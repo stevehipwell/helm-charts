@@ -39,8 +39,24 @@ spec:
       {{- with .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
-      {{- if .Values.caCerts.enabled }}
       initContainers:
+        - name: plantuml-init
+          image: {{ include "plantuml.image" . }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: jettyhome
+              mountPath: /jettyhome
+          command: [sh, -cx]
+          args:
+            - >-
+              echo Copying Jetty home to volume;
+              ls -l /usr/local/jetty;
+              cp -r /usr/local/jetty/. /jettyhome/
+      {{- if .Values.caCerts.enabled }}
         - name: ca-certs
           image: adoptopenjdk:11-jdk-hotspot
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -93,6 +109,8 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: /tmp
+            - name: jettyhome
+              mountPath: /usr/local/jetty
           {{- if .Values.caCerts.enabled }}
             - name: ca-certs-keystore
               mountPath: /usr/local/openjdk-11/lib/security/cacerts
@@ -104,6 +122,8 @@ spec:
           {{- end }}
       volumes:
         - name: tmp
+          emptyDir: {}
+        - name: jettyhome
           emptyDir: {}
       {{- if .Values.caCerts.enabled }}
         - name: ca-certs-secret
