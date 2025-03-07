@@ -18,7 +18,7 @@
 
 ### Fixed
 
-- Fixed the name of the secret mounted for TLS certificates when using a custom Issuer with cert-manager. ([#1137](https://github.com/stevehipwell/helm-charts/issues/1137)) _@ahamlinman_
+- Fixed the name of the secret mounted for TLS certificates when using a custom Issuer with cert-manager. ([#1140](https://github.com/stevehipwell/helm-charts/issues/1140)) _@ahamlinman_
 
 ## [v1.8.0] - 2025-02-14
 
