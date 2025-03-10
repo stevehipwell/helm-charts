@@ -1,5 +1,6 @@
 # Nexus 3 Helm Chart Changelog
 
+<!-- markdownlint-disable-next-line MD052 -->
 > [!NOTE]
 > All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -13,6 +14,12 @@
 -->
 
 ## [UNRELEASED]
+
+## [v5.8.1] - 2025-03-10
+
+### Changed
+
+- Updated the _Nexus3_ OCI image to [v3.78.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.78.1-02). ([#1143](https://github.com/stevehipwell/helm-charts/pull/1143)) _@stevehipwell_
 
 ## [v5.8.0] - 2025-03-05
 
@@ -819,6 +826,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.1
 [v5.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.0
 [v5.7.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.7.2
 [v5.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.7.1
