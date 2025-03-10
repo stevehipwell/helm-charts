@@ -74,14 +74,22 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.env }}
           env:
+          {{- $hasOptsSet := false }}
+          {{- range $e := .Values.env }}
+          {{- $hasOptsSet = (or $hasOptsSet (eq $e.name "_JAVA_OPTIONS")) }}
+          {{- end }}
+          {{- if not $hasOptsSet }}
+            - name: _JAVA_OPTIONS
+              value: -Djava.util.prefs.systemRoot=/tmp/jetty -Djava.util.prefs.userRoot=/tmp/jetty
+          {{- end }}
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.args }}
+        {{- with .Values.args }}
           args:
             {{- toYaml . | nindent 12 }}
-          {{- end }}
+        {{- end }}
           ports:
             - name: http
               containerPort: 8080
