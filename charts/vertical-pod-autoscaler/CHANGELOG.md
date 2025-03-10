@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.8.1] - 2025-03-10
+
+### Fixed
+
+- Fixed the name of the secret mounted for TLS certificates when using a custom Issuer with cert-manager. ([#1140](https://github.com/stevehipwell/helm-charts/issues/1140)) _@ahamlinman_
+
 ## [v1.8.0] - 2025-02-14
 
 ### Added
@@ -126,6 +132,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.8.1
 [v1.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.8.0
 [v1.7.3]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.3
 [v1.7.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.7.2
