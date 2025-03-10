@@ -19664,6 +19664,40 @@ entries:
     version: 0.1.0
   plantuml:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: "Added support for setting the `path` value for the `Ingress` via the `ingress.path` value. ([#1125](https://github.com/stevehipwell/helm-charts/pull/1125)) _@ChaosKid42_"
+        - kind: added
+          description: "   -----"
+        - kind: added
+          description: "Added default value for `_JAVA_OPTIONS` to set `java.util.prefs.systemRoot` & `java.util.prefs.userRoot` to the temp dir. ([#1142](https://github.com/stevehipwell/helm-charts/pull/1142)) _@stevehipwell_"
+        - kind: changed
+          description: "Updated the _PlantUML_ OCI image to [v1.2025.2](https://github.com/plantuml/plantuml-server/releases/tag/v1.2025.2). ([#1142](https://github.com/stevehipwell/helm-charts/pull/1142)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 1.2025.2
+    created: "2025-03-10T10:28:27.092350315Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: 2ec36f13e6d58e52b241c897a812286f4830a848cc0d2e2dc7d6dc9de09b34c3
+    home: https://plantuml.com/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.37.0/plantuml-3.37.0.tgz
+    version: 3.37.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: "Updated the PlantUML OCI image to v1.2025.0."
@@ -28578,4 +28612,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-10T10:03:04.843748851Z"
+generated: "2025-03-10T10:28:27.094799975Z"
