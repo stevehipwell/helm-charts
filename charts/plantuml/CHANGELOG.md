@@ -1,7 +1,10 @@
 # PlantUML Helm Chart Changelog
 
+<!-- markdownlint-disable-next-line MD052 -->
 > [!NOTE]
 > All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+>
+> For the _PlantUML_ release changelog please see the [changes on the website](https://plantuml.com/changes).
 
 <!--
 ### Added - For new features.
@@ -14,21 +17,28 @@
 
 ## [UNRELEASED]
 
+## [v3.37.0] - 2025-03-10
+
 ### Added
 
 - Added support for setting the `path` value for the `Ingress` via the `ingress.path` value. ([#1125](https://github.com/stevehipwell/helm-charts/pull/1125)) _@ChaosKid42_
+- Added default value for `_JAVA_OPTIONS` to set `java.util.prefs.systemRoot` & `java.util.prefs.userRoot` to the temp dir. ([#1142](https://github.com/stevehipwell/helm-charts/pull/1142)) _@stevehipwell_
+
+### Changed
+
+- Updated the _PlantUML_ OCI image to [v1.2025.2](https://github.com/plantuml/plantuml-server/releases/tag/v1.2025.2). ([#1142](https://github.com/stevehipwell/helm-charts/pull/1142)) _@stevehipwell_
 
 ## [v3.36.0] - 2025-01-08
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2025.0](https://github.com/plantuml/plantuml-server/releases/tag/v1.2025.0) ([Changes](https://plantuml.com/changes)). ([#1105](https://github.com/stevehipwell/helm-charts/pull/1105)) _@stevehipwell_
+- Updated the _PlantUML_ OCI image to [v1.2025.0](https://github.com/plantuml/plantuml-server/releases/tag/v1.2025.0). ([#1105](https://github.com/stevehipwell/helm-charts/pull/1105)) _@stevehipwell_
 
 ## [v3.35.0] - 2024-11-20
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.8](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.8) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.8](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.8).
 
 ## [v3.34.0] - 2024-09-10
 
@@ -38,44 +48,44 @@
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.7](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.7) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.7](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.7).
 
 ## [v3.33.0] - 2024-07-08
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.6](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.6) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.6](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.6).
 
 ## [v3.32.0] - 2024-05-30
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.5](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.5) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.5](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.5).
 - Switched to using the port name for ingress.
 
 ## [v3.31.0] - 2024-04-09
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.4](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.4) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.4](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.4).
 
 ## [v3.30.0] - 2024-02-16
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.3](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.3) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.3](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.3).
 
 ## [v3.29.0] - 2024-02-16
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.2](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.2) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.2](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.2).
 
 ## [v3.28.0] - 2024-02-12
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2024.1](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.1) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2024.1](https://github.com/plantuml/plantuml-server/releases/tag/v1.2024.1).
 
 ## [v3.27.0] - 2023-12-13
 
@@ -88,7 +98,7 @@
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2023.13](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.13) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2023.13](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.13).
 - Changed the pod security policy defaults.
 - Changed the PlantUML container security policy defaults.
 - Changed the CA certificates init container security policy.
@@ -103,13 +113,13 @@
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2023.12](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.12) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2023.12](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.12).
 
 ## [v3.25.0] - 2023-07-20
 
 ### Changed
 
-- Updated the _PlantUML_ OCI image to [v1.2023.10](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.10) ([Changes](https://plantuml.com/changes)).
+- Updated the _PlantUML_ OCI image to [v1.2023.10](https://github.com/plantuml/plantuml-server/releases/tag/v1.2023.10).
 
 ## [v3.24.1] - 2023-07-13
 
@@ -443,6 +453,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.37.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.37.0
 [v3.36.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.36.0
 [v3.35.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.35.0
 [v3.34.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.34.0
