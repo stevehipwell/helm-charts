@@ -7394,6 +7394,36 @@ entries:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |-
         - kind: changed
+          description: "Updated _Fluentd Aggregator_ OCI image to [v2.20.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.20.0) (_Fluentd_ [v1.18.0](https://github.com/fluent/fluentd/releases/tag/v1.18.0)). ([#1144](https://github.com/stevehipwell/helm-charts/pull/1144)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 2.20.0
+    created: "2025-03-12T17:38:08.303164534Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 5caa26bf8854f3aebde5361f9689719de40bc35944f91276ad48385ff0118baa
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-4.11.0/fluentd-aggregator-4.11.0.tgz
+    version: 4.11.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |-
+        - kind: changed
           description: "Updated _Fluentd Aggregator_ OCI image to [v2.19.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v2.19.0) (_Fluentd_ [v1.18.0](https://github.com/fluent/fluentd/releases/tag/v1.18.0)). ([#1134](https://github.com/stevehipwell/helm-charts/pull/1134)) _@stevehipwell_"
     apiVersion: v2
     appVersion: 2.19.0
@@ -28643,4 +28673,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-10T10:38:10.611197477Z"
+generated: "2025-03-12T17:38:08.304605263Z"
