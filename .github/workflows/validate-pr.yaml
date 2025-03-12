@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          fetch-depth: 1
+          fetch-depth: 2
 
       - name: Chart changes
         id: changed
@@ -38,7 +38,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          k8s_versions="$(curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | .[].latest] | join(",")')"
+          k8s_versions="$(curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | "\(.[].cycle).0"] | join(",")')"
           echo "k8s_versions=${k8s_versions}" >> "${GITHUB_OUTPUT}"
 
   workflow:

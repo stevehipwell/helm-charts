@@ -4,12 +4,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "helm-docs",
+      "label": "docs",
       "type": "shell",
-      "command": "helm-docs",
+      "command": "just",
       "args": [
-        "--template-files=./_templates.gotmpl",
-        "--template-files=./_chart-readme.md.gotmpl"
+        "docs"
       ],
       "problemMatcher": []
     }
