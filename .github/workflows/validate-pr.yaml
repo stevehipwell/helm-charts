@@ -61,9 +61,10 @@ jobs:
       kubeconform_k8s_versions: ${{ needs.setup.outputs.k8s_versions }}
       helm_extra_args: "--timeout 600s"
 
-  post:
-    name: Post
+  check:
+    name: Check
     needs: validate
+    if: always()
     runs-on: ubuntu-latest
     defaults:
       run:
