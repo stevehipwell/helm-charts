@@ -41,8 +41,8 @@ jobs:
           k8s_versions="$(curl -s https://endoflife.date/api/kubernetes.json | jq -r '[sort_by(.releaseDate) | reverse | .[0:4] | "\(.[].cycle).0"] | join(",")')"
           echo "k8s_versions=${k8s_versions}" >> "${GITHUB_OUTPUT}"
 
-  workflow:
-    name: Reusable Workflow
+  validate:
+    name: Validate
     uses: action-stars/helm-workflows/.github/workflows/validate.yaml@fdd22ff9583609c6c3dd0d4fd94a06252015a985 # v0.8.1
     needs: setup
     if: needs.setup.outputs.changed == 'true'
@@ -60,3 +60,20 @@ jobs:
       kubeconform: true
       kubeconform_k8s_versions: ${{ needs.setup.outputs.k8s_versions }}
       helm_extra_args: "--timeout 600s"
+
+  post:
+    name: Post
+    needs: validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check
+        run: |
+          set -euo pipefail
+
+          if [[ "${{ needs.validate.result }}" == "failure" ]] || [[ "${{ needs.validate.result }}" == "cancelled" ]]; then
+            echo "::error::Workflow failed!"
+            exit 1
+          fi
