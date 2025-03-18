@@ -15211,6 +15211,39 @@ entries:
     version: 0.1.0
   kube-proxy:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: "Align app version to chart version. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_"
+        - kind: changed
+          description: "   -----"
+        - kind: changed
+          description: "Require end-user to provide the image tag. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_"
+        - kind: removed
+          description: "Remove default image tag logic. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 0.0.7
+    created: "2025-03-18T14:45:12.30067012Z"
+    description: Helm chart for managing kube-proxy.
+    digest: f9be648e941805cd871887e92becb80c017271d37eae02492fd915931d68abb5
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.7/kube-proxy-0.0.7.tgz
+    version: 0.0.7
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: "Updated _kube-proxy_ OCI image to [v1.31.0](https://github.com/kubernetes/kubernetes/releases/tag/v1.31.0)."
@@ -28733,4 +28766,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-18T14:05:39.538568464Z"
+generated: "2025-03-18T14:45:12.302667309Z"
