@@ -14,6 +14,17 @@
 
 ## [UNRELEASED]
 
+## [v0.0.7] - 2025-03-18
+
+### Changed
+
+- Align app version to chart version. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_
+- Require end-user to provide the image tag. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_
+
+### Removed
+
+- Remove default image tag logic. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_
+
 ## [v0.0.6] - 2024-08-13
 
 ### Changed
@@ -54,6 +65,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/kube-proxy
+[v0.0.7]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.7
 [v0.0.6]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.6
 [v0.0.5]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.5
 [v0.0.4]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.4

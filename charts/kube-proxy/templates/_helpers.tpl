@@ -72,5 +72,8 @@ Create the name of the service account to use
 The image to use
 */}}
 {{- define "kube-proxy.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default (printf "v%s" .Chart.AppVersion) .Values.image.tag) }}
+{{- $tag := ternary (printf ":%s" .Values.image.tag) "" (not (empty .Values.image.tag)) }}
+{{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
+{{- required "At least one of image.tag or image.digest must be provided" (default $tag $digest) }}
+{{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
