@@ -5,8 +5,10 @@
 image:
   # -- Image repository for the default container.
   repository: registry.k8s.io/kube-proxy
-  # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set.
+  # -- (string) Image tag for the default container; at least one of tag and digest must be set.
   tag:
+  # -- (string) Image digest for the default container; at least one of tag and digest must be set.
+  digest:
   # -- Image pull policy for the default container.
   pullPolicy: IfNotPresent
 

@@ -1,2 +1,5 @@
+image:
+  tag: v1.32.3
+
 apiServer:
   endpoint: 127.0.0.1
