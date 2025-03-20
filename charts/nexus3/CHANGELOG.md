@@ -15,6 +15,8 @@
 
 ## [UNRELEASED]
 
+## [v5.8.3] - 2025-03-20
+
 ### Fixed
 
 - Fix logback task configuration by inlining the appender.  ([#1152](https://github.com/stevehipwell/helm-charts/pull/1152)) _@stevehipwell_
@@ -836,6 +838,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.8.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.3
 [v5.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.2
 [v5.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.1
 [v5.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.0
