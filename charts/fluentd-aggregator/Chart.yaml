@@ -9,6 +9,7 @@ keywords:
   - fluentd
   - logging
   - aggregator
+  - log
 home: https://www.fluentd.org/
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
 sources:
