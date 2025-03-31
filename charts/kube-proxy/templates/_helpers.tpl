@@ -74,6 +74,8 @@ The image to use
 {{- define "kube-proxy.image" -}}
 {{- $tag := ternary (printf ":%s" .Values.image.tag) "" (not (empty .Values.image.tag)) }}
 {{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
-{{- required "At least one of image.tag or image.digest must be provided" (default $tag $digest) }}
+{{- if and (empty $tag) (empty $digest) }}
+{{- fail "At least one of image.tag or image.digest must be provided" }}
+{{- end }}
 {{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
