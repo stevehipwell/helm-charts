@@ -4,7 +4,7 @@
 
 image:
   # -- Image repository for the default container.
-  repository: cr.fluentbit.io/fluent/fluent-bit
+  repository: ghcr.io/fluent/fluent-bit
   # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`.
   tag:
   # -- (string) Optional image digest for the default container.
