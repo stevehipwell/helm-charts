@@ -15280,6 +15280,33 @@ entries:
   kube-proxy:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: fixed
+          description: "Fixed validation/unwanted output in kube-proxy.image include  ([#1156](https://github.com/stevehipwell/helm-charts/pull/1156)) _@robertoriv_"
+    apiVersion: v2
+    appVersion: 0.0.8
+    created: "2025-03-31T21:16:08.410313551Z"
+    description: Helm chart for managing kube-proxy.
+    digest: f7baaafd3b6ca385adfed2349ae9c2f8675ceb452c6af2ba137781a4dba71c34
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.8/kube-proxy-0.0.8.tgz
+    version: 0.0.8
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Align app version to chart version. ([#1149](https://github.com/stevehipwell/helm-charts/pull/1149)) _@stevehipwell_"
         - kind: changed
@@ -28929,4 +28956,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-27T13:17:09.406170786Z"
+generated: "2025-03-31T21:16:08.411485439Z"
