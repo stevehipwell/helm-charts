@@ -75,7 +75,7 @@ The image to use
 {{- $tag := ternary (printf ":%s" .Values.image.tag) "" (not (empty .Values.image.tag)) }}
 {{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
 {{- if and (empty $tag) (empty $digest) }}
-  {{- fail "At least one of image.tag or image.digest must be provided" }}
+{{- fail "At least one of image.tag or image.digest must be provided" }}
 {{- end }}
 {{- printf "%s%s%s" .Values.image.repository $tag $digest }}
 {{- end }}
