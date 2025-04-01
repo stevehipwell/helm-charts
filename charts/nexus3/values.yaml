@@ -319,6 +319,14 @@ config:
     affinity: {}
     # -- Node taints which will be tolerated for scheduling the config job.
     tolerations: []
+  # -- Prunes configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
+  prunes:
+    # -- If `true`, deletes existing users except admin, anonymous
+    users: false
+    # -- If `true`, deletes existing blob stores
+    blobStores: false
+    # -- If `true`, deletes existing repositories
+    repositories: false
   anonymous:
     # -- If `true`, enable anonymous access.
     enabled: false

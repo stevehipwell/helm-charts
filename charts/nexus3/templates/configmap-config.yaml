@@ -7,6 +7,8 @@ metadata:
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
 data:
+  prunes.json: |
+    {{ .Values.config.prunes | toJson }}
   anonymous.json: |
     {"enabled":{{ .Values.config.anonymous.enabled }}}
 {{- if .Values.config.realms.enabled }}
