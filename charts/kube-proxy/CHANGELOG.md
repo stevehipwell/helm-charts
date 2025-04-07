@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.0.8] - 2025-04-01
+
+### Fixed
+
+- Fixed validation/unwanted output in kube-proxy.image include  ([#1156](https://github.com/stevehipwell/helm-charts/pull/1156)) _@robertoriv_
+
 ## [v0.0.7] - 2025-03-18
 
 ### Changed

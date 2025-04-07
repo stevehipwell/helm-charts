@@ -1,6 +1,6 @@
 # tigera-operator
 
-![Version: 2.11.5](https://img.shields.io/badge/Version-2.11.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.36.5](https://img.shields.io/badge/AppVersion-1.36.5-informational?style=flat-square)
+![Version: 2.11.6](https://img.shields.io/badge/Version-2.11.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.36.7](https://img.shields.io/badge/AppVersion-1.36.7-informational?style=flat-square)
 
 The [Tigera Operator](https://www.tigera.io/) is a Kubernetes operator which manages the lifecycle of a [Calico](https://www.tigera.io/project-calico/) or [Calico Enterprise](https://www.tigera.io/tigera-products/calico-enterprise/) installation on Kubernetes. Its goal is to make installation, upgrades, and ongoing lifecycle management of _Calico_ and _Calico Enterprise_ as simple and reliable as possible.
 
@@ -27,7 +27,7 @@ It is possible to use the _Tigera Operator_ for other use-cases by installing ad
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/tigera-operator --version 2.11.5
+helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/tigera-operator --version 2.11.6
 ```
 
 #### Verification
@@ -35,7 +35,7 @@ helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/ti
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/tigera-operator:2.11.5
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/tigera-operator:2.11.6
 ```
 
 ### Non-OCI Repository
@@ -44,7 +44,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.11.5
+helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.11.6
 ```
 
 ## Values
