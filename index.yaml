@@ -9657,6 +9657,42 @@ entries:
       artifacthub.io/alternativeName: istio
       artifacthub.io/changes: |-
         - kind: changed
+          description: "Updated the _Istio Operator_ OCI image version to [v1.23.6](https://github.com/istio/istio/releases/tag/1.23.6). ([#1165](https://github.com/stevehipwell/helm-charts/pull/1165)) _@stevehipwell_"
+      artifacthub.io/crds: |
+        - kind: IstioOperator
+          version: v1alpha1
+          name: istiooperators.install.istio.io
+          displayName: IstioOperator
+          description: Represents an installation of Istio to be managed by the Istio Operator.
+    apiVersion: v2
+    appVersion: 1.23.6
+    created: "2025-04-08T11:22:25.006933197Z"
+    description: Helm chart to install the Istio Operator and optionally create the
+      IstioOperator CR to install Istio into the cluster.
+    digest: 4faaff66f7f1126a0e7d803ac45a132a23399d484b41c16084a4e74366e3e5df
+    home: https://istio.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/istio-operator/icon.png
+    keywords:
+    - kubernetes
+    - istio
+    - operator
+    - service
+    - mesh
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: istio-operator
+    sources:
+    - https://github.com/istio/istio/tree/master/operator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/istio-operator-2.16.6/istio-operator-2.16.6.tgz
+    version: 2.16.6
+  - annotations:
+      artifacthub.io/alternativeName: istio
+      artifacthub.io/changes: |-
+        - kind: changed
           description: "Updated the _Istio Operator_ OCI image version to [v1.23.5](https://github.com/istio/istio/releases/tag/1.23.5). ([#1164](https://github.com/stevehipwell/helm-charts/pull/1164)) _@stevehipwell_"
       artifacthub.io/crds: |
         - kind: IstioOperator
@@ -28992,4 +29028,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-08T11:03:54.177080741Z"
+generated: "2025-04-08T11:22:25.008245978Z"
