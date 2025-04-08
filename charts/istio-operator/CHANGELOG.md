@@ -14,6 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v2.16.6] - 2025-04-08
+
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+
+### Changed
+
+- Updated the _Istio Operator_ OCI image version to [v1.23.6](https://github.com/istio/istio/releases/tag/1.23.6). ([#1165](https://github.com/stevehipwell/helm-charts/pull/1165)) _@stevehipwell_
+
 ## [v2.16.5] - 2025-04-08
 
 > [!IMPORTANT]
@@ -593,6 +602,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/istio-operator
+[v2.16.6]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.16.6
 [v2.16.5]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.16.5
 [v2.16.4]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.16.4
 [v2.16.3]: https://github.com/stevehipwell/helm-charts/releases/tag/istio-operator-2.16.3
