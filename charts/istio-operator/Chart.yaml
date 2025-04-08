@@ -2,8 +2,8 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart to install the Istio Operator and optionally create the IstioOperator CR to install Istio into the cluster.
 type: application
-version: 2.16.5
-appVersion: 1.23.5
+version: 2.16.6
+appVersion: 1.23.6
 keywords:
   - kubernetes
   - istio
