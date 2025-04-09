@@ -73,7 +73,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | hotReload.image.digest | string | `nil` | Optional image digest for the hot-reload sidecar container. |
 | hotReload.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the hot-reload sidecar container. |
 | hotReload.image.repository | string | `"ghcr.io/jimmidyson/configmap-reload"` | Image repository for the hot-reload sidecar container. |
-| hotReload.image.tag | string | `"v0.14.0"` | Image tag for the hot-reload sidecar container. |
+| hotReload.image.tag | string | `"v0.15.0"` | Image tag for the hot-reload sidecar container. |
 | hotReload.resources | object | `{}` | Resources for the hot-reload sidecar container. |
 | image.digest | string | `nil` | Optional image digest for the default container. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
