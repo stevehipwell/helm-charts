@@ -18,7 +18,7 @@
 
 ### Fixed
 
-- Fixed validation/unwanted output in kube-proxy.image include  ([#1156](https://github.com/stevehipwell/helm-charts/pull/1156)) _@robertoriv_
+- Fix validation/unwanted output in `kube-proxy.image` template. ([#1156](https://github.com/stevehipwell/helm-charts/pull/1156)) _@robertoriv_
 
 ## [v0.0.7] - 2025-03-18
 
@@ -71,6 +71,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/kube-proxy
+[v0.0.8]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.8
 [v0.0.7]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.7
 [v0.0.6]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.6
 [v0.0.5]: https://github.com/stevehipwell/helm-charts/releases/tag/kube-proxy-0.0.5
