@@ -187,7 +187,7 @@ for json_file in "${CONFIG_DIR}"/conf/*-user.json; do
 
     out_file="$(mktemp -p "${tmp_dir}")"
     status_code=$(curl -sS -o "${out_file}" -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/users/?userId=${id}&source=${source}")
-    if [[ "${status_code}" -eq 200 ]] && [[ -n "$(jq -r 'first(.[]).userId // empty' "${out_file}")" ]]; then
+    if [[ "${status_code}" -eq 200 ]] && [[ -n "$(jq -r --arg id "${id}" '.[] | select(.userId == $id) | .userId' "${out_file}")" ]]; then
       status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/users/${id}")"
       if [[ "${status_code}" -ne 204 ]]; then
         error "Could not update user '${id}'."

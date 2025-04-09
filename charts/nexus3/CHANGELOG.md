@@ -15,6 +15,20 @@
 
 ## [UNRELEASED]
 
+## [v5.9.0] - 2025-04-09
+
+<!-- markdownlint-disable-next-line MD052 -->
+> [!WARNING]
+> Make sure to read the [release notes](https://help.sonatype.com/en/sonatype-nexus-repository-3-79-0-release-notes.html) before upgrading to this version.
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.79.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.79.0-09). ([#1166](https://github.com/stevehipwell/helm-charts/pull/1166)) _@stevehipwell_
+
+### Fixed
+
+- Fix incorrect existing user check that would cause creating a new user with an ID that was a substring of an existing user to fail. ([#1166](https://github.com/stevehipwell/helm-charts/pull/1166)) _@stevehipwell_
+
 ## [v5.8.3] - 2025-03-20
 
 ### Fixed
@@ -838,6 +852,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.9.0
 [v5.8.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.3
 [v5.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.2
 [v5.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.1

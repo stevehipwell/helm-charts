@@ -94,6 +94,15 @@ config:
       externalRoles: []
       password:
         secret: test-user2
+    - userId: t
+      firstName: T
+      lastName: User
+      emailAddress: t@example.org
+      source: default
+      status: active
+      roles:
+        - nx-anonymous
+      externalRoles: []
   ldap:
     enabled: false
   tasks:
