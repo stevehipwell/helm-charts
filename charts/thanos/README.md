@@ -281,7 +281,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.20.0
 | rule.configReloader.image.digest | string | `nil` | Image digest for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.image.repository | string | `"ghcr.io/jimmidyson/configmap-reload"` | Image repository for the _Rule_ pod config reloader sidecar container. |
-| rule.configReloader.image.tag | string | `"v0.14.0"` | Image tag for the _Rule_ pod config reloader sidecar container. |
+| rule.configReloader.image.tag | string | `"v0.15.0"` | Image tag for the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.resources | object | `{}` | Resources for the _Rule_ pod config reloader sidecar container. |
 | rule.enabled | bool | `false` | If `true`, create the _Thanos Rule_ component. |
 | rule.evalInterval | string | `"1m"` | Rule eval interval for the _Rule_ component (`--eval-interval`). |

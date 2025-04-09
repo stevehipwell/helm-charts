@@ -319,7 +319,7 @@ hotReload:
     # -- Image repository for the hot-reload sidecar container.
     repository: ghcr.io/jimmidyson/configmap-reload
     # -- Image tag for the hot-reload sidecar container.
-    tag: v0.14.0
+    tag: v0.15.0
     # -- (string) Optional image digest for the hot-reload sidecar container.
     digest:
     # --  Image pull policy for the hot-reload sidecar container.
