@@ -1,4 +1,3 @@
-{{- $serviceConfig := merge (merge (dict "daemon" false "http_server" true "http_Port" .Values.service.httpPort "parsers_file" "/fluent-bit/etc/parsers.conf") (ternary (dict "storage.path" "${STORAGE_PATH}" "storage.metrics" .Values.config.storage.metrics) (dict) .Values.config.storage.enabled)) .Values.config.service -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,23 +6,28 @@ metadata:
   labels:
     {{- include "fluent-bit-collector.labels" . | nindent 4 }}
 data:
-  fluent-bit.conf: |-
-    [SERVICE]
-{{- range $k, $v := $serviceConfig }}
-        {{ printf "%s %s" $k (toString $v) }}
+{{- $env := merge (dict "STORAGE_PATH" (ternary "/fluent-bit/data" "/tmp" .Values.storage.enabled) "STORAGE_TYPE_PREFER_FS" (ternary "filesystem" "memory" .Values.storage.enabled) "KUBELET_ENDPOINT" (toString .Values.kubeletEndpoint.enabled) "NOT_KUBELET_ENDPOINT" (toString (not .Values.kubeletEndpoint.enabled))) .Values.config.env }}
+{{- range $i, $p := .Values.service.additionalPorts }}
+{{- $env = merge $env (dict (printf "ADDITIONAL_PORT_%d" $i) (toString $p.containerPort)) }}
 {{- end }}
-{{- if .Values.config.customParsers }}
-        parsers_file ${CONFIG_PATH}/custom-parsers.conf
+{{- $service := merge (dict "daemon" false "http_server" true "http_Port" .Values.service.httpPort "parsers_file" .Values.config.parsersFile "hot_reload" .Values.hotReload.enabled) (ternary (dict "storage.path" "${STORAGE_PATH}") (dict) .Values.storage.enabled) .Values.config.service }}
+{{- $inputs := list }}
+{{- if .Values.storage.enabled }}
+{{- $inputs = .Values.config.pipeline.inputs }}
+{{- else }}
+{{- range $in := .Values.config.pipeline.inputs }}
+{{- $inputs = append $inputs (omit $in "db") }}
 {{- end }}
-{{ print "" }}
-{{- (tpl .Values.config.pipeline .) | nindent 4 }}
-{{- with .Values.config.customParsers }}
-{{ print "" }}
-  custom-parsers.conf: |-
-{{- (tpl . $) | nindent 4 }}
 {{- end }}
-{{- range $k, $v := .Values.config.extraFiles }}
-{{ print "" }}
-  {{ $k }}: |-
-{{- (tpl $v $) | nindent 4 }}
+{{- $pipeline := merge (dict "inputs" $inputs) .Values.config.pipeline }}
+{{- $config := dict "service" $service "plugins" .Values.config.plugins "parsers" .Values.config.parsers "multiline_parsers" .Values.config.multilineParsers "pipeline" $pipeline "upstream_servers" .Values.config.upstreamServers "includes" .Values.config.includes }}
+  fluent-bit.yaml: |-
+    env:
+{{- range $k, $v := $env }}
+      {{ printf "%s: %s" $k ((tpl $v $) | quote) }}
+{{- end }}
+{{- toYaml $config | nindent 4 }}
+{{- range $k, $v := .Values.extraConfig }}
+  {{ printf "%s.yaml" $k }}: |-
+{{- toYaml $v | nindent 4 }}
 {{- end }}

@@ -251,69 +251,67 @@ dashboards:
   enabled: false
 
 config:
-  storage:
-    # -- If `true`, writeable host filesystem storage will be enabled.
-    enabled: true
-    # -- If `true`, storage metrics will be enabled if storage is enabled.
-    metrics: true
+  # -- The [Env](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/environment-variables-section) section allows you to define environment variables directly within the configuration file. These variables can then be used to dynamically replace values throughout your configuration using the ${VARIABLE_NAME} syntax. These values support templating. The `STORAGE_PATH` & `ADDITIONAL_PORT_<INDEX>` values are available but can't be set as they are controlled by the chart.
+  env: {}
 
-  # -- Fluent Bit service configuration.
-  # @default -- See _values.yaml_
+  # -- The [Service](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/service-section) section defines global properties of the service. The `daemon`, `http_server`, `http_port` & `storage.path` keys can't be set as they are controlled by the chart.
   service:
-    # daemon: false - This can't be set
-    # http_server: true - This can't be set
-    # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
-    # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: ${STORAGE_PATH} - This can't be set as it is controlled by .Values.config.storage.enabled
-    # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
-    http_listen: "0.0.0.0"
+    http_listen: 0.0.0.0
 
-  # -- Fluent Bit pipeline configuration.
-  # @default -- See _values.yaml_
-  pipeline: |-
-    [INPUT]
-        name              forward
-        listen            0.0.0.0
-        port              ${ADDITIONAL_PORT_HTTP_FORWARD}
-        buffer_chunk_size 1M
-        buffer_max_size   6M
-    {{- if .Values.config.storage.enabled }}
-        storage.type      filesystem
-    {{- end }}
+  # -- The [Plugins](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/plugins-section) section adds support for loading external plugins at runtime.
+  plugins: []
 
-    [OUTPUT]
-        name   stdout
-        match  *
+  # -- The [Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/parsers-section) section allows you to define custom parsers.
+  parsers: []
 
-  # -- (string) Custom parsers to configure.
-  customParsers:
-  #  [PARSER]
-  #      Name docker_no_time
-  #      Format json
-  #      Time_Keep Off
-  #      Time_Key time
-  #      Time_Format %Y-%m-%dT%H:%M:%S.%L
+  # -- The [Multiline Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/multiline-parsers-section) section allows you to define custom multiline parsers.
+  multilineParsers: []
 
-  # -- Extra files to mount to the path defined by the CONFIG_PATH environment variable.
-  extraFiles: {}
-  #  upstream.conf: |-
-  #    [UPSTREAM]
-  #        upstream1
-  #
-  #    [NODE]
-  #        name       node-1
-  #        host       127.0.0.1
-  #        port       43000
+  pipeline:
+    # -- The pipeline inputs configure the plugins responsible for collecting or receiving data.
+    inputs:
+      - name: forward
+        alias: in
+        listen: 0.0.0.0
+        port: ${ADDITIONAL_PORT_0}
+        buffer_chunk_size: 1M
+        buffer_max_size: 6M
+        storage.type: filesystem
 
-  # -- Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable.
-  luaScripts: {}
-  #  test.lua: |-
-  #    function append_tag(tag, timestamp, record)
-  #        new_record = record
-  #        new_record["tag"] = tag
-  #        return 1, timestamp, new_record
-  #    end
+    # -- The pipeline filters configure the plugins responsible for processing data.
+    filters: []
+
+    # -- The pipeline outputs configure the plugins responsible for storing or forwarding data.
+    outputs:
+      - name: stdout
+        alias: out
+        match: "*"
+
+  # -- The [Upstream Servers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/upstream-servers-section) section defines a group of endpoints, referred to as nodes, which are used by output plugins to distribute data in a round-robin fashion.
+  upstreamServers: []
+
+  # -- The [Includes](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/includes-section) section allows you to specify additional YAML configuration files to be merged into the current configuration.
+  includes: []
+
+# -- Additional YAML configuration to mount as YAML files to /fluent-bit/etc/conf/.
+extraConfig: {}
+# upstream:
+#   upstream_servers:
+#     - name: test
+#       nodes:
+#         - name: node-1
+#           host: 127.0.0.1
+#           port: 43000
+
+# -- Lua scripts to configure, these will be created at /fluent-bit/scripts/ and need to be referenced by an absolute path.
+luaScripts: {}
+#  test.lua: |-
+#    function append_tag(tag, timestamp, record)
+#        new_record = record
+#        new_record["tag"] = tag
+#        return 1, timestamp, new_record
+#    end
 
 hotReload:
   # -- If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container.
