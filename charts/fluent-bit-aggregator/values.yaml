@@ -187,7 +187,7 @@ readinessProbe:
   failureThreshold: 6
 
 persistence:
-  # -- If `true`, persistence should be enabled for the `StatefulSet`.
+  # -- If `true` & `storage.enabled` is `true`, persistence should be enabled for the `StatefulSet`.
   enabled: false
   # -- Annotations for the `PersistentVolumeClaim`.
   annotations: {}
@@ -292,7 +292,7 @@ config:
   #      Time_Key time
   #      Time_Format %Y-%m-%dT%H:%M:%S.%L
 
-  # -- Extra files to mount to /fluent-bit/etc
+  # -- Extra files to mount to /fluent-bit/etc/conf/.
   extraFiles: {}
   #  upstream.conf: |-
   #    [UPSTREAM]
@@ -326,3 +326,5 @@ hotReload:
     pullPolicy: IfNotPresent
   # -- Resources for the hot-reload sidecar container.
   resources: {}
+  # -- Extra volumes for the hot-reload sidecar container to watch.
+  extraWatchVolumes: []

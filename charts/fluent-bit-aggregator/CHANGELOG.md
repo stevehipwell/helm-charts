@@ -14,8 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v0.17.0] - 2025-04.10
+
+### Added
+
+- Add support for extra hot reload watch paths via the new `hotReload.extraWatchVolumes` value. ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
+
 ### Changed
 
+- Update _Fluent Bit_ OCI image to [v4.0.0](https://github.com/fluent/fluent-bit/releases/tag/v4.0.0). ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
 - Update `jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
 
 ## [v0.16.10] - 2025-03-26
@@ -373,6 +380,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.0
 [v0.16.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.10
 [v0.16.9]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.9
 [v0.16.8]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.8

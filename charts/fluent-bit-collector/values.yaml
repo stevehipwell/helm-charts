@@ -276,7 +276,7 @@ config:
         format regex
         regex  ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
 
-  # -- Extra files to mount to /fluent-bit/etc
+  # -- Extra files to mount to /fluent-bit/etc/conf/.
   extraFiles: {}
   #  upstream.conf: |-
   #    [UPSTREAM]
@@ -310,3 +310,5 @@ hotReload:
     pullPolicy: IfNotPresent
   # -- Resources for the hot-reload sidecar container.
   resources: {}
+  # -- Extra volumes for the hot-reload sidecar container to watch.
+  extraWatchVolumes: []
