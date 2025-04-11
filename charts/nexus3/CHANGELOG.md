@@ -15,6 +15,12 @@
 
 ## [UNRELEASED]
 
+## [v5.9.1] - 2025-04-11
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.79.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.79.1-04). ([#1171](https://github.com/stevehipwell/helm-charts/pull/1171)) _@stevehipwell_
+
 ## [v5.9.0] - 2025-04-09
 
 <!-- markdownlint-disable-next-line MD052 -->
@@ -852,6 +858,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.9.1
 [v5.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.9.0
 [v5.8.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.3
 [v5.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.8.2
