@@ -105,9 +105,10 @@ spec:
               mountPath: {{ .mountPath }}
               readOnly: true
           {{- end }}
-          {{- if .Values.config.storage }}
+          {{- if .Values.config.storage.enabled }}
             - name: data
               mountPath: /fluent-bit/data
+              readOnly: false
           {{- end }}
           {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
@@ -165,10 +166,11 @@ spec:
           hostPath:
             {{- toYaml .hostPath | nindent 12 }}
       {{- end }}
-      {{- if .Values.config.storage }}
+      {{- if .Values.config.storage.enabled }}
         - name: data
           hostPath:
-            path: /var/fluent-bit
+            path: {{ .Values.config.storage.hostPath }}
+            type: DirectoryOrCreate
       {{- end }}
       {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}

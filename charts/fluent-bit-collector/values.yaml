@@ -52,10 +52,10 @@ service:
   # -- Additional ports to expose.
   # @default -- See _values.yaml_
   additionalPorts:
-    - name: http-otel
-      port: 4318
-      containerPort: 4318
-      protocol: TCP
+  #   - name: http-otel
+  #     port: 4318
+  #     containerPort: 4318
+  #     protocol: TCP
 
 # -- Update strategy for the `DaemonSet`.
 updateStrategy: {}
@@ -73,7 +73,8 @@ podAnnotations: {}
 # @default -- See _values.yaml_
 podSecurityContext:
   runAsNonRoot: false
-  fsGroup: 65534
+  fsGroup: 0
+  fsGroupChangePolicy: OnRootMismatch
   seccompProfile:
     type: RuntimeDefault
 
@@ -184,6 +185,7 @@ config:
     - name: logs
       hostPath:
         path: /var/log
+        type: Directory
       mountPath: /var/log
 
   storage:
@@ -191,6 +193,8 @@ config:
     enabled: false
     # -- If `true`, storage metrics will be enabled if storage is enabled.
     metrics: true
+    ## -- Host path to the storage directory.
+    hostPath: /var/fluent-bit/data
 
   kubeletEndpoint:
     # -- If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**).
@@ -214,19 +218,8 @@ config:
   # @default -- See _values.yaml_
   pipeline: |-
     [INPUT]
-        name              systemd
-        systemd_filter    _SYSTEMD_UNIT=containerd.service
-        systemd_filter    _SYSTEMD_UNIT=kubelet.service
-        tag               host.*
-        strip_underscores true
-        lowercase         true
-    {{- if .Values.config.storage.enabled }}
-        db                /fluent-bit/data/systemd/systemd.db
-        storage.type      filesystem
-    {{- end }}
-
-    [INPUT]
         name             tail
+        alias            logs
         path             /var/log/containers/*.log
         tag_regex        (?<pod_name>[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)_(?<namespace_name>[^_]+)_(?<container_name>.+)-
         tag              kube.<namespace_name>.<pod_name>.<container_name>
@@ -235,17 +228,8 @@ config:
         skip_long_lines  true
         skip_empty_lines true
     {{- if .Values.config.storage.enabled }}
-        db               fluent-bit/data/tail/tail.db
+        db               /fluent-bit/data/tail.db
         storage.type     filesystem
-    {{- end }}
-
-    [INPUT]
-        name         opentelemetry
-        listen       127.0.0.1
-        port         {{ (index .Values.service.additionalPorts 0).containerPort }}
-        tag          otel
-    {{- if .Values.config.storage.enabled }}
-        storage.type filesystem
     {{- end }}
 
     [FILTER]
