@@ -5928,6 +5928,36 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.0
+    created: "2025-04-15T13:48:30.793933197Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: b1673bb64e2f2d650b328d8dcbe276b853fe5651feaa45816b0975f049802696
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.16.0/fluent-bit-collector-0.16.0.tgz
+    version: 0.16.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add `config.storage.hostPath` value for configuring the storage path on the host. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
         - kind: changed
           description: "Change default `fsGroup` to `0` to match host volume ownership. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
@@ -29240,4 +29270,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-15T12:41:54.863561374Z"
+generated: "2025-04-15T13:48:30.795348502Z"
