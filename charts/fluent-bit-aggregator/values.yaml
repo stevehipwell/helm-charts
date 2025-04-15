@@ -272,7 +272,7 @@ config:
     [INPUT]
         name              forward
         listen            0.0.0.0
-        port              {{ (index .Values.service.additionalPorts 0).containerPort }}
+        port              ${ADDITIONAL_PORT_HTTP_FORWARD}
         buffer_chunk_size 1M
         buffer_max_size   6M
     {{- if .Values.config.storage.enabled }}

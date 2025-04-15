@@ -1,5 +1,10 @@
 service:
   enabled: true
+  additionalPorts:
+    - name: http-otel
+      port: 4318
+      containerPort: 4318
+      protocol: TCP
 
 priorityClassName: system-node-critical
 

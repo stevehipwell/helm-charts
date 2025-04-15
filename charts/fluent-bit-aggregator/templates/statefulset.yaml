@@ -71,8 +71,18 @@ spec:
           image: {{ include "fluent-bit-aggregator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: POD_INDEX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['apps.kubernetes.io/pod-index']
+          {{- range $p := .Values.service.additionalPorts }}
+            - name: {{ printf "ADDITIONAL_PORT_%s" (upper $p.name | replace "-" "_") }}
+              value: {{ quote $p.containerPort }}
+          {{- end }}
+          {{- if .Values.config.storage.enabled }}
             - name: STORAGE_PATH
               value: /fluent-bit/data
+          {{- end }}
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
