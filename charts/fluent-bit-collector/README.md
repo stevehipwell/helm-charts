@@ -1,6 +1,6 @@
 # fluent-bit-collector
 
-![Version: 0.14.0](https://img.shields.io/badge/Version-0.14.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
+![Version: 0.15.0](https://img.shields.io/badge/Version-0.15.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as a collector DaemonSet.
 
@@ -24,7 +24,7 @@ Helm chart for Fluent Bit running as a collector DaemonSet.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.14.0
+helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-collector --version 0.15.0
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install fluent-bit-collector oci://ghcr.io/stevehipwell/helm-char
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-collector:0.14.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-collector:0.15.0
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.14.0
+helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --version 0.15.0
 ```
 
 ## Values
@@ -61,6 +61,7 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration; this should depend on config values and changing it incorrectly may break support for some of the config options. |
 | config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
 | config.storage.enabled | bool | `false` | If `true`, writeable host filesystem storage will be enabled. |
+| config.storage.hostPath | string | `"/var/fluent-bit/data"` |  |
 | config.storage.metrics | bool | `true` | If `true`, storage metrics will be enabled if storage is enabled. |
 | dashboards.enabled | bool | `false` | If `true`, install the _Grafana_ dashboards provided by the chart. |
 | env | list | `[]` | Environment variables for the default container. |
@@ -92,7 +93,7 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the default container. |
 | resources | object | `{}` | Resources for the default container. |
 | securityContext | object | See _values.yaml_ | Security context for the default container. |
-| service.additionalPorts | list | See _values.yaml_ | Additional ports to expose. |
+| service.additionalPorts | string | See _values.yaml_ | Additional ports to expose. |
 | service.annotations | object | `{}` | Service annotations. |
 | service.enabled | bool | `false` | If `true`, create an internal local traffic service. |
 | service.httpPort | int | `2020` | Fluent Bit HTTP port used for status and metrics. |
