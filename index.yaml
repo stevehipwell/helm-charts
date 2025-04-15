@@ -5928,6 +5928,50 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add `config.storage.hostPath` value for configuring the storage path on the host. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+        - kind: changed
+          description: "Change default `fsGroup` to `0` to match host volume ownership. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+        - kind: removed
+          description: "Simplify example configuration by removing OTel & Systemd defaults. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+        - kind: fixed
+          description: "Fix incorrect DB path in example configuration. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+        - kind: fixed
+          description: "   -----"
+        - kind: fixed
+          description: "Fix incorrect check for storage being enabled. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+        - kind: fixed
+          description: "   -----"
+        - kind: fixed
+          description: "Fix missing host mount types. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.0
+    created: "2025-04-15T12:41:54.861865257Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: 4ea25285b02d5dc212b4eada845214882e8175bb1c94ce2a64e9a2948e77c8d0
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.15.0/fluent-bit-collector-0.15.0.tgz
+    version: 0.15.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add support for extra hot reload watch paths via the new `hotReload.extraWatchVolumes` value. ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_"
         - kind: changed
           description: "Update _Fluent Bit_ OCI image to [v4.0.0](https://github.com/fluent/fluent-bit/releases/tag/v4.0.0). ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_"
@@ -29196,4 +29240,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-11T09:38:51.247786903Z"
+generated: "2025-04-15T12:41:54.863561374Z"
