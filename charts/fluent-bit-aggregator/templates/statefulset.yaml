@@ -70,8 +70,10 @@ spec:
           {{- end }}
           image: {{ include "fluent-bit-aggregator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.env }}
           env:
+            - name: STORAGE_PATH
+              value: /fluent-bit/data
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.command }}

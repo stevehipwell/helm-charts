@@ -261,7 +261,7 @@ config:
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
     # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage.enabled
+    # storage.path: /fluent-bit/data - This can't be set as it is controlled by .Values.config.storage.enabled
     # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
     http_listen: "0.0.0.0"
