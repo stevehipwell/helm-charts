@@ -16,7 +16,8 @@
 
 ### Added
 
-- Add `STORAGE_PATH` env variable. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+- Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174) & [#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
+- Add additional port environment variables in the form `ADDITIONAL_PORT_<NAME>` (where the name has been made uppercase and `-` has been replace by `_`). ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
 
 ## [v0.17.0] - 2025-04.10
 
