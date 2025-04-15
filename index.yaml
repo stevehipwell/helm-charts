@@ -5928,6 +5928,38 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add additional port environment variables in the form `ADDITIONAL_PORT_<NAME>` (where the name has been made uppercase and `-` has been replace by `_`). ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_"
+        - kind: fixed
+          description: "Fix `STORAGE_PATH` env variable to only be set when storage is enabled. ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.0
+    created: "2025-04-15T14:37:30.787526523Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: d13ab836db528965900b515420e60ff92eeb01186b21c6e32e669f0240e47611
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.17.0/fluent-bit-collector-0.17.0.tgz
+    version: 0.17.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174)) _@stevehipwell_"
     apiVersion: v2
     appVersion: 4.0.0
@@ -29270,4 +29302,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-15T13:48:30.795348502Z"
+generated: "2025-04-15T14:37:30.79034636Z"
