@@ -64,6 +64,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
+            - name: STORAGE_PATH
+              value: /fluent-bit/data
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `STORAGE_PATH` env variable. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+
 ## [v0.17.0] - 2025-04.10
 
 ### Added

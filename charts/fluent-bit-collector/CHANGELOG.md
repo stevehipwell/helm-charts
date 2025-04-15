@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v0.16.0] - 2025-04-15
+
+### Added
+
+- Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174)) _@stevehipwell_
+
 ## [v0.15.0] - 2025-04-15
 
 ### Added
@@ -337,6 +343,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-collector
+[v0.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.16.0
 [v0.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.15.0
 [v0.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.14.0
 [v0.13.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.13.10
