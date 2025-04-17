@@ -5,8 +5,6 @@
 image:
   # -- Image repository for the default container.
   repository: ghcr.io/stevehipwell/fluentd-aggregator
-  # -- (string) Tag prefix for the default container.
-  tagPrefix:
   # -- (string) Image tag for the default container, this will default to `.Chart.AppVersion` if not set and will be omitted if set to `-`.
   tag:
   # -- (string) Optional image digest for the default container.
