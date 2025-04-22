@@ -134,6 +134,10 @@ admissionController:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Annotations to add to the _Admission Controller_ deployment.
+  # @default -- {}
+  annotations: {}
+
   # -- Resources for the _Admission Controller_ default container.
   resources: {}
 
@@ -267,6 +271,10 @@ recommender:
     successThreshold: 1
     failureThreshold: 10
 
+  # -- Annotations to add to the _Recommender_ deployment.
+  # @default -- {}
+  annotations: {}
+
   # -- Resources for the _Recommender_ default container.
   resources: {}
 
@@ -387,6 +395,10 @@ updater:
     timeoutSeconds: 1
     successThreshold: 1
     failureThreshold: 10
+
+  # -- Annotations to add to the _Updater_ deployment.
+  # @default -- {}
+  annotations: {}
 
   # -- Resources for the _Updater_ default container.
   resources: {}
