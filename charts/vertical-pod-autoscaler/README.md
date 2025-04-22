@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler
 
-![Version: 1.8.1](https://img.shields.io/badge/Version-1.8.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
+![Version: 1.8.2](https://img.shields.io/badge/Version-1.8.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
 The [Vertical Pod Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/) (VPA) frees the users from necessity of setting up-to-date resource limits and requests for the containers in their pods. When configured, it will set the requests automatically based on usage and thus allow proper scheduling onto nodes so that appropriate resource amount is available for each pod. It will also maintain ratios between limits and requests that were specified in initial containers configuration.
 
@@ -33,7 +33,7 @@ This chart manages the `MutatingWebhookConfiguration` outside of the workload so
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.8.1
+helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.8.2
 ```
 
 #### Verification
@@ -41,7 +41,7 @@ helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-c
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.8.1
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler:1.8.2
 ```
 
 ### Non-OCI Repository
@@ -50,7 +50,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.8.1
+helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autoscaler --version 1.8.2
 ```
 
 ## Values
@@ -58,6 +58,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | admissionController.affinity | object | `{}` | Affinity settings for scheduling the _Admission Controller_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| admissionController.annotations | object | `{}` | Annotations to add to the _Admission Controller_ deployment. |
 | admissionController.certManager.enabled | bool | `false` | If `true`, create a `Certificate` resource for the _Admission Controller_ webhook. |
 | admissionController.certManager.issuerKind | string | `"Issuer"` | `Issuer` kind for the _Admission Controller_ webhook certificate. |
 | admissionController.certManager.issuerName | string | `nil` | `Issuer` name for the _Admission Controller_ webhook certificate; if not provided an `Issuer` will be created. |
@@ -97,6 +98,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | nameOverride | string | `nil` | Override the name of the chart. |
 | rbac.create | bool | `true` | If `true`, create `ClusterRole` & `ClusterRoleBinding` resources to enable access to the Kubernetes API. |
 | recommender.affinity | object | `{}` | Affinity settings for scheduling the _Recommender_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| recommender.annotations | object | `{}` | Annotations to add to the _Recommender_ deployment. |
 | recommender.extraArgs | list | `[]` | Additional args for the _Recommender_ default container. |
 | recommender.extraEnv | list | `[]` | Additional environment variables for the _Recommender_ default container. |
 | recommender.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Recommender_ default container. |
@@ -131,6 +133,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | serviceMonitor.enabled | bool | `false` | If `true`, create a `ServiceMonitor` to support collecting metrics via the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
 | updater.affinity | object | `{}` | Affinity settings for scheduling the _Updater_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| updater.annotations | object | `{}` | Annotations to add to the _Updater_ deployment. |
 | updater.extraArgs | list | `[]` | Additional args for the _Updater_ default container. |
 | updater.extraEnv | list | `[]` | Additional environment variables for the _Updater_ default container. |
 | updater.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Updater_ default container. |

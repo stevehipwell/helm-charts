@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.8.2] - 2025-04-22
+
+### Added
+
+- Added support for setting annotations on deployment resources via `annotations` values. ([#1178](https://github.com/stevehipwell/helm-charts/pull/1178)) _@PaulFarver_
+
 ## [v1.8.1] - 2025-03-10
 
 ### Fixed
