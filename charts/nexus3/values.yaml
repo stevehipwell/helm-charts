@@ -357,9 +357,9 @@ config:
   #         expiration: 3
   #       #bucketSecurity:  # If not using Instance Profile
   #       #  accessKeyId: access-key-id
-  #     password:
+  #     secretAccessKey:
   #       secret: test-blob
-  #       key: password
+  #       key: secret-access-key
   # -- Cleanup configuration.
   cleanup: []
   #   - name: ExampleCleanup
