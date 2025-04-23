@@ -69,6 +69,13 @@ spec:
               subPath: {{ default "password" .password.key }}
           {{- end }}
           {{- end }}
+          {{- range .Values.config.blobStores }}
+          {{- if dig "password" "secret" nil . }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/blobstore-%s.password" .name }}
+              name: {{ printf "blobstore-%s" .name }}
+              subPath: {{ default "password" .password.key }}
+          {{- end }}
+          {{- end }}
           {{- if .Values.config.ldap.enabled }}
             - mountPath: /opt/sonatype/nexus/config/secret/ldap.password
               name: ldap-password
@@ -93,6 +100,13 @@ spec:
       {{- range .Values.config.repos }}
       {{- if dig "password" "secret" nil . }}
         - name: {{ printf "repo-%s" .name }}
+          secret:
+            secretName: {{ .password.secret }}
+      {{- end }}
+      {{- end }}
+      {{- range .Values.config.blobStores }}
+      {{- if dig "password" "secret" nil . }}
+        - name: {{ printf "blobstore-%s" .name }}
           secret:
             secretName: {{ .password.secret }}
       {{- end }}

@@ -59,6 +59,13 @@ for json_file in "${CONFIG_DIR}"/conf/*-blobstore.json; do
     type="$(jq -r '.type' "${json_file}")"
     name="$(jq -r '.name' "${json_file}")"
 
+    password_file="${CONFIG_DIR}/secret/blobstore-${name}.password"
+    if [[ -f "${password_file}" ]]; then
+      tmp_file="$(mktemp -p "${tmp_dir}")"
+      jq -r --arg password "$(cat "${password_file}")" '. * {bucketConfiguration: {bucketSecurity: {secretAccessKey: $password}}}' "${json_file}" >"${tmp_file}"
+      json_file="${tmp_file}"
+    fi
+
     status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")
     if [[ "${status_code}" -eq 200 ]]; then
       status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/blobstores/${type}/${name}")"
