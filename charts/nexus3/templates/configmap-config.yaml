@@ -35,7 +35,7 @@ data:
 {{- end }}
 {{- range $index, $blobStore := .Values.config.blobStores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
-    {{- omit $blobStore "password"  | toJson | nindent 4 }}
+    {{- omit $blobStore "secretAccessKey"  | toJson | nindent 4 }} {{/* TODO omit secretAccessKey */}}
 {{- end }}
 {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |

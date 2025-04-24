@@ -70,10 +70,10 @@ spec:
           {{- end }}
           {{- end }}
           {{- range .Values.config.blobStores }}
-          {{- if dig "password" "secret" nil . }}
-            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/blobstore-%s.password" .name }}
+          {{- if dig "bucketConfiguration" "bucketSecurity" "secretAccessKey" "secret" nil . }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/blobstore-%s.key" .name }}
               name: {{ printf "blobstore-%s" .name }}
-              subPath: {{ default "password" .password.key }}
+              subPath: {{ default "secretAccessKey" .bucketConfiguration.bucketSecurity.secretAccessKey.key }}
           {{- end }}
           {{- end }}
           {{- if .Values.config.ldap.enabled }}
@@ -105,10 +105,10 @@ spec:
       {{- end }}
       {{- end }}
       {{- range .Values.config.blobStores }}
-      {{- if dig "password" "secret" nil . }}
+      {{- if dig "bucketConfiguration" "bucketSecurity" "secretAccessKey" "secret" nil . }}
         - name: {{ printf "blobstore-%s" .name }}
           secret:
-            secretName: {{ .password.secret }}
+            secretName: {{ .bucketConfiguration.bucketSecurity.secretAccessKey.secret }}
       {{- end }}
       {{- end }}
       {{- range .Values.config.users }}

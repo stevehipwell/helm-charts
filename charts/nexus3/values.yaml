@@ -340,7 +340,6 @@ config:
   # -- Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   blobStores: []
   # Reference the Nexus Blob store REST API for supported types and expected request body structures of each
-  # blobStores.bucketConfiguration.bucketSecurity.secretAccessKey will get populated by value from blobStores.password
   #   - name: ExampleFileBlobStore
   #     type: file
   #     path: /nexus-data/blobs/foo
@@ -357,9 +356,9 @@ config:
   #         expiration: 3
   #       #bucketSecurity:  # If not using Instance Profile
   #       #  accessKeyId: access-key-id
-  #     secretAccessKey:
-  #       secret: test-blob
-  #       key: secret-access-key
+  #       #  secretAccessKey:    # Stores value for bucketConfiguration.bucketSecurity.secretAccessKey
+  #       #    secret: test-blob
+  #       #    key: secret-access-key
   # -- Cleanup configuration.
   cleanup: []
   #   - name: ExampleCleanup

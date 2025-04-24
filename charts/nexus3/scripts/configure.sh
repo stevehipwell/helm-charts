@@ -59,10 +59,10 @@ for json_file in "${CONFIG_DIR}"/conf/*-blobstore.json; do
     type="$(jq -r '.type' "${json_file}")"
     name="$(jq -r '.name' "${json_file}")"
 
-    password_file="${CONFIG_DIR}/secret/blobstore-${name}.password"
-    if [[ -f "${password_file}" ]]; then
+    key_file="${CONFIG_DIR}/secret/blobstore-${name}.key"
+    if [[ -f "${key_file}" ]]; then
       tmp_file="$(mktemp -p "${tmp_dir}")"
-      jq -r --arg password "$(cat "${password_file}")" '. * {bucketConfiguration: {bucketSecurity: {secretAccessKey: $password}}}' "${json_file}" >"${tmp_file}"
+      jq -r --arg key "$(cat "${key_file}")" '. * {bucketConfiguration: {bucketSecurity: {secretAccessKey: $key}}}' "${json_file}" >"${tmp_file}"
       json_file="${tmp_file}"
     fi
 
