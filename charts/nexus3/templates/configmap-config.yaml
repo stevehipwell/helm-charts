@@ -34,8 +34,21 @@ data:
 {{- end }}
 {{- end }}
 {{- range $index, $blobStore := .Values.config.blobStores }}
+  {{- $cfg := $blobStore.bucketConfiguration | default dict }}
+  {{- $rawBucketSecurity := get $cfg "bucketSecurity" | default dict }}
+  {{- $bucketSecurity := omit $rawBucketSecurity "secretAccessKey" }}
+  {{- $bucket := get $cfg "bucket" }}
+  {{- $adv := get $cfg "advancedBucketConnection" }}
+
+  {{- $bucketConfig := dict
+        "bucket" $bucket
+        "bucketSecurity" $bucketSecurity
+        "advancedBucketConnection" $adv
+  }}
+
+  {{- $clean := omit $blobStore "bucketConfiguration" | merge (dict "bucketConfiguration" $bucketConfig) }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
-    {{- omit $blobStore "secretAccessKey"  | toJson | nindent 4 }} {{/* TODO omit secretAccessKey */}}
+    {{- $clean | toJson | nindent 4 }}
 {{- end }}
 {{- range $index, $cleanup := .Values.config.cleanup }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-cleanup.json: |
