@@ -4323,6 +4323,42 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174) & [#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_"
+        - kind: added
+          description: "   -----"
+        - kind: added
+          description: "Add additional port environment variables in the form `ADDITIONAL_PORT_<NAME>` (where the name has been made uppercase and `-` has been replace by `_`). ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_"
+        - kind: changed
+          description: "Update _Fluent Bit_ OCI image to [v4.0.1](https://github.com/fluent/fluent-bit/releases/tag/v4.0.1). ([#1181](https://github.com/stevehipwell/helm-charts/pull/1181)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.1
+    created: "2025-04-30T12:11:15.095755489Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: 1521c899050582c4f0567a873a76f3d1135d8d723e6f01ff58e793d125555abe
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.17.1/fluent-bit-aggregator-0.17.1.tgz
+    version: 0.17.1
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add support for extra hot reload watch paths via the new `hotReload.extraWatchVolumes` value. ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_"
         - kind: changed
           description: "Update _Fluent Bit_ OCI image to [v4.0.0](https://github.com/fluent/fluent-bit/releases/tag/v4.0.0). ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_"
@@ -29334,4 +29370,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-17T12:25:14.308922153Z"
+generated: "2025-04-30T12:11:15.096920838Z"
