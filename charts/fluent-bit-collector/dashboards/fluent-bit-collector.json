@@ -1297,7 +1297,7 @@
             "uid": "$DS_PROMETHEUS"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\",namespace=\"$namespace\",pod=~\"$pod\",container=\"fluent-bit\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\",namespace=\"$namespace\",pod=~\"$pod\",container=\"collector\"}) by (pod)",
           "interval": "",
           "legendFormat": "{{ `{{pod}}` }}",
           "range": true,
@@ -1308,7 +1308,7 @@
             "uid": "$DS_PROMETHEUS"
           },
           "editorMode": "code",
-          "expr": "avg(kube_pod_container_resource_requests{job=\"kube-state-metrics\",namespace=\"$namespace\",pod=~\"$pod\", container=\"fluent-bit\",resource=\"memory\"})",
+          "expr": "avg(kube_pod_container_resource_requests{job=\"kube-state-metrics\",namespace=\"$namespace\",pod=~\"$pod\", container=\"collector\",resource=\"memory\"})",
           "interval": "",
           "legendFormat": "request",
           "range": true,
@@ -1423,7 +1423,7 @@
             "uid": "$DS_PROMETHEUS"
           },
           "editorMode": "code",
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\",pod=~\"$pod\",container=\"fluent-bit\"}) by (pod)",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\",pod=~\"$pod\",container=\"collector\"}) by (pod)",
           "interval": "",
           "legendFormat": "{{ `{{ pod }}` }}",
           "range": true,
@@ -1435,7 +1435,7 @@
             "uid": "$DS_PROMETHEUS"
           },
           "editorMode": "code",
-          "expr": "avg(kube_pod_container_resource_requests{job=\"kube-state-metrics\",namespace=\"$namespace\",pod=~\"$pod\",container=\"fluent-bit\",resource=\"cpu\"})",
+          "expr": "avg(kube_pod_container_resource_requests{job=\"kube-state-metrics\",namespace=\"$namespace\",pod=~\"$pod\",container=\"collector\",resource=\"cpu\"})",
           "interval": "",
           "legendFormat": "{{ `{{ pod }} request` }}",
           "range": true,

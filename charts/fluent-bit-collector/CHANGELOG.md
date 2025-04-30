@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fix Grafana dashboard to use the correct default container name. ([#1182](https://github.com/stevehipwell/helm-charts/pull/1182)) _@stevehipwell_
+
 ## [v0.17.1] - 2025-04-30
 
 ### Changed
