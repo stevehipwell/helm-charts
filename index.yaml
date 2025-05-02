@@ -28843,6 +28843,45 @@ entries:
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.3.1`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.3.1). ([#1184](https://github.com/stevehipwell/helm-charts/pull/1184)) _@stevehipwell_"
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.3.1
+    created: "2025-05-02T13:40:15.779055968Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 202c0887d81802211685ac1b7cad2eca92bd19bab939cd29882235602cf06e04
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    - vertical
+    - vpa
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.8.2/vertical-pod-autoscaler-1.8.2.tgz
+    version: 1.8.2
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: fixed
           description: "Fixed the name of the secret mounted for TLS certificates when using a custom Issuer with cert-manager. ([#1140](https://github.com/stevehipwell/helm-charts/issues/1140)) _@ahamlinman_"
       artifacthub.io/crds: |
@@ -29400,4 +29439,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-30T12:11:53.102094893Z"
+generated: "2025-05-02T13:40:15.780738022Z"
