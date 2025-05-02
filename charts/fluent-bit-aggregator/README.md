@@ -58,8 +58,8 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | `nil` | Custom parsers to configure. |
-| config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc/conf/. |
-| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path. |
+| config.extraFiles | object | `{}` | Extra files to mount to the path defined by the CONFIG_PATH environment variable. |
+| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable. |
 | config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration. |
 | config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
 | config.storage.enabled | bool | `true` | If `true`, writeable host filesystem storage will be enabled. |

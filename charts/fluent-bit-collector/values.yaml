@@ -209,7 +209,7 @@ config:
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
     # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: /fluent-bit/data - This can't be set as it is controlled by .Values.config.storage.enabled
+    # storage.path: ${STORAGE_PATH} - This can't be set as it is controlled by .Values.config.storage.enabled
     # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
     http_listen: "0.0.0.0"
@@ -260,7 +260,7 @@ config:
         format regex
         regex  ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
 
-  # -- Extra files to mount to /fluent-bit/etc/conf/.
+  # -- Extra files to mount to the path defined by the CONFIG_PATH environment variable.
   extraFiles: {}
   #  upstream.conf: |-
   #    [UPSTREAM]
@@ -271,7 +271,7 @@ config:
   #        host       127.0.0.1
   #        port       43000
 
-  # -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
+  # -- Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable.
   luaScripts: {}
   #  test.lua: |-
   #    function append_tag(tag, timestamp, record)
