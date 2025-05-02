@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_
+
 ### Fixed
 
 - Fix Grafana dashboard to use the correct default container name. ([#1182](https://github.com/stevehipwell/helm-charts/pull/1182)) _@stevehipwell_

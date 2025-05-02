@@ -13,7 +13,7 @@ data:
         {{ printf "%s %s" $k (toString $v) }}
 {{- end }}
 {{- if .Values.config.customParsers }}
-        parsers_file /fluent-bit/etc/conf/custom-parsers.conf
+        parsers_file ${CONFIG_PATH}/custom-parsers.conf
 {{- end }}
 {{ print "" }}
 {{- (tpl .Values.config.pipeline .) | nindent 4 }}

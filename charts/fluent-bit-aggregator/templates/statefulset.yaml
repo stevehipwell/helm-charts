@@ -79,9 +79,15 @@ spec:
             - name: {{ printf "ADDITIONAL_PORT_%s" (upper $p.name | replace "-" "_") }}
               value: {{ quote $p.containerPort }}
           {{- end }}
+            - name: CONFIG_PATH
+              value: /fluent-bit/etc/conf
           {{- if .Values.config.storage.enabled }}
             - name: STORAGE_PATH
               value: /fluent-bit/data
+          {{- end }}
+          {{- if .Values.config.luaScripts }}
+            - name: SCRIPTS_PATH
+              value: /fluent-bit/scripts
           {{- end }}
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}

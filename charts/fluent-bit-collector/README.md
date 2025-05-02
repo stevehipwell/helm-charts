@@ -53,11 +53,11 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | See _values.yaml_ | Custom parsers to configure. |
-| config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc/conf/. |
+| config.extraFiles | object | `{}` | Extra files to mount to the path defined by the CONFIG_PATH environment variable. |
 | config.hostVolumes | list | See _values.yaml_ | Host volumes to read-only mount to the default container. |
 | config.kubeletEndpoint.enabled | bool | `false` | If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**). |
 | config.kubeletEndpoint.insecure | bool | `false` | If `true`, the TLS connection will not be verified. |
-| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path. |
+| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable. |
 | config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration; this should depend on config values and changing it incorrectly may break support for some of the config options. |
 | config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
 | config.storage.enabled | bool | `false` | If `true`, writeable host filesystem storage will be enabled. |

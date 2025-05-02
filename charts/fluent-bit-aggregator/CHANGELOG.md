@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_
+
 ## [v0.17.1] - 2025-04-30
 
 ### Added
