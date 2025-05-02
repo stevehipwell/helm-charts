@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added ability to store S3 credentials in secrets ([#1180](https://github.com/stevehipwell/helm-charts/pull/1180)) _@vstariradev_
+
 ## [v5.9.1] - 2025-04-11
 
 ### Changed
