@@ -3,8 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "nexus3.logbackConfigMapName" . }}
   namespace: {{ .Release.Namespace }}
-  labels:
-    {{- include "nexus3.labels" . | nindent 4 }}
+  labels: {{- include "nexus3.labels" . | nindent 4 }}
 data:
   logback-access.xml: |
     <?xml version="1.0"?>
@@ -12,7 +11,7 @@ data:
       <appender name="request.logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${karaf.data}/log/request.log</File>
         <Append>true</Append>
-        <encoder class="org.sonatype.nexus.pax.logging.AccessPatternLayoutEncoder">
+        <encoder class="org.sonatype.nexus.logging.AccessPatternLayoutEncoder">
           <pattern>%clientHost %l %user [%date] "%requestURL" %statusCode %header{Content-Length} %bytesSent %elapsedTime "%header{User-Agent}" [%thread]</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -38,7 +37,7 @@ data:
       <jmxConfigurator/>
 
       <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="org.sonatype.nexus.pax.logging.NexusLogFilter" />
+        <filter class="org.sonatype.nexus.logging.NexusLogFilter" />
         <encoder>
           <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
         </encoder>
@@ -47,34 +46,34 @@ data:
       <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${karaf.data}/log/nexus.log</File>
         <Append>true</Append>
-        <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+        <encoder class="org.sonatype.nexus.logging.NexusLayoutEncoder">
           <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/nexus-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
           <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
         </rollingPolicy>
-        <filter class="org.sonatype.nexus.pax.logging.NexusLogFilter" />
+        <filter class="org.sonatype.nexus.logging.NexusLogFilter" />
       </appender>
 
       <appender name="clusterlogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${karaf.data}/log/nexus_cluster.log</File>
         <Append>true</Append>
-        <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+        <encoder class="org.sonatype.nexus.logging.NexusLayoutEncoder">
           <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/nexus_cluster-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
           <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
         </rollingPolicy>
-        <filter class="org.sonatype.nexus.pax.logging.ClusterLogFilter" />
+        <filter class="org.sonatype.nexus.logging.ClusterLogFilter" />
       </appender>
 
       <appender name="tasklogfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${karaf.data}/log/tasks/allTasks.log</File>
-        <filter class="org.sonatype.nexus.pax.logging.TaskLogsFilter" />
+        <filter class="org.sonatype.nexus.logging.TaskLogsFilter" />
         <Append>true</Append>
-        <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+        <encoder class="org.sonatype.nexus.logging.NexusLayoutEncoder">
           <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -84,7 +83,7 @@ data:
       </appender>
 
       <appender name="replicationlogfile" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <filter class="org.sonatype.nexus.pax.logging.ReplicationLogsFilter" />
+        <filter class="org.sonatype.nexus.logging.ReplicationLogsFilter" />
         <discriminator>
           <key>repositoryName</key>
           <defaultValue>unknown</defaultValue>
@@ -92,7 +91,7 @@ data:
         <sift>
           <appender name="replicationAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${karaf.data}/log/replication/replication-${repositoryName}.log</file>
-            <encoder class="org.sonatype.nexus.pax.logging.NexusLayoutEncoder">
+            <encoder class="org.sonatype.nexus.logging.NexusLayoutEncoder">
               <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ"} %-5p [%thread] %node %mdc{userId:-*SYSTEM} %c - %m%n</pattern>
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -109,7 +108,7 @@ data:
         <encoder>
           <pattern>%msg%n</pattern>
         </encoder>
-        <filter class="org.sonatype.nexus.pax.logging.OutboundRequestsLogFilter" />
+        <filter class="org.sonatype.nexus.logging.OutboundRequestsLogFilter" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/outbound-request-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
           <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
@@ -125,7 +124,7 @@ data:
         <encoder>
           <pattern>%msg%n</pattern>
         </encoder>
-        <filter class="org.sonatype.nexus.pax.logging.AuditLogFilter"/>
+        <filter class="org.sonatype.nexus.logging.AuditLogFilter"/>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/audit/audit-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
           <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
@@ -157,7 +156,7 @@ data:
         <appender-ref ref="blobstore-reconciliation-log-file"/>
       </logger>
 
-      <appender name="metrics" class="org.sonatype.nexus.pax.logging.InstrumentedAppender"/>
+      <appender name="metrics" class="org.sonatype.nexus.logging.InstrumentedAppender"/>
 
       <logger name="ch.qos.logback" level="WARN"/>
       <logger name="org.eclipse.jetty.webapp" level="INFO"/>
