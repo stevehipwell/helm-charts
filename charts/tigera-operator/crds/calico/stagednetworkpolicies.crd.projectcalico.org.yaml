@@ -1,16 +1,16 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: globalnetworkpolicies.crd.projectcalico.org
+  name: stagednetworkpolicies.crd.projectcalico.org
 spec:
   group: crd.projectcalico.org
   names:
-    kind: GlobalNetworkPolicy
-    listKind: GlobalNetworkPolicyList
-    plural: globalnetworkpolicies
-    singular: globalnetworkpolicy
+    kind: StagedNetworkPolicy
+    listKind: StagedNetworkPolicyList
+    plural: stagednetworkpolicies
+    singular: stagednetworkpolicy
   preserveUnknownFields: false
-  scope: Cluster
+  scope: Namespaced
   versions:
     - name: v1
       schema:
@@ -35,16 +35,6 @@ spec:
               type: object
             spec:
               properties:
-                applyOnForward:
-                  description: ApplyOnForward indicates to apply the rules in this policy on forward traffic.
-                  type: boolean
-                doNotTrack:
-                  description: |-
-                    DoNotTrack indicates whether packets matched by the rules in this policy should go through
-                    the data plane's connection tracking, such as Linux conntrack.  If True, the rules in
-                    this policy are applied before any data plane connection tracking, and packets allowed by
-                    this policy are marked as not to be tracked.
-                  type: boolean
                 egress:
                   description: |-
                     The ordered set of egress rules.  Each rule contains a set of packet match criteria and
@@ -709,9 +699,6 @@ spec:
                       - action
                     type: object
                   type: array
-                namespaceSelector:
-                  description: NamespaceSelector is an optional field for an expression used to select a pod based on namespaces.
-                  type: string
                 order:
                   description: |-
                     Order is an optional field that specifies the order in which the policy is applied.
@@ -735,14 +722,14 @@ spec:
                   items:
                     type: string
                   type: array
-                preDNAT:
-                  description: PreDNAT indicates to apply the rules in this policy before any DNAT.
-                  type: boolean
                 selector:
-                  description: "The selector is an expression used to pick out the endpoints that the policy should\nbe applied to.\n\nSelector expressions follow this syntax:\n\n\tlabel == \"string_literal\"  ->  comparison, e.g. my_label == \"foo bar\"\n\tlabel != \"string_literal\"   ->  not equal; also matches if label is not present\n\tlabel in { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is one of \"a\", \"b\", \"c\"\n\tlabel not in { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is not one of \"a\", \"b\", \"c\"\n\thas(label_name)  -> True if that label is present\n\t! expr -> negation of expr\n\texpr && expr  -> Short-circuit and\n\texpr || expr  -> Short-circuit or\n\t( expr ) -> parens for grouping\n\tall() or the empty selector -> matches all endpoints.\n\nLabel names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive\nbut they do not support escape characters.\n\nExamples (with made-up labels):\n\n\ttype == \"webserver\" && deployment == \"prod\"\n\ttype in {\"frontend\", \"backend\"}\n\tdeployment != \"dev\"\n\t! has(label_name)"
+                  description: "The selector is an expression used to pick pick out the endpoints that the policy should\nbe applied to.\n\nSelector expressions follow this syntax:\n\n\tlabel == \"string_literal\"  ->  comparison, e.g. my_label == \"foo bar\"\n\tlabel != \"string_literal\"   ->  not equal; also matches if label is not present\n\tlabel in { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is one of \"a\", \"b\", \"c\"\n\tlabel not in { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is not one of \"a\", \"b\", \"c\"\n\thas(label_name)  -> True if that label is present\n\t! expr -> negation of expr\n\texpr && expr  -> Short-circuit and\n\texpr || expr  -> Short-circuit or\n\t( expr ) -> parens for grouping\n\tall() or the empty selector -> matches all endpoints.\n\nLabel names are allowed to contain alphanumerics, -, _ and /. String literals are more permissive\nbut they do not support escape characters.\n\nExamples (with made-up labels):\n\n\ttype == \"webserver\" && deployment == \"prod\"\n\ttype in {\"frontend\", \"backend\"}\n\tdeployment != \"dev\"\n\t! has(label_name)"
                   type: string
                 serviceAccountSelector:
                   description: ServiceAccountSelector is an optional field for an expression used to select a pod based on service accounts.
+                  type: string
+                stagedAction:
+                  description: The staged action. If this is omitted, the default is Set.
                   type: string
                 tier:
                   description: |-
@@ -756,7 +743,7 @@ spec:
                   description: |-
                     Types indicates whether this policy applies to ingress, or to egress, or to both.  When
                     not explicitly specified (and so the value on creation is empty or nil), Calico defaults
-                    Types according to what Ingress and Egress rules are present in the policy.  The
+                    Types according to what Ingress and Egress are present in the policy.  The
                     default is:
 
                     - [ PolicyTypeIngress ], if there are no Egress rules (including the case where there are

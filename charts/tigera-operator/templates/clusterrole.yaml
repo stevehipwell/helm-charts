@@ -16,7 +16,6 @@ rules:
       - endpoints
       - events
       - configmaps
-      - secrets
       - serviceaccounts
     verbs:
       - create
@@ -29,6 +28,7 @@ rules:
       - ""
     resources:
       - resourcequotas
+      - secrets
     verbs:
       - list
       - get
@@ -100,16 +100,28 @@ rules:
   - apiGroups:
       - operator.tigera.io
     resources:
+      - apiservers
       - apiservers/finalizers
+      - apiservers/status
+      - gatewayapis
+      - gatewayapis/finalizers
+      - gatewayapis/status
+      - goldmanes
+      - goldmanes/finalizers
+      - goldmanes/status
+      - imagesets
       - installations
-      - installations/status
       - installations/finalizers
+      - installations/status
+      - managementclusterconnections
+      - managementclusterconnections/finalizers
+      - managementclusterconnections/status
       - tigerastatuses
       - tigerastatuses/status
       - tigerastatuses/finalizers
-      - apiservers
-      - apiservers/status
-      - imagesets
+      - whiskers
+      - whiskers/finalizers
+      - whiskers/status
     verbs:
       - get
       - list
@@ -159,6 +171,7 @@ rules:
     resources:
       - kubecontrollersconfigurations
       - bgpconfigurations
+      - clusterinformations
     verbs:
       - get
       - list
@@ -285,8 +298,91 @@ rules:
       - create
       - list
       - watch
+  # Additions for Gateway API support.
+  # 1. The operator needs to reconcile gateway.networking.k8s.io and gateway.envoyproxy.io CRDs.
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - update
+    resourceNames:
+      - backendlbpolicies.gateway.networking.k8s.io
+      - backendtlspolicies.gateway.networking.k8s.io
+      - gatewayclasses.gateway.networking.k8s.io
+      - gateways.gateway.networking.k8s.io
+      - grpcroutes.gateway.networking.k8s.io
+      - httproutes.gateway.networking.k8s.io
+      - referencegrants.gateway.networking.k8s.io
+      - tcproutes.gateway.networking.k8s.io
+      - tlsroutes.gateway.networking.k8s.io
+      - udproutes.gateway.networking.k8s.io
+      - backends.gateway.envoyproxy.io
+      - backendtrafficpolicies.gateway.envoyproxy.io
+      - clienttrafficpolicies.gateway.envoyproxy.io
+      - envoyextensionpolicies.gateway.envoyproxy.io
+      - envoypatchpolicies.gateway.envoyproxy.io
+      - envoyproxies.gateway.envoyproxy.io
+      - httproutefilters.gateway.envoyproxy.io
+      - securitypolicies.gateway.envoyproxy.io
+  # 2. GatewayClasses and EnvoyProxy configurations.
+  - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+    verbs:
+      - create
+      - update
+      - delete
+      - list
+      - get
+      - watch
+  - apiGroups:
+      - gateway.envoyproxy.io
+    resources:
+      - envoyproxies
+    verbs:
+      - create
+      - update
+      - delete
+      - list
+      - get
+      - watch
+  # 3. For Gateway API the operator needs to be able to create and reconcile a certificate generation job.
+  - apiGroups:
+      - batch
+    resources:
+      - jobs
+    verbs:
+      - create
+      - list
+      - watch
+  - apiGroups:
+      - batch
+    resources:
+      - jobs
+    verbs:
+      - update
+    resourceNames:
+      - tigera-gateway-api-gateway-helm-certgen
 {{- with .Values.rbac.customRules }}
   # Custom rules
   {{- toYaml . | nindent 2 }}
 {{- end }}
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ printf "%s-secrets" (include "tigera-operator.fullname" .) }}
+  labels:
+    {{- include "tigera-operator.labels" . | nindent 4 }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - update
+      - delete
 {{- end -}}
