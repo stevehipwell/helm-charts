@@ -16,15 +16,17 @@
 
 ## [v2.16.7] - 2025-05-09
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Deprecated
 
-- Deprecate chart as _Istio_ `v1.23` is [no longer supported](https://istio.io/latest/news/support/announcing-1.23-eol-final/) and it was the last version to support the _Istio Operator_. ([#1187](https://github.com/stevehipwell/helm-charts/pull/1187)) \_@stevehipwell
+- Deprecate chart as _Istio_ `v1.23` is [no longer supported](https://istio.io/latest/news/support/announcing-1.23-eol-final/) and it was the last version to support the _Istio Operator_. ([#1187](https://github.com/stevehipwell/helm-charts/pull/1187)) _@stevehipwell_
 
 ## [v2.16.6] - 2025-04-08
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -32,7 +34,8 @@
 
 ## [v2.16.5] - 2025-04-08
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -40,7 +43,8 @@
 
 ## [v2.16.4] - 2025-01-02
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -48,7 +52,8 @@
 
 ## [v2.16.3] - 2024-11-04
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -56,7 +61,8 @@
 
 ## [v2.16.2] - 2024-10-03
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -64,7 +70,8 @@
 
 ## [v2.16.1] - 2024-09-10
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
@@ -72,7 +79,8 @@
 
 ## [v2.16.0] - 2024-08-15
 
-> [!IMPORTANT] > _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
+> [!IMPORTANT]
+> _Istio_ `1.23` is the last version to support the _Istio Operator_ as it has been [deprecated](https://istio.io/latest/blog/2024/in-cluster-operator-deprecation-announcement/).
 
 ### Changed
 
