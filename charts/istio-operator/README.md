@@ -1,18 +1,14 @@
 # istio-operator
 
-![Version: 2.16.6](https://img.shields.io/badge/Version-2.16.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.6](https://img.shields.io/badge/AppVersion-1.23.6-informational?style=flat-square)
+> **:exclamation: This Helm Chart is deprecated!**
+
+![Version: 2.16.7](https://img.shields.io/badge/Version-2.16.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.6](https://img.shields.io/badge/AppVersion-1.23.6-informational?style=flat-square)
 
 The [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) provides a declarative _Kubernetes_ native way to manage [Istio](https://istio.io/) via `IstioOperator` custom resources.
 
 [Istio](https://istio.io/) extends Kubernetes to establish a programmable, application-aware network using the powerful _Envoy_ service proxy. Working with both _Kubernetes_ and traditional workloads, _Istio_ brings standard, universal traffic management, telemetry, and security to complex deployments.
 
 **Homepage:** <https://istio.io/>
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| stevehipwell | <steve.hipwell@gmail.com> |  |
 
 ## Source Code
 
@@ -26,7 +22,7 @@ The [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) provi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.16.6
+helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/istio-operator --version 2.16.7
 ```
 
 #### Verification
@@ -34,7 +30,7 @@ helm upgrade --install istio-operator oci://ghcr.io/stevehipwell/helm-charts/ist
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/istio-operator:2.16.6
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/istio-operator:2.16.7
 ```
 
 ### Non-OCI Repository
@@ -43,7 +39,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.16.6
+helm upgrade --install istio-operator stevehipwell/istio-operator --version 2.16.7
 ```
 
 ## Values
