@@ -14,7 +14,7 @@ permissions: read-all
 jobs:
   workflow:
     name: Reusable Workflow
-    uses: action-stars/helm-workflows/.github/workflows/release.yaml@fbf454df626b05cbe5beef857357717fb508154a # v0.8.4
+    uses: action-stars/helm-workflows/.github/workflows/release.yaml@0b498f1b9096b956f66f50954864e477dc3a639e # v0.8.5
     permissions:
       attestations: write
       contents: write
