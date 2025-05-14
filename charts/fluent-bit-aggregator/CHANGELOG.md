@@ -14,6 +14,32 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_
+
+## [v0.17.1] - 2025-04-30
+
+### Added
+
+- Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174) & [#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
+- Add additional port environment variables in the form `ADDITIONAL_PORT_<NAME>` (where the name has been made uppercase and `-` has been replace by `_`). ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.0.1](https://github.com/fluent/fluent-bit/releases/tag/v4.0.1). ([#1181](https://github.com/stevehipwell/helm-charts/pull/1181)) _@stevehipwell_
+
+## [v0.17.0] - 2025-04-10
+
+### Added
+
+- Add support for extra hot reload watch paths via the new `hotReload.extraWatchVolumes` value. ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.0.0](https://github.com/fluent/fluent-bit/releases/tag/v4.0.0). ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
+- Update `jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
+
 ## [v0.16.10] - 2025-03-26
 
 ### Changed
@@ -369,6 +395,8 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.1
+[v0.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.0
 [v0.16.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.10
 [v0.16.9]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.9
 [v0.16.8]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.8

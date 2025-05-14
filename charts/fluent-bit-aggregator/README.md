@@ -1,6 +1,6 @@
 # fluent-bit-aggregator
 
-![Version: 0.16.10](https://img.shields.io/badge/Version-0.16.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.2.10](https://img.shields.io/badge/AppVersion-3.2.10-informational?style=flat-square)
+![Version: 0.17.1](https://img.shields.io/badge/Version-0.17.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.0.1](https://img.shields.io/badge/AppVersion-4.0.1-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
@@ -24,7 +24,7 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.16.10
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.17.1
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-cha
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.16.10
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.17.1
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.16.10
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.17.1
 ```
 
 ## Values
@@ -58,8 +58,8 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | `nil` | Custom parsers to configure. |
-| config.extraFiles | object | `{}` | Extra files to mount to /fluent-bit/etc |
-| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path. |
+| config.extraFiles | object | `{}` | Extra files to mount to the path defined by the CONFIG_PATH environment variable. |
+| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable. |
 | config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration. |
 | config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
 | config.storage.enabled | bool | `true` | If `true`, writeable host filesystem storage will be enabled. |
@@ -70,10 +70,11 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | extraVolumes | list | `[]` | Extra volumes for the pod. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | hotReload.enabled | bool | `false` | If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container. |
+| hotReload.extraWatchVolumes | list | `[]` | Extra volumes for the hot-reload sidecar container to watch. |
 | hotReload.image.digest | string | `nil` | Optional image digest for the hot-reload sidecar container. |
 | hotReload.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the hot-reload sidecar container. |
 | hotReload.image.repository | string | `"ghcr.io/jimmidyson/configmap-reload"` | Image repository for the hot-reload sidecar container. |
-| hotReload.image.tag | string | `"v0.14.0"` | Image tag for the hot-reload sidecar container. |
+| hotReload.image.tag | string | `"v0.15.0"` | Image tag for the hot-reload sidecar container. |
 | hotReload.resources | object | `{}` | Resources for the hot-reload sidecar container. |
 | image.digest | string | `nil` | Optional image digest for the default container. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
@@ -88,7 +89,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | ordinals | object | `{}` | Ordinals configuration for the `StatefulSet`. |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the `PersistentVolumeClaim`. |
 | persistence.annotations | object | `{}` | Annotations for the `PersistentVolumeClaim`. |
-| persistence.enabled | bool | `false` | If `true`, persistence should be enabled for the `StatefulSet`. |
+| persistence.enabled | bool | `false` | If `true` & `storage.enabled` is `true`, persistence should be enabled for the `StatefulSet`. |
 | persistence.retainDeleted | bool | `true` | If `true`, keep `PersistentVolumeClaims` when the `StatefulSet` is deleted. |
 | persistence.retainScaled | bool | `true` | If `true`, keep `PersistentVolumeClaim` when the `StatefulSet` is scaled down. |
 | persistence.size | string | `"8Gi"` | Size of the `PersistentVolumeClaim`. |

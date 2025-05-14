@@ -70,8 +70,26 @@ spec:
           {{- end }}
           image: {{ include "fluent-bit-aggregator.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.env }}
           env:
+            - name: POD_INDEX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['apps.kubernetes.io/pod-index']
+          {{- range $p := .Values.service.additionalPorts }}
+            - name: {{ printf "ADDITIONAL_PORT_%s" (upper $p.name | replace "-" "_") }}
+              value: {{ quote $p.containerPort }}
+          {{- end }}
+            - name: CONFIG_PATH
+              value: /fluent-bit/etc/conf
+          {{- if .Values.config.storage.enabled }}
+            - name: STORAGE_PATH
+              value: /fluent-bit/data
+          {{- end }}
+          {{- if .Values.config.luaScripts }}
+            - name: SCRIPTS_PATH
+              value: /fluent-bit/scripts
+          {{- end }}
+          {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.command }}
@@ -136,11 +154,18 @@ spec:
             - {{ printf "-webhook-url=http://localhost:%s/api/v2/reload" (toString .Values.service.httpPort) }}
             - -volume-dir=/watch/config
             - -volume-dir=/watch/scripts
+          {{- range $idx, $val := .Values.hotReload.extraWatchVolumes }}
+            - {{ printf "-volume-dir=/watch/extra-%d" (int $idx) }}
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /watch/config
             - name: scripts
               mountPath: /watch/scripts
+          {{- range $idx, $val := .Values.hotReload.extraWatchVolumes }}
+            - name: {{ $val }}
+              mountPath: {{ printf "/watch/extra-%d" (int $idx) }}
+          {{- end }}
           {{- with .Values.hotReload.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

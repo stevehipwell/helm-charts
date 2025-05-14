@@ -29,7 +29,7 @@ jobs:
 
       - name: Chart changes
         id: changed
-        uses: tj-actions/changed-files@823fcebdb31bb35fdf2229d9f769b400309430d0 # v46.0.3
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46.0.5
         with:
           files: charts/**
 
@@ -43,7 +43,7 @@ jobs:
 
   validate:
     name: Validate
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@91118e0fe1efa76da424ebd5e546ad4fc9d53ef5 # v0.8.3
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@0b498f1b9096b956f66f50954864e477dc3a639e # v0.8.5
     needs: setup
     if: needs.setup.outputs.changed == 'true'
     permissions:

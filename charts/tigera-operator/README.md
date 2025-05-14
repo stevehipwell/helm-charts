@@ -1,6 +1,6 @@
 # tigera-operator
 
-![Version: 2.11.6](https://img.shields.io/badge/Version-2.11.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.36.7](https://img.shields.io/badge/AppVersion-1.36.7-informational?style=flat-square)
+![Version: 2.12.0](https://img.shields.io/badge/Version-2.12.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.38.0](https://img.shields.io/badge/AppVersion-1.38.0-informational?style=flat-square)
 
 The [Tigera Operator](https://www.tigera.io/) is a Kubernetes operator which manages the lifecycle of a [Calico](https://www.tigera.io/project-calico/) or [Calico Enterprise](https://www.tigera.io/tigera-products/calico-enterprise/) installation on Kubernetes. Its goal is to make installation, upgrades, and ongoing lifecycle management of _Calico_ and _Calico Enterprise_ as simple and reliable as possible.
 
@@ -27,7 +27,7 @@ It is possible to use the _Tigera Operator_ for other use-cases by installing ad
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/tigera-operator --version 2.11.6
+helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/tigera-operator --version 2.12.0
 ```
 
 #### Verification
@@ -35,7 +35,7 @@ helm upgrade --install tigera-operator oci://ghcr.io/stevehipwell/helm-charts/ti
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/tigera-operator:2.11.6
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/tigera-operator:2.12.0
 ```
 
 ### Non-OCI Repository
@@ -44,7 +44,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.11.6
+helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.12.0
 ```
 
 ## Values
@@ -60,6 +60,8 @@ helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.
 | env | list | `[]` | Environment variables for the default container. |
 | envFrom | list | `[]` | **DEPRECATED** - Environment variables from a config map or secret for the default container. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
+| goldmane.enabled | bool | `false` | If `true`, install a `Goldmane` flow aggregator according to the `goldmane.spec`. |
+| goldmane.spec | object | `{}` | [Goldmane Spec](https://docs.tigera.io/calico/latest/observability/enable-whisker#enable-the-flow-logs-api) to enable flow aggregation. |
 | hostNetwork | bool | `true` | If `true`, the pod will use the host network namespace. This can be set to `false` if _Calico_ is not the CNI. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
 | image.repository | string | `"quay.io/tigera/operator"` | Image repository for the default container. |
@@ -89,6 +91,8 @@ helm upgrade --install tigera-operator stevehipwell/tigera-operator --version 2.
 | tolerations | list | `[]` | Node taints that will be tolerated for scheduling. |
 | topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | uninstall.enabled | bool | `true` | If `true`, run a `Job` as a pre-delete _Helm_ hook to make sure that _Tigera Operator_ can be uninstalled. |
+| whisker.enabled | bool | `false` | If `true`, install a `Whisker` observability UI according to the `whisker.spec`. |
+| whisker.spec | object | `{}` | [Whisker Spec](https://docs.tigera.io/calico/latest/observability/enable-whisker#enable-the-calico-whisker-web-console) to enable the observability UI. |
 
 ----------------------------------------------
 

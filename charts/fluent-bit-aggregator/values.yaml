@@ -187,7 +187,7 @@ readinessProbe:
   failureThreshold: 6
 
 persistence:
-  # -- If `true`, persistence should be enabled for the `StatefulSet`.
+  # -- If `true` & `storage.enabled` is `true`, persistence should be enabled for the `StatefulSet`.
   enabled: false
   # -- Annotations for the `PersistentVolumeClaim`.
   annotations: {}
@@ -261,7 +261,7 @@ config:
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
     # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage.enabled
+    # storage.path: ${STORAGE_PATH} - This can't be set as it is controlled by .Values.config.storage.enabled
     # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
     http_listen: "0.0.0.0"
@@ -272,7 +272,7 @@ config:
     [INPUT]
         name              forward
         listen            0.0.0.0
-        port              {{ (index .Values.service.additionalPorts 0).containerPort }}
+        port              ${ADDITIONAL_PORT_HTTP_FORWARD}
         buffer_chunk_size 1M
         buffer_max_size   6M
     {{- if .Values.config.storage.enabled }}
@@ -292,7 +292,7 @@ config:
   #      Time_Key time
   #      Time_Format %Y-%m-%dT%H:%M:%S.%L
 
-  # -- Extra files to mount to /fluent-bit/etc
+  # -- Extra files to mount to the path defined by the CONFIG_PATH environment variable.
   extraFiles: {}
   #  upstream.conf: |-
   #    [UPSTREAM]
@@ -303,7 +303,7 @@ config:
   #        host       127.0.0.1
   #        port       43000
 
-  # -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
+  # -- Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable.
   luaScripts: {}
   #  test.lua: |-
   #    function append_tag(tag, timestamp, record)
@@ -319,10 +319,12 @@ hotReload:
     # -- Image repository for the hot-reload sidecar container.
     repository: ghcr.io/jimmidyson/configmap-reload
     # -- Image tag for the hot-reload sidecar container.
-    tag: v0.14.0
+    tag: v0.15.0
     # -- (string) Optional image digest for the hot-reload sidecar container.
     digest:
     # --  Image pull policy for the hot-reload sidecar container.
     pullPolicy: IfNotPresent
   # -- Resources for the hot-reload sidecar container.
   resources: {}
+  # -- Extra volumes for the hot-reload sidecar container to watch.
+  extraWatchVolumes: []

@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Update `jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
+
+## [v1.20.0] - 2025-04-09
+
+### Changed
+
+- Updated the _Thanos_ OCI image to [v0.38.0](https://github.com/thanos-io/thanos/releases/tag/v0.38.0). ([#1167](https://github.com/stevehipwell/helm-charts/pull/1167)) _@stevehipwell_
+
 ## [v1.19.2] - 2024-12-11
 
 ### Changed
@@ -547,6 +557,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.20.0
 [v1.19.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.19.2
 [v1.19.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.19.1
 [v1.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.19.0

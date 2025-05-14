@@ -1,4 +1,4 @@
-{{- $serviceConfig := merge (merge (dict "daemon" false "http_server" true "http_Port" .Values.service.httpPort "parsers_file" "/fluent-bit/etc/parsers.conf") (ternary (dict "storage.path" "/fluent-bit/data" "storage.metrics" .Values.config.storage.metrics) (dict) .Values.config.storage.enabled)) .Values.config.service -}}
+{{- $serviceConfig := merge (merge (dict "daemon" false "http_server" true "http_Port" .Values.service.httpPort "parsers_file" "/fluent-bit/etc/parsers.conf") (ternary (dict "storage.path" "${STORAGE_PATH}" "storage.metrics" .Values.config.storage.metrics) (dict) .Values.config.storage.enabled)) .Values.config.service -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -13,7 +13,7 @@ data:
         {{ printf "%s %s" $k (toString $v) }}
 {{- end }}
 {{- if .Values.config.customParsers }}
-        parsers_file /fluent-bit/etc/conf/custom-parsers.conf
+        parsers_file ${CONFIG_PATH}/custom-parsers.conf
 {{- end }}
 {{ print "" }}
 {{- (tpl .Values.config.pipeline .) | nindent 4 }}

@@ -1008,7 +1008,7 @@ rule:
       # -- Image repository for the _Rule_ pod config reloader sidecar container.
       repository: ghcr.io/jimmidyson/configmap-reload
       # -- Image tag for the _Rule_ pod config reloader sidecar container.
-      tag: v0.14.0
+      tag: v0.15.0
       # -- Image digest for the _Rule_ pod config reloader sidecar container.
       digest:
       # -- Image pull policy for the _Rule_ pod config reloader sidecar container.

@@ -14,6 +14,67 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_
+
+### Fixed
+
+- Fix Grafana dashboard to use the correct default container name. ([#1182](https://github.com/stevehipwell/helm-charts/pull/1182)) _@stevehipwell_
+
+## [v0.17.1] - 2025-04-30
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.0.1](https://github.com/fluent/fluent-bit/releases/tag/v4.0.1). ([#1181](https://github.com/stevehipwell/helm-charts/pull/1181)) _@stevehipwell_
+
+## [v0.17.0] - 2025-04-15
+
+### Added
+
+- Add additional port environment variables in the form `ADDITIONAL_PORT_<NAME>` (where the name has been made uppercase and `-` has been replace by `_`). ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
+
+### Fixed
+
+- Fix `STORAGE_PATH` env variable to only be set when storage is enabled. ([#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_
+
+## [v0.16.0] - 2025-04-15
+
+### Added
+
+- Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174)) _@stevehipwell_
+
+## [v0.15.0] - 2025-04-15
+
+### Added
+
+- Add `config.storage.hostPath` value for configuring the storage path on the host. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+
+### Changed
+
+- Change default `fsGroup` to `0` to match host volume ownership. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+
+### Removed
+
+- Simplify example configuration by removing OTel & Systemd defaults. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+
+### Fixed
+
+- Fix incorrect DB path in example configuration. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+- Fix incorrect check for storage being enabled. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+- Fix missing host mount types. ([#1173](https://github.com/stevehipwell/helm-charts/pull/1173)) _@stevehipwell_
+
+## [v0.14.0] - 2025-04-10
+
+### Added
+
+- Add support for extra hot reload watch paths via the new `hotReload.extraWatchVolumes` value. ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.0.0](https://github.com/fluent/fluent-bit/releases/tag/v4.0.0). ([#1169](https://github.com/stevehipwell/helm-charts/pull/1169)) _@stevehipwell_
+- Update `jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
+
 ## [v0.13.10] - 2025-03-26
 
 ### Changed
@@ -306,6 +367,11 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-collector
+[v0.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.17.1
+[v0.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.17.0
+[v0.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.16.0
+[v0.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.15.0
+[v0.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.14.0
 [v0.13.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.13.10
 [v0.13.9]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.13.9
 [v0.13.8]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.13.8

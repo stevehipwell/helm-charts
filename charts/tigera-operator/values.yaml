@@ -118,6 +118,19 @@ apiServer:
   # -- [APIServer Spec](https://projectcalico.docs.tigera.io/maintenance/install-apiserver) to enable kubectl to manage _Calico_ APIs.
   spec: {}
 
+goldmane:
+  # -- If `true`, install a `Goldmane` flow aggregator according to the `goldmane.spec`.
+  enabled: false
+  # -- [Goldmane Spec](https://docs.tigera.io/calico/latest/observability/enable-whisker#enable-the-flow-logs-api) to enable flow aggregation.
+  spec: {}
+
+# whisker configures the Calico Whisker observability UI.
+whisker:
+  # -- If `true`, install a `Whisker` observability UI according to the `whisker.spec`.
+  enabled: false
+  # -- [Whisker Spec](https://docs.tigera.io/calico/latest/observability/enable-whisker#enable-the-calico-whisker-web-console) to enable the observability UI.
+  spec: {}
+
 uninstall:
   # -- If `true`, run a `Job` as a pre-delete _Helm_ hook to make sure that _Tigera Operator_ can be uninstalled.
   enabled: true

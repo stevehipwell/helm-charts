@@ -2,8 +2,9 @@ apiVersion: v2
 name: istio-operator
 description: Helm chart to install the Istio Operator and optionally create the IstioOperator CR to install Istio into the cluster.
 type: application
-version: 2.16.4
-appVersion: 1.23.4
+version: 2.16.7
+appVersion: 1.23.6
+deprecated: true
 keywords:
   - kubernetes
   - istio
@@ -15,9 +16,6 @@ icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/ist
 sources:
   - https://github.com/istio/istio/tree/master/operator
   - https://github.com/stevehipwell/helm-charts/
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/alternativeName: istio
   artifacthub.io/crds: |

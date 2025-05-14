@@ -8,3 +8,6 @@
 # Test files
 **/*test-values.y*ml
 /out
+
+# Output
+/dist

@@ -1,0 +1,16 @@
+{{- if .Values.whisker.enabled -}}
+apiVersion: operator.tigera.io/v1
+kind: Whisker
+metadata:
+  name: default
+  labels:
+    {{- include "tigera-operator.labels" . | nindent 4 }}
+spec:
+{{- with .Values.whisker.spec }}
+{{- if kindIs "string" . }}
+  {{- tpl . $ | nindent 2 }}
+{{- else }}
+  {{-  toYaml . | nindent 2 }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

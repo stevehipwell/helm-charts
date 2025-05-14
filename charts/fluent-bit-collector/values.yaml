@@ -52,10 +52,10 @@ service:
   # -- Additional ports to expose.
   # @default -- See _values.yaml_
   additionalPorts:
-    - name: http-otel
-      port: 4318
-      containerPort: 4318
-      protocol: TCP
+  #   - name: http-otel
+  #     port: 4318
+  #     containerPort: 4318
+  #     protocol: TCP
 
 # -- Update strategy for the `DaemonSet`.
 updateStrategy: {}
@@ -73,7 +73,8 @@ podAnnotations: {}
 # @default -- See _values.yaml_
 podSecurityContext:
   runAsNonRoot: false
-  fsGroup: 65534
+  fsGroup: 0
+  fsGroupChangePolicy: OnRootMismatch
   seccompProfile:
     type: RuntimeDefault
 
@@ -184,6 +185,7 @@ config:
     - name: logs
       hostPath:
         path: /var/log
+        type: Directory
       mountPath: /var/log
 
   storage:
@@ -191,6 +193,8 @@ config:
     enabled: false
     # -- If `true`, storage metrics will be enabled if storage is enabled.
     metrics: true
+    ## -- Host path to the storage directory.
+    hostPath: /var/fluent-bit/data
 
   kubeletEndpoint:
     # -- If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**).
@@ -205,7 +209,7 @@ config:
     # http_server: true - This can't be set
     # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
     # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: /fluent-bit/data/ - This can't be set as it is controlled by .Values.config.storage.enabled
+    # storage.path: ${STORAGE_PATH} - This can't be set as it is controlled by .Values.config.storage.enabled
     # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
     http_listen: "0.0.0.0"
@@ -214,19 +218,8 @@ config:
   # @default -- See _values.yaml_
   pipeline: |-
     [INPUT]
-        name              systemd
-        systemd_filter    _SYSTEMD_UNIT=containerd.service
-        systemd_filter    _SYSTEMD_UNIT=kubelet.service
-        tag               host.*
-        strip_underscores true
-        lowercase         true
-    {{- if .Values.config.storage.enabled }}
-        db                /fluent-bit/data/systemd/systemd.db
-        storage.type      filesystem
-    {{- end }}
-
-    [INPUT]
         name             tail
+        alias            logs
         path             /var/log/containers/*.log
         tag_regex        (?<pod_name>[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)_(?<namespace_name>[^_]+)_(?<container_name>.+)-
         tag              kube.<namespace_name>.<pod_name>.<container_name>
@@ -235,17 +228,8 @@ config:
         skip_long_lines  true
         skip_empty_lines true
     {{- if .Values.config.storage.enabled }}
-        db               fluent-bit/data/tail/tail.db
+        db               ${STORAGE_PATH}/tail.db
         storage.type     filesystem
-    {{- end }}
-
-    [INPUT]
-        name         opentelemetry
-        listen       127.0.0.1
-        port         {{ (index .Values.service.additionalPorts 0).containerPort }}
-        tag          otel
-    {{- if .Values.config.storage.enabled }}
-        storage.type filesystem
     {{- end }}
 
     [FILTER]
@@ -276,7 +260,7 @@ config:
         format regex
         regex  ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
 
-  # -- Extra files to mount to /fluent-bit/etc
+  # -- Extra files to mount to the path defined by the CONFIG_PATH environment variable.
   extraFiles: {}
   #  upstream.conf: |-
   #    [UPSTREAM]
@@ -287,7 +271,7 @@ config:
   #        host       127.0.0.1
   #        port       43000
 
-  # -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
+  # -- Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable.
   luaScripts: {}
   #  test.lua: |-
   #    function append_tag(tag, timestamp, record)
@@ -303,10 +287,12 @@ hotReload:
     # -- Image repository for the hot-reload sidecar container.
     repository: ghcr.io/jimmidyson/configmap-reload
     # -- Image tag for the hot-reload sidecar container.
-    tag: v0.14.0
+    tag: v0.15.0
     # -- (string) Optional image digest for the hot-reload sidecar container.
     digest:
     # --  Image pull policy for the hot-reload sidecar container.
     pullPolicy: IfNotPresent
   # -- Resources for the hot-reload sidecar container.
   resources: {}
+  # -- Extra volumes for the hot-reload sidecar container to watch.
+  extraWatchVolumes: []
