@@ -4323,6 +4323,38 @@ entries:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_"
+        - kind: changed
+          description: "Update _Fluent Bit_ OCI image to [v4.0.2](https://github.com/fluent/fluent-bit/releases/tag/v4.0.2). ([#1190](https://github.com/stevehipwell/helm-charts/pull/1190)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.2
+    created: "2025-05-15T10:49:24.674978759Z"
+    description: Helm chart for Fluent Bit running as an aggregation stateful set.
+    digest: 3aa0d028661864eabb930c68e77876f1d0001cbabd0d8911566cf3fc4cbd55d4
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-aggregator
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-aggregator-0.17.2/fluent-bit-aggregator-0.17.2.tgz
+    version: 0.17.2
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add `STORAGE_PATH` env variable. ([#1174](https://github.com/stevehipwell/helm-charts/pull/1174) & [#1175](https://github.com/stevehipwell/helm-charts/pull/1175)) _@stevehipwell_"
         - kind: added
           description: "   -----"
@@ -29569,4 +29601,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-12T11:47:27.805733511Z"
+generated: "2025-05-15T10:49:24.676463275Z"
