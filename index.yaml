@@ -5995,6 +5995,40 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_"
+        - kind: changed
+          description: "Update _Fluent Bit_ OCI image to [v4.0.2](https://github.com/fluent/fluent-bit/releases/tag/v4.0.2). ([#1190](https://github.com/stevehipwell/helm-charts/pull/1190)) _@stevehipwell_"
+        - kind: fixed
+          description: "Fix Grafana dashboard to use the correct default container name. ([#1182](https://github.com/stevehipwell/helm-charts/pull/1182)) _@stevehipwell_"
+    apiVersion: v2
+    appVersion: 4.0.2
+    created: "2025-05-15T10:50:11.469029741Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: e365552888eec97ad6466917b4d0946ba80d41ec8024d10598f4878d484bbbb3
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.17.2/fluent-bit-collector-0.17.2.tgz
+    version: 0.17.2
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update _Fluent Bit_ OCI image to [v4.0.1](https://github.com/fluent/fluent-bit/releases/tag/v4.0.1). ([#1181](https://github.com/stevehipwell/helm-charts/pull/1181)) _@stevehipwell_"
     apiVersion: v2
@@ -29601,4 +29635,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-15T10:49:24.676463275Z"
+generated: "2025-05-15T10:50:11.470326658Z"
