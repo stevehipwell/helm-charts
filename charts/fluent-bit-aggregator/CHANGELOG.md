@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v0.17.2] - 2025-05-15
+
 ### Added
 
 - Add `CONFIG_PATH` & `SCRIPTS_PATH` env variables. ([#1183](https://github.com/stevehipwell/helm-charts/pull/1183)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.0.2](https://github.com/fluent/fluent-bit/releases/tag/v4.0.2). ([#1190](https://github.com/stevehipwell/helm-charts/pull/1190)) _@stevehipwell_
 
 ## [v0.17.1] - 2025-04-30
 
@@ -395,6 +401,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.17.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.2
 [v0.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.1
 [v0.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.17.0
 [v0.16.10]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.16.10
