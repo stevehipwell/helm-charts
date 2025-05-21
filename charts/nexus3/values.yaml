@@ -389,6 +389,15 @@ config:
   #     password:
   #       secret: test-repo
   #       key: password
+  # -- Privileges configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
+  privileges: []
+  #   - type: application
+  #     name: nx-metrics-all
+  #     description: All permissions for Metrics
+  #     readOnly: true
+  #     actions:
+  #       - ALL
+  #     domain: metrics
   # -- Roles configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   roles: []
   #   - id: nexus-administrators
