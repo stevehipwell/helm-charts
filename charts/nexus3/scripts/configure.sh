@@ -137,6 +137,13 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
         jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
         json_file="${tmp_file}"
       fi
+
+      bearer_token_file="${CONFIG_DIR}/secret/repo-${name}.bearer-token"
+      if [[ -f "${bearer_token_file}" ]]; then
+        tmp_file="$(mktemp -p "${tmp_dir}")"
+        jq -r --arg bearer_token "$(cat "${bearer_token_file}")" '. * {httpClient: {authentication: {bearerToken: $bearer_token}}}' "${json_file}" >"${tmp_file}"
+        json_file="${tmp_file}"
+      fi
     fi
 
     status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/repositories/${format}/${type}/${name}")
