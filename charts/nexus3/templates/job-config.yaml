@@ -61,6 +61,11 @@ spec:
               name: {{ printf "repo-%s" .name }}
               subPath: {{ default "password" .password.key }}
           {{- end }}
+          {{- if dig "bearerToken" "secret" nil . }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/repo-%s.bearer-token" .name }}
+              name: {{ printf "repo-%s" .name }}
+              subPath: {{ default "bearerToken" .bearerToken.key }}
+          {{- end }}
           {{- end }}
           {{- range .Values.config.users }}
           {{- if dig "password" "secret" nil . }}
