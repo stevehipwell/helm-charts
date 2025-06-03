@@ -47,7 +47,7 @@ data:
 {{- end }}
 {{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
-    {{- omit $repo "password" | toJson | nindent 4 }}
+    {{- omit $repo "password" "bearerToken" | toJson | nindent 4 }}
 {{- end }}
 {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |

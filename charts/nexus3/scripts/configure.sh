@@ -128,20 +128,19 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
     json_file="${tmp_file}"
 
     if [[ "${type}" == "proxy" ]]; then
+      bearer_token_file="${CONFIG_DIR}/secret/repo-${name}.token"
       password_file="${CONFIG_DIR}/secret/repo-${name}.password"
       if [[ ! -f "${password_file}" ]]; then
         password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
       fi
-      if [[ -f "${password_file}" ]]; then
-        tmp_file="$(mktemp -p "${tmp_dir}")"
-        jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
-        json_file="${tmp_file}"
-      fi
 
-      bearer_token_file="${CONFIG_DIR}/secret/repo-${name}.bearer-token"
       if [[ -f "${bearer_token_file}" ]]; then
         tmp_file="$(mktemp -p "${tmp_dir}")"
         jq -r --arg bearer_token "$(cat "${bearer_token_file}")" '. * {httpClient: {authentication: {bearerToken: $bearer_token}}}' "${json_file}" >"${tmp_file}"
+        json_file="${tmp_file}"
+      elif [[ -f "${password_file}" ]]; then
+        tmp_file="$(mktemp -p "${tmp_dir}")"
+        jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
         json_file="${tmp_file}"
       fi
     fi

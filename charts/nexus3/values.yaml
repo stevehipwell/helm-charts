@@ -386,10 +386,10 @@ config:
   #     cleanup:
   #       policyNames:
   #         - ExampleCleanup
-  #     password:
-  #       secret: test-repo
-  #       key: password
   #     bearerToken:
+  #       secret: test-repo
+  #       key: bearerToken
+  #     password:
   #       secret: test-repo
   #       key: password
   # -- Privileges configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
