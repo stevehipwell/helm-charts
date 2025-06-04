@@ -17,6 +17,21 @@
 
 ## [UNRELEASED]
 
+## [v3.38.0] - 2025-05-04
+
+### Added
+
+- Add support for configuring the CA certs image via the `caCerts.image` value. ([#1196](https://github.com/stevehipwell/helm-charts/pull/1196)) _@stevehipwell_
+
+### Changed
+
+- Update the _PlantUML_ OCI image to [v1.2025.3](https://github.com/plantuml/plantuml-server/releases/tag/v1.2025.3). ([#1196](https://github.com/stevehipwell/helm-charts/pull/1196)) _@stevehipwell_
+- Update default image for CA certs to `docker.io/eclipse-temurin:17-jdk`. ([#1196](https://github.com/stevehipwell/helm-charts/pull/1196)) _@stevehipwell_
+
+### Fixed
+
+- Fix incorrect volume mount path for CA certs (issue [#1195](https://github.com/stevehipwell/helm-charts/issues/1195)). ([#1196](https://github.com/stevehipwell/helm-charts/pull/1196)) _@stevehipwell_
+
 ## [v3.37.0] - 2025-03-10
 
 ### Added
@@ -453,6 +468,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.38.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.38.0
 [v3.37.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.37.0
 [v3.36.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.36.0
 [v3.35.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.35.0
