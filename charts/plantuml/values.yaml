@@ -178,5 +178,14 @@ tolerations: []
 caCerts:
   # -- If `true`, configure the JVM CA certificates from the provided secret.
   enabled: false
+
   # -- (string) Name of the secret containing the CA certificates.
   secret:
+
+  image:
+    # -- Image repository for the CA certs container.
+    repository: docker.io/eclipse-temurin
+    # -- Image tag for the CA certs container.
+    tag: 17-jdk
+    # -- Image pull policy for the CA certs container.
+    pullPolicy: IfNotPresent
