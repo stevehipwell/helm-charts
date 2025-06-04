@@ -42,8 +42,8 @@ spec:
       {{- if .Values.caCerts.enabled }}
       initContainers:
         - name: ca-certs
-          image: adoptopenjdk:11-jdk-hotspot
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ printf "%s:%s" .Values.caCerts.image.repository .Values.caCerts.image.tag }}
+          imagePullPolicy: {{ .Values.caCerts.image.pullPolicy }}
           securityContext:
             privileged: false
             allowPrivilegeEscalation: false
@@ -103,7 +103,7 @@ spec:
               mountPath: /tmp
           {{- if .Values.caCerts.enabled }}
             - name: ca-certs-keystore
-              mountPath: /usr/local/openjdk-11/lib/security/cacerts
+              mountPath: /opt/java/openjdk/lib/security/cacerts
               subPath: cacerts
           {{- end }}
           {{- with .Values.resources }}

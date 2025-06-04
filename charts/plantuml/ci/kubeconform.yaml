@@ -21,3 +21,4 @@ podDisruptionBudget:
 
 caCerts:
   enabled: true
+  secretName: ca-certs
