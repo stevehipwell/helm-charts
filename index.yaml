@@ -26382,6 +26382,41 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Updated the Tigera Operator OCI image to v1.38.1 (Calico v3.30.1)."
+        - kind: fixed
+          description: "Fixed ClusterRole so CRs can be deleted by the operator."
+    apiVersion: v2
+    appVersion: 1.38.1
+    created: "2025-06-10T16:00:37.884617893Z"
+    description: Helm chart to install the Tigera Operator for managing Calico.
+    digest: 2254ced5230019eea57be4d90c508697f0dedad2c0c99bb6a51889020346b598
+    home: https://www.tigera.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/tigera-operator/icon.png
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.12.1/tigera-operator-2.12.1.tgz
+    version: 2.12.1
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add support for configuring [flow logs](https://docs.tigera.io/calico/latest/observability/view-flow-logs#about-flow-logs-in-calico-open-source) using Goldmane & Whisker via the `goldmane.enable=true` & `whisker.enable=true` values. ([#1185](https://github.com/stevehipwell/helm-charts/pull/1185)) _@stevehipwell_"
         - kind: changed
@@ -29770,4 +29805,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-06-04T16:10:09.758616219Z"
+generated: "2025-06-10T16:00:37.885867722Z"
