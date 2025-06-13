@@ -346,17 +346,19 @@ config:
   #     softQuota:
   #       type: spaceRemainingQuota
   #       limit: 500
-  #   - name: ExampleS3BlobStore
-  #     type: s3
-  #     bucketConfiguration:
-  #       bucket:
-  #         region: us-east-1
-  #         name: example-bucket-name
-  #         prefix: /
-  #         expiration: 3
-  #       #bucketSecurity:  # If not using Instance Profile
-  #       #  accessKeyId: access-key-id
-  #       #  secretAccessKey: secret-access-key
+  # - name: ExampleS3BlobStore
+  #   type: s3
+  #   bucketConfiguration:
+  #     bucket:
+  #       region: us-east-1
+  #       name: example-bucket-name
+  #       prefix: /
+  #       expiration: 3
+  #     # bucketSecurity:  # Uncomment if not using Instance Profile
+  #     #   accessKeyId: access-key-id
+  #     #   secretAccessKey:
+  #     #     secret: test-blob
+  #     #     key: secret-access-key
   # -- Cleanup configuration.
   cleanup: []
   #   - name: ExampleCleanup
