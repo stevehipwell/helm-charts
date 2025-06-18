@@ -55,6 +55,13 @@ spec:
             - mountPath: /opt/sonatype/nexus/config/secret/repo-credentials
               name: repo-credentials
           {{- end }}
+          {{- range .Values.config.blobStores }}
+          {{- if and (eq .type "s3") (dig "bucketConfiguration" "bucketSecurity" "secretAccessKey" "secret" nil .) }}
+            - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/blobstore-%s.key" .name }}
+              name: {{ printf "blobstore-%s" .name }}
+              subPath: {{ default "secretAccessKey" .bucketConfiguration.bucketSecurity.secretAccessKey.key }}
+          {{- end }}
+          {{- end }}
           {{- range .Values.config.repos }}
           {{- if dig "bearerToken" "secret" nil . }}
             - mountPath: {{ printf "/opt/sonatype/nexus/config/secret/repo-%s.token" .name }}
@@ -93,6 +100,13 @@ spec:
         - name: repo-credentials
           secret:
             secretName: {{ .Values.config.repoCredentials.secret }}
+      {{- end }}
+      {{- range .Values.config.blobStores }}
+      {{- if and (eq .type "s3") (dig "bucketConfiguration" "bucketSecurity" "secretAccessKey" "secret" nil .) }}
+        - name: {{ printf "blobstore-%s" .name }}
+          secret:
+            secretName: {{ .bucketConfiguration.bucketSecurity.secretAccessKey.secret }}
+      {{- end }}
       {{- end }}
       {{- range .Values.config.repos }}
       {{- if dig "password" "secret" nil . }}

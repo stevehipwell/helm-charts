@@ -39,6 +39,13 @@ data:
 {{- end }}
 {{- range $index, $blobStore := .Values.config.blobStores }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-blobstore.json: |
+    {{- if eq $blobStore.type "s3" }}
+    {{- if hasKey $blobStore.bucketConfiguration "bucketSecurity" }}
+    {{- $bucketConfiguration := $blobStore.bucketConfiguration }}
+    {{- $bucketSecurity := $bucketConfiguration.bucketSecurity }}
+    {{- $blobStore = merge (omit $blobStore "bucketConfiguration") (dict "bucketConfiguration" (merge (omit $bucketConfiguration "bucketSecurity") (dict "bucketSecurity" (omit $bucketSecurity "secretAccessKey")))) }}
+    {{- end }}
+    {{- end }}
     {{- $blobStore | toJson | nindent 4 }}
 {{- end }}
 {{- range $index, $cleanup := .Values.config.cleanup }}
