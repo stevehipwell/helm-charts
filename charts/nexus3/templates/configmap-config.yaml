@@ -15,17 +15,21 @@ data:
 {{- end }}
   nx-metrics-role.json: |
     {"id":"nx-metrics","source":"default","name":"nx-metrics","description":"Metrics Role","privileges":["nx-metrics-all"],"roles":[]}
-{{- range .Values.config.roles }}
-  {{ .id }}-role.json: |
-    {{- . | toJson | nindent 4 }}
+{{- range $index, $role := .Values.config.roles }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-role.json: |
+    {{- $role | toJson | nindent 4 }}
+{{- end }}
+{{- range $index, $privilege := .Values.config.privileges }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-privilege.json: |
+    {{- $privilege | toJson | nindent 4 }}
 {{- end }}
 {{- if .Values.config.anonymous.enabled }}
   anonymous-user.json: |
     {"userId":"anonymous","firstName":"Anonymous","lastName":"User","emailAddress":"anonymous@example.org","source":"default","status":"active","roles":{{ .Values.config.anonymous.roles | toJson }},"externalRoles":[]}
 {{- end }}
-{{- range .Values.config.users }}
-  {{ .userId }}-user.json: |
-    {{- omit . "password" | toJson | nindent 4 }}
+{{- range $index, $user := .Values.config.users }}
+  {{ $index | add 1000 | toString | substr 1 -1 }}-user.json: |
+    {{- omit $user "password" | toJson | nindent 4 }}
 {{- end }}
 {{- if .Values.config.ldap.enabled }}
   ldap.json: |
@@ -50,7 +54,7 @@ data:
 {{- end }}
 {{- range $index, $repo := .Values.config.repos }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-repo.json: |
-    {{- omit $repo "password" | toJson | nindent 4 }}
+    {{- omit $repo "password" "bearerToken" | toJson | nindent 4 }}
 {{- end }}
 {{- range $index, $task := .Values.config.tasks }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-task.json: |

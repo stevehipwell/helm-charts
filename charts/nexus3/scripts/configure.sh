@@ -135,11 +135,17 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
     json_file="${tmp_file}"
 
     if [[ "${type}" == "proxy" ]]; then
+      bearer_token_file="${CONFIG_DIR}/secret/repo-${name}.token"
       password_file="${CONFIG_DIR}/secret/repo-${name}.password"
       if [[ ! -f "${password_file}" ]]; then
         password_file="${CONFIG_DIR}/secret/repo-credentials/${name}"
       fi
-      if [[ -f "${password_file}" ]]; then
+
+      if [[ -f "${bearer_token_file}" ]]; then
+        tmp_file="$(mktemp -p "${tmp_dir}")"
+        jq -r --arg bearer_token "$(cat "${bearer_token_file}")" '. * {httpClient: {authentication: {bearerToken: $bearer_token}}}' "${json_file}" >"${tmp_file}"
+        json_file="${tmp_file}"
+      elif [[ -f "${password_file}" ]]; then
         tmp_file="$(mktemp -p "${tmp_dir}")"
         jq -r --arg password "$(cat "${password_file}")" '. * {httpClient: {authentication: {password: $password}}}' "${json_file}" >"${tmp_file}"
         json_file="${tmp_file}"
@@ -160,6 +166,29 @@ for json_file in "${CONFIG_DIR}"/conf/*-repo.json; do
     fi
 
     echo "Repository '${name}' configured."
+  fi
+done
+
+echo "Configuring privileges..."
+for json_file in "${CONFIG_DIR}"/conf/*-privilege.json; do
+  if [[ -f "${json_file}" ]]; then
+    name="$(jq -r '.name' "${json_file}")"
+    type="$(jq -r '.type' "${json_file}")"
+
+    status_code=$(curl -sS -o /dev/null -w "%{http_code}" -X GET -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" "${NEXUS_HOST}/service/rest/v1/security/privileges/${name}")
+    if [[ "${status_code}" -eq 200 ]]; then
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X PUT -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/privileges/${type}/${name}")"
+      if [[ "${status_code}" -ne 204 ]]; then
+        error "Could not update privilege '${name}'."
+      fi
+    else
+      status_code="$(curl -sS -o /dev/null -w "%{http_code}" -X POST -H 'Content-Type: application/json' -u "${NEXUS_USER}:${password}" -d "@${json_file}" "${NEXUS_HOST}/service/rest/v1/security/privileges/${type}")"
+      if [[ "${status_code}" -ne 201 ]]; then
+        error "Could not create privilege '${name}'."
+      fi
+    fi
+
+    echo "Privilege '${name}' configured."
   fi
 done
 

@@ -124,7 +124,15 @@ config:
       crontab: "0 0 2 * * ?"
       attributes:
         blobStoreName: "default"
-
+  privileges:
+    - type: repository-view
+      name: view
+      description: " "
+      readOnly: false
+      actions:
+        - READ
+      format: raw
+      repository: test-repo
 service:
   additionalPorts:
     - port: 8083

@@ -174,6 +174,20 @@ config:
       password:
         secret: test-repo
         key: passwordx
+    - name: test-repo-bearer-token
+      format: raw
+      type: hosted
+      online: true
+      storage:
+        blobStoreName: default
+        strictContentTypeValidation: false
+        writePolicy: allow
+      cleanup:
+        policyNames:
+          - ExampleCleanup
+      bearerToken:
+        secret: test-repo
+        key: bearertokenx
   roles:
     - id: nexus-administrators
       source: default
@@ -227,5 +241,14 @@ config:
       crontab: "0 0 2 * * ?"
       attributes:
         blobStoreName: "default"
+  privileges:
+    - type: repository-view
+      name: view
+      description: " "
+      readOnly: false
+      actions:
+        - READ
+      format: raw
+      repository: test-repo
 
 testResources: true
