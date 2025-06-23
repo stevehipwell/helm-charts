@@ -109,7 +109,11 @@ spec:
       {{- end }}
       {{- end }}
       {{- range .Values.config.repos }}
-      {{- if dig "password" "secret" nil . }}
+      {{- if dig "bearerToken" "secret" nil . }}
+        - name: {{ printf "repo-%s" .name }}
+          secret:
+            secretName: {{ .bearerToken.secret }}
+      {{- else if dig "password" "secret" nil . }}
         - name: {{ printf "repo-%s" .name }}
           secret:
             secretName: {{ .password.secret }}
