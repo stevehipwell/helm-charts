@@ -17,6 +17,7 @@
 
 ### Changed
 
+- Fix bearer token volume in job. ([#1204](https://github.com/stevehipwell/helm-charts/pull/1204)) _@tanguyfalconnet_
 - Added `privileges` configuration. Fix user & role naming. Fix repository authentication using newly field `bearerToken`. ([#1193](https://github.com/stevehipwell/helm-charts/pull/1193)) _@tanguyfalconnet_
 
 ## [v5.11.0] - 2025-06-13
