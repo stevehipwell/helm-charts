@@ -43,7 +43,7 @@ jobs:
 
   validate:
     name: Validate
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@65c2fdbcdbf17c5925ff32247197b02224a23f46 # v0.8.6
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@5beac6d67271af3399775b06bb17d4aadb9c6ea0 # v0.8.7
     needs: setup
     if: needs.setup.outputs.changed == 'true'
     permissions:
