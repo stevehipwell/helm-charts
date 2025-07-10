@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.9.2] - 2025-07-10
+
+### Fixed
+
+- Fix incorrect `verticalpodautoscalers.autoscaling.k8s.io` CRD where the `InPlaceOrRecreate` option  was added to `v1beta2` instead of `v1`. ([#1207](https://github.com/stevehipwell/helm-charts/pull/1207)) _@stevehipwell_
+
 ## [v1.9.1] - 2025-06-11
 
 ### Changed
@@ -150,6 +156,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.9.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.9.2
 [v1.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.9.1
 [v1.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.9.0
 [v1.8.2]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.8.2
