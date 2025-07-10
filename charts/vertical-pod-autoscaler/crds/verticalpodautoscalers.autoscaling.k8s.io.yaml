@@ -228,6 +228,7 @@ spec:
                         - "Off"
                         - Initial
                         - Recreate
+                        - InPlaceOrRecreate
                         - Auto
                       type: string
                   type: object
@@ -475,7 +476,6 @@ spec:
                         - "Off"
                         - Initial
                         - Recreate
-                        - InPlaceOrRecreate
                         - Auto
                       type: string
                   type: object
