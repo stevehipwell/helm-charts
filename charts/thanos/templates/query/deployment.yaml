@@ -74,7 +74,9 @@ spec:
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
+          {{- if .Values.storeGateway.enabled }}
             - {{ printf "--endpoint%s=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (ternary "-group" "" .Values.storeEndpointGroup) (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
+          {{- end }}
           {{- if .Values.rule.enabled }}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.rule.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}

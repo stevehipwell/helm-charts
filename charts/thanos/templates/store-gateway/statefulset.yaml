@@ -1,3 +1,4 @@
+{{- if .Values.storeGateway.enabled -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -168,3 +169,4 @@ spec:
     whenScaled: {{ ternary "Retain" "Delete" .Values.storeGateway.persistence.retainScaled }}
   {{- end }}
   {{- end }}
+{{- end -}}
