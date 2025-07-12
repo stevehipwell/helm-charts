@@ -95,6 +95,18 @@ compact:
     # -- (string) If specified override the default deduplication function.
     func:
 
+  sharded:
+    # -- If `true`, create a sharded _Store Gateway_ component.
+    enabled: false
+    # -- Shards using time partitioning for the _Store Gateway_ component.
+    timePartitioning:
+    # -- Optional. shards will have the name as the suffix of the statefulset name.
+    - name: 
+    # -- Optional. thanos store min-time
+      minTime: 
+    # -- Optional. thanos store max-time
+      maxTime: 
+
   # -- **DEPRECATED** - If `true`, use the `penalty` deduplication function optimized for HA Prometheus replicas.
   replicaDeduplication: false
 
@@ -1081,6 +1093,18 @@ storeGateway:
 
   # -- Number of _Store Gateway_ replicas to create.
   replicas: 1
+
+  sharded:
+    # -- If `true`, create a sharded _Store Gateway_ component.
+    enabled: false
+    # -- Shards using time partitioning for the _Store Gateway_ component.
+    timePartitioning:
+    # -- Optional. shards will have the name as the suffix of the statefulset name.
+    - name: 
+    # -- Optional. thanos store min-time
+      minTime: 
+    # -- Optional. thanos store max-time
+      maxTime: 
 
   # -- Update strategy for the _Store Gateway_ stateful set.
   updateStrategy: {}

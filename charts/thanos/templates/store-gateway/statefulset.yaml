@@ -1,4 +1,5 @@
 {{- if .Values.storeGateway.enabled -}}
+{{- if not .Values.storeGateway.sharded.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -170,3 +171,4 @@ spec:
   {{- end }}
   {{- end }}
 {{- end -}}
+{{- end }}
