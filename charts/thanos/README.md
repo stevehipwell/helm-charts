@@ -18,33 +18,6 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 * <https://github.com/thanos-io/kube-thanos>
 * <https://github.com/stevehipwell/helm-charts/>
 
-## Installing the Chart
-
-### OCI Repository
-
-To install the chart using the recommended OCI method you can use the following command.
-
-```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.20.0
-```
-
-#### Verification
-
-As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
-
-```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.20.0
-```
-
-### Non-OCI Repository
-
-Alternatively you can use the legacy non-OCI method via the following commands.
-
-```shell
-helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.20.0
-```
-
 ## Values
 
 | Key | Type | Default | Description |
@@ -88,6 +61,11 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.20.0
 | compact.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Compact_ component. |
 | compact.serviceAccount.labels | object | `{}` | Labels to add to the _Compact_ service account. |
 | compact.serviceAccount.name | string | `nil` | If this is set and `compact.serviceAccount.create` is `true` this will be used for the created _Compact_ component service account name, if this is set and `compact.serviceAccount.create` is `false` then this will define an existing service account to use for the _Compact_ component. |
+| compact.sharded.enabled | bool | `false` | If `true`, create a sharded _Store Gateway_ component. |
+| compact.sharded.timePartitioning | list | `[{"maxTime":null,"minTime":null,"name":null}]` | Shards using time partitioning for the _Store Gateway_ component. |
+| compact.sharded.timePartitioning[0] | object | `{"maxTime":null,"minTime":null,"name":null}` | Optional. shards will have the name as the suffix of the statefulset name. |
+| compact.sharded.timePartitioning[0].maxTime | string | `nil` | Optional. thanos store max-time |
+| compact.sharded.timePartitioning[0].minTime | string | `nil` | Optional. thanos store min-time |
 | compact.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Compact_ pod; in seconds. |
 | compact.tolerations | list | `[]` | Node taints the _Compact_ pod will tolerate for scheduling. |
 | compact.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Compact_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
@@ -371,11 +349,15 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.20.0
 | storeGateway.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Store Gateway_ component. |
 | storeGateway.serviceAccount.labels | object | `{}` | Labels to add to the _Store Gateway_ service account. |
 | storeGateway.serviceAccount.name | string | `nil` | If this is set and `compact.serviceAccount.create` is `true` this will be used for the created _Store Gateway_ component service account name, if this is set and `compact.serviceAccount.create` is `false` then this will define an existing service account to use for the _Store Gateway_ component. |
+| storeGateway.sharded.enabled | bool | `false` | If `true`, create a sharded _Store Gateway_ component. |
+| storeGateway.sharded.timePartitioning | list | `[{"maxTime":null,"minTime":null,"name":null}]` | Shards using time partitioning for the _Store Gateway_ component. |
+| storeGateway.sharded.timePartitioning[0] | object | `{"maxTime":null,"minTime":null,"name":null}` | Optional. shards will have the name as the suffix of the statefulset name. |
+| storeGateway.sharded.timePartitioning[0].maxTime | string | `nil` | Optional. thanos store max-time |
+| storeGateway.sharded.timePartitioning[0].minTime | string | `nil` | Optional. thanos store min-time |
 | storeGateway.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Store Gateway_ pod; in seconds. |
 | storeGateway.tolerations | list | `[]` | Node taints the _Store Gateway_ pod will tolerate for scheduling. |
 | storeGateway.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Store Gateway_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | storeGateway.updateStrategy | object | `{}` | Update strategy for the _Store Gateway_ stateful set. |
 
 ----------------------------------------------
-
-Autogenerated from chart metadata using [helm-docs](https://github.com/norwoodj/helm-docs/).
+Autogenerated from chart metadata using [helm-docs v1.14.2](https://github.com/norwoodj/helm-docs/releases/v1.14.2)
