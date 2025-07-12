@@ -76,7 +76,14 @@ spec:
           {{- end }}
           {{- if .Values.query.enableDnsDiscovery }}
           {{- if .Values.storeGateway.enabled }}
+            {{- if (not .Values.storeGateway.sharded.enabled) }}
             - {{ printf "--endpoint%s=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (ternary "-group" "" .Values.storeEndpointGroup) (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
+            {{- else }}
+              {{- range $index, $shard := .Values.storeGateway.sharded.timePartitioning }}
+              {{- $shardName := $shard.name | default (printf "%d" $index) }}
+            - {{ printf "--endpoint%s=dnssrv+_grpc._tcp.%s-headless-%s.%s.svc.%s" (ternary "-group" "" $.Values.storeEndpointGroup) (include "thanos.storeGateway.fullname" $) $shardName $.Release.Namespace $.Values.clusterDomain }}
+              {{- end }}
+            {{- end }}
           {{- end }}
           {{- if .Values.rule.enabled }}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.rule.fullname" .) .Release.Namespace .Values.clusterDomain}}
