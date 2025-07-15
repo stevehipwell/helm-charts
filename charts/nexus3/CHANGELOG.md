@@ -15,10 +15,21 @@
 
 ## [UNRELEASED]
 
+## [v5.12.0] - 2025-07-15
+
+### Added
+
+- Add `privileges` configuration. ([#1193](https://github.com/stevehipwell/helm-charts/pull/1193)) _@tanguyfalconnet_
+- Add repository authentication using `bearerToken`. ([#1193](https://github.com/stevehipwell/helm-charts/pull/1193)) _@tanguyfalconnet_
+
 ### Changed
 
 - Fix bearer token volume in job. ([#1204](https://github.com/stevehipwell/helm-charts/pull/1204)) _@tanguyfalconnet_
-- Added `privileges` configuration. Fix user & role naming. Fix repository authentication using newly field `bearerToken`. ([#1193](https://github.com/stevehipwell/helm-charts/pull/1193)) _@tanguyfalconnet_
+- Update the _Nexus3_ OCI image to [v3.82.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.82.0-08). ([#1214](https://github.com/stevehipwell/helm-charts/pull/1214)) _@stevehipwell_
+
+### Fixed
+
+- Fix user & role naming. ([#1193](https://github.com/stevehipwell/helm-charts/pull/1193)) _@tanguyfalconnet_
 
 ## [v5.11.0] - 2025-06-13
 
@@ -879,6 +890,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.12.0
 [v5.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.11.0
 [v5.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.10.0
 [v5.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.9.1
