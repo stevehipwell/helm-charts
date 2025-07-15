@@ -1,4 +1,4 @@
-{{- if and .Values.storeGateway.podDisruptionBudget.enabled .Values.storeGateway.enabled -}}
+{{- if and .Values.storeGateway.enabled .Values.storeGateway.podDisruptionBudget.enabled -}}
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
