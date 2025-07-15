@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v2.12.2] - 2025-07-15
+
+### Added
+
+- Add support for managing CRDs via the `manageCRDs` value. ([#1212](https://github.com/stevehipwell/helm-charts/pull/1212)) _@stevehipwell_
+
+### Changed
+
+- Updated the _Tigera Operator_ OCI image to [v1.38.3](https://github.com/tigera/operator/releases/tag/v1.38.3) (_Calico_ [v3.30.2](https://github.com/projectcalico/calico/releases/tag/v3.30.2)). ([#1212](https://github.com/stevehipwell/helm-charts/pull/1212)) _@stevehipwell_
+
 ## [v2.12.1] - 2025-06-10
 
 ### Changed
@@ -603,6 +613,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/tigera-operator
+[v2.12.2]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.12.2
 [v2.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.12.1
 [v2.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.12.0
 [v2.11.6]: https://github.com/stevehipwell/helm-charts/releases/tag/tigera-operator-2.11.6

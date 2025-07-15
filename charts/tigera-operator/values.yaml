@@ -104,6 +104,9 @@ serviceMonitor:
   # -- (int) **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint.
   interval:
 
+# -- If `true`, allow _Tigera Operator_ to manage CRDs.
+manageCRDs: false
+
 installation:
   # -- If `true`, install a _Calico_ control plane according to the `installation.spec` value.
   enabled: false

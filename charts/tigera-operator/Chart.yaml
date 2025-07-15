@@ -2,8 +2,8 @@ apiVersion: v2
 name: tigera-operator
 description: Helm chart to install the Tigera Operator for managing Calico.
 type: application
-version: 2.12.1
-appVersion: 1.38.1
+version: 2.12.2
+appVersion: 1.38.3
 keywords:
   - kubernetes
   - cni
