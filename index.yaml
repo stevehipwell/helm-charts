@@ -20672,6 +20672,34 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the PlantUML OCI image to v1.2025.4."
+    apiVersion: v2
+    appVersion: 1.2025.4
+    created: "2025-07-15T10:37:01.763598596Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: 130629d6652e5c62b060fa9faff9f272072d806e8c01430de19f9449720cfe01
+    home: https://plantuml.com/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.39.0/plantuml-3.39.0.tgz
+    version: 3.39.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add support for configuring the CA certs image via the `caCerts.image` value. ([#1196](https://github.com/stevehipwell/helm-charts/pull/1196)) _@stevehipwell_"
         - kind: changed
@@ -29981,4 +30009,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-07-15T10:31:33.563962665Z"
+generated: "2025-07-15T10:37:01.764905394Z"
