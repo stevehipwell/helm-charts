@@ -14,9 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v1.21.0] - 2025-07-15
+
+### Added
+
+- Add support for disabling the _Thanos Store Gateway_ component by setting the `storeGateway.enabled` chart value to `false` (it defaults to `true`). This allows users to choose if they need the _Thanos Store Gateway_ component and its associated resources. ([#1209](https://github.com/stevehipwell/helm-charts/pull/1209)) _@MeNsaaH_
+
 ### Changed
 
-- Update `jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
+- Update `ghcr.io/jimmidyson/configmap-reload` OCI image from `0.14.0` to [`0.15.0`](https://github.com/jimmidyson/configmap-reload/releases/tag/v0.15.0). ([#1168](https://github.com/stevehipwell/helm-charts/pull/1168)) _@stevehipwell_
+- Update the _Thanos_ OCI image to [v0.39.1](https://github.com/thanos-io/thanos/releases/tag/v0.39.1). ([#1215](https://github.com/stevehipwell/helm-charts/pull/1215)) _@stevehipwell_
 
 ## [v1.20.0] - 2025-04-09
 
@@ -557,6 +564,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.0
 [v1.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.20.0
 [v1.19.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.19.2
 [v1.19.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.19.1
