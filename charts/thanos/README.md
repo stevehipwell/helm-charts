@@ -338,6 +338,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.20.0
 | serviceMonitor.interval | int | `nil` | **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint. |
 | storeEndpointGroup | bool | `false` | If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**). |
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| storeGateway.enabled | bool | `true` | If `true`, create the _Store Gateway_ component. |
 | storeGateway.extraArgs | list | `[]` | Additional args for the _Store Gateway_ pod default container. |
 | storeGateway.extraEnv | list | `[]` | Additional environment variables for the _Store Gateway_ pod default container. |
 | storeGateway.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Store Gateway_ pod default container. |
