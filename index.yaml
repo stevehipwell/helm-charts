@@ -26638,6 +26638,39 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Tigera Operator OCI image to v1.38.4 (Calico v3.30.2)."
+    apiVersion: v2
+    appVersion: 1.38.4
+    created: "2025-07-16T09:20:10.671046429Z"
+    description: Helm chart to install the Tigera Operator for managing Calico.
+    digest: f6121c3ab94968f48ec9452f37daf795639aa975c007c097eb59be09d8dfd753
+    home: https://www.tigera.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/tigera-operator/icon.png
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.12.3/tigera-operator-2.12.3.tgz
+    version: 2.12.3
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add support for managing CRDs via the manageCRDs value."
         - kind: changed
@@ -30174,4 +30207,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-07-16T09:11:54.048258265Z"
+generated: "2025-07-16T09:20:10.672198976Z"
