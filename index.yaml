@@ -24430,6 +24430,42 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add support for disabling the Thanos Store Gateway component by setting the storeGateway.enabled chart value to false (it defaults to true). This allows users to choose if they need the Thanos Store Gateway component and its associated resources."
+        - kind: changed
+          description: "Update ghcr.io/jimmidyson/configmap-reload OCI image from 0.14.0 to 0.15.0."
+        - kind: changed
+          description: "Update the Thanos OCI image to v0.39.1."
+    apiVersion: v2
+    appVersion: 0.39.1
+    created: "2025-07-16T09:11:54.047113803Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 7404385b0c474a405ed06a8d4cf6090df463028ad20e97986460b07f5201837c
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.21.0/thanos-1.21.0.tgz
+    version: 1.21.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Updated the _Thanos_ OCI image to [v0.38.0](https://github.com/thanos-io/thanos/releases/tag/v0.38.0). ([#1167](https://github.com/stevehipwell/helm-charts/pull/1167)) _@stevehipwell_"
     apiVersion: v2
@@ -30138,4 +30174,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-07-15T12:53:33.56841993Z"
+generated: "2025-07-16T09:11:54.048258265Z"
