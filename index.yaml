@@ -24430,6 +24430,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Thanos OCI image to v0.39.2."
+    apiVersion: v2
+    appVersion: 0.39.2
+    created: "2025-07-22T09:54:42.291683771Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 64296858e42062fedb842ac54893e3ea01dab6e167ee0b8c46fecc9ed06985db
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.21.1/thanos-1.21.1.tgz
+    version: 1.21.1
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add support for disabling the Thanos Store Gateway component by setting the storeGateway.enabled chart value to false (it defaults to true). This allows users to choose if they need the Thanos Store Gateway component and its associated resources."
         - kind: changed
@@ -30207,4 +30239,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-07-16T09:20:10.672198976Z"
+generated: "2025-07-22T09:54:42.293002703Z"
