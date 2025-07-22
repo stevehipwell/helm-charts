@@ -2,8 +2,8 @@ apiVersion: v2
 name: thanos
 description: Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 type: application
-version: 1.21.0
-appVersion: 0.39.1
+version: 1.21.1
+appVersion: 0.39.2
 keywords:
   - kubernetes
   - thanos
