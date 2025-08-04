@@ -15,6 +15,9 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
+      {{- with .Values.config.job.annotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       restartPolicy: Never
       containers:
@@ -144,5 +147,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
   backoffLimit: 0
-  ttlSecondsAfterFinished: {{ .Values.config.job.ttlSecondsAfterFinished }}
+{{- with .Values.config.job.ttlSecondsAfterFinished }}
+  ttlSecondsAfterFinished: {{ . }}
+{{- end -}}
   {{- end -}}

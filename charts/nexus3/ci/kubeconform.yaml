@@ -112,6 +112,10 @@ rootPassword:
 
 config:
   enabled: true
+  job:
+    annotations:
+      exampleAnnotation: annotation1
+      anotherExample: annotation2
   anonymous:
     enabled: true
     roles:

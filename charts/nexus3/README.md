@@ -63,6 +63,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.12.0
 | config.cleanup | list | `[]` | Cleanup configuration. |
 | config.enabled | bool | `false` | If `true` & `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
+| config.job.annotations | list | `[]` | Annotations to apply to the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
 | config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |

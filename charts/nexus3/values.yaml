@@ -319,6 +319,8 @@ config:
     affinity: {}
     # -- Node taints which will be tolerated for scheduling the config job.
     tolerations: []
+    # -- Annotations to apply to the config job.
+    annotations: []
   anonymous:
     # -- If `true`, enable anonymous access.
     enabled: false
