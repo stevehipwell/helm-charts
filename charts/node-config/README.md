@@ -65,7 +65,7 @@ helm upgrade --install node-config stevehipwell/node-config --version 0.6.0
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node selector labels for scheduling. |
 | pause.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the pause container. |
 | pause.image.repository | string | `"registry.k8s.io/pause"` | Image repository for the pause container. |
-| pause.image.tag | string | `"3.10"` | Image tag for the pause container |
+| pause.image.tag | string | `"3.10.1"` | Image tag for the pause container |
 | pause.resources | object | `{"limits":{"cpu":"100m","memory":"8Mi"},"requests":{"cpu":"10m","memory":"8Mi"}}` | Resources for the pause container. |
 | podAnnotations | object | `{}` | Annotations to add to the pod. |
 | podLabels | object | `{}` | Labels to add to the pod. |

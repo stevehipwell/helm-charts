@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Update the _registry.k8s.io/pause_ OCI image version to `3.10.1`. ([#1226](https://github.com/stevehipwell/helm-charts/pull/1226)) _@stevehipwell_
+
 ## [v0.6.0] - 2023-06-24
 
 ### Added

@@ -71,7 +71,7 @@ pause:
     # -- Image repository for the _Pause_ component default container.
     repository: registry.k8s.io/pause
     # -- Image tag for the _Pause_ component default container.
-    tag: 3.9
+    tag: 3.10.1
     # -- Image pull policy for the _Pause_ component default container.
     pullPolicy: IfNotPresent
 

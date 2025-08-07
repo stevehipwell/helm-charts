@@ -80,7 +80,7 @@ helm upgrade --install overprovisioner stevehipwell/overprovisioner --version 0.
 | pause.affinity | object | `{}` | Affinity settings for scheduling the _Pause_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | pause.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Pause_ component default container. |
 | pause.image.repository | string | `"registry.k8s.io/pause"` | Image repository for the _Pause_ component default container. |
-| pause.image.tag | float | `3.9` | Image tag for the _Pause_ component default container. |
+| pause.image.tag | string | `"3.10.1"` | Image tag for the _Pause_ component default container. |
 | pause.nodeSelector | object | `{}` | Node selector labels for scheduling the _Pause_ component. |
 | pause.podAnnotations | object | `{}` | Annotations to add to the _Pause_ pod. |
 | pause.podLabels | object | `{}` | Labels to add to the _Pause_ pod. |
