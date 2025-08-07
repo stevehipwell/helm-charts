@@ -95,7 +95,7 @@ pause:
     # -- Image repository for the pause container.
     repository: registry.k8s.io/pause
     # -- Image tag for the pause container
-    tag: "3.10"
+    tag: 3.10.1
     # -- Image pull policy for the pause container.
     pullPolicy: IfNotPresent
 
