@@ -178,10 +178,8 @@ compact:
   resources: {}
 
   persistence:
-    # -- If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Compact_ pod data.
+    # -- If `true`, create a `PersistentVolumeClaim` for the _Compact_ pod data.
     enabled: false
-    # -- (string) If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created.
-    existingClaim:
     # -- Annotations to add to the _Compact_ pod PVC.
     annotations: {}
     # -- Access mode for the _Compact_ pod PVC.
@@ -649,10 +647,8 @@ receive:
     resources: {}
 
     persistence:
-      # -- If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data.
+      # -- If `true`, create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data.
       enabled: false
-      # -- (string) If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created.
-      existingClaim:
       # -- Annotations to add to the _Receive Ingestor_ pod PVC.
       annotations: {}
       # -- Access mode for the _Receive Ingestor_ pod PVC.
@@ -978,10 +974,8 @@ rule:
   resources: {}
 
   persistence:
-    # -- If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Rule_ pod data.
+    # -- If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data.
     enabled: false
-    # -- (string) If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created.
-    existingClaim:
     # -- Annotations to add to the _Rule_ pod PVC.
     annotations: {}
     # -- Access mode for the _Rule_ pod PVC.
@@ -1165,10 +1159,8 @@ storeGateway:
   extraVolumeMounts: []
 
   persistence:
-    # -- If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Store Gateway_ pod data.
+    # -- If `true`, create a `PersistentVolumeClaim` for the _Store Gateway_ pod data.
     enabled: false
-    # -- (string) If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created.
-    existingClaim:
     # -- Annotations to add to the _Store Gateway_ pod PVC.
     annotations: {}
     # -- Access mode for the _Store Gateway_ pod PVC.

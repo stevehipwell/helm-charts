@@ -68,8 +68,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | compact.nodeSelector | object | `{}` | Node selector labels for scheduling the _Compact_ pod. |
 | compact.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Compact_ pod PVC. |
 | compact.persistence.annotations | object | `{}` | Annotations to add to the _Compact_ pod PVC. |
-| compact.persistence.enabled | bool | `false` | If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Compact_ pod data. |
-| compact.persistence.existingClaim | string | `nil` | If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created. |
+| compact.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Compact_ pod data. |
 | compact.persistence.retainDeleted | bool | `true` | If `true`, retain the _Compact_ PVC after the pod is deleted. |
 | compact.persistence.retainScaled | bool | `true` | If `true`, retain the _Compact_ PVC after the pod is scaled down. |
 | compact.persistence.size | string | `"8Gi"` | Size for the _Compact_ pod PVC. |
@@ -200,8 +199,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | receive.ingestor.nodeSelector | object | `{}` | Node selector labels for scheduling the _Receive Ingestor_ pod. |
 | receive.ingestor.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Receive Ingestor_ pod PVC. |
 | receive.ingestor.persistence.annotations | object | `{}` | Annotations to add to the _Receive Ingestor_ pod PVC. |
-| receive.ingestor.persistence.enabled | bool | `false` | If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data. |
-| receive.ingestor.persistence.existingClaim | string | `nil` | If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created. |
+| receive.ingestor.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data. |
 | receive.ingestor.persistence.retainDeleted | bool | `true` | If `true`, retain the _Receive Ingestor_ PVC after the pod is deleted. |
 | receive.ingestor.persistence.retainScaled | bool | `true` | If `true`, retain the _Receive Ingestor_ PVC after the pod is scaled down. |
 | receive.ingestor.persistence.size | string | `"8Gi"` | Size for the _Receive Ingestor_ pod PVC. |
@@ -300,8 +298,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | rule.nodeSelector | object | `{}` | Node selector labels for scheduling the _Rule_ pod. |
 | rule.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Rule_ pod PVC. |
 | rule.persistence.annotations | object | `{}` | Annotations to add to the _Rule_ pod PVC. |
-| rule.persistence.enabled | bool | `false` | If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Rule_ pod data. |
-| rule.persistence.existingClaim | string | `nil` | If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created. |
+| rule.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data. |
 | rule.persistence.retainDeleted | bool | `true` | If `true`, retain the _Rule_ PVC after the pod is deleted. |
 | rule.persistence.retainScaled | bool | `true` | If `true`, retain the _Rule_ PVC after the pod is scaled down. |
 | rule.persistence.size | string | `"8Gi"` | Size for the _Rule_ pod PVC. |
@@ -347,8 +344,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | storeGateway.nodeSelector | object | `{}` | Node selector labels for scheduling the _Store Gateway_ pod. |
 | storeGateway.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Store Gateway_ pod PVC. |
 | storeGateway.persistence.annotations | object | `{}` | Annotations to add to the _Store Gateway_ pod PVC. |
-| storeGateway.persistence.enabled | bool | `false` | If `true`, either use an existing `PersistentVolumeClaim` via `compact.persistence.existingClaim` or create a `PersistentVolumeClaim` for the _Store Gateway_ pod data. |
-| storeGateway.persistence.existingClaim | string | `nil` | If this is set and `compact.persistence.enabled` is `true` the existing PVC defined will be used instead of a new one being created. |
+| storeGateway.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Store Gateway_ pod data. |
 | storeGateway.persistence.retainDeleted | bool | `true` | If `true`, retain the _Store Gateway_ PVC after the pod is deleted. |
 | storeGateway.persistence.retainScaled | bool | `true` | If `true`, retain the _Store Gateway_ PVC after the pod is scaled down. |
 | storeGateway.persistence.size | string | `"8Gi"` | Size for the _Store Gateway_ pod PVC. |
