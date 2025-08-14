@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Removed
+
+- Remove all references to `existingClaim` from the values under `persistence` as this was never used. ([#1232](https://github.com/stevehipwell/helm-charts/pull/1232)) _@stevehipwell_
+
 ## [v1.21.1] - 2025-07-22
 
 ### Changed
