@@ -50,6 +50,7 @@ helm upgrade --install fluent-bit-collector stevehipwell/fluent-bit-collector --
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod scheduling. |
 | args | list | `[]` | Extra args for the default container; `--workdir`, `--config` & `--enable-hot-reload` are managed by the chart. |
+| automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the pod, this overrides `serviceAccount.automountToken`. |
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.customParsers | string | See _values.yaml_ | Custom parsers to configure. |
