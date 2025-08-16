@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `config.annotations` chart value to support annotating the config job parent. ([#1234](https://github.com/stevehipwell/helm-charts/pull/1234)) _@falltrades_
+
 ## [v5.13.0] - 2025-08-14
 
 ### Added
