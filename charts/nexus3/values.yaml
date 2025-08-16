@@ -301,6 +301,8 @@ rootPassword:
 config:
   # -- If `true` & `rootPassword.secret` is set, enable the configuration Job.
   enabled: false
+  # -- Annotations to apply to the config job parent.
+  annotations: []
   job:
     image:
       # -- Image repository for the config container.
@@ -319,7 +321,7 @@ config:
     affinity: {}
     # -- Node taints which will be tolerated for scheduling the config job.
     tolerations: []
-    # -- Annotations to apply to the config job.
+    # -- Annotations to apply to the pod of the config job.
     annotations: []
   anonymous:
     # -- If `true`, enable anonymous access.

@@ -57,13 +57,14 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.13.0
 | caCerts.enabled | bool | `false` | If `true`, add the CA certificates in the provided secret to the JVM cacerts key store. |
 | caCerts.secret | string | `nil` | Name of the secret containing the CA certificates. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
+| config.annotations | list | `[]` | Annotations to apply to the config job parent. |
 | config.anonymous.enabled | bool | `false` | If `true`, enable anonymous access. |
 | config.anonymous.roles | list | `["nx-anonymous","nx-metrics"]` | Roles for anonymous access. |
 | config.blobStores | list | `[]` | Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | config.cleanup | list | `[]` | Cleanup configuration. |
 | config.enabled | bool | `false` | If `true` & `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
-| config.job.annotations | list | `[]` | Annotations to apply to the config job. |
+| config.job.annotations | list | `[]` | Annotations to apply to the pod of the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
 | config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |
