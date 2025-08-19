@@ -6,6 +6,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nexus3.labels" . | nindent 4 }}
+{{- with .Values.config.job.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
 spec:
   template:
     metadata:
@@ -15,9 +19,6 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
-      {{- with .Values.config.job.annotations }}
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
     spec:
       restartPolicy: Never
       containers:

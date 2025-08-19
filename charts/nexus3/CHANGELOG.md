@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fix implementation of `config.job.annotations` to correctly annotate the job and not the job pod. ([#1234](https://github.com/stevehipwell/helm-charts/pull/1234)) _@falltrades_
+
 ## [v5.13.0] - 2025-08-14
 
 ### Added
