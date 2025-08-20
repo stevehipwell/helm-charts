@@ -2,8 +2,8 @@ apiVersion: v2
 name: nexus3
 description: Helm chart for Sonatype Nexus 3 OSS.
 type: application
-version: 5.13.0
-appVersion: 3.83.0
+version: 5.13.1
+appVersion: 3.83.1
 home: https://www.sonatype.com/products/sonatype-nexus-repository
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
 keywords:

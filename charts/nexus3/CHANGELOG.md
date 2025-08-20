@@ -15,6 +15,12 @@
 
 ## [UNRELEASED]
 
+## [v5.13.1] - 2025-08-20
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.83.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.83.1-03). ([#1236](https://github.com/stevehipwell/helm-charts/pull/1236)) _@stevehipwell_
+
 ### Fixed
 
 - Fix implementation of `config.job.annotations` to correctly annotate the job and not the job pod. ([#1234](https://github.com/stevehipwell/helm-charts/pull/1234)) _@falltrades_
@@ -904,6 +910,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.1
 [v5.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.0
 [v5.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.12.0
 [v5.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.11.0
