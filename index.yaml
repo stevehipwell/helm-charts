@@ -16661,6 +16661,39 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Nexus3 OCI image to v3.83.1."
+        - kind: fixed
+          description: "Fix implementation of config.job.annotations to correctly annotate the job and not the job pod."
+    apiVersion: v2
+    appVersion: 3.83.1
+    created: "2025-08-20T09:56:15.795521026Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: d2dc103abd4075b1a6eac80c9702c162b8c60c680ed51190d419365dc489019d
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.13.1/nexus3-5.13.1.tgz
+    version: 5.13.1
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add config.job.annotations chart value to support annotating the config job."
         - kind: changed
@@ -30515,4 +30548,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-08-14T10:52:16.613947923Z"
+generated: "2025-08-20T09:56:15.797442863Z"
