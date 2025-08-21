@@ -15,6 +15,14 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `chownDataDir` chart value to allow for opting out of the _chown-data-dir_ init container. ([#1238](https://github.com/stevehipwell/helm-charts/pull/1238)) _@falltrades_
+
+### Deprecated
+
+- Deprecate the `chownDataDir` default chart value of `true`, the default value will be changed to `false` in the next chart major version. ([#1238](https://github.com/stevehipwell/helm-charts/pull/1238)) _@falltrades_
+
 ## [v5.13.1] - 2025-08-20
 
 ### Changed
