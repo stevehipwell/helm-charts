@@ -22,6 +22,7 @@ data:
 {{- range .Values.plugins }}
     curl -fLo /deploy/{{ .name }}.kar {{ .url }}
 {{- end }}
+{{- if .Values.chownDataDir }}
   chown-data-dir.sh: |
     #!/usr/bin/env bash
     set -euo pipefail
@@ -35,6 +36,7 @@ data:
     touch -a /nexus-data/log/request.log
 
     chown -R {{ .Values.podSecurityContext.fsGroup }}:{{ .Values.podSecurityContext.fsGroup }} /nexus-data
+{{- end }}
   tail-logs.sh: |
     #!/usr/bin/env bash
     set -euo pipefail

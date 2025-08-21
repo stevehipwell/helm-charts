@@ -113,6 +113,7 @@ spec:
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.chownDataDir }}
         - name: chown-data-dir
           image: {{ include "nexus3.image" .Values.bashImage }}
           imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
@@ -134,6 +135,7 @@ spec:
               subPath: chown-data-dir.sh
             - mountPath: /nexus-data
               name: data
+      {{- end }}
       {{- if (semverCompare ">= 1.29-0" .Capabilities.KubeVersion.Version) }}
         - name: tail-request-log
           restartPolicy: Always

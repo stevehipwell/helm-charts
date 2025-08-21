@@ -292,6 +292,9 @@ plugins: []
 #   - name: nexus-repository-composer
 #     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
 
+# -- If `false`, disable the extraInitContainer chown-data-dir.
+chownDataDir: true
+
 rootPassword:
   # -- (string) Name of the secret containing the root password.
   secret:
