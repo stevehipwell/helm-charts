@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Deprecated
+
+- Add `chownDataDir` chart value to prepare removal of `chown-data-dir` initContainer. ([#1238](https://github.com/stevehipwell/helm-charts/pull/1238)) _@falltrades_
+
 ## [v5.13.1] - 2025-08-20
 
 ### Changed
