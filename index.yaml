@@ -6177,6 +6177,38 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add support to explicitly set the automountServiceAccountToken field on the pod via the automountServiceAccountToken value."
+        - kind: changed
+          description: "Update Fluent Bit OCI image to v4.0.8."
+    apiVersion: v2
+    appVersion: 4.0.8
+    created: "2025-08-21T13:57:24.720444107Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: 4ec5cd3cdd868bebf39bd5729b2ee0538c6a4763813b1ced4ffe793dcf89c604
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.17.8/fluent-bit-collector-0.17.8.tgz
+    version: 0.17.8
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update Fluent Bit OCI image to v4.0.7."
     apiVersion: v2
@@ -30580,4 +30612,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-08-21T13:56:32.470080453Z"
+generated: "2025-08-21T13:57:24.721571933Z"
