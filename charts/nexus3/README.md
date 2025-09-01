@@ -56,6 +56,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.13.1
 | bashImage.tag | string | `"latest"` | Image tag for bash containers, this will be omitted if set to `-`. |
 | caCerts.enabled | bool | `false` | If `true`, add the CA certificates in the provided secret to the JVM cacerts key store. |
 | caCerts.secret | string | `nil` | Name of the secret containing the CA certificates. |
+| chownDataDir | bool | `true` | If `true`, the _chown-data-dir_ init container will be enabled, this should not be required for most CSI drivers but is left in for backwards compatibility. For new chart installs this should be set to `false`. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | config.anonymous.enabled | bool | `false` | If `true`, enable anonymous access. |
 | config.anonymous.roles | list | `["nx-anonymous","nx-metrics"]` | Roles for anonymous access. |

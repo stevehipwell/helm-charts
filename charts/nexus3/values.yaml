@@ -292,6 +292,9 @@ plugins: []
 #   - name: nexus-repository-composer
 #     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
 
+# -- If `true`, the _chown-data-dir_ init container will be enabled, this should not be required for most CSI drivers but is left in for backwards compatibility. For new chart installs this should be set to `false`.
+chownDataDir: true
+
 rootPassword:
   # -- (string) Name of the secret containing the root password.
   secret:
