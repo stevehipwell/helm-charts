@@ -63,13 +63,13 @@ spec:
             - query
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:10901
-            - --http-address=0.0.0.0:10902
+            - --grpc-address=0.0.0.0:{{ .Values.grpcPort }}
+            - --http-address=0.0.0.0:{{ .Values.httpPort }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
-          {{- with .Values.autoGomemlimit.ratio }}
+            {{- with .Values.autoGomemlimit.ratio }}
             - --auto-gomemlimit.ratio={{ . }}
-          {{- end }}
+            {{- end }}
           {{- end }}
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
@@ -95,10 +95,10 @@ spec:
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: 10901
+              containerPort: {{ .Values.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: 10902
+              containerPort: {{ .Values.httpPort }}
           livenessProbe:
             {{- toYaml .Values.query.livenessProbe | nindent 12 }}
           readinessProbe:

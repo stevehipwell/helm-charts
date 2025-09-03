@@ -20,7 +20,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 10902
+      port: {{ .Values.httpPort }}
       targetPort: http
   selector:
     {{- include "thanos.queryFrontend.selectorLabels" . | nindent 4 }}

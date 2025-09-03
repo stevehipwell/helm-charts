@@ -18,11 +18,11 @@ spec:
 {{- end }}
   ports:
     - name: grpc
-      port: 10901
+      port: {{ .Values.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: 10902
+      port: {{ .Values.httpPort }}
       targetPort: http
   selector:
     {{- include "thanos.query.selectorLabels" . | nindent 4 }}
