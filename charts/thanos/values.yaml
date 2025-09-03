@@ -42,6 +42,8 @@ serviceMonitor:
   enabled: false
   # -- Additional labels for the service monitor.
   additionalLabels: {}
+  # -- Label to use as the `jobLabel`.
+  jobLabel: app.kubernetes.io/component-instance
   # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
   # -- (int) **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint.
