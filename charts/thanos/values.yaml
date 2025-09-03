@@ -83,7 +83,7 @@ httpPort: 10902
 httpRemoteWritePort: 19291
 
 # -- GRPC port used by all components
-grpcPort: "10901"
+grpcPort: 10901
 
 compact:
   # -- If `true`, create the _Thanos Compact_ component.
