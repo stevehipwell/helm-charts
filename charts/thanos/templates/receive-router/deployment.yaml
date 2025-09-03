@@ -68,9 +68,9 @@ spec:
             - receive
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:10901
-            - --http-address=0.0.0.0:10902
-            - --remote-write.address=0.0.0.0:19291
+            - --grpc-address=0.0.0.0:{{ .Values.grpcPort }}
+            - --http-address=0.0.0.0:{{ .Values.httpPort }}
+            - --remote-write.address=0.0.0.0:{{ .Values.httpRemoteWritePort }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
@@ -86,13 +86,13 @@ spec:
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: 10901
+              containerPort: {{ .Values.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: 10902
+              containerPort: {{ .Values.httpPort }}
             - name: http-rem-write
               protocol: TCP
-              containerPort: 19291
+              containerPort: {{ .Values.httpRemoteWritePort }}
           livenessProbe:
             {{- toYaml .Values.receive.router.livenessProbe | nindent 12 }}
           readinessProbe:
