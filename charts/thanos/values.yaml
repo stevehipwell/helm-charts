@@ -76,13 +76,13 @@ additionalReplicaLabels: []
 # -- _Kubernetes_ cluster domain.
 clusterDomain: cluster.local
 
-# -- HTTP port
+# -- HTTP port used by all components
 httpPort: "10902"
 
-# -- HTTP port for remote write
+# -- HTTP port for remote write 
 httpRemoteWritePort: "19291"
 
-# -- GRPC port
+# -- GRPC port used by all components
 grpcPort: "10901"
 
 compact:
