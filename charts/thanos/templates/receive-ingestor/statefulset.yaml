@@ -72,9 +72,9 @@ spec:
             - receive
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:{{ .Values.grpcPort }}
-            - --http-address=0.0.0.0:{{ .Values.httpPort }}
-            - --remote-write.address=0.0.0.0:{{ .Values.httpRemoteWritePort }}
+            - {{- printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{- printf "--remote-write.address=0.0.0.0:%d" (int .Values.httpRemoteWritePort) }}
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
@@ -85,7 +85,7 @@ spec:
             - --tsdb.path=/var/thanos/receive
             - --tsdb.retention={{ .Values.receive.retention }}
             - --label=receive_replica="$(NAME)"
-            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.%s:%s" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain .Values.grpcPort }}
+            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.%s:%d" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.grpcPort) }}
           {{- with .Values.receive.ingestor.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}

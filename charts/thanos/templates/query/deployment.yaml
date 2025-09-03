@@ -63,13 +63,13 @@ spec:
             - query
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:{{ .Values.grpcPort }}
-            - --http-address=0.0.0.0:{{ .Values.httpPort }}
+            - {{- printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
-            {{- with .Values.autoGomemlimit.ratio }}
+          {{- with .Values.autoGomemlimit.ratio }}
             - --auto-gomemlimit.ratio={{ . }}
-            {{- end }}
+          {{- end }}
           {{- end }}
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
