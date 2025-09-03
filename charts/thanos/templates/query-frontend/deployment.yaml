@@ -64,7 +64,7 @@ spec:
             - query-frontend
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
