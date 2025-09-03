@@ -18,6 +18,10 @@
 
 - Remove all references to `existingClaim` from the values under `persistence` as this was never used. ([#1232](https://github.com/stevehipwell/helm-charts/pull/1232)) _@stevehipwell_
 
+### Added
+
+- Possibility to configure HTTP nad GRPC ports, enable (default) or disable GRPC DNS Service Discovery and set a specific jobLabel for the ServiceMonitors. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241))
+
 ## [v1.21.1] - 2025-07-22
 
 ### Changed
