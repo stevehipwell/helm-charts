@@ -64,14 +64,14 @@ spec:
             - query-frontend
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --http-address=0.0.0.0:{{ .Values.httpPort }}
+            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
             - --auto-gomemlimit.ratio={{ . }}
           {{- end }}
-          {{- end }}
-            - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.%s:%s" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain .Values.httpPort }}
+            {{- end }}
+            - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.%s:%d" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.httpPort) }}
           {{- with .Values.queryFrontend.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
