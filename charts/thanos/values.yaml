@@ -376,6 +376,9 @@ query:
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
 
+  # -- Enable DNS service discovery.
+  enableDnsDiscovery: true
+
   # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead.
   replicaLabels: []
 
