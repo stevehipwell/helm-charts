@@ -72,8 +72,8 @@ spec:
             - rule
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - {{- printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
-            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
             - --data-dir=/var/thanos/rule
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
@@ -142,7 +142,7 @@ spec:
         - name: config-reloader
           image: {{ include "thanos.configReloaderImage" . }}
           args:
-            - {{- printf "--webhook-url=http://localhost:%d/-/reload" (int .Values.httpPort) }}
+            - {{ printf "--webhook-url=http://localhost:%d/-/reload" (int .Values.httpPort) }}
             - -volume-dir=/etc/thanos/rules
           volumeMounts:
             - mountPath: /etc/thanos/rules

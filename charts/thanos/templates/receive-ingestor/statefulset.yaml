@@ -72,9 +72,9 @@ spec:
             - receive
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - {{- printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
-            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
-            - {{- printf "--remote-write.address=0.0.0.0:%d" (int .Values.httpRemoteWritePort) }}
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--remote-write.address=0.0.0.0:%d" (int .Values.httpRemoteWritePort) }}
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
