@@ -80,7 +80,7 @@ clusterDomain: cluster.local
 httpPort: 10902
 
 # -- HTTP port for remote write 
-httpRemoteWritePort: "19291"
+httpRemoteWritePort: 19291
 
 # -- GRPC port used by all components
 grpcPort: "10901"
