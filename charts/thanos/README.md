@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.21.2](https://img.shields.io/badge/Version-1.21.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.39.2](https://img.shields.io/badge/AppVersion-0.39.2-informational?style=flat-square)
+![Version: 1.21.1](https://img.shields.io/badge/Version-1.21.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.39.2](https://img.shields.io/badge/AppVersion-0.39.2-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.21.2
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.21.1
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.21.2
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.21.1
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.21.2
+helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 ```
 
 ## Values
@@ -92,9 +92,9 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.2
 | compact.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Compact_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | compact.updateStrategy | object | `{}` | Update strategy for the _Compact_ stateful set. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
-| grpcPort | string | `"10901"` | GRPC port used by all components |
-| httpPort | string | `"10902"` | HTTP port used by all components |
-| httpRemoteWritePort | string | `"19291"` | HTTP port for remote write  |
+| grpcPort | int | `10901` | GRPC port used by all components |
+| httpPort | int | `10902` | HTTP port used by all components |
+| httpRemoteWritePort | int | `19291` | HTTP port for remote write  |
 | image.digest | string | `nil` | Optional image digest for the _Thanos_ image. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Thanos_ image. |
 | image.repository | string | `"quay.io/thanos/thanos"` | Image repository for the _Thanos_ image. |
