@@ -77,7 +77,7 @@ additionalReplicaLabels: []
 clusterDomain: cluster.local
 
 # -- HTTP port used by all components
-httpPort: "10902"
+httpPort: 10902
 
 # -- HTTP port for remote write 
 httpRemoteWritePort: "19291"
