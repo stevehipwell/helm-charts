@@ -29932,6 +29932,45 @@ entries:
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Vertical Pod Autoscaler OCI image version to v1.4.2."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscaler
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.4.2
+    created: "2025-09-04T09:41:44.225246323Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 779b46ed90cc56c80c7d4efd34089395a90cbd5e64377edd7ba995de33494b1a
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    - vertical
+    - vpa
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.9.3/vertical-pod-autoscaler-1.9.3.tgz
+    version: 1.9.3
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: fixed
           description: "Fix incorrect verticalpodautoscalers.autoscaling.k8s.io CRD where the InPlaceOrRecreate option  was added to v1beta2 instead of v1."
       artifacthub.io/crds: |
@@ -30645,4 +30684,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-01T09:31:29.459003847Z"
+generated: "2025-09-04T09:41:44.226817643Z"
