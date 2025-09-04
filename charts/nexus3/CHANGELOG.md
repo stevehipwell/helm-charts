@@ -15,9 +15,15 @@
 
 ## [UNRELEASED]
 
+## [v5.13.2] - 2025-09-04
+
 ### Added
 
 - Add `chownDataDir` chart value to allow for opting out of the _chown-data-dir_ init container. ([#1238](https://github.com/stevehipwell/helm-charts/pull/1238)) _@falltrades_
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.83.2](https://github.com/sonatype/nexus-public/releases/tag/release-3.83.2-01). ([#1246](https://github.com/stevehipwell/helm-charts/pull/1246)) _@stevehipwell_
 
 ### Deprecated
 
@@ -918,6 +924,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.2
 [v5.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.1
 [v5.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.0
 [v5.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.12.0
