@@ -14,15 +14,15 @@ spec:
   type: ClusterIP
   ports:
     - name: grpc
-      port: 10901
+      port: {{ .Values.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: 10902
+      port: {{ .Values.httpPort }}
       targetPort: http
     - name: http-rem-write
       protocol: TCP
-      port: 19291
+      port: {{ .Values.httpRemoteWritePort }}
       targetPort: http-rem-write
   selector:
     {{- include "thanos.receive.router.selectorLabels" . | nindent 4 }}

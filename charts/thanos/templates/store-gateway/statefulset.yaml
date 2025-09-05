@@ -72,8 +72,8 @@ spec:
             - store
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:10901
-            - --http-address=0.0.0.0:10902
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
             - --data-dir=/var/thanos/store
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
@@ -88,10 +88,10 @@ spec:
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: 10901
+              containerPort: {{ .Values.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: 10902
+              containerPort: {{ .Values.httpPort }}
           livenessProbe:
             {{- toYaml .Values.storeGateway.livenessProbe | nindent 12 }}
           readinessProbe:
