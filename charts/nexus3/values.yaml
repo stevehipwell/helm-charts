@@ -137,6 +137,27 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
+# -- Security context for non-root init containers.
+initNonRootSecurityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  capabilities:
+    drop:
+      - ALL
+
+# -- Security context for root init container.
+initRootSecurityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: false
+  runAsUser: 0
+  runAsGroup: 0
+
 # -- (string) Priority class name for the pod.
 priorityClassName:
 
@@ -324,6 +345,24 @@ config:
     tolerations: []
     # -- Annotations to apply to the config job.
     annotations: []
+    # -- Security context for the pod.
+    podSecurityContext:
+      runAsNonRoot: false
+      fsGroup: 200
+      seccompProfile:
+        type: RuntimeDefault
+    # -- Security context for non-root containers.
+    securityContext:
+      privileged: false
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 65532
+      runAsGroup: 65532
+      capabilities:
+        drop:
+          - ALL
+
   anonymous:
     # -- If `true`, enable anonymous access.
     enabled: false
