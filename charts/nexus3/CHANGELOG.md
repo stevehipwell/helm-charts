@@ -15,6 +15,15 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add support for configuring init container security context via the new `initNonRootSecurityContext` & `initRootSecurityContext` values. ([#1248](https://github.com/stevehipwell/helm-charts/pull/1248)) _@falltrades_
+- Add support for setting config job pod & container security context via the new `config.job.podSecurityContext` & `config.job.securityContext` values. ([#1248](https://github.com/stevehipwell/helm-charts/pull/1248)) _@falltrades_
+
+### Changed
+
+- Change defaults for config job pod security context. ([#1248](https://github.com/stevehipwell/helm-charts/pull/1248)) _@falltrades_
+
 ## [v5.13.2] - 2025-09-04
 
 ### Added

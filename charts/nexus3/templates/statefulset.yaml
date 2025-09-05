@@ -62,13 +62,10 @@ spec:
         - name: import-ca-certs
           image: {{ include "nexus3.image" .Values.jdkImage }}
           imagePullPolicy: {{ .Values.jdkImage.pullPolicy }}
+          {{- with .Values.initRootSecurityContext }}
           securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: false
-            runAsUser: 0
-            runAsGroup: 0
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -88,16 +85,10 @@ spec:
         - name: download-plugins
           image: {{ include "nexus3.image" .Values.bashImage }}
           imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.initNonRootSecurityContext }}
           securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 65532
-            runAsGroup: 65532
-            capabilities:
-              drop:
-                - ALL
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
@@ -117,13 +108,10 @@ spec:
         - name: chown-data-dir
           image: {{ include "nexus3.image" .Values.bashImage }}
           imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.initRootSecurityContext }}
           securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: false
-            runAsUser: 0
-            runAsGroup: 0
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}

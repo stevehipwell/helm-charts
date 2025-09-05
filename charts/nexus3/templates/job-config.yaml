@@ -21,20 +21,18 @@ spec:
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
     spec:
       restartPolicy: Never
+      {{- with .Values.config.job.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: config
           image: {{ include "nexus3.image" .Values.config.job.image }}
           imagePullPolicy: {{ .Values.config.job.image.pullPolicy }}
+          {{- with .Values.config.job.securityContext }}
           securityContext:
-            privileged: false
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 65532
-            runAsGroup: 65532
-            capabilities:
-              drop:
-                - ALL
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: NEXUS_HOST
               value: {{ printf "http://%s.%s.svc.cluster.local:%s" (include "nexus3.serviceName" .) .Release.Namespace (toString .Values.service.port) }}

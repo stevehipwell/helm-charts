@@ -70,6 +70,8 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.13.2
 | config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |
 | config.job.image.tag | string | `"1.31.2"` | Image tag for config container, this will be omitted if set to `-`. |
 | config.job.nodeSelector | object | `{}` | Node labels to match for scheduling the config job. |
+| config.job.podSecurityContext | object | `{"fsGroup":200,"runAsNonRoot":false,"seccompProfile":{"type":"RuntimeDefault"}}` | Security context for the pod. |
+| config.job.securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":65532,"runAsNonRoot":true,"runAsUser":65532}` | Security context for non-root containers. |
 | config.job.tolerations | list | `[]` | Node taints which will be tolerated for scheduling the config job. |
 | config.job.ttlSecondsAfterFinished | int | `600` | The number of seconds to keep the config job after it's finished. |
 | config.ldap | object | `{"authPassword":{"key":null,"secret":null},"authRealm":null,"authScheme":"simple","authUsername":null,"connectionRetryDelaySeconds":300,"connectionTimeoutSeconds":30,"enabled":false,"groupBaseDn":null,"groupIdAttribute":null,"groupMemberAttribute":null,"groupMemberFormat":null,"groupObjectClass":null,"groupSubtree":false,"groupType":"dynamic","host":null,"ldapGroupsAsRoles":false,"maxIncidentsCount":3,"name":null,"port":636,"protocol":"ldaps","searchBase":null,"useTrustStore":true,"userBaseDn":null,"userEmailAddressAttribute":"email","userIdAttribute":"sAMAccountName","userLdapFilter":null,"userMemberOfAttribute":"memberOf","userObjectClass":"user","userPasswordAttribute":null,"userRealNameAttribute":"cn","userSubtree":false}` | LDAP configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
@@ -97,6 +99,8 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.13.2
 | ingress.hosts | list | See _values.yaml_ | Ingress hosts, do not include hosts defined in `service.additionalPorts`. |
 | ingress.ingressClassName | string | `nil` | Ingress class name. |
 | ingress.tls | list | See _values.yaml_ | Ingress TLS, hosts defined in both `ingress.hosts` & `service.additionalPorts[*].hosts` should be covered. |
+| initNonRootSecurityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":65532,"runAsNonRoot":true,"runAsUser":65532}` | Security context for non-root init containers. |
+| initRootSecurityContext | object | `{"allowPrivilegeEscalation":false,"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":0,"runAsNonRoot":false,"runAsUser":0}` | Security context for root init container. |
 | install4jAddVmParams | string | `"-Xms1024m -Xmx1024m -XX:MaxDirectMemorySize=2048m"` | Env configuration for the _Nexus3_ container. |
 | jdkImage.digest | string | `nil` | Optional image digest for the JDK container. |
 | jdkImage.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the JDK container. |
