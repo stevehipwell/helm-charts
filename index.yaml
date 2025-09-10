@@ -16786,6 +16786,43 @@ entries:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add support for configuring init container security context via the new initNonRootSecurityContext & initRootSecurityContext values."
+        - kind: added
+          description: "Add support for setting config job pod & container security context via the new config.job.podSecurityContext & config.job.securityContext values."
+        - kind: changed
+          description: "Change defaults for config job pod security context."
+        - kind: changed
+          description: "Update the Nexus3 OCI image to v3.84.0."
+    apiVersion: v2
+    appVersion: 3.84.0
+    created: "2025-09-10T17:35:26.625162413Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 1ec9ad974be5a2c09d63995c2834dfd5d0a285166d36ff86c7f21c6ac20f954c
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.14.0/nexus3-5.14.0.tgz
+    version: 5.14.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add chownDataDir chart value to allow for opting out of the chown-data-dir init container."
         - kind: changed
           description: "Update the Nexus3 OCI image to v3.83.2."
@@ -30779,4 +30816,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-04T10:57:53.935889002Z"
+generated: "2025-09-10T17:35:26.626985715Z"
