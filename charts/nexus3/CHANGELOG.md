@@ -15,6 +15,8 @@
 
 ## [UNRELEASED]
 
+## [v5.14.0] - 2025-09-10
+
 ### Added
 
 - Add support for configuring init container security context via the new `initNonRootSecurityContext` & `initRootSecurityContext` values. ([#1248](https://github.com/stevehipwell/helm-charts/pull/1248)) _@falltrades_
@@ -23,6 +25,7 @@
 ### Changed
 
 - Change defaults for config job pod security context. ([#1248](https://github.com/stevehipwell/helm-charts/pull/1248)) _@falltrades_
+- Update the _Nexus3_ OCI image to [v3.84.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.84.0-03). ([#1251](https://github.com/stevehipwell/helm-charts/pull/1251)) _@stevehipwell_
 
 ## [v5.13.2] - 2025-09-04
 
@@ -933,6 +936,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.0
 [v5.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.2
 [v5.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.1
 [v5.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.0
