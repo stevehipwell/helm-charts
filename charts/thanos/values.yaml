@@ -42,7 +42,7 @@ serviceMonitor:
   enabled: false
   # -- Additional labels for the service monitor.
   additionalLabels: {}
-  # -- Label to use as the `jobLabel`.
+  # -- Label to use as the service monitor job label.
   jobLabel: app.kubernetes.io/component-instance
   # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
@@ -76,13 +76,13 @@ additionalReplicaLabels: []
 # -- _Kubernetes_ cluster domain.
 clusterDomain: cluster.local
 
-# -- HTTP port used by all components
+# -- HTTP port used by all components.
 httpPort: 10902
 
-# -- HTTP port for remote write 
+# -- HTTP port for remote write.
 httpRemoteWritePort: 19291
 
-# -- GRPC port used by all components
+# -- GRPC port used by all components.
 grpcPort: 10901
 
 compact:
@@ -378,7 +378,7 @@ query:
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
 
-  # -- Enable DNS service discovery.
+  # -- If `true`, enable DNS service discovery.
   enableDnsDiscovery: true
 
   # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead.
