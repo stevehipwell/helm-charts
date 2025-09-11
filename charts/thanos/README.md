@@ -94,7 +94,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | grpcPort | int | `10901` | GRPC port used by all components. |
 | httpPort | int | `10902` | HTTP port used by all components. |
-| httpRemoteWritePort | int | `19291` | HTTP port for remote write.  |
+| httpRemoteWritePort | int | `19291` | HTTP port for remote write. |
 | image.digest | string | `nil` | Optional image digest for the _Thanos_ image. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Thanos_ image. |
 | image.repository | string | `"quay.io/thanos/thanos"` | Image repository for the _Thanos_ image. |
