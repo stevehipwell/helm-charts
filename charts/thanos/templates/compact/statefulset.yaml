@@ -73,7 +73,7 @@ spec:
             - --wait
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - {{- printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
             - --data-dir=/var/thanos/compact
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
