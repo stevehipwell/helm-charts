@@ -63,8 +63,8 @@ spec:
             - query
             - --log.level={{ .Values.logLevel }}
             - --log.format={{ .Values.logFormat }}
-            - --grpc-address=0.0.0.0:10901
-            - --http-address=0.0.0.0:10902
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
@@ -74,6 +74,7 @@ spec:
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - --query.replica-label={{ . }}
           {{- end }}
+          {{- if .Values.query.enableDnsDiscovery }}
           {{- if .Values.storeGateway.enabled }}
             - {{ printf "--endpoint%s=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (ternary "-group" "" .Values.storeEndpointGroup) (include "thanos.storeGateway.fullname" .) .Release.Namespace .Values.clusterDomain}}
           {{- end }}
@@ -82,6 +83,7 @@ spec:
           {{- end }}
           {{- if .Values.receive.enabled }}
             - {{ printf "--endpoint=dnssrv+_grpc._tcp.%s-headless.%s.svc.%s" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain}}
+          {{- end }}
           {{- end }}
           {{- range (concat .Values.additionalEndpoints .Values.query.additionalStores) | uniq }}
             - --endpoint={{ . }}
@@ -95,10 +97,10 @@ spec:
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: 10901
+              containerPort: {{ .Values.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: 10902
+              containerPort: {{ .Values.httpPort }}
           livenessProbe:
             {{- toYaml .Values.query.livenessProbe | nindent 12 }}
           readinessProbe:

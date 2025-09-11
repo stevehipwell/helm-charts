@@ -42,6 +42,8 @@ serviceMonitor:
   enabled: false
   # -- Additional labels for the service monitor.
   additionalLabels: {}
+  # -- Label to use as the service monitor job label.
+  jobLabel: app.kubernetes.io/component-instance
   # -- Additional endpoint configuration for the service monitor endpoint.
   endpointConfig: {}
   # -- (int) **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint.
@@ -73,6 +75,15 @@ additionalReplicaLabels: []
 
 # -- _Kubernetes_ cluster domain.
 clusterDomain: cluster.local
+
+# -- HTTP port used by all components.
+httpPort: 10902
+
+# -- HTTP port for remote write.
+httpRemoteWritePort: 19291
+
+# -- GRPC port used by all components.
+grpcPort: 10901
 
 compact:
   # -- If `true`, create the _Thanos Compact_ component.
@@ -366,6 +377,9 @@ query:
 
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
+
+  # -- If `true`, enable DNS service discovery.
+  enableDnsDiscovery: true
 
   # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead.
   replicaLabels: []

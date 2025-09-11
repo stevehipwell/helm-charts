@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add possibility to configure HTTP and GRPC ports. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
+- Enable (default) or disable GRPC DNS Service Discovery. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
+- Add possibility to configure `jobLabel` for the ServiceMonitors. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
+
 ### Removed
 
 - Remove all references to `existingClaim` from the values under `persistence` as this was never used. ([#1232](https://github.com/stevehipwell/helm-charts/pull/1232)) _@stevehipwell_

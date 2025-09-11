@@ -92,6 +92,9 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | compact.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Compact_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | compact.updateStrategy | object | `{}` | Update strategy for the _Compact_ stateful set. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
+| grpcPort | int | `10901` | GRPC port used by all components. |
+| httpPort | int | `10902` | HTTP port used by all components. |
+| httpRemoteWritePort | int | `19291` | HTTP port for remote write. |
 | image.digest | string | `nil` | Optional image digest for the _Thanos_ image. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the _Thanos_ image. |
 | image.repository | string | `"quay.io/thanos/thanos"` | Image repository for the _Thanos_ image. |
@@ -111,6 +114,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | query.autoscaling.minReplicas | int | `1` | Minimum number of _Query_ replicas that the HPA should maintain. |
 | query.autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilisation percentage for the _Query_ pod. |
 | query.autoscaling.targetMemoryUtilizationPercentage | int | `nil` | Target memory utilisation percentage for the _Query_ pod. |
+| query.enableDnsDiscovery | bool | `true` | If `true`, enable DNS service discovery. |
 | query.extraArgs | list | `[]` | Additional args for the _Query_ pod default container. |
 | query.extraEnv | list | `[]` | Additional environment variables for the _Query_ pod default container. |
 | query.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query_ pod default container. |
@@ -333,6 +337,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | serviceMonitor.enabled | bool | `false` | If `true`, create `ServiceMonitor` resources to support collecting metrics via the _Prometheus Operator_. |
 | serviceMonitor.endpointConfig | object | `{}` | Additional endpoint configuration for the service monitor endpoint. |
 | serviceMonitor.interval | int | `nil` | **DEPRECATED** - _Prometheus_ scrape interval for the service monitor endpoint. |
+| serviceMonitor.jobLabel | string | `"app.kubernetes.io/component-instance"` | Label to use as the service monitor job label. |
 | storeEndpointGroup | bool | `false` | If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**). |
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | storeGateway.enabled | bool | `true` | If `true`, create the _Store Gateway_ component. |
