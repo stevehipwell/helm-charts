@@ -1,12 +1,18 @@
-{{- if .Values.compact.enabled -}}
+{{- if $.Values.compact.enabled -}}
+{{- $shards := (include "thanos.compact.shards" .) | fromJsonArray }}
+{{- range $shard := $shards }}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ printf "%s-headless" (include "thanos.compact.fullname" .) }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ $shard.fullname }}-headless
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "thanos.compact.labels" . | nindent 4 }}
-  {{- with .Values.compact.service.annotations }}
+    {{- include "thanos.compact.labels" $ | nindent 4 }}
+    {{- if $.Values.compact.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
+  {{- with $.Values.compact.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -16,8 +22,12 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ $.Values.httpPort }}
       targetPort: http
   selector:
-    {{- include "thanos.compact.selectorLabels" . | nindent 4 }}
+    {{- include "thanos.compact.selectorLabels" $ | nindent 4 }}
+    {{- if $.Values.compact.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
+{{- end -}}
 {{- end -}}

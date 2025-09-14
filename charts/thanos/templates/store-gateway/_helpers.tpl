@@ -53,3 +53,26 @@ Patch topology spread constraints
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.storeGateway.selectorLabels") $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Generate store gateway shards list as JSON
+*/}}
+{{- define "thanos.storeGateway.shards" -}}
+{{- if .Values.storeGateway.enabled -}}
+{{- $list := list -}}
+{{- if .Values.storeGateway.sharded.enabled }}
+{{- range $index, $shard := .Values.storeGateway.sharded.timePartitioning }}
+{{- $x := deepCopy $shard -}}
+{{- $shardName := $x.name | default (printf "%d" $index) }}
+{{- $_ := set $x "name" $shardName }}
+{{- $_ := set $x "fullname" (printf "%s-%s" (include "thanos.storeGateway.fullname" $) $shardName) }}
+{{- $list = append $list $x -}}
+{{- end }}
+{{- else -}}
+{{- $defaultShard := dict "fullname" (printf "%s" (include "thanos.storeGateway.fullname" $)) -}}
+{{- $list = append $list $defaultShard -}}
+{{- end -}}
+{{- toJson $list -}}
+{{- end -}}
+{{- end -}}
+
