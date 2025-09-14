@@ -53,3 +53,26 @@ Patch topology spread constraints
 {{- include "thanos.patchLabelSelector" (merge (dict "_target" $constraint "_selectorLabelsTemplate" "thanos.compact.selectorLabels") $) }}
 {{- end }}
 {{- end }}
+
+{{/*
+Generate compact shards list as JSON
+*/}}
+{{- define "thanos.compact.shards" -}}
+{{- if .Values.compact.enabled -}}
+{{- $list := list -}}
+{{- if .Values.compact.sharded.enabled }}
+{{- range $index, $shard := .Values.compact.sharded.timePartitioning }}
+{{- $x := deepCopy $shard -}}
+{{- $shardName := $x.name | default (printf "%d" $index) }}
+{{- $_ := set $x "name" $shardName }}
+{{- $_ := set $x "fullname" (printf "%s-%s" (include "thanos.compact.fullname" $) $shardName) }}
+{{- $list = append $list $x -}}
+{{- end }}
+{{- else -}}
+{{- $defaultShard := dict "fullname" (printf "%s" (include "thanos.compact.fullname" $)) -}}
+{{- $list = append $list $defaultShard -}}
+{{- end -}}
+{{- toJson $list -}}
+{{- end -}}
+{{- end -}}
+

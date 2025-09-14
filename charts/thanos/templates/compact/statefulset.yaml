@@ -1,61 +1,76 @@
-{{- if .Values.compact.enabled -}}
+{{- if $.Values.compact.enabled -}}
+{{- $shards := (include "thanos.compact.shards" .) | fromJsonArray }}
+{{- range $shard := $shards }}
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "thanos.compact.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ $shard.fullname }}
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "thanos.compact.labels" . | nindent 4 }}
+    {{- include "thanos.compact.labels" $ | nindent 4 }}
+    {{- if $.Values.compact.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.compact.fullname" .) }}
+  serviceName: {{ $shard.fullname }}-headless
   replicas: 1
-  {{- with .Values.compact.updateStrategy }}
+  {{- with $.Values.compact.updateStrategy }}
   updateStrategy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.compact.selectorLabels" . | nindent 6 }}
+      {{- include "thanos.compact.selectorLabels" $ | nindent 6 }}
+      {{- if $.Values.compact.sharded.enabled }}
+      shard: {{ $shard.name | quote }}
+      {{- end }}
   template:
     metadata:
       labels:
-        {{- include "thanos.compact.selectorLabels" . | nindent 8 }}
-      {{- with .Values.compact.podLabels }}
+        {{- include "thanos.compact.selectorLabels" $ | nindent 8 }}
+        {{- if $.Values.compact.sharded.enabled }}
+        shard: {{ $shard.name | quote }}
+        {{- end }}
+      {{- with $.Values.compact.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if or .Values.objstoreConfig.create (gt (len .Values.compact.podAnnotations) 0) }}
-      annotations:
-      {{- if .Values.objstoreConfig.create }}
-        checksum/config: {{ include "thanos.objstoreConfigHash" . }}
+      {{- if $.Values.compact.sharded.enabled }}
+      shard: {{ $shard.name | quote }}
       {{- end }}
-      {{- with .Values.compact.podAnnotations }}
+      {{- if or $.Values.objstoreConfig.create (gt (len $.Values.compact.podAnnotations) 0) }}
+      annotations:
+      {{- if $.Values.objstoreConfig.create }}
+        checksum/config: {{ include "thanos.objstoreConfigHash" $ }}
+      {{- end }}
+      {{- with $.Values.compact.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with $.Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.compact.serviceAccountName" . }}
-      {{- with .Values.compact.podSecurityContext }}
+      serviceAccountName: {{ include "thanos.compact.serviceAccountName" $ }}
+      {{- with $.Values.compact.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.priorityClassName }}
+      {{- with $.Values.compact.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
-      {{- with .Values.compact.terminationGracePeriodSeconds }}
+      {{- with $.Values.compact.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
       containers:
         - name: thanos-compact
-          {{- with .Values.compact.securityContext }}
+          {{- with $.Values.compact.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "thanos.image" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ include "thanos.image" $ }}
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
           env:
             - name: NAME
               valueFrom:
@@ -65,101 +80,110 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-          {{- with .Values.compact.extraEnv }}
+          {{- with $.Values.compact.extraEnv }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args:
             - compact
             - --wait
-            - {{ printf "--log.level=%s" .Values.logLevel }}
-            - {{ printf "--log.format=%s" .Values.logFormat }}
-            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--log.level=%s" $.Values.logLevel }}
+            - {{ printf "--log.format=%s" $.Values.logFormat }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int $.Values.httpPort) }}
             - --data-dir=/var/thanos/compact
             - --objstore.config-file=/etc/thanos/objstore.yaml
-          {{- if .Values.autoGomemlimit.enabled }}
+          {{- if $.Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
-          {{- with .Values.autoGomemlimit.ratio }}
+          {{- with $.Values.autoGomemlimit.ratio }}
             - {{ printf "--auto-gomemlimit.ratio=%s" . }}
           {{- end }}
           {{- end }}
-          {{- if .Values.compact.deduplication.enabled }}
+          {{- if $.Values.compact.deduplication.enabled }}
             - --compact.enable-vertical-compaction
-          {{- range (concat .Values.additionalReplicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
+          {{- range (concat $.Values.additionalReplicaLabels (ternary (list "rule_replica") (list) $.Values.rule.enabled ) (ternary (list "receive_replica") (list) $.Values.receive.enabled )) | uniq }}
             - {{ printf "--deduplication.replica-label=%s" . }}
           {{- end }}
-          {{- if .Values.compact.deduplication.func }}
-            - {{ printf "--deduplication.func=%s" .Values.compact.deduplication.func }}
-          {{- else if .Values.compact.replicaDeduplication }}
+          {{- if $.Values.compact.deduplication.func }}
+            - {{ printf "--deduplication.func=%s" $.Values.compact.deduplication.func }}
+          {{- else if $.Values.compact.replicaDeduplication }}
             - --deduplication.func=penalty
           {{- end }}
           {{- end }}
-          {{- with .Values.compact.extraArgs }}
+          {{- with $shard.minTime }}
+            - --min-time={{ . }}
+          {{- end }}
+          {{- with $shard.maxTime }}
+            - --max-time={{ . }}
+          {{- end }}
+          {{- with $.Values.compact.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http
               protocol: TCP
-              containerPort: {{ .Values.httpPort}}
+              containerPort: {{ $.Values.httpPort}}
           livenessProbe:
-            {{- toYaml .Values.compact.livenessProbe | nindent 12 }}
+            {{- toYaml $.Values.compact.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.compact.readinessProbe | nindent 12 }}
+            {{- toYaml $.Values.compact.readinessProbe | nindent 12 }}
           volumeMounts:
             - mountPath: /etc/thanos/objstore.yaml
               name: objstore-config
-              subPath: {{ .Values.objstoreConfig.key }}
+              subPath: {{ $.Values.objstoreConfig.key }}
               readOnly: true
             - mountPath: /var/thanos/compact
               name: data
               readOnly: false
-          {{- with .Values.compact.extraVolumeMounts }}
+          {{- with $.Values.compact.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.compact.resources }}
+          {{- with $.Values.compact.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
         - name: objstore-config
           secret:
-            secretName: {{ include "thanos.objstoreConfigSecretName" . }}
-      {{- if not .Values.compact.persistence.enabled }}
+            secretName: {{ include "thanos.objstoreConfigSecretName" $ }}
+      {{- if not $.Values.compact.persistence.enabled }}
         - name: data
           emptyDir: {}
       {{- end }}
-      {{- with .Values.compact.extraVolumes }}
+      {{- with $.Values.compact.extraVolumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.nodeSelector }}
+      {{- with $.Values.compact.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.affinity }}
+      {{- with $.Values.compact.affinity }}
       {{- $_ := include "thanos.compact.patchAffinity" $ }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.topologySpreadConstraints }}
+      {{- with $.Values.compact.topologySpreadConstraints }}
       {{- $_ := include "thanos.compact.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.compact.tolerations }}
+      {{- with $.Values.compact.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if .Values.compact.persistence.enabled }}
+  {{- if $.Values.compact.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.compact.selectorLabels" . | nindent 10 }}
-        {{- with .Values.compact.persistence.annotations }}
+          {{- include "thanos.compact.selectorLabels" $ | nindent 10 }}
+          {{- if $.Values.compact.sharded.enabled }}
+          shard: {{ $shard.name | quote }}
+          {{- end }}
+        {{- with $.Values.compact.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}
         {{- end }}
       spec:
-      {{- with .Values.compact.persistence.storageClass }}
+      {{- with $.Values.compact.persistence.storageClass }}
       {{- if (eq "-" .) }}
         storageClassName: ""
       {{- else }}
@@ -167,14 +191,15 @@ spec:
       {{- end }}
       {{- end }}
         accessModes:
-          - {{ .Values.compact.persistence.accessMode }}
+          - {{ $.Values.compact.persistence.accessMode }}
         resources:
           requests:
-            storage: {{ .Values.compact.persistence.size }}
-  {{- if semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version }}
+            storage: {{ $.Values.compact.persistence.size }}
+  {{- if semverCompare ">= 1.27-0" $.Capabilities.KubeVersion.Version }}
   persistentVolumeClaimRetentionPolicy:
-    whenDeleted: {{ ternary "Retain" "Delete" .Values.compact.persistence.retainDeleted }}
-    whenScaled: {{ ternary "Retain" "Delete" .Values.compact.persistence.retainScaled }}
+    whenDeleted: {{ ternary "Retain" "Delete" $.Values.compact.persistence.retainDeleted }}
+    whenScaled: {{ ternary "Retain" "Delete" $.Values.compact.persistence.retainScaled }}
   {{- end }}
   {{- end }}
+{{- end -}}
 {{- end -}}

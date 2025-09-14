@@ -1,62 +1,73 @@
-{{- if .Values.storeGateway.enabled -}}
-{{- if not .Values.storeGateway.sharded.enabled }}
+{{- if $.Values.storeGateway.enabled -}}
+{{- $shards := (include "thanos.storeGateway.shards" .) | fromJsonArray }}
+{{- range $shard := $shards }}
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "thanos.storeGateway.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ $shard.fullname }}
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "thanos.storeGateway.labels" . | nindent 4 }}
+    {{- include "thanos.storeGateway.labels" $ | nindent 4 }}
+    {{- if $.Values.storeGateway.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
 spec:
-  serviceName: {{ printf "%s-headless" (include "thanos.storeGateway.fullname" .) }}
-  replicas: {{ .Values.storeGateway.replicas }}
-  {{- with .Values.storeGateway.updateStrategy }}
+  serviceName: {{ $shard.fullname }}-headless
+  replicas: {{ $.Values.storeGateway.replicas }}
+  {{- with $.Values.storeGateway.updateStrategy }}
   updateStrategy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "thanos.storeGateway.selectorLabels" . | nindent 6 }}
+      {{- include "thanos.storeGateway.selectorLabels" $ | nindent 6 }}
+      {{- if $.Values.storeGateway.sharded.enabled }}
+      shard: {{ $shard.name | quote }}
+      {{- end }}
   template:
     metadata:
       labels:
-        {{- include "thanos.storeGateway.selectorLabels" . | nindent 8 }}
-      {{- with .Values.storeGateway.podLabels }}
+        {{- include "thanos.storeGateway.selectorLabels" $ | nindent 8 }}
+        {{- if $.Values.storeGateway.sharded.enabled }}
+        shard: {{ $shard.name | quote }}
+        {{- end }}
+      {{- with $.Values.storeGateway.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if or .Values.objstoreConfig.create (gt (len .Values.storeGateway.podAnnotations) 0) }}
+      {{- if or $.Values.objstoreConfig.create (gt (len $.Values.storeGateway.podAnnotations) 0) }}
       annotations:
-      {{- if .Values.objstoreConfig.create }}
-        checksum/config: {{ include "thanos.objstoreConfigHash" . }}
+      {{- if $.Values.objstoreConfig.create }}
+        checksum/config: {{ include "thanos.objstoreConfigHash" $ }}
       {{- end }}
-      {{- with .Values.storeGateway.podAnnotations }}
+      {{- with $.Values.storeGateway.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with $.Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "thanos.storeGateway.serviceAccountName" . }}
-      {{- with .Values.storeGateway.podSecurityContext }}
+      serviceAccountName: {{ include "thanos.storeGateway.serviceAccountName" $ }}
+      {{- with $.Values.storeGateway.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.storeGateway.priorityClassName }}
+      {{- with $.Values.storeGateway.priorityClassName }}
       priorityClassName: {{ . | quote }}
       {{- end }}
-      {{- with .Values.storeGateway.terminationGracePeriodSeconds }}
+      {{- with $.Values.storeGateway.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
       containers:
         - name: thanos-store-gateway
-          {{- with .Values.storeGateway.securityContext }}
+          {{- with $.Values.storeGateway.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "thanos.image" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ include "thanos.image" $ }}
+          imagePullPolicy: {{ $.Values.image.pullPolicy }}
           env:
             - name: NAME
               valueFrom:
@@ -66,93 +77,100 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-          {{- with .Values.storeGateway.extraEnv }}
+          {{- with $.Values.storeGateway.extraEnv }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args:
             - store
-            - {{ printf "--log.level=%s" .Values.logLevel }}
-            - {{ printf "--log.format=%s" .Values.logFormat }}
-            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
-            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--log.level=%s" $.Values.logLevel }}
+            - {{ printf "--log.format=%s" $.Values.logFormat }}
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int $.Values.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int $.Values.httpPort) }}
             - --data-dir=/var/thanos/store
             - --objstore.config-file=/etc/thanos/objstore.yaml
-          {{- if .Values.autoGomemlimit.enabled }}
+          {{- with $shard.minTime }}
+            - --min-time={{ . }}
+          {{- end }}
+          {{- with $shard.maxTime }}
+            - --max-time={{ . }}
+          {{- end }}
+          {{- if $.Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
-          {{- with .Values.autoGomemlimit.ratio }}
+          {{- with $.Values.autoGomemlimit.ratio }}
             - {{ printf "--auto-gomemlimit.ratio=%s" . }}
           {{- end }}
           {{- end }}
-          {{- with .Values.storeGateway.extraArgs }}
+          {{- with $.Values.storeGateway.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: {{ .Values.grpcPort }}
+              containerPort: {{ $.Values.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: {{ .Values.httpPort }}
+              containerPort: {{ $.Values.httpPort }}
           livenessProbe:
-            {{- toYaml .Values.storeGateway.livenessProbe | nindent 12 }}
+            {{- toYaml $.Values.storeGateway.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{- toYaml .Values.storeGateway.readinessProbe | nindent 12 }}
+            {{- toYaml $.Values.storeGateway.readinessProbe | nindent 12 }}
           volumeMounts:
             - mountPath: /etc/thanos/objstore.yaml
               name: objstore-config
-              subPath: {{ .Values.objstoreConfig.key }}
+              subPath: {{ $.Values.objstoreConfig.key }}
               readOnly: true
             - mountPath: /var/thanos/store
               name: data
               readOnly: false
-          {{- with .Values.storeGateway.extraVolumeMounts }}
+          {{- with $.Values.storeGateway.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.storeGateway.resources }}
+          {{- with $.Values.storeGateway.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
         - name: objstore-config
           secret:
-            secretName: {{ include "thanos.objstoreConfigSecretName" . }}
-      {{- if not .Values.storeGateway.persistence.enabled }}
+            secretName: {{ include "thanos.objstoreConfigSecretName" $ }}
+      {{- if not $.Values.storeGateway.persistence.enabled }}
         - name: data
           emptyDir: {}
       {{- end }}
-      {{- with .Values.storeGateway.extraVolumes }}
+      {{- with $.Values.storeGateway.extraVolumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.storeGateway.nodeSelector }}
+      {{- with $.Values.storeGateway.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.storeGateway.affinity }}
-      {{- $_ := include "thanos.storeGateway.patchAffinity" $ }}
+      {{- with $.Values.storeGateway.affinity }}
+      {{- $_ := include "thanos.storeGateway.patchAffinity" . }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.storeGateway.topologySpreadConstraints }}
-      {{- $_ := include "thanos.storeGateway.patchTopologySpreadConstraints" $ }}
+      {{- with $.Values.storeGateway.topologySpreadConstraints }}
+      {{- $_ := include "thanos.storeGateway.patchTopologySpreadConstraints" . }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.storeGateway.tolerations }}
+      {{- with $.Values.storeGateway.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if .Values.storeGateway.persistence.enabled }}
+  {{- if $.Values.storeGateway.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
         labels:
-          {{- include "thanos.storeGateway.selectorLabels" . | nindent 10 }}
-        {{- with .Values.storeGateway.persistence.annotations }}
+          {{- include "thanos.storeGateway.selectorLabels" $ | nindent 10 }}
+          shard: {{ $shard.name | quote }}
+        {{- with $.Values.storeGateway.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}
         {{- end }}
       spec:
-      {{- with .Values.storeGateway.persistence.storageClass }}
+      {{- with $.Values.storeGateway.persistence.storageClass }}
       {{- if (eq "-" .) }}
         storageClassName: ""
       {{- else }}
@@ -160,14 +178,14 @@ spec:
       {{- end }}
       {{- end }}
         accessModes:
-          - {{ .Values.storeGateway.persistence.accessMode }}
+          - {{ $.Values.storeGateway.persistence.accessMode }}
         resources:
           requests:
-            storage: {{ .Values.storeGateway.persistence.size }}
-  {{- if semverCompare ">= 1.27-0" .Capabilities.KubeVersion.Version }}
+            storage: {{ $.Values.storeGateway.persistence.size }}
+  {{- if semverCompare ">= 1.27-0" $.Capabilities.KubeVersion.Version }}
   persistentVolumeClaimRetentionPolicy:
-    whenDeleted: {{ ternary "Retain" "Delete" .Values.storeGateway.persistence.retainDeleted }}
-    whenScaled: {{ ternary "Retain" "Delete" .Values.storeGateway.persistence.retainScaled }}
+    whenDeleted: {{ ternary "Retain" "Delete" $.Values.storeGateway.persistence.retainDeleted }}
+    whenScaled: {{ ternary "Retain" "Delete" $.Values.storeGateway.persistence.retainScaled }}
   {{- end }}
   {{- end }}
 {{- end -}}

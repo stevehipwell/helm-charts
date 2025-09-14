@@ -1100,11 +1100,11 @@ storeGateway:
     # -- Shards using time partitioning for the _Store Gateway_ component.
     timePartitioning:
     # -- Optional. shards will have the name as the suffix of the statefulset name.
-    - name: 
+    - name:
     # -- Optional. thanos store min-time
-      minTime: 
+      minTime:
     # -- Optional. thanos store max-time
-      maxTime: 
+      maxTime:
 
   # -- Update strategy for the _Store Gateway_ stateful set.
   updateStrategy: {}

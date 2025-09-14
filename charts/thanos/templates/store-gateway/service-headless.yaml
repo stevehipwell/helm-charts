@@ -1,32 +1,41 @@
-{{- if and (.Values.storeGateway.enabled (not .Values.storeGateway.sharded.enabled)) -}}
+{{- if $.Values.storeGateway.enabled -}}
+{{- $shards := (include "thanos.storeGateway.shards" .) | fromJsonArray }}
+{{- range $shard := $shards }}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ printf "%s-headless" (include "thanos.storeGateway.fullname" .) }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ $shard.fullname }}-headless
+  namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "thanos.storeGateway.labels" . | nindent 4 }}
-  {{- with .Values.storeGateway.service.annotations }}
+    {{- include "thanos.storeGateway.labels" $ | nindent 4 }}
+    {{- if $.Values.storeGateway.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
+  {{- with $.Values.storeGateway.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   type: ClusterIP
   clusterIP: None
-{{- if (semverCompare ">= 1.31-0" .Capabilities.KubeVersion.Version) }}
-{{- with .Values.storeGateway.service.trafficDistribution }}
+{{- if (semverCompare ">= 1.31-0" $.Capabilities.KubeVersion.Version) }}
+{{- with $.Values.storeGateway.service.trafficDistribution }}
   trafficDistribution: {{ . }}
 {{- end }}
 {{- end }}
   ports:
     - name: grpc
-      port: {{ .Values.grpcPort }}
+      port: {{ $.Values.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ $.Values.httpPort }}
       targetPort: http
   selector:
-    {{- include "thanos.storeGateway.selectorLabels" . | nindent 4 }}
-{{- end -}}
+    {{- include "thanos.storeGateway.selectorLabels" $ | nindent 4 }}
+    {{- if $.Values.storeGateway.sharded.enabled }}
+    shard: {{ $shard.name | quote }}
+    {{- end }}
 {{- end }}
+{{- end -}}
