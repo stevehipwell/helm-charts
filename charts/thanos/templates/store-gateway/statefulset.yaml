@@ -145,12 +145,12 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with $.Values.storeGateway.affinity }}
-      {{- $_ := include "thanos.storeGateway.patchAffinity" . }}
+      {{- $_ := include "thanos.storeGateway.patchAffinity" $ }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with $.Values.storeGateway.topologySpreadConstraints }}
-      {{- $_ := include "thanos.storeGateway.patchTopologySpreadConstraints" . }}
+      {{- $_ := include "thanos.storeGateway.patchTopologySpreadConstraints" $ }}
       topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
