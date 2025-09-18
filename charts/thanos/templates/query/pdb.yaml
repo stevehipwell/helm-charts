@@ -21,4 +21,4 @@ spec:
   unhealthyPodEvictionPolicy: {{ . }}
 {{- end  }}
 {{- end  }}
-{{- end -}}
+{{- end }}

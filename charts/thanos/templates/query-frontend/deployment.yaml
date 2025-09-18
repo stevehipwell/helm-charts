@@ -71,7 +71,9 @@ spec:
             - {{ printf "--auto-gomemlimit.ratio=%s" . }}
           {{- end }}
             {{- end }}
+          {{- if .Values.query.enabled }}
             - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.%s:%d" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.httpPort) }}
+          {{- end }}
           {{- with .Values.queryFrontend.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
