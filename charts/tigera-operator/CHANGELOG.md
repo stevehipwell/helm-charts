@@ -18,7 +18,7 @@
 
 ### Changed
 
-- Update the _Tigera Operator_ OCI image to [v1.38.65](https://github.com/tigera/operator/releases/tag/v1.38.6) (_Calico_ [v3.30.3](https://github.com/projectcalico/calico/releases/tag/v3.30.3 )). ([#1242](https://github.com/stevehipwell/helm-charts/pull/1242)) _@stevehipwell_
+- Update the _Tigera Operator_ OCI image to [v1.38.6](https://github.com/tigera/operator/releases/tag/v1.38.6) (_Calico_ [v3.30.3](https://github.com/projectcalico/calico/releases/tag/v3.30.3 )). ([#1242](https://github.com/stevehipwell/helm-charts/pull/1242)) _@stevehipwell_
 
 ## [v2.12.4] - 2025-08-11
 
