@@ -1,4 +1,4 @@
-{{- if .Values.query.enabled -}}
+{{- if .Values.query.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -27,4 +27,4 @@ spec:
       targetPort: http
   selector:
     {{- include "thanos.query.selectorLabels" . | nindent 4 }}
-{{- end -}}
+{{- end }}

@@ -20,6 +20,7 @@
 - Enable (default) or disable GRPC DNS Service Discovery. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Add possibility to configure `jobLabel` for the ServiceMonitors. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Add support for templating the `additionalEndpoints` and `additionalEndpointGroups` values. ([#1259](https://github.com/stevehipwell/helm-charts/pull/1259)) _@stevehipwell_
+- Add option to conditionally enable thanos query component. ([[#1255](https://github.com/stevehipwell/helm-charts/issues/1255)]) _@MeNsaaH_
 
 ### Removed
 
