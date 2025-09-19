@@ -70,8 +70,8 @@ spec:
           {{- end }}
           args:
             - rule
-            - --log.level={{ .Values.logLevel }}
-            - --log.format={{ .Values.logFormat }}
+            - {{ printf "--log.level=%s" .Values.logLevel }}
+            - {{ printf "--log.format=%s" .Values.logFormat }}
             - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
             - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
             - --data-dir=/var/thanos/rule
@@ -79,7 +79,7 @@ spec:
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
-            - --auto-gomemlimit.ratio={{ . }}
+            - {{ printf "--auto-gomemlimit.ratio=%s" . }}
           {{- end }}
           {{- end }}
           {{- if .Values.rule.instanceLabel }}
@@ -91,10 +91,10 @@ spec:
             - --alert.label-drop=receive_replica
           {{- end }}
           {{- range (concat .Values.additionalReplicaLabels .Values.query.replicaLabels) | uniq }}
-            - --alert.label-drop={{ . }}
+            - {{ printf "--alert.label-drop=%s" . }}
           {{- end }}
-            - --tsdb.retention={{ .Values.rule.retention }}
-            - --tsdb.block-duration={{ .Values.rule.blockDuration }}
+            - {{ printf "--tsdb.retention=%s" .Values.rule.retention }}
+            - {{ printf "--tsdb.block-duration=%s" .Values.rule.blockDuration }}
             - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.%s" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain }}
             - --rule-file=/etc/thanos/rules/*.yaml
             - --eval-interval={{ .Values.rule.evalInterval }}

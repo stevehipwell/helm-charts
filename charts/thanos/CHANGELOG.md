@@ -19,6 +19,7 @@
 - Add possibility to configure HTTP and GRPC ports. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Enable (default) or disable GRPC DNS Service Discovery. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Add possibility to configure `jobLabel` for the ServiceMonitors. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
+- Add support for templating the `additionalEndpoints` and `additionalEndpointGroups` values. ([#1259](https://github.com/stevehipwell/helm-charts/pull/1259)) _@stevehipwell_
 
 ### Removed
 
