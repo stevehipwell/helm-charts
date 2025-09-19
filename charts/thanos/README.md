@@ -49,8 +49,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalEndpointGroups | list | `[]` | Additional endpoint groups external to the chart to be configured with `--endpoint-group` (**EXPERIMENTAL**). |
-| additionalEndpoints | list | `[]` | Additional endpoints external to the chart to be configured with `--endpoint`. |
+| additionalEndpointGroups | list | `[]` | Additional endpoint groups external to the chart to be configured with `--endpoint-group`, these values can be templated (**EXPERIMENTAL**). |
+| additionalEndpoints | list | `[]` | Additional endpoints external to the chart to be configured with `--endpoint`, these values can be templated. |
 | additionalReplicaLabels | list | `[]` | Additional replica labels external to the chart. |
 | autoGomemlimit.enabled | bool | `false` | If `true`, enable the go runtime to automatically limit memory consumption for all Thanos components by setting GOMEMLIMIT. |
 | autoGomemlimit.ratio | float | `nil` | The ratio of reserved GOMEMLIMIT memory to the detected maximum container or system memory. |
@@ -107,7 +107,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | objstoreConfig.key | string | `"config"` | Secret key for the objstore configuration. |
 | objstoreConfig.name | string | `nil` | If this is set and `objstoreConfig.create` is `true` this will be used for the created secret name, if this is set and `objstoreConfig.create` is `false` then this will define an existing secret to use. |
 | objstoreConfig.value | string | `"type: FILESYSTEM\nconfig:\n  directory: /var/thanos/store/s3"` | Objstore configuration; this can either be a string or a map. The default values are not suitable for production. |
-| query.additionalStores | list | `[]` | **DEPRECATED** - Additional stores to configure query with (`--store`); use `additionalEndpoints` instead. |
+| query.additionalStores | list | `[]` | **DEPRECATED** - Additional stores to configure query with (`--store`), these values can be templated. Use `additionalEndpoints` instead. |
 | query.affinity | object | `{}` | Affinity settings for scheduling the _Query_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | query.autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` for the _Query_ deployment. |
 | query.autoscaling.maxReplicas | int | `3` | Maximum number of _Query_ replicas that the HPA should create. |
@@ -136,7 +136,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | query.podSecurityContext | object | See _values.yaml_ | Security context for the _Query_ pod. |
 | query.priorityClassName | string | `nil` | Priority class name for the _Query_ pod. |
 | query.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Query_ pod default container. |
-| query.replicaLabels | list | `[]` | **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead. |
+| query.replicaLabels | list | `[]` | **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`). Use `additionalReplicaLabels` instead. |
 | query.replicas | int | `1` | Number of _Query_ replicas to create. |
 | query.resources | object | `{}` | Resources for the _Query_ pod default container. |
 | query.securityContext | object | See _values.yaml_ | Security context for the _Query_ pod default container. |

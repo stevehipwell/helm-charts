@@ -66,15 +66,15 @@ spec:
           {{- end }}
           args:
             - receive
-            - --log.level={{ .Values.logLevel }}
-            - --log.format={{ .Values.logFormat }}
+            - {{ printf "--log.level=%s" .Values.logLevel }}
+            - {{ printf "--log.format=%s" .Values.logFormat }}
             - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
             - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
             - {{ printf "--remote-write.address=0.0.0.0:%d" (int .Values.httpRemoteWritePort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
-            - --auto-gomemlimit.ratio={{ . }}
+            - {{ printf "--auto-gomemlimit.ratio=%s" . }}
           {{- end }}
           {{- end }}
             - --receive.hashrings-file=/etc/thanos/hashrings.json

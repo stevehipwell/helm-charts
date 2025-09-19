@@ -64,10 +64,10 @@ autoGomemlimit:
 # -- If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**).
 storeEndpointGroup: false
 
-# -- Additional endpoints external to the chart to be configured with `--endpoint`.
+# -- Additional endpoints external to the chart to be configured with `--endpoint`, these values can be templated.
 additionalEndpoints: []
 
-# -- Additional endpoint groups external to the chart to be configured with `--endpoint-group` (**EXPERIMENTAL**).
+# -- Additional endpoint groups external to the chart to be configured with `--endpoint-group`, these values can be templated (**EXPERIMENTAL**).
 additionalEndpointGroups: []
 
 # -- Additional replica labels external to the chart.
@@ -381,10 +381,10 @@ query:
   # -- If `true`, enable DNS service discovery.
   enableDnsDiscovery: true
 
-  # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`); use `additionalReplicaLabels` instead.
+  # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`). Use `additionalReplicaLabels` instead.
   replicaLabels: []
 
-  # -- **DEPRECATED** - Additional stores to configure query with (`--store`); use `additionalEndpoints` instead.
+  # -- **DEPRECATED** - Additional stores to configure query with (`--store`), these values can be templated. Use `additionalEndpoints` instead.
   additionalStores: []
 
 queryFrontend:
