@@ -1,4 +1,4 @@
-{{- if and .Values.queryFrontend.enabled .Values.queryFrontend.podDisruptionBudget.enabled -}}
+{{- if and .Values.query.enabled .Values.queryFrontend.enabled .Values.queryFrontend.podDisruptionBudget.enabled -}}
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
