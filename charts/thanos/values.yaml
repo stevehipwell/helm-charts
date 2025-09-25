@@ -1199,3 +1199,6 @@ storeGateway:
 
   # -- Node taints the _Store Gateway_ pod will tolerate for scheduling.
   tolerations: []
+
+# -- Additional Kubernetes objects to create with release
+extraObjects: []
