@@ -1,3 +1,2 @@
-config:
-  storage:
-    enabled: true
+storage:
+  enabled: true
