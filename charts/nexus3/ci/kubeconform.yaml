@@ -118,6 +118,8 @@ config:
     annotations:
       exampleAnnotation: annotation1
       anotherExample: annotation2
+    podLabels:
+      pod-label: test
   anonymous:
     enabled: true
     roles:
