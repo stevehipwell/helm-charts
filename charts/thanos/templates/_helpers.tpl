@@ -135,7 +135,9 @@ The config reloader image to use
 
 {{/* Check if we have query ingress */}}
 {{- define "thanos.queryIngress.enabled" -}}
+  {{- if .Values.query.enabled -}}
   {{- or (and .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled) .Values.query.ingress.enabled -}}
+  {{- end -}}
 {{- end -}}
 
 {{/* Get the query ingress url */}}

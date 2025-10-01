@@ -223,6 +223,8 @@ compact:
   tolerations: []
 
 query:
+  # -- If `true`, create the _Thanos Query_ component.
+  enabled: true
   serviceAccount:
     # -- If `true`, create a new `ServiceAccount` for the _Query_ component.
     create: true
