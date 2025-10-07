@@ -14,11 +14,14 @@
 
 ## [UNRELEASED]
 
+## [v0.7.0] - 2025-10-07
+
 ### Changed
 
 - Update the _registry.k8s.io/pause_ OCI image version to `3.10.1`. ([#1226](https://github.com/stevehipwell/helm-charts/pull/1226)) _@stevehipwell_
+- Explicitly set non-root run as user and group for pause container. ([#1268](https://github.com/stevehipwell/helm-charts/pull/1268)) _@stevehipwell_
 
-## [v0.6.0] - 2023-06-24
+## [v0.6.0] - 2024-06-24
 
 ### Added
 
@@ -74,6 +77,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/node-config
+[v0.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.7.0
 [v0.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.6.0
 [v0.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.5.0
 [v0.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/node-config-0.4.1

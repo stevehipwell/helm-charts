@@ -77,9 +77,11 @@ spec:
       containers:
         - name: pause
           securityContext:
-            runAsNonRoot: true
-            readOnlyRootFilesystem: true
             privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
             allowPrivilegeEscalation: false
             capabilities:
               drop:

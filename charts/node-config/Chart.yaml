@@ -2,7 +2,7 @@ apiVersion: v2
 name: node-config
 description: Helm chart for configuring Kubernetes nodes via a DaemonSet init container.
 type: application
-version: 0.6.0
+version: 0.7.0
 appVersion: 0.1.0
 home: https://github.com/stevehipwell/helm-charts/
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/node-config/icon.png
