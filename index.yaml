@@ -21120,6 +21120,33 @@ entries:
     version: 1.1.0
   node-config:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the registry.k8s.io/pause OCI image version to 3.10.1."
+        - kind: changed
+          description: "Explicitly set non-root run as user and group for pause container."
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-10-07T09:22:55.279661152Z"
+    description: Helm chart for configuring Kubernetes nodes via a DaemonSet init
+      container.
+    digest: fb0ca556f2b3b9e996fa58d1458c4b03b1c6ad3693b7744e63153efc64c49486
+    home: https://github.com/stevehipwell/helm-charts/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/node-config/icon.png
+    keywords:
+    - node
+    - configuration
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: node-config
+    sources:
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/node-config-0.7.0/node-config-0.7.0.tgz
+    version: 0.7.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: added
           description: "Added `rbac.create` & `rbac.rules` to configure a `ClusterRole` for the `ServiceAccount`."
@@ -31094,4 +31121,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-25T09:58:34.030980291Z"
+generated: "2025-10-07T09:22:55.280897211Z"
