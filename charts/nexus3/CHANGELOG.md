@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add `config.job.podLabels` value to support custom pod labels for the configuration job. ([#1265](https://github.com/stevehipwell/helm-charts/issues/1265)) _@jonathanchavez_
+
 ## [v5.14.1] - 2025-09-18
 
 ### Changed

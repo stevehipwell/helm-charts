@@ -345,6 +345,8 @@ config:
     tolerations: []
     # -- Annotations to apply to the config job.
     annotations: []
+    # -- Labels to add to the config job pod.
+    podLabels: {}
     # -- Security context for the pod.
     podSecurityContext:
       runAsNonRoot: false

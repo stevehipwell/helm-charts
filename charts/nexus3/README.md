@@ -70,6 +70,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.14.1
 | config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |
 | config.job.image.tag | string | `"1.31.2"` | Image tag for config container, this will be omitted if set to `-`. |
 | config.job.nodeSelector | object | `{}` | Node labels to match for scheduling the config job. |
+| config.job.podLabels | object | `{}` | Labels to add to the config job pod. |
 | config.job.podSecurityContext | object | `{"fsGroup":200,"runAsNonRoot":false,"seccompProfile":{"type":"RuntimeDefault"}}` | Security context for the pod. |
 | config.job.securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"privileged":false,"readOnlyRootFilesystem":true,"runAsGroup":65532,"runAsNonRoot":true,"runAsUser":65532}` | Security context for non-root containers. |
 | config.job.tolerations | list | `[]` | Node taints which will be tolerated for scheduling the config job. |
