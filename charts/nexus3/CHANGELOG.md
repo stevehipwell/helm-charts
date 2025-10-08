@@ -15,9 +15,15 @@
 
 ## [UNRELEASED]
 
+## [v5.15.0] - 2025-10-08
+
 ### Added
 
 - Add `config.job.podLabels` value to support custom pod labels for the configuration job. ([#1265](https://github.com/stevehipwell/helm-charts/issues/1265)) _@jonathanchavez_
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.85.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.85.0-03). ([#1272](https://github.com/stevehipwell/helm-charts/pull/1272)) _@stevehipwell_
 
 ## [v5.14.1] - 2025-09-18
 
@@ -946,6 +952,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.15.0
 [v5.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.1
 [v5.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.0
 [v5.13.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.13.2
