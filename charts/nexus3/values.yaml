@@ -526,7 +526,7 @@ config:
   #     typeId: blobstore.compact
   #     crontab: "0 0 2 * * ?"
   #     attributes:
-  #       blobStoreName: "default"
+  #       blobstoreName: "default"
 
 manualMaintenanceMode:
   # -- If `true`, enable manual maintenance mode. This is running the default container with a custom command, reducing the termination grace period to 10s and disabling the probes.
