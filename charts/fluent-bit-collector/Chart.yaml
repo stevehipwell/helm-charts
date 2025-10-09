@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluent-bit-collector
 description: Helm chart for Fluent Bit running as a collector DaemonSet.
 type: application
-version: 0.18.0
-appVersion: 4.1.0
+version: 0.18.1
+appVersion: 4.1.1
 keywords:
   - fluent
   - fluentd
