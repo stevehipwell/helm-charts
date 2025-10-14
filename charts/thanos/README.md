@@ -115,6 +115,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.21.1
 | query.autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilisation percentage for the _Query_ pod. |
 | query.autoscaling.targetMemoryUtilizationPercentage | int | `nil` | Target memory utilisation percentage for the _Query_ pod. |
 | query.enableDnsDiscovery | bool | `true` | If `true`, enable DNS service discovery. |
+| query.enabled | bool | `true` | If `true`, create the _Thanos Query_ component. |
 | query.extraArgs | list | `[]` | Additional args for the _Query_ pod default container. |
 | query.extraEnv | list | `[]` | Additional environment variables for the _Query_ pod default container. |
 | query.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query_ pod default container. |
