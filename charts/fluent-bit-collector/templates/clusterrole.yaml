@@ -12,7 +12,7 @@ rules:
     resources:
       - namespaces
       - pods
-    {{- if .Values.config.kubeletEndpoint.enabled }}
+    {{- if .Values.kubeletEndpoint.enabled }}
       - nodes
       - nodes/metrics
       - nodes/proxy
