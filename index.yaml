@@ -25289,6 +25289,54 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add possibility to configure HTTP and GRPC ports."
+        - kind: added
+          description: "Enable (default) or disable GRPC DNS Service Discovery."
+        - kind: added
+          description: "Add possibility to configure jobLabel for the ServiceMonitors."
+        - kind: added
+          description: "Add support for templating the additionalEndpoints and additionalEndpointGroups values."
+        - kind: added
+          description: "Add support for granular control of GRPC & HTTP port rather than using a single global port value."
+        - kind: added
+          description: "Add support for specifying service type for each component."
+        - kind: added
+          description: "Add support to conditionally enable/disable the Query component."
+        - kind: changed
+          description: "Update the Thanos OCI image to v0.40.1."
+        - kind: removed
+          description: "Remove all references to existingClaim from the values under persistence as this was never used."
+    apiVersion: v2
+    appVersion: 0.40.1
+    created: "2025-11-04T15:45:28.186026933Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: fdf2898586a7a6fe92345afe04c1f0ef8580062b01e841c7edca29bda7312e91
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.22.0/thanos-1.22.0.tgz
+    version: 1.22.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update the Thanos OCI image to v0.39.2."
     apiVersion: v2
@@ -31281,4 +31329,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-10-09T17:00:01.171486276Z"
+generated: "2025-11-04T15:45:28.187599002Z"
