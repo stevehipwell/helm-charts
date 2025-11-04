@@ -76,15 +76,6 @@ additionalReplicaLabels: []
 # -- _Kubernetes_ cluster domain.
 clusterDomain: cluster.local
 
-# -- HTTP port used by all components.
-httpPort: 10902
-
-# -- HTTP port for remote write.
-httpRemoteWritePort: 19291
-
-# -- GRPC port used by all components.
-grpcPort: 10901
-
 compact:
   # -- If `true`, create the _Thanos Compact_ component.
   enabled: false
@@ -113,6 +104,8 @@ compact:
   service:
     # -- Annotations to add to the _Compact_ service.
     annotations: {}
+    # -- HTTP port for the _Compact_ service.
+    httpPort: 10902
 
   # -- Update strategy for the _Compact_ stateful set.
   updateStrategy: {}
@@ -158,6 +151,9 @@ compact:
 
   # -- Additional args for the _Compact_ pod default container.
   extraArgs: []
+
+  # -- HTTP port for the _Compact_ pod default container.
+  httpPort: 10902
 
   # -- Liveness probe configuration for the _Compact_ pod default container.
   # @default -- See _values.yaml_
@@ -223,6 +219,18 @@ compact:
   tolerations: []
 
 query:
+  # -- If `true`, create the _Query_ component.
+  enabled: true
+
+  # -- If `true`, enable DNS service discovery.
+  enableDnsDiscovery: true
+
+  # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`). Use `additionalReplicaLabels` instead.
+  replicaLabels: []
+
+  # -- **DEPRECATED** - Additional stores to configure query with (`--store`), these values can be templated. Use `additionalEndpoints` instead.
+  additionalStores: []
+
   serviceAccount:
     # -- If `true`, create a new `ServiceAccount` for the _Query_ component.
     create: true
@@ -238,8 +246,14 @@ query:
   service:
     # -- Annotations to add to the _Query_ service.
     annotations: {}
+    # -- GRPC port for the _Query_ service.
+    grpcPort: 10901
+    # -- HTTP port for the _Query_ service.
+    httpPort: 10902
     # -- (string) Traffic distribution for the _Query_ service.
     trafficDistribution:
+    # -- Service type for the _Query_ service.
+    type: ClusterIP
 
   ingress:
     # -- If `true`, create an `Ingress` for the _Query_ service.
@@ -331,6 +345,12 @@ query:
   # -- Additional args for the _Query_ pod default container.
   extraArgs: []
 
+  # -- GRPC port used by the _Query_ pod default container.
+  grpcPort: 10901
+
+  # -- HTTP port used by the _Query_ pod default container.
+  httpPort: 10902
+
   # -- Liveness probe configuration for the _Query_ pod default container.
   # @default -- See _values.yaml_
   livenessProbe:
@@ -378,17 +398,8 @@ query:
   # -- Node taints the _Query_ pod will tolerate for scheduling.
   tolerations: []
 
-  # -- If `true`, enable DNS service discovery.
-  enableDnsDiscovery: true
-
-  # -- **DEPRECATED** - Labels added to metrics to show the replica recording the data (`--query.replica-label`). Use `additionalReplicaLabels` instead.
-  replicaLabels: []
-
-  # -- **DEPRECATED** - Additional stores to configure query with (`--store`), these values can be templated. Use `additionalEndpoints` instead.
-  additionalStores: []
-
 queryFrontend:
-  # -- If `true`, create the _Thanos Query Frontend_ component.
+  # -- If `true`, create the _Query Frontend_ component if the _Query_ component is also enabled.
   enabled: false
 
   serviceAccount:
@@ -406,8 +417,12 @@ queryFrontend:
   service:
     # -- Annotations to add to the _Query Frontend_ service.
     annotations: {}
+    # -- HTTP port for the _Query Frontend_ service.
+    httpPort: 10902
     # -- (string) Traffic distribution for the _Query Frontend_ service.
     trafficDistribution:
+    # -- Service type for the _Query Frontend_ service.
+    type: ClusterIP
 
   ingress:
     # -- If `true`, create an `Ingress` for the _Query Frontend_ service.
@@ -499,6 +514,9 @@ queryFrontend:
   # -- Additional args for the _Query Frontend_ pod default container.
   extraArgs: []
 
+  # -- HTTP port used by the _Query Frontend_ pod default container.
+  httpPort: 10902
+
   # -- Liveness probe configuration for the _Query Frontend_ pod default container.
   # @default -- See _values.yaml_
   livenessProbe:
@@ -572,6 +590,12 @@ receive:
     service:
       # -- Annotations to add to the _Receive Ingestor_ service.
       annotations: {}
+      # -- GRPC port for the _Receive Ingestor_ service.
+      grpcPort: 10901
+      # -- HTTP port for the _Receive Ingestor_ service.
+      httpPort: 10902
+      # -- HTTP remote write port for the _Receive Ingestor_ service.
+      httpRemoteWritePort: 19291
 
     # -- Number of _Receive Ingestor_ replicas to create.
     replicas: 1
@@ -630,6 +654,15 @@ receive:
 
     # -- Additional args for the _Receive Ingestor_ pod default container.
     extraArgs: []
+
+    # -- GRPC port used by the _Receive Ingestor_ pod default container.
+    grpcPort: 10901
+
+    # -- HTTP port used by the _Receive Ingestor_ pod default container.
+    httpPort: 10902
+
+    # -- HTTP remote write port used by the _Receive Ingestor_ pod default container.
+    httpRemoteWritePort: 19291
 
     # -- Liveness probe configuration for the _Receive Ingestor_ pod default container.
     # @default -- See _values.yaml_
@@ -710,6 +743,14 @@ receive:
     service:
       # -- Annotations to add to the _Receive Router_ service.
       annotations: {}
+      # -- GRPC port for the _Receive Router_ service.
+      grpcPort: 10901
+      # -- HTTP port for the _Receive Router_ service.
+      httpPort: 10902
+      # -- HTTP remote write port for the _Receive Router_ service.
+      httpRemoteWritePort: 19291
+      # -- Service type for the _Receive Router_ service.
+      type: ClusterIP
 
     ingress:
       # -- If `true`, create an `Ingress` for the _Receive Router_ service.
@@ -801,6 +842,15 @@ receive:
     # -- Additional args for the _Receive Router_ pod default container.
     extraArgs: []
 
+    # -- GRPC port used by the _Receive Router_ pod default container.
+    grpcPort: 10901
+
+    # -- HTTP port used by the _Receive Router_ pod default container.
+    httpPort: 10902
+
+    # -- HTTP remote write port used by the _Receive Router_ pod default container.
+    httpRemoteWritePort: 19291
+
     # -- Liveness probe configuration for the _Receive Router_ pod default container.
     # @default -- See _values.yaml_
     livenessProbe:
@@ -864,6 +914,25 @@ rule:
   # -- Rule eval interval for the _Rule_ component (`--eval-interval`).
   evalInterval: 1m
 
+  alertmanagersConfig:
+    # -- If `true`, create a `Secret` for the _Rule_ component alertmanagers configuration.
+    create: true
+    # -- (string) If this is set and `rule.alertmanagersConfig.create` is `true` this will be used for the created secret name, if this is set and `rule.alertmanagersConfig.create` is `false` then this will define an existing secret to use.
+    name:
+    # -- Secret key for the _Rule_ component alertmanagers configuration.
+    key: config
+    # -- Alert managers configuration for the _Rule_ component.
+    value: |-
+      alertmanagers: []
+
+  rules:
+    # -- If `true`, create a `ConfigMap` for the _Rule_ component rules.
+    create: true
+    # -- (string) If this is set and `rule.rules.create` is `true` this will be used for the created config map name, if this is set and `rule.rules.create` is `false` then this will define an existing config map to use.
+    name:
+    # Rules for the _Rule_ component.
+    value: |-
+
   serviceAccount:
     # -- If `true`, create a new `ServiceAccount` for the _Rule_ component.
     create: true
@@ -879,6 +948,12 @@ rule:
   service:
     # -- Annotations to add to the _Rule_ service.
     annotations: {}
+    # -- GRPC port for the _Rule_ service.
+    grpcPort: 10901
+    # -- HTTP port for the _Rule_ service.
+    httpPort: 10902
+    # -- Service type for the _Rule_ service.
+    type: ClusterIP
 
   ingress:
     # -- If `true`, create an `Ingress` for the _Rule_ service.
@@ -957,6 +1032,12 @@ rule:
 
   # -- Additional args for the _Rule_ pod default container.
   extraArgs: []
+
+  # -- GRPC port used by the _Rule_ pod default container.
+  grpcPort: 10901
+
+  # -- HTTP port used by the _Rule_ pod default container.
+  httpPort: 10902
 
   # -- Liveness probe configuration for the _Rule_ pod default container.
   # @default -- See _values.yaml_
@@ -1038,25 +1119,6 @@ rule:
   # -- Node taints the _Rule_ pod will tolerate for scheduling.
   tolerations: []
 
-  alertmanagersConfig:
-    # -- If `true`, create a `Secret` for the _Rule_ component alertmanagers configuration.
-    create: true
-    # -- (string) If this is set and `rule.alertmanagersConfig.create` is `true` this will be used for the created secret name, if this is set and `rule.alertmanagersConfig.create` is `false` then this will define an existing secret to use.
-    name:
-    # -- Secret key for the _Rule_ component alertmanagers configuration.
-    key: config
-    # -- Alert managers configuration for the _Rule_ component.
-    value: |-
-      alertmanagers: []
-
-  rules:
-    # -- If `true`, create a `ConfigMap` for the _Rule_ component rules.
-    create: true
-    # -- (string) If this is set and `rule.rules.create` is `true` this will be used for the created config map name, if this is set and `rule.rules.create` is `false` then this will define an existing config map to use.
-    name:
-    # Rules for the _Rule_ component.
-    value: |-
-
 storeGateway:
   # -- If `true`, create the _Store Gateway_ component.
   enabled: true
@@ -1076,6 +1138,10 @@ storeGateway:
   service:
     # -- Annotations to add to the _Store Gateway_ service.
     annotations: {}
+    # -- GRPC port for the _Store Gateway_ service.
+    grpcPort: 10901
+    # -- HTTP port for the _Store Gateway_ service.
+    httpPort: 10902
     # -- (string) Traffic distribution for the _Store Gateway_ service.
     trafficDistribution:
 
@@ -1136,6 +1202,12 @@ storeGateway:
 
   # -- Additional args for the _Store Gateway_ pod default container.
   extraArgs: []
+
+  # -- GRPC port used by the _Store Gateway_ pod default container.
+  grpcPort: 10901
+
+  # -- HTTP port used by the _Store Gateway_ pod default container.
+  httpPort: 10902
 
   # -- Liveness probe configuration for the _Store Gateway_ pod default container.
   # @default -- See _values.yaml_

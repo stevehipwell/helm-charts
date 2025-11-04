@@ -1,4 +1,4 @@
-{{- if and .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled -}}
+{{- if and .Values.query.enabled .Values.queryFrontend.enabled .Values.queryFrontend.ingress.enabled -}}
 {{- $apiIsStable := eq (include "thanos.ingress.isStable" .) "true" -}}
 {{- $ingressSupportsPathType := eq (include "thanos.ingress.supportsPathType" .) "true" -}}
 {{- $serviceName := include "thanos.queryFrontend.fullname" . -}}

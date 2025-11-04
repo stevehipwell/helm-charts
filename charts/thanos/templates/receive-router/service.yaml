@@ -11,18 +11,18 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.receive.router.service.type }}
   ports:
     - name: grpc
-      port: {{ .Values.grpcPort }}
+      port: {{ .Values.receive.router.service.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ .Values.receive.router.service.httpPort }}
       targetPort: http
     - name: http-rem-write
       protocol: TCP
-      port: {{ .Values.httpRemoteWritePort }}
+      port: {{ .Values.receive.router.service.httpRemoteWritePort }}
       targetPort: http-rem-write
   selector:
     {{- include "thanos.receive.router.selectorLabels" . | nindent 4 }}

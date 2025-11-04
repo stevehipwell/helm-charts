@@ -14,12 +14,21 @@
 
 ## [UNRELEASED]
 
+## [v1.22.0] - 2025-11-04
+
 ### Added
 
 - Add possibility to configure HTTP and GRPC ports. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Enable (default) or disable GRPC DNS Service Discovery. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Add possibility to configure `jobLabel` for the ServiceMonitors. ([#1241](https://github.com/stevehipwell/helm-charts/issues/1241)) _@TTRCmedia_
 - Add support for templating the `additionalEndpoints` and `additionalEndpointGroups` values. ([#1259](https://github.com/stevehipwell/helm-charts/pull/1259)) _@stevehipwell_
+- Add support for granular control of GRPC & HTTP port rather than using a single global port value. ([#1281](https://github.com/stevehipwell/helm-charts/pull/1281)) _@stevehipwell_
+- Add support for specifying service type for each component. ([#1281](https://github.com/stevehipwell/helm-charts/pull/1281)) _@stevehipwell_
+- Add support to conditionally enable/disable the _Query_ component. ([#1281](https://github.com/stevehipwell/helm-charts/pull/1281)) _@stevehipwell_
+
+### Changed
+
+- Update the _Thanos_ OCI image to [v0.40.1](https://github.com/thanos-io/thanos/releases/tag/v0.40.1). ([#1281](https://github.com/stevehipwell/helm-charts/pull/1281)) _@stevehipwell_
 
 ### Removed
 
@@ -581,6 +590,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.0
 [v1.21.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.1
 [v1.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.0
 [v1.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.20.0

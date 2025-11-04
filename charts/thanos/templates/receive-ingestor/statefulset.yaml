@@ -72,9 +72,9 @@ spec:
             - receive
             - {{ printf "--log.level=%s" .Values.logLevel }}
             - {{ printf "--log.format=%s" .Values.logFormat }}
-            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
-            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
-            - {{ printf "--remote-write.address=0.0.0.0:%d" (int .Values.httpRemoteWritePort) }}
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.receive.ingestor.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.receive.ingestor.httpPort) }}
+            - {{ printf "--remote-write.address=0.0.0.0:%d" (int .Values.receive.ingestor.httpRemoteWritePort) }}
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
@@ -85,20 +85,20 @@ spec:
             - --tsdb.path=/var/thanos/receive
             - {{ printf "--tsdb.retention=%s" .Values.receive.retention }}
             - --label=receive_replica="$(NAME)"
-            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.%s:%d" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.grpcPort) }}
+            - {{ printf "--receive.local-endpoint=$(NAME).%s.%s-headless.svc.%s:%d" (include "thanos.receive.ingestor.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.receive.ingestor.grpcPort) }}
           {{- with .Values.receive.ingestor.extraArgs }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: {{ .Values.grpcPort }}
+              containerPort: {{ .Values.receive.ingestor.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: {{ .Values.httpPort }}
+              containerPort: {{ .Values.receive.ingestor.httpPort }}
             - name: http-rem-write
               protocol: TCP
-              containerPort: {{ .Values.httpRemoteWritePort }}
+              containerPort: {{ .Values.receive.ingestor.httpRemoteWritePort }}
           livenessProbe:
             {{- toYaml .Values.receive.ingestor.livenessProbe | nindent 12 }}
           readinessProbe:

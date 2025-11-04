@@ -12,14 +12,14 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.rule.service.type }}
   ports:
     - name: grpc
-      port: {{ .Values.grpcPort }}
+      port: {{ .Values.rule.service.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ .Values.rule.service.httpPort }}
       targetPort: http
   selector:
     {{- include "thanos.rule.selectorLabels" . | nindent 4 }}

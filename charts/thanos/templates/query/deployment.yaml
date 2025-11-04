@@ -1,3 +1,4 @@
+{{- if .Values.query.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -63,8 +64,8 @@ spec:
             - query
             - {{ printf "--log.level=%s" .Values.logLevel }}
             - {{ printf "--log.format=%s" .Values.logFormat }}
-            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.grpcPort) }}
-            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--grpc-address=0.0.0.0:%d" (int .Values.query.grpcPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.query.httpPort) }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
@@ -97,10 +98,10 @@ spec:
           ports:
             - name: grpc
               protocol: TCP
-              containerPort: {{ .Values.grpcPort }}
+              containerPort: {{ .Values.query.grpcPort }}
             - name: http
               protocol: TCP
-              containerPort: {{ .Values.httpPort }}
+              containerPort: {{ .Values.query.httpPort }}
           livenessProbe:
             {{- toYaml .Values.query.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -135,3 +136,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+{{- end }}

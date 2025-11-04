@@ -1,4 +1,4 @@
-{{- if .Values.query.podDisruptionBudget.enabled -}}
+{{- if and .Values.query.enabled .Values.query.podDisruptionBudget.enabled -}}
 apiVersion: {{ include "thanos.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
@@ -21,4 +21,4 @@ spec:
   unhealthyPodEvictionPolicy: {{ . }}
 {{- end  }}
 {{- end  }}
-{{- end -}}
+{{- end }}

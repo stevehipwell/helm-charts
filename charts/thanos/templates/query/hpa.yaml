@@ -1,4 +1,4 @@
-{{- if and .Values.query.autoscaling.enabled (or .Values.query.autoscaling.targetCPUUtilizationPercentage .Values.query.autoscaling.targetMemoryUtilizationPercentage) }}
+{{- if and .Values.query.enabled .Values.query.autoscaling.enabled (or .Values.query.autoscaling.targetCPUUtilizationPercentage .Values.query.autoscaling.targetMemoryUtilizationPercentage) -}}
 apiVersion: {{ include "thanos.hpa.apiVersion" . }}
 kind: HorizontalPodAutoscaler
 metadata:

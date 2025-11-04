@@ -15,15 +15,15 @@ spec:
   clusterIP: None
   ports:
     - name: grpc
-      port: {{ .Values.grpcPort }}
+      port: {{ .Values.receive.ingestor.service.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ .Values.receive.ingestor.service.httpPort }}
       targetPort: http
     - name: http-rem-write
       protocol: TCP
-      port: {{ .Values.httpRemoteWritePort }}
+      port: {{ .Values.receive.ingestor.service.httpRemoteWritePort }}
       targetPort: http-rem-write
   selector:
     {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 4 }}
