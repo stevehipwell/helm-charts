@@ -16,7 +16,7 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ .Values.compact.service.httpPort }}
       targetPort: http
   selector:
     {{- include "thanos.compact.selectorLabels" . | nindent 4 }}

@@ -20,11 +20,11 @@ spec:
 {{- end }}
   ports:
     - name: grpc
-      port: {{ .Values.grpcPort }}
+      port: {{ .Values.storeGateway.service.grpcPort }}
       targetPort: grpc
     - name: http
       protocol: TCP
-      port: {{ .Values.httpPort }}
+      port: {{ .Values.storeGateway.service.httpPort }}
       targetPort: http
   selector:
     {{- include "thanos.storeGateway.selectorLabels" . | nindent 4 }}

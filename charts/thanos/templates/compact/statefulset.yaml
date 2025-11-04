@@ -73,7 +73,7 @@ spec:
             - --wait
             - {{ printf "--log.level=%s" .Values.logLevel }}
             - {{ printf "--log.format=%s" .Values.logFormat }}
-            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.httpPort) }}
+            - {{ printf "--http-address=0.0.0.0:%d" (int .Values.compact.httpPort) }}
             - --data-dir=/var/thanos/compact
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
@@ -99,7 +99,7 @@ spec:
           ports:
             - name: http
               protocol: TCP
-              containerPort: {{ .Values.httpPort}}
+              containerPort: {{ .Values.compact.httpPort}}
           livenessProbe:
             {{- toYaml .Values.compact.livenessProbe | nindent 12 }}
           readinessProbe:
