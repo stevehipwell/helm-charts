@@ -55,13 +55,33 @@ spec:
       {{- with .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
+      initContainers:
+        - name: tmpdir
+          image: {{ include "fluentd-aggregator.image" .Values.bashImage }}
+          imagePullPolicy: {{ .Values.bashImage.pullPolicy }}
+          {{- with .Values.initNonRootSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          args: ["mkdir /tmp/fluentd; chmod 700 /tmp/fluentd"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+              readOnly: false
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 1000m
+              memory: 16Mi
       containers:
         - name: aggregator
           {{- with .Values.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "fluentd-aggregator.image" . }}
+          image: {{ include "fluentd-aggregator.image" (merge .Values.image (dict "tag" .Chart.AppVersion)) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: TMPDIR

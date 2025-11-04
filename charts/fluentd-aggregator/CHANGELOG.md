@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v5.3.0] - 2025-11-28
+
+### Added
+
+- Add init container to fix permissions on tmp directory. ([#1279](https://github.com/stevehipwell/helm-charts/pull/1279)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluentd Aggregator_ OCI image to [v3.3.1](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v3.3.1) (_Fluentd_ [v1.19.1](https://github.com/fluent/fluentd/releases/tag/v1.19.1)). ([#1279](https://github.com/stevehipwell/helm-charts/pull/1279)) _@stevehipwell_
+
 ## [v5.2.0] - 2025-08-05
 
 ### Changed
@@ -626,6 +636,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v5.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.3.0
 [v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.2.0
 [v5.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.1.1
 [v5.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.1.0
