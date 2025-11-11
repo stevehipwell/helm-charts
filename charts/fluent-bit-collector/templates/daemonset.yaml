@@ -27,7 +27,7 @@ spec:
       annotations:
       {{- if not .Values.hotReload.enabled }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
-      {{- if .Values.config.luaScripts }}
+      {{- if .Values.luaScripts }}
         checksum/scripts: {{ include (print $.Template.BasePath "/configmap-scripts.yaml") . | sha256sum }}
       {{- end }}
       {{- end }}
@@ -73,7 +73,7 @@ spec:
           {{- end }}
             - name: CONFIG_PATH
               value: /fluent-bit/etc/conf
-          {{- if .Values.config.storage.enabled }}
+          {{- if .Values.storage.enabled }}
             - name: STORAGE_PATH
               value: /fluent-bit/data
           {{- end }}
@@ -90,7 +90,7 @@ spec:
           {{- end }}
           args:
             - --workdir=/fluent-bit/etc
-            - --config=/fluent-bit/etc/conf/fluent-bit.conf
+            - --config=/fluent-bit/etc/conf/fluent-bit.yaml
           {{- if .Values.hotReload.enabled }}
             - --enable-hot-reload
           {{- end }}
@@ -113,16 +113,16 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /fluent-bit/etc/conf
-          {{- if or .Values.hotReload.enabled .Values.config.luaScripts }}
+          {{- if or .Values.hotReload.enabled .Values.luaScripts }}
             - name: scripts
               mountPath: /fluent-bit/scripts
           {{- end }}
-          {{- range .Values.config.hostVolumes }}
+          {{- range .Values.hostVolumes }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
               readOnly: true
           {{- end }}
-          {{- if .Values.config.storage.enabled }}
+          {{- if .Values.storage }}
             - name: data
               mountPath: /fluent-bit/data
               readOnly: false
@@ -173,20 +173,20 @@ spec:
         - name: config
           configMap:
             name: {{ include "fluent-bit-collector.configConfigMapName" . }}
-      {{- if or .Values.hotReload.enabled .Values.config.luaScripts }}
+      {{- if or .Values.hotReload.enabled .Values.luaScripts }}
         - name: scripts
           configMap:
             name: {{ include "fluent-bit-collector.scriptsConfigMapName" . }}
       {{- end }}
-      {{- range .Values.config.hostVolumes }}
+      {{- range .Values.hostVolumes }}
         - name: {{ .name }}
           hostPath:
             {{- toYaml .hostPath | nindent 12 }}
       {{- end }}
-      {{- if .Values.config.storage.enabled }}
+      {{- if .Values.storage }}
         - name: data
           hostPath:
-            path: {{ .Values.config.storage.hostPath }}
+            path: {{ .Values.storage.hostPath }}
             type: DirectoryOrCreate
       {{- end }}
       {{- with .Values.extraVolumes }}
