@@ -15,6 +15,12 @@
 
 ## [UNRELEASED]
 
+## [v5.16.0] - 2025-11-28
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.86.2](https://github.com/sonatype/nexus-public/releases/tag/release-3.86.2-01). ([#1290](https://github.com/stevehipwell/helm-charts/pull/1290)) _@stevehipwell_
+
 ## [v5.15.0] - 2025-10-08
 
 ### Added
@@ -265,7 +271,7 @@
 
 > [!CAUTION]
 > Don't use this version, there is a bug in the logic for creating the `StatefulSet` volume; please use [`5.2.0`](https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.2.0).
-
+<br />
 > [!WARNING]
 > The release contains multiple breaking changes including removing support for OrientDB, please pay attention to the removals section. If you were previously using OrientDB you need to make sure you follow the [upgrade guide](https://help.sonatype.com/en/upgrading-to-nexus-repository-3-71-0-and-beyond.html) before upgrading to this version.
 
@@ -952,6 +958,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.16.0
 [v5.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.15.0
 [v5.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.1
 [v5.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.0
