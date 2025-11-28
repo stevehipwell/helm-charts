@@ -170,7 +170,6 @@ rules:
       - apiservers/status
       - gatewayapis
       - gatewayapis/finalizers
-      - gatewayapis/status
       - goldmanes
       - goldmanes/finalizers
       - goldmanes/status
@@ -259,6 +258,7 @@ rules:
       - projectcalico.org
     resources:
       - ipamconfigurations
+      - clusterinformations
     verbs:
       - get
       - list
@@ -295,11 +295,31 @@ rules:
       - create
       - update
   - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
       - admissionregistration.k8s.io
     resources:
       - mutatingwebhookconfigurations
     verbs:
+      - create
       - delete
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - mutatingwebhookconfigurations
+    resourceNames:
+      - envoy-gateway-topology-injector.tigera-gateway
+    verbs:
+      - update
   # Needed for operator lock
   - apiGroups:
       - coordination.k8s.io
@@ -384,6 +404,8 @@ rules:
       - tcproutes.gateway.networking.k8s.io
       - tlsroutes.gateway.networking.k8s.io
       - udproutes.gateway.networking.k8s.io
+      - xbackendtrafficpolicies.gateway.networking.x-k8s.io
+      - xlistenersets.gateway.networking.x-k8s.io
       - backends.gateway.envoyproxy.io
       - backendtrafficpolicies.gateway.envoyproxy.io
       - clienttrafficpolicies.gateway.envoyproxy.io
