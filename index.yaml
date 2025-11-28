@@ -6367,6 +6367,52 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluent-bit
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add new top level hostVolumes value to replace the removed config.hostVolumes."
+        - kind: added
+          description: "Add new top level kubeletEndpoint value to replace the removed config.kubeletEndpoint."
+        - kind: added
+          description: "Add new top level storage value to replace the removed config.storage."
+        - kind: added
+          description: "Add new top level extraConfig value to allow for additional YAML configuration files that can be included."
+        - kind: added
+          description: "Add new top level luaScripts value to replace the removed config.luaScripts."
+        - kind: changed
+          description: "Modified the config value to match the Fluent Bit YAML Configuration pattern which removed most of the keys; service is still present as is pipeline but it's now a map instead of a string."
+        - kind: changed
+          description: "Update Fluent Bit OCI image to v4.2.0."
+        - kind: removed
+          description: "Removed config.hostVolumes, config.kubeletEndpoint, config.storage, config.customParsers, config.extraFiles & config.luaScripts."
+        - kind: removed
+          description: "Remove additional example configuration for OTel and Systemd."
+    apiVersion: v2
+    appVersion: 4.2.0
+    created: "2025-11-28T16:35:30.132167004Z"
+    description: Helm chart for Fluent Bit running as a collector DaemonSet.
+    digest: f4e5a0e9d4762e0441d51718f738436369df481962792811229d0167d2e711d2
+    home: https://fluentbit.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluent-bit-collector/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - fluent bit
+    - logging
+    - collector
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+      url: https://github.com/stevehipwell
+    name: fluent-bit-collector
+    sources:
+    - https://github.com/fluent/fluent-bit/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluent-bit-collector-0.19.0/fluent-bit-collector-0.19.0.tgz
+    version: 0.19.0
+  - annotations:
+      artifacthub.io/alternativeName: fluent-bit
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update Fluent Bit OCI image to v4.1.1."
     apiVersion: v2
@@ -31559,4 +31605,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-11-28T16:34:58.657097923Z"
+generated: "2025-11-28T16:35:30.133836077Z"
