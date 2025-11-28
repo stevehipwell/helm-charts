@@ -8495,6 +8495,38 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add init container to fix permissions on tmp directory."
+        - kind: changed
+          description: "Update Fluentd Aggregator OCI image to v3.3.1 (Fluentd v1.19.1)."
+    apiVersion: v2
+    appVersion: 3.3.1
+    created: "2025-11-28T12:02:51.088924685Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 6783142aac84a2f07f9d311a0ad15ea5d6fbc0a0d0d8483c644ddf2d11978cf3
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-5.3.0/fluentd-aggregator-5.3.0.tgz
+    version: 5.3.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update Fluentd Aggregator OCI image to v3.2.0 (Fluentd v1.19.0)."
     apiVersion: v2
@@ -31395,4 +31427,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-11-05T18:19:13.37445919Z"
+generated: "2025-11-28T12:02:51.090268279Z"
