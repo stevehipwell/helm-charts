@@ -17057,6 +17057,37 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Nexus3 OCI image to v3.86.2."
+    apiVersion: v2
+    appVersion: 3.86.2
+    created: "2025-11-28T12:21:00.678017318Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: a513bb324e01c586b26892fd4c58874a7b22c1bb72957ad171ea4d675e1b8424
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.16.0/nexus3-5.16.0.tgz
+    version: 5.16.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add config.job.podLabels value to support custom pod labels for the configuration job."
         - kind: changed
@@ -31488,4 +31519,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-11-28T12:14:58.466073617Z"
+generated: "2025-11-28T12:21:00.679345499Z"
