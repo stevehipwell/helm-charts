@@ -12,6 +12,16 @@ image:
   # --  Image pull policy for the default container.
   pullPolicy: IfNotPresent
 
+bashImage:
+  # -- Image repository for bash containers.
+  repository: cgr.dev/chainguard/bash
+  # -- Image tag for bash containers, this will be omitted if set to `-`.
+  tag: latest
+  # -- (string) Optional image digest for the bash containers.
+  digest:
+  # -- Image pull policy for bash containers.
+  pullPolicy: IfNotPresent
+
 # -- Image pull secrets.
 imagePullSecrets: []
 
@@ -136,6 +146,18 @@ priorityClassName:
 
 # -- (int) Termination grace period for the pod in seconds.
 terminationGracePeriodSeconds:
+
+# -- Security context for non-root init containers.
+initNonRootSecurityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  capabilities:
+    drop:
+      - ALL
 
 # -- Security context for the default container.
 # @default -- See _values.yaml_

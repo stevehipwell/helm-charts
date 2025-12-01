@@ -14,6 +14,29 @@
 
 ## [UNRELEASED]
 
+## [v0.19.0] - 2025-11-28
+
+> [!WARNING]
+> This release contains breaking changes, please make sure you read through the changes before upgrading. The main change is that this chart has switched over to the Fluent Bit [YAML Configuration](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml) which means that the `config` value has been completely reworked.
+
+### Added
+
+- Add new top level `hostVolumes` value to replace the removed `config.hostVolumes`. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Add new top level `kubeletEndpoint` value to replace the removed `config.kubeletEndpoint`. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Add new top level `storage` value to replace the removed `config.storage`. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Add new top level `extraConfig` value to allow for additional YAML configuration files that can be included. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Add new top level `luaScripts` value to replace the removed `config.luaScripts`. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+
+### Changed
+
+- Modified the `config` value to match the Fluent Bit YAML Configuration pattern which removed most of the keys; `service` is still present as is `pipeline` but it's now a map instead of a string. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Update _Fluent Bit_ OCI image to [v4.2.0](https://github.com/fluent/fluent-bit/releases/tag/v4.2.0). ([#1288](https://github.com/stevehipwell/helm-charts/pull/1288)) _@stevehipwell_
+
+### Removed
+
+- Removed `config.hostVolumes`, `config.kubeletEndpoint`, `config.storage`, `config.customParsers`, `config.extraFiles` & `config.luaScripts`. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+- Remove additional example configuration for OTel and Systemd. ([#1170](https://github.com/stevehipwell/helm-charts/pull/1170)) _@stevehipwell_
+
 ## [v0.18.1] - 2025-10-09
 
 ### Changed
@@ -443,6 +466,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-collector
+[v0.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.19.0
 [v0.18.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.18.1
 [v0.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.18.0
 [v0.17.11]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-collector-0.17.11

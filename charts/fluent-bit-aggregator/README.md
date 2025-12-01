@@ -1,6 +1,6 @@
 # fluent-bit-aggregator
 
-![Version: 0.18.1](https://img.shields.io/badge/Version-0.18.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
+![Version: 0.19.0](https://img.shields.io/badge/Version-0.19.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.2.0](https://img.shields.io/badge/AppVersion-4.2.0-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
@@ -24,7 +24,7 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.18.1
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.19.0
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-cha
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.18.1
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.19.0
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.18.1
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.19.0
 ```
 
 ## Values
@@ -58,15 +58,19 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | autoscaling.minReplicas | int | `1` | Minimum number of replicas for the `HorizontalPodAutoscaler`. |
 | command | list | `["/fluent-bit/bin/fluent-bit"]` | Command for the default container |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
-| config.customParsers | string | `nil` | Custom parsers to configure. |
-| config.extraFiles | object | `{}` | Extra files to mount to the path defined by the CONFIG_PATH environment variable. |
-| config.luaScripts | object | `{}` | Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable. |
-| config.pipeline | string | See _values.yaml_ | Fluent Bit pipeline configuration. |
-| config.service | object | See _values.yaml_ | Fluent Bit service configuration. |
-| config.storage.enabled | bool | `true` | If `true`, writeable host filesystem storage will be enabled. |
-| config.storage.metrics | bool | `true` | If `true`, storage metrics will be enabled if storage is enabled. |
+| config.env | object | `{}` | The [Env](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/environment-variables-section) section allows you to define environment variables directly within the configuration file. These variables can then be used to dynamically replace values throughout your configuration using the ${VARIABLE_NAME} syntax. These values support templating. The `STORAGE_PATH` & `ADDITIONAL_PORT_<INDEX>` values are available but can't be set as they are controlled by the chart. |
+| config.includes | list | `[]` | The [Includes](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/includes-section) section allows you to specify additional YAML configuration files to be merged into the current configuration. |
+| config.multilineParsers | list | `[]` | The [Multiline Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/multiline-parsers-section) section allows you to define custom multiline parsers. |
+| config.parsers | list | `[]` | The [Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/parsers-section) section allows you to define custom parsers. |
+| config.pipeline.filters | list | `[]` | The pipeline filters configure the plugins responsible for processing data. |
+| config.pipeline.inputs | list | `[{"alias":"in","buffer_chunk_size":"1M","buffer_max_size":"6M","listen":"0.0.0.0","name":"forward","port":"${ADDITIONAL_PORT_0}","storage.type":"filesystem"}]` | The pipeline inputs configure the plugins responsible for collecting or receiving data. |
+| config.pipeline.outputs | list | `[{"alias":"out","match":"*","name":"stdout"}]` | The pipeline outputs configure the plugins responsible for storing or forwarding data. |
+| config.plugins | list | `[]` | The [Plugins](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/plugins-section) section adds support for loading external plugins at runtime. |
+| config.service | object | `{"http_listen":"0.0.0.0","log_level":"info"}` | The [Service](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/service-section) section defines global properties of the service. The `daemon`, `http_server`, `http_port` & `storage.path` keys can't be set as they are controlled by the chart. |
+| config.upstreamServers | list | `[]` | The [Upstream Servers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/upstream-servers-section) section defines a group of endpoints, referred to as nodes, which are used by output plugins to distribute data in a round-robin fashion. |
 | dashboards.enabled | bool | `false` | If `true`, install the _Grafana_ dashboards provided by the chart. |
 | env | list | `[]` | Environment variables for the default container. |
+| extraConfig | object | `{}` | Additional YAML configuration to mount as YAML files to /fluent-bit/etc/conf/. |
 | extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
 | extraVolumes | list | `[]` | Extra volumes for the pod. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
@@ -84,6 +88,7 @@ helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator 
 | imagePullSecrets | list | `[]` | Image pull secrets. |
 | ingresses | list | See _values.yaml_ | Ingresses, each input plugin will need it's own. |
 | livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the default container. |
+| luaScripts | object | `{}` | Lua scripts to configure, these will be created at /fluent-bit/scripts/ and need to be referenced by an absolute path. |
 | minReadySeconds | int | `nil` | Min ready seconds for the `StatefulSet`. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | nodeSelector | object | `{}` | Node labels to match for pod scheduling. |

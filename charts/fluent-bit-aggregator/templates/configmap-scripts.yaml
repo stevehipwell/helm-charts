@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "fluent-bit-aggregator.labels" . | nindent 4 }}
 data:
-{{- range $k, $v := .Values.config.luaScripts }}
+{{- range $k, $v := .Values.luaScripts }}
   {{ $k }}: |-
 {{- (tpl $v $) | nindent 4 }}
 {{- end }}

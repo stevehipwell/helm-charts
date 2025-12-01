@@ -26,38 +26,39 @@ serviceMonitor:
 dashboards:
   enabled: true
 
+kubeletEndpoint:
+  enabled: true
+
+storage:
+  enabled: true
+
 config:
-  storage:
-    enabled: true
+  parsers:
+    - name: docker_no_time
+      format: json
+      time_keep: false
+      time_key: time
+      time_format: "%Y-%m-%dT%H:%M:%S.%L"
 
-  kubeletEndpoint:
-    enabled: true
+  includes:
+    - upstream.yaml
 
-  customParsers: |-
-    [PARSER]
-        Name docker_no_time
-        Format json
-        Time_Keep Off
-        Time_Key time
-        Time_Format %Y-%m-%dT%H:%M:%S.%L
+extraConfig:
+  upstream:
+    upstream_servers:
+      - name: test
+        nodes:
+          - name: node-1
+            host: 127.0.0.1
+            port: 43000
 
-  extraFiles:
-    upstream.conf: |-
-      [UPSTREAM]
-          upstream1
-
-      [NODE]
-          name       node-1
-          host       127.0.0.1
-          port       43000
-
-  luaScripts:
-    test.lua: |-
-      function append_tag(tag, timestamp, record)
-          new_record = record
-          new_record["tag"] = tag
-          return 1, timestamp, new_record
-      end
+luaScripts:
+  test.lua: |-
+    function append_tag(tag, timestamp, record)
+        new_record = record
+        new_record["tag"] = tag
+        return 1, timestamp, new_record
+    end
 
 hotReload:
   enabled: true

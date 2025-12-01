@@ -93,12 +93,12 @@ Define the dashboard configmap name
 {{- end }}
 
 {{/*
-The image to use
+Create an image
 */}}
 {{- define "fluentd-aggregator.image" -}}
-{{- $tag := ternary (printf ":%s" (default .Chart.AppVersion .Values.image.tag)) "" (ne .Values.image.tag "-") }}
-{{- $digest := ternary (printf "@%s" .Values.image.digest) "" (not (empty .Values.image.digest)) }}
-{{- printf "%s%s%s" .Values.image.repository $tag $digest }}
+{{- $tag := ternary (printf ":%s" .tag) "" (ne .tag "-") }}
+{{- $digest := ternary (printf "@%s" .digest) "" (not (empty .digest)) }}
+{{- printf "%s%s%s" .repository $tag $digest }}
 {{- end }}
 
 {{/*

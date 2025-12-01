@@ -56,6 +56,10 @@ service:
   #     port: 4318
   #     containerPort: 4318
   #     protocol: TCP
+  #   - name: http-otel
+  #     port: 4318
+  #     containerPort: 4318
+  #     protocol: TCP
 
 # -- Update strategy for the `DaemonSet`.
 updateStrategy: {}
@@ -176,112 +180,111 @@ dashboards:
   # -- If `true`, install the _Grafana_ dashboards provided by the chart.
   enabled: false
 
+# -- Host volumes to read-only mount to the default container.
+hostVolumes:
+  - name: machine-id
+    hostPath:
+      path: /etc/machine-id
+      type: File
+    mountPath: /etc/machine-id
+  - name: logs
+    hostPath:
+      path: /var/log
+      type: Directory
+    mountPath: /var/log
+
+kubeletEndpoint:
+  # -- If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**).
+  enabled: false
+
+storage:
+  # -- If `true`, writeable host filesystem storage will be enabled.
+  enabled: false
+  ## -- Host path to the storage directory.
+  hostPath: /var/fluent-bit/data
+
 config:
-  # -- Host volumes to read-only mount to the default container.
-  # @default -- See _values.yaml_
-  hostVolumes:
-    - name: machine-id
-      hostPath:
-        path: /etc/machine-id
-        type: File
-      mountPath: /etc/machine-id
-    - name: logs
-      hostPath:
-        path: /var/log
-        type: Directory
-      mountPath: /var/log
+  # -- The [Env](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/environment-variables-section) section allows you to define environment variables directly within the configuration file. These variables can then be used to dynamically replace values throughout your configuration using the ${VARIABLE_NAME} syntax. These values support templating. The `STORAGE_PATH`, `STORAGE_TYPE_PREFER_FS`, `ADDITIONAL_PORT_<INDEX>`, `KUBELET_ENDPOINT` & `NOT_KUBELET_ENDPOINT` values are available but can't be set as they are controlled by the chart.
+  env: {}
 
-  storage:
-    # -- If `true`, writeable host filesystem storage will be enabled.
-    enabled: false
-    # -- If `true`, storage metrics will be enabled if storage is enabled.
-    metrics: true
-    ## -- Host path to the storage directory.
-    hostPath: /var/fluent-bit/data
-
-  kubeletEndpoint:
-    # -- If `true`, the _Kubernetes_ filter will use _Kubelet_ as the API endpoint (**EXPERIMENTAL**).
-    enabled: false
-    # -- If `true`, the TLS connection will not be verified.
-    insecure: false
-
-  # -- Fluent Bit service configuration.
-  # @default -- See _values.yaml_
+  # -- The [Service](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/service-section) section defines global properties of the service. The `daemon`, `http_server`, `http_port`, `parsers_file` & `storage.path` keys can't be set as they are controlled by the chart.
   service:
-    # daemon: false - This can't be set
-    # http_server: true - This can't be set
-    # http_Port: 2020 - This can't be set as it will use .Values.service.httpPort
-    # parsers_file: /fluent-bit/etc/parsers.conf - This can't be set as it will use the default file and customParsers
-    # storage.path: ${STORAGE_PATH} - This can't be set as it is controlled by .Values.config.storage.enabled
-    # storage.metrics - This will be set if .Values.config.storage.enabled with the value of .Values.config.storage.metrics
     log_level: info
-    http_listen: "0.0.0.0"
+    http_listen: 0.0.0.0
 
-  # -- Fluent Bit pipeline configuration; this should depend on config values and changing it incorrectly may break support for some of the config options.
-  # @default -- See _values.yaml_
-  pipeline: |-
-    [INPUT]
-        name             tail
-        alias            logs
-        path             /var/log/containers/*.log
-        tag_regex        (?<pod_name>[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)_(?<namespace_name>[^_]+)_(?<container_name>.+)-
-        tag              kube.<namespace_name>.<pod_name>.<container_name>
-        read_from_head   true
-        multiline.parser cri
-        skip_long_lines  true
-        skip_empty_lines true
-    {{- if .Values.config.storage.enabled }}
-        db               ${STORAGE_PATH}/tail.db
-        storage.type     filesystem
-    {{- end }}
+  # -- The [Plugins](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/plugins-section) section adds support for loading external plugins at runtime.
+  plugins: []
 
-    [FILTER]
-        name                kubernetes
-        match               kube.*
-      {{- if .Values.config.kubeletEndpoint.enabled }}
-        use_kubelet         true
-        kubelet_host        ${NODE_IP}
-        kubelet_port        10250
-      {{- if .Values.config.kubeletEndpoint.insecure }}
-        tls.verify          false
-      {{- end }}
-      {{- end }}
-        kube_tag_prefix     kube.
-        regex_parser        kubernetes-tag
-        k8s-logging.parser  true
-        k8s-logging.exclude true
+  # -- The service `parsers_file`, due to how YAML is processed this key can only be set once.
+  parsersFile: /fluent-bit/etc/parsers.conf
 
-    [OUTPUT]
-        name   stdout
-        match  *
+  # -- The [Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/parsers-section) section allows you to define custom parsers.
+  parsers:
+    - name: kubernetes-tag
+      format: regex
+      regex: ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
 
-  # -- Custom parsers to configure.
-  # @default -- See _values.yaml_
-  customParsers: |-
-    [PARSER]
-        name   kubernetes-tag
-        format regex
-        regex  ^(?<namespace_name>[^.]+)\.(?<pod_name>[^.]+)\.(?<container_name>[^.]+)
+  # -- The [Multiline Parsers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/multiline-parsers-section) section allows you to define custom multiline parsers.
+  multilineParsers: []
 
-  # -- Extra files to mount to the path defined by the CONFIG_PATH environment variable.
-  extraFiles: {}
-  #  upstream.conf: |-
-  #    [UPSTREAM]
-  #        upstream1
-  #
-  #    [NODE]
-  #        name       node-1
-  #        host       127.0.0.1
-  #        port       43000
+  pipeline:
+    # -- The pipeline inputs configure the plugins responsible for collecting or receiving data. If storage is not enabled the `db` key will be removed to stop errors.
+    inputs:
+      - name: tail
+        alias: k8s-logs
+        path: /var/log/containers/*.log
+        tag_regex: (?<pod_name>[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)_(?<namespace_name>[^_]+)_(?<container_name>.+)-
+        tag: kube.<namespace_name>.<pod_name>.<container_name>
+        read_from_head: true
+        multiline.parser: cri
+        skip_long_lines: true
+        skip_empty_lines: true
+        storage.type: ${STORAGE_TYPE_PREFER_FS}
+        db: ${STORAGE_PATH}/tail.db
+        processors:
+          logs:
+            - name: kubernetes
+              use_kubelet: ${KUBELET_ENDPOINT}
+              kubelet_host: ${NODE_IP}
+              kubelet_port: 10250
+              kube_tag_prefix: kube.
+              regex_parser: kubernetes-tag
+              k8s-logging.parser: true
+              k8s-logging.exclude: true
 
-  # -- Lua scripts to configure, these will be created at the path defined by the SCRIPTS_PATH environment variable.
-  luaScripts: {}
-  #  test.lua: |-
-  #    function append_tag(tag, timestamp, record)
-  #        new_record = record
-  #        new_record["tag"] = tag
-  #        return 1, timestamp, new_record
-  #    end
+    # -- The pipeline filters configure the plugins responsible for processing data.
+    filters: []
+
+    # -- The pipeline outputs configure the plugins responsible for storing or forwarding data.
+    outputs:
+      - name: stdout
+        alias: out
+        match: "*"
+
+  # -- The [Upstream Servers](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/upstream-servers-section) section defines a group of endpoints, referred to as nodes, which are used by output plugins to distribute data in a round-robin fashion.
+  upstreamServers: []
+
+  # -- The [Includes](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/includes-section) section allows you to specify additional YAML configuration files to be merged into the current configuration.
+  includes: []
+
+# -- Additional YAML configuration to mount as YAML files to /fluent-bit/etc.
+extraConfig: {}
+# upstream:
+#   upstream_servers:
+#     - name: test
+#       nodes:
+#         - name: node-1
+#           host: 127.0.0.1
+#           port: 43000
+
+# -- Lua scripts to configure, these will be created at /fluent-bit/scripts and need to be referenced by an absolute path.
+luaScripts: {}
+#  test.lua: |-
+#    function append_tag(tag, timestamp, record)
+#        new_record = record
+#        new_record["tag"] = tag
+#        return 1, timestamp, new_record
+#    end
 
 hotReload:
   # -- If `true`, enable [hot-reload](https://docs.fluentbit.io/manual/administration/hot-reload) via a sidecar container.
