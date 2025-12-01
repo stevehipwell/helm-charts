@@ -33,6 +33,7 @@ spec:
       {{- end }}
       {{- end }}
     spec:
+      automountServiceAccountToken: {{ .Values.rule.serviceAccount.automountToken }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
