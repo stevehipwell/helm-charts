@@ -29,7 +29,7 @@ data:
 {{- end }}
 {{- range $index, $user := .Values.config.users }}
   {{ $index | add 1000 | toString | substr 1 -1 }}-user.json: |
-    {{- omit $user "password" | toJson | nindent 4 }}
+    {{- merge (dict "source" "default" "status" "active") (omit $user "password") | toJson | nindent 4 }}
 {{- end }}
 {{- if .Values.config.ldap.enabled }}
   ldap.json: |

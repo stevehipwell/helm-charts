@@ -15,6 +15,21 @@
 
 ## [UNRELEASED]
 
+## [v5.17.0] - 2025-12-03
+
+### Added
+
+- Add API status code to config log if there is a failure. ([#1293](https://github.com/stevehipwell/helm-charts/pull/1293)) _@stevehipwell_
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.87.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.87.0-03). ([#1293](https://github.com/stevehipwell/helm-charts/pull/1293)) _@stevehipwell_
+- Update JDK image to use Eclipse Temurin 21. ([#1293](https://github.com/stevehipwell/helm-charts/pull/1293)) _@stevehipwell_
+
+### Fixed
+
+- Allow users without an explicit `source` to be updated after initial creation. ([#1293](https://github.com/stevehipwell/helm-charts/pull/1293)) _@stevehipwell_
+
 ## [v5.16.0] - 2025-11-28
 
 ### Changed
@@ -958,6 +973,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.17.0
 [v5.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.16.0
 [v5.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.15.0
 [v5.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.14.1

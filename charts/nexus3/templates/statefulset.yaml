@@ -198,7 +198,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: {{ include "nexus3.image" (merge .Values.image (dict "tag" (printf "%s-java17-ubi" .Chart.AppVersion))) }}
+          image: {{ include "nexus3.image" (merge .Values.image (dict "tag" (printf "%s-ubi" .Chart.AppVersion))) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
