@@ -3,5 +3,5 @@
 ***********************************************************************
   Chart version: {{ .Chart.Version }}
   App version:   {{ .Chart.AppVersion }}
-  Image:         {{ include "nexus3.image" (merge .Values.image (dict "tag" (printf "%s-java17-ubi" .Chart.AppVersion))) }}
+  Image:         {{ include "nexus3.image" (merge .Values.image (dict "tag" (printf "%s-ubi" .Chart.AppVersion))) }}
 ***********************************************************************

@@ -26,7 +26,7 @@ jdkImage:
   # -- Image repository for the JDK container.
   repository: docker.io/eclipse-temurin
   # -- Image tag for the JDK container, this will be omitted if set to `-`.
-  tag: 17-jdk
+  tag: 21-jdk
   # -- (string) Optional image digest for the JDK container.
   digest:
   # -- Image pull policy for the JDK container.

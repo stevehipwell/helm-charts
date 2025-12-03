@@ -3,6 +3,7 @@ metrics:
 
 persistence:
   enabled: true
+  storageClass: standard
   retainDeleted: false
   retainScaled: false
 
