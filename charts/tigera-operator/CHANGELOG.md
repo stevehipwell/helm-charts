@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Explicitly set `automountServiceAccountToken` to `true` for the service account. ([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
+
 ## [v2.13.1] - 2025-11-28
 
 ### Changed

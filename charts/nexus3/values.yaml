@@ -130,6 +130,9 @@ podLabels: {}
 # -- Annotations to add to the pod.
 podAnnotations: {}
 
+# -- (bool) If the service account token should be mounted to the pod, this overrides `serviceAccount.automountToken`.
+automountServiceAccountToken:
+
 # -- Security context for the pod.
 podSecurityContext:
   runAsNonRoot: false
@@ -344,7 +347,7 @@ config:
     # -- Node taints which will be tolerated for scheduling the config job.
     tolerations: []
     # -- Annotations to apply to the config job.
-    annotations: []
+    annotations: {}
     # -- Labels to add to the config job pod.
     podLabels: {}
     # -- Security context for the pod.

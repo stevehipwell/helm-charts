@@ -50,6 +50,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.17.0
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod scheduling. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the pod, this overrides `serviceAccount.automountToken`. |
 | bashImage.digest | string | `nil` | Optional image digest for the bash containers. |
 | bashImage.pullPolicy | string | `"IfNotPresent"` | Image pull policy for bash containers. |
 | bashImage.repository | string | `"cgr.dev/chainguard/bash"` | Image repository for bash containers. |
@@ -64,7 +65,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.17.0
 | config.cleanup | list | `[]` | Cleanup configuration. |
 | config.enabled | bool | `false` | If `true` & `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
-| config.job.annotations | list | `[]` | Annotations to apply to the config job. |
+| config.job.annotations | object | `{}` | Annotations to apply to the config job. |
 | config.job.image.digest | string | `nil` | Optional image digest for the config container. |
 | config.job.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for config container. |
 | config.job.image.repository | string | `"docker.io/alpine/k8s"` | Image repository for the config container. |
