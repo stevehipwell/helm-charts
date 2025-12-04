@@ -44,18 +44,21 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+    {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
       serviceAccountName: {{ include "nexus3.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
+    {{- if ne .Values.automountServiceAccountToken nil }}
+      automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
+    {{- end }}
+    {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.priorityClassName }}
+    {{- end }}
+    {{- with .Values.priorityClassName }}
       priorityClassName: {{ . | quote }}
-      {{- end }}
+    {{- end }}
       terminationGracePeriodSeconds: {{ ternary 10 .Values.terminationGracePeriodSeconds .Values.manualMaintenanceMode.enabled }}
       initContainers:
       {{- if .Values.caCerts.enabled }}

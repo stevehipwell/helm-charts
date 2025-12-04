@@ -116,6 +116,9 @@ compact:
   # -- Annotations to add to the _Compact_ pod.
   podAnnotations: {}
 
+  # -- (bool) If the service account token should be mounted to the _Compact_ pod, this overrides `compact.serviceAccount.automountToken`.
+  automountServiceAccountToken:
+
   # -- Security context for the _Compact_ pod.
   # @default -- See _values.yaml_
   podSecurityContext:
@@ -309,6 +312,9 @@ query:
   # -- Annotations to add to the _Query_ pod.
   podAnnotations: {}
 
+  # -- (bool) If the service account token should be mounted to the _Query_ pod, this overrides `query.serviceAccount.automountToken`.
+  automountServiceAccountToken:
+
   # -- Security context for the _Query_ pod.
   # @default -- See _values.yaml_
   podSecurityContext:
@@ -478,6 +484,9 @@ queryFrontend:
   # -- Annotations to add to the _Query Frontend_ pod.
   podAnnotations: {}
 
+  # -- (bool) If the service account token should be mounted to the _Query Frontend_ pod, this overrides `queryFrontend.serviceAccount.automountToken`.
+  automountServiceAccountToken:
+
   # -- Security context for the _Query Frontend_ pod.
   # @default -- See _values.yaml_
   podSecurityContext:
@@ -618,6 +627,9 @@ receive:
 
     # -- Annotations to add to the _Receive Ingestor_ pod.
     podAnnotations: {}
+
+    # -- (bool) If the service account token should be mounted to the _Receive Ingestor_ pod, this overrides `receive.ingestor.serviceAccount.automountToken`.
+    automountServiceAccountToken:
 
     # -- Security context for the _Receive Ingestor_ pod.
     # @default -- See _values.yaml_
@@ -805,6 +817,9 @@ receive:
 
     # -- Annotations to add to the _Receive Router_ pod.
     podAnnotations: {}
+
+    # -- (bool) If the service account token should be mounted to the _Receive Router_ pod, this overrides `receive.router.serviceAccount.automountToken`.
+    automountServiceAccountToken:
 
     # -- Security context for the _Receive Router_ pod.
     # @default -- See _values.yaml_
@@ -997,6 +1012,9 @@ rule:
   # -- Annotations to add to the _Rule_ pod.
   podAnnotations: {}
 
+  # -- (bool) If the service account token should be mounted to the _Rule_ pod, this overrides `rule.serviceAccount.automountToken`.
+  automountServiceAccountToken:
+
   # -- Security context for the _Rule_ pod.
   # @default -- See _values.yaml_
   podSecurityContext:
@@ -1166,6 +1184,9 @@ storeGateway:
 
   # -- Annotations to add to the _Store Gateway_ pod.
   podAnnotations: {}
+
+  # -- (bool) If the service account token should be mounted to the _Store Gateway_ pod, this overrides `storeGateway.serviceAccount.automountToken`.
+  automountServiceAccountToken:
 
   # -- Security context for the _Store Gateway_ pod.
   # @default -- See _values.yaml_

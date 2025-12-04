@@ -57,6 +57,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | clusterDomain | string | `"cluster.local"` | _Kubernetes_ cluster domain. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | compact.affinity | object | `{}` | Affinity settings for scheduling the _Compact_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| compact.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Compact_ pod, this overrides `compact.serviceAccount.automountToken`. |
 | compact.deduplication.enabled | bool | `true` | If `true`, enable deduplication via the _Compact_ component. |
 | compact.deduplication.func | string | `nil` | If specified override the default deduplication function. |
 | compact.enabled | bool | `false` | If `true`, create the _Thanos Compact_ component. |
@@ -108,6 +109,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | objstoreConfig.value | string | `"type: FILESYSTEM\nconfig:\n  directory: /var/thanos/store/s3"` | Objstore configuration; this can either be a string or a map. The default values are not suitable for production. |
 | query.additionalStores | list | `[]` | **DEPRECATED** - Additional stores to configure query with (`--store`), these values can be templated. Use `additionalEndpoints` instead. |
 | query.affinity | object | `{}` | Affinity settings for scheduling the _Query_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| query.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Query_ pod, this overrides `query.serviceAccount.automountToken`. |
 | query.autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` for the _Query_ deployment. |
 | query.autoscaling.maxReplicas | int | `3` | Maximum number of _Query_ replicas that the HPA should create. |
 | query.autoscaling.minReplicas | int | `1` | Minimum number of _Query_ replicas that the HPA should maintain. |
@@ -157,6 +159,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | query.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Query_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
 | query.updateStrategy | object | `{}` | Update strategy for the _Query_ deployment. |
 | queryFrontend.affinity | object | `{}` | Affinity settings for scheduling the _Query Frontend_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| queryFrontend.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Query Frontend_ pod, this overrides `queryFrontend.serviceAccount.automountToken`. |
 | queryFrontend.autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` for the _Query Frontend_ deployment. |
 | queryFrontend.autoscaling.maxReplicas | int | `3` | Maximum number of _Query Frontend_ replicas that the HPA should create. |
 | queryFrontend.autoscaling.minReplicas | int | `1` | Minimum number of _Query Frontend_ replicas that the HPA should maintain. |
@@ -203,6 +206,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | queryFrontend.updateStrategy | object | `{}` | Update strategy for the _Query Frontend_ deployment. |
 | receive.enabled | bool | `false` | If `true`, create the _Thanos Receive Ingestor_ & _Thanos Receive Router_ components. |
 | receive.ingestor.affinity | object | `{}` | Affinity settings for scheduling the _Receive Ingestor_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| receive.ingestor.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Receive Ingestor_ pod, this overrides `receive.ingestor.serviceAccount.automountToken`. |
 | receive.ingestor.extraArgs | list | `[]` | Additional args for the _Receive Ingestor_ pod default container. |
 | receive.ingestor.extraEnv | list | `[]` | Additional environment variables for the _Receive Ingestor_ pod default container. |
 | receive.ingestor.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Receive Ingestor_ pod default container. |
@@ -247,6 +251,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | receive.replicationFactor | int | `1` | Replication factor for the _Receive_ components. |
 | receive.retention | string | `"48h"` | Retention for the _Receive_ components. |
 | receive.router.affinity | object | `{}` | Affinity settings for scheduling the _Receive Router_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| receive.router.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Receive Router_ pod, this overrides `receive.router.serviceAccount.automountToken`. |
 | receive.router.autoscaling.enabled | bool | `false` | If `true`, create a `HorizontalPodAutoscaler` for the _Receive Router_ deployment. |
 | receive.router.autoscaling.maxReplicas | int | `3` | Maximum number of _Receive Router_ replicas that the HPA should create. |
 | receive.router.autoscaling.minReplicas | int | `1` | Minimum number of _Receive Router_ replicas that the HPA should maintain. |
@@ -298,6 +303,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | rule.alertmanagersConfig.key | string | `"config"` | Secret key for the _Rule_ component alertmanagers configuration. |
 | rule.alertmanagersConfig.name | string | `nil` | If this is set and `rule.alertmanagersConfig.create` is `true` this will be used for the created secret name, if this is set and `rule.alertmanagersConfig.create` is `false` then this will define an existing secret to use. |
 | rule.alertmanagersConfig.value | string | `"alertmanagers: []"` | Alert managers configuration for the _Rule_ component. |
+| rule.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Rule_ pod, this overrides `rule.serviceAccount.automountToken`. |
 | rule.blockDuration | string | `"2h"` | Block duration for the _Rule_ component (`--tsdb.block-duration`). |
 | rule.configReloader.enabled | bool | `true` | If `true`, create the _Rule_ pod config reloader sidecar container. |
 | rule.configReloader.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Rule_ pod config reloader sidecar container. |
@@ -366,6 +372,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.0
 | serviceMonitor.jobLabel | string | `"app.kubernetes.io/component-instance"` | Label to use as the service monitor job label. |
 | storeEndpointGroup | bool | `false` | If `true`, configure the store endpoints with `--endpoint-group` so they're queried round-robin rather than fanout. (**EXPERIMENTAL**). |
 | storeGateway.affinity | object | `{}` | Affinity settings for scheduling the _Store Gateway_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
+| storeGateway.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Store Gateway_ pod, this overrides `storeGateway.serviceAccount.automountToken`. |
 | storeGateway.enabled | bool | `true` | If `true`, create the _Store Gateway_ component. |
 | storeGateway.extraArgs | list | `[]` | Additional args for the _Store Gateway_ pod default container. |
 | storeGateway.extraEnv | list | `[]` | Additional environment variables for the _Store Gateway_ pod default container. |

@@ -15,6 +15,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add support to explicitly set the `automountServiceAccountToken` field on the pod via the `automountServiceAccountToken` value.([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
+
 ## [v5.17.0] - 2025-12-03
 
 ### Added

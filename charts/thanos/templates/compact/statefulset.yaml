@@ -33,21 +33,24 @@ spec:
       {{- end }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+    {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
       serviceAccountName: {{ include "thanos.compact.serviceAccountName" . }}
-      {{- with .Values.compact.podSecurityContext }}
+    {{- if ne .Values.compact.automountServiceAccountToken nil }}
+      automountServiceAccountToken: {{ .Values.compact.automountServiceAccountToken }}
+    {{- end }}
+    {{- with .Values.compact.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.compact.priorityClassName }}
+    {{- end }}
+    {{- with .Values.compact.priorityClassName }}
       priorityClassName: {{ . | quote }}
-      {{- end }}
-      {{- with .Values.compact.terminationGracePeriodSeconds }}
+    {{- end }}
+    {{- with .Values.compact.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
-      {{- end }}
+    {{- end }}
       containers:
         - name: thanos-compact
           {{- with .Values.compact.securityContext }}

@@ -17,6 +17,7 @@
 ### Changed
 
 - Update the _registry.k8s.io/pause_ OCI image version to `3.10.1`. ([#1226](https://github.com/stevehipwell/helm-charts/pull/1226)) _@stevehipwell_
+- Explicitly set `automountServiceAccountToken` to `false` for the pause pod. ([#1226](https://github.com/stevehipwell/helm-charts/pull/1226)) _@stevehipwell_
 
 ## [v0.5.0] - 2024-11-22
 

@@ -33,21 +33,24 @@ spec:
       {{- end }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+    {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
       serviceAccountName: {{ include "thanos.rule.serviceAccountName" . }}
-      {{- with .Values.rule.podSecurityContext }}
+    {{- if ne .Values.rule.automountServiceAccountToken nil }}
+      automountServiceAccountToken: {{ .Values.rule.automountServiceAccountToken }}
+    {{- end }}
+    {{- with .Values.rule.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.rule.priorityClassName }}
+    {{- end }}
+    {{- with .Values.rule.priorityClassName }}
       priorityClassName: {{ . | quote }}
-      {{- end }}
-      {{- with .Values.rule.terminationGracePeriodSeconds }}
+    {{- end }}
+    {{- with .Values.rule.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
-      {{- end }}
+    {{- end }}
       containers:
         - name: thanos-rule
           {{- with .Values.rule.securityContext }}

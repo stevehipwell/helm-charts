@@ -40,21 +40,24 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+    {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- end }}
       serviceAccountName: {{ include "fluentd-aggregator.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
+    {{- if ne .Values.automountServiceAccountToken nil }}
+      automountServiceAccountToken: {{ .Values.automountServiceAccountToken }}
+    {{- end }}
+    {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.priorityClassName }}
+    {{- end }}
+    {{- with .Values.priorityClassName }}
       priorityClassName: {{ . }}
-      {{- end }}
-      {{- with .Values.terminationGracePeriodSeconds }}
+    {{- end }}
+    {{- with .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
-      {{- end }}
+    {{- end }}
       initContainers:
         - name: tmpdir
           image: {{ include "fluentd-aggregator.image" .Values.bashImage }}
