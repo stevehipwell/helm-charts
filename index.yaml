@@ -25504,6 +25504,38 @@ entries:
   - annotations:
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add support to explicitly set the automountServiceAccountToken field on all pods via the automountServiceAccountToken value."
+    apiVersion: v2
+    appVersion: 0.40.1
+    created: "2025-12-10T20:09:00.080127364Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 52f9e2f214c24262fa63928b8f8f43df43e27501fe29c5a3bfcbe4ae22d02c48
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.22.1/thanos-1.22.1.tgz
+    version: 1.22.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add possibility to configure HTTP and GRPC ports."
         - kind: added
           description: "Enable (default) or disable GRPC DNS Service Discovery."
@@ -31642,4 +31674,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2025-12-03T11:45:06.521425163Z"
+generated: "2025-12-10T20:09:00.082388902Z"
