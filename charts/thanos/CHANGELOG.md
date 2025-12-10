@@ -14,6 +14,8 @@
 
 ## [UNRELEASED]
 
+## [v1.22.1] - 2025-12-10
+
 ### Added
 
 - Add support to explicitly set the `automountServiceAccountToken` field on all pods via the `automountServiceAccountToken` value.([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
@@ -594,6 +596,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.22.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.1
 [v1.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.0
 [v1.21.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.1
 [v1.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.0
