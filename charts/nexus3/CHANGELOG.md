@@ -15,6 +15,12 @@
 
 ## [UNRELEASED]
 
+## [v5.17.1] - 2025-12-10
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.87.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.87.1-01). ([#1300](https://github.com/stevehipwell/helm-charts/pull/1300)) _@stevehipwell_
+
 ### Added
 
 - Add support to explicitly set the `automountServiceAccountToken` field on the pod via the `automountServiceAccountToken` value.([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
@@ -977,6 +983,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.17.1
 [v5.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.17.0
 [v5.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.16.0
 [v5.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.15.0
