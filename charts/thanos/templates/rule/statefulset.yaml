@@ -98,7 +98,11 @@ spec:
           {{- end }}
             - {{ printf "--tsdb.retention=%s" .Values.rule.retention }}
             - {{ printf "--tsdb.block-duration=%s" .Values.rule.blockDuration }}
-          {{- if .Values.query.enabled }}
+          {{- if .Values.rule.overrideQueryEndpoints }}
+            {{- range .Values.rule.overrideQueryEndpoints }}
+            - {{ printf "--query=%s" . }}
+            {{- end }}
+          {{- else if .Values.query.enabled }}
             - {{ printf "--query=dnssrv+_http._tcp.%s.%s.svc.%s" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain }}
           {{- end }}
             - --rule-file=/etc/thanos/rules/*.yaml
