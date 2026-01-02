@@ -164,7 +164,7 @@
 
 ### Fixed
 
-- Fix logback task configuration by inlining the appender.  ([#1152](https://github.com/stevehipwell/helm-charts/pull/1152)) _@stevehipwell_
+- Fix logback task configuration by inlining the appender. ([#1152](https://github.com/stevehipwell/helm-charts/pull/1152)) _@stevehipwell_
 
 ## [v5.8.2] - 2025-03-18
 
