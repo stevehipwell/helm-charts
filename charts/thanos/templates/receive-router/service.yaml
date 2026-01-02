@@ -12,6 +12,12 @@ metadata:
   {{- end }}
 spec:
   type: {{ .Values.receive.router.service.type }}
+  {{- if and (eq .Values.receive.router.service.type "LoadBalancer") .Values.receive.router.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.receive.router.service.loadBalancerIP }}
+  {{- end }}
+  {{- if and (eq .Values.receive.router.service.type "LoadBalancer") .Values.receive.router.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges: {{- toYaml .Values.receive.router.service.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
   ports:
     - name: grpc
       port: {{ .Values.receive.router.service.grpcPort }}
