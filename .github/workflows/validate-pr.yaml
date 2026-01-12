@@ -40,7 +40,7 @@ jobs:
           version: latest
 
       - name: Lint markdown files
-        run: rumdl check .
+        run: rumdl check --output-format github .
 
       - name: Chart changes
         id: changed

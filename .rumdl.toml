@@ -10,3 +10,6 @@ siblings-only = true
 
 [MD033]
 allowed-elements = ["br"]
+
+[MD052]
+shortcut-syntax = true
