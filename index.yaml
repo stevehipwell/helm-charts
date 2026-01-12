@@ -27977,6 +27977,41 @@ entries:
       artifacthub.io/alternativeName: tigera
       artifacthub.io/changes: |-
         - kind: changed
+          description: "Explicitly set automountServiceAccountToken to true for the service account."
+        - kind: changed
+          description: "Update the Tigera Operator OCI image to v1.40.3 (Calico v3.31.3)."
+    apiVersion: v2
+    appVersion: 1.40.3
+    created: "2026-01-12T12:27:14.448291879Z"
+    description: Helm chart to install the Tigera Operator for managing Calico.
+    digest: 7da5cbb5db6a273298335252b3aa75c3bbaa8d4f1d3d10e572664f6a499c568d
+    home: https://www.tigera.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/tigera-operator/icon.png
+    keywords:
+    - kubernetes
+    - cni
+    - calico
+    - tigera
+    - operator
+    - network
+    - policy
+    - plugin
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: tigera-operator
+    sources:
+    - https://github.com/tigera/operator
+    - https://github.com/projectcalico/calico
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/tigera-operator-2.13.2/tigera-operator-2.13.2.tgz
+    version: 2.13.2
+  - annotations:
+      artifacthub.io/alternativeName: tigera
+      artifacthub.io/changes: |-
+        - kind: changed
           description: "Update the Tigera Operator OCI image to v1.40.2 (Calico v3.31.2)."
     apiVersion: v2
     appVersion: 1.40.2
@@ -31827,4 +31862,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-01-02T14:56:22.459314483Z"
+generated: "2026-01-12T12:27:14.449493205Z"
