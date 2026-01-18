@@ -40,7 +40,7 @@
 
 ### Fixed
 
-- Fix incorrect `verticalpodautoscalers.autoscaling.k8s.io` CRD where the `InPlaceOrRecreate` option  was added to `v1beta2` instead of `v1`. ([#1207](https://github.com/stevehipwell/helm-charts/pull/1207)) _@stevehipwell_
+- Fix incorrect `verticalpodautoscalers.autoscaling.k8s.io` CRD where the `InPlaceOrRecreate` option was added to `v1beta2` instead of `v1`. ([#1207](https://github.com/stevehipwell/helm-charts/pull/1207)) _@stevehipwell_
 
 ## [v1.9.1] - 2025-06-11
 

@@ -1,6 +1,3 @@
-# Editor Config
-root = true
-
 # All
 [*]
 charset = utf-8

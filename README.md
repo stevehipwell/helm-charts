@@ -2,7 +2,7 @@
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/stevehipwell)](https://artifacthub.io/packages/search?ts_query_web=stevehipwell&sort=last_updated)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![](https://github.com/stevehipwell/helm-charts/workflows/Release/badge.svg?branch=main)](https://github.com/stevehipwell/helm-charts/actions/workflows/release.yaml)
+[![Badge image](https://github.com/stevehipwell/helm-charts/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/stevehipwell/helm-charts/actions/workflows/release.yaml)
 [![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/stevehipwell/helm-charts?label=OpenSSF%20Scorecard)](https://securityscorecards.dev/viewer/?uri=github.com/stevehipwell/helm-charts)
 
 ## Usage
@@ -29,11 +29,10 @@ You can then run `helm search repo stevehipwell` to see the charts.
 - [fluent-bit-aggregator](./charts/fluent-bit-aggregator/README.md)
 - [fluent-bit-collector](./charts/fluent-bit-collector/README.md)
 - [fluentd-aggregator](./charts/fluentd-aggregator/README.md)
-- [istio-operator](./charts/istio-operator/README.md)
 - [k8s-resources](./charts/k8s-resources/README.md)
 - [kube-proxy](./charts/kube-proxy/README.md)
-- [node-config](./charts/node-config/README.md)
 - [nexus3](./charts/nexus3/README.md)
+- [node-config](./charts/node-config/README.md)
 - [node-config](./charts/node-config/README.md)
 - [overprovisioner](./charts/overprovisioner/README.md)
 - [plantuml](./charts/plantuml/README.md)

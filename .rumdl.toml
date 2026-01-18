@@ -1,0 +1,15 @@
+[global]
+disable = ["MD013"]
+exclude = ["**/_description.md"]
+
+[per-file-ignores]
+"charts/**/README.md" = ["MD004"]
+
+[MD024]
+siblings-only = true
+
+[MD033]
+allowed-elements = ["br"]
+
+[MD052]
+shortcut-syntax = true
