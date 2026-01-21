@@ -17,9 +17,15 @@
 
 ## [UNRELEASED]
 
+## [v3.43.0] - 2026-01-21
+
 ### Added
 
 - Add support to explicitly set the `automountServiceAccountToken` field on the pod via the `automountServiceAccountToken` value.([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
+
+### Changed
+
+- Update the _PlantUML_ OCI image to [v1.2026.0](https://github.com/plantuml/plantuml-server/releases/tag/v1.2026.0). ([#1315](https://github.com/stevehipwell/helm-charts/pull/1315)) _@stevehipwell_
 
 ## [v3.42.0] - 2025-11-28
 
@@ -496,6 +502,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.43.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.43.0
 [v3.42.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.42.0
 [v3.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.41.0
 [v3.40.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.40.0
