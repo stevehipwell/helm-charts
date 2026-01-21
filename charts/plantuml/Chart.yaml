@@ -2,8 +2,8 @@ apiVersion: v2
 name: plantuml
 description: Helm chart for PlantUML Server, a web application to generate UML diagrams on-the-fly.
 type: application
-version: 3.42.0
-appVersion: 1.2025.10
+version: 3.43.0
+appVersion: 1.2026.0
 home: https://plantuml.com/
 icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
 keywords:
