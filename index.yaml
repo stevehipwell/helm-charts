@@ -21974,6 +21974,36 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add support to explicitly set the automountServiceAccountToken field on the pod via the automountServiceAccountToken value."
+        - kind: changed
+          description: "Update the PlantUML OCI image to v1.2026.0."
+    apiVersion: v2
+    appVersion: 1.2026.0
+    created: "2026-01-21T12:48:14.441481409Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: 7e3f3197d9326a101f6e1ee32e86ba07ee58e7b13f83cc7327878c898e93f265
+    home: https://plantuml.com/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.43.0/plantuml-3.43.0.tgz
+    version: 3.43.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update the PlantUML OCI image to v1.2025.10."
     apiVersion: v2
@@ -31893,4 +31923,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-01-15T13:26:14.50794401Z"
+generated: "2026-01-21T12:48:14.442932035Z"
