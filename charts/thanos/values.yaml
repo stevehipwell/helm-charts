@@ -917,6 +917,14 @@ rule:
   # -- If `true`, create the _Thanos Rule_ component.
   enabled: false
 
+  # -- Query endpoints for Rule to use. When set, these REPLACE the auto-generated
+  # query endpoint (not additive). Use DNS SRV format for discovery.
+  # When empty, falls back to auto-adding query endpoint if query.enabled is true.
+  queryEndpoints: []
+  # Example:
+  # queryEndpoints:
+  #   - "dnssrv+_http._tcp.thanos-query-internal.monitoring.svc.cluster.local"
+
   # -- If `true`, add a `thanos_rule` label to `<NAMESPACE>/<RULE_FULLNAME>` on a `Rule` metrics.
   instanceLabel: false
 
