@@ -367,6 +367,8 @@ config:
       capabilities:
         drop:
           - ALL
+    # -- Resources for the config container.
+    resources: {}
 
   anonymous:
     # -- If `true`, enable anonymous access.
