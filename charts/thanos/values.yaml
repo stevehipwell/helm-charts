@@ -155,6 +155,15 @@ compact:
   # -- Additional args for the _Compact_ pod default container.
   extraArgs: []
 
+  # -- Retention resolution for raw data samples (`--retention.resolution.raw`).
+  retentionResolutionRaw: 30d
+
+  # -- Retention resolution for 5-minute downsampled data (`--retention.resolution.5m`).
+  retentionResolution5m: 180d
+
+  # -- Retention resolution for 1-hour downsampled data (`--retention.resolution.1h`).
+  retentionResolution1h: 1y
+
   # -- HTTP port for the _Compact_ pod default container.
   httpPort: 10902
 
