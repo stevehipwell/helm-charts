@@ -1,0 +1,72 @@
+name: Update `fluent-bit-aggregator` Helm chart
+
+scms:
+  default:
+    kind: "github"
+    spec:
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      username: "{{ .github.username }}"
+      token: "{{ .github.token }}"
+      branch: main
+      commitmessage:
+        type: feat
+        scope: fluent-bit-aggregator
+
+sources:
+  fluentBitRelease:
+    kind: githubrelease
+    spec:
+      owner: fluent
+      repository: fluent-bit
+      username: "{{ .github.username }}"
+      token: "{{ .github.token }}"
+      versionfilter:
+        kind: latest
+
+conditions:
+  image:
+    name: OCI image available
+    kind: dockerimage
+    sourceid: fluentBitRelease
+    transformers:
+      - trimprefix: v
+    spec:
+      image: cr.fluentbit.io/fluent/fluent-bit
+      architectures: ["amd64", "arm64"]
+
+targets:
+  appVersion:
+    name: Update chart app version
+    kind: helmchart
+    sourceid: fluentBitRelease
+    transformers:
+      - trimprefix: v
+    spec:
+      name: charts/fluent-bit-aggregator
+      appversion: true
+      versionincrement: none
+      file: Chart.yaml
+      key: "$.appVersion"
+
+  readme:
+    name: Update chart README
+    kind: shell
+    disablesourceinput: true
+    spec:
+      command: helm-docs
+    dependson:
+      - appVersion
+
+actions:
+  default:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: Updated fluent-bit-aggregator
+      mergemethod: squash
+      maintainercannotmodify: true
+      labels:
+        - dependencies

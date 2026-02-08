@@ -1,0 +1,44 @@
+name: Check Updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    name: Check for updates
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        with:
+          fetch-depth: 0
+
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@e5e6863d954b7495848bb43d693704934439d678 # v2.32.0
+
+      - name: Install Helm Docs
+        if: ${{ inputs.helm_docs && steps.changes.outputs.changed == 'true' }}
+        uses: action-stars/install-tool-from-github-release@58e2dd20166c0eb19ab9ac4d0966c930a647ee69 # v0.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: norwoodj
+          repository: helm-docs
+          arch_amd64: x86_64
+          os_linux: Linux
+          check_command: helm-docs --version
+          version: latest
+
+      - name: Run Updatecli diff
+        run: updatecli diff --config ./updatecli/updatecli.d
+
+      - name: Run Updatecli apply
+        run: updatecli apply --config ./updatecli/updatecli.d
