@@ -8702,6 +8702,38 @@ entries:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add support to explicitly set the automountServiceAccountToken field on the pod via the automountServiceAccountToken value."
+        - kind: changed
+          description: "Update Fluentd Aggregator OCI image to v3.4.0 (Fluentd v1.19.1)."
+    apiVersion: v2
+    appVersion: 3.4.0
+    created: "2026-02-09T16:02:58.022171444Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 1a0f1ba78794c2480795f2a6886ff183e670ec343f57eee721e6f912d1a7e725
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-5.4.0/fluentd-aggregator-5.4.0.tgz
+    version: 5.4.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add init container to fix permissions on tmp directory."
         - kind: changed
           description: "Update Fluentd Aggregator OCI image to v3.3.1 (Fluentd v1.19.1)."
@@ -31923,4 +31955,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-01-21T12:48:14.442932035Z"
+generated: "2026-02-09T16:02:58.023999733Z"
