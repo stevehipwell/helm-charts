@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v5.4.0] - 2026-02-09
+
 ### Added
 
 - Add support to explicitly set the `automountServiceAccountToken` field on the pod via the `automountServiceAccountToken` value.([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
+
+### Changed
+
+- Update _Fluentd Aggregator_ OCI image to [v3.4.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v3.4.0) (_Fluentd_ [v1.19.1](https://github.com/fluent/fluentd/releases/tag/v1.19.1)). ([#1326](https://github.com/stevehipwell/helm-charts/pull/1326)) _@stevehipwell_
 
 ## [v5.3.0] - 2025-11-28
 
@@ -534,7 +540,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 
 - Upgrade _Fluentd_ Docker image to `v1.12.4` (_Fluentd_ `v1.12.3`)
 
-## [v2.1.1] - 2021-05-11
+## [v2.1.2] - 2021-05-11
 
 ### Changed
 
@@ -640,6 +646,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v5.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.4.0
 [v5.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.3.0
 [v5.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.2.0
 [v5.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.1.1
@@ -666,3 +673,57 @@ RELEASE LINKS
 [v4.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.1
 [v4.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.1.0
 [v4.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-4.0.0
+[v3.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.10.0
+[v3.9.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.9.1
+[v3.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.9.0
+[v3.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.8.0
+[v3.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.7.0
+[v3.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.6.2
+[v3.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.6.1
+[v3.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.6.0
+[v3.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.5.0
+[v3.4.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.4.2
+[v3.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.4.1
+[v3.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.4.0
+[v3.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.3.0
+[v3.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.2.0
+[v3.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.1.0
+[v3.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.0.2
+[v3.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.0.1
+[v3.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-3.0.0
+[v2.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.7.1
+[v2.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.7.0
+[v2.6.9]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.9
+[v2.6.8]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.8
+[v2.6.7]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.7
+[v2.6.6]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.6
+[v2.6.5]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.5
+[v2.6.4]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.4
+[v2.6.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.3
+[v2.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.2
+[v2.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.1
+[v2.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.6.0
+[v2.5.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.5.3
+[v2.5.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.5.2
+[v2.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.5.1
+[v2.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.5.0
+[v2.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.4.0
+[v2.3.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.3.1
+[v2.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.3.0
+[v2.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.2.0
+[v2.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.1.2
+[v2.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.1.1
+[v2.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.1.0
+[v2.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-2.0.0
+[v1.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.2.1
+[v1.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.2.0
+[v1.1.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.1.3
+[v1.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.1.2
+[v1.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.1.1
+[v1.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.1.0
+[v1.0.5]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.5
+[v1.0.4]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.4
+[v1.0.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.3
+[v1.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.2
+[v1.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.1
+[v1.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-1.0.0

@@ -1,9 +1,9 @@
 [global]
 disable = ["MD013"]
-exclude = ["**/_description.md"]
 
 [per-file-ignores]
 "charts/**/README.md" = ["MD004"]
+"**/_description.md" = ["MD041"]
 
 [MD024]
 siblings-only = true
