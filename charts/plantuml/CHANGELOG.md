@@ -17,6 +17,12 @@
 
 ## [UNRELEASED]
 
+## [v3.44.0] - 2026-02-09
+
+### Changed
+
+- Update the _PlantUML_ OCI image to [v1.2026.1](https://github.com/plantuml/plantuml-server/releases/tag/v1.2026.1). ([#1327](https://github.com/stevehipwell/helm-charts/pull/1327)) _@stevehipwell_
+
 ## [v3.43.0] - 2026-01-21
 
 ### Added
@@ -502,6 +508,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.44.0
 [v3.43.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.43.0
 [v3.42.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.42.0
 [v3.41.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.41.0
@@ -527,3 +534,44 @@ RELEASE LINKS
 [v3.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.22.0
 [v3.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.21.0
 [v3.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.20.0
+[v3.19.1]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.19.1
+[v3.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.19.0
+[v3.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.18.0
+[v3.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.17.0
+[v3.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.16.0
+[v3.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.15.0
+[v3.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.14.0
+[v3.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.13.0
+[v3.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.12.0
+[v3.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.11.0
+[v3.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.10.0
+[v3.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.9.0
+[v3.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.8.0
+[v3.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.7.0
+[v3.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.6.0
+[v3.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.5.0
+[v3.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.4.0
+[v3.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.3.0
+[v3.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.2.0
+[v3.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.1.0
+[v3.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.0.0
+[v2.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.8.0
+[v2.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.7.0
+[v2.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.6.0
+[v2.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.5.0
+[v2.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.4.0
+[v2.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.3.0
+[v2.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.2.1
+[v2.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.2.0
+[v2.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.1.1
+[v2.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.1.0
+[v2.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-2.0.0
+[v1.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.6.0
+[v1.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.5.0
+[v1.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.4.0
+[v1.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.3.0
+[v1.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.2.0
+[v1.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.1.2
+[v1.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.1.1
+[v1.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.1.0
+[v1.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-1.0.0
