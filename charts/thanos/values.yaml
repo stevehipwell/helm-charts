@@ -917,6 +917,9 @@ rule:
   # -- If `true`, create the _Thanos Rule_ component.
   enabled: false
 
+  # -- Override query endpoints for the _Rule_ component (`--query`).
+  overrideQueryEndpoints: []
+
   # -- If `true`, add a `thanos_rule` label to `<NAMESPACE>/<RULE_FULLNAME>` on a `Rule` metrics.
   instanceLabel: false
 
