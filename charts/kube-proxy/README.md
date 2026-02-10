@@ -1,6 +1,6 @@
 # kube-proxy
 
-![Version: 0.0.8](https://img.shields.io/badge/Version-0.0.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.8](https://img.shields.io/badge/AppVersion-0.0.8-informational?style=flat-square)
+![Version: 0.0.9](https://img.shields.io/badge/Version-0.0.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.9](https://img.shields.io/badge/AppVersion-0.0.9-informational?style=flat-square)
 
 Helm chart for managing kube-proxy.
 
@@ -24,7 +24,7 @@ Helm chart for managing kube-proxy.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-proxy --version 0.0.8
+helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-proxy --version 0.0.9
 ```
 
 #### Verification
@@ -32,7 +32,7 @@ helm upgrade --install kube-proxy oci://ghcr.io/stevehipwell/helm-charts/kube-pr
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/kube-proxy:0.0.8
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/kube-proxy:0.0.9
 ```
 
 ### Non-OCI Repository
@@ -41,7 +41,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install kube-proxy stevehipwell/kube-proxy --version 0.0.8
+helm upgrade --install kube-proxy stevehipwell/kube-proxy --version 0.0.9
 ```
 
 ## Values
@@ -52,7 +52,7 @@ helm upgrade --install kube-proxy stevehipwell/kube-proxy --version 0.0.8
 | apiServer.endpoint | string | `nil` | API server endpoint for kube-proxy to communicate with. |
 | args | list | `[]` | Extra args for the default container. |
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
-| config | object | `{"apiVersion":"kubeproxy.config.k8s.io/v1alpha1","bindAddress":"0.0.0.0","clientConnection":{"acceptContentTypes":"","burst":10,"contentType":"application/vnd.kubernetes.protobuf","kubeconfig":"/var/lib/kube-proxy/kubeconfig","qps":5},"clusterCIDR":"","configSyncPeriod":"15m0s","conntrack":{"maxPerCore":32768,"min":131072,"tcpCloseWaitTimeout":"1h0m0s","tcpEstablishedTimeout":"24h0m0s"},"enableProfiling":false,"healthzBindAddress":"0.0.0.0:10256","hostnameOverride":"","iptables":{"masqueradeAll":false,"masqueradeBit":14,"minSyncPeriod":"0s","syncPeriod":"30s"},"ipvs":{"excludeCIDRs":null,"minSyncPeriod":"0s","scheduler":"","syncPeriod":"30s"},"kind":"KubeProxyConfiguration","metricsBindAddress":"0.0.0.0:10249","mode":"iptables","nodePortAddresses":null,"oomScoreAdj":-999,"portRange":""}` | Configuration for kube-proxy. |
+| config | object | `{"apiVersion":"kubeproxy.config.k8s.io/v1alpha1","bindAddress":"0.0.0.0","clientConnection":{"acceptContentTypes":"","burst":10,"contentType":"application/vnd.kubernetes.protobuf","kubeconfig":"/var/lib/kube-proxy/kubeconfig","qps":5},"clusterCIDR":"","configSyncPeriod":"15m0s","conntrack":{"maxPerCore":32768,"min":131072,"tcpCloseWaitTimeout":"1h0m0s","tcpEstablishedTimeout":"24h0m0s"},"enableProfiling":false,"healthzBindAddress":"0.0.0.0:10256","hostnameOverride":"","iptables":{"masqueradeAll":false,"masqueradeBit":14,"minSyncPeriod":"0s","syncPeriod":"30s"},"ipvs":{"excludeCIDRs":null,"minSyncPeriod":"0s","scheduler":"","syncPeriod":"30s"},"kind":"KubeProxyConfiguration","metricsBindAddress":"0.0.0.0:10249","mode":"nftables","nodePortAddresses":null,"oomScoreAdj":-998,"portRange":""}` | Configuration for kube-proxy. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
 | image.digest | string | `nil` | Image digest for the default container; at least one of tag and digest must be set. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |

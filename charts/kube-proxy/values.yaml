@@ -165,9 +165,9 @@ config:
     scheduler: ""
     syncPeriod: 30s
   metricsBindAddress: 0.0.0.0:10249
-  mode: iptables
-  nodePortAddresses:
-  oomScoreAdj: -999
+  mode: nftables
+  nodePortAddresses: null
+  oomScoreAdj: -998
   portRange: ""
 
 # -- Log level for kube-proxy.
