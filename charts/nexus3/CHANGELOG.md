@@ -15,6 +15,16 @@
 
 ## [UNRELEASED]
 
+## [v5.19.0] - 2026-02-10
+
+### Added
+
+- Add `config.job.resources` value to support configuring resources for the config job. ([#1329](https://github.com/stevehipwell/helm-charts/pull/1329)) _@stevehipwell_
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.89.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.89.0-09). ([#1329](https://github.com/stevehipwell/helm-charts/pull/1329)) _@stevehipwell_
+
 ## [v5.18.0] - 2026-01-15
 
 ### Changed
@@ -746,37 +756,37 @@
 
 - Defective templating for `extraInitContainers`.
 
-## v4.6.1 - 2021-08-19
+## [v4.6.1] - 2021-08-19
 
 ### Changed
 
 - Updated `Nexus3` image to [v3.33.1](https://help.sonatype.com/repomanager3/release-notes#ReleaseNotes-NexusRepositoryManager3.33.1).
 
-## v4.6.0 - 2021-08-11
+## [v4.6.0] - 2021-08-11
 
 ### Added
 
 - Extra init containers via `extraInitContainers`, which can be templated.
 
-## v4.5.0 - 2021-08-05
+## [v4.5.0] - 2021-08-05
 
 ### Changed
 
 - Updated `Nexus3` image to [v3.33.0](https://help.sonatype.com/repomanager3/release-notes#ReleaseNotes-NexusRepositoryManager3.33.0)
 
-## v4.4.0 - 2021-07-09
+## [v4.4.0] - 2021-07-09
 
 ### Changed
 
 - Updated `Nexus3` image to [v3.32.0](https://help.sonatype.com/repomanager3/release-notes#ReleaseNotes-NexusRepositoryManager3.32.0)
 
-## v4.3.1 - 2021-06-23
+## [v4.3.1] - 2021-06-23
 
 ### Changed
 
 - Upgraded `Nexus3` image to `v3.31.1`
 
-## v4.3.0 - 2021-06-21
+## [v4.3.0] - 2021-06-21
 
 ### Changed
 
@@ -787,31 +797,31 @@
 
 - Customizable ingress path (not actually supported)
 
-## v4.2.1 - 2021-04-23
+## [v4.2.1] - 2021-04-23
 
 ### Changed
 
 - Upgraded `Nexus3` image to _v3.30.1_
 
-## v4.2.0 - 2021-03-05
+## [v4.2.0] - 2021-03-05
 
 ### Added
 
 - Support `podLabels` configuration for _Azure AD Identity_
 
-## v4.1.0 - 2021-03-05
+## [v4.1.0] - 2021-03-05
 
 ### Changed
 
 - Upgraded `Nexus3` image to _v3.30.0_
 
-## v4.0.3 - 2021-02-05
+## [v4.0.3] - 2021-02-05
 
 ### Changed
 
 - Fixed regex when S3 blob store is used
 
-## v4.0.2 - 2021-01-15
+## [v4.0.2] - 2021-01-15
 
 ### Added
 
@@ -821,13 +831,13 @@
 
 - Fixed typo in LDAP configuration
 
-## v4.0.1 - 2021-01-08
+## [v4.0.1] - 2021-01-08
 
 ### Changed
 
 - Upgraded `nexus3` image to _v3.29.2_
 
-## v4.0.0 - 2021-01-06
+## [v4.0.0] - 2021-01-06
 
 > [!IMPORTANT]
 > This release is only compatible with _Helm_ v3.
@@ -840,25 +850,25 @@
 
 - Upgraded chart API version to `v2`
 
-## v3.4.2 - 2021-01-04
+## [v3.4.2] - 2021-01-04
 
 ### Changed
 
 - Upgraded image to _v3.29.1_
 
-## v3.4.1 - 2020-12-14
+## [v3.4.1] - 2020-12-14
 
 ### Changed
 
 - Re-ordered configure.sh so that metrics are configured after roles
 
-## v3.4.0 - 2020-12-07
+## [v3.4.0] - 2020-12-07
 
 ### Changed
 
 - Upgraded image to _v3.29.0_
 
-## v3.3.6 - 2020-12-02
+## [v3.3.6] - 2020-12-02
 
 ### Changed
 
@@ -866,81 +876,81 @@
 - Removed background execution from configure.sh
 - Replaced container command and args with a lifecycle postStart hook
 
-## v3.3.5 - 2020-12-01
+## [v3.3.5] - 2020-12-01
 
 ### Changed
 
 - Re-ordered config so that roles are configured after repos
 - Updated documentation for `repoCredentials`
 
-## v3.3.4 - 2020-11-30
+## [v3.3.4] - 2020-11-30
 
 ### Changed
 
 - Updated config script to not require jq
 
-## v3.3.3 - 2020-11-28
+## [v3.3.3] - 2020-11-28
 
 ### Changed
 
 - Fixed bug in repo credential support
 
-## v3.3.2 - 2020-11-23
+## [v3.3.2] - 2020-11-23
 
 ### Added
 
 - Added support for repo credentials
 
-## v3.3.1 - 2020-10-20
+## [v3.3.1] - 2020-10-20
 
 ### Changed
 
 - Upgraded image to _v3.28.1_
 - Use `.Chart.AppVersion` for default tag value
 
-## v3.3.0 - 2020-10-02
+## [v3.3.0] - 2020-10-02
 
 ### Changed
 
 - Upgraded image to _v3.28.0_
 
-## v3.2.2- 2020-10-01
+## [v3.2.3] - 2020-10-01
 
 ### Changed
 
 - Use custom Logback config with customizable retention
 
-## v3.2.2- 2020-09-30
+## [v3.2.2] - 2020-09-30
 
 ### Changed
 
 - Fixed configure script when on non-first runs
 
-## v3.2.1 - 2020-09-21
+## [v3.2.1] - 2020-09-21
 
 ### Changed
 
 - Allow boolean attributes to be set for tasks
 
-## v3.2.0 - 2020-09-04
+## [v3.2.0] - 2020-09-04
 
 ### Changed
 
 - Upgraded image to _v3.27.0_
 
-## v3.1.3 - 2020-09-02
+## [v3.1.3] - 2020-09-02
 
 ### Changed
 
-- n/a
+- N/A
 
-## v3.1.2 - 2020-08-17
+## [v3.1.2] - 2020-08-17
 
 ### Changed
 
 - Upgraded image to _v3.26.1_
 
-## v3.1.1 - 2020-08-11
+## [v3.1.1] - 2020-08-11
 
 ### Added
 
@@ -950,13 +960,13 @@
 
 - Replaced `envVars.jvmMaxDirectMemorySize` with `envVars.jvmAdditionalMemoryOptions`
 
-## v3.1.0 - 2020-08-11
+## [v3.1.0] - 2020-08-11
 
 ### Changed
 
 - Upgraded image to _v3.26.0_
 
-## v3.0.0 - 2020-08-05
+## [v3.0.0] - 2020-08-05
 
 ### Added
 
@@ -989,6 +999,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.19.0
 [v5.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.18.0
 [v5.17.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.17.1
 [v5.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.17.0
@@ -1043,3 +1054,70 @@ RELEASE LINKS
 [v4.32.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.32.0
 [v4.31.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.31.0
 [v4.30.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.30.0
+[v4.29.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.29.0
+[v4.28.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.28.0
+[v4.27.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.27.1
+[v4.27.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.27.0
+[v4.26.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.26.0
+[v4.25.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.25.0
+[v4.24.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.24.0
+[v4.23.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.23.0
+[v4.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.22.0
+[v4.21.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.21.1
+[v4.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.21.0
+[v4.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.20.0
+[v4.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.19.0
+[v4.18.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.18.1
+[v4.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.18.0
+[v4.17.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.17.0
+[v4.16.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.16.0
+[v4.15.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.15.0
+[v4.14.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.14.1
+[v4.14.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.14.0
+[v4.13.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.13.1
+[v4.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.13.0
+[v4.12.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.12.2
+[v4.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.12.1
+[v4.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.12.0
+[v4.11.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.11.1
+[v4.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.11.0
+[v4.10.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.10.2
+[v4.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.10.1
+[v4.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.10.0
+[v4.9.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.9.0
+[v4.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.8.0
+[v4.7.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.7.1
+[v4.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.7.0
+[v4.6.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.6.2
+[v4.6.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.6.1
+[v4.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.6.0
+[v4.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.5.0
+[v4.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.4.0
+[v4.3.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.3.1
+[v4.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.3.0
+[v4.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.2.1
+[v4.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.2.0
+[v4.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.1.0
+[v4.0.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.0.3
+[v4.0.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.0.2
+[v4.0.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.0.1
+[v4.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-4.0.0
+[v3.4.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.4.2
+[v3.4.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.4.1
+[v3.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.4.0
+[v3.3.6]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.6
+[v3.3.5]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.5
+[v3.3.4]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.4
+[v3.3.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.3
+[v3.3.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.2
+[v3.3.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.1
+[v3.3.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.3.0
+[v3.2.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.2.3
+[v3.2.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.2.2
+[v3.2.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.2.1
+[v3.2.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.2.0
+[v3.1.3]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.1.3
+[v3.1.2]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.1.2
+[v3.1.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.1.1
+[v3.1.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.1.0
+[v3.0.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-3.0.0
