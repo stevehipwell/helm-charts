@@ -106,7 +106,7 @@ plugins:
   - name: nexus-repository-composer
     url: https://repo1.maven.org/maven2/org/sonatype/nexus/plugins/nexus-repository-composer/0.0.29/nexus-repository-composer-0.0.29-bundle.kar
 
-chownDataDir: true 
+chownDataDir: true
 
 rootPassword:
   secret: nexus3-creds
@@ -120,6 +120,13 @@ config:
       anotherExample: annotation2
     podLabels:
       pod-label: test
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 1000m
+        memory: 128Mi
   anonymous:
     enabled: true
     roles:

@@ -356,7 +356,7 @@ config:
       fsGroup: 200
       seccompProfile:
         type: RuntimeDefault
-    # -- Security context for non-root containers.
+    # -- Security context for the config container containers.
     securityContext:
       privileged: false
       allowPrivilegeEscalation: false
@@ -367,6 +367,8 @@ config:
       capabilities:
         drop:
           - ALL
+    # -- Resources for the config container.
+    resources: {}
 
   anonymous:
     # -- If `true`, enable anonymous access.
