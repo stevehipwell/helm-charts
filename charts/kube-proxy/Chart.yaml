@@ -2,8 +2,8 @@ apiVersion: v2
 name: kube-proxy
 description: Helm chart for managing kube-proxy.
 type: application
-version: 0.0.8
-appVersion: 0.0.8
+version: 0.0.9
+appVersion: 0.0.9
 keywords:
   - kubernetes
   - kube-proxy
