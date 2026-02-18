@@ -329,6 +329,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.22.1
 | rule.instanceLabel | bool | `false` | If `true`, add a `thanos_rule` label to `<NAMESPACE>/<RULE_FULLNAME>` on a `Rule` metrics. |
 | rule.livenessProbe | object | See _values.yaml_ | Liveness probe configuration for the _Rule_ pod default container. |
 | rule.nodeSelector | object | `{}` | Node selector labels for scheduling the _Rule_ pod. |
+| rule.overrideQueryEndpoints | list | `[]` | Override query endpoints for the _Rule_ component (`--query`). |
 | rule.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Rule_ pod PVC. |
 | rule.persistence.annotations | object | `{}` | Annotations to add to the _Rule_ pod PVC. |
 | rule.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data. |
