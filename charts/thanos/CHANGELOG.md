@@ -14,6 +14,14 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `rule.overrideQueryEndpoints` value to allow overriding the _Rule_ component query endpoints (`--query`). ([#1313](https://github.com/stevehipwell/helm-charts/pull/1313)) _@shousper_
+
+### Fixed
+
+- Fixed the _Receive Ingestor_ `--receive.local-endpoint` DNS format. ([#1313](https://github.com/stevehipwell/helm-charts/pull/1313)) _@shousper_
+
 ## [v1.22.1] - 2025-12-10
 
 ### Added
