@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v1.23.0] - 2026-03-02
+
 ### Added
 
 - Added `rule.overrideQueryEndpoints` value to allow overriding the _Rule_ component query endpoints (`--query`). ([#1313](https://github.com/stevehipwell/helm-charts/pull/1313)) _@shousper_
+
+### Changed
+
+- Update the _Thanos_ OCI image to [v0.41.0](https://github.com/thanos-io/thanos/releases/tag/v0.41.0). ([#1335](https://github.com/stevehipwell/helm-charts/pull/1335)) _@stevehipwell_
 
 ### Fixed
 
@@ -604,6 +610,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.23.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.23.0
 [v1.22.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.1
 [v1.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.0
 [v1.21.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.21.1
