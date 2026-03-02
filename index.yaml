@@ -25868,6 +25868,42 @@ entries:
   - annotations:
       artifacthub.io/changes: |-
         - kind: added
+          description: "Added rule.overrideQueryEndpoints value to allow overriding the Rule component query endpoints (--query)."
+        - kind: changed
+          description: "Update the Thanos OCI image to v0.41.0."
+        - kind: fixed
+          description: "Fixed the Receive Ingestor --receive.local-endpoint DNS format."
+    apiVersion: v2
+    appVersion: 0.41.0
+    created: "2026-03-02T12:46:07.375336049Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 55190f9fa389ef32c6646ad072f3e3051ef13f874bcad1fc59a4dfa8670a8e80
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.23.0/thanos-1.23.0.tgz
+    version: 1.23.0
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Add support to explicitly set the automountServiceAccountToken field on all pods via the automountServiceAccountToken value."
     apiVersion: v2
     appVersion: 0.40.1
@@ -32073,4 +32109,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-03-02T11:53:58.375355856Z"
+generated: "2026-03-02T12:46:07.377667373Z"
