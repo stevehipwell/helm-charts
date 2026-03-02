@@ -16812,6 +16812,33 @@ entries:
   kube-proxy:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Switched default mode to nftables and updated oomScoreAdj to -998 to align with upstream defaults."
+    apiVersion: v2
+    appVersion: 0.0.9
+    created: "2026-03-02T11:53:58.372757848Z"
+    description: Helm chart for managing kube-proxy.
+    digest: 484b43f6aa670e04ab7f92574d4723af7080b9be550790bc382a8f2cf184eab1
+    home: https://kubernetes.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/kube-proxy/icon.png
+    keywords:
+    - kubernetes
+    - kube-proxy
+    - networking
+    - proxy
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: kube-proxy
+    sources:
+    - https://github.com/kubernetes/kubernetes/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/kube-proxy-0.0.9/kube-proxy-0.0.9.tgz
+    version: 0.0.9
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: fixed
           description: "Fixed validation/unwanted output in kube-proxy.image include  ([#1156](https://github.com/stevehipwell/helm-charts/pull/1156)) _@robertoriv_"
     apiVersion: v2
@@ -32046,4 +32073,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-02-10T13:27:48.6211116Z"
+generated: "2026-03-02T11:53:58.375355856Z"
