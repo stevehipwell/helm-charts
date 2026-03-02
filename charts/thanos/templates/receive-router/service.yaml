@@ -6,6 +6,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.receive.router.labels" . | nindent 4 }}
+  {{- with .Values.receive.router.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.receive.router.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

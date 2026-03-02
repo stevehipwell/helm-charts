@@ -104,6 +104,8 @@ compact:
   service:
     # -- Annotations to add to the _Compact_ service.
     annotations: {}
+    # -- Labels to add to the _Compact_ service.
+    labels: {}
     # -- HTTP port for the _Compact_ service.
     httpPort: 10902
 
@@ -249,6 +251,8 @@ query:
   service:
     # -- Annotations to add to the _Query_ service.
     annotations: {}
+    # -- Labels to add to the _Query_ service.
+    labels: {}
     # -- GRPC port for the _Query_ service.
     grpcPort: 10901
     # -- HTTP port for the _Query_ service.
@@ -423,6 +427,8 @@ queryFrontend:
   service:
     # -- Annotations to add to the _Query Frontend_ service.
     annotations: {}
+    # -- Labels to add to the _Query Frontend_ service.
+    labels: {}
     # -- HTTP port for the _Query Frontend_ service.
     httpPort: 10902
     # -- (string) Traffic distribution for the _Query Frontend_ service.
@@ -599,6 +605,8 @@ receive:
     service:
       # -- Annotations to add to the _Receive Ingestor_ service.
       annotations: {}
+      # -- Labels to add to the _Receive Ingestor_ service.
+      labels: {}
       # -- GRPC port for the _Receive Ingestor_ service.
       grpcPort: 10901
       # -- HTTP port for the _Receive Ingestor_ service.
@@ -755,6 +763,8 @@ receive:
     service:
       # -- Annotations to add to the _Receive Router_ service.
       annotations: {}
+      # -- Labels to add to the _Receive Router_ service
+      labels: {}
       # -- GRPC port for the _Receive Router_ service.
       grpcPort: 10901
       # -- HTTP port for the _Receive Router_ service.
@@ -966,6 +976,8 @@ rule:
   service:
     # -- Annotations to add to the _Rule_ service.
     annotations: {}
+    # -- Labels to add to the _Rule_ service
+    labels: {}
     # -- GRPC port for the _Rule_ service.
     grpcPort: 10901
     # -- HTTP port for the _Rule_ service.
@@ -1159,6 +1171,8 @@ storeGateway:
   service:
     # -- Annotations to add to the _Store Gateway_ service.
     annotations: {}
+    # -- Labels to add to the _Store Gateway_ service
+    labels: {}
     # -- GRPC port for the _Store Gateway_ service.
     grpcPort: 10901
     # -- HTTP port for the _Store Gateway_ service.
