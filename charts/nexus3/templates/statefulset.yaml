@@ -247,8 +247,10 @@ spec:
               name: temp
             - mountPath: /nexus-data
               name: data
+            {{- if .Values.logback.enabled -}}
             - mountPath: /opt/sonatype/nexus/etc/logback
               name: logback
+            {{- end }}
             - mountPath: /nexus-data/etc/nexus.properties
               name: properties
               subPath: nexus.properties
@@ -347,10 +349,12 @@ spec:
           configMap:
             name: {{ include "nexus3.scriptsConfigMapName" . }}
             defaultMode: 0555
+        {{- if .Values.logback.enabled -}}
         - name: logback
           configMap:
             name: {{ include "nexus3.logbackConfigMapName" . }}
             defaultMode: 0444
+        {{- end }}
         - name: properties
           configMap:
             name: {{ include "nexus3.propertiesConfigMapName" . }}
