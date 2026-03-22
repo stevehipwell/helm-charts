@@ -295,6 +295,8 @@ properties: []
 storeProperties: []
 
 logback:
+  # if enabled, deploy a logback config, see configmap-logback.yaml
+  enabled: true
   # -- Maximum history for log files.
   maxHistory: 30
 

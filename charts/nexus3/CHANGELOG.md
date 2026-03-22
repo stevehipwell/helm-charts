@@ -15,6 +15,16 @@
 
 ## [UNRELEASED]
 
+## [v5.20.0]
+
+### Added
+
+- introduce `logback.enabled` to be able to disable the logback configuration deployment. It is still enabled by defaul
+
+### Changed
+- 
+- nexus upgrade to `3.90.1`
+
 ## [v5.19.0] - 2026-02-10
 
 ### Added
