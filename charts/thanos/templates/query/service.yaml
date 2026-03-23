@@ -20,10 +20,16 @@ spec:
   ports:
     - name: grpc
       port: {{ .Values.query.service.grpcPort }}
+      {{- if .Values.query.service.type == "NodePort" }}
+      nodePort: {{ .Values.query.service.grpcNodePort }}
+      {{- end }}
       targetPort: grpc
     - name: http
       protocol: TCP
       port: {{ .Values.query.service.httpPort }}
+      {{- if .Values.query.service.type == "NodePort" }}
+      nodePort: {{ .Values.query.service.httpNodePort }}
+      {{- end }}
       targetPort: http
   selector:
     {{- include "thanos.query.selectorLabels" . | nindent 4 }}
