@@ -85,9 +85,29 @@ compact:
     enabled: true
     # -- (string) If specified override the default deduplication function.
     func:
+    # -- Labels to treat as a replica label for deduplication.
+    replicaLabels: []
 
   # -- **DEPRECATED** - If `true`, use the `penalty` deduplication function optimized for HA Prometheus replicas.
   replicaDeduplication: false
+
+  # -- How long to retain samples of various resolutions in bucket. 0d or empty means forever.
+  retentionResolution:
+    # -- How long to retain raw samples in bucket.
+    raw: 30d
+    # -- How long to retain samples of 5m resolution in bucket.
+    5m: 90d
+    # -- How long to retain samples of 1h resolution in bucket.
+    1h: 0d
+
+  # -- Number of goroutines to use when compacting blocks.
+  concurrency: 1
+
+  # -- Number of goroutines to use when downsampling blocks.
+  downsampleConcurrency: 1
+
+  # -- Time before a block marked for deletion is deleted from bucket.
+  deleteDelay: 48h
 
   serviceAccount:
     # -- If `true`, create a new `ServiceAccount` for the _Compact_ component.

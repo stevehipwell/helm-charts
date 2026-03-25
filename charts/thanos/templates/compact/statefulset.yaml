@@ -81,20 +81,41 @@ spec:
             - --objstore.config-file=/etc/thanos/objstore.yaml
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
-          {{- with .Values.autoGomemlimit.ratio }}
+            {{- with .Values.autoGomemlimit.ratio }}
             - {{ printf "--auto-gomemlimit.ratio=%s" . }}
-          {{- end }}
+            {{- end }}
           {{- end }}
           {{- if .Values.compact.deduplication.enabled }}
             - --compact.enable-vertical-compaction
-          {{- range (concat .Values.additionalReplicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
+            {{- range (concat .Values.additionalReplicaLabels (ternary (list "rule_replica") (list) .Values.rule.enabled ) (ternary (list "receive_replica") (list) .Values.receive.enabled )) | uniq }}
             - {{ printf "--deduplication.replica-label=%s" . }}
-          {{- end }}
-          {{- if .Values.compact.deduplication.func }}
+            {{- end }}
+            {{- if .Values.compact.deduplication.func }}
             - {{ printf "--deduplication.func=%s" .Values.compact.deduplication.func }}
-          {{- else if .Values.compact.replicaDeduplication }}
+            {{- else if .Values.compact.replicaDeduplication }}
             - --deduplication.func=penalty
+            {{- end }}
           {{- end }}
+          {{- if .Values.compact.retentionResolution }}
+            - {{ printf "--retention.resolution-raw=%s" (index .Values.compact.retentionResolution "raw" | default "0s") }}
+            - {{ printf "--retention.resolution-5m=%s" (index .Values.compact.retentionResolution "5m" | default "0s") }}
+            - {{ printf "--retention.resolution-1h=%s" (index .Values.compact.retentionResolution "1h" | default "0s") }}
+          {{- end }}
+          {{- if .Values.compact.concurrency }}
+            - {{ printf "--compact.concurrency=%d" (int .Values.compact.concurrency) }}
+          {{- end }}
+          {{- if .Values.compact.downsampleConcurrency }}
+            - {{ printf "--downsample.concurrency=%d" (int .Values.compact.downsampleConcurrency) }}
+          {{- end }}
+          {{- if .Values.compact.deleteDelay }}
+            - {{ printf "--delete-delay=%s" .Values.compact.deleteDelay }}
+          {{- end }}
+
+          {{- /* Loop over custom replica labels */ -}}
+          {{- if .Values.compact.deduplication.enabled }}
+            {{- range .Values.compact.deduplication.replicaLabels }}
+            - {{ printf "--deduplication.replica-label=%s" . }}
+            {{- end }}
           {{- end }}
           {{- with .Values.compact.extraArgs }}
             {{- toYaml . | nindent 12 }}
