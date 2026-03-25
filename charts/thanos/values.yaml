@@ -253,10 +253,10 @@ query:
     grpcPort: 10901
     # -- HTTP port for the _Query_ service.
     httpPort: 10902
-    # -- GRPC node port for the _Query_ service.
-    grpcNodePort: 10901
-    # -- HTTP node port for the _Query_ service.
-    httpNodePort: 10902
+    # -- (int) GRPC node port for the _Query_ service.
+    grpcNodePort: null
+    # -- (int) HTTP node port for the _Query_ service.
+    httpNodePort: null
     # -- (string) Traffic distribution for the _Query_ service.
     trafficDistribution:
     # -- Service type for the _Query_ service.

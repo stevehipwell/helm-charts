@@ -14,6 +14,9 @@
 
 ## [UNRELEASED]
 
+### Added
+- Added `nodePort` support for Query service GRPC and HTTP endpoints. ([#1344](https://github.com/stevehipwell/helm-charts/pull/1344)) _@Poil_
+
 ## [v1.23.0] - 2026-03-02
 
 ### Added
