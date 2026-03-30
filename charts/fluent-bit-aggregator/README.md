@@ -1,16 +1,12 @@
 # fluent-bit-aggregator
 
-![Version: 0.19.2](https://img.shields.io/badge/Version-0.19.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.2.2](https://img.shields.io/badge/AppVersion-4.2.2-informational?style=flat-square)
+> **:exclamation: This Helm Chart is deprecated!**
+
+![Version: 0.19.3](https://img.shields.io/badge/Version-0.19.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 4.2.3](https://img.shields.io/badge/AppVersion-4.2.3-informational?style=flat-square)
 
 Helm chart for Fluent Bit running as an aggregation stateful set.
 
 **Homepage:** <https://fluentbit.io/>
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| stevehipwell | <steve.hipwell@gmail.com> | <https://github.com/stevehipwell> |
 
 ## Source Code
 
@@ -24,7 +20,7 @@ Helm chart for Fluent Bit running as an aggregation stateful set.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.19.2
+helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator --version 0.19.3
 ```
 
 #### Verification
@@ -32,7 +28,7 @@ helm upgrade --install fluent-bit-aggregator oci://ghcr.io/stevehipwell/helm-cha
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.19.2
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/fluent-bit-aggregator:0.19.3
 ```
 
 ### Non-OCI Repository
@@ -41,7 +37,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.19.2
+helm upgrade --install fluent-bit-aggregator stevehipwell/fluent-bit-aggregator --version 0.19.3
 ```
 
 ## Values
