@@ -58,7 +58,7 @@ jobs:
 
   validate:
     name: Validate
-    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@3a5880ad6bd86b2b0fce1391c465ed90a70ba6a3 # v0.10.0
+    uses: action-stars/helm-workflows/.github/workflows/validate.yaml@6483fd1a69a65d6cb45c583d9224649f81b56fea # 3a5880ad6bd86b2b0fce1391c465ed90a70ba6a3 # v0.10.0
     needs: setup
     if: needs.setup.outputs.changed == 'true'
     permissions:
@@ -78,20 +78,24 @@ jobs:
 
   check:
     name: Check
+    if: always()
     needs:
       - setup
       - validate
-    if: always()
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     steps:
       - name: Check
+        env:
+          INPUT_RESULTS: ${{ join(needs.*.result, ' ') }}
         run: |
           set -euo pipefail
-
-          if [[ "${{ needs.validate.result }}" == "failure" ]] || [[ "${{ needs.validate.result }}" == "cancelled" ]]; then
-            echo "::error::Workflow failed!"
-            exit 1
-          fi
+          read -a results <<< "${INPUT_RESULTS}"
+          for result in "${results[@]}"; do
+            if [[ "${result}" == "failure" ]] || [[ "${result}" == "cancelled" ]]; then
+              echo "::error::Workflow failed!"
+              exit 1
+            fi
+          done

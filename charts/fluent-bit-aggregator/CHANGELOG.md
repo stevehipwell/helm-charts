@@ -12,7 +12,14 @@
 ### Security - In case of vulnerabilities.
 -->
 
-## [UNRELEASED]
+> [!WARNING]
+> This chart has been deprecated and is no longer maintained, please use the official [Fluent Bit Aggregator Helm chart](https://artifacthub.io/packages/helm/fluent-bit-aggregator/fluent-bit-aggregator) instead.
+
+## [v0.19.3] - 2026-03-30
+
+### Changed
+
+- Update _Fluent Bit_ OCI image to [v4.2.3](https://github.com/fluent/fluent-bit/releases/tag/v4.2.3). ([#1351](https://github.com/stevehipwell/helm-charts/pull/1351)) _@stevehipwell_
 
 ## [v0.19.2] - 2026-01-02
 
@@ -502,7 +509,7 @@
 <!--
 RELEASE LINKS
 -->
-[UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluent-bit-aggregator
+[v0.19.3]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.19.3
 [v0.19.2]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.19.2
 [v0.19.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.19.1
 [v0.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluent-bit-aggregator-0.19.0
