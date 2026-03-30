@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.6.0] - 2026-03-30
+
+### Changed
+
+- Update _Fluentd Aggregator_ OCI image to [v3.6.0](https://github.com/stevehipwell/fluentd-aggregator/releases/tag/v3.6.0) (_Fluentd_ [v1.19.2](https://github.com/fluent/fluentd/releases/tag/v1.19.2)). ([#1354](https://github.com/stevehipwell/helm-charts/pull/1354)) _@stevehipwell_
+
 ## [v5.5.1] - 2026-03-02
 
 ### Changed
@@ -658,6 +664,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.6.0
 [v5.5.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.5.1
 [v5.5.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.5.0
 [v5.4.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.4.0
