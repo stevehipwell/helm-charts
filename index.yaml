@@ -31338,6 +31338,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
+          description: "Explicitly set automountServiceAccountToken to true for the service accounts."
+        - kind: changed
+          description: "Update the Vertical Pod Autoscaler OCI image version to v1.5.1."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscaler
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.6.0
+    created: "2026-03-30T11:39:30.740747477Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 56a756e6c3957969ca459d6b972c05357a27529d962132d527ba466d30550f39
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    - vertical
+    - vpa
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.11.0/vertical-pod-autoscaler-1.11.0.tgz
+    version: 1.11.0
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
           description: "Update the Vertical Pod Autoscaler OCI image version to v1.5.1."
       artifacthub.io/crds: |
         - kind: VerticalPodAutoscalerCheckpoint
@@ -32167,4 +32208,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-03-30T11:17:23.531139734Z"
+generated: "2026-03-30T11:39:30.742223458Z"
