@@ -14,9 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.11.0] - 2026-03-30
+
 ### Changed
 
 - Explicitly set `automountServiceAccountToken` to `true` for the service accounts. ([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
+- Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.5.1`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.5.1). ([#1349](https://github.com/stevehipwell/helm-charts/pull/1349)) _@stevehipwell_
 
 ## [v1.10.1] - 2025-10-07
 
@@ -178,6 +181,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.11.0
 [v1.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.10.1
 [v1.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.10.0
 [v1.9.3]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.9.3
