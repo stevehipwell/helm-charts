@@ -1,6 +1,5 @@
 # PlantUML Helm Chart Changelog
 
-<!-- markdownlint-disable-next-line MD052 -->
 > [!NOTE]
 > All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 >
@@ -16,6 +15,12 @@
 -->
 
 ## [UNRELEASED]
+
+## [v3.45.0] - 2026-03-30
+
+### Changed
+
+- Update the _PlantUML_ OCI image to [v1.2026.2](https://github.com/plantuml/plantuml-server/releases/tag/v1.2026.2). ([#1347](https://github.com/stevehipwell/helm-charts/pull/1347)) _@stevehipwell_
 
 ## [v3.44.0] - 2026-02-09
 
@@ -508,6 +513,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/plantuml
+[v3.45.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.45.0
 [v3.44.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.44.0
 [v3.43.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.43.0
 [v3.42.0]: https://github.com/stevehipwell/helm-charts/releases/tag/plantuml-3.42.0
