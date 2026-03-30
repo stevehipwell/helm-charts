@@ -247,8 +247,12 @@ spec:
               name: temp
             - mountPath: /nexus-data
               name: data
-            - mountPath: /opt/sonatype/nexus/etc/logback
+            - mountPath: /opt/sonatype/nexus/etc/logback/logback.xml
               name: logback
+              subPath: logback.xml
+            - mountPath: /nexus-data/etc/logback/logback-tasklogfile-appender-override.xml
+              name: logback
+              subPath: logback-tasklogfile-appender-override.xml
             - mountPath: /nexus-data/etc/nexus.properties
               name: properties
               subPath: nexus.properties
