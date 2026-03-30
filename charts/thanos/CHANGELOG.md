@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+- Added native support for Compact flags: `retentionResolution` (raw, 5m, 1h), `concurrency`, `downsampleConcurrency`, and `deleteDelay`. ([#1343](https://github.com/stevehipwell/helm-charts/pull/1343)) _@Poil_
+- Added support for `replicaLabels` as an array in the Compact component for easier deduplication management. ([#1343](https://github.com/stevehipwell/helm-charts/pull/1343)) _@Poil_
+
 ## [v1.23.0] - 2026-03-02
 
 ### Added

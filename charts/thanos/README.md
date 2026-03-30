@@ -58,8 +58,12 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | compact.affinity | object | `{}` | Affinity settings for scheduling the _Compact_ pod. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | compact.automountServiceAccountToken | bool | `nil` | If the service account token should be mounted to the _Compact_ pod, this overrides `compact.serviceAccount.automountToken`. |
+| compact.concurrency | int | `1` | Number of goroutines to use when compacting blocks. |
 | compact.deduplication.enabled | bool | `true` | If `true`, enable deduplication via the _Compact_ component. |
 | compact.deduplication.func | string | `nil` | If specified override the default deduplication function. |
+| compact.deduplication.replicaLabels | list | `[]` | Labels to treat as a replica label for deduplication. |
+| compact.deleteDelay | string | `"48h"` | Time before a block marked for deletion is deleted from bucket. |
+| compact.downsampleConcurrency | int | `1` | Number of goroutines to use when downsampling blocks. |
 | compact.enabled | bool | `false` | If `true`, create the _Thanos Compact_ component. |
 | compact.extraArgs | list | `[]` | Additional args for the _Compact_ pod default container. |
 | compact.extraEnv | list | `[]` | Additional environment variables for the _Compact_ pod default container. |
@@ -82,6 +86,10 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | compact.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Compact_ pod default container. |
 | compact.replicaDeduplication | bool | `false` | **DEPRECATED** - If `true`, use the `penalty` deduplication function optimized for HA Prometheus replicas. |
 | compact.resources | object | `{}` | Resources for the _Compact_ pod default container. |
+| compact.retentionResolution | object | `{"1h":"0d","5m":"90d","raw":"30d"}` | How long to retain samples of various resolutions in bucket. 0d or empty means forever. |
+| compact.retentionResolution.1h | string | `"0d"` | How long to retain samples of 1h resolution in bucket. |
+| compact.retentionResolution.5m | string | `"90d"` | How long to retain samples of 5m resolution in bucket. |
+| compact.retentionResolution.raw | string | `"30d"` | How long to retain raw samples in bucket. |
 | compact.securityContext | object | See _values.yaml_ | Security context for the _Compact_ pod default container. |
 | compact.service.annotations | object | `{}` | Annotations to add to the _Compact_ service. |
 | compact.service.httpPort | int | `10902` | HTTP port for the _Compact_ service. |
