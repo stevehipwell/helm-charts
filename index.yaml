@@ -8756,6 +8756,36 @@ entries:
       artifacthub.io/alternativeName: fluentd
       artifacthub.io/changes: |-
         - kind: changed
+          description: "Update Fluentd Aggregator OCI image to v3.6.0 (Fluentd v1.19.2)."
+    apiVersion: v2
+    appVersion: 3.6.0
+    created: "2026-03-30T17:10:48.416240473Z"
+    description: Helm chart for Fluentd running as an aggregation StatefulSet and
+      using the fluent-plugin-route router.
+    digest: 706e1090930ca7c1e3e80cfe9786304f84089f26d60e7a25589baedad7f54633
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/fluentd-aggregator/icon.png
+    keywords:
+    - fluent
+    - fluentd
+    - logging
+    - aggregator
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: fluentd-aggregator
+    sources:
+    - https://github.com/stevehipwell/fluentd-aggregator
+    - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/fluentd-aggregator-5.6.0/fluentd-aggregator-5.6.0.tgz
+    version: 5.6.0
+  - annotations:
+      artifacthub.io/alternativeName: fluentd
+      artifacthub.io/changes: |-
+        - kind: changed
           description: "Update Fluentd Aggregator OCI image to v3.5.1 (Fluentd v1.19.2)."
     apiVersion: v2
     appVersion: 3.5.1
@@ -32323,4 +32353,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-03-30T15:42:11.354722319Z"
+generated: "2026-03-30T17:10:48.417681Z"
