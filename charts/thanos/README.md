@@ -145,7 +145,9 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | query.resources | object | `{}` | Resources for the _Query_ pod default container. |
 | query.securityContext | object | See _values.yaml_ | Security context for the _Query_ pod default container. |
 | query.service.annotations | object | `{}` | Annotations to add to the _Query_ service. |
+| query.service.grpcNodePort | int | `nil` | GRPC node port for the _Query_ service. |
 | query.service.grpcPort | int | `10901` | GRPC port for the _Query_ service. |
+| query.service.httpNodePort | int | `nil` | HTTP node port for the _Query_ service. |
 | query.service.httpPort | int | `10902` | HTTP port for the _Query_ service. |
 | query.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query_ service. |
 | query.service.type | string | `"ClusterIP"` | Service type for the _Query_ service. |
