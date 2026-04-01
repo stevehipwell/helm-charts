@@ -77,7 +77,7 @@ spec:
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
-            - {{ printf "--auto-gomemlimit.ratio=%s" . }}
+            - {{ printf "--auto-gomemlimit.ratio=%v" . }}
           {{- end }}
           {{- end }}
             - --receive.hashrings-file=/etc/thanos/hashrings.json
