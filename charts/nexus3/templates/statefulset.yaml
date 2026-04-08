@@ -83,6 +83,10 @@ spec:
               name: data
             - mountPath: /nexus-data/secrets/cas
               name: ca-certs
+          {{- with .Values.initResources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- end }}
       {{- if .Values.plugins }}
         - name: download-plugins
@@ -103,6 +107,10 @@ spec:
               subPath: download-plugins.sh
             - mountPath: /deploy
               name: deploy
+          {{- with .Values.initResources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- end }}
       {{- with .Values.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
@@ -126,6 +134,10 @@ spec:
               subPath: chown-data-dir.sh
             - mountPath: /nexus-data
               name: data
+          {{- with .Values.initResources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- end }}
       {{- if (semverCompare ">= 1.29-0" .Capabilities.KubeVersion.Version) }}
         - name: tail-request-log
