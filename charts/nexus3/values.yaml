@@ -253,6 +253,9 @@ resources: {}
 #     cpu: 100m
 #     memory: 128Mi
 
+# -- Resources for the init containers (not sidecars).
+initResources: {}
+
 # -- Extra init container to run before the default container.
 extraInitContainers: []
 
