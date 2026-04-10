@@ -14,12 +14,16 @@
 
 ## [UNRELEASED]
 
+### Changed
+
+- Add opt-in aggregate `ClusterRoles` that extend the existing `ClusterRoles` `view`, `edit` and `admin` to permit view/edit operations on `VerticalPodAutoscaler` resources. Enable via `rbac.createAggregateRoles`. ([#1360](https://github.com/stevehipwell/helm-charts/pull/1360)) _@BWagenerGenerali_
+
 ## [v1.11.0] - 2026-03-30
 
 ### Changed
 
 - Explicitly set `automountServiceAccountToken` to `true` for the service accounts. ([#1296](https://github.com/stevehipwell/helm-charts/pull/1296)) _@stevehipwell_
-- Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.5.1`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.5.1). ([#1349](https://github.com/stevehipwell/helm-charts/pull/1349)) _@stevehipwell_
+- Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.6.0`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.6.0). ([#1349](https://github.com/stevehipwell/helm-charts/pull/1349)) _@stevehipwell_
 
 ## [v1.10.1] - 2025-10-07
 
