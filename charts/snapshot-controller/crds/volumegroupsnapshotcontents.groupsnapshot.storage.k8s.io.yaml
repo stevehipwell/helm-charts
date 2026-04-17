@@ -155,9 +155,9 @@ spec:
                   type: object
                   x-kubernetes-validations:
                     - message: volumeHandles is required once set
-                      rule: '!has(oldSelf.volumeHandles) || has(self.volumeHandles)'
+                      rule: "!has(oldSelf.volumeHandles) || has(self.volumeHandles)"
                     - message: groupSnapshotHandles is required once set
-                      rule: '!has(oldSelf.groupSnapshotHandles) || has(self.groupSnapshotHandles)'
+                      rule: "!has(oldSelf.groupSnapshotHandles) || has(self.groupSnapshotHandles)"
                     - message: exactly one of volumeHandles and groupSnapshotHandles must be set
                       rule: (has(self.volumeHandles) && !has(self.groupSnapshotHandles)) || (!has(self.volumeHandles) && has(self.groupSnapshotHandles))
                 volumeGroupSnapshotClassName:
