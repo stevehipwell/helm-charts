@@ -432,7 +432,7 @@ spec:
                     type: object
                     x-kubernetes-validations:
                       - message: networks/nodes peer cannot be set with namedPorts since there are no namedPorts for networks/nodes
-                        rule: '!(self.to.exists(peer, has(peer.networks) || has(peer.nodes)) && has(self.ports) && self.ports.exists(port, has(port.namedPort)))'
+                        rule: "!(self.to.exists(peer, has(peer.networks) || has(peer.nodes)) && has(self.ports) && self.ports.exists(port, has(port.namedPort)))"
                   maxItems: 100
                   type: array
                 ingress:

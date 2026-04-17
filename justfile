@@ -1,13 +1,16 @@
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
 
 default:
-  just --list
+    just --list
 
-fmt:
-  rumdl fmt --fix
+mdfmt:
+    rumdl fmt --fix
 
-lint:
-  rumdl check .
+mdlint:
+    rumdl check .
+
+yamlfmt:
+    yamlfmt -continue_on_error .
 
 docs:
-  helm-docs --template-files=./_templates.gotmpl --template-files=./_chart-readme.md.gotmpl
+    helm-docs --template-files=./_templates.gotmpl --template-files=./_chart-readme.md.gotmpl
