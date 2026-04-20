@@ -17,6 +17,8 @@ commonLabels: {}
 rbac:
   # -- If `true`, create `ClusterRole` & `ClusterRoleBinding` resources to enable access to the Kubernetes API.
   create: true
+  # -- If `true`, create aggregated `ClusterRoles` that extend the existing `ClusterRoles` `view`, `edit` and `admin` to permit view/edit operations on `VerticalPodAutoscaler` resources; Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
+  createAggregateRoles: false
 
 serviceMonitor:
   # -- If `true`, create a `ServiceMonitor` to support collecting metrics via the _Prometheus Operator_.

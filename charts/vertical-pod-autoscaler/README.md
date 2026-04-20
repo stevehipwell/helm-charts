@@ -96,6 +96,7 @@ helm upgrade --install vertical-pod-autoscaler stevehipwell/vertical-pod-autosca
 | logLevel | int | `4` | Log level for all components. |
 | nameOverride | string | `nil` | Override the name of the chart. |
 | rbac.create | bool | `true` | If `true`, create `ClusterRole` & `ClusterRoleBinding` resources to enable access to the Kubernetes API. |
+| rbac.createAggregateRoles | bool | `false` | If `true`, create aggregated `ClusterRoles` that extend the existing `ClusterRoles` `view`, `edit` and `admin` to permit view/edit operations on `VerticalPodAutoscaler` resources; Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles |
 | recommender.affinity | object | `{}` | Affinity settings for scheduling the _Recommender_ component. If an explicit label selector is not provided for pod affinity or pod anti-affinity one will be created from the pod selector labels. |
 | recommender.extraArgs | list | `[]` | Additional args for the _Recommender_ default container. |
 | recommender.extraEnv | list | `[]` | Additional environment variables for the _Recommender_ default container. |
