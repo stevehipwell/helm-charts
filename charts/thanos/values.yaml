@@ -831,6 +831,8 @@ receive:
       httpPort: 10902
       # -- HTTP remote write port for the _Receive Router_ service.
       httpRemoteWritePort: 19291
+      # -- (string) Traffic distribution for the _Receive Router_ service.
+      trafficDistribution:
       # -- Service type for the _Receive Router_ service.
       type: ClusterIP
 
@@ -1060,6 +1062,8 @@ rule:
     grpcPort: 10901
     # -- HTTP port for the _Rule_ service.
     httpPort: 10902
+    # -- (string) Traffic distribution for the _Rule_ service.
+    trafficDistribution:
     # -- Service type for the _Rule_ service.
     type: ClusterIP
 
