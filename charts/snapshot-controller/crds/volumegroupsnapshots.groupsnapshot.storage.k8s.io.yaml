@@ -138,9 +138,9 @@ spec:
                   type: object
                   x-kubernetes-validations:
                     - message: selector is required once set
-                      rule: '!has(oldSelf.selector) || has(self.selector)'
+                      rule: "!has(oldSelf.selector) || has(self.selector)"
                     - message: volumeGroupSnapshotContentName is required once set
-                      rule: '!has(oldSelf.volumeGroupSnapshotContentName) || has(self.volumeGroupSnapshotContentName)'
+                      rule: "!has(oldSelf.volumeGroupSnapshotContentName) || has(self.volumeGroupSnapshotContentName)"
                     - message: exactly one of selector and volumeGroupSnapshotContentName must be set
                       rule: (has(self.selector) && !has(self.volumeGroupSnapshotContentName)) || (!has(self.selector) && has(self.volumeGroupSnapshotContentName))
                 volumeGroupSnapshotClassName:

@@ -26,8 +26,6 @@ You can then run `helm search repo stevehipwell` to see the charts.
 
 ## Charts
 
-- [fluent-bit-aggregator](./charts/fluent-bit-aggregator/README.md)
-- [fluent-bit-collector](./charts/fluent-bit-collector/README.md)
 - [fluentd-aggregator](./charts/fluentd-aggregator/README.md)
 - [k8s-resources](./charts/k8s-resources/README.md)
 - [kube-proxy](./charts/kube-proxy/README.md)

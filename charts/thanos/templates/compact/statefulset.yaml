@@ -82,7 +82,7 @@ spec:
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
-            - {{ printf "--auto-gomemlimit.ratio=%s" . }}
+            - {{ printf "--auto-gomemlimit.ratio=%v" . }}
           {{- end }}
           {{- end }}
           {{- if .Values.compact.deduplication.enabled }}

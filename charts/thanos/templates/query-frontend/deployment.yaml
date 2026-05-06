@@ -71,7 +71,7 @@ spec:
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
-            - {{ printf "--auto-gomemlimit.ratio=%s" . }}
+            - {{ printf "--auto-gomemlimit.ratio=%v" . }}
           {{- end }}
             {{- end }}
             - {{ printf "--query-frontend.downstream-url=http://%s.%s.svc.%s:%d" (include "thanos.query.fullname" .) .Release.Namespace .Values.clusterDomain (int .Values.query.service.httpPort) }}

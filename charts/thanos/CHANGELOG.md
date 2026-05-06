@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) _@Poil_
+
 ## [v1.23.0] - 2026-03-02
 
 ### Added
