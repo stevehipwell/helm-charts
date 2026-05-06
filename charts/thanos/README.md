@@ -85,6 +85,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | compact.securityContext | object | See _values.yaml_ | Security context for the _Compact_ pod default container. |
 | compact.service.annotations | object | `{}` | Annotations to add to the _Compact_ service. |
 | compact.service.httpPort | int | `10902` | HTTP port for the _Compact_ service. |
+| compact.service.labels | object | `{}` | Labels to add to the _Compact_ service. |
 | compact.serviceAccount.annotations | object | `{}` | Annotations to add to the _Compact_ service account. |
 | compact.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Compact_ service account. |
 | compact.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Compact_ component. |
@@ -147,6 +148,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | query.service.annotations | object | `{}` | Annotations to add to the _Query_ service. |
 | query.service.grpcPort | int | `10901` | GRPC port for the _Query_ service. |
 | query.service.httpPort | int | `10902` | HTTP port for the _Query_ service. |
+| query.service.labels | object | `{}` | Labels to add to the _Query_ service. |
 | query.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query_ service. |
 | query.service.type | string | `"ClusterIP"` | Service type for the _Query_ service. |
 | query.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query_ service account. |
@@ -193,6 +195,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | queryFrontend.securityContext | object | See _values.yaml_ | Security context for the _Query Frontend_ pod default container. |
 | queryFrontend.service.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service. |
 | queryFrontend.service.httpPort | int | `10902` | HTTP port for the _Query Frontend_ service. |
+| queryFrontend.service.labels | object | `{}` | Labels to add to the _Query Frontend_ service. |
 | queryFrontend.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query Frontend_ service. |
 | queryFrontend.service.type | string | `"ClusterIP"` | Service type for the _Query Frontend_ service. |
 | queryFrontend.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service account. |
@@ -239,6 +242,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.ingestor.service.grpcPort | int | `10901` | GRPC port for the _Receive Ingestor_ service. |
 | receive.ingestor.service.httpPort | int | `10902` | HTTP port for the _Receive Ingestor_ service. |
 | receive.ingestor.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Ingestor_ service. |
+| receive.ingestor.service.labels | object | `{}` | Labels to add to the _Receive Ingestor_ service. |
 | receive.ingestor.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Ingestor_ service account. |
 | receive.ingestor.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Receive Ingestor_ service account. |
 | receive.ingestor.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Receive Ingestor_ component. |
@@ -288,6 +292,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.router.service.grpcPort | int | `10901` | GRPC port for the _Receive Router_ service. |
 | receive.router.service.httpPort | int | `10902` | HTTP port for the _Receive Router_ service. |
 | receive.router.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Router_ service. |
+| receive.router.service.labels | object | `{}` | Labels to add to the _Receive Router_ service |
 | receive.router.service.type | string | `"ClusterIP"` | Service type for the _Receive Router_ service. |
 | receive.router.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Router_ service account. |
 | receive.router.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Receive Router_ service account. |
@@ -356,6 +361,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | rule.service.annotations | object | `{}` | Annotations to add to the _Rule_ service. |
 | rule.service.grpcPort | int | `10901` | GRPC port for the _Rule_ service. |
 | rule.service.httpPort | int | `10902` | HTTP port for the _Rule_ service. |
+| rule.service.labels | object | `{}` | Labels to add to the _Rule_ service |
 | rule.service.type | string | `"ClusterIP"` | Service type for the _Rule_ service. |
 | rule.serviceAccount.annotations | object | `{}` | Annotations to add to the _Rule_ service account. |
 | rule.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Rule_ service account. |
@@ -405,6 +411,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | storeGateway.service.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service. |
 | storeGateway.service.grpcPort | int | `10901` | GRPC port for the _Store Gateway_ service. |
 | storeGateway.service.httpPort | int | `10902` | HTTP port for the _Store Gateway_ service. |
+| storeGateway.service.labels | object | `{}` | Labels to add to the _Store Gateway_ service |
 | storeGateway.service.trafficDistribution | string | `nil` | Traffic distribution for the _Store Gateway_ service. |
 | storeGateway.serviceAccount.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service account. |
 | storeGateway.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Store Gateway_ service account. |
