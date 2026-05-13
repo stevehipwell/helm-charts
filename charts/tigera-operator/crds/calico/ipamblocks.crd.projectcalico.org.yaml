@@ -26,6 +26,9 @@ spec:
               properties:
                 affinity:
                   type: string
+                affinityClaimTime:
+                  format: date-time
+                  type: string
                 allocations:
                   items:
                     type: integer
@@ -36,6 +39,10 @@ spec:
                 attributes:
                   items:
                     properties:
+                      alternateOwnerAttrs:
+                        additionalProperties:
+                          type: string
+                        type: object
                       handle_id:
                         type: string
                       secondary:
