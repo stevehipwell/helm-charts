@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `service.labels` value to allow setting additional labels on service resources for the _Compact_, _Query_, _Query Frontend_, _Receive Ingestor_, _Receive Router_, and _Rule_ components.
+
 ### Fixed
 
 - Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) _@Poil_

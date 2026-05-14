@@ -7,6 +7,9 @@ metadata:
   labels:
     {{- include "thanos.rule.labels" . | nindent 4 }}
     prometheus.io/service-monitor: "false"
+  {{- with .Values.rule.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.rule.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
