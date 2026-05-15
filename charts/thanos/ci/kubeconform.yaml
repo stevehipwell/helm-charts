@@ -24,6 +24,10 @@ compact:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test
@@ -112,6 +116,8 @@ queryFrontend:
     ingressClassName: test
     hosts:
       - query.chart-example.local
+    grpcHosts:
+      - query-grpc.chart-example.local
     tls:
       - hosts:
           - query.chart-example.local
@@ -161,6 +167,10 @@ receive:
 
     persistence:
       enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
     resources:
       requests:
@@ -265,6 +275,10 @@ rule:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test
@@ -315,6 +329,10 @@ storeGateway:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test
