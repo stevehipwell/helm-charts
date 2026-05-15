@@ -190,6 +190,8 @@ compact:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Compact_ pod data.
     enabled: false
+    # -- Labels to add to the _Compact_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Compact_ pod PVC.
     annotations: {}
     # -- Access mode for the _Compact_ pod PVC.
@@ -271,6 +273,12 @@ query:
     # @default -- See _values.yaml_
     hosts: []
     #   - chart-example.local
+    # -- Path for the _Query_ service gRPC ingress rules.
+    grpcPath: /
+    # -- Hosts for the _Query_ service gRPC ingress rules.
+    # @default -- See _values.yaml_
+    grpcHosts: []
+    #   - chart-example-grpc.local
     # -- TLS configuration for the _Query_ service ingress.
     # @default -- See _values.yaml_
     tls: []
@@ -708,6 +716,8 @@ receive:
     persistence:
       # -- If `true`, create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data.
       enabled: false
+      # -- Labels to add to the _Receive Ingestor_ pod PVC.
+      labels: {}
       # -- Annotations to add to the _Receive Ingestor_ pod PVC.
       annotations: {}
       # -- Access mode for the _Receive Ingestor_ pod PVC.
@@ -1092,6 +1102,8 @@ rule:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data.
     enabled: false
+    # -- Labels to add to the _Rule_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Rule_ pod PVC.
     annotations: {}
     # -- Access mode for the _Rule_ pod PVC.
@@ -1271,6 +1283,8 @@ storeGateway:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Store Gateway_ pod data.
     enabled: false
+    # -- Labels to add to the _Store Gateway_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Store Gateway_ pod PVC.
     annotations: {}
     # -- Access mode for the _Store Gateway_ pod PVC.

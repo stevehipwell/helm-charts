@@ -156,6 +156,9 @@ spec:
         name: data
         labels:
           {{- include "thanos.receive.ingestor.selectorLabels" . | nindent 10 }}
+        {{- with .Values.receive.ingestor.persistence.labels }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.receive.ingestor.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

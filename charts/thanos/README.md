@@ -71,6 +71,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | compact.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Compact_ pod PVC. |
 | compact.persistence.annotations | object | `{}` | Annotations to add to the _Compact_ pod PVC. |
 | compact.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Compact_ pod data. |
+| compact.persistence.labels | object | `{}` | Labels to add to the _Compact_ pod PVC. |
 | compact.persistence.retainDeleted | bool | `true` | If `true`, retain the _Compact_ PVC after the pod is deleted. |
 | compact.persistence.retainScaled | bool | `true` | If `true`, retain the _Compact_ PVC after the pod is scaled down. |
 | compact.persistence.size | string | `"8Gi"` | Size for the _Compact_ pod PVC. |
@@ -125,6 +126,8 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | query.httpPort | int | `10902` | HTTP port used by the _Query_ pod default container. |
 | query.ingress.annotations | object | `{}` | Annotations to add to the _Query_ service ingress. |
 | query.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Query_ service. |
+| query.ingress.grpcHosts | list | See _values.yaml_ | Hosts for the _Query_ service gRPC ingress rules. |
+| query.ingress.grpcPath | string | `"/"` | Path for the _Query_ service gRPC ingress rules. |
 | query.ingress.hosts | list | See _values.yaml_ | Hosts for the _Query_ service ingress. |
 | query.ingress.ingressClassName | string | `nil` | Ingress class name for the _Query_ service ingress. |
 | query.ingress.path | string | `"/"` | Path for the _Query_ service ingress. |
@@ -219,6 +222,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.ingestor.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Receive Ingestor_ pod PVC. |
 | receive.ingestor.persistence.annotations | object | `{}` | Annotations to add to the _Receive Ingestor_ pod PVC. |
 | receive.ingestor.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data. |
+| receive.ingestor.persistence.labels | object | `{}` | Labels to add to the _Receive Ingestor_ pod PVC. |
 | receive.ingestor.persistence.retainDeleted | bool | `true` | If `true`, retain the _Receive Ingestor_ PVC after the pod is deleted. |
 | receive.ingestor.persistence.retainScaled | bool | `true` | If `true`, retain the _Receive Ingestor_ PVC after the pod is scaled down. |
 | receive.ingestor.persistence.size | string | `"8Gi"` | Size for the _Receive Ingestor_ pod PVC. |
@@ -333,6 +337,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | rule.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Rule_ pod PVC. |
 | rule.persistence.annotations | object | `{}` | Annotations to add to the _Rule_ pod PVC. |
 | rule.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data. |
+| rule.persistence.labels | object | `{}` | Labels to add to the _Rule_ pod PVC. |
 | rule.persistence.retainDeleted | bool | `true` | If `true`, retain the _Rule_ PVC after the pod is deleted. |
 | rule.persistence.retainScaled | bool | `true` | If `true`, retain the _Rule_ PVC after the pod is scaled down. |
 | rule.persistence.size | string | `"8Gi"` | Size for the _Rule_ pod PVC. |
@@ -386,6 +391,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | storeGateway.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode for the _Store Gateway_ pod PVC. |
 | storeGateway.persistence.annotations | object | `{}` | Annotations to add to the _Store Gateway_ pod PVC. |
 | storeGateway.persistence.enabled | bool | `false` | If `true`, create a `PersistentVolumeClaim` for the _Store Gateway_ pod data. |
+| storeGateway.persistence.labels | object | `{}` | Labels to add to the _Store Gateway_ pod PVC. |
 | storeGateway.persistence.retainDeleted | bool | `true` | If `true`, retain the _Store Gateway_ PVC after the pod is deleted. |
 | storeGateway.persistence.retainScaled | bool | `true` | If `true`, retain the _Store Gateway_ PVC after the pod is scaled down. |
 | storeGateway.persistence.size | string | `"8Gi"` | Size for the _Store Gateway_ pod PVC. |

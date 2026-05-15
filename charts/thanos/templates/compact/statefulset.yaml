@@ -157,6 +157,9 @@ spec:
         name: data
         labels:
           {{- include "thanos.compact.selectorLabels" . | nindent 10 }}
+        {{- with .Values.compact.persistence.labels }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.compact.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}
