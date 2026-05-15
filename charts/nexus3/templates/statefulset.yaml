@@ -217,7 +217,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: INSTALL4J_ADD_VM_PARAMS
-              value: {{ printf "-Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs%s %s" (ternary " -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts" "" .Values.caCerts.enabled) .Values.install4jAddVmParams }}
+              value: {{ printf "-Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs -Dlogback.maxHistory=%d -Dlogback.access.maxHistory=%d%s %s" (.Values.logback.maxHistory | int) (.Values.logback.maxHistory | int) (ternary " -Djavax.net.ssl.trustStore=${NEXUS_DATA}/keystores/cacerts" "" .Values.caCerts.enabled) .Values.install4jAddVmParams }}
           {{- if .Values.rootPassword.secret }}
             - name: NEXUS_SECURITY_RANDOMPASSWORD
               value: "false"

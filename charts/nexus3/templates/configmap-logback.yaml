@@ -16,7 +16,7 @@ data:
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/request-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.access.maxHistory:-90}</maxHistory>
         </rollingPolicy>
       </appender>
 
@@ -51,7 +51,7 @@ data:
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/nexus-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.maxHistory:-90}</maxHistory>
         </rollingPolicy>
         <filter class="org.sonatype.nexus.logging.NexusLogFilter" />
       </appender>
@@ -86,7 +86,7 @@ data:
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
               <fileNamePattern>${karaf.data}/log/replication/replication-${repositoryName}-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-              <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+              <maxHistory>${logback.maxHistory:-90}</maxHistory>
             </rollingPolicy>
           </appender>
         </sift>
@@ -100,7 +100,7 @@ data:
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/request-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.maxHistory:-90}</maxHistory>
         </rollingPolicy>
       </appender>
       <logger name="org.eclipse.jetty.server.RequestLog" additivity="false">
@@ -116,7 +116,7 @@ data:
         <filter class="org.sonatype.nexus.logging.OutboundRequestsLogFilter" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/outbound-request-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.maxHistory:-90}</maxHistory>
         </rollingPolicy>
       </appender>
       <logger name="outboundRequests">
@@ -132,7 +132,7 @@ data:
         <filter class="org.sonatype.nexus.logging.AuditLogFilter"/>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/audit/audit-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.maxHistory:-90}</maxHistory>
         </rollingPolicy>
       </appender>
 
@@ -152,7 +152,7 @@ data:
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
               <fileNamePattern>${blobstore-reconciliation-path}/%d</fileNamePattern>
-              <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+              <maxHistory>${logback.maxHistory:-90}</maxHistory>
             </rollingPolicy>
           </appender>
         </sift>
@@ -161,7 +161,7 @@ data:
         <appender-ref ref="blobstore-reconciliation-log-file"/>
       </logger>
 
-      <appender name="metrics" class="org.sonatype.nexus.logging.InstrumentedAppender"/>
+      <appender name="metrics" class="org.sonatype.nexus.common.log.InstrumentedAppender"/>
 
       <logger name="ch.qos.logback" level="WARN"/>
       <logger name="org.eclipse.jetty.ee8.webapp" level="INFO"/>
@@ -194,7 +194,7 @@ data:
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
           <fileNamePattern>${karaf.data}/log/tasks/allTasks-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-          <maxHistory>{{ .Values.logback.maxHistory }}</maxHistory>
+          <maxHistory>${logback.maxHistory:-90}</maxHistory>
         </rollingPolicy>
       </appender>
       <root>
