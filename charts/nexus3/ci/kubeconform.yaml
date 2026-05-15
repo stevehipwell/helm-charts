@@ -57,6 +57,14 @@ ingress:
         - nexus-docker-hosted-2.local
       secretName: nexus3-local-tls
 
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: gateway
+      namespace: gateway
+  hostnames:
+    - nexus.local
+
 persistence:
   enabled: true
   annotations:

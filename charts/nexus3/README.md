@@ -92,6 +92,12 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.22.0
 | extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
 | extraVolumes | list | `[]` | Extra volumes for the pod. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
+| httpRoute.annotations | object | `{}` | Annotations to add to the `HTTPRoute` resources. |
+| httpRoute.enabled | bool | `false` | If `true`, create `HTTPRoute` resources. |
+| httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames; do not include hosts defined in `service.additionalPorts` as they will be added automatically. |
+| httpRoute.labels | object | `{}` | Labels to add to the `HTTPRoute` resources. |
+| httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references. |
+| httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules for the primary hostname; if not set, a default rule routing all traffic to the HTTP service port will be created. |
 | image.digest | string | `nil` | Optional image digest for the default container. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
 | image.repository | string | `"docker.io/sonatype/nexus3"` | Image repository for the default container. |

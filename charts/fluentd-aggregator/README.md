@@ -73,6 +73,7 @@ helm upgrade --install fluentd-aggregator stevehipwell/fluentd-aggregator --vers
 | extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
 | extraVolumes | list | `[]` | Extra volumes for the pod. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
+| httpRoutes | list | See _values.yaml_ | `HTTPRoute` resources, each input plugin will need its own. |
 | image.digest | string | `nil` | Optional image digest for the default container. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
 | image.repository | string | `"ghcr.io/stevehipwell/fluentd-aggregator"` | Image repository for the default container. |

@@ -123,7 +123,19 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | query.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query_ pod default container. |
 | query.extraVolumes | list | `[]` | Extra volumes for the _Query_ pod. |
 | query.grpcPort | int | `10901` | GRPC port used by the _Query_ pod default container. |
+| query.grpcRoute.annotations | object | `{}` | Annotations to add to the _Query_ gRPC service `GRPCRoute`. |
+| query.grpcRoute.enabled | bool | `false` | If `true`, create a `GRPCRoute` resource for the _Query_ gRPC service. |
+| query.grpcRoute.hostnames | list | See _values.yaml_ | `GRPCRoute` hostnames for the _Query_ gRPC service. |
+| query.grpcRoute.labels | object | `{}` | Labels to add to the _Query_ gRPC service `GRPCRoute`. |
+| query.grpcRoute.parentRefs | list | See _values.yaml_ | `GRPCRoute` parent references for the _Query_ gRPC service. |
+| query.grpcRoute.rules | list | See _values.yaml_ | `GRPCRoute` rules for the _Query_ gRPC service; if not set, a default rule routing all traffic to the gRPC service port will be created. |
 | query.httpPort | int | `10902` | HTTP port used by the _Query_ pod default container. |
+| query.httpRoute.annotations | object | `{}` | Annotations to add to the _Query_ service `HTTPRoute`. |
+| query.httpRoute.enabled | bool | `false` | If `true`, create an `HTTPRoute` resource for the _Query_ service. |
+| query.httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames for the _Query_ service. |
+| query.httpRoute.labels | object | `{}` | Labels to add to the _Query_ service `HTTPRoute`. |
+| query.httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references for the _Query_ service. |
+| query.httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules for the _Query_ service; if not set, a default rule routing all traffic to the HTTP service port will be created. |
 | query.ingress.annotations | object | `{}` | Annotations to add to the _Query_ service ingress. |
 | query.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Query_ service. |
 | query.ingress.grpcHosts | list | See _values.yaml_ | Hosts for the _Query_ service gRPC ingress rules. |
@@ -174,6 +186,12 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | queryFrontend.extraVolumeMounts | list | `[]` | Extra volume mounts for the _Query Frontend_ pod default container. |
 | queryFrontend.extraVolumes | list | `[]` | Extra volumes for the _Query Frontend_ pod. |
 | queryFrontend.httpPort | int | `10902` | HTTP port used by the _Query Frontend_ pod default container. |
+| queryFrontend.httpRoute.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service `HTTPRoute`. |
+| queryFrontend.httpRoute.enabled | bool | `false` | If `true`, create an `HTTPRoute` resource for the _Query Frontend_ service. |
+| queryFrontend.httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames for the _Query Frontend_ service. |
+| queryFrontend.httpRoute.labels | object | `{}` | Labels to add to the _Query Frontend_ service `HTTPRoute`. |
+| queryFrontend.httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references for the _Query Frontend_ service. |
+| queryFrontend.httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules for the _Query Frontend_ service; if not set, a default rule routing all traffic to the HTTP service port will be created. |
 | queryFrontend.ingress.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service ingress. |
 | queryFrontend.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Query Frontend_ service. |
 | queryFrontend.ingress.hosts | list | See _values.yaml_ | Hosts for the _Query Frontend_ service ingress. |
@@ -268,6 +286,12 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.router.grpcPort | int | `10901` | GRPC port used by the _Receive Router_ pod default container. |
 | receive.router.httpPort | int | `10902` | HTTP port used by the _Receive Router_ pod default container. |
 | receive.router.httpRemoteWritePort | int | `19291` | HTTP remote write port used by the _Receive Router_ pod default container. |
+| receive.router.httpRoute.annotations | object | `{}` | Annotations to add to the _Receive Router_ service `HTTPRoute`. |
+| receive.router.httpRoute.enabled | bool | `false` | If `true`, create an `HTTPRoute` resource for the _Receive Router_ service. |
+| receive.router.httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames for the _Receive Router_ service. |
+| receive.router.httpRoute.labels | object | `{}` | Labels to add to the _Receive Router_ service `HTTPRoute`. |
+| receive.router.httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references for the _Receive Router_ service. |
+| receive.router.httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules for the _Receive Router_ service; if not set, default rules routing `/api/v1/receive` to the remote write port and all other traffic to the HTTP port will be created. |
 | receive.router.ingress.annotations | object | `{}` | Annotations to add to the _Receive Router_ service ingress. |
 | receive.router.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Receive Router_ service. |
 | receive.router.ingress.hosts | list | See _values.yaml_ | Hosts for the _Receive Router_ service ingress. |
@@ -324,6 +348,12 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | rule.extraVolumes | list | `[]` | Extra volumes for the _Rule_ pod. |
 | rule.grpcPort | int | `10901` | GRPC port used by the _Rule_ pod default container. |
 | rule.httpPort | int | `10902` | HTTP port used by the _Rule_ pod default container. |
+| rule.httpRoute.annotations | object | `{}` | Annotations to add to the _Rule_ service `HTTPRoute`. |
+| rule.httpRoute.enabled | bool | `false` | If `true`, create an `HTTPRoute` resource for the _Rule_ service. |
+| rule.httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames for the _Rule_ service. |
+| rule.httpRoute.labels | object | `{}` | Labels to add to the _Rule_ service `HTTPRoute`. |
+| rule.httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references for the _Rule_ service. |
+| rule.httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules for the _Rule_ service; if not set, a default rule routing all traffic to the HTTP service port will be created. |
 | rule.ingress.annotations | object | `{}` | Annotations to add to the _Rule_ service ingress. |
 | rule.ingress.enabled | bool | `false` | If `true`, create an `Ingress` for the _Rule_ service. |
 | rule.ingress.hosts | list | See _values.yaml_ | Hosts for the _Rule_ service ingress. |

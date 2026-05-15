@@ -22,3 +22,21 @@ podDisruptionBudget:
 caCerts:
   enabled: true
   secretName: ca-certs
+
+ingress:
+  enabled: true
+  ingressClassName: test
+  hosts:
+    - plantuml.local
+  tls:
+    - hosts:
+        - plantuml.local
+      secretName: plantuml-tls
+
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: gateway
+      namespace: gateway
+  hostnames:
+    - plantuml.local
