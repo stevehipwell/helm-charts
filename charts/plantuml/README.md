@@ -66,6 +66,12 @@ helm upgrade --install plantuml stevehipwell/plantuml --version 3.45.0
 | commonLabels | object | `{}` | Labels to add to all chart resources. |
 | env | list | `[]` | Environment variables for the default container. |
 | fullnameOverride | string | `nil` | Override the full name of the chart. |
+| httpRoute.annotations | object | `{}` | Annotations to add to the `HTTPRoute` resource. |
+| httpRoute.enabled | bool | `false` | If `true`, create an `HTTPRoute` resource. |
+| httpRoute.hostnames | list | See _values.yaml_ | `HTTPRoute` hostnames. |
+| httpRoute.labels | object | `{}` | Labels to add to the `HTTPRoute` resource. |
+| httpRoute.parentRefs | list | See _values.yaml_ | `HTTPRoute` parent references. |
+| httpRoute.rules | list | See _values.yaml_ | `HTTPRoute` rules; if not set, a default rule routing all traffic to the HTTP service port will be created. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the default container. |
 | image.pullSecrets | list | `[]` | **DEPRECATED** - Image pull secrets. |
 | image.repository | string | `"docker.io/plantuml/plantuml-server"` | Image repository for the default container. |

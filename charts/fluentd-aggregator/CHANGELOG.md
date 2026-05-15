@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add optional `HTTPRoute` resource support via the new `httpRoutes` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
+
 ## [v5.7.0] - 2026-04-15
 
 ### Changed

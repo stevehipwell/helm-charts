@@ -64,6 +64,26 @@ ingress:
   #        - plantuml.local
   #      secretName: plantuml-tls
 
+httpRoute:
+  # -- If `true`, create an `HTTPRoute` resource.
+  enabled: false
+  # -- Annotations to add to the `HTTPRoute` resource.
+  annotations: {}
+  # -- Labels to add to the `HTTPRoute` resource.
+  labels: {}
+  # -- (list) `HTTPRoute` parent references.
+  # @default -- See _values.yaml_
+  parentRefs: []
+  #   - name: gateway
+  #     namespace: gateway
+  # -- (list) `HTTPRoute` hostnames.
+  # @default -- See _values.yaml_
+  hostnames: []
+  #   - plantuml.local
+  # -- (list) `HTTPRoute` rules; if not set, a default rule routing all traffic to the HTTP service port will be created.
+  # @default -- See _values.yaml_
+  rules: []
+
 # -- Number of replicas to create if `autoscaling.enabled` is `false`.
 replicaCount: 1
 

@@ -1,0 +1,66 @@
+{{- if .Values.httpRoute.enabled -}}
+{{- $root := . -}}
+{{- $serviceName := include "nexus3.fullname" . -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $serviceName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" . | nindent 4 }}
+    {{- with .Values.httpRoute.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.httpRoute.parentRefs }}
+  parentRefs:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.httpRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+  {{- if .Values.httpRoute.rules }}
+    {{- toYaml .Values.httpRoute.rules | nindent 4 }}
+  {{- else }}
+    - backendRefs:
+        - name: {{ $serviceName }}
+          port: {{ .Values.service.port }}
+  {{- end }}
+{{- range $additionalPort := .Values.service.additionalPorts }}
+{{- $hosts := compact (default (list $additionalPort.host) $additionalPort.hosts) }}
+{{- if $hosts }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ printf "%s-%s" ($serviceName | trunc 50 | trimSuffix "-") $additionalPort.name | trunc 63 | trimSuffix "-" }}
+  namespace: {{ $root.Release.Namespace }}
+  labels:
+    {{- include "nexus3.labels" $root | nindent 4 }}
+    {{- with $root.Values.httpRoute.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $root.Values.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with $root.Values.httpRoute.parentRefs }}
+  parentRefs:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  hostnames:
+    {{- toYaml $hosts | nindent 4 }}
+  rules:
+    - backendRefs:
+        - name: {{ $serviceName }}
+          port: {{ $additionalPort.port }}
+{{- end }}
+{{- end }}
+{{- end }}
