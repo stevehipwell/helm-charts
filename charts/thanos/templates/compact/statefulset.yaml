@@ -79,6 +79,9 @@ spec:
             - {{ printf "--http-address=0.0.0.0:%d" (int .Values.compact.httpPort) }}
             - --data-dir=/var/thanos/compact
             - --objstore.config-file=/etc/thanos/objstore.yaml
+            - {{ printf "--retention.resolution-raw=%s" .Values.compact.retentionResolutionRaw }}
+            - {{ printf "--retention.resolution-5m=%s" .Values.compact.retentionResolution5m }}
+            - {{ printf "--retention.resolution-1h=%s" .Values.compact.retentionResolution1h }}
           {{- if .Values.autoGomemlimit.enabled }}
             - --enable-auto-gomemlimit
           {{- with .Values.autoGomemlimit.ratio }}
