@@ -190,6 +190,8 @@ compact:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Compact_ pod data.
     enabled: false
+    # -- Labels to add to the _Compact_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Compact_ pod PVC.
     annotations: {}
     # -- Access mode for the _Compact_ pod PVC.
@@ -271,12 +273,58 @@ query:
     # @default -- See _values.yaml_
     hosts: []
     #   - chart-example.local
+    # -- Path for the _Query_ service gRPC ingress rules.
+    grpcPath: /
+    # -- Hosts for the _Query_ service gRPC ingress rules.
+    # @default -- See _values.yaml_
+    grpcHosts: []
+    #   - chart-example-grpc.local
     # -- TLS configuration for the _Query_ service ingress.
     # @default -- See _values.yaml_
     tls: []
     #   - hosts:
     #       - chart-example.local
     #     secretName: chart-example-tls
+
+  httpRoute:
+    # -- If `true`, create an `HTTPRoute` resource for the _Query_ service.
+    enabled: false
+    # -- Annotations to add to the _Query_ service `HTTPRoute`.
+    annotations: {}
+    # -- Labels to add to the _Query_ service `HTTPRoute`.
+    labels: {}
+    # -- (list) `HTTPRoute` parent references for the _Query_ service.
+    # @default -- See _values.yaml_
+    parentRefs: []
+    #   - name: gateway
+    #     namespace: gateway
+    # -- (list) `HTTPRoute` hostnames for the _Query_ service.
+    # @default -- See _values.yaml_
+    hostnames: []
+    #   - chart-example.local
+    # -- (list) `HTTPRoute` rules for the _Query_ service; if not set, a default rule routing all traffic to the HTTP service port will be created.
+    # @default -- See _values.yaml_
+    rules: []
+
+  grpcRoute:
+    # -- If `true`, create a `GRPCRoute` resource for the _Query_ gRPC service.
+    enabled: false
+    # -- Annotations to add to the _Query_ gRPC service `GRPCRoute`.
+    annotations: {}
+    # -- Labels to add to the _Query_ gRPC service `GRPCRoute`.
+    labels: {}
+    # -- (list) `GRPCRoute` parent references for the _Query_ gRPC service.
+    # @default -- See _values.yaml_
+    parentRefs: []
+    #   - name: gateway
+    #     namespace: gateway
+    # -- (list) `GRPCRoute` hostnames for the _Query_ gRPC service.
+    # @default -- See _values.yaml_
+    hostnames: []
+    #   - chart-example-grpc.local
+    # -- (list) `GRPCRoute` rules for the _Query_ gRPC service; if not set, a default rule routing all traffic to the gRPC service port will be created.
+    # @default -- See _values.yaml_
+    rules: []
 
   # -- Number of _Query_ replicas to create.
   replicas: 1
@@ -449,6 +497,26 @@ queryFrontend:
     #   - hosts:
     #       - chart-example.local
     #     secretName: chart-example-tls
+
+  httpRoute:
+    # -- If `true`, create an `HTTPRoute` resource for the _Query Frontend_ service.
+    enabled: false
+    # -- Annotations to add to the _Query Frontend_ service `HTTPRoute`.
+    annotations: {}
+    # -- Labels to add to the _Query Frontend_ service `HTTPRoute`.
+    labels: {}
+    # -- (list) `HTTPRoute` parent references for the _Query Frontend_ service.
+    # @default -- See _values.yaml_
+    parentRefs: []
+    #   - name: gateway
+    #     namespace: gateway
+    # -- (list) `HTTPRoute` hostnames for the _Query Frontend_ service.
+    # @default -- See _values.yaml_
+    hostnames: []
+    #   - chart-example.local
+    # -- (list) `HTTPRoute` rules for the _Query Frontend_ service; if not set, a default rule routing all traffic to the HTTP service port will be created.
+    # @default -- See _values.yaml_
+    rules: []
 
   # -- Number of _Query Frontend_ replicas to create.
   replicas: 1
@@ -708,6 +776,8 @@ receive:
     persistence:
       # -- If `true`, create a `PersistentVolumeClaim` for the _Receive Ingestor_ pod data.
       enabled: false
+      # -- Labels to add to the _Receive Ingestor_ pod PVC.
+      labels: {}
       # -- Annotations to add to the _Receive Ingestor_ pod PVC.
       annotations: {}
       # -- Access mode for the _Receive Ingestor_ pod PVC.
@@ -783,6 +853,26 @@ receive:
       #   - hosts:
       #       - chart-example.local
       #     secretName: chart-example-tls
+
+    httpRoute:
+      # -- If `true`, create an `HTTPRoute` resource for the _Receive Router_ service.
+      enabled: false
+      # -- Annotations to add to the _Receive Router_ service `HTTPRoute`.
+      annotations: {}
+      # -- Labels to add to the _Receive Router_ service `HTTPRoute`.
+      labels: {}
+      # -- (list) `HTTPRoute` parent references for the _Receive Router_ service.
+      # @default -- See _values.yaml_
+      parentRefs: []
+      #   - name: gateway
+      #     namespace: gateway
+      # -- (list) `HTTPRoute` hostnames for the _Receive Router_ service.
+      # @default -- See _values.yaml_
+      hostnames: []
+      #   - chart-example.local
+      # -- (list) `HTTPRoute` rules for the _Receive Router_ service; if not set, default rules routing `/api/v1/receive` to the remote write port and all other traffic to the HTTP port will be created.
+      # @default -- See _values.yaml_
+      rules: []
 
     # -- Number of _Receive Router_ replicas to create.
     replicas: 1
@@ -993,6 +1083,26 @@ rule:
     #       - chart-example.local
     #     secretName: chart-example-tls
 
+  httpRoute:
+    # -- If `true`, create an `HTTPRoute` resource for the _Rule_ service.
+    enabled: false
+    # -- Annotations to add to the _Rule_ service `HTTPRoute`.
+    annotations: {}
+    # -- Labels to add to the _Rule_ service `HTTPRoute`.
+    labels: {}
+    # -- (list) `HTTPRoute` parent references for the _Rule_ service.
+    # @default -- See _values.yaml_
+    parentRefs: []
+    #   - name: gateway
+    #     namespace: gateway
+    # -- (list) `HTTPRoute` hostnames for the _Rule_ service.
+    # @default -- See _values.yaml_
+    hostnames: []
+    #   - chart-example.local
+    # -- (list) `HTTPRoute` rules for the _Rule_ service; if not set, a default rule routing all traffic to the HTTP service port will be created.
+    # @default -- See _values.yaml_
+    rules: []
+
   # -- Number of _Rule_ replicas to create.
   replicas: 1
 
@@ -1092,6 +1202,8 @@ rule:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Rule_ pod data.
     enabled: false
+    # -- Labels to add to the _Rule_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Rule_ pod PVC.
     annotations: {}
     # -- Access mode for the _Rule_ pod PVC.
@@ -1271,6 +1383,8 @@ storeGateway:
   persistence:
     # -- If `true`, create a `PersistentVolumeClaim` for the _Store Gateway_ pod data.
     enabled: false
+    # -- Labels to add to the _Store Gateway_ pod PVC.
+    labels: {}
     # -- Annotations to add to the _Store Gateway_ pod PVC.
     annotations: {}
     # -- Access mode for the _Store Gateway_ pod PVC.

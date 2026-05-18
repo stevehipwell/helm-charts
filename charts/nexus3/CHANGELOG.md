@@ -15,6 +15,36 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add optional `HTTPRoute` resource support via the new `httpRoute` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
+
+## [v5.22.0] - 2026-05-15
+
+### Added
+
+- Added support for using `imagePullSecrets` in the config job. ([#1371](https://github.com/stevehipwell/helm-charts/pull/1371)) @stevehipwell
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.92.2](https://github.com/sonatype/nexus-public/releases/tag/release-3.92.2-01). ([#1371](https://github.com/stevehipwell/helm-charts/pull/1371)) @stevehipwell
+
+## [v5.21.1] - 2026-05-13
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.91.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.91.1-04). ([#1367](https://github.com/stevehipwell/helm-charts/pull/1367)) _@stevehipwell_
+
+## [v5.21.0] - 2026-04-08
+
+### Added
+
+- Add `initResources` chart value to support configuring resources for the init containers. ([#1359](https://github.com/stevehipwell/helm-charts/pull/1359)) _@stevehipwell_
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.91.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.91.0-07). ([#1359](https://github.com/stevehipwell/helm-charts/pull/1359)) _@stevehipwell_
+
 ## [v5.20.0] - 2026-03-30
 
 ### Changed
@@ -1005,6 +1035,9 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.22.0
+[v5.21.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.21.1
+[v5.21.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.21.0
 [v5.20.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.20.0
 [v5.19.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.19.0
 [v5.18.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.18.0

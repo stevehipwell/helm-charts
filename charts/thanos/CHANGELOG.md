@@ -14,9 +14,16 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Add support for specifying labels on persistence volume claims. ([#1372](https://github.com/stevehipwell/helm-charts/pull/1372)) @stevehipwell
+- Add support for GRPC ingress to the _Thanos Query_ component. ([#1372](https://github.com/stevehipwell/helm-charts/pull/1372)) @stevehipwell
+- Add optional `HTTPRoute` resource support to the _Query_, _Query Frontend_, _Receive Router_, & _Rule_ components via the new `httpRoute` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
+- Add optional `GRPCRoute` resource support to the _Query_ component via the new `query.grpcRoute` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
+
 ### Fixed
 
-- Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) _@Poil_
+- Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) @Poil
 
 ## [v1.23.0] - 2026-03-02
 

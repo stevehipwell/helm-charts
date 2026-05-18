@@ -27,7 +27,7 @@ spec:
                   name: http
   {{- end }}
   {{- range $additionalPort := .Values.service.additionalPorts }}
-  {{- range ternary $additionalPort.hosts (list $additionalPort.host) (empty $additionalPort.host) }}
+  {{- range compact (default (list $additionalPort.host) $additionalPort.hosts) }}
     - host: {{ . | quote }}
       http:
         paths:

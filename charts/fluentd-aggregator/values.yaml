@@ -83,6 +83,19 @@ ingresses: []
 #          - chart-example.local
 #        secretName: chart-example-tls
 
+# -- (list) `HTTPRoute` resources, each input plugin will need its own.
+# @default -- See _values.yaml_
+httpRoutes: []
+#  - servicePort: 24224
+#    annotations: {}
+#    labels: {}
+#    parentRefs:
+#      - name: gateway
+#        namespace: gateway
+#    hostnames:
+#      - chart-example.local
+#    rules: []
+
 # -- Number of replicas to create if `autoscaling.enabled` is `false`.
 replicas: 1
 

@@ -206,6 +206,9 @@ spec:
         name: data
         labels:
           {{- include "thanos.rule.selectorLabels" . | nindent 10 }}
+        {{- with .Values.rule.persistence.labels }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.rule.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

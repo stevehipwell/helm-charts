@@ -149,6 +149,9 @@ spec:
         name: data
         labels:
           {{- include "thanos.storeGateway.selectorLabels" . | nindent 10 }}
+        {{- with .Values.storeGateway.persistence.labels }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.storeGateway.persistence.annotations }}
         annotations:
           {{- toYaml . | nindent 10 }}

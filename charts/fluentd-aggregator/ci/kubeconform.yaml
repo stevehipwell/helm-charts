@@ -15,6 +15,14 @@ ingresses:
           - chart-example.local
         secretName: chart-example-tls
 
+httpRoutes:
+  - servicePort: 24224
+    parentRefs:
+      - name: gateway
+        namespace: gateway
+    hostnames:
+      - chart-example.local
+
 autoscaling:
   enabled: true
   minReplicas: 3

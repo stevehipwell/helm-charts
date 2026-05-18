@@ -24,6 +24,10 @@ compact:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test
@@ -97,6 +101,35 @@ query:
     - key: system
       operator: Exists
 
+  ingress:
+    enabled: true
+    ingressClassName: test
+    hosts:
+      - query.chart-example.local
+    grpcHosts:
+      - query-grpc.chart-example.local
+    tls:
+      - hosts:
+          - query.chart-example.local
+          - query-grpc.chart-example.local
+        secretName: chart-example-tls
+
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: gateway
+    hostnames:
+      - query.chart-example.local
+
+  grpcRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: gateway
+    hostnames:
+      - query-grpc.chart-example.local
+
 queryFrontend:
   enabled: true
 
@@ -112,10 +145,20 @@ queryFrontend:
     ingressClassName: test
     hosts:
       - query.chart-example.local
+    grpcHosts:
+      - query-grpc.chart-example.local
     tls:
       - hosts:
           - query.chart-example.local
         secretName: chart-example-tls
+
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: gateway
+    hostnames:
+      - query.chart-example.local
 
   resources:
     requests:
@@ -161,6 +204,10 @@ receive:
 
     persistence:
       enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
     resources:
       requests:
@@ -214,6 +261,14 @@ receive:
             - router.chart-example.local
           secretName: chart-example-tls
 
+    httpRoute:
+      enabled: true
+      parentRefs:
+        - name: gateway
+          namespace: gateway
+      hostnames:
+        - router.chart-example.local
+
     resources:
       requests:
         cpu: 500m
@@ -251,6 +306,24 @@ receive:
 rule:
   enabled: true
 
+  ingress:
+    enabled: true
+    ingressClassName: test
+    hosts:
+      - rule.chart-example.local
+    tls:
+      - hosts:
+          - rule.chart-example.local
+        secretName: chart-example-tls
+
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: gateway
+    hostnames:
+      - rule.chart-example.local
+
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
@@ -265,6 +338,10 @@ rule:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test
@@ -315,6 +392,10 @@ storeGateway:
 
   persistence:
     enabled: true
+    labels:
+      foo: bar
+    annotations:
+      foo: bar
 
   extraVolumes:
     - name: test

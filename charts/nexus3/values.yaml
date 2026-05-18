@@ -99,6 +99,26 @@ ingress:
   #       - nexus-docker-hosted-2.local
   #     secretName: nexus-local-tls
 
+httpRoute:
+  # -- If `true`, create `HTTPRoute` resources.
+  enabled: false
+  # -- Annotations to add to the `HTTPRoute` resources.
+  annotations: {}
+  # -- Labels to add to the `HTTPRoute` resources.
+  labels: {}
+  # -- (list) `HTTPRoute` parent references.
+  # @default -- See _values.yaml_
+  parentRefs: []
+  #   - name: gateway
+  #     namespace: gateway
+  # -- (list) `HTTPRoute` hostnames; do not include hosts defined in `service.additionalPorts` as they will be added automatically.
+  # @default -- See _values.yaml_
+  hostnames: []
+  #   - nexus.local
+  # -- (list) `HTTPRoute` rules for the primary hostname; if not set, a default rule routing all traffic to the HTTP service port will be created.
+  # @default -- See _values.yaml_
+  rules: []
+
 # -- Number of replicas to create; modifying this requires the license to be configured.
 replicas: 1
 
@@ -252,6 +272,9 @@ resources: {}
 #   requests:
 #     cpu: 100m
 #     memory: 128Mi
+
+# -- Resources for the init containers (not sidecars).
+initResources: {}
 
 # -- Extra init container to run before the default container.
 extraInitContainers: []

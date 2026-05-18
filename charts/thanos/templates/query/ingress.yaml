@@ -37,6 +37,25 @@ spec:
               servicePort: http
             {{- end }}
   {{- end }}
+  {{- range .Values.query.ingress.grpcHosts }}
+    - host: {{ quote . }}
+      http:
+        paths:
+          - path: {{ $.Values.query.ingress.grpcPath }}
+            {{- if $ingressSupportsPathType }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+            {{- if $apiIsStable }}
+              service:
+                name: {{ $serviceName }}
+                port:
+                  name: grpc
+            {{- else }}
+              serviceName: {{ $serviceName }}
+              servicePort: grpc
+            {{- end }}
+  {{- end }}
 {{- if .Values.query.ingress.tls }}
   tls:
   {{- range .Values.query.ingress.tls }}
