@@ -25,6 +25,10 @@
 
 - Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) @Poil
 
+### Added
+
+- Added `receive.router.service.trafficDistribution` and `rule.service.trafficDistribution` values to allow configuring the `trafficDistribution` [#1366](https://github.com/stevehipwell/helm-charts/pull/1366) _@draegerben_
+
 ## [v1.23.0] - 2026-03-02
 
 ### Added
