@@ -316,6 +316,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.router.service.grpcPort | int | `10901` | GRPC port for the _Receive Router_ service. |
 | receive.router.service.httpPort | int | `10902` | HTTP port for the _Receive Router_ service. |
 | receive.router.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Router_ service. |
+| receive.router.service.trafficDistribution | string | `nil` | Traffic distribution for the _Receive Router_ service. |
 | receive.router.service.type | string | `"ClusterIP"` | Service type for the _Receive Router_ service. |
 | receive.router.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Router_ service account. |
 | receive.router.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Receive Router_ service account. |
@@ -391,6 +392,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | rule.service.annotations | object | `{}` | Annotations to add to the _Rule_ service. |
 | rule.service.grpcPort | int | `10901` | GRPC port for the _Rule_ service. |
 | rule.service.httpPort | int | `10902` | HTTP port for the _Rule_ service. |
+| rule.service.trafficDistribution | string | `nil` | Traffic distribution for the _Rule_ service. |
 | rule.service.type | string | `"ClusterIP"` | Service type for the _Rule_ service. |
 | rule.serviceAccount.annotations | object | `{}` | Annotations to add to the _Rule_ service account. |
 | rule.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Rule_ service account. |
