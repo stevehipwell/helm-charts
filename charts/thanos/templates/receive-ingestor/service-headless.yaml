@@ -6,6 +6,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.receive.ingestor.labels" . | nindent 4 }}
+  {{- with .Values.receive.ingestor.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.receive.ingestor.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

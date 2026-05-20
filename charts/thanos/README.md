@@ -1,6 +1,6 @@
 # thanos
 
-![Version: 1.23.0](https://img.shields.io/badge/Version-1.23.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.41.0](https://img.shields.io/badge/AppVersion-0.41.0-informational?style=flat-square)
+![Version: 1.23.1](https://img.shields.io/badge/Version-1.23.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.41.0](https://img.shields.io/badge/AppVersion-0.41.0-informational?style=flat-square)
 
 Helm chart to install Thanos; a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 
@@ -25,7 +25,7 @@ Helm chart to install Thanos; a set of components that can be composed into a hi
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.23.0
+helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --version 1.23.1
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install thanos oci://ghcr.io/stevehipwell/helm-charts/thanos --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.23.0
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/thanos:1.23.1
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
+helm upgrade --install thanos stevehipwell/thanos --version 1.23.1
 ```
 
 ## Values
@@ -86,6 +86,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | compact.securityContext | object | See _values.yaml_ | Security context for the _Compact_ pod default container. |
 | compact.service.annotations | object | `{}` | Annotations to add to the _Compact_ service. |
 | compact.service.httpPort | int | `10902` | HTTP port for the _Compact_ service. |
+| compact.service.labels | object | `{}` | Labels to add to the _Compact_ service. |
 | compact.serviceAccount.annotations | object | `{}` | Annotations to add to the _Compact_ service account. |
 | compact.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Compact_ service account. |
 | compact.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Compact_ component. |
@@ -162,13 +163,14 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | query.service.annotations | object | `{}` | Annotations to add to the _Query_ service. |
 | query.service.grpcPort | int | `10901` | GRPC port for the _Query_ service. |
 | query.service.httpPort | int | `10902` | HTTP port for the _Query_ service. |
+| query.service.labels | object | `{}` | Labels to add to the _Query_ service. |
 | query.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query_ service. |
 | query.service.type | string | `"ClusterIP"` | Service type for the _Query_ service. |
 | query.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query_ service account. |
 | query.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Query_ service account. |
 | query.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Query_ component. |
 | query.serviceAccount.labels | object | `{}` | Labels to add to the _Query_ service account. |
-| query.serviceAccount.name | string | `nil` | If this is set and `compact.serviceAccount.create` is `true` this will be used for the created _Query_ component service account name, if this is set and `compact.serviceAccount.create` is `false` then this will define an existing service account to use for the _Query_ component. |
+| query.serviceAccount.name | string | `nil` | If this is set and `query.serviceAccount.create` is `true` this will be used for the created _Query_ component service account name, if this is set and `query.serviceAccount.create` is `false` then this will define an existing service account to use for the _Query_ component. |
 | query.terminationGracePeriodSeconds | int | `nil` | Termination grace period for the _Query_ pod; in seconds. |
 | query.tolerations | list | `[]` | Node taints the _Query_ pod will tolerate for scheduling. |
 | query.topologySpreadConstraints | list | `[]` | Topology spread constraints for scheduling for the _Query_ pod. If an explicit label selector is not provided one will be created from the pod selector labels. |
@@ -214,6 +216,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | queryFrontend.securityContext | object | See _values.yaml_ | Security context for the _Query Frontend_ pod default container. |
 | queryFrontend.service.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service. |
 | queryFrontend.service.httpPort | int | `10902` | HTTP port for the _Query Frontend_ service. |
+| queryFrontend.service.labels | object | `{}` | Labels to add to the _Query Frontend_ service. |
 | queryFrontend.service.trafficDistribution | string | `nil` | Traffic distribution for the _Query Frontend_ service. |
 | queryFrontend.service.type | string | `"ClusterIP"` | Service type for the _Query Frontend_ service. |
 | queryFrontend.serviceAccount.annotations | object | `{}` | Annotations to add to the _Query Frontend_ service account. |
@@ -261,6 +264,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.ingestor.service.grpcPort | int | `10901` | GRPC port for the _Receive Ingestor_ service. |
 | receive.ingestor.service.httpPort | int | `10902` | HTTP port for the _Receive Ingestor_ service. |
 | receive.ingestor.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Ingestor_ service. |
+| receive.ingestor.service.labels | object | `{}` | Labels to add to the _Receive Ingestor_ service. |
 | receive.ingestor.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Ingestor_ service account. |
 | receive.ingestor.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Receive Ingestor_ service account. |
 | receive.ingestor.serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount` for the _Receive Ingestor_ component. |
@@ -316,6 +320,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | receive.router.service.grpcPort | int | `10901` | GRPC port for the _Receive Router_ service. |
 | receive.router.service.httpPort | int | `10902` | HTTP port for the _Receive Router_ service. |
 | receive.router.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Router_ service. |
+| receive.router.service.labels | object | `{}` | Labels to add to the _Receive Router_ service. |
 | receive.router.service.trafficDistribution | string | `nil` | Traffic distribution for the _Receive Router_ service. |
 | receive.router.service.type | string | `"ClusterIP"` | Service type for the _Receive Router_ service. |
 | receive.router.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Router_ service account. |
@@ -392,6 +397,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | rule.service.annotations | object | `{}` | Annotations to add to the _Rule_ service. |
 | rule.service.grpcPort | int | `10901` | GRPC port for the _Rule_ service. |
 | rule.service.httpPort | int | `10902` | HTTP port for the _Rule_ service. |
+| rule.service.labels | object | `{}` | Labels to add to the _Rule_ service. |
 | rule.service.trafficDistribution | string | `nil` | Traffic distribution for the _Rule_ service. |
 | rule.service.type | string | `"ClusterIP"` | Service type for the _Rule_ service. |
 | rule.serviceAccount.annotations | object | `{}` | Annotations to add to the _Rule_ service account. |
@@ -443,6 +449,7 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.23.0
 | storeGateway.service.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service. |
 | storeGateway.service.grpcPort | int | `10901` | GRPC port for the _Store Gateway_ service. |
 | storeGateway.service.httpPort | int | `10902` | HTTP port for the _Store Gateway_ service. |
+| storeGateway.service.labels | object | `{}` | Labels to add to the _Store Gateway_ service. |
 | storeGateway.service.trafficDistribution | string | `nil` | Traffic distribution for the _Store Gateway_ service. |
 | storeGateway.serviceAccount.annotations | object | `{}` | Annotations to add to the _Store Gateway_ service account. |
 | storeGateway.serviceAccount.automountToken | bool | `false` | Automount API credentials for the _Store Gateway_ service account. |
