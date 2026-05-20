@@ -26168,6 +26168,50 @@ entries:
   - annotations:
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add support for specifying labels on persistence volume claims."
+        - kind: added
+          description: "Add support for GRPC ingress to the Thanos Query component."
+        - kind: added
+          description: "Add optional HTTPRoute resource support to the Query, Query Frontend, Receive Router, & Rule components via the new httpRoute values."
+        - kind: added
+          description: "Add optional GRPCRoute resource support to the Query component via the new query.grpcRoute values."
+        - kind: added
+          description: "Add receive.router.service.trafficDistribution and rule.service."
+        - kind: added
+          description: "Add support for specifying labels on services."
+        - kind: fixed
+          description: "Fix formatting when setting --auto-gomemlimit.ratio flag."
+    apiVersion: v2
+    appVersion: 0.41.0
+    created: "2026-05-20T12:33:44.487595121Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 5b55dbd0308a80f6cd73ec50f1ce8eb4f0242f523377c590bf4f6db2dda215f7
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.23.1/thanos-1.23.1.tgz
+    version: 1.23.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Added rule.overrideQueryEndpoints value to allow overriding the Rule component query endpoints (--query)."
         - kind: changed
           description: "Update the Thanos OCI image to v0.41.0."
@@ -32546,4 +32590,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-15T14:29:06.246955418Z"
+generated: "2026-05-20T12:33:44.49018416Z"
