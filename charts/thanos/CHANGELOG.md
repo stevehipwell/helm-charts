@@ -14,17 +14,20 @@
 
 ## [UNRELEASED]
 
+## [v1.23.1] - 2026-05-20
+
 ### Added
 
 - Add support for specifying labels on persistence volume claims. ([#1372](https://github.com/stevehipwell/helm-charts/pull/1372)) @stevehipwell
 - Add support for GRPC ingress to the _Thanos Query_ component. ([#1372](https://github.com/stevehipwell/helm-charts/pull/1372)) @stevehipwell
 - Add optional `HTTPRoute` resource support to the _Query_, _Query Frontend_, _Receive Router_, & _Rule_ components via the new `httpRoute` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
 - Add optional `GRPCRoute` resource support to the _Query_ component via the new `query.grpcRoute` values. ([#1374](https://github.com/stevehipwell/helm-charts/pull/1374)) @stevehipwell
-- Added `receive.router.service.trafficDistribution` and `rule.service.trafficDistribution` values to allow configuring the `trafficDistribution` [#1366](https://github.com/stevehipwell/helm-charts/pull/1366) _@draegerben_
+- Add `receive.router.service.trafficDistribution` and `rule.service.trafficDistribution` values to allow configuring the `trafficDistribution` ([#1366](https://github.com/stevehipwell/helm-charts/pull/1366)) @draegerben
+- Add support for specifying labels on services. ([#1375](https://github.com/stevehipwell/helm-charts/pull/1375)) @stevehipwell
 
 ### Fixed
 
-- Fixed float64 formatting in compact auto-gomemlimit ratio ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) @Poil
+- Fix formatting when setting `--auto-gomemlimit.ratio` flag. ([#1345](https://github.com/stevehipwell/helm-charts/pull/1345)) @Poil
 
 ## [v1.23.0] - 2026-03-02
 
@@ -622,6 +625,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.23.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.23.1
 [v1.23.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.23.0
 [v1.22.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.1
 [v1.22.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.22.0

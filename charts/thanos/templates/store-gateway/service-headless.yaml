@@ -6,6 +6,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thanos.storeGateway.labels" . | nindent 4 }}
+  {{- with .Values.storeGateway.service.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.storeGateway.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
