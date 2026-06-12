@@ -17497,6 +17497,39 @@ entries:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |-
         - kind: added
+          description: "Add optional HTTPRoute resource support via the new httpRoute values."
+        - kind: changed
+          description: "Update the Nexus3 OCI image to v3.93.0."
+    apiVersion: v2
+    appVersion: 3.93.0
+    created: "2026-06-12T12:33:24.599555992Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 487a65f5e14cd6499c4e1b23b27452d2a4cd82c048a8e3b41bd6ef8d9c62c605
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.23.0/nexus3-5.23.0.tgz
+    version: 5.23.0
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |-
+        - kind: added
           description: "Added support for using imagePullSecrets in the config job."
         - kind: changed
           description: "Update the Nexus3 OCI image to v3.92.2."
@@ -32620,4 +32653,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-21T12:53:07.629502481Z"
+generated: "2026-06-12T12:33:24.600947053Z"
