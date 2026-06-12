@@ -22401,6 +22401,34 @@ entries:
   plantuml:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the PlantUML OCI image to v1.2026.5."
+    apiVersion: v2
+    appVersion: 1.2026.5
+    created: "2026-06-12T12:44:26.783430014Z"
+    description: Helm chart for PlantUML Server, a web application to generate UML
+      diagrams on-the-fly.
+    digest: 9fe230e5e42ec9a31f7c5295b24b90ea498fddce7afa23cd3d47d8088156d23c
+    home: https://plantuml.com/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/plantuml/icon.png
+    keywords:
+    - plantuml
+    - diagram
+    - uml
+    - sequence
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: plantuml
+    sources:
+    - https://github.com/plantuml/plantuml-server/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/plantuml-3.47.0/plantuml-3.47.0.tgz
+    version: 3.47.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add optional HTTPRoute resource support via the new httpRoute values."
         - kind: changed
@@ -32653,4 +32681,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-06-12T12:33:24.600947053Z"
+generated: "2026-06-12T12:44:26.784807355Z"
