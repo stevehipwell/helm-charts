@@ -31838,6 +31838,47 @@ entries:
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: added
+          description: "Add opt-in aggregate ClusterRoles that extend the existing ClusterRoles view, edit and admin to permit view/edit operations on VerticalPodAutoscaler resources. Enable via rbac.createAggregateRoles."
+        - kind: changed
+          description: "Update the Vertical Pod Autoscaler OCI image version to v1.7.0."
+      artifacthub.io/crds: |
+        - kind: VerticalPodAutoscalerCheckpoint
+          version: v1
+          name: verticalpodautoscalercheckpoints.autoscaling.k8s.io
+          displayName: VerticalPodAutoscalerCheckpoint
+          description: Represents the checkpoint of the internal state of VPA that is used for recovery after recommender's restart.
+        - kind: VerticalPodAutoscaler
+          version: v1
+          name: verticalpodautoscalers.autoscaling.k8s.io
+          displayName: VerticalPodAutoscaler
+          description: Represents the configuration for a vertical pod autoscaler, which automatically manages pod resources based on historical and real time resource utilization.
+    apiVersion: v2
+    appVersion: 1.7.0
+    created: "2026-06-16T10:08:04.47742333Z"
+    description: Helm chart for the Vertical Pod Autoscaler.
+    digest: 666055dda94c172261bad9e40b20ba28fc9dcb741edb82de901581b1d71a434d
+    home: https://github.com/kubernetes/autoscaler/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/vertical-pod-autoscaler/icon.png
+    keywords:
+    - kubernetes
+    - autoscale
+    - autoscaling
+    - vertical
+    - vpa
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.12.0/vertical-pod-autoscaler-1.12.0.tgz
+    version: 1.12.0
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Explicitly set automountServiceAccountToken to true for the service accounts."
         - kind: changed
@@ -32709,4 +32750,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-06-12T14:14:08.826255186Z"
+generated: "2026-06-16T10:08:04.479024768Z"
