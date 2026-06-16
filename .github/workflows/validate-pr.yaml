@@ -27,17 +27,17 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set-up rumdl
-        uses: action-stars/install-tool-from-github-release@1fa61c3bea52eca3bcdb1f5c961a3b113fe7fa54 # v0.2.6
+      - name: Install ghactl
+        uses: action-stars/ghactl-action@c556c5f2cfcb1f6643bdecf1bf601c706954a37a # v0.0.1
         with:
-          github_token: ${{ github.token }}
-          owner: rvben
-          repository: rumdl
-          filename_format: "{name}-v{version}-{arch}-{os}.{ext}"
-          arch_amd64: x86_64
-          os_linux: unknown-linux-gnu
-          check_command: rumdl --version
+          token: ${{ github.token }}
           version: latest
+
+      - name: Install tools
+        run: |
+          set -euo pipefail
+
+          ghactl tool install --owner rvben --repo rumdl --version latest
 
       - name: Lint markdown files
         run: rumdl check --output-format github .
