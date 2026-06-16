@@ -14,9 +14,15 @@
 
 ## [UNRELEASED]
 
+## [v1.12.0] - 2026-06-16
+
+### Added
+
+- Add opt-in aggregate `ClusterRoles` that extend the existing `ClusterRoles` `view`, `edit` and `admin` to permit view/edit operations on `VerticalPodAutoscaler` resources. Enable via `rbac.createAggregateRoles`. ([#1360](https://github.com/stevehipwell/helm-charts/pull/1360)) @BWagenerGenerali
+
 ### Changed
 
-- Add opt-in aggregate `ClusterRoles` that extend the existing `ClusterRoles` `view`, `edit` and `admin` to permit view/edit operations on `VerticalPodAutoscaler` resources. Enable via `rbac.createAggregateRoles`. ([#1360](https://github.com/stevehipwell/helm-charts/pull/1360)) _@BWagenerGenerali_
+- Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.7.0`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.7.0). ([#1383](https://github.com/stevehipwell/helm-charts/pull/1383)) @stevehipwell
 
 ## [v1.11.0] - 2026-03-30
 
@@ -185,6 +191,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.12.0
 [v1.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.11.0
 [v1.10.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.10.1
 [v1.10.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.10.0
