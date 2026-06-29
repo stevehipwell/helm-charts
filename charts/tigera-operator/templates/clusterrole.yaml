@@ -378,6 +378,19 @@ rules:
       - istio-validator-calico-system
     verbs:
       - update
+  # The operator manages ValidatingAdmissionPolicy resources for the Gateway API safe-upgrades policy shipped by Envoy Gateway v1.8+.
+  - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - validatingadmissionpolicies
+      - validatingadmissionpolicybindings
+    verbs:
+      - create
+      - update
+      - delete
+      - get
+      - list
+      - watch
   # Needed for operator lock
   - apiGroups:
       - coordination.k8s.io
