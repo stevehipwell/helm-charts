@@ -2,8 +2,8 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 5.7.0
-appVersion: 3.7.0
+version: 5.8.0
+appVersion: 3.8.0
 keywords:
   - fluent
   - fluentd
