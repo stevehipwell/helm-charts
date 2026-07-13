@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 2
 
       - name: Install ghactl
-        uses: action-stars/ghactl-action@c556c5f2cfcb1f6643bdecf1bf601c706954a37a # v0.0.1
+        uses: action-stars/ghactl-action@ee93644a33e63f19d4af8cee920710fdff236af8 # v0.1.0
         with:
           token: ${{ github.token }}
           version: latest
