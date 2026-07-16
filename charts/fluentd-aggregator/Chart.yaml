@@ -2,8 +2,9 @@ apiVersion: v2
 name: fluentd-aggregator
 description: Helm chart for Fluentd running as an aggregation StatefulSet and using the fluent-plugin-route router.
 type: application
-version: 5.8.0
+version: 5.8.1
 appVersion: 3.8.0
+deprecated: true
 keywords:
   - fluent
   - fluentd
@@ -15,8 +16,5 @@ sources:
   - https://github.com/stevehipwell/fluentd-aggregator
   - https://hub.docker.com/r/stevehipwell/fluentd-aggregator
   - https://github.com/stevehipwell/helm-charts/
-maintainers:
-  - name: stevehipwell
-    email: steve.hipwell@gmail.com
 annotations:
   artifacthub.io/alternativeName: fluentd
