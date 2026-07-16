@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v5.8.1] - 2026-07-16
+
+### Deprecated
+
+- Deprecate chart in favour of the new upstream [fluentd-aggregator](https://artifacthub.io/packages/helm/fluentd-aggregator/fluentd-aggregator) chart. ([#1392](https://github.com/stevehipwell/helm-charts/pull/1392)) @stevehipwell
+
 ## [v5.8.0] - 2026-07-01
 
 ### Added
@@ -680,6 +686,7 @@ The Fluentd configuration is now much more structured to make it much harder to 
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/fluentd-aggregator
+[v5.8.1]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.8.1
 [v5.8.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.8.0
 [v5.7.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.7.0
 [v5.6.0]: https://github.com/stevehipwell/helm-charts/releases/tag/fluentd-aggregator-5.6.0
