@@ -411,6 +411,8 @@ config:
     #   - NpmToken
     #   - NuGetApiKey
     #   - rutauth-realm
+  # -- If `true`, provision with default blob store configuration.
+  createDefaultBlobStore: true
   # -- Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_).
   blobStores: []
   # Reference the Nexus Blob store REST API for supported types and expected request body structures of each

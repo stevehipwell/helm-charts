@@ -107,8 +107,10 @@ env:
     value: my-value
 
 properties:
-  - nexus.scripts.allowCreation=true
   - nexus.golang.hosted=true
+
+storeProperties:
+  - test=true
 
 plugins:
   - name: nexus-repository-composer
@@ -150,6 +152,7 @@ config:
       - NpmToken
       - NuGetApiKey
       - rutauth-realm
+  createDefaultBlobStore: true
   blobStores:
     - name: ExampleFileBlobStore
       type: file

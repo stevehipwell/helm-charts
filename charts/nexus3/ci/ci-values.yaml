@@ -34,7 +34,14 @@ config:
       - NpmToken
       - NuGetApiKey
       - rutauth-realm
-  blobStores: []
+  createDefaultBlobStore: false
+  blobStores:
+    - name: default
+      type: file
+      path: /nexus-data/blobs/default
+      softQuota:
+        type: spaceRemainingQuota
+        limit: 512
   cleanup:
     - name: ExampleCleanup
       notes: "Cleanup content that hasn't been updated in 14 days downloaded in 28 days."
