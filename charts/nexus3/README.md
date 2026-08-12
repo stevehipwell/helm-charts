@@ -1,6 +1,6 @@
 # nexus3
 
-![Version: 5.24.1](https://img.shields.io/badge/Version-5.24.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.94.1](https://img.shields.io/badge/AppVersion-3.94.1-informational?style=flat-square)
+![Version: 5.25.0](https://img.shields.io/badge/Version-5.25.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.95.0](https://img.shields.io/badge/AppVersion-3.95.0-informational?style=flat-square)
 
 Helm chart for Sonatype Nexus 3 OSS.
 
@@ -25,7 +25,7 @@ Helm chart for Sonatype Nexus 3 OSS.
 To install the chart using the recommended OCI method you can use the following command.
 
 ```shell
-helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.24.1
+helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --version 5.25.0
 ```
 
 #### Verification
@@ -33,7 +33,7 @@ helm upgrade --install nexus3 oci://ghcr.io/stevehipwell/helm-charts/nexus3 --ve
 As the OCI chart release is signed by [Cosign](https://github.com/sigstore/cosign) you can verify the chart before installing it by running the following command.
 
 ```shell
-cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.24.1
+cosign verify --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity-regexp 'https://github\.com/action-stars/helm-workflows/\.github/workflows/release\.yaml@.+' --certificate-github-workflow-repository stevehipwell/helm-charts --certificate-github-workflow-name Release ghcr.io/stevehipwell/helm-charts/nexus3:5.25.0
 ```
 
 ### Non-OCI Repository
@@ -42,7 +42,7 @@ Alternatively you can use the legacy non-OCI method via the following commands.
 
 ```shell
 helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
-helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.24.1
+helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.25.0
 ```
 
 ## Values
@@ -63,6 +63,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.24.1
 | config.anonymous.roles | list | `["nx-anonymous","nx-metrics"]` | Roles for anonymous access. |
 | config.blobStores | list | `[]` | Blob store configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | config.cleanup | list | `[]` | Cleanup configuration. |
+| config.createDefaultBlobStore | bool | `true` | If `true`, provision with default blob store configuration. |
 | config.enabled | bool | `false` | If `true` & `rootPassword.secret` is set, enable the configuration Job. |
 | config.job.affinity | object | `{}` | Affinity settings for scheduling the config job. |
 | config.job.annotations | object | `{}` | Annotations to apply to the config job. |

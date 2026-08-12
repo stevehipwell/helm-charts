@@ -18,6 +18,8 @@ data:
 {{- end }}
 {{- if .Values.config.enabled }}
     nexus.scripts.allowCreation=true
+    nexus.blobstore.provisionDefaults={{ .Values.config.createDefaultBlobStore }}
+    nexus.skipDefaultRepositories=true
 {{- end }}
 {{- range .Values.properties }}
     {{ . }}

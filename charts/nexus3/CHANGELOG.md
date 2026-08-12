@@ -1,6 +1,5 @@
 # Nexus 3 Helm Chart Changelog
 
-<!-- markdownlint-disable-next-line MD052 -->
 > [!NOTE]
 > All notable changes to this project will be documented in this file; the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -15,11 +14,22 @@
 
 ## [UNRELEASED]
 
+## [v5.25.0] - 2026-08-12
+
+### Added
+
+- Add `config.createDefaultBlobStore` value to allow for optionally disabling the creation of the default blob store during provisioning when `config.enabled` is `true`. ([#1402](https://github.com/stevehipwell/helm-charts/pull/1402)) @stevehipwell
+
+### Changed
+
+- Update the _Nexus3_ OCI image to [v3.95.0](https://github.com/sonatype/nexus-public/releases/tag/release-3.95.0-07). ([#1402](https://github.com/stevehipwell/helm-charts/pull/1402)) @stevehipwell
+- Stop creating the default repositories during provisioning when `config.enabled` is `true`. ([#1402](https://github.com/stevehipwell/helm-charts/pull/1402)) @stevehipwell
+
 ## [v5.24.1] - 2026-07-27
 
 ### Changed
 
-- Update the _Nexus3_ OCI image to [v3.94.1](hhttps://github.com/sonatype/nexus-public/releases/tag/release-3.94.1-06). ([#1396](https://github.com/stevehipwell/helm-charts/pull/1396)) @stevehipwell
+- Update the _Nexus3_ OCI image to [v3.94.1](https://github.com/sonatype/nexus-public/releases/tag/release-3.94.1-06). ([#1396](https://github.com/stevehipwell/helm-charts/pull/1396)) @stevehipwell
 
 ## [v5.24.0] - 2026-07-17
 
@@ -1059,6 +1069,7 @@ RELEASE LINKS
 -->
 
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/nexus3
+[v5.25.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.25.0
 [v5.24.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.24.1
 [v5.24.0]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.24.0
 [v5.23.1]: https://github.com/stevehipwell/helm-charts/releases/tag/nexus3-5.23.1
