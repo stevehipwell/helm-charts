@@ -17556,6 +17556,37 @@ entries:
   - annotations:
       artifacthub.io/alternativeName: nexus
       artifacthub.io/changes: |-
+        - kind: changed
+          description: "Update the Nexus3 OCI image to v3.95.1."
+    apiVersion: v2
+    appVersion: 3.95.1
+    created: "2026-08-14T10:50:30.994493255Z"
+    description: Helm chart for Sonatype Nexus 3 OSS.
+    digest: 57d1a5c9eeaca07b3c817be07622ff0d8ff44835bbbdeeb12a907abc234acfd5
+    home: https://www.sonatype.com/products/sonatype-nexus-repository
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/nexus3/icon.png
+    keywords:
+    - artifacts
+    - dependency
+    - management
+    - sonatype
+    - nexus
+    - repository
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: nexus3
+    sources:
+    - https://github.com/sonatype/nexus-public
+    - https://github.com/sonatype/docker-nexus3
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/nexus3-5.25.1/nexus3-5.25.1.tgz
+    version: 5.25.1
+  - annotations:
+      artifacthub.io/alternativeName: nexus
+      artifacthub.io/changes: |-
         - kind: added
           description: "Add config.createDefaultBlobStore value to allow for optionally disabling the creation of the default blob store during provisioning when config.enabled is true."
         - kind: changed
@@ -33074,4 +33105,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T14:59:57.895773713Z"
+generated: "2026-08-14T10:50:30.99590051Z"
