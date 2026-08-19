@@ -30,7 +30,6 @@ You can then run `helm search repo stevehipwell` to see the charts.
 - [kube-proxy](./charts/kube-proxy/README.md)
 - [nexus3](./charts/nexus3/README.md)
 - [node-config](./charts/node-config/README.md)
-- [node-config](./charts/node-config/README.md)
 - [overprovisioner](./charts/overprovisioner/README.md)
 - [plantuml](./charts/plantuml/README.md)
 - [snapshot-controller](./charts/snapshot-controller/README.md)
