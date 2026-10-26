@@ -14,6 +14,12 @@
 
 ## [UNRELEASED]
 
+## [v1.24.2] - 2026-10-26
+
+### Fixed
+
+- Use correct component based labels for `HTTPRoute` & `Ingress` resources. ([#1413](https://github.com/stevehipwell/helm-charts/pull/1413)) @stevehipwell
+
 ## [v1.24.1] - 2026-08-12
 
 ### Changed
@@ -637,6 +643,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.24.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.2
 [v1.24.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.1
 [v1.24.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.0
 [v1.23.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.23.1

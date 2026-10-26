@@ -6,7 +6,7 @@ metadata:
   name: {{ $serviceName }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.labels" . | nindent 4 }}
+    {{- include "thanos.rule.labels" . | nindent 4 }}
     {{- with .Values.rule.httpRoute.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
