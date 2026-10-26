@@ -26626,6 +26626,38 @@ entries:
   thanos:
   - annotations:
       artifacthub.io/changes: |-
+        - kind: fixed
+          description: "Use correct component based labels for HTTPRoute & Ingress resources."
+    apiVersion: v2
+    appVersion: 0.42.4
+    created: "2026-10-26T11:34:46.536273353Z"
+    description: Helm chart to install Thanos; a set of components that can be composed
+      into a highly available metric system with unlimited storage capacity, which
+      can be added seamlessly on top of existing Prometheus deployments.
+    digest: 048856e2f15dfedaad68c1f6ed813d383244a8a3ac47e96f102bdf4e4109e3a2
+    home: https://thanos.io/
+    icon: https://raw.githubusercontent.com/stevehipwell/helm-charts/main/charts/thanos/icon.png
+    keywords:
+    - kubernetes
+    - thanos
+    - prometheus
+    - monitoring
+    - alerting
+    - metrics
+    maintainers:
+    - email: steve.hipwell@gmail.com
+      name: stevehipwell
+    name: thanos
+    sources:
+    - https://github.com/thanos-io/thanos
+    - https://github.com/thanos-io/kube-thanos
+    - https://github.com/stevehipwell/helm-charts/
+    type: application
+    urls:
+    - https://github.com/stevehipwell/helm-charts/releases/download/thanos-1.24.2/thanos-1.24.2.tgz
+    version: 1.24.2
+  - annotations:
+      artifacthub.io/changes: |-
         - kind: changed
           description: "Update the Thanos OCI image to v0.42.4."
     apiVersion: v2
@@ -33292,4 +33324,4 @@ entries:
     urls:
     - https://github.com/stevehipwell/helm-charts/releases/download/vertical-pod-autoscaler-1.0.0/vertical-pod-autoscaler-1.0.0.tgz
     version: 1.0.0
-generated: "2026-10-15T16:19:47.963371544Z"
+generated: "2026-10-26T11:34:46.537717195Z"
