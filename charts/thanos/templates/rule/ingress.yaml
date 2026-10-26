@@ -8,7 +8,7 @@ metadata:
   name: {{ $serviceName }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thanos.labels" . | nindent 4 }}
+    {{- include "thanos.rule.labels" . | nindent 4 }}
   {{- with .Values.rule.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
