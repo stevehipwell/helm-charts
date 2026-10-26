@@ -14,6 +14,13 @@
 
 ## [UNRELEASED]
 
+## [v1.13.0] - 2026-10-26
+
+### Changed
+
+- Update the _Vertical Pod Autoscaler_ OCI image version to [`v1.8.1`](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-1.8.1). ([#1414](https://github.com/stevehipwell/helm-charts/pull/1414)) @stevehipwell
+- Switched to per component RBAC templates for easier management of resources, this includes renaming the resources. ([#1414](https://github.com/stevehipwell/helm-charts/pull/1414)) @stevehipwell
+
 ## [v1.12.1] - 2026-07-27
 
 ### Changed
@@ -197,6 +204,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/vertical-pod-autoscaler
+[v1.13.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.13.0
 [v1.12.1]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.12.1
 [v1.12.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.12.0
 [v1.11.0]: https://github.com/stevehipwell/helm-charts/releases/tag/vertical-pod-autoscaler-1.11.0
