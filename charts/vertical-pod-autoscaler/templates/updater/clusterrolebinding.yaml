@@ -1,0 +1,76 @@
+{{- if and .Values.rbac.create (not .Values.recommenderOnly) -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-in-place
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-in-place
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-actor
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-actor
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-target-reader
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-target-reader
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-evictioner
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-evictioner
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-status-reader
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-status-reader
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "vertical-pod-autoscaler.updater.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end -}}

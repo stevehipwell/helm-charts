@@ -1,0 +1,26 @@
+{{- if and .Values.rbac.create (gt (int .Values.recommender.replicas) 1) -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-leader-locking
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.recommender.labels" . | nindent 4 }}
+rules:
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - create
+  - apiGroups:
+      - coordination.k8s.io
+    resourceNames:
+      - {{ .Values.recommender.leaderElect.name }}
+    resources:
+      - leases
+    verbs:
+      - get
+      - watch
+      - update
+{{- end -}}
