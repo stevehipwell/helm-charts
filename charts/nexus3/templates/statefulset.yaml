@@ -73,6 +73,10 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           command: ["/bin/bash", "-c"]
           args: ["/scripts/import-ca-certs.sh"]
           volumeMounts:
@@ -100,6 +104,10 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           args: ["/scripts/download-plugins.sh"]
           volumeMounts:
             - mountPath: /scripts/download-plugins.sh
@@ -125,6 +133,10 @@ spec:
           {{- end }}
           {{- with .Values.env }}
           env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.envFrom }}
+          envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           args: ["/scripts/chown-data-dir.sh"]
@@ -231,6 +243,10 @@ spec:
               value: "true"
           {{- end }}
           {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.envFrom }}
+          envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
         {{- if .Values.manualMaintenanceMode.enabled }}
