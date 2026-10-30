@@ -202,6 +202,9 @@ securityContext:
 # -- Environment variables for the default container.
 env: []
 
+# -- Environment variables from ConfigMaps or Secrets for the default container.
+envFrom: []
+
 # -- Startup probe configuration for the default container.
 # @default -- See _values.yaml_
 startupProbe:

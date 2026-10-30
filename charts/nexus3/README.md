@@ -89,6 +89,7 @@ helm upgrade --install nexus3 stevehipwell/nexus3 --version 5.27.0
 | config.tasks | list | `[]` | Task configuration. |
 | config.users | list | `[]` | Users configuration; based on the REST API (API reference docs require an existing Nexus installation and can be found at **Administration** under _System_ → _API_). |
 | env | list | `[]` | Environment variables for the default container. |
+| envFrom | list | `[]` | Environment variables from ConfigMaps or Secrets for the default container. |
 | extraInitContainers | list | `[]` | Extra init container to run before the default container. |
 | extraVolumeMounts | list | `[]` | Extra volume mounts for the default container. |
 | extraVolumes | list | `[]` | Extra volumes for the pod. |
