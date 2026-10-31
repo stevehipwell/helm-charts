@@ -63,5 +63,5 @@ rules:
       - "*/scale"
     verbs:
       - get
-      - watc
+      - watch
 {{- end -}}
