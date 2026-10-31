@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fixed the `watch` verb typo for `*/scale` resources in the admission controller `ClusterRole`.
+
 ## [v1.13.0] - 2026-10-26
 
 ### Changed
