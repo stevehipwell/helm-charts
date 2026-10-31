@@ -16,7 +16,7 @@
 
 ### Fixed
 
-- Fixed the `watch` verb typo for `*/scale` resources in the admission controller `ClusterRole`.
+- Fixed the `watch` verb typo for `*/scale` resources in the admission controller `ClusterRole`. ([#1418](https://github.com/stevehipwell/helm-charts/pull/1418)) @fillerimiz
 
 ## [v1.13.0] - 2026-10-26
 
