@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `query.service.nodePorts` and `query.service.externalTrafficPolicy` values to configure the _Query_ service node ports and external traffic policy. ([#1419](https://github.com/stevehipwell/helm-charts/issues/1419)) @Poil
+
 ## [v1.24.2] - 2026-10-26
 
 ### Fixed
