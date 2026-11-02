@@ -20,6 +20,20 @@ spec:
   trafficDistribution: {{ . }}
 {{- end }}
 {{- end }}
+{{- if has .Values.receive.router.service.type (list "NodePort" "LoadBalancer") }}
+{{- with .Values.receive.router.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ . }}
+{{- end }}
+{{- end }}
+{{- if eq .Values.receive.router.service.type "LoadBalancer" }}
+{{- with .Values.receive.router.service.loadBalancerClass }}
+  loadBalancerClass: {{ . }}
+{{- end }}
+{{- with .Values.receive.router.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
+{{- end }}
   ports:
     - name: grpc
       port: {{ .Values.receive.router.service.grpcPort }}

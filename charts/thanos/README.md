@@ -313,14 +313,26 @@ helm upgrade --install thanos stevehipwell/thanos --version 1.24.2
 | receive.router.podSecurityContext | object | See _values.yaml_ | Security context for the _Receive Router_ pod. |
 | receive.router.priorityClassName | string | `nil` | Priority class name for the _Receive Router_ pod. |
 | receive.router.readinessProbe | object | See _values.yaml_ | Readiness probe configuration for the _Receive Router_ pod default container. |
+| receive.router.remoteWriteService.annotations | object | `{}` | Annotations to add to the _Receive Router_ remote write service. |
+| receive.router.remoteWriteService.enabled | bool | `false` | If `true`, create an additional _Receive Router_ service exposing only the HTTP remote write port. |
+| receive.router.remoteWriteService.externalTrafficPolicy | string | `nil` | External traffic policy for the _Receive Router_ remote write service (`Cluster` or `Local`), only used if the service type is `NodePort` or `LoadBalancer`. |
+| receive.router.remoteWriteService.labels | object | `{}` | Labels to add to the _Receive Router_ remote write service. |
+| receive.router.remoteWriteService.loadBalancerClass | string | `nil` | Load balancer class for the _Receive Router_ remote write service, only used if the service type is `LoadBalancer`. |
+| receive.router.remoteWriteService.loadBalancerSourceRanges | list | `[]` | Source ranges allowed to access the _Receive Router_ remote write service load balancer, only used if the service type is `LoadBalancer`. |
+| receive.router.remoteWriteService.nodePort | int | `nil` | Node port for the _Receive Router_ remote write service, only used if the service type is `NodePort` or `LoadBalancer`. |
+| receive.router.remoteWriteService.port | int | `19291` | HTTP remote write port for the _Receive Router_ remote write service. |
+| receive.router.remoteWriteService.type | string | `"ClusterIP"` | Service type for the _Receive Router_ remote write service. |
 | receive.router.replicas | int | `1` | Number of _Receive Router_ replicas to create. |
 | receive.router.resources | object | `{}` | Resources for the _Receive Router_ pod default container. |
 | receive.router.securityContext | object | See _values.yaml_ | Security context for the _Receive Router_ pod default container. |
 | receive.router.service.annotations | object | `{}` | Annotations to add to the _Receive Router_ service. |
+| receive.router.service.externalTrafficPolicy | string | `nil` | External traffic policy for the _Receive Router_ service (`Cluster` or `Local`), only used if the service type is `NodePort` or `LoadBalancer`. |
 | receive.router.service.grpcPort | int | `10901` | GRPC port for the _Receive Router_ service. |
 | receive.router.service.httpPort | int | `10902` | HTTP port for the _Receive Router_ service. |
 | receive.router.service.httpRemoteWritePort | int | `19291` | HTTP remote write port for the _Receive Router_ service. |
 | receive.router.service.labels | object | `{}` | Labels to add to the _Receive Router_ service. |
+| receive.router.service.loadBalancerClass | string | `nil` | Load balancer class for the _Receive Router_ service, only used if the service type is `LoadBalancer`. |
+| receive.router.service.loadBalancerSourceRanges | list | `[]` | Source ranges allowed to access the _Receive Router_ service load balancer, only used if the service type is `LoadBalancer`. |
 | receive.router.service.trafficDistribution | string | `nil` | Traffic distribution for the _Receive Router_ service. |
 | receive.router.service.type | string | `"ClusterIP"` | Service type for the _Receive Router_ service. |
 | receive.router.serviceAccount.annotations | object | `{}` | Annotations to add to the _Receive Router_ service account. |

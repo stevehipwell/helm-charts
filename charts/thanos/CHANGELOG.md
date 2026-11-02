@@ -14,6 +14,10 @@
 
 ## [UNRELEASED]
 
+### Added
+
+- Added `receive.router.service.externalTrafficPolicy`, `receive.router.service.loadBalancerClass` and `receive.router.service.loadBalancerSourceRanges` values, and an optional `receive.router.remoteWriteService` exposing only the HTTP remote write port. @Poil
+
 ## [v1.24.2] - 2026-10-26
 
 ### Fixed
