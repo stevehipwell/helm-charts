@@ -259,6 +259,13 @@ query:
     grpcPort: 10901
     # -- HTTP port for the _Query_ service.
     httpPort: 10902
+    nodePorts:
+      # -- (int) GRPC node port for the _Query_ service, only used if the service type is `NodePort` or `LoadBalancer`.
+      grpc:
+      # -- (int) HTTP node port for the _Query_ service, only used if the service type is `NodePort` or `LoadBalancer`.
+      http:
+    # -- (string) External traffic policy for the _Query_ service (`Cluster` or `Local`), only used if the service type is `NodePort` or `LoadBalancer`.
+    externalTrafficPolicy:
     # -- (string) Traffic distribution for the _Query_ service.
     trafficDistribution:
     # -- Service type for the _Query_ service.

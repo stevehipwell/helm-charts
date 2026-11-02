@@ -20,14 +20,29 @@ spec:
   trafficDistribution: {{ . }}
 {{- end }}
 {{- end }}
+{{- if has .Values.query.service.type (list "NodePort" "LoadBalancer") }}
+{{- with .Values.query.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ . }}
+{{- end }}
+{{- end }}
   ports:
     - name: grpc
       port: {{ .Values.query.service.grpcPort }}
       targetPort: grpc
+      {{- if has .Values.query.service.type (list "NodePort" "LoadBalancer") }}
+      {{- with .Values.query.service.nodePorts.grpc }}
+      nodePort: {{ . }}
+      {{- end }}
+      {{- end }}
     - name: http
       protocol: TCP
       port: {{ .Values.query.service.httpPort }}
       targetPort: http
+      {{- if has .Values.query.service.type (list "NodePort" "LoadBalancer") }}
+      {{- with .Values.query.service.nodePorts.http }}
+      nodePort: {{ . }}
+      {{- end }}
+      {{- end }}
   selector:
     {{- include "thanos.query.selectorLabels" . | nindent 4 }}
 {{- end }}
