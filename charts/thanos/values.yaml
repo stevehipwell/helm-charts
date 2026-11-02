@@ -845,6 +845,32 @@ receive:
       trafficDistribution:
       # -- Service type for the _Receive Router_ service.
       type: ClusterIP
+      # -- (string) External traffic policy for the _Receive Router_ service (`Cluster` or `Local`), only used if the service type is `NodePort` or `LoadBalancer`.
+      externalTrafficPolicy:
+      # -- (string) Load balancer class for the _Receive Router_ service, only used if the service type is `LoadBalancer`.
+      loadBalancerClass:
+      # -- Source ranges allowed to access the _Receive Router_ service load balancer, only used if the service type is `LoadBalancer`.
+      loadBalancerSourceRanges: []
+
+    remoteWriteService:
+      # -- If `true`, create an additional _Receive Router_ service exposing only the HTTP remote write port.
+      enabled: false
+      # -- Annotations to add to the _Receive Router_ remote write service.
+      annotations: {}
+      # -- Labels to add to the _Receive Router_ remote write service.
+      labels: {}
+      # -- HTTP remote write port for the _Receive Router_ remote write service.
+      port: 19291
+      # -- (int) Node port for the _Receive Router_ remote write service, only used if the service type is `NodePort` or `LoadBalancer`.
+      nodePort:
+      # -- Service type for the _Receive Router_ remote write service.
+      type: ClusterIP
+      # -- (string) External traffic policy for the _Receive Router_ remote write service (`Cluster` or `Local`), only used if the service type is `NodePort` or `LoadBalancer`.
+      externalTrafficPolicy:
+      # -- (string) Load balancer class for the _Receive Router_ remote write service, only used if the service type is `LoadBalancer`.
+      loadBalancerClass:
+      # -- Source ranges allowed to access the _Receive Router_ remote write service load balancer, only used if the service type is `LoadBalancer`.
+      loadBalancerSourceRanges: []
 
     ingress:
       # -- If `true`, create an `Ingress` for the _Receive Router_ service.
