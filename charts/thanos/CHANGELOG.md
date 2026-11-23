@@ -14,6 +14,16 @@
 
 ## [UNRELEASED]
 
+## [v1.24.3] - 2026-11-23
+
+### Changed
+
+- Update the _Thanos_ OCI image to [v0.42.5](https://github.com/thanos-io/thanos/releases/tag/v0.42.5). ([#1423](https://github.com/stevehipwell/helm-charts/pull/1423)) @stevehipwell
+
+### Fixed
+
+- Fix Thanos Rule service not being created for `HTTPRoute`. ([#1423](https://github.com/stevehipwell/helm-charts/pull/1423)) @stevehipwell
+
 ## [v1.24.2] - 2026-10-26
 
 ### Fixed
@@ -643,6 +653,7 @@
 RELEASE LINKS
 -->
 [UNRELEASED]: https://github.com/stevehipwell/helm-charts/tree/main/charts/thanos
+[v1.24.3]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.3
 [v1.24.2]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.2
 [v1.24.1]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.1
 [v1.24.0]: https://github.com/stevehipwell/helm-charts/releases/tag/thanos-1.24.0

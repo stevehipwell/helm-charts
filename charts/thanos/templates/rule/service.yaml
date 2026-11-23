@@ -1,4 +1,4 @@
-{{- if and .Values.rule.enabled .Values.rule.ingress.enabled -}}
+{{- if and .Values.rule.enabled (or .Values.rule.httpRoute.enabled .Values.rule.ingress.enabled) -}}
 apiVersion: v1
 kind: Service
 metadata:
